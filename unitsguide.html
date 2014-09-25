@@ -619,10 +619,10 @@ function initialize() {
 		{ "targets": [44,45],
 		"orderable": false,
 		"render": function(relVal, type, cRow, full) {
-	    if (relVal=="" || relVal=="true") {
-			return "true"; 
+	    if (relVal=="" || relVal=="TRUE") {
+			return "TRUE"; 
 	    } else {
-		return "false";
+		return "FALSE";
 	    }
 		}
 		},
@@ -2104,11 +2104,11 @@ $(document).on("click", "#execFilter", function(e){
 		bfPROsTable.column( 44 ).search("");
 		    break;
 		case "Global":
-		bfPROsTable.column( 44 ).search("true");
+		bfPROsTable.column( 44 ).search("TRUE");
 		bfPROsTable.column( 45 ).search("");
 		    break;
 		case "Japan":
-		bfPROsTable.column( 45 ).search("true");
+		bfPROsTable.column( 45 ).search("TRUE");
 		bfPROsTable.column( 44 ).search("");
 		    break;
 	}
