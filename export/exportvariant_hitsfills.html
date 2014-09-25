@@ -139,14 +139,18 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
           if (valObj.bb.hits) {
               exportSTR+='<td>'+valObj.bb.hits+'</td>'
           } else { exportSTR+='<td></td>' }
-          if (valObj.sbb.hits) {
+          if (valObj.sbb) {
+            if (valObj.sbb.hits) {
               exportSTR+='<td>'+valObj.sbb.hits+'</td>'
+            } else { exportSTR+='<td></td>' }
           } else { exportSTR+='<td></td>' }
           if (valObj.bb.levels[9]["bc cost"]) {
               exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
           } else { exportSTR+='<td></td>' }
-          if (valObj.sbb.levels[9]["bc cost"]) {
-              exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+          if (valObj.sbb) {
+            if (valObj.sbb.levels[9]["bc cost"]) {
+                exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+            } else { exportSTR+='<td></td>' }
           } else { exportSTR+='<td></td>' }
   
           $("#rawTable").append(exportSTR+'<tr>');
