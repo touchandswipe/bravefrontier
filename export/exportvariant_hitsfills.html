@@ -136,19 +136,19 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
         exportSTR='<tr><td>'+valObj.guide_id+'</td>';
         if (valObj.hits) {
             exportSTR+='<td>'+valObj.hits+'</td>'
-        } else exportSTR+='<td></td>'
+        } else { exportSTR+='<td></td>' }
         if (valObj.bb.hits) {
             exportSTR+='<td>'+valObj.bb.hits+'</td>'
-        } else exportSTR+='<td></td>'
+        } else { exportSTR+='<td></td>' }
         if (valObj.sbb.hits) {
             exportSTR+='<td>'+valObj.sbb.hits+'</td>'
-        } else exportSTR+='<td></td>'
+        } else { exportSTR+='<td></td>' }
         if (valObj.bb.levels[9]["BC Cost]) {
             exportSTR+='<td>'+valObj.bb.levels[9]["BC Cost]+'</td>'
-        } else exportSTR+='<td></td>'
+        } else { exportSTR+='<td></td>' }
         if (valObj.sbb.levels[9]["BC Cost]) {
             exportSTR+='<td>'+valObj.sbb.levels[9]["BC Cost]+'</td>'
-        } else exportSTR+='<td></td>'
+        } else { exportSTR+='<td></td>' }
 
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
