@@ -143,11 +143,11 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
         if (valObj.sbb.hits) {
             exportSTR+='<td>'+valObj.sbb.hits+'</td>'
         } else { exportSTR+='<td></td>' }
-        if (valObj.bb.levels[9]["BC Cost]) {
-            exportSTR+='<td>'+valObj.bb.levels[9]["BC Cost]+'</td>'
+        if (valObj.bb.levels[9]["BC Cost"]) {
+            exportSTR+='<td>'+valObj.bb.levels[9]["BC Cost"]+'</td>'
         } else { exportSTR+='<td></td>' }
-        if (valObj.sbb.levels[9]["BC Cost]) {
-            exportSTR+='<td>'+valObj.sbb.levels[9]["BC Cost]+'</td>'
+        if (valObj.sbb.levels[9]["BC Cost"]) {
+            exportSTR+='<td>'+valObj.sbb.levels[9]["BC Cost"]+'</td>'
         } else { exportSTR+='<td></td>' }
 
         $("#rawTable").append(exportSTR+'<tr>');
