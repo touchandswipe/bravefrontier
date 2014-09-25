@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier -Fusion XP Calculator - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Fusion XP Calculator - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.css">
+
+    <!-- Custom styles for this template -->
+<style type="text/css">
+    .thumbnail {padding-top:15px;}
+    .clear {clear:both;}
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
+<script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
+                    <li><a href="summonerxp.html"><i class="fa fa-database"></i> Summoner XP</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container-fluid" style="padding:5px;">
+<div style="min-height:55px;"></div>
+
+<!--Calc Code here -->
+<div class="row">
+<div class="col-sm-12 col-md-12"><h4>Fusion XP Calculator</h4>
+<h6><i class="fa fa-info-circle"></i> Tier 1 (T1) are for Starter Units.</h6>
+<h6><i class="fa fa-info-circle"></i> Tier 2 (T2) are for units that have Max 5* evolution. More details to be provided.</h6>
+<h6><i class="fa fa-info-circle"></i> Tier 3 (T3) are all other rare summon units that have up to 6* Evolution. More details to be provided.</h6>
+</div></div><!-- End of Row-->
+
+<div class="row">
+
+<div class="col-xs-6 col-sm-3 col-md-3">
+    <div class="input-group" style="margin:3px;">
+        <span class="input-group-addon"><b>Unit Tier</b></span>
+        <select id="calTier" class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-xs-6 col-sm-3 col-md-3">
+    <div class="input-group" style="margin:3px;">
+        <span class="input-group-addon"><b>Crystals?</b></span>
+        <select id="inCrystals" class="form-control">
+          <option value="1" selected="selected">Yes</option>
+          <option value="0">No</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-xs-6 col-sm-3 col-md-3">
+    <div class="input-group" style="margin:3px;">
+      <span class="input-group-addon"><b>From</b></span>
+      <input id="calFrom" type="text" value="1" class="form-control numF" placeholder="Current Lv">
+    </div>
+</div>
+
+<div class="col-xs-6 col-sm-3 col-md-3">
+    <div class="input-group" style="margin:3px;">
+      <span class="input-group-addon"><b>To</b></span>
+      <input id="calTo" type="text" value="100" class="form-control numF" placeholder="Future Lv">
+    </div>
+</div>
+
+<div class="col-xs-6 col-sm-3 col-md-3">
+    <button id="calGo" type="button" class="btn btn-primary" style="margin:3px;">Calculate</button>
+</div>
+
+</div><!--End of ROW-->
+
+<!--Cal Modal-->
+<div id="calModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container-fluid">
+            <div id="opEXP" class="row"></div>
+            <h4><i class="fa fa-thumb-tack"></i> <b>Optimal Fusion XP Units</b></h4>
+            <div id="opBonus" class="row"></div>
+            <div class="clear">&nbsp;</div>
+            <h4><i class="fa fa-thumb-tack"></i> <b>Per Fusion Type ONLY</b></h4>
+            <div id="opALT" class="row"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--Calc Code ENDS -->
+
+<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:0 auto;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BFPROResponsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="7756941266"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<table id="xptable" class="table-bordered table-responsive table-hover table-striped table-condensed" width="100%">
+          <thead>
+            <tr>
+                <th>LV</th>
+                <th class="bg-warning">T1 Total XP</th>
+                <th class="bg-warning">T1 XP/LV</th>
+                <th class="bg-info">T2 Total XP</th>
+                <th class="bg-info">T2 XP/LV</th>
+                <th class="bg-success">T3 Total XP</th>
+                <th class="bg-success">T3 XP/LV</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <th>LV</th>
+                <th class="bg-warning">T1 Total XP</th>
+                <th class="bg-warning">T1 XP/LV</th>
+                <th class="bg-info">T2 Total XP</th>
+                <th class="bg-info">T2 XP/LV</th>
+                <th class="bg-success">T3 Total XP</th>
+                <th class="bg-success">T3 XP/LV</th>
+            </tr>
+          </tfoot>
+</table>
+
+<script type="text/javascript">
+var gTable ='12hg-WFr1rNw6httTLcOKUQX8pi_Zru04vxSLhNSr';
+var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+var bonusXP = [ 2259, 16518, 77277, 227286 ];
+var normalXP = [ 1506, 11012, 51518, 151524 ];
+
+/*converts xpinto array of evo units*/
+function computeXP(totalXP,refXP,xpMulti) {
+var evoUnits={'Ghost':0,'King':0,'God':0,'Crystal':0 };
+if (typeof(xpMulti)==='undefined') xpMulti = 1;
+
+    if ($('#inCrystals').val() != 0) {
+        evoUnits['Crystal']=Math.floor(totalXP/(refXP[3]*xpMulti));
+        totalXP=totalXP % refXP[3];
+    } else {
+        evoUnits['Crystal']=0;
+    }
+    if (totalXP >= refXP[2]) {
+        evoUnits['God']=Math.floor(totalXP/(refXP[2]*xpMulti));
+        totalXP=totalXP % refXP[2];
+    }
+    if (totalXP >= refXP[1]) {
+        evoUnits['King']=Math.floor(totalXP/(refXP[1]*xpMulti));
+        totalXP=totalXP % refXP[1];
+    }
+    evoUnits['Ghost']=Math.ceil(totalXP/(refXP[0]*xpMulti));
+    return evoUnits;
+}
+
+/*Initialise datapull from Google Tables*/
+function initialize() {
+        var query = "SELECT * FROM " + gTable + " ORDER BY 'Lv' ASC";
+        var encodedQuery = encodeURIComponent(query);
+        /*Construct the URL*/
+        var url = [gURL];
+        url.push('?sql=' + encodedQuery);
+        url.push('&key=' + gKey);
+        url.push('&callback=?');
+
+    /*Send the JSONP request*/
+        $.ajax({
+          url: url.join(''),
+          dataType: 'jsonp',
+          success: function (data) {
+              /*AJAX Call*/
+              ajaxDataRows = data["rows"];
+              fusionXPTable=$("#xptable").dataTable({
+                  "data":ajaxDataRows,
+                  "order": [[ 0, "asc" ]],
+                  "pageLength": -1,
+                  "dom": 'rti',
+                  "lengthMenu": [ [-1], ["All"] ],
+                  "language": {
+                      "search": "Find Level ",
+                      "infoFiltered": " - filtered from _MAX_ LVs",
+                      "info": "_START_ to _END_ / _MAX_ LVs" },
+                  /*Parsing Fields via Datatables*/
+                  "columnDefs":[
+                { "targets":[ 1,2,3,4,5,6 ],
+                "type": "num",
+                /*NaN check*/
+                "render": function(nanCol, type, row, full) {
+                        if (isNaN(nanCol)) {
+                            return '-';
+                        } else { return nanCol }
+                }
+                },
+                { "searchable": false, "targets": [ 1,2,3,4,5,6 ] },
+                { "targets": [ 1,2,3,4,5,6 ],"orderable": false }
+                ]
+              });
+          }
+    });
+};/*End init fn*/
+
+$(document).ready( function(e) {
+    /*initialise initial data load*/
+    initialize();
+
+/*Tier2 Detection*/
+$(document).on('change','#calTier',function(e) {
+    if ($(this).val()==2) {
+        $('#calTo').val(80);
+    }
+});
+
+/*validate numeric*/
+$(document).on('keyup','.numF',function(e) {
+    if ( ( !$.isNumeric( $(this).val()) ) && ($(this).val() != '') ) {
+        alert('Only numerical values are allowed');
+        if ( $(this).attr('id') == 'calTo' ) {
+            if ( $('#calTier').val() == 2 ) { $(this).val(80) }
+                else { $(this).val(100) }
+        } else { $(this).val(1) }
+    }
+});
+
+/*calculate*/
+$(document).on('click','#calGo',function(e) {
+    var fusionXPTable = $('#xptable').DataTable();
+    var selTier = $('#calTier').val();
+    var selFrom = $('#calFrom').val();
+    var selTo = $('#calTo').val();
+
+    if ( parseInt(selFrom) > parseInt(selTo) ) {
+        alert('FROM Lv needs to be lower than TO Lv') }
+    else if ( (!$.isNumeric(selFrom)) || (!$.isNumeric(selTo)) ) {
+        alert("Numeric values only")
+    }
+    else if ( ( selTier==2 ) && (( parseInt(selTo) > 80 ) || ( parseInt(selFrom) > 80 )) ) {
+        alert('Max level for Tier 2 is 80')
+    }
+    else {
+
+    /*cell(row,column) by array start with 0*/
+    var xpNeeded = fusionXPTable.cell( (selTo-1), (selTier*2)-1 ).data() - fusionXPTable.cell( (selFrom-1), (selTier*2)-1 ).data();
+    
+    var xpBroken = computeXP(xpNeeded,bonusXP);
+    var xpBrokenNorm = computeXP(xpNeeded,normalXP);
+    var xpGreatSame = computeXP(xpNeeded,bonusXP,1.5);
+    var xpGreatDiff = computeXP(xpNeeded,normalXP,1.5);
+    var xpSuperSame = computeXP(xpNeeded,bonusXP,2);
+    var xpSuperDiff = computeXP(xpNeeded,normalXP,2);
+    
+    /*EXP Needed*/
+    var xpHTML='';
+    xpHTML='<div class="col-xs-12 col-sm-12 col-md-12" style="border-bottom:1px solid #cccccc;">';
+    xpHTML+='<h4><span class="text-primary"><b>'+xpNeeded+' XP</b></span> needed for Lv '+selFrom+' to Lv '+selTo+' (Tier'+selTier+') Fusion</h4></div><div class="divider"></div>';
+    
+    /*Assembling / Parsing HTML Codes for Optimal*/
+    var xpOpHTML='';
+    xpOpHTML+='<table class="table-bordered table-responsive table-hover table-striped table-condensed" width="100%">';
+    xpOpHTML+='<thead><tr><td width="20%">&nbsp;</td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon434.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon200.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon199.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon198.png" width="50"/></td></tr></thead>';
+    /*Normal Success*/
+    xpOpHTML+='<tbody><tr><td><i class="fa fa-star-o"></i> <b>Normal</b></td>'
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Crystal']+' <small>('+xpBrokenNorm['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['God']+' <small>('+xpBrokenNorm['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['King']+' <small>('+xpBrokenNorm['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Ghost']+' <small>('+xpBrokenNorm['Ghost']+')</small></h4></td></tr>';
+    /*Great Success*/
+    xpOpHTML+='<tr><td><i class="fa fa-star-half-o"></i> <b>Great</b></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Crystal']+' <small>('+xpGreatDiff['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['God']+' <small>('+xpGreatDiff['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['King']+' <small>('+xpGreatDiff['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Ghost']+' <small>('+xpGreatDiff['Ghost']+')</small></h4></td></tr>';
+    /*Super Success*/
+    xpOpHTML+='<tr><td><i class="fa fa-star"></i> <b>Super</b></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Crystal']+' <small>('+xpSuperDiff['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['God']+' <small>('+xpSuperDiff['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['King']+' <small>('+xpSuperDiff['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Ghost']+' <small>('+xpSuperDiff['Ghost']+')</small></h4></td></tr>';
+
+    xpOpHTML+='</tbody></table>';
+    if ($('#inCrystals').val()==0) {
+    xpOpHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Note: </b>Crystal Gods omitted from calculation.</i></h5></div>';
+    }
+
+ /*Assembling / Parsing HTML Codes for ALT*/
+    var xpALTHTML='';
+    xpALTHTML+='<table class="table-bordered table-responsive table-condensed" width="100%">';
+    xpALTHTML+='<thead><tr><td width="20%">&nbsp;</td><td class="bg-success" width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon434.png" width="50"/></td><td class="bg-info" width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon200.png" width="50"/></td><td class="bg-warning" width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon199.png" width="50"/></td><td class="bg-danger" width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon198.png" width="50"/></i></td></tr></thead>';
+    
+     /*Normal Success*/
+    xpALTHTML+='<tbody><tr><td><i class="fa fa-star-o"></i> <b>Normal</b></td>'
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[3])+' <small>('+Math.ceil(xpNeeded/normalXP[3])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[2])+' <small>('+Math.ceil(xpNeeded/normalXP[2])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[1])+' <small>('+Math.ceil(xpNeeded/normalXP[1])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[0])+' <small>('+Math.ceil(xpNeeded/normalXP[0])+')</small></h4></td></tr>';
+    
+    /*Great success*/
+    xpALTHTML+='<tr><td><i class="fa fa-star-half-o"></i> <b>Great</b></td>'
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[3]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[2]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[1]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[0]*1.5))+')</small></h4></td></tr>';
+    
+    /*Super success*/
+    xpALTHTML+='<tr><td><i class="fa fa-star"></i> <b>Super</b></td>'
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[3]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[2]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[1]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[0]*2))+')</small></h4></td></tr>';
+    
+    xpALTHTML+='</tbody></table>';
+    
+    xpALTHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Reference:</b> Same <small>(Different)</small> element</i></h5></div>';
+
+    $('#opEXP').html(xpHTML);
+    $('#opBonus').html(xpOpHTML);
+    $('#opALT').html(xpALTHTML);
+    $('#calModal').modal('show');
+    }
+});
+});
+</script>
+
+<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:0 auto;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BFPROResponsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="7756941266"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0 auto;">
+    <script type="text/javascript">
+        var disqus_shortname = 'bravefrontierpros';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div> <!-- /container -->
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--Chatroom-->
+<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='http://st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
