@@ -1230,12 +1230,12 @@ var evoQuery = [
 	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-qq fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
 	      /*Release status*/
-	      if (ovGlobal!='false') {
+	      if (ovGlobal.toLowerCase()!='false') {
 		  ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">Global</b></div>';
 	      } else {
 		  ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">Global</b></div>';
 	      }
-	  if (ovJapan!='false') {
+	  	if (ovJapan.toLowerCase()!='false') {
 		  ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
 	      } else {
 		  ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
