@@ -62,7 +62,58 @@
 <i class="fa fa-heart-o fa-lg"></i> This is a presented data based on what was extracted and <a href="http://www.reddit.com/r/bravefrontier/comments/2elwkq/additional_information_in_new_unit_analyses/">shared on Reddit by BFLMP</a>. Credit to <a href="http://www.reddit.com/u/bahblah">bahblah</a> for opening sharing the data. Thanks to <a href="https://www.facebook.com/frayformana?fref=ufi">Patrick Tan Ebio</a> from <a href="https://www.facebook.com/groups/444458765689597/">Brave Frontier Elite Group</a> for bringing this to my attention. *Note* Buff % indicated are incremental.
 
 <h5 class="text-danger"><b>*WARNING*</b> This page takes a long time to load (~1mb of data pull). Let the script run and do not stop it till it's done.</h5>
-
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+ 
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
 <!--TABLE-->
 <table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
 
@@ -71,65 +122,37 @@ $(document).ready( function(e) {
 
 $.getJSON( "../json/bfraw_JP.json", function( unit ) {
     //var items = [];
-    var fKeys=['hp% buff','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','dmg% for crits','dmg% for elemental weakness','bc drop rate% buff','hc drop rate% buff'];
-    
-    /*Header*/
-    var exportSTR="<tr><td>ID</td>";
-    for (i in fKeys) {
-        exportSTR+='<td>LS '+fKeys[i]+'</td>';
-        exportSTR+='<td>BB '+fKeys[i]+'</td>';
-        exportSTR+='<td>SBB '+fKeys[i]+'</td>';
-    }
-    $("#rawTable").append(exportSTR+'<tr>');
-    /*process each row */
+    /*Process for Each Unit*/
+    var exportSTR="";
+    var rangeID=[681,700];
     $.each( unit, function( unitKey, valObj ) {
-    exportSTR='<tr><td>'+valObj.guide_id+'</td>';        
-    for (i in fKeys) {
-        /*Checks LS*/
-        if (valObj["leader skill"]) {
-            lsFound=false;
-            $.each(valObj["leader skill"], function(lsKey,lsVal) {
-                if (lsKey==fKeys[i]) {
-                        exportSTR+='<td>'+lsVal+'</td>';
-                        lsFound=true;
-                }
-            })
-            if (!lsFound) {
-                exportSTR+='<td></td>';
-            }
-        } else exportSTR+='<td></td>';
-        
-        /*Checks BB*/
-        if (valObj["bb"]) {
-            bbFound=false;
-            $.each(valObj.bb.levels[9], function(bbKey,bbVal) {
-                if (bbKey==fKeys[i]) {
-                        exportSTR+='<td>'+bbVal+'</td>';
-                        bbFound=true;
-                }
-            })
-            if (!bbFound) {
-                exportSTR+='<td></td>';
-            }
-        } else exportSTR+='<td></td>';
-        
-        /*Checks SBB*/
-        if (valObj["sbb"]) {
-            sbbFound=false;
-            $.each(valObj.sbb.levels[9], function(sbbKey,sbbVal) {
-                if (sbbKey==fKeys[i]) {
-                        exportSTR+='<td>'+sbbVal+'</td>';
-                        sbbFound=true;
-                }
-            })
-            if (!sbbFound) {
-                exportSTR+='<td></td>';
-            }
-        } else exportSTR+='<td></td>';
-        
-    }
-    $("#rawTable").append(exportSTR+'<tr>');
-})
+        if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
+            var idFound=true;
+        } else {
+            var idFound=false;
+        }
+        if (idFound) {
+        nameSTR='<tr><td colspan="12" class="bg-primary upper"><h4><b>'+unitKey+'</b></h4></td></tr>';
+        exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+        if (valObj.hits) {
+            exportSTR+='<td>'+valObj.hits+'</td>'
+        } else exportSTR+='<td></td>'
+        if (valObj.bb.hits) {
+            exportSTR+='<td>'+valObj.bb.hits+'</td>'
+        } else exportSTR+='<td></td>'
+        if (valObj.sbb.hits) {
+            exportSTR+='<td>'+valObj.sbb.hits+'</td>'
+        } else exportSTR+='<td></td>'
+        if (valObj.bb.levels[9]["BC Cost]) {
+            exportSTR+='<td>'+valObj.bb.levels[9]["BC Cost]+'</td>'
+        } else exportSTR+='<td></td>'
+        if (valObj.sbb.levels[9]["BC Cost]) {
+            exportSTR+='<td>'+valObj.sbb.levels[9]["BC Cost]+'</td>'
+        } else exportSTR+='<td></td>'
+
+        $("#rawTable").append(exportSTR+'<tr>');
+        } /*End range check*/
+    })
 })
 })
 </script>
