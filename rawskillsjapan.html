@@ -446,7 +446,6 @@ function lsRun(selectSkill) {
 	    /*searches for matching skill across LS*/
                 if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
                     outputObj.push(rawParseObj[i]);
-                    break;
                 }
 	}
 	/*Sort array*/
@@ -470,7 +469,6 @@ function skillRun2(selectSkill) {
 	    /*searches for matching skill across BB / SBB*/
                 if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
                     outputObj.push(rawParseObj[i]);
-                    break;
                 }
 	}
 	/*Sort array*/
@@ -494,7 +492,6 @@ function skillRun(selectSkill) {
 	    /*searches for matching skill across BB / SBB*/
                 if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
                     outputObj.push(rawParseObj[i]);
-                    break;
                 }
 	}
 	/*Sort array*/
