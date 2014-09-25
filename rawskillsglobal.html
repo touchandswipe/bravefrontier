@@ -149,6 +149,7 @@
     <li><a href="#" class="lsEffect">dmg% for crits</a></li>
     <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
     <li><a href="#" class="lsEffect">heal</a></li>
+    <li><a href="#" class="lsEffect">gradual heal</a></li>
   </ul>
 </div>
 <!-- BB Skills button -->
@@ -167,6 +168,7 @@
     <li><a href="#" class="skillEffect">bb bc%</a></li>
     <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
     <li><a href="#" class="skillEffect">heal</a></li>
+    <li><a href="#" class="skillEffect">gradual heal</a></li>
   </ul>
 </div>
 <!-- SBB Skills button -->
@@ -185,6 +187,7 @@
     <li><a href="#" class="skillEffect2">bb bc%</a></li>
     <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
     <li><a href="#" class="skillEffect2">heal</a></li>
+    <li><a href="#" class="skillEffect2">gradual heal</a></li>
   </ul>
 </div>
 <!-- Rarity Filter -->
@@ -440,7 +443,7 @@ function lsRun(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across LS*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal+'</span>') != -1) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -463,7 +466,7 @@ function skillRun2(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal+'</span>') != -1) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -486,7 +489,7 @@ function skillRun(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal+'</span>') != -1) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
