@@ -149,7 +149,7 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
           } else { exportSTR+='<td></td>' }
           if (valObj.sbb) {
             if (valObj.sbb.levels[9]["bc cost"]) {
-                exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+                exportSTR+='<td>'+(valObj.sbb.levels[9]["bc cost"]+valObj.bb.levels[9]["bc cost"])+'</td>'
             } else { exportSTR+='<td></td>' }
           } else { exportSTR+='<td></td>' }
   
