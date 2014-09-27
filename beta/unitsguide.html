@@ -109,8 +109,7 @@ function escapeRegExp(str) {
 function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
-    var pMod=($('#pimpBtn').val()=="true") ? [$('#pimpHP').val(),$('#pimpATK').val(),$('#pimpDEF').val(),$('#pimpREC').val()] : [0,0,0,0];
-    alert(pMod);
+    var pMod=($('#pimpBtn').val()=="true") ? [$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()] : [0,0,0,0];
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
     var totalMod=[];
@@ -123,7 +122,7 @@ function totalStatsMod() {
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    xFactor=(1+parseFloat(totalMod[0]))/(1+parseFloat(prevStatsMod[0]));
-	    $(this).text(Math.round( (parseInt($(this).text())+pMod[0])*xFactor) ); }
+	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[0]))*xFactor) ); }
 	})
     
     $('.atkMod').each( function(){
@@ -2285,7 +2284,7 @@ var delay = (function(){
 	var cToAdd=($(this).hasClass("btn-success")) ? "btn-danger" : "btn-success";
 	var cToRem=(cToAdd=="btn-danger") ? "btn-success" : "btn-danger";
 	var vToCng=($(this).val()=="true") ? "false" : "true";
-	var tToCng=($(this).text()=="Pimp it!") ? "UNPimp it!" : "Pimp it!p";
+	var tToCng=($(this).text()=="Pimp it!") ? "UNPimp it!" : "Pimp it!";
 	$(this).removeClass(cToRem);
 	$(this).addClass(cToAdd);
 	$(this).text(tToCng);
