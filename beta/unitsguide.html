@@ -109,7 +109,7 @@ function escapeRegExp(str) {
 function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
-    var pMod=($('#pimpBtn').val()=="true") ? [$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()] : [0,0,0,0];
+    var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()];
     var pFlip=($('#pimpBtn').val()=="true") ? 1 : -1;
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
