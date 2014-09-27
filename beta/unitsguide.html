@@ -110,6 +110,7 @@ function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
     var pMod=($('#pimpBtn').val()=="true") ? [$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()] : [0,0,0,0];
+    var pFlip=($('#pimpBtn').val()=="true") ? 1 : -1;
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
     var totalMod=[];
@@ -122,25 +123,25 @@ function totalStatsMod() {
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    xFactor=(1+parseFloat(totalMod[0]))/(1+parseFloat(prevStatsMod[0]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[0]))*xFactor) ); }
+	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[0])*pFlip)*xFactor) ); }
 	})
     
     $('.atkMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    xFactor=(1+parseFloat(totalMod[1]))/(1+parseFloat(prevStatsMod[1]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[1]))*xFactor) ); }
+	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[1])*pFlip)*xFactor) ); }
 	})
     
     $('.defMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    xFactor=(1+parseFloat(totalMod[2]))/(1+parseFloat(prevStatsMod[2]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[2]))*xFactor) ); }
+	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[2])*pFlip)*xFactor) ); }
 	})
     
     $('.recMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    xFactor=(1+parseFloat(totalMod[3]))/(1+parseFloat(prevStatsMod[3]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[3]))*xFactor) ); }
+	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[3])*pFlip)*xFactor) ); }
 	})
     
     /*Replace previous mod with current mod*/
