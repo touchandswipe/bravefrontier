@@ -119,8 +119,9 @@
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-
+coreDat={};
 $.getJSON( "../json/bfraw_JP.json", function( unit ) {
+    coreDat=unit;
     /*Process for Each Unit*/
     var rangeID=[1,750];
     $.each( unit, function( unitKey, valObj ) {
