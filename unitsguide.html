@@ -292,21 +292,20 @@ function gooShorten(URLtoShort) {
 
 /*Initialise datapull from Google Tables*/
 function initialize() {
-    /*Xtra Columns to hide by resolution*/
-    if ( $( window ).width() >= 1600 ) {
-	var xtraDefCol=[];
-    } else if ( ( $( window ).width() < 1600 ) && ( $( window ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8] 
-    } else if ( ( $( window ).width() < 1100 ) && ( $( window ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16,17]
-	} else { var xtraDefCol=[3,5,6,7,8,9,10,11,12,13,14,15,16,17] }
-
-	var query = "SELECT * FROM " +
-	gTable + " ORDER BY 'ID' ASC";
-	var encodedQuery = encodeURIComponent(query);
-	/*Construct the URL*/
-	var url = [gURL];
-	url.push('?sql=' + encodedQuery);
-	url.push('&key=' + gKey);
-	url.push('&callback=?');
+  /*Xtra Columns to hide by resolution*/
+  if ( $( window ).width() >= 1600 ) {
+    var xtraDefCol=[];
+  } else if ( ( $( window ).width() < 1600 ) && ( $( window ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8] 
+  } else if ( ( $( window ).width() < 1100 ) && ( $( window ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16,17]
+  } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17] }
+  var query = "SELECT * FROM " +
+  gTable + " ORDER BY 'ID' ASC";
+  var encodedQuery = encodeURIComponent(query);
+  /*Construct the URL*/
+  var url = [gURL];
+  url.push('?sql=' + encodedQuery);
+  url.push('&key=' + gKey);
+  url.push('&callback=?');
 
     /*Send the JSONP request*/
 	$.ajax({
@@ -374,8 +373,8 @@ function initialize() {
 				restore: "Restore Default",
 				exclude: [ 'all' ],
 				groups: [
-			    {   title: "Unit Aux Info",
-				columns: [ 3,6,7,8 ] },
+			    {   title: "More Unit Info",
+				columns: [ 2,3,6,7,8 ] },
 		{   title: "Unit Batch",
 				columns: [ 4 ] },
 			    {   title: "Leader / BB Skills",
@@ -486,8 +485,8 @@ function initialize() {
 		{ "orderData": [ 4, 0 ], "targets": [ 4 ] },
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
-		"render": function (imgSource, type, row, full )  {
-			return '<img src="'+imgSource+'" width="40" height="40" alt="'+row[2]+'"/>';
+		"render": function (imgSource, type, cRow, full )  {
+			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -648,7 +647,7 @@ function initialize() {
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 
-		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-male"></i></div></a> ';
+		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
 		    if (favSelect.length!=0) {
 			for (var i=0;i<favSelect.length;i++) {
 			    if (cRow[fusionData.columns.indexOf("ID")] == Number(favSelect[i])) {
@@ -1470,7 +1469,7 @@ var evoQuery = [
 	</ul>
     </div>
     
-    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-male"></i><i class="fa fa-female"></i></a></button>
+    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i></a></button>
     <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i></button>
     <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i></button>
    
@@ -1601,7 +1600,7 @@ var evoQuery = [
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
-		<th style="white-space:nowrap;background:#FFCC00;">Features</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </thead>
 	  <tfoot>
@@ -1650,11 +1649,11 @@ var evoQuery = [
 		<th>Evo 3</th>
 		<th>Evo 4</th>
 		<th>Evo 5</th>
-	<th>Global</th>
+		<th>Global</th>
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
-		<th style="white-space:nowrap;background:#FFCC00;">Features</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </tfoot>
 </table>
@@ -1732,7 +1731,7 @@ $(document).on("click", ".compareUnit", function(e) {
 		compareSelect.push($(this).attr("value"));
 		$(this).children('div').removeClass("btn-success");
 		$(this).children('div').addClass("btn-danger");
-		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-female"></i>');
+		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-users"></i>');
 	    } else {
 		bfpAlert("Max units selected",'You can only select maximum of '+compareMax+' units to compare / calculate evolution materials and for squad sprite simulation.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	    }
@@ -1740,14 +1739,14 @@ $(document).on("click", ".compareUnit", function(e) {
 	    compareSelect.splice(compareSelect.indexOf($(this).attr("value")),1);
 	    $(this).children('div').removeClass("btn-danger");
 	    $(this).children('div').addClass("btn-success");
-	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-male"></i>');
+	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
 	}
 })
 /*Compare button*/
     $(document).on("click", "#compareBtn", function(e) {
 	e.preventDefault();
 	if ( compareSelect.length < 2 ) {
-	    bfpAlert('Too few units','You need to select at least 2 units to compare / calculate evolution materials and squad sprite simulation. Use  <div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-male"></i></div> to add units.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
+	    bfpAlert('Too few units','You need to select at least 2 units to compare / calculate evolution materials and squad sprite simulation. Use  <div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div> to add units.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	} else {
 	    compareSelectURL=compareSelect.join();
 	    openCompare(compareSelect); //AJAX+Modal
@@ -2154,7 +2153,7 @@ $(document).on("click", "#execFilter", function(e){
 		if ( $(this).children('div').hasClass("btn-danger") ) {
 		    $(this).children('div').removeClass("btn-danger");
 		    $(this).children('div').addClass("btn-success");
-		    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-male"></i>');
+		    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
 		}
 	    })
 	    /*reset compare array*/
@@ -2546,7 +2545,7 @@ var delay = (function(){
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-      <li class="active"><a href="#unitCompareHome" role="tab" data-toggle="tab"><kbd><i class="fa fa-male"></i><i class="fa fa-female"></i></kbd> Compare Units</a></li>
+      <li class="active"><a href="#unitCompareHome" role="tab" data-toggle="tab"><kbd><i class="fa fa-users"></i></kbd> Compare Units</a></li>
       <li><a href="#evoCalc" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i> Evo Calculator</a></li>
       <li><a href="#squadPlay" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Squad Play</a></li>
 </ul>
