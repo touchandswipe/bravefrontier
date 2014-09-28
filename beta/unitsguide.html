@@ -1708,6 +1708,11 @@ $('#compareModal').on('hidden.bs.modal', function (e) {
     gEvoUnits.splice(0,gEvoUnits.length);
 })
 
+/*Reset Pimp button onclose*/
+$('#cardModal').on('hidden.bs.modal', function (e) {
+    $("#pimpBtn").val("false");
+})
+
 /*RESET*/
     $('#resetbtn').click( function(e) {
 	e.preventDefault();
