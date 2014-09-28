@@ -486,7 +486,7 @@ function initialize() {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgSource, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" value="'+$(cRow[fusionData.columns.indexOf("Name")]).text()+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
