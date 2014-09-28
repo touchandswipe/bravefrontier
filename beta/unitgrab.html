@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Extract / Export Only - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - For Unit Art Grabbing - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Extract / Export Only - by Brave Frontier PROs</title>
-    <link rel="shortcut icon" href="http://37.media.tumblr.com/avatar_8a4fb038a485_128.png" />
+    <title>Brave Frontier - For Unit Art Grabbing - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 <style type="text/css">
@@ -59,7 +59,7 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented data based on what was extracted and <a href="http://www.reddit.com/r/bravefrontier/comments/2elwkq/additional_information_in_new_unit_analyses/">shared on Reddit by BFLMP</a>. Credit to <a href="http://www.reddit.com/u/bahblah">bahblah</a> for opening sharing the data. Thanks to <a href="https://www.facebook.com/frayformana?fref=ufi">Patrick Tan Ebio</a> from <a href="https://www.facebook.com/groups/444458765689597/">Brave Frontier Elite Group</a> for bringing this to my attention. *Note* Buff % indicated are incremental.
+<i class="fa fa-heart-o fa-lg"></i> This is created to ease the retrieval of artwork for Brave Frontier. Not for hacking / modding purposes.
 
 <h5 class="text-danger"><b>*WARNING*</b> This page takes a long time to load (~1mb of data pull). Let the script run and do not stop it till it's done.</h5>
 <!-- Google Manual labnol.org responsive ads-->
@@ -132,9 +132,9 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
         }
         if (idFound) {
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-          exportSTR+='<td>'+valObj.id+'</td>';
-          exportSTR+='<td>'+valObj.element+'</td>';
-          exportSTR+='<td>'+valObj.rarity+'</td>';
+          exportSTR+='<tr><td>'+valObj.id+'</td>';
+          exportSTR+='<tr><td>'+valObj.element+'</td>';
+          exportSTR+='<tr><td>'+valObj.rarity+'</td>';
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
