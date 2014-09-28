@@ -487,7 +487,7 @@ function initialize() {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgSource, type, row, full )  {
-			return '<img src="'+imgSource+'" width="40" height="40" alt="'+row[2]+'"/>';
+			return '<a href="#" class="favIconLink" value="'+$(row[2]).text()+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+row[2]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -1331,7 +1331,7 @@ var evoQuery = [
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span></td>'
-	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-sm" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
+	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
@@ -1470,7 +1470,7 @@ var evoQuery = [
 	</ul>
     </div>
     
-    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-male"></i><i class="fa fa-female"></i></a></button>
+    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i></a></button>
     <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i></button>
     <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i></button>
    
@@ -1601,7 +1601,7 @@ var evoQuery = [
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
-		<th style="white-space:nowrap;background:#FFCC00;">Features</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </thead>
 	  <tfoot>
@@ -1650,11 +1650,11 @@ var evoQuery = [
 		<th>Evo 3</th>
 		<th>Evo 4</th>
 		<th>Evo 5</th>
-	<th>Global</th>
+		<th>Global</th>
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
-		<th style="white-space:nowrap;background:#FFCC00;">Features</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </tfoot>
 </table>
