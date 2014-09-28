@@ -487,7 +487,7 @@ function initialize() {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgSource, type, row, full )  {
-			return '<a href="#" class="favIconLink" value="'+$(row[2]).text()+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+row[2]+'"/></a>';
+			return '<img src="'+imgSource+'" width="40" height="40" alt="'+row[2]+'"/>';
 		    }
 		},
 		/*Rarity*/
