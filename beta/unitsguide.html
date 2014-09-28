@@ -93,7 +93,7 @@ var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var bossList = [];
-var prevStatsMod=[0,0,0,0];
+var prevStatsMod=[0,0,0,0,0];
 var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0.3,0.3,0.3,0.3">Grand Sesius</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
 var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.3">30%</option>';
 var atkModHTML='<option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.5">50%</option><option value="0.65">65%</option>';
@@ -110,7 +110,6 @@ function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
     var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()];
-    var pFlip=($('#pimpBtn').val()=="true") ? 1 : ($('#pimpBtn').val()=="false") ? -1 : 0;
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
     var totalMod=[];
@@ -119,6 +118,11 @@ function totalStatsMod() {
 	tmp=parseFloat(lsMod[i])+parseFloat(asMod[i])+parseFloat(sphereA[i])+parseFloat(sphereB[i]);
 	totalMod.push(tmp.toFixed(2));
     }
+    if ($('#pimpBtn').val()=="true")
+      totalMod.push(1)
+    else
+      totalMod.push(0)
+    var pFlip=(totalMod[4]==prevStatsMod[4]) ? 0 : (totalMod[4]>prevStatsMod[4]) ? 1 : -1;
     /*Make changes*/
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
@@ -760,7 +764,7 @@ function initialize() {
 /*Compare function*/
     function openCompare(units) {
     /*Resets Prev Stats*/
-	prevStatsMod=[0,0,0,0];
+	prevStatsMod=[0,0,0,0,0];
 	var qunitname = "";
 	 /*Loader*/
 	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
@@ -1069,7 +1073,7 @@ var evoQuery = [
     history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
 	
 	/*Resets Prev Stats*/
-	prevStatsMod=[0,0,0,0];
+	prevStatsMod=[0,0,0,0,0];
 	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit)));
 	var ovshareURL=buildShareURL.id;
 	/*Fix Apostrophe*/
@@ -1327,7 +1331,7 @@ var evoQuery = [
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span></td>'
-	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-sm" id="pimpBtn" value="falseonce">Pimp it!</button></td></tr>';
+	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-sm" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
