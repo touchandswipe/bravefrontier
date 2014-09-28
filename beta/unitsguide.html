@@ -110,7 +110,7 @@ function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
     var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()];
-    var pFlip=($('#pimpBtn').val()=="true") ? 1 : -1;
+    var pFlip=($('#pimpBtn').val()=="true") ? 1 : ($('#pimpBtn').val()=="false") ? -1 : 0;
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
     var totalMod=[];
@@ -122,26 +122,26 @@ function totalStatsMod() {
     /*Make changes*/
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
-	    xFactor=(1+parseFloat(totalMod[0]))/(1+parseFloat(prevStatsMod[0]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[0])*pFlip)*xFactor) ); }
+	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[0])) )+(parseInt(pMod[0])*pFlip);
+	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[0])))); }
 	})
     
     $('.atkMod').each( function(){
 	if ( $(this).text() != "-" ) {
-	    xFactor=(1+parseFloat(totalMod[1]))/(1+parseFloat(prevStatsMod[1]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[1])*pFlip)*xFactor) ); }
+	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[1])) )+(parseInt(pMod[1])*pFlip);
+	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[1])))); }
 	})
     
     $('.defMod').each( function(){
 	if ( $(this).text() != "-" ) {
-	    xFactor=(1+parseFloat(totalMod[2]))/(1+parseFloat(prevStatsMod[2]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[2])*pFlip)*xFactor) ); }
+	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[2])) )+(parseInt(pMod[2])*pFlip);
+	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[2])))); }
 	})
     
     $('.recMod').each( function(){
 	if ( $(this).text() != "-" ) {
-	    xFactor=(1+parseFloat(totalMod[3]))/(1+parseFloat(prevStatsMod[3]));
-	    $(this).text(Math.round( (parseInt($(this).text())+parseInt(pMod[3])*pFlip)*xFactor) ); }
+	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[3])) )+(parseInt(pMod[3])*pFlip);
+	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[3])))); }
 	})
     
     /*Replace previous mod with current mod*/
@@ -1327,7 +1327,7 @@ var evoQuery = [
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span></td>'
-	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-sm" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
+	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-sm" id="pimpBtn" value="falseonce">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
