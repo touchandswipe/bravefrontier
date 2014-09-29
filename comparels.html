@@ -222,12 +222,15 @@ $.getJSON( "json/bfraw_JP.json", function( unit ) {
         /*Checks LS*/
         if (valObj["leader skill"]) {
             lsFound=false;
-            $.each(valObj["leader skill"], function(lsKey,lsVal) {
-                if (lsKey==fKeys[i]) {
-                        tArray.push(lsVal);
-                        lsFound=true;
-                }
-            })
+            for (j in valObj["leader skill"].effects) {
+		$.each(valObj["leader skill"].effects[j], function(lsKey,lsVal) {
+	                if (lsKey==fKeys[i]) {
+	                        tArray.push(lsVal);
+	                        lsFound=true;
+	                }
+            	})
+            }
+
             if (!lsFound) {
                 tArray.push("");
             }
