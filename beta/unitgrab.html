@@ -141,7 +141,7 @@
   <img src="" id="imgSprite"/>
   <img src="" id="imgVortex"/>
   <img src="" id="imgGacha"/>
-  <a href="" id="linkAnimate">Download sprite animation CSV</a>
+  <p><a href="" id="linkAnimate"></a></p>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -246,6 +246,7 @@ function grabIMG() {
   $("#imgFull").attr("src",urlFull);
   $("#imgSprite").attr("src",urlSprite);
   $("#linkAnimate").attr("href",urlAnimate);
+  $("#linkAnimate").html("Download Spritesheet (CSV)");
 }
 
 function grabIMG2() {
@@ -262,6 +263,7 @@ function grabIMG2() {
   $("#imgVortex").attr("src",urlVortex);
   $("#imgGacha").attr("src",urlGacha);
   $("#linkAnimate").attr("href",urlAnimate);
+  $("#linkAnimate").html("Download Spritesheet (CSV)");
 }
 
 $(document).ready( function(e) {
