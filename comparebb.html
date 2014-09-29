@@ -224,12 +224,14 @@ $.getJSON( "json/bfraw_JP.json", function( unit ) {
         if (valObj.rarity==6) {
             if (valObj.sbb) {
                 sbbFound=false;
-                $.each(valObj.sbb.levels[9], function(sbbKey,sbbVal) {
-                    if (sbbKey==fKeys[i]) {
-                        tArray.push(sbbVal);
-                        sbbFound=true;
-                    }
-                })
+                for (j in valObj.sbb.levels[9].effects) {
+			$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
+	                    if (sbbKey==fKeys[i]) {
+	                        tArray.push(sbbVal);
+	                        sbbFound=true;
+	                    }
+	                })
+                }
                 if (!sbbFound) {
                     tArray.push("");
                 }
@@ -240,12 +242,14 @@ $.getJSON( "json/bfraw_JP.json", function( unit ) {
         /*Reports BB*/
             if (valObj.bb) {
                 bbFound=false;
-                $.each(valObj.bb.levels[9], function(bbKey,bbVal) {
-                    if (bbKey==fKeys[i]) {
-                        tArray.push(bbVal);
-                        bbFound=true;
-                    }
-                })
+                for (j in valObj.bb.levels[9].effects) {
+	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
+	                    if (bbKey==fKeys[i]) {
+	                        tArray.push(bbVal);
+	                        bbFound=true;
+	                    }
+	                })
+                }
                 if (!bbFound) {
                     tArray.push("");
                 }
