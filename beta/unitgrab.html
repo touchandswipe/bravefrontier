@@ -160,8 +160,15 @@ function convertID(guideid) {
 }
 
 $(document).ready( function(e) {
+  /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
   $.getJSON( "../json/bfraw_JP.json", function( unit ) {
       coreDat=unit;
+      $('#progressModal').modal('hide');
   })
 
 $(document).on("click", '#idBtn', function(e){
@@ -176,6 +183,22 @@ $(document).on("click", '#idBtn', function(e){
 </script>
 
 </div> <!-- /container -->
+
+<!-- Modal for Progress-->
+<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Chasing wild koalas</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5>(Note: This can take a while depending on connection speed ...)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Google Analytics -->
     <script>
