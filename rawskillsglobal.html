@@ -352,7 +352,7 @@ function buildDB(unit) {
                     }
                     bbSTR+="</div>";
                 } else if (bbKey=="effects") {
-                	for (j in effects) {
+                	for (j in valObj.bb.levels[0].effects) {
                 		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
 					bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
 			                    for (k=0;k<10;i++) {
