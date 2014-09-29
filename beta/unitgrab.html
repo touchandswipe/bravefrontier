@@ -111,10 +111,9 @@
  </script>
 </div>
  
-<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12">
   <select class="form-control" id="serverSelect">
     <option value="gl">Global</option>
     <option value="jp">Japan</option>
@@ -131,12 +130,12 @@
           <button class="btn btn-primary" type="button" id="pathBtn">Retrieve by Path/Name</button></span>
           <input type="search" placeholder="e.g. /aaa/bbb/ccc.png" class="form-control" id="pathBox">
   </div>
-</div></div>
+</div>
 
-<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12">
   <img src="" id="imgThumb"/>
   <img src="" id="imgFull"/>
-</div></div>
+</div>
 
 <script type="text/javascript">
 bfserver={"gl":"http://2.cdn.bravefrontier.gumi.sg/","jp":"http://v2.cdn.android.brave.a-lim.jp/"};
@@ -146,6 +145,7 @@ coreDat={};
 
 function convertID(guideid) {
   var idFound=false;
+  var convID=0;
     $.each( coreDat, function( unitKey, valObj ) {
         var exportSTR="";
         if (valObj.guide_id==guideid)
@@ -153,17 +153,19 @@ function convertID(guideid) {
         else
             idFound=false
         if (idFound) {
-          alert(valObj.id);
-          return valObj.id
+          convID=valObj.id;
+          return false;
         }
     })
+  alert(convID);
+  return convID;
 }
 
 function grabIMG() {
   var imgID=convertID($("#idBox").val());
   alert("returned ID is "+imgID);
-  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID.toString()+fSuffix;
-  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID.toString()+fSuffix;
+  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
+  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
 }
