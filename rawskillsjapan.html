@@ -331,7 +331,7 @@ function buildDB(unit) {
             	if ((lsKey!="effects") && (lsKey!="name") && (lsKey!="desc")) {
                 	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey+"</span></div>";
                 	lsSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj["leader skill"][lsKey]+'</div></div>';
-            	} else {
+            	} else if (lsKey=="effects") {
             		for (j in valObj["leader skill"].effects) {
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
             			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey2+"</span></div>";
