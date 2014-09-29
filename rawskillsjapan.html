@@ -318,14 +318,17 @@ function buildDB(unit) {
             if (valObj["max bc generated"]) {
                 dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / Normal hit:</b>&nbsp;'+(parseInt(valObj["max bc generated"])/parseInt(valObj.hits))+'</div></div>';
             }
+            if (valObj["lord damage range"]) {
+                dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Lord Damage Range:</b>&nbsp;'+valObj["lord damage range"]+'</div></div>';
+            }
         }
         /*Checks LS*/
         if (valObj["leader skill"]) {
-            lsSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Leader Skill</b></h5></div></div>';
+            lsSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Leader Skill:</b> ['+valObj["leader skill"].name+'] '+valObj["leader skill"].desc+'</h5></div></div>';
             /*ls Heading*/
             lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd">Value</div></div>';
             $.each(valObj["leader skill"], function(lsKey,lsVal) {
-            	if (lsKey!="effects") {
+            	if ((lsKey!="effects") && (lsKey!="name") && (lsKey!="desc")) {
                 	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey+"</span></div>";
                 	lsSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj["leader skill"][lsKey]+'</div></div>';
             	} else {
