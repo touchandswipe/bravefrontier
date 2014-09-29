@@ -58,9 +58,11 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<i class="fa fa-heart-o fa-lg"></i> This is created to ease the retrieval of artwork for Brave Frontier. Not for hacking / modding purposes. Only IDs existing can be searched for using Unit IDs. Otherwise use the filename query. Usually units ID = 6 numerical digits beginning with 1 to 6 for element and Ending with rarity 1-6 as well. Exclusive units begin with 8 on global and 9 for korea with 2nd digit denoting element instead. E.g. Global Vortex Exclusive = 840044 or 81045. Korea Exclusive = 911103 or 961105.
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<i class="fa fa-heart-o fa-lg"></i> This is created to ease the retrieval of artwork for Brave Frontier. Not for hacking / modding purposes. Only IDs existing can be searched for using Unit IDs. Otherwise use the filename query. Usually units file IDs consist of 6 numerical digits beginning with 1 to 6 for element and Ending with rarity 1-6 as well. Exclusive units begin with 8 on global and 9 for korea with 2nd digit denoting element instead. E.g. Global Vortex Exclusive = 840044 or 81045. Korea Exclusive = 911103 or 961105.
+</div>
 
-<h5 class="text-danger"><b>*WARNING*</b> This page takes a long time to load (~1mb of data pull). Let the script run and do not stop it till it's done.</h5>
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
@@ -238,6 +240,8 @@ function convertID(guideid) {
 
 function grabIMG() {
   var imgID=convertID($("#idBox").val());
+  if (imgID!=0)
+  	$("#pathBox").val(imgID);
   var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
   var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
