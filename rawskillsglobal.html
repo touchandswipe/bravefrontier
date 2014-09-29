@@ -345,12 +345,22 @@ function buildDB(unit) {
                 }
             bbSTR+="</div>";
             $.each(valObj.bb.levels[0], function(bbKey,bbVal) {
-                if (bbKey!="lord damage range") {
+                if (bbKey!="effects") {
                     bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
                     for (i=0;i<10;i++) {
                         bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[i][bbKey]+'</div>'
                     }
                     bbSTR+="</div>";
+                } else if (bbKey=="effects") {
+                	for (j in effects) {
+                		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
+					bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
+			                    for (k=0;k<10;i++) {
+			                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2]+'</div>'
+			                    }
+                    			bbSTR+="</div>";
+                		}
+                	}
                 }
             })
         } else bbSTR="";
