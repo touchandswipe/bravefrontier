@@ -231,13 +231,11 @@ function convertID(guideid) {
           return false;
         }
     })
-  alert(convID);
   return convID;
 }
 
 function grabIMG() {
   var imgID=convertID($("#idBox").val());
-  alert("returned ID is "+imgID);
   var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
   $("#imgThumb").attr("src",urlThumb);
