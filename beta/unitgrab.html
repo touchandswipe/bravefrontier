@@ -138,6 +138,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12">
   <img src="" id="imgThumb"/>
   <img src="" id="imgFull"/>
+  <img src="" id="imgSprite"/>
   <img src="" id="imgVortex"/>
   <img src="" id="imgGacha"/>
 </div>
@@ -213,7 +214,7 @@
 
 <script type="text/javascript">
 bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/"};
-fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_"};
+fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_"};
 fSuffix=".png";
 coreDat={};
 
@@ -238,18 +239,22 @@ function grabIMG() {
   var imgID=convertID($("#idBox").val());
   var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
+  var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
+  $("#imgSprite").attr("src",urlSprite);
 }
 
 function grabIMG2() {
   var imgID=$("#pathBox").val();
   var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
+  var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
   var urlVortex=bfserver[$("#serverSelect").val()]+fPrefix.vortex+imgID+fSuffix;
   var urlGacha=bfserver[$("#serverSelect").val()]+fPrefix.gacha+imgID+fSuffix;
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
+  $("#imgSprite").attr("src",urlSprite);
   $("#imgVortex").attr("src",urlVortex);
   $("#imgGacha").attr("src",urlGacha);
 }
