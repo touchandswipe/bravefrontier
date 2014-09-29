@@ -132,7 +132,7 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
         }
         if (idFound) {
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-          exportSTR='<td>'+unitKey+'</td>';
+          exportSTR+='<td>'+unitKey+'</td>';
           exportSTR+='<td>'+valObj.id+'</td>';
           exportSTR+='<td>'+valObj.element+'</td>';
           exportSTR+='<td>'+valObj.rarity+'</td>';

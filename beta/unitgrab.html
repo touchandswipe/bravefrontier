@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+<!-- Custom CSS -->
 <style type="text/css">
     .clear {clear:both;}
     .bd {
@@ -114,32 +113,65 @@
  
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
-<!--TABLE-->
-<table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
+
+<div class="row">
+<select class="form-control" id="serverSelect">
+  <option value="gl">Global</option>
+  <option value="jp">Japan</option>
+  <option value="kr">Korea</option>
+</select>
+<!--Search-->
+<div class="input-group" style="margin-bottom:5px;">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="idBtn">Retrieve by UNIT ID</button></span>
+        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="idBox">
+</div>
+<div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="pathBtn">Retrieve by Path/Name</button></span>
+        <input type="search" placeholder="e.g. /aaa/bbb/ccc.png" class="form-control" id="pathBox">
+</div>
+</div>
+
+<div class="row">
+  <img src="" id="imgThumb"/>
+  <img src="" id="imgFull"/>
+</div>
 
 <script type="text/javascript">
-$(document).ready( function(e) {
+bfserver={"gl":"http://2.cdn.bravefrontier.gumi.sg/","jp":"http://v2.cdn.android.brave.a-lim.jp/"};
+fPrefix={"full":"content/unit/img/unit_ills_full_","thumb":"content/unit/img/unit_ills_thum_"};
+fSuffix=".png";
 coreDat={};
-$.getJSON( "../json/bfraw_JP.json", function( unit ) {
-    coreDat=unit;
-    /*Process for Each Unit*/
-    var rangeID=[1,750];
+
+function convertID(guideid) {
+  var idFound=False;
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
-        if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
-            var idFound=true;
-        } else {
-            var idFound=false;
-        }
+        if (valObj.guide_id==guideid)
+            idFound=true
+        else
+            idFound=false
         if (idFound) {
-          exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-          exportSTR+='<tr><td>'+valObj.id+'</td>';
-          exportSTR+='<tr><td>'+valObj.element+'</td>';
-          exportSTR+='<tr><td>'+valObj.rarity+'</td>';
-          $("#rawTable").append(exportSTR+'<tr>');
-        } /*End range check*/
+          alert(valObj.id);
+          return valObj.id;
+        }
     })
+}
+
+$(document).ready( function(e) {
+  $.getJSON( "../json/bfraw_JP.json", function( unit ) {
+      coreDat=unit;
+  })
+
+$(document).on("click", '#idBtn', function(e){
+  var imgID=convertID($("#idBox").val());
+  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
+  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
+  $("#imgThumb").attr("src",urlThumb);
+  $("#imgFull").attr("src",urlFull);
 })
+  
 })
 </script>
 
