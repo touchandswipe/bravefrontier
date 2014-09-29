@@ -243,8 +243,7 @@ function grabIMG() {
 }
 
 function grabIMG2() {
-  var imgID=convertID($("#idBox").val());
-  alert("returned ID is "+imgID);
+  var imgID=convertID($("#pathBox").val());
   var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
   var urlVortex=bfserver[$("#serverSelect").val()]+fPrefix.vortex+imgID+fSuffix;
