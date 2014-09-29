@@ -114,29 +114,29 @@
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
 
-<div class="row">
-<select class="form-control" id="serverSelect">
-  <option value="gl">Global</option>
-  <option value="jp">Japan</option>
-  <option value="kr">Korea</option>
-</select>
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+  <select class="form-control" id="serverSelect">
+    <option value="gl">Global</option>
+    <option value="jp">Japan</option>
+    <option value="kr">Korea</option>
+  </select>
 <!--Search-->
-<div class="input-group" style="margin-bottom:5px;">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="idBtn">Retrieve by UNIT ID</button></span>
-        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="idBox">
-</div>
-<div class="input-group">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="pathBtn">Retrieve by Path/Name</button></span>
-        <input type="search" placeholder="e.g. /aaa/bbb/ccc.png" class="form-control" id="pathBox">
-</div>
-</div>
+  <div class="input-group" style="margin-bottom:5px;">
+          <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="idBtn">Retrieve by UNIT ID</button></span>
+          <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="idBox">
+  </div>
+  <div class="input-group">
+          <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="pathBtn">Retrieve by Path/Name</button></span>
+          <input type="search" placeholder="e.g. /aaa/bbb/ccc.png" class="form-control" id="pathBox">
+  </div>
+</div></div>
 
-<div class="row">
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
   <img src="" id="imgThumb"/>
   <img src="" id="imgFull"/>
-</div>
+</div></div>
 
 <script type="text/javascript">
 bfserver={"gl":"http://2.cdn.bravefrontier.gumi.sg/","jp":"http://v2.cdn.android.brave.a-lim.jp/"};
@@ -153,7 +153,8 @@ function convertID(guideid) {
         else
             idFound=false
         if (idFound) {
-          return valObj.id;
+          alert(valObj.id);
+          return valObj.id
         }
     })
 }
