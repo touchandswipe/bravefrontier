@@ -153,10 +153,18 @@ function convertID(guideid) {
         else
             idFound=false
         if (idFound) {
-          alert(valObj.id);
           return valObj.id;
         }
     })
+}
+
+function grabIMG() {
+  var imgID=convertID($("#idBox").val());
+  alert("returned ID is "+imgID);
+  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID.toString()+fSuffix;
+  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID.toString()+fSuffix;
+  $("#imgThumb").attr("src",urlThumb);
+  $("#imgFull").attr("src",urlFull);
 }
 
 $(document).ready( function(e) {
@@ -170,16 +178,19 @@ $(document).ready( function(e) {
       coreDat=unit;
       $('#progressModal').modal('hide');
   })
+  
+/*Binds Enter KEY to BOX*/
+$( "#idBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+    grabIMG()
+  }
+})
 
 $(document).on("click", '#idBtn', function(e){
-  var imgID=convertID($("#idBox").val());
-  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
-  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
-  $("#imgThumb").attr("src",urlThumb);
-  $("#imgFull").attr("src",urlFull);
+  grabIMG()
 })
   
-})
+}) /*End DocReady*/
 </script>
 
 </div> <!-- /container -->
