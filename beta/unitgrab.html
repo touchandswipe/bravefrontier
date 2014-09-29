@@ -146,7 +146,7 @@ coreDat={};
 
 function convertID(guideid) {
   var idFound=False;
-    $.each( unit, function( unitKey, valObj ) {
+    $.each( coreDat, function( unitKey, valObj ) {
         var exportSTR="";
         if (valObj.guide_id==guideid)
             idFound=true
