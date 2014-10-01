@@ -254,9 +254,9 @@ function updateGuide() {
 		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
 		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>"
 	}
-	if (mText="") {
-		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Maxwell is pushed through 70%, 30% and especially 20% HP.</p>.";
-		mText+="Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.";
+	if (mText=="") {
+		mText+="<p>Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.</p>";
+		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Maxwell is pushed through 70%, 30% and especially 20% HP.</p>";
 	}
 	$("#playerText").html(pText);
 	$("#maxwellText").html(mText);
