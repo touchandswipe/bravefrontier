@@ -225,10 +225,10 @@ function genSteps() {
 	for (i in turnEffect) {
 		if (i % 5==0)
 			bHTML+='<div class="row">';
-		bHTML+='<div class="col-xs-2 col-sm-2 col-md-2"><div class="panel panel-default"><div class="panel-heading"><b>Turn '+(parseInt(i)+1)+'</b></div>';
-		bSS=(turnEffect[i].ss==0) ? "" : (turnEffect[i].ss==1) ? "R+SS T1" : "SS T2";
-		bDES=(turnEffect[i].des==0) ? "" : "Destiny";
-		bConnect=(bDES!="" && bSS!="") ? ", " : "";
+		bHTML+='<div class="col-xs-2 col-sm-2 col-md-2"><div class="panel panel-default turnCount"><div class="panel-heading"><b>Turn '+(parseInt(i)+1)+'</b></div>';
+		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : "SS T2";
+		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
+		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body">'+bSS+bConnect+bDES+'</div></div></div>';
 		if (i % 5==4)
 			bHTML+='</div>';
@@ -237,21 +237,7 @@ function genSteps() {
 }
 
 $(document).ready( function(e) {
-	genSteps();
-	
-/*Binds Enter KEY to BOX*/
-$( "#idBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
-    grabIMG()
-  }
-})
-
-/*Binds Enter KEY to BOX*/
-$( "#pathBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
-    grabIMG2()
-  }
-})
+genSteps();
 
 $(document).on("click", '#idBtn', function(e){
   grabIMG()
