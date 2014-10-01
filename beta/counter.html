@@ -267,24 +267,24 @@ $(document).ready( function(e) {
 /*Init*/
 genSteps();
 $( ".turnCount" ).eq(currentStep).removeClass("panel-default");
-$( ".turnCount" ).eq(currentStep).addClass("panel-primary");
+$( ".turnCount" ).eq(currentStep).addClass("panel-success");
 updateGuide()
 
 $(document).on("click", '#nextBtn', function(e){
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-success").addClass("panel-default");
   	currentStep+=1;
 	if (currentStep==20)
 		currentStep=0;
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-success");
   	updateGuide();
 })
 
 $(document).on("click", '#prevBtn', function(e){
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-success").addClass("panel-default");
   	currentStep-=1;
   	if (currentStep==-1)
   		currentStep=19;
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-success");
   	updateGuide();
 })
   
