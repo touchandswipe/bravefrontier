@@ -22,7 +22,7 @@
     .upper {
         text-transform:uppercase;
     }
-.equal, .equal > div[class*='col-'] {  
+.equal {  
     display: -webkit-flex;
     display: flex;
     flex:1 1 auto;
@@ -234,7 +234,7 @@ function genSteps() {
 		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : "SS T2";
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
-		bHTML+='<div class="panel-body">'+bSS+bConnect+bDES+'</div></div></div>';
+		bHTML+='<div class="panel-body equal">'+bSS+bConnect+bDES+'</div></div></div>';
 		if (i % 5==4)
 			bHTML+='</div>';
 	}
