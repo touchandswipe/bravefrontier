@@ -252,7 +252,8 @@ function updateGuide() {
 	}
 	if (turnEffect[currentStep].des==1) {
 		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
-		pText+=(pText==""> ? "<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>" : "";
+		if (pText=="")
+			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>";
 	}
 	if (mText=="") {
 		mText+="<p>Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.</p>";
