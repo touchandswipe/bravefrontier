@@ -123,9 +123,26 @@
 	</div>
 	
 	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="panel panel-danger">
+		  <div class="panel-heading">Player guide</div>
+		  <div class="panel-body" id="maxwellText"></div>
+		</div>
+	</div>
+	
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-default btn-lg btn-block"><i class="fa fa-arrow-left"></i>Prev Turn</button>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4"></div>
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-primary btn-lg btn-block">Next Turn <i class="fa fa-arrow-right"></i></button>
+			</div>
+		</div>
+		
 		<div class="panel panel-info">
 		  <div class="panel-heading">Player guide</div>
-		  <div class="panel-body" id="guidetext"></div>
+		  <div class="panel-body" id="playerText"></div>
 		</div>
 	</div>
 </div>
@@ -217,7 +234,7 @@ function genSteps() {
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal">'+bSS+bConnect+bDES+'</div></div></div>';
-		if (i % 5==3)
+		if (i % 4==3)
 			bHTML+='</div>';
 	}
 	$('#counterSpace').html(bHTML);
