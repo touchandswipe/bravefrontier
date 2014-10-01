@@ -226,10 +226,9 @@ function genSteps() {
 		if (i % 5==0)
 			bHTML+='<div class="row">';
 		bHTML+='<div class="col-xs-2 col-sm-2 col-md-2"><div class="panel panel-default"><div class="panel-heading">Turn '+i+'</div>';
-		bHTML+='<div class="panel-body">';
-		bHTML+=(turnEffect[i].ss==0) ? "" | (turnEffect[i].ss==1) ? "Sacred Song T1 " | "Sacred Song T2";
-		bHTML+=(turnEffect[i].des==0) ? "" | "Destiny";
-		bHTML+='</div></div></div>';
+		bSS=(turnEffect[i].ss==0) ? "" | (turnEffect[i].ss==1) ? "Sacred Song T1 " | "Sacred Song T2";
+		bDES=(turnEffect[i].des==0) ? "" | "Destiny";
+		bHTML+='<div class="panel-body">'+bSS+bDES+'</div></div></div>';
 		if (i % 5==4)
 			bHTML+='</div>';
 	}
