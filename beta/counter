@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Maxwell Trial.3 Assistant - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Maxwell Trial.3 Assistant - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<style type="text/css">
+    .clear {clear:both;}
+    .bd {
+        font-weight:bold;
+        background:#EEEEEE;
+        text-transform:uppercase;
+    }
+    .upper {
+        text-transform:uppercase;
+    }
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
+                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container-fluid" style="margin:0px;padding:5px;">
+<div style="min-height:55px;"></div>
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<i class="fa fa-heart-o fa-lg"></i> This is created to ease the retrieval of artwork for Brave Frontier. Not for hacking / modding purposes. Only IDs existing can be searched for using Unit IDs. Otherwise use the filename query. Usually units file IDs consist of 6 numerical digits beginning with 1 to 6 for element and Ending with rarity 1-6 as well. Exclusive units begin with 8 on global and 9 for korea with 2nd digit denoting element instead. E.g. Global Vortex Exclusive = 840044 or 81045. Korea Exclusive = 911103 or 961105.
+</div>
+
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+ 
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<h3>Select Brave Frontier Server</h3>
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <select class="form-control" id="serverSelect">
+    <option value="gl">Global</option>
+    <option value="jp">Japan</option>
+    <option value="kr">Korea</option>
+  </select>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+<!--Search-->
+  <div class="input-group" style="margin-bottom:5px;">
+          <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="idBtn">Retrieve by UNIT ID</button></span>
+          <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="idBox">
+  </div>
+  <div class="input-group">
+          <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="pathBtn">Retrieve by filename</button></span>
+          <input type="search" placeholder="e.g. 10015" class="form-control" id="pathBox">
+  </div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <img src="" id="imgThumb"/>
+  <img src="" id="imgFull"/>
+  <img src="" id="imgSprite"/>
+  <img src="" id="imgVortex"/>
+  <img src="" id="imgGacha"/>
+  <p><a href="" id="linkAnimate"></a></p>
+</div>
+
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-2"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-2');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+
+</div> <!-- /container -->
+
+<!-- Modal for Progress-->
+<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Chasing wild koalas</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5>(Note: This can take a while depending on connection speed ...)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/"};
+fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_"};
+fSuffix=".png";
+coreDat={};
+
+function convertID(guideid) {
+  var idFound=false;
+  var convID=0;
+    $.each( coreDat, function( unitKey, valObj ) {
+        var exportSTR="";
+        if (valObj.guide_id==guideid)
+            idFound=true
+        else
+            idFound=false
+        if (idFound) {
+          convID=valObj.id;
+          return false;
+        }
+    })
+  return convID;
+}
+
+function grabIMG() {
+  var imgID=convertID($("#idBox").val());
+  if (imgID!=0)
+  	$("#pathBox").val(imgID);
+  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
+  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
+  var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
+  var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
+  $("#imgThumb").attr("src",urlThumb);
+  $("#imgFull").attr("src",urlFull);
+  $("#imgSprite").attr("src",urlSprite);
+  $("#linkAnimate").attr("href",urlAnimate);
+  $("#imgVortex").attr("src","");
+  $("#imgGacha").attr("src","");
+  $("#linkAnimate").html("Download Spritesheet (CSV)");
+}
+
+function grabIMG2() {
+  var imgID=$("#pathBox").val();
+  var urlThumb=bfserver[$("#serverSelect").val()]+fPrefix.thumb+imgID+fSuffix;
+  var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
+  var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
+  var urlVortex=bfserver[$("#serverSelect").val()]+fPrefix.vortex+imgID+fSuffix;
+  var urlGacha=bfserver[$("#serverSelect").val()]+fPrefix.gacha+imgID+fSuffix;
+  var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
+  $("#imgThumb").attr("src",urlThumb);
+  $("#imgFull").attr("src",urlFull);
+  $("#imgSprite").attr("src",urlSprite);
+  $("#imgVortex").attr("src",urlVortex);
+  $("#imgGacha").attr("src",urlGacha);
+  $("#linkAnimate").attr("href",urlAnimate);
+  $("#linkAnimate").html("Download Spritesheet (CSV)");
+}
+
+$(document).ready( function(e) {
+  /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+  $.getJSON( "../json/bfraw_JP.json", function( unit ) {
+      coreDat=unit;
+      $('#progressModal').modal('hide');
+  })
+  
+/*Binds Enter KEY to BOX*/
+$( "#idBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+    grabIMG()
+  }
+})
+
+/*Binds Enter KEY to BOX*/
+$( "#pathBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+    grabIMG2()
+  }
+})
+
+$(document).on("click", '#idBtn', function(e){
+  grabIMG()
+})
+
+$(document).on("click", '#pathBtn', function(e){
+  grabIMG2()
+})
+  
+}) /*End DocReady*/
+</script>
+
+<!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-48617906-1', 'tumblr.com');
+      ga('send', 'pageview');
+    </script>
+<!--Chatroom-->
+<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='http://st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
