@@ -115,12 +115,12 @@
 <div id="counterSpace"></div>
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h3>What will Maxwell do this turn?</h3></div>
+  <div class="panel-heading">What will Maxwell do this turn?</div>
   <div class="panel-body" id="maxwelltext"></div>
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h3>Player guide</h3></div>
+  <div class="panel-heading">Player guide</div>
   <div class="panel-body" id="guidetext"></div>
 </div>
 
@@ -220,8 +220,21 @@ turnEffect=[
 {"ss":1,"des":1}
 ];
 
+function genSteps() {
+	var bHTML="";
+	for (i in turnEffect) {
+		if (i % 5==0)
+			bHTML+='<div class="row">';
+		bHTML+='<div class="col-xs-2 col-sm-2 col-md-2">'+turnEffect[i].ss+' '+turnEffect[i].des+'</div>';
+		if (i % 5==4)
+			bHTML+='</div>';
+	}
+	$('#counterSpace').html(bHTML);
+}
+
 $(document).ready( function(e) {
-  
+	genSteps();
+	
 /*Binds Enter KEY to BOX*/
 $( "#idBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
