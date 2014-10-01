@@ -117,13 +117,18 @@
 <!-- main stack code goes here -->
 <h3>Maxwell Trial No.3 Turn Counter and Guide</h3>
 
-<div id="counterSpace"></div>
-
-<div class="panel panel-info">
-  <div class="panel-heading">Player guide</div>
-  <div class="panel-body" id="guidetext"></div>
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div id="counterSpace"></div>
+	</div>
+	
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="panel panel-info">
+		  <div class="panel-heading">Player guide</div>
+		  <div class="panel-body" id="guidetext"></div>
+		</div>
+	</div>
 </div>
-
 <!-- main stack code ends -->
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -205,14 +210,14 @@ turnEffect=[
 function genSteps() {
 	var bHTML="";
 	for (i in turnEffect) {
-		if (i % 5==0)
+		if (i % 4==0)
 			bHTML+='<div class="row">';
-		bHTML+='<div class="col-xs-2 col-sm-2 col-md-2"><div class="panel panel-default turnCount"><div class="panel-heading"><b>Turn '+(parseInt(i)+1)+'</b></div>';
+		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><b>Turn '+(parseInt(i)+1)+'</b></div>';
 		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : "SS T2";
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal">'+bSS+bConnect+bDES+'</div></div></div>';
-		if (i % 5==4)
+		if (i % 5==3)
 			bHTML+='</div>';
 	}
 	$('#counterSpace').html(bHTML);
