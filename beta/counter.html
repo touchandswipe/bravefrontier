@@ -125,11 +125,11 @@
 	<div class="col-xs-12 col-sm-6 col-md-6">
 		<div class="row" style="margin-bottom:10px;">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn" value="-1"><i class="fa fa-arrow-left"></i> Prev Turn</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn"><i class="fa fa-arrow-left"></i> Prev Turn</button>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block" id="nextBtn" value="0">Next Turn <i class="fa fa-arrow-right"></i></button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" id="nextBtn">Next Turn <i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 		
@@ -239,6 +239,29 @@ function genSteps() {
 	$('#counterSpace').html(bHTML);
 }
 
+function updateGuide() {
+	pText="";
+	mText="";
+	if (turnEffect[currentStep].ss==1) {
+		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units.</p>";
+	}
+	if (turnEffect[currentStep].ss==2) {
+		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>";
+	}
+	if (turnEffect[currentStep].des==1) {
+		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>"
+	}
+	if (mText="") {
+		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Maxwell is pushed through 70%, 30% and especially 20% HP.</p>.";
+		mText+="Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.";
+	}
+	$("#playerText").html(pText);
+	$("#maxwellText").html(mText);
+}
+
 $(document).ready( function(e) {
 /*Init*/
 genSteps();
@@ -246,23 +269,19 @@ $( ".turnCount" ).eq(currentStep).removeClass("panel-default");
 $( ".turnCount" ).eq(currentStep).addClass("panel-primary");
 
 $(document).on("click", '#nextBtn', function(e){
-  	$('#prevBtn').val(currentStep);
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
   	currentStep+=1;
 	if (currentStep==20)
 		currentStep=0;
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
-  	$('#nextBtn').val(currentStep);
 })
 
 $(document).on("click", '#prevBtn', function(e){
-  	$('#nextBtn').val(currentStep);
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
   	currentStep-=1;
   	if (currentStep==-1)
   		currentStep=19;
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
-  	$('#prevBtn').val(currentStep);
 })
   
 }) /*End DocReady*/
