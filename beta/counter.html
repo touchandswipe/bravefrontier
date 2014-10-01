@@ -125,11 +125,11 @@
 	<div class="col-xs-12 col-sm-6 col-md-6">
 		<div class="row" style="margin-bottom:10px;">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-default btn-lg btn-block"><i class="fa fa-arrow-left"></i>Prev Turn</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn" value="0"><i class="fa fa-arrow-left"></i> Prev Turn</button>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block">Next Turn <i class="fa fa-arrow-right"></i></button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" id="nextBtn" value="1">Next Turn <i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 		
@@ -221,6 +221,7 @@ turnEffect=[
 {"ss":0,"des":0},
 {"ss":1,"des":1}
 ];
+currentStep=1;
 
 function genSteps() {
 	var bHTML="";
@@ -241,11 +242,15 @@ function genSteps() {
 $(document).ready( function(e) {
 genSteps();
 
-$(document).on("click", '#idBtn', function(e){
-  grabIMG()
+$(document).on("click", '#nextBtn', function(e){
+  	$('#prevBtn').val(currentStep);
+  	$( ".turnCount" ).eq(currentStep-1).removeClass("panel-default");
+  	$( ".turnCount" ).eq(currentStep-1).addClass("panel-primary");
+  	currentStep+=1;
+  	$('#nextBtn').val(currentStep);
 })
 
-$(document).on("click", '#pathBtn', function(e){
+$(document).on("click", '#prevBtn', function(e){
   grabIMG2()
 })
   
