@@ -125,11 +125,11 @@
 	<div class="col-xs-12 col-sm-6 col-md-6">
 		<div class="row" style="margin-bottom:10px;">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn" value="0"><i class="fa fa-arrow-left"></i> Prev Turn</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn" value="-1"><i class="fa fa-arrow-left"></i> Prev Turn</button>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block" id="nextBtn" value="1">Next Turn <i class="fa fa-arrow-right"></i></button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" id="nextBtn" value="0">Next Turn <i class="fa fa-arrow-right"></i></button>
 			</div>
 		</div>
 		
@@ -221,7 +221,7 @@ turnEffect=[
 {"ss":0,"des":0},
 {"ss":1,"des":1}
 ];
-currentStep=1;
+currentStep=0;
 
 function genSteps() {
 	var bHTML="";
@@ -240,18 +240,29 @@ function genSteps() {
 }
 
 $(document).ready( function(e) {
+/*Init*/
 genSteps();
+$( ".turnCount" ).eq(currentStep).removeClass("panel-default");
+$( ".turnCount" ).eq(currentStep).addClass("panel-primary");
 
 $(document).on("click", '#nextBtn', function(e){
   	$('#prevBtn').val(currentStep);
-  	$( ".turnCount" ).eq(currentStep-1).removeClass("panel-default");
-  	$( ".turnCount" ).eq(currentStep-1).addClass("panel-primary");
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
   	currentStep+=1;
+	if (currentStep==20)
+		currentStep=0;
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
   	$('#nextBtn').val(currentStep);
 })
 
 $(document).on("click", '#prevBtn', function(e){
-  grabIMG2()
+  	$('#nextBtn').val(currentStep);
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
+  	currentStep-=1;
+  	if (currentStep==-1)
+  		currentStep=19;
+  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
+  	$('#prevBtn').val(currentStep);
 })
   
 }) /*End DocReady*/
