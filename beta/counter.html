@@ -267,6 +267,7 @@ $(document).ready( function(e) {
 genSteps();
 $( ".turnCount" ).eq(currentStep).removeClass("panel-default");
 $( ".turnCount" ).eq(currentStep).addClass("panel-primary");
+updateGuide()
 
 $(document).on("click", '#nextBtn', function(e){
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
@@ -274,6 +275,7 @@ $(document).on("click", '#nextBtn', function(e){
 	if (currentStep==20)
 		currentStep=0;
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
+  	updateGuide();
 })
 
 $(document).on("click", '#prevBtn', function(e){
@@ -282,6 +284,7 @@ $(document).on("click", '#prevBtn', function(e){
   	if (currentStep==-1)
   		currentStep=19;
   	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
+  	updateGuide();
 })
   
 }) /*End DocReady*/
