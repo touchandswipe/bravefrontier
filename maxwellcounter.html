@@ -126,11 +126,11 @@
 	<div class="col-xs-12 col-sm-6 col-md-6">
 		<div class="row" style="margin-bottom:10px;">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn"><i class="fa fa-arrow-left"></i> Prev Turn</button>
+				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn"><small><i class="fa fa-arrow-left"></i> Prev Turn</small></button>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-success btn-lg btn-block" id="nextBtn">Next Turn <i class="fa fa-arrow-right"></i></button>
+				<button type="button" class="btn btn-success btn-lg btn-block" id="nextBtn"><small>Next Turn <i class="fa fa-arrow-right"></i></small></button>
 			</div>
 		</div>
 		
@@ -244,12 +244,12 @@ function updateGuide() {
 	pText="";
 	mText="";
 	if (turnEffect[currentStep].ss==1) {
-		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
+		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF, Angel Idol) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
 		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units.</p>";
 	}
 	if (turnEffect[currentStep].ss==2) {
 		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p><p>Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
 	}
 	if (turnEffect[currentStep].des==1) {
 		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
