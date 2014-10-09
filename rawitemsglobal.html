@@ -259,8 +259,16 @@ function buildDB(unit) {
 	            }
             } else {
 		$.each(valObj.effect, function(lsKey,lsVal) {
-			effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
-			effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+			if (lsKey=="effect") {
+				$.each(valObj.effect.effect, function(lsKey2,lsVal2) {
+					effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey2+"</span></div>";
+					effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal2+'</div></div>';
+					effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
+				})
+			} else {
+				effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
+				effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+			}
 		})
             }
         } else effectSTR="";
