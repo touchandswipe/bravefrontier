@@ -254,13 +254,13 @@ function buildDB(unit) {
 	            	effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
 		            $.each(valObj.effect[i], function(lsKey,lsVal) {
 		                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
-		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj["effect"][lsKey]+'</div></div>';
+		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
 		            })
 	            }
             } else {
 		$.each(valObj.effect, function(lsKey,lsVal) {
 			effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
-			effectSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj["effect"][lsKey]+'</div></div>';
+			effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
 		})
             }
         } else effectSTR="";
@@ -270,7 +270,7 @@ function buildDB(unit) {
         $.each(valObj, function(lsKey,lsVal) {
             if (lsKey!="effect"&&lsKey!="rarity") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
-                itemSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj[lsKey]+'</div></div>';
+                itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
         })
         /*Append each HTML*/
