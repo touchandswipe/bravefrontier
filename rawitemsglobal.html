@@ -234,6 +234,11 @@ function urlParam(name){
     }
 }
 
+/*check obj or Array*/
+function isArray(obj) {
+    return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*Process for Each Unit*/
@@ -244,12 +249,19 @@ function buildDB(unit) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
             /*effects Heading*/
             effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
-            for (i in valObj.effect) {
-            	effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
-	            $.each(valObj.effect[i], function(lsKey,lsVal) {
-	                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
-	                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj["effect"][lsKey]+'</div></div>';
-	            })
+            if (isArray(valObj.effect)) {
+	            for (i in valObj.effect) {
+	            	effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
+		            $.each(valObj.effect[i], function(lsKey,lsVal) {
+		                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
+		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj["effect"][lsKey]+'</div></div>';
+		            })
+	            }
+            } else {
+		$.each(valObj.effect, function(lsKey,lsVal) {
+			effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ls">'+lsKey+"</span></div>";
+			effectSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj["effect"][lsKey]+'</div></div>';
+		})
             }
         } else effectSTR="";
         /*Item details*/
