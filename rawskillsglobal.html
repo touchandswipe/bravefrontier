@@ -315,11 +315,10 @@ function buildDB(unit) {
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bi"><b>'+stKey+'</b></div>';
             	statsSTR+='<div class="col-xs-10 col-sm-10 bi">';
-            	statsSTR+='<ul class="nav nav-pills">';
             	$.each(valObj.stats[stKey], function(stKey2,stVal2) {
-            		statsSTR+='<li class="active">'+stKey2+'<span class="badge pull-right">'+stVal2+'</span></li>';
+            		statsSTR+='<button type="button" class="btn btn-default" disabled="disabled"><b>'+stKey2+': </b>'+stVal2+'</button>';
             	})
-            	statsSTR+='</ul></div></div>';
+            	statsSTR+='</div></div>';
             })
         } else statsSTR='';
         /*Normal DMG % Distribution*/
