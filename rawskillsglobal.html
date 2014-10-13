@@ -316,7 +316,7 @@ function buildDB(unit) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bi"><b>'+stKey+'</b></div>';
             	statsSTR+='<div class="col-xs-10 col-sm-10 bi">';
             	$.each(valObj.stats[stKey], function(stKey2,stVal2) {
-            		statsSTR+='<button type="button" class="btn btn-info btn-sm" disabled="disabled"><b>'+stKey2+': </b>'+stVal2+'</button>&nbsp;';
+            		statsSTR+='<button type="button" class="btn btn-default btn-sm disabled"><b>'+stKey2+': </b>'+stVal2+'</button>&nbsp;';
             	})
             	statsSTR+='</div></div>';
             })
