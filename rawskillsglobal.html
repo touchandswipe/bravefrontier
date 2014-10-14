@@ -661,12 +661,11 @@ $(document).ready( function(e) {
     	backdrop:'static',
     	toggle:true
     })
-    /*AJAX Call shorthand*/
-    /*AJAX Call shorthand*/
+
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "../json//bfraw_GL.json",
+        url: "json//bfraw_GL.json",
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
