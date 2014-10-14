@@ -132,7 +132,7 @@
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h5>Data presented is based on <b class="text-danger">Global Server</b> data.</h5>
-<h5><b>Last Updated: </b><kbd>29th Sep 2014</kbd> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 
 <!-- Leader Skills button -->
 <div class="btn-group" style="margin-bottom:10px;">
@@ -291,6 +291,7 @@
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
+lastModified="";
 rawParseObj=[]; /*holder variable in array*/
 
 /*JQ Param handling*/
@@ -661,7 +662,17 @@ $(document).ready( function(e) {
     	toggle:true
     })
     /*AJAX Call shorthand*/
-    $.getJSON( "json//bfraw_GL.json", buildDB);
+    /*AJAX Call shorthand*/
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: "../json//bfraw_GL.json",
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		$(lastModDate).text(lastModified);
+    		buildDB(data);
+ 	}
+    });
     
 /*POP state*/
     $(window).on('popstate', function(ev) {
