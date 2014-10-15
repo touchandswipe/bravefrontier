@@ -271,7 +271,7 @@ function sconvertJSON( serialObj ) {
 	var temp = {};
 	for(var j=0; j < s.columns.length; j++)
 	{ /*check for NaN values*/
-	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
+	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("range") != -1)||(s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
 		    temp[s.columns[j].toLowerCase()] = "-";
 	    } else {
 	    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
@@ -1152,6 +1152,8 @@ var evoQuery = [
 	      var ovatkoracle = ovdata2[0]["atk oracle"];
 	      var ovdeforacle = ovdata2[0]["def oracle"];
 	      var ovrecoracle = ovdata2[0]["rec oracle"];
+	      var ovhprange = (ovdata2[0]["hp range"]=="-") ? 0 : ovdata2[0]["hp range"];
+	      var ovstatsrange = (ovdata2[0]["stats range"]=="-") ? 0 : ovdata2[0]["stats range"];
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
@@ -1313,25 +1315,25 @@ var evoQuery = [
 	      +'<td>'+ovweightedlord+'</td></tr>';
 	      /*Omit display for lord type only units*/
 	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
-	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['hp range']+'</small></td>'
+	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovhprange+'</small></td>'
 	      +'<td class="atkMod">'+ovatkanima+'</td>'
 	      +'<td class="defMod">'+ovdefanima+'</td>'
-	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Breaker</strong></td><td class="hpMod">'+ovhpbreaker+'</td>'
-	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
-	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
-		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecguardian+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="atkMod">'+ovatkoracle+'</td>'
 	      +'<td class="defMod">'+ovdeforacle+'</td>'
-		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td>&nbsp;</td></tr>';
 	      }
 	      /*IMP MAX Addition*/
