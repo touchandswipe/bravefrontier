@@ -1310,7 +1310,7 @@ var evoQuery = [
 	      /*Omit display for lord type only units*/
 	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
 	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="hpMod bg-success">'+ovhpanima+'</td>'
-	      +'<td class="atkMod">'+ovatkanima+'</td>'
+	      +'<td><span class="atkMod">'+ovatkanima+' &#177;'+ovdata2[0]["hp range"]+'</span></td>'
 	      +'<td class="defMod">'+ovdefanima+'</td>'
 	      +'<td class="recMod bg-warning">'+ovrecanima+'</td>'
 	      +'<td>&nbsp;</td></tr>'
