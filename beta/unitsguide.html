@@ -88,7 +88,7 @@ var ovdata2 = {};
 var favUnitObj=[];
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
-var gTable = '1x9EHj-g3C3bUAPIFYqH5BQJhuI5bv0UGFUxCdeub';
+var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
@@ -802,7 +802,7 @@ function initialize() {
 		  cHTML+='<td width="'+tWidth+'%"><img src="'+cData[i]['icon']+'" width="60" /></td>' }
 	      cHTML+='</tr>';
 	  cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>Simply <kbd>COPY</kbd> browser link or <a href="'+cShareURL.id+'"><b>'+cShareURL.id+'</b></a></td></tr>';
-	      cHTML+='<td class="active"><b>Unit ID / Gender / Name</b></td>';
+	      cHTML+='<td class="active"><b>Unit ID</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
