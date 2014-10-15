@@ -143,7 +143,7 @@ $.getJSON( "../json/bfraw_JP.json", function( unit ) {
         exportSTR+='<td>'+valObj.stats._lord.def+'</td>';
         exportSTR+='<td>'+valObj.stats._lord.rec+'</td>';
         
-        exportSTR+='<td>'+((valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+Math.floor((valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.anima.atk+'</td>';
         exportSTR+='<td>'+valObj.stats.anima.def+'</td>';
         exportSTR+='<td>'+((valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
