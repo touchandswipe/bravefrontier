@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (RX7) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (ZX) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide - RX7 by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide - ZX by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -88,7 +88,7 @@ var ovdata2 = {};
 var favUnitObj=[];
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
-var gTable = '1x9EHj-g3C3bUAPIFYqH5BQJhuI5bv0UGFUxCdeub';
+var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
@@ -1313,34 +1313,34 @@ var evoQuery = [
 	      +'<td>'+ovweightedlord+'</td></tr>';
 	      /*Omit display for lord type only units*/
 	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
-	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="hpMod bg-success">'+ovhpanima+'</td>'
+	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['hp range']+'</small></td>'
 	      +'<td class="atkMod">'+ovatkanima+'</td>'
 	      +'<td class="defMod">'+ovdefanima+'</td>'
-	      +'<td class="recMod bg-warning">'+ovrecanima+'</td>'
+	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Breaker</strong></td><td class="hpMod">'+ovhpbreaker+'</td>'
-	      +'<td class="atkMod bg-success">'+ovatkbreaker+'</td>'
-	      +'<td class="defMod bg-warning">'+ovdefbreaker+'</td>'
+	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-	      +'<td class="atkMod bg-warning">'+ovatkguardian+'</td>'
-	      +'<td class="defMod bg-success">'+ovdefguardian+'</td>'
+		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
 	      +'<td class="recMod">'+ovrecguardian+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="hpMod bg-warning">'+ovhporacle+'</td>'
+	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
 	      +'<td class="atkMod">'+ovatkoracle+'</td>'
 	      +'<td class="defMod">'+ovdeforacle+'</td>'
-	      +'<td class="recMod bg-success">'+ovrecoracle+'</td>'
+		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs"> &#177; '+ovdata2[0]['stats range']+'</small></td>'
 	      +'<td>&nbsp;</td></tr>';
 	      }
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="") {
 	      ovHTML+='<tr><td class="active va"><i class="fa fa-thumbs-o-up"></i> <b>Max PIMP</b></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span> <small>('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span> <small>('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span> <small>('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span> <small>('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
