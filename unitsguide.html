@@ -1072,12 +1072,18 @@ var evoQuery = [
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
 	/*update state*/
-    var state = { stateUnit: whatunit };
-    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+	    var state = { stateUnit: whatunit };
+	    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+	/*Google analytics*/
+	var compileURL=location.protocol + '//' + location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': whatunit
+	});
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit)));
+	var buildShareURL = JSON.parse(gooShorten(compileURL));
 	var ovshareURL=buildShareURL.id;
 	/*Fix Apostrophe*/
 	var whatunit = whatunit.replace("'","\\'");
@@ -1405,6 +1411,16 @@ var evoQuery = [
 } /*End openCard fn*/
 </script>
 
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -3036,16 +3052,6 @@ var delay = (function(){
   </div>
 </div>
 
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48617906-1', 'auto');
-  ga('send', 'pageview');
-</script>
 <!--Chatroom-->
 <script id="sid0020000073204835322">(function() {function async_load(){s.id="cid0020000073204835322";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204835322'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
