@@ -2121,6 +2121,26 @@ $(document).on("click", "#filterBtn", function(e){
 		});
 })
 
+/*Sel ALL / None Ele*/
+$(document).on("click", ".selEleFilter, .selRareFilter", function(e){
+	var selAction=$(this).text();
+	if ($this.hasClass('selEleFilter'))
+		var changeClass=".filElement";
+	else
+		var changeClass=".filRarity";
+	$(changeClass).each( function(){
+		if (selAction=="ALL") {
+			$(this).prop('checked',true);
+			if (!$(this).hasClass("active"))
+				$(this).addClass("active")
+		} else {
+			$(this).prop('checked',false);
+			if ($(this).hasClass("active"))
+				$(this).removeClass("active")
+		}
+	})
+})
+
 /*Execute Filter*/
 $(document).on("click", "#execFilter", function(e){
 	    e.preventDefault();
