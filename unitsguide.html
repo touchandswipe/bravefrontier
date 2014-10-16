@@ -2121,6 +2121,26 @@ $(document).on("click", "#filterBtn", function(e){
 		});
 })
 
+/*Sel ALL / None*/
+$(document).on("click", ".selEleFilter, .selRareFilter", function(e){
+	var selAction=$(this).text();
+	if ($(this).hasClass('selEleFilter'))
+		var changeClass=".filElement";
+	else
+		var changeClass=".filRarity";
+	$(changeClass).each( function(){
+		if (selAction=="ALL") {
+			$(this).prop('checked',true);
+			if (!$(this).parent().hasClass("active"))
+				$(this).parent().addClass("active")
+		} else {
+			$(this).prop('checked',false);
+			if ($(this).parent().hasClass("active"))
+				$(this).parent().removeClass("active")
+		}
+	})
+})
+
 /*Execute Filter*/
 $(document).on("click", "#execFilter", function(e){
 	    e.preventDefault();
@@ -2860,12 +2880,16 @@ var delay = (function(){
 	
 	<h5><b>by Elements</b></h5>
 	
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary selEleFilter">ALL</button>
+	  <button type="button" class="btn btn-info selEleFilter">None</button>
+	</div>
+	
 	<div class="btn-group" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="checkbox" class="filElement" value="Fire" checked>
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/fireminiicon.png"/>
-	    
 	  </label>
 	  
 	  <label class="btn btn-default active">
@@ -2892,10 +2916,15 @@ var delay = (function(){
 	    <input type="checkbox" class="filElement" value="Dark" checked>
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/darkminiicon.png"/>
 	  </label>
-	  
+
 	</div>
 	
 	<h5><b>by Rarity</b></h5>
+	
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary selRareFilter">ALL</button>
+	  <button type="button" class="btn btn-info selRareFilter">None</button>
+	</div>
 	
 	<div class="btn-group" data-toggle="buttons">
 	  <label class="btn btn-default active">
