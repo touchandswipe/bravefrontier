@@ -2124,7 +2124,7 @@ $(document).on("click", "#filterBtn", function(e){
 /*Sel ALL / None Ele*/
 $(document).on("click", ".selEleFilter, .selRareFilter", function(e){
 	var selAction=$(this).text();
-	if ($this.hasClass('selEleFilter'))
+	if ($(this).hasClass('selEleFilter'))
 		var changeClass=".filElement";
 	else
 		var changeClass=".filRarity";
