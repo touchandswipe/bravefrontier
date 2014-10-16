@@ -731,6 +731,13 @@ function initialize() {
 	   /*show fav card */
 	$('#favTitle').html(titleText);
 	$('#favModal').modal("show");
+	
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/favouritiesfeature',
+  		'title': 'Brave Frontier PROs Favourite Feature'
+	});
+	
 	for (var i=0;i < deserialdata.length;i++) {
 	    for (var j=0;j < unitIdArray.length;j++) {
 		if (deserialdata[i]['id']==unitIdArray[j]) {
@@ -2096,12 +2103,22 @@ $(document).on("change", "#bossSelect", function(e){
 $(document).on("click", "#rareSummonBtn", function(e){
 	    e.preventDefault();
 	    $('#summonModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/raresummonfeature',
+  		'title': 'Brave Frontier PROs Rare Summon Feature'
+	});
 })
 
 /*Filter Button*/
 $(document).on("click", "#filterBtn", function(e){
 	    e.preventDefault();
 	    $('#filterModal').modal('show');
+	    	/*Google analytics*/
+		ga('send', 'pageview', {
+  			'page': '/filterfeature',
+  			'title': 'Brave Frontier PROs Filter Feature'
+		});
 })
 
 /*Execute Filter*/
