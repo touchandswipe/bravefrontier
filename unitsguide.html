@@ -734,7 +734,7 @@ function initialize() {
 	
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/favouritiesfeature',
+  		'page': '/vurl/favouritiesfeature',
   		'title': 'Brave Frontier PROs Favourite Feature'
 	});
 	
@@ -781,13 +781,13 @@ function initialize() {
     	$('#compareModal').modal("show");
     	
 	/*Google analytics*/
-	var compileURL=location.protocol + '//' + location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
+	var compileURL=location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
 	ga('send', 'pageview', {
   		'page': compileURL,
-  		'title': "Compare"+units
+  		'title': "Brave Frontier PROs Compare "+units
 	});
 	
-	var cShareURL = JSON.parse(gooShorten(compileURL));
+	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	
 	for (var i=0; i < units.length; i++) {
 	    qunitname += "'"+units[i].replace("'","\\'")+"'";
@@ -1089,15 +1089,15 @@ var evoQuery = [
 	    var state = { stateUnit: whatunit };
 	    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
 	/*Google analytics*/
-	var compileURL=location.protocol + '//' + location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+	var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
 	ga('send', 'pageview', {
   		'page': compileURL,
-  		'title': whatunit
+  		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
 	});
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(compileURL));
+	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	var ovshareURL=buildShareURL.id;
 	/*Fix Apostrophe*/
 	var whatunit = whatunit.replace("'","\\'");
@@ -2105,7 +2105,7 @@ $(document).on("click", "#rareSummonBtn", function(e){
 	    $('#summonModal').modal('show');
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/raresummonfeature',
+  		'page': '/vurl/raresummonfeature',
   		'title': 'Brave Frontier PROs Rare Summon Feature'
 	});
 })
@@ -2116,7 +2116,7 @@ $(document).on("click", "#filterBtn", function(e){
 	    $('#filterModal').modal('show');
 	    	/*Google analytics*/
 		ga('send', 'pageview', {
-  			'page': '/filterfeature',
+  			'page': '/vurl/filterfeature',
   			'title': 'Brave Frontier PROs Filter Feature'
 		});
 })
@@ -2204,6 +2204,11 @@ $(document).on("click", "#execFilter", function(e){
 /*Bind REFRESH*/
     $(document).on("click", "#refreshBtn", function(e){
 	    e.preventDefault();
+		/*Google analytics*/
+		ga('send', 'pageview', {
+	  		'page': '/vurl/refresh',
+	  		'title': 'Brave Frontier PROs Refresh'
+		});
 	    /*loader*/
 	    bfpAlert("Refresh",'Clearing all selections ... please wait<div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	    var bfPROsTable = $('#mytable').DataTable();
