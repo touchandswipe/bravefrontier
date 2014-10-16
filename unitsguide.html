@@ -771,9 +771,16 @@ function initialize() {
 	var qunitname = "";
 	 /*Loader*/
 	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
-    $('#compareModal').modal("show");
+    	$('#compareModal').modal("show");
+    	
+	/*Google analytics*/
+	var compileURL=location.protocol + '//' + location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': "Compare"+units
+	});
 	
-	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?compare=" + encodeURIComponent(units.join()) ));
+	var cShareURL = JSON.parse(gooShorten(compileURL));
 	
 	for (var i=0; i < units.length; i++) {
 	    qunitname += "'"+units[i].replace("'","\\'")+"'";
