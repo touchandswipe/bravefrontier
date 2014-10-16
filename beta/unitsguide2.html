@@ -2128,16 +2128,13 @@ $(document).on("click", ".selEleFilter, .selRareFilter", function(e){
 		var changeClass=".filElement";
 	else
 		var changeClass=".filRarity";
-	alert(changeClass+selAction);
 	$(changeClass).each( function(){
 		if (selAction=="ALL") {
 			$(this).prop('checked',true);
-			alert("checked");
 			if (!$(this).parent().hasClass("active"))
 				$(this).parent().addClass("active")
 		} else {
 			$(this).prop('checked',false);
-			alert("unchecked");
 			if ($(this).parent().hasClass("active"))
 				$(this).parent().removeClass("active")
 		}
