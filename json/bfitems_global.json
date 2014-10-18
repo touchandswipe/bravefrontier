@@ -61,8 +61,7 @@
                 "bb gauge fill rate%": 25
             }, 
             {
-                "first x turns": 2, 
-                "first x turns def%": 330
+                "def% buff": 330
             }
         ], 
         "id": 818882, 
@@ -411,7 +410,7 @@
         "desc": "Increases drop rate of Karma when attacking", 
         "effect": [
             {
-                "karma production%": 10
+                "karma drop rate% buff": 10
             }
         ], 
         "id": 34001, 
@@ -979,7 +978,7 @@
         "desc": "Boosts Drop Rate of HC when Attacking", 
         "effect": [
             {
-                "hc production%": 5
+                "hc drop rate% buff": 5
             }
         ], 
         "id": 33800, 
@@ -992,7 +991,7 @@
         "desc": "Greatly increases drop rate of HC when attacking", 
         "effect": [
             {
-                "hc production%": 10
+                "hc drop rate% buff": 10
             }
         ], 
         "id": 34804, 
@@ -1764,9 +1763,9 @@
         "desc": "Adds chance of BB gauge filling when attacking", 
         "effect": [
             {
-                "bc fill when attacking high": 0, 
-                "bc fill when attacking low": 0, 
-                "bc fill when attacking%": 0
+                "bc fill when attacking high": 2, 
+                "bc fill when attacking low": 1, 
+                "bc fill when attacking%": 50
             }
         ], 
         "id": 34806, 
@@ -1819,7 +1818,7 @@
         "type": "sphere"
     }, 
     "Dragon Sword": {
-        "desc": "Greatly Increases Atk and Critical Hit Rate when Near Death", 
+        "desc": "Greatly boosts Atk, Def & Rec when HP is full", 
         "effect": [
             {
                 "atk% buff": 150, 
@@ -2854,7 +2853,7 @@
         "desc": "Boosts DEF by 360% when unit HP drops below 25%. Slight increase of BC drop when attacking.", 
         "effect": [
             {
-                "bc production%": 5
+                "bc drop rate% buff": 5
             }, 
             {
                 "def% buff": 360, 
@@ -3548,7 +3547,7 @@
         "desc": "Greatly boosts drop rate of HC when attacking", 
         "effect": [
             {
-                "hc production%": 15
+                "hc drop rate% buff": 15
             }
         ], 
         "id": 40100, 
@@ -4126,8 +4125,8 @@
         "desc": "Increases drop rate of BC and HC when attacking", 
         "effect": [
             {
-                "bc production%": 10, 
-                "hc production%": 10
+                "bc drop rate% buff": 10, 
+                "hc drop rate% buff": 10
             }
         ], 
         "id": 36000, 
@@ -4283,6 +4282,26 @@
         "rarity": 3, 
         "sell_price": 50, 
         "type": "material"
+    }, 
+    "Providence Ring": {
+        "desc": "Boost ATK by 25%, DEF, REC & HP by 20%. High chance of reflecting partial enemy damage.", 
+        "effect": [
+            {
+                "atk% buff": 25, 
+                "def% buff": 20, 
+                "hp% buff": 20, 
+                "rec% buff": 20
+            }, 
+            {
+                "dmg% reflect high": 25, 
+                "dmg% reflect low": 20
+            }
+        ], 
+        "id": 818884, 
+        "max_stack": 1, 
+        "rarity": 3, 
+        "sell_price": 25000, 
+        "type": "sphere"
     }, 
     "Pure Elixir": {
         "desc": "Heals all abnormalities of one ally", 
@@ -4716,22 +4735,6 @@
         "sell_price": 50, 
         "type": "material"
     }, 
-    "Shadow Cloak": {
-        "desc": "Unit is stealthed for the first two turns of battle. BB gauge fills much faster when obtaining BC", 
-        "effect": [
-            {
-                "bb gauge fill rate%": 50
-            }, 
-            {
-                "stealth turns": 2
-            }
-        ], 
-        "id": 818880, 
-        "max_stack": 1, 
-        "rarity": 3, 
-        "sell_price": 20000, 
-        "type": "sphere"
-    }, 
     "Shiny Anklet": {
         "desc": "Increases amount of hits, and greatly boosts Atk", 
         "effect": [
@@ -4814,7 +4817,7 @@
         "desc": "Boosts Drop Rate of BC when Attacking", 
         "effect": [
             {
-                "bc production%": 5
+                "bc drop rate% buff": 5
             }
         ], 
         "id": 33700, 
@@ -4883,7 +4886,7 @@
         "desc": "Greatly boosts drop rate of BC when attacking", 
         "effect": [
             {
-                "bc production%": 15
+                "bc drop rate% buff": 15
             }
         ], 
         "id": 40000, 
@@ -4934,7 +4937,7 @@
         "desc": "Boosts Drop Rate of Karma when Attacking", 
         "effect": [
             {
-                "karma production%": 5
+                "karma drop rate% buff": 5
             }
         ], 
         "id": 34000, 
@@ -5178,7 +5181,7 @@
         "desc": "Greatly increases drop rate of BC when attacking", 
         "effect": [
             {
-                "bc production%": 10
+                "bc drop rate% buff": 10
             }
         ], 
         "id": 34803, 
@@ -5231,7 +5234,7 @@
         "desc": "Boosts Drop Rate of Items when Attacking", 
         "effect": [
             {
-                "item production%": 2
+                "item drop rate% buff": 2
             }
         ], 
         "id": 34100, 
@@ -5244,11 +5247,11 @@
         "desc": "Greatly boosts BC, HC, Zel, Karma, and Item drop rate", 
         "effect": [
             {
-                "bc production%": 15, 
-                "hc production%": 15, 
-                "item production%": 3, 
-                "karma production%": 10, 
-                "zel production%": 15
+                "bc drop rate% buff": 15, 
+                "hc drop rate% buff": 15, 
+                "item drop rate% buff": 3, 
+                "karma drop rate% buff": 10, 
+                "zel drop rate% buff": 15
             }
         ], 
         "id": 40500, 
@@ -5261,9 +5264,9 @@
         "desc": "Increases drop rate of Zel, Karma, and Items when attacking", 
         "effect": [
             {
-                "item production%": 2, 
-                "karma production%": 5, 
-                "zel production%": 8
+                "item drop rate% buff": 2, 
+                "karma drop rate% buff": 5, 
+                "zel drop rate% buff": 8
             }
         ], 
         "id": 35900, 
@@ -5276,8 +5279,8 @@
         "desc": "Increases drop rate of Zel and Karma when attacking", 
         "effect": [
             {
-                "karma production%": 10, 
-                "zel production%": 15
+                "karma drop rate% buff": 10, 
+                "zel drop rate% buff": 15
             }
         ], 
         "id": 38300, 
@@ -5827,7 +5830,7 @@
         "desc": "Boosts drop rate of Zel when attacking", 
         "effect": [
             {
-                "zel production%": 15
+                "zel drop rate% buff": 15
             }
         ], 
         "id": 33901, 
@@ -5840,7 +5843,7 @@
         "desc": "Boosts Drop Rate of Zel when Attacking", 
         "effect": [
             {
-                "zel production%": 8
+                "zel drop rate% buff": 8
             }
         ], 
         "id": 33900, 
