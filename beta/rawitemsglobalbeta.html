@@ -481,7 +481,7 @@ function searchNameRun() {
 
 /*Search by Ingredient*/
 function searchIngredientRun() {
-    var sVal='class="ingredient">'+$('#searchIngredientBox').val();
+    var sVal=$('#searchIngredientBox').val();
     var outputObj=[];
 	var outputHTML=[];
 	if (sVal.length <2) {
@@ -489,7 +489,7 @@ function searchIngredientRun() {
     } else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search(sVal.toLowerCase())!=-1) {
+	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search('class="ingredient">'+sVal.toLowerCase())!=-1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -509,7 +509,7 @@ function searchIngredientRun() {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
-    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent($('#searchIngredientBox').val()) );
+    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
     }
 }
 
@@ -586,7 +586,7 @@ $(document).ready( function(e) {
         searchRun();
 	}
 	/*Search ingredient state*/
-	if (state.stateNameFilter) {
+	if (state.stateIngredientFilter) {
         $('#searchIngredientBox').val(state.stateIngredientFilter);
         searchIngredientRun();
 	}
