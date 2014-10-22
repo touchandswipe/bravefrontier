@@ -389,6 +389,14 @@ function buildDB(unit) {
         $('#searchNameBox').val(searchParam);
         searchNameRun();
     }
+    
+    var searchParam=urlParam('ingredient');
+    if ( (searchParam != "") && ( searchParam != null) ) {
+        /*sets searchbox value then execute*/
+        $('#searchIngredientBox').val(searchParam);
+        searchIngredientRun();
+    }
+    
 }
 
 /*itemtype Filter Search*/
