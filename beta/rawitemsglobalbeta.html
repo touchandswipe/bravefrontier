@@ -269,14 +269,14 @@ function isArray(obj) {
 }
 
 /*Grab item name and image*/
-function getNameIMG(unit,idFind) {
+function getNameIMG(unitdata,idFind) {
 	var retArray=[];
 	/*Process for Each Unit*/
-	$.each( unit, function( unitKey, valObj ) {
-    		if (valObj.id==idFind) {
-    			alert("Found"+valObj.id);
+	$.each( unitdata, function( unitKey, valObj2 ) {
+    		if (valObj2.id==idFind) {
+    			alert("Found"+valObj2.id);
     			retArray.push(unitKey);
-    			retArray.push(imgprefix+valObj.thumbnail);
+    			retArray.push(imgprefix+valObj2.thumbnail);
     			return retArray;
     		} else 
     			return false;
