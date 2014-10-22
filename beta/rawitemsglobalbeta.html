@@ -480,7 +480,7 @@ $( "#searchNameBox" ).keypress( function( event ) {
 })
 
 /*click on recipe to show item*/
-$(document).on("click", '.ingredients', function(e){
+$(document).on("click", '.ingredient', function(e){
     	e.preventDefault();
     	$("#searchNameBox").val($(this).text());
 	searchNameRun()
