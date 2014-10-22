@@ -248,7 +248,6 @@
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
-memdata={};
 imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 rawParseObj=[]; /*holder variable in array*/
 
@@ -333,11 +332,11 @@ function buildDB(unit) {
 		$.each(valObj.recipe, function(lsKey,lsVal) {
 			if (lsKey=="materials") {
 				for (i in valObj.recipe.materials) {
-					ingArray=getNameIMG(memdata,valObj.recipe.materials[i].id);
+					ingArray=getNameIMG(unit,valObj.recipe.materials[i].id);
 					if (!ingArray)
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].id+"</span></div>";
 					else
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+ingArray[0]+"</span></div>";
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a></div>";
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
 				}
 			} else {
@@ -351,7 +350,7 @@ function buildDB(unit) {
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity") {
+            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -480,6 +479,13 @@ $( "#searchNameBox" ).keypress( function( event ) {
   }
 })
 
+/*click on recipe to show item*/
+$(document).on("click", '.ingredients', function(e){
+    	e.preventDefault();
+    	$("#searchNameBox").val($(this).text());
+	searchNameRun()
+})
+
 /*Update URL based on ls filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
@@ -513,7 +519,6 @@ $(document).ready( function(e) {
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
-    		memdata=data;
     		buildDB(data);
  	}
     });
