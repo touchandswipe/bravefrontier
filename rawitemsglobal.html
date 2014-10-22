@@ -168,8 +168,15 @@
 <!--Search item-->
 <div class="input-group">
         <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Item Name</button></span>
+        <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
         <input type="search" placeholder="e.g. medulla" class="form-control" id="searchNameBox">
+</div>
+
+<!--Search by ingredient-->
+<div class="input-group" style="margin-top:10px;">
+        <span class="input-group-btn">
+        <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
+        <input type="search" placeholder="e.g. blue claw (Results will show what it is used for)" class="form-control" id="searchIngredientBox">
 </div>
 
 <!--Containing Div-->
@@ -248,6 +255,7 @@
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
+imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 rawParseObj=[]; /*holder variable in array*/
 
 /*JQ Param handling*/
@@ -266,9 +274,29 @@ function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
+/*Grab item name and image*/
+function getNameIMG(unitdata,idFind) {
+	var retArray=[];
+	var retFound=false;
+	/*Process for Each Unit*/
+	$.each( unitdata, function( unitKey, valObj2 ) {
+    		if (valObj2.id==idFind) {
+    			retArray.push(unitKey);
+    			retArray.push(imgprefix+valObj2.thumbnail);
+    			retFound=true;
+    			/*break .each loop*/
+    			return false;
+    		}
+	})
+	/*not returned prior = not found*/
+	if (retFound)
+		return retArray;
+	else
+		return false;
+}
+
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
-var imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
@@ -302,17 +330,40 @@ var imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 		})
             }
         } else effectSTR="";
+        /*Recipe if exists*/
+        if (valObj.recipe) {
+        	recipeSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RECIPE (This item can be made in town)</b></h5></div></div>';
+        	/*effects Heading*/
+            	recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Items Needed</div><div class="col-xs-8 col-md-8 bd">Quantity</div></div>';
+            	
+		$.each(valObj.recipe, function(lsKey,lsVal) {
+			if (lsKey=="materials") {
+				for (i in valObj.recipe.materials) {
+					ingArray=getNameIMG(unit,valObj.recipe.materials[i].id);
+					if (!ingArray)
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].id+"</span></div>";
+					else
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a></div>";
+					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
+				}
+			} else {
+				recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
+				recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+			}
+		})
+            	
+        } else recipeSTR="";
         /*Item details*/
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity") {
+            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
         })
         /*Append each HTML*/
-        var appendSTR=nameSTR+effectSTR+itemSTR+'</div></div></div></div>';
+        var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":unitKey, "collapseCode":appendSTR,"type":valObj.type});
         countVar+=1;
@@ -338,6 +389,14 @@ var imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
         $('#searchNameBox').val(searchParam);
         searchNameRun();
     }
+    
+    var searchParam=urlParam('ingredient');
+    if ( (searchParam != "") && ( searchParam != null) ) {
+        /*sets searchbox value then execute*/
+        $('#searchIngredientBox').val(searchParam);
+        searchIngredientRun();
+    }
+    
 }
 
 /*itemtype Filter Search*/
@@ -367,7 +426,7 @@ function itemRun(select) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 }
 
-/*Item Skill Search*/
+/*Item effect Search*/
 function skillRun(selectSkill) {
     var sVal=selectSkill;
     var outputObj=[];
@@ -428,11 +487,59 @@ function searchNameRun() {
     }
 }
 
+/*Search by Ingredient*/
+function searchIngredientRun() {
+    var sVal=$('#searchIngredientBox').val();
+    var outputObj=[];
+	var outputHTML=[];
+	if (sVal.length <2) {
+        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    } else {
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*compares lowercase string*/
+	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search('class="ingredient">'+sVal.toLowerCase())!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*pushstate update*/
+	var state = { stateIngredientFilter: sVal };
+    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
+    }
+}
+
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchNameRun()
   }
+})
+
+/*Binds Enter KEY to BOX*/
+$( "#searchIngredientBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchIngredientRun()
+  }
+})
+
+/*click on recipe to show item*/
+$(document).on("click", '.ingredient', function(e){
+    	e.preventDefault();
+    	$("#searchNameBox").val($(this).text());
+	searchNameRun()
 })
 
 /*Update URL based on ls filters*/
@@ -451,6 +558,12 @@ $(document).on("click", '.skillEffect', function(e){
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
 	searchNameRun()
+})
+
+/*Update URL based on search filters*/
+$(document).on("click", '#searchIngredientBtn', function(e){
+    e.preventDefault();
+	searchIngredientRun()
 })
 
 $(document).ready( function(e) {
@@ -476,14 +589,14 @@ $(document).ready( function(e) {
     $(window).on('popstate', function(ev) {
 	var state = ev.originalEvent.state;
 	/*Search query state*/
-	if (state.stateIdFilter) {
-        $('#searchIdBox').val(state.stateIdFilter);
-        searchRun();
-	}
-	/*Search query state*/
 	if (state.stateNameFilter) {
         $('#searchNameBox').val(state.stateNameFilter);
         searchRun();
+	}
+	/*Search ingredient state*/
+	if (state.stateIngredientFilter) {
+        $('#searchIngredientBox').val(state.stateIngredientFilter);
+        searchIngredientRun();
 	}
     })
 })
