@@ -310,7 +310,7 @@ var imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
             	
 		$.each(valObj.recipe, function(lsKey,lsVal) {
 			if (lsKey=="materials") {
-				for (i in valObj.materials) {
+				for (i in valObj.recipe.materials) {
 					recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.materials[i].id+"</span></div>";
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.materials[i].count+'</div></div>';
 				}
