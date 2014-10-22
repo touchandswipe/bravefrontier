@@ -350,7 +350,7 @@ function buildDB(unit) {
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe") {
+            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
