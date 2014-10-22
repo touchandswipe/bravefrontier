@@ -133,10 +133,10 @@ $.getJSON( "../json/bfraw_GL.json", function( unit ) {
         if (idFound) {
         nameSTR='<tr><td colspan="12" class="bg-primary upper"><h4><b>'+unitKey+'</b></h4></td></tr>';
         exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-        exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
-        exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
-        exportSTR+='<td>'+valObj.stats._base.def+'</td>';
-        exportSTR+='<td>'+valObj.stats._base.rec+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.def+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.rec+'</td>';
         
         exportSTR+='<td>'+valObj.stats._lord.hp+'</td>';
         exportSTR+='<td>'+valObj.stats._lord.atk+'</td>';
@@ -147,29 +147,33 @@ $.getJSON( "../json/bfraw_GL.json", function( unit ) {
         exportSTR+='<td>'+valObj.stats.anima.atk+'</td>';
         exportSTR+='<td>'+valObj.stats.anima.def+'</td>';
         exportSTR+='<td>'+((valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
-        exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
-        exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
         exportSTR+='<td>'+valObj.stats.breaker.hp+'</td>';
         exportSTR+='<td>'+((valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
         exportSTR+='<td>'+((valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.breaker.rec+'</td>';
-        exportSTR+='<td>'+(valObj.stats.breaker["atk max"]-(valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
-        exportSTR+='<td>'+(valObj.stats.breaker["def max"]-(valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["atk max"]-(valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["def max"]-(valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
         
         exportSTR+='<td>'+valObj.stats.guardian.hp+'</td>';
         exportSTR+='<td>'+((valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
         exportSTR+='<td>'+((valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.guardian.rec+'</td>';
-        exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
-        exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
 
         exportSTR+='<td>'+((valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.oracle.atk+'</td>';
         exportSTR+='<td>'+valObj.stats.oracle.def+'</td>';
         exportSTR+='<td>'+((valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
-        exportSTR+='<td>'+(valObj.stats.oracle["hp max"]-(valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
-        exportSTR+='<td>'+(valObj.stats.oracle["rec max"]-(valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["hp max"]-(valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["rec max"]-(valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        
         
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
