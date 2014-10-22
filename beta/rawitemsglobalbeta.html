@@ -483,7 +483,7 @@ $(document).ready( function(e) {
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "json/bfitems_global.json",
+        url: "../json/bfitems_global.json",
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
