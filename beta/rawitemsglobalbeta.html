@@ -489,7 +489,7 @@ function searchIngredientRun() {
     } else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['collapsecode'].toLowerCase().search(sVal.toLowerCase())!=-1) {
+	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search(sVal.toLowerCase())!=-1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
