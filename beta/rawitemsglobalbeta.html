@@ -274,15 +274,14 @@ function getNameIMG(unitdata,idFind) {
 	/*Process for Each Unit*/
 	$.each( unitdata, function( unitKey, valObj2 ) {
     		if (valObj2.id==idFind) {
-    			alert(valObj2.id);
     			retArray.push(unitKey);
     			retArray.push(imgprefix+valObj2.thumbnail);
-    			alert(retArray);
     			return retArray;
     		}
 	})
 	/*not returned prior = not found*/
-	return false;
+	retArray=[false,false];
+	return retArray;
 }
 
 /*Build DATABASE IN MEMORY*/
@@ -330,8 +329,7 @@ function buildDB(unit) {
 			if (lsKey=="materials") {
 				for (i in valObj.recipe.materials) {
 					var ingArray=getNameIMG(memdata,valObj.recipe.materials[i].id);
-					alert(ingArray[0]);
-					if (ingArray==false)
+					if (ingArray[0]==false)
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].id+"</span></div>";
 					else
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+ingArray[0]+"</span></div>";
