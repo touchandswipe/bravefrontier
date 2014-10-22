@@ -273,6 +273,7 @@ function getNameIMG(unitdata,idFind) {
 	var retArray=[];
 	/*Process for Each Unit*/
 	$.each( unitdata, function( unitKey, valObj2 ) {
+		alert(valObj2.id);
     		if (valObj2.id==idFind) {
     			alert("Found"+valObj2.id);
     			retArray.push(unitKey);
