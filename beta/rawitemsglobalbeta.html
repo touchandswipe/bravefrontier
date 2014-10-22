@@ -302,6 +302,25 @@ var imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 		})
             }
         } else effectSTR="";
+        /*Recipe if exists*/
+        if (valObj.recipe) {
+        	recipeSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RECIPE (This item can be made in town)</b></h5></div></div>';
+        	/*effects Heading*/
+            	recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Items Needed</div><div class="col-xs-8 col-md-8 bd">Quantity</div></div>';
+            	
+		$.each(valObj.recipe, function(lsKey,lsVal) {
+			if (lsKey=="materials") {
+				for (i in valObj.materials) {
+					recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+valObj.materials[i].id+"</span></div>";
+					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.materials[i].count+'</div></div>';
+				}
+			} else {
+				recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey+"</span></div>";
+				recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+			}
+		})
+            	
+        } else recipeSTR="";
         /*Item details*/
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
