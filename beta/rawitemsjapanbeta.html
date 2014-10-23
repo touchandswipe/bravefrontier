@@ -139,7 +139,7 @@
 </div>
 <!-- sphere type button -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
@@ -303,8 +303,14 @@ function getNameIMG(unitdata,idFind) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
+    /*build sphere type*/
+    var sphereTypeArray=[];
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+    	/*fill dropdown for sphere type*/
+    	if (sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
+            sphereTypeArray.push(valObj['sphere type text']);
+        }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
@@ -363,7 +369,9 @@ function buildDB(unit) {
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail") {
+            if (lsKey=="sphere type text")
+            	itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+'</div><div class="col-xs-8 col-md-8 bi"><span class="sphTypeTxt">'+lsVal+'</span></div></div>';
+            else if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -378,14 +386,9 @@ function buildDB(unit) {
     $("#unitCount").html(countVar);
     /*build item type*/
     var itemTypeArray=[];
-    /*build sphere type*/
-    var sphereTypeArray=[];
     for (i in rawParseObj) {
         if (itemTypeArray.indexOf(rawParseObj[i].type)==-1) {
             itemTypeArray.push(rawParseObj[i].type);
-        }
-        if (sphereTypeArray.indexOf(rawParseObj[i]['sphere type text'])==-1) {
-            sphereTypeArray.push(rawParseObj[i]['sphere type text']);
         }
     }
     for (i in itemTypeArray) {
@@ -447,7 +450,7 @@ function sphereRun(select) {
 	var outputHTML=[];
 	for (i in rawParseObj) {
 	    /*searches for sphere type*/
-	    if ( rawParseObj[i]['sphere type text']==sVal) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
