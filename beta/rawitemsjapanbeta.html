@@ -308,7 +308,7 @@ function buildDB(unit) {
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	/*fill dropdown for sphere type*/
-    	if (sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
+    	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
             sphereTypeArray.push(valObj['sphere type text']);
         }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
