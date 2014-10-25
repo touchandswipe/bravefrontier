@@ -237,7 +237,7 @@ function genSteps() {
 		if (i % 4==0)
 			bHTML+='<div class="row">';
 		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><small><b>Turn '+(parseInt(i)+1)+'</b></small></div>';
-		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle"></i>' : "SS T2";
+		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : "SS T2";
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal"><small>'+bSS+bConnect+bDES+'</small></div></div></div>';
