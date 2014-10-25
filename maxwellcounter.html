@@ -122,7 +122,8 @@
   <b>Juggernaut (Thunder)</b> - Mitigate DMG every 4 turns with Oulu or Darvanshel. Water units on guard.<br/>
   <b>Abaddon (Dark)</b> - Mitigate DMG and ensure high/full HP approaching 50% and 30% health. Esp @ 30%, mitigate and defend all except for 1 or 2 units to bring him < 30% for best survival. Heal up in final turn killing Abaddon, and use mitigation if needed.<br/>
   <b>Maxwell (Light)</b> - Mitigate DMG and ensure high/full HP approaching 20% health where Maxwell will use Endless. Defend all but 1-2 dmg dealer > 7.5k HP.<br/>
-  <b>Tips about Ailments</b> - Make sure to check weakness ailments on your units when fighting Maxwell. It is the reason why units get killed off with high HP. Remove Ailments and heal up is better than going through a tough round (Sacred Song or Destiny) with ailments.
+  <b>Tips about Ailments</b> - Make sure to check weakness ailments on your units when fighting Maxwell. It is the reason why units get killed off with high HP. Remove Ailments and heal up is better than going through a tough round (Sacred Song or Destiny) with ailments.<br/>
+  <b><i class="fa fa-bomb text-success"></i></b> - Now indicates the optimal turn you should be killing Maxwell to break the Sacred Song Loop.
 </div>
 
 <div class="row">
@@ -237,7 +238,7 @@ function genSteps() {
 		if (i % 4==0)
 			bHTML+='<div class="row">';
 		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><small><b>Turn '+(parseInt(i)+1)+'</b></small></div>';
-		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : "SS T2";
+		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : '<i class="fa fa-bomb text-success"></i> SS T2';
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal"><small>'+bSS+bConnect+bDES+'</small></div></div></div>';
@@ -256,7 +257,7 @@ function updateGuide() {
 	}
 	if (turnEffect[currentStep].ss==2) {
 		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel) if you can and attack with units > 7.5k HP. Guard all others units, especially dark units. If you cannot mitigate, clear ailments and heal if needed and Guard everyone.</p><p>Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel) if you can and attack with units > 7.5k HP. Guard all others units, especially dark units. If you cannot mitigate, clear ailments and heal if needed and Guard everyone.</p><p><i class="fa fa-bomb text-success"></i> Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
 	}
   if (turnEffect[currentStep].ss==3) {
 		mText+="<p>Maxwell will user her regular and random skills. Nothing special.</p>";
