@@ -114,14 +114,15 @@
 </div>
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- main stack code goes here -->
-<h3><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon591.png" width="40"> Maxwell Trial No.3 Assistant / Counter.<br/>
-<small class="text-danger"><i class="fa fa-exclamation-triangle"></i> Start counting from 1st turn with Juggernaut.</small></h3>
+<h3><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon591.png" width="40"> Maxwell Trial No.3 Assistant / Counter V2 - Enhanced with tips.<br/>
+<small class="text-danger"><i class="fa fa-exclamation-triangle"></i> Start counting from 1st turn with Juggernaut. Click <b>NEXT TURN</b> after you have taken your turn.</small></h3>
 <!-- Other Tips -->
 <div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
   <b>Juggernaut (Thunder)</b> - Mitigate DMG every 4 turns with Oulu or Darvanshel. Water units on guard.<br/>
-  <b>Abaddon (Dark)</b> - Mitigate DMG and ensure high/full HP approaching 50% and 30% health. Heal up in final turn killing Abaddon.<br/>
-  <b>Maxwell (Light)</b> - Mitigate DMG and ensure high/full HP approaching 20% health. Maxwell will use Endless. Defend all but 1-2 dmg dealer.
+  <b>Abaddon (Dark)</b> - Mitigate DMG and ensure high/full HP approaching 50% and 30% health. Esp @ 30%, mitigate and defend all except for 1 or 2 units to bring him < 30% for best survival. Heal up in final turn killing Abaddon, and use mitigation if needed.<br/>
+  <b>Maxwell (Light)</b> - Mitigate DMG and ensure high/full HP approaching 20% health where Maxwell will use Endless. Defend all but 1-2 dmg dealer > 7.5k HP.<br/>
+  <b>Tips about Ailments</b> - Make sure to check weakness ailments on your units when fighting Maxwell. It is the reason why units get killed off with high HP. Remove Ailments and heal up is better than going through a tough round (Sacred Song or Destiny) with ailments.
 </div>
 
 <div class="row">
@@ -209,23 +210,23 @@
 turnEffect=[
 {"ss":2,"des":0},
 {"ss":0,"des":0},
-{"ss":0,"des":0},
+{"ss":3,"des":0},
 {"ss":1,"des":0},
 {"ss":2,"des":1},
 {"ss":0,"des":0},
-{"ss":0,"des":0},
+{"ss":3,"des":0},
 {"ss":1,"des":0},
 {"ss":2,"des":0},
 {"ss":0,"des":1},
-{"ss":0,"des":0},
+{"ss":3,"des":0},
 {"ss":1,"des":0},
 {"ss":2,"des":0},
-{"ss":0,"des":0},
+{"ss":3,"des":0},
 {"ss":0,"des":1},
 {"ss":1,"des":0},
 {"ss":2,"des":0},
 {"ss":0,"des":0},
-{"ss":0,"des":0},
+{"ss":3,"des":0},
 {"ss":1,"des":1}
 ];
 currentStep=0;
@@ -236,7 +237,7 @@ function genSteps() {
 		if (i % 4==0)
 			bHTML+='<div class="row">';
 		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><small><b>Turn '+(parseInt(i)+1)+'</b></small></div>';
-		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : "SS T2";
+		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : "SS T2";
 		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal"><small>'+bSS+bConnect+bDES+'</small></div></div></div>';
@@ -251,16 +252,20 @@ function updateGuide() {
 	mText="";
 	if (turnEffect[currentStep].ss==1) {
 		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF, Angel Idol) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units.</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units, especially dark units.</p>";
 	}
 	if (turnEffect[currentStep].ss==2) {
 		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p><p>Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
+		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel) if you can and attack with units > 7.5k HP. Guard all others units, especially dark units. If you cannot mitigate, clear ailments and heal if needed and Guard everyone.</p><p>Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
+	}
+  if (turnEffect[currentStep].ss==3) {
+		mText+="<p>Maxwell will user her regular and random skills. Nothing special.</p>";
+		pText+='<p><b><i class="fa fa-exclamation-circle"></i>TIP</b> For Lilly Matah users, use your BB this turn so that your support units (Oulu / Darvanshel / Altri / Healers) will have greater success in filling up their BB going through Sacred Song cycles or Destiny next turn onwards.</p>';
 	}
 	if (turnEffect[currentStep].des==1) {
 		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
 		if (pText=="")
-			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units.</p>";
+			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units, especially dark units.</p>";
 	}
 	if (mText=="") {
 		mText+="<p>Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.</p>";
