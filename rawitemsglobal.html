@@ -137,6 +137,12 @@
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
+<!-- sphere type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
+</div>
 <!-- Item Effects -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
@@ -169,14 +175,14 @@
 <div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
-        <input type="search" placeholder="e.g. medulla" class="form-control" id="searchNameBox">
+        <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
 </div>
 
 <!--Search by ingredient-->
 <div class="input-group" style="margin-top:10px;">
         <span class="input-group-btn">
         <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. blue claw (Results will show what it is used for)" class="form-control" id="searchIngredientBox">
+        <input type="search" placeholder="e.g. zealot eye" class="form-control" id="searchIngredientBox">
 </div>
 
 <!--Containing Div-->
@@ -297,8 +303,14 @@ function getNameIMG(unitdata,idFind) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
+    /*build sphere type*/
+    var sphereTypeArray=[];
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+    	/*fill dropdown for sphere type*/
+    	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
+            sphereTypeArray.push(valObj['sphere type text']);
+        }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
@@ -307,11 +319,12 @@ function buildDB(unit) {
             effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
             if (isArray(valObj.effect)) {
 	            for (i in valObj.effect) {
-	            	effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
-		            $.each(valObj.effect[i], function(lsKey,lsVal) {
+	            	if (i!=0)
+	            		effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
+			$.each(valObj.effect[i], function(lsKey,lsVal) {
 		                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey+"</span></div>";
 		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
-		            })
+			})
 	            }
             } else {
 		$.each(valObj.effect, function(lsKey,lsVal) {
@@ -357,7 +370,9 @@ function buildDB(unit) {
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail") {
+            if (lsKey=="sphere type text")
+            	itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+'</div><div class="col-xs-8 col-md-8 bi"><span class="sphTypeTxt">'+lsVal+'</span></div></div>';
+            else if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -379,6 +394,9 @@ function buildDB(unit) {
     }
     for (i in itemTypeArray) {
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
+    }
+    for (i in sphereTypeArray) {
+        $("#sphereTypeList").append('<li><a href="#" class="sphereType">'+sphereTypeArray[i]+'</a></li>');
     }
     $('#progressModal').modal('hide');
     
@@ -405,8 +423,35 @@ function itemRun(select) {
     var outputObj=[];
 	var outputHTML=[];
 	for (i in rawParseObj) {
-	    /*searches for matching skill across LS*/
+	    /*searches for matching item type*/
 	    if ( rawParseObj[i].type==sVal) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+}
+
+/*spheretype Filter Search*/
+function sphereRun(select) {
+    var sVal=select;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for sphere type*/
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -542,10 +587,16 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on ls filters*/
+/*Update URL based on itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
 	itemRun($(this).text());
+})
+
+/*Update URL based on spheretype filters*/
+$(document).on("click", '.sphereType', function(e){
+    e.preventDefault();
+	sphereRun($(this).text());
 })
 
 /*Update URL based on Effect*/
