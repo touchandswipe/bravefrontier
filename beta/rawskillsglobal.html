@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Raw Skills Information RX7  - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Raw Skills Information ZX  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Raw Skills Information RX7 - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Raw Skills Information ZX - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 <style type="text/css">
@@ -55,16 +55,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
         </div>
         <!-- Collapse Nav-->
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
                     <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
                     <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
-                    <li><a href="//bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
-                    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -291,7 +291,6 @@
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
-lastModified="";
 rawParseObj=[]; /*holder variable in array*/
 
 /*JQ Param handling*/
@@ -309,7 +308,7 @@ function urlParam(name){
 function buildDB(unit) {
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+unitKey+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	/*Stats Bits*/
         if (valObj.stats) {
             statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RAW Stats / Types and Variation</b></h5></div></div>';
@@ -380,12 +379,25 @@ function buildDB(unit) {
                 	for (j in valObj.bb.levels[0].effects) {
                 		bbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
                 		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
-					bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
-			                    for (k=0;k<10;k++) {
-			                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2]+'</div>'
-			                    }
-                    			bbSTR+="</div>";
+                			if (typeof bbVal2 === 'object') {
+                				$.each(valObj.bb.levels[0].effects[j][bbKey2], function(bbKey3,bbVal3) {
+	                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
+							for (k=0;k<10;k++) {
+				                        	bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2][bbKey3]+'</div>'
+							}
+							bbSTR+="</div>";
+                				})
+                			}
+                			else {
+						bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
+				                    for (k=0;k<10;k++) {
+				                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2]+'</div>'
+				                    }
+	                    			bbSTR+="</div>";
+                			}
                 		})
+                		
+                		
                 	}
                 }
             })
@@ -419,11 +431,22 @@ function buildDB(unit) {
                 	for (j in valObj.sbb.levels[0].effects) {
                 		sbbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
                 		$.each(valObj.sbb.levels[0].effects[j], function(sbbKey2,sbbVal2) {
-					sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+'</span></div>';
-			                    for (k=0;k<10;k++) {
-			                        sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2]+'</div>'
-			                    }
-                    			sbbSTR+="</div>";
+                			if (typeof sbbVal2 === 'object') {
+                				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
+	                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
+							for (k=0;k<10;k++) {
+				                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2][sbbKey3]+'</div>'
+							}
+							sbbSTR+="</div>";
+                				})
+                			}
+                			else {
+                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+'</span></div>';
+						for (k=0;k<10;k++) {
+			                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2]+'</div>'
+						}
+                    				sbbSTR+="</div>";
+                			}
                 		})
                 	}
                 }
@@ -432,7 +455,7 @@ function buildDB(unit) {
         /*Append each HTML*/
         var appendSTR=nameSTR+statsSTR+dmgSTR+lsSTR+bbSTR+sbbSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":unitKey, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
+        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -661,12 +684,12 @@ $(document).ready( function(e) {
     	backdrop:'static',
     	toggle:true
     })
-    /*AJAX Call shorthand*/
-    /*AJAX Call shorthand*/
+
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+        //url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+        url: "../json/bfraw_GL.json",
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
