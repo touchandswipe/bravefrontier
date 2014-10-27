@@ -311,7 +311,7 @@ function buildDB(unit) {
     	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
             sphereTypeArray.push(valObj['sphere type text']);
         }
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -380,7 +380,7 @@ function buildDB(unit) {
         /*Append each HTML*/
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":unitKey, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
