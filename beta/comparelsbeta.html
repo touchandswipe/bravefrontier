@@ -125,6 +125,21 @@
 <table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"><thead></thead><tbody></tbody></table>
 <div class="clear"></div>
 
+<!-- Modal for Server Select-->
+<div class="modal fade" id="dataModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Select DATA to view</h4>
+      </div>
+      <div class="modal-body">
+        <p><button type="button" class="btn btn-primary btn-lg dataBtn">Global</button>
+        <button type="button" class="btn btn-default btn-lg dataBtn">Japan (日本)</button></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- Modal for Progress-->
 <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -194,15 +209,18 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-$(document).ready( function(e) {
+/*Global Variable*/
+serverChoice="";
+
+function genTable(dataChoice) {
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
     	backdrop:'static',
     	toggle:true
     })
-
-$.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
+    
+$.getJSON( dataChoice, function( unit ) {
     var fKeys=['hp% buff','atk% buff','def% buff','rec% buff','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacked high','bc fill when attacked low','bc drop% for spark','bb gauge fill rate%','bb fill per turn','hc drop% for spark','hc production%','hc effectiveness%'];
     var tData=[];
     
@@ -259,7 +277,30 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
 		}]
     });
 })
+}
+
+$(document).ready( function(e) {
+    /*Init Prompt*/
+    $('#dataModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
 })
+
+$( ".dataBtn" ).on( "click", function() {
+  alert($(this).text());
+  if ($(this).text()=="Global")
+  	serverChoice="//touchandswipe.github.io/bravefrontier_data/info.json"
+  else
+  	serverChoice="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+  $('#dataModal').modal("hide");
+});
+
+$('#dataModal').on('hidden.bs.modal', function (e) {
+  genTable(serverChoice);
+})
+
 </script>
 
 <!-- Google Analytics -->
