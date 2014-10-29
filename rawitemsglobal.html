@@ -302,17 +302,31 @@ function getNameIMG(unitdata,idFind) {
 		return false;
 }
 
+var findIndex=function(key,arr) {
+    for(var i=0, j=arr.length; i<j; i++) {
+        if(arr[i].hasOwnProperty(key)) {
+            return i;
+        }
+    }
+    return -1;
+};
+
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*build sphere type*/
     var sphereTypeArray=[];
+    var sphereArray=[]
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	/*fill dropdown for sphere type*/
     	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
-            sphereTypeArray.push(valObj['sphere type text']);
+            	sphereTypeArray.push(valObj['sphere type text']);
+            	sphereArray.push(valObj['sphere type']);
         }
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
+        if (valObj['sphere type'])
+        	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
+        nameSTR+='<b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -397,7 +411,7 @@ function buildDB(unit) {
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
     }
     for (i in sphereTypeArray) {
-        $("#sphereTypeList").append('<li><a href="#" class="sphereType">'+sphereTypeArray[i]+'</a></li>');
+        $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img style="margin-right:5px;" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[i]+'.png"/>'+sphereTypeArray[i]+'</a></li>');
     }
     $('#progressModal').modal('hide');
     
