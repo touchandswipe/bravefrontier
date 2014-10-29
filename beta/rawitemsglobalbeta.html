@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Raw Items Information RX7 Global - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Raw Items Information ZX Global - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Raw Items Information RX7 Global - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Raw Items Information ZX Global - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 <style type="text/css">
@@ -137,6 +137,12 @@
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
+<!-- sphere type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
+</div>
 <!-- Item Effects -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
@@ -150,6 +156,7 @@
     <li><a href="#" class="skillEffect">first x turns atk%</a></li>
     <li><a href="#" class="skillEffect">first x turns def%</a></li>
     <li><a href="#" class="skillEffect">bc fill per turn</a></li>
+    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
     <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
@@ -169,14 +176,14 @@
 <div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
-        <input type="search" placeholder="e.g. medulla" class="form-control" id="searchNameBox">
+        <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
 </div>
 
 <!--Search by ingredient-->
 <div class="input-group" style="margin-top:10px;">
         <span class="input-group-btn">
         <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. blue claw (Results will show what it is used for)" class="form-control" id="searchIngredientBox">
+        <input type="search" placeholder="e.g. zealot eye" class="form-control" id="searchIngredientBox">
 </div>
 
 <!--Containing Div-->
@@ -281,7 +288,7 @@ function getNameIMG(unitdata,idFind) {
 	/*Process for Each Unit*/
 	$.each( unitdata, function( unitKey, valObj2 ) {
     		if (valObj2.id==idFind) {
-    			retArray.push(unitKey);
+    			retArray.push(valObj2.name);
     			retArray.push(imgprefix+valObj2.thumbnail);
     			retFound=true;
     			/*break .each loop*/
@@ -297,9 +304,15 @@ function getNameIMG(unitdata,idFind) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
+    /*build sphere type*/
+    var sphereTypeArray=[];
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+unitKey+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+    	/*fill dropdown for sphere type*/
+    	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
+            	sphereTypeArray.push({"type":valObj['sphere type'],"typetext":valObj['sphere type text']});
+        }
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"> <b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -307,11 +320,12 @@ function buildDB(unit) {
             effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
             if (isArray(valObj.effect)) {
 	            for (i in valObj.effect) {
-	            	effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
-		            $.each(valObj.effect[i], function(lsKey,lsVal) {
+	            	if (i!=0)
+	            		effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
+			$.each(valObj.effect[i], function(lsKey,lsVal) {
 		                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey+"</span></div>";
 		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
-		            })
+			})
 	            }
             } else {
 		$.each(valObj.effect, function(lsKey,lsVal) {
@@ -341,7 +355,7 @@ function buildDB(unit) {
 				for (i in valObj.recipe.materials) {
 					ingArray=getNameIMG(unit,valObj.recipe.materials[i].id);
 					if (!ingArray)
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].id+"</span></div>";
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name+"</span></div>";
 					else
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a></div>";
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
@@ -357,7 +371,9 @@ function buildDB(unit) {
         itemSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>MISCELLANEOUS DETAILS</b></h5></div></div>';
         itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
         $.each(valObj, function(lsKey,lsVal) {
-            if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail") {
+            if (lsKey=="sphere type text")
+            	itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+'</div><div class="col-xs-8 col-md-8 bi"><span class="sphTypeTxt">'+lsVal+'</span></div></div>';
+            else if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -365,7 +381,7 @@ function buildDB(unit) {
         /*Append each HTML*/
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":unitKey, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -379,6 +395,9 @@ function buildDB(unit) {
     }
     for (i in itemTypeArray) {
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
+    }
+    for (i in sphereTypeArray) {
+        $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereTypeArray[i].type+'.png"/>'+sphereTypeArray[i].typetext+'</a></li>');
     }
     $('#progressModal').modal('hide');
     
@@ -405,8 +424,35 @@ function itemRun(select) {
     var outputObj=[];
 	var outputHTML=[];
 	for (i in rawParseObj) {
-	    /*searches for matching skill across LS*/
+	    /*searches for matching item type*/
 	    if ( rawParseObj[i].type==sVal) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+}
+
+/*spheretype Filter Search*/
+function sphereRun(select) {
+    var sVal=select;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for sphere type*/
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal) != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -542,10 +588,16 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on ls filters*/
+/*Update URL based on itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
 	itemRun($(this).text());
+})
+
+/*Update URL based on spheretype filters*/
+$(document).on("click", '.sphereType', function(e){
+    e.preventDefault();
+	sphereRun($(this).text());
 })
 
 /*Update URL based on Effect*/
@@ -577,7 +629,7 @@ $(document).ready( function(e) {
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "../json/bfitems_global.json",
+        url: "//touchandswipe.github.io/bravefrontier_data/items.json",
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
