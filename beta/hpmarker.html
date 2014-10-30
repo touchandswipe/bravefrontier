@@ -125,11 +125,11 @@
     <div id="markerBar" style="display:none;position:relative;background:#CC0000;width:467px;height:12px;left:17px;top:-107px;"></div>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-6">
-    <button type="button" class="btn btn-default markerBtn">10%</button>
-    <button type="button" class="btn btn-default markerBtn">20%</button>
-    <button type="button" class="btn btn-default markerBtn">30%</button>
-    <button type="button" class="btn btn-default markerBtn">40%</button>
-    <button type="button" class="btn btn-default markerBtn">50%</button>
+    <button type="button" class="btn btn-default markerBtn" value="0.1">10%</button>
+    <button type="button" class="btn btn-default markerBtn" value="0.2">20%</button>
+    <button type="button" class="btn btn-default markerBtn" value="0.3">30%</button>
+    <button type="button" class="btn btn-default markerBtn" value="0.4">40%</button>
+    <button type="button" class="btn btn-default markerBtn" value="0.5">50%</button>
   </div>
 </div>
 <!-- Google Manual labnol.org responsive ads-->
@@ -189,8 +189,8 @@ $(document).ready( function(e) {
 barWidth=$('#markerBar').css('width');
 alert("barwidth"+barWidth);
   $('.markerBtn').on('click', function() {
-    var btnVal=$(this).text();
-    alert(parseInt(btnVal)*barWidth);
+    var btnVal=$(this).val();
+    alert(btnVal*parseInt(barWidth));
     $('#markerBar').css('width',math.ceil(parseInt(btnVal)*barWidth));
   })
 }) /*End DocReady*/
