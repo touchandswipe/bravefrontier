@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Maxwell Trial.3 Assistant - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Enemy HP Marker - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Maxwell Trial.3 Assistant - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Enemy HP Marker - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -67,7 +67,6 @@
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
 <script type="text/javascript"> 
- 
     /* Calculate the width of available ad space */
     ad = document.getElementById('google-ads-1');
  
@@ -117,42 +116,12 @@
 <h3><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon591.png" width="40"> Maxwell Trial No.3 Assistant / Counter V2 - Enhanced with tips.<br/>
 <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> Start counting from 1st turn with Juggernaut. Click <b>NEXT TURN</b> after you have taken your turn.</small></h3>
 <!-- Other Tips -->
-<div class="alert alert-warning alert-dismissible" role="alert">
+<div class="alert alert-info alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <b>Juggernaut (Thunder)</b> - Mitigate DMG every 4 turns with Oulu or Darvanshel. Water units on guard.<br/>
-  <b>Abaddon (Dark)</b> - Mitigate DMG and ensure high/full HP approaching 50% and 30% health. Esp @ 30%, mitigate and defend all except for 1 or 2 units to bring him < 30% for best survival. Heal up in final turn killing Abaddon, and use mitigation if needed.<br/>
-  <b>Maxwell (Light)</b> - Mitigate DMG and ensure high/full HP approaching 20% health where Maxwell will use Endless. Defend all but 1-2 dmg dealer > 7.5k HP.<br/>
-  <b>Tips about Ailments</b> - Make sure to check weakness ailments on your units when fighting Maxwell. It is the reason why units get killed off with high HP. Remove Ailments and heal up is better than going through a tough round (Sacred Song or Destiny) with ailments.
+  This marker tool is to assist you with identify various triggers that happens when enemy HP falls below defined point.
 </div>
-
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-6">
-		<div id="counterSpace"></div>
-	</div>
-	
-	<div class="col-xs-12 col-sm-6 col-md-6">
-		<div class="row" style="margin-bottom:10px;">
-			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-default btn-lg btn-block" id="prevBtn"><small><i class="fa fa-arrow-left"></i> Prev Turn</small></button>
-			</div>
-			<div class="col-xs-4 col-sm-4 col-md-4"></div>
-			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-success btn-lg btn-block" id="nextBtn"><small>Next Turn <i class="fa fa-arrow-right"></i></small></button>
-			</div>
-		</div>
-		
-		<div class="panel panel-warning">
-		  <div class="panel-heading">Player guide</div>
-		  <div class="panel-body" id="playerText"></div>
-		</div>
-		
-		<div class="panel panel-danger">
-		  <div class="panel-heading">What will Maxwell do?</div>
-		  <div class="panel-body" id="maxwellText"></div>
-		</div>
-	</div>
-</div>
-<!-- main stack code ends -->
+<img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/hpmarker.png" width="500"/>
+<div id="markerBar" style="position:relative;border:1px solid #FF0000;width:100px;height:20px;"></div>
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -207,99 +176,8 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-turnEffect=[
-{"ss":2,"des":0},
-{"ss":0,"des":0},
-{"ss":3,"des":0},
-{"ss":1,"des":0},
-{"ss":2,"des":1},
-{"ss":0,"des":0},
-{"ss":3,"des":0},
-{"ss":1,"des":0},
-{"ss":2,"des":0},
-{"ss":0,"des":1},
-{"ss":3,"des":0},
-{"ss":1,"des":0},
-{"ss":2,"des":0},
-{"ss":3,"des":0},
-{"ss":0,"des":1},
-{"ss":1,"des":0},
-{"ss":2,"des":0},
-{"ss":0,"des":0},
-{"ss":3,"des":0},
-{"ss":1,"des":1}
-];
-currentStep=0;
-
-function genSteps() {
-	var bHTML="";
-	for (i in turnEffect) {
-		if (i % 4==0)
-			bHTML+='<div class="row">';
-		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><small><b>Turn '+(parseInt(i)+1)+'</b></small></div>';
-		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : "SS T2";
-		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
-		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
-		bHTML+='<div class="panel-body equal"><small>'+bSS+bConnect+bDES+'</small></div></div></div>';
-		if (i % 4==3)
-			bHTML+='</div>';
-	}
-	$('#counterSpace').html(bHTML);
-}
-
-function updateGuide() {
-	pText="";
-	mText="";
-	if (turnEffect[currentStep].ss==1) {
-		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF, Angel Idol) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units, especially dark units.</p>";
-	}
-	if (turnEffect[currentStep].ss==2) {
-		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel) if you can and attack with units > 7.5k HP. Guard all others units, especially dark units. If you cannot mitigate, clear ailments and heal if needed and Guard everyone.</p><p>Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song's Angel Idol Skill.</p>";
-	}
-  if (turnEffect[currentStep].ss==3) {
-		mText+="<p>Maxwell will user her regular and random skills. Nothing special.</p>";
-		pText+='<p><b><i class="fa fa-exclamation-circle"></i>TIP</b> For Lilly Matah users, use your BB this turn so that your support units (Oulu / Darvanshel / Altri / Healers) will have greater success in filling up their BB going through Sacred Song cycles or Destiny next turn onwards.</p>';
-	}
-	if (turnEffect[currentStep].des==1) {
-		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
-		if (pText=="")
-			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units, especially dark units.</p>";
-	}
-	if (mText=="") {
-		mText+="<p>Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.</p>";
-		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Maxwell is pushed through 70%, 30% and especially 20% HP.</p>";
-	}
-	$("#playerText").html(pText);
-	$("#maxwellText").html(mText);
-}
-
 $(document).ready( function(e) {
-/*Init*/
-genSteps();
-$( ".turnCount" ).eq(currentStep).removeClass("panel-default");
-$( ".turnCount" ).eq(currentStep).addClass("panel-primary");
-updateGuide()
 
-$(document).on("click", '#nextBtn', function(e){
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
-  	currentStep+=1;
-	if (currentStep==20)
-		currentStep=0;
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
-  	updateGuide();
-})
-
-$(document).on("click", '#prevBtn', function(e){
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-primary").addClass("panel-default");
-  	currentStep-=1;
-  	if (currentStep==-1)
-  		currentStep=19;
-  	$( ".turnCount" ).eq(currentStep).removeClass("panel-default").addClass("panel-primary");
-  	updateGuide();
-})
-  
 }) /*End DocReady*/
 </script>
 
