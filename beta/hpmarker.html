@@ -120,8 +120,17 @@
   This marker tool is to assist you with identify various triggers that happens when enemy HP falls below defined point.
 </div>
 <div class="row" style="margin:10px auto 10px auto">
-<img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/hpmarker.png" width="500"/>
-<div id="markerBar" style="position:relative;background:#FF5555;width:467px;height:12px;left:17px;top:-107px;"></div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/hpmarker.png" width="500"/>
+    <div id="markerBar" style="display:none;position:relative;background:#CC0000;width:467px;height:12px;left:17px;top:-107px;"></div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <button type="button" class="btn btn-default markerBtn">10%</button>
+    <button type="button" class="btn btn-default markerBtn">20%</button>
+    <button type="button" class="btn btn-default markerBtn">30%</button>
+    <button type="button" class="btn btn-default markerBtn">40%</button>
+    <button type="button" class="btn btn-default markerBtn">50%</button>
+  </div>
 </div>
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -177,7 +186,7 @@
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-
+  $('#markerBar').show();
 }) /*End DocReady*/
 </script>
 
