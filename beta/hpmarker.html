@@ -187,11 +187,9 @@
 <script type="text/javascript">
 $(document).ready( function(e) {
 barWidth=$('#markerBar').css('width');
-alert("barwidth"+barWidth);
   $('.markerBtn').on('click', function() {
     var btnVal=$(this).val();
-    alert(btnVal*parseInt(barWidth));
-    $('#markerBar').css('width',math.ceil(parseInt(btnVal)*barWidth));
+    $('#markerBar').css('width',math.ceil(btnVal*parseInt(barWidth)));
   })
 }) /*End DocReady*/
 
