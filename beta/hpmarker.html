@@ -195,7 +195,9 @@ $(document).ready( function(e) {
 barWidth=$('#markerBar').css('width');
   $('.markerBtn').on('click', function() {
     var btnVal=$(this).val();
-    $('#markerBar').css('width',Math.ceil(btnVal*parseInt(barWidth)).toString()+'px');
+    var newWidth=Math.ceil(btnVal*parseInt(barWidth)).toString()+'px';
+    $('#markerBar').css('width',newWidth);
+    $('#markerBarTall').css('width',newWidth);
   })
 }) /*End DocReady*/
 
