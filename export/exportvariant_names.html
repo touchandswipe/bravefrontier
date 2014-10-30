@@ -123,7 +123,7 @@ $(document).ready( function(e) {
 $.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function( unit ) {
     //var items = [];
     /*Process for Each Unit*/
-    var rangeID=[628,698];
+    var rangeID=[699,800];
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
