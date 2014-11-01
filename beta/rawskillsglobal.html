@@ -455,7 +455,7 @@ function buildDB(unit) {
         if (valObj.ai) {
 		/*AI Heading*/
 		var aiCol=valObj['ai'].length;
-		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger">ARENA AI [Action Probability & Triggers]</div></div>';
+		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>ARENA AI [Action Probability & Triggers]</b></h5></div></div>';
             	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
 		for (i in valObj.ai) {
 			aiSTR+='<div class="bd col-xs-2 col-md-2">Action '+parseInt(i+1)+'</div>';
@@ -477,7 +477,8 @@ function buildDB(unit) {
         	})
         } else aiSTR="";
         /*Append each HTML*/
-        var appendSTR=nameSTR+statsSTR+dmgSTR+lsSTR+bbSTR+sbbSTR+aiSTR+'</div></div></div></div>';
+        var splitSTR='<div class="row">&nbsp;</div>';
+        var appendSTR=nameSTR+statsSTR+dmgSTR+lsSTR+bbSTR+sbbSTR+splitSTR+aiSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
