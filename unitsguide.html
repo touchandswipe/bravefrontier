@@ -522,7 +522,7 @@ function initialize() {
 		{ "targets":[ 8 ],
 		"type": "string","width":"10",
 		"render": function(cGender, type, row, full) {
-			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-qq text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-qq fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
 		}
 		},
 		{ "targets":[ 12 ],
@@ -829,7 +829,7 @@ function initialize() {
 	      for (var i=0; i < units.length; i++) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
-		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-qq text-success"></i> '}
+		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(FF)') {var ovgender = ' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(MM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(FM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '}
@@ -1259,11 +1259,11 @@ var evoQuery = [
 	      +'<td colspan="5" style="border:0px;"><h3><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
-	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-qq text-success"></i> '; }
+	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
 	      else if (ovgender == 'Paired(FF)') { ovHTML+=' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '; }
 	      else if (ovgender == 'Paired(MM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Paired(FM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '; }
-	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-qq fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
+	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
 	      /*Release status*/
 	      if (ovGlobal.toLowerCase()!='false') {
