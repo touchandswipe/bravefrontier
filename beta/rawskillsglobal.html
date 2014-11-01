@@ -457,9 +457,8 @@ function buildDB(unit) {
 		var aiCol=valObj['ai'].length;
 		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>ARENA AI [Action Probability & Triggers]</b></h5></div></div>';
             	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
-		for (i in valObj.ai) {
-			var actType=parseInt(i+1);
-			aiSTR+='<div class="bd col-xs-2 col-md-2">Action '+actType+'</div>';
+		for (i=0;i<aiCol;i++) {
+			aiSTR+='<div class="bd col-xs-2 col-md-2">Action '+(i+1)+'</div>';
 		}
 		for (i=1;i<=5-aiCol;i++) {
 			aiSTR+='<div class="bd col-xs-2 col-md-2"></div>';
