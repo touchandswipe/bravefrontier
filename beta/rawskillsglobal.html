@@ -454,7 +454,7 @@ function buildDB(unit) {
         } else sbbSTR="";
         if (valObj.ai) {
 		/*AI Heading*/
-		var aiCol=valObj.ai.length();
+		var aiCol=valObj['ai'].length;
 		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger">ARENA AI [Action Probability & Triggers]</div></div>';
             	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
 		for (i in valObj.ai) {
