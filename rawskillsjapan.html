@@ -453,8 +453,33 @@ function buildDB(unit) {
                 }
             })
         } else sbbSTR="";
+        if (valObj.ai) {
+		/*AI Heading*/
+		var aiCol=valObj['ai'].length;
+		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>ARENA AI [Action Probability & Triggers]</b></h5></div></div>';
+            	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
+		for (i=0;i<aiCol;i++) {
+			aiSTR+='<div class="bd col-xs-2 col-md-2">Action '+(i+1)+'</div>';
+		}
+		for (i=1;i<=5-aiCol;i++) {
+			aiSTR+='<div class="bd col-xs-2 col-md-2"></div>';
+		}
+            	aiSTR+="</div>";
+        	/*AI*/
+        	$.each(valObj.ai[0], function(aiKey,aiVal) {
+        		aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">'+aiKey+'</div>';
+	        	for (i in valObj.ai) {
+	        		aiSTR+='<div class="bi col-xs-2 col-md-2">'+valObj.ai[i][aiKey]+'</div>';
+	        	}
+			for (i=1;i<=5-aiCol;i++) {
+				aiSTR+='<div class="bd col-xs-2 col-md-2"></div>';
+			}
+			aiSTR+="</div>";
+        	})
+        } else aiSTR="";
         /*Append each HTML*/
-        var appendSTR=nameSTR+statsSTR+dmgSTR+lsSTR+bbSTR+sbbSTR+'</div></div></div></div>';
+        var splitSTR='<div class="row">&nbsp;</div>';
+        var appendSTR=nameSTR+statsSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+aiSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
