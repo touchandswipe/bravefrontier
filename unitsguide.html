@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (ZX) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Zeta Release) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Units Guide - Zeta Release by Brave Frontier PROs</title>
@@ -1280,9 +1280,9 @@ var evoQuery = [
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><b>Normal:</b> '+ovhits+' &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity >= 6) {
-		ovHTML+=' &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
@@ -1294,11 +1294,11 @@ var evoQuery = [
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsglobal.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global source</a> ';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsglobal.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本 source</a>';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
-			ovHTML+=' <span class="text-danger"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
