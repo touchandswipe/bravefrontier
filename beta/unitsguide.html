@@ -1254,8 +1254,8 @@ var evoQuery = [
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="80"/></td>'
-	      +'<td colspan="5" style="border:0px;"><h3><kbd>'+ovid+'</kbd>';
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="60"/></td>'
+	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
 	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
@@ -1278,16 +1278,13 @@ var evoQuery = [
 	      if ( ovvideo != "" ) {
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
-	      ovHTML+='</small></h3></td></tr>';
+	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
-	      ovHTML+='<tr><td class="active" ><strong>Hits</strong></td><td>'+ovhits+'</td>'
-	      +'<td class="active"><strong>BB hits</strong></td><td>'+ovbbhits+' / '+ovbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="16"/></td>'
-	      +'<td class="active"><strong>SBB hits</strong></td>';
-	      if (ovrarity < 6) {
-		    ovHTML+='<td>No SBB</td></tr>';
-	      } else {
-		ovHTML+='<td>'+ovsbbhits+' / '+ovsbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="16"/></td></tr>';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td><b>Normal:</b> '+ovhits+' <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="14"/>)';
+	      if (ovrarity >= 6) {
+		ovHTML+=' <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="14"/>)';
 	      }
+	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
 	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' | <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
