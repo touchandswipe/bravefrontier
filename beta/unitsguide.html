@@ -1294,11 +1294,11 @@ var evoQuery = [
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsglobal.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global source</a> ';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsglobal.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本 source</a>';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
-			ovHTML+=' <span class="text-danger"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
