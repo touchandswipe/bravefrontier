@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (RX7) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (ZX) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    
-    <title>Brave Frontier - Units Guide - RX7 by Brave Frontier PROs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Units Guide - ZX by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.css">
@@ -17,6 +16,9 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
+	@media (max-width: 768px) {
+		body {min-width:768px;}
+	}
     .vidContain {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -61,6 +63,10 @@
 	-ms-filter: fliph; /*IE*/
 	filter: fliph; /*IE*/
     }
+    table.dataTable thead > tr > th {
+	padding-left: 7px;
+	padding-right: 15px;
+    }
     .subnav {
     background:#EEEEFF;
     position:fixed;
@@ -94,9 +100,9 @@ var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var bossList = [];
 var prevStatsMod=[0,0,0,0,0];
-var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0.3,0.3,0.3,0.3">Grand Sesius</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
+var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
 var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.3">30%</option>';
-var atkModHTML='<option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.5">50%</option><option value="0.65">65%</option>';
+var atkModHTML='<option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.5">50%</option><option value="0.65">65%</option><option value="0.75">75%</option>';
 var defModHTML='<option value="-0.5">-50%</option><option value="0.05">5%</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.5">50%</option>';
 var recModHTML='<option value="0.1">10%</option><option value="0.05">5%</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.5">50%</option>';
 
@@ -109,7 +115,10 @@ function escapeRegExp(str) {
 function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
-    var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()];
+    if ($('#pimpHP').length)
+    	var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()]
+    else
+    	var pMod=[0,0,0,0];
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
     var totalMod=[];
@@ -268,7 +277,7 @@ function sconvertJSON( serialObj ) {
 	var temp = {};
 	for(var j=0; j < s.columns.length; j++)
 	{ /*check for NaN values*/
-	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
+	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("range") != -1)||(s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
 		    temp[s.columns[j].toLowerCase()] = "-";
 	    } else {
 	    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
@@ -294,10 +303,11 @@ function gooShorten(URLtoShort) {
 function initialize() {
   /*Xtra Columns to hide by resolution*/
   if ( $( window ).width() >= 1600 ) {
-    var xtraDefCol=[];
-  } else if ( ( $( window ).width() < 1600 ) && ( $( window ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8] 
-  } else if ( ( $( window ).width() < 1100 ) && ( $( window ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16,17]
-  } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17] }
+    var xtraDefCol=[]; var pLength=100;
+  } else if ( ( $( window ).width() < 1600 ) && ( $( window ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8]; var pLength=100; 
+  } else if ( ( $( window ).width() < 1100 ) && ( $( window ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16]; var pLength=100;
+  } else if ( ( $( window ).width() < 800 ) && ( $( window ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50;
+  } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50; }
   var query = "SELECT * FROM " +
   gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
@@ -370,12 +380,13 @@ function initialize() {
 		  "order": [[ 0, "asc" ]],
 		  "dom": '<"pull-left"f><"small pull-left"C><"small"p>rt<"small pull-left"i><"small"p>',
 		  "colVis": {   buttonText: "Show / Hide Columns",
+		  		overlayFade: 0,
 				restore: "Restore Default",
 				exclude: [ 'all' ],
 				groups: [
 			    {   title: "More Unit Info",
 				columns: [ 2,3,6,7,8 ] },
-		{   title: "Unit Batch",
+			{   title: "Unit Batch",
 				columns: [ 4 ] },
 			    {   title: "Leader / BB Skills",
 				columns: [ 9,10 ] },
@@ -405,16 +416,16 @@ function initialize() {
 		  "initComplete": function( settings, json ) {
 		    var DTapi = this.api();
 		    /*Custom Header Search*/
-	    $("#mytable thead th").each( function () {
-		if ($.text([this])=='Batch') {
-		    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu" role="menu"></ul></div>')
-			.appendTo( $(this).empty() );
-			
-		    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
-			select.children('ul').append( '<li><a href="#" class="batchlink">'+d+'</a></li>' )
+		    $("#mytable thead th").each( function () {
+			if ($.text([this])=='Batch') {
+			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu" role="menu"></ul></div>')
+				.appendTo( $(this).empty() );
+				
+			    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
+				select.children('ul').append( '<li><a href="#" class="batchlink">'+d+'</a></li>' )
+			    });
+			}   
 		    });
-		}   
-	    });
 			/*Unbind Search*/
 			$('.dataTables_filter input').off();
 			/*custom replace search field*/
@@ -468,7 +479,7 @@ function initialize() {
 		openFav(sharedFavSelect,"Shared units by other players",true);
 			}
 		  },
-		  "pageLength": 100,
+		  "pageLength": pLength,
 		  "language": {
 		      "search": "",
 		      "infoFiltered": " - filtered from _MAX_ Total Units",
@@ -513,7 +524,7 @@ function initialize() {
 		{ "targets":[ 8 ],
 		"type": "string","width":"10",
 		"render": function(cGender, type, row, full) {
-			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-qq text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-qq fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
 		}
 		},
 		{ "targets":[ 12 ],
@@ -727,6 +738,13 @@ function initialize() {
 	   /*show fav card */
 	$('#favTitle').html(titleText);
 	$('#favModal').modal("show");
+	
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/favouritiesfeature',
+  		'title': 'Brave Frontier PROs Favourite Feature'
+	});
+	
 	for (var i=0;i < deserialdata.length;i++) {
 	    for (var j=0;j < unitIdArray.length;j++) {
 		if (deserialdata[i]['id']==unitIdArray[j]) {
@@ -767,9 +785,16 @@ function initialize() {
 	var qunitname = "";
 	 /*Loader*/
 	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
-    $('#compareModal').modal("show");
+    	$('#compareModal').modal("show");
+    	
+	/*Google analytics*/
+	var compileURL=location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': "Brave Frontier PROs Compare "+units
+	});
 	
-	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?compare=" + encodeURIComponent(units.join()) ));
+	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	
 	for (var i=0; i < units.length; i++) {
 	    qunitname += "'"+units[i].replace("'","\\'")+"'";
@@ -802,11 +827,11 @@ function initialize() {
 		  cHTML+='<td width="'+tWidth+'%"><img src="'+cData[i]['icon']+'" width="60" /></td>' }
 	      cHTML+='</tr>';
 	  cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>Simply <kbd>COPY</kbd> browser link or <a href="'+cShareURL.id+'"><b>'+cShareURL.id+'</b></a></td></tr>';
-	      cHTML+='<td class="active"><b>Unit ID</b></td>';
+	      cHTML+='<td class="active"><b>Unit</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
-		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-qq text-success"></i> '}
+		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(FF)') {var ovgender = ' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(MM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Paired(FM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '}
@@ -1068,12 +1093,18 @@ var evoQuery = [
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
 	/*update state*/
-    var state = { stateUnit: whatunit };
-    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+	    var state = { stateUnit: whatunit };
+	    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+	/*Google analytics*/
+	var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
+	});
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit)));
+	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	var ovshareURL=buildShareURL.id;
 	/*Fix Apostrophe*/
 	var whatunit = whatunit.replace("'","\\'");
@@ -1148,6 +1179,8 @@ var evoQuery = [
 	      var ovatkoracle = ovdata2[0]["atk oracle"];
 	      var ovdeforacle = ovdata2[0]["def oracle"];
 	      var ovrecoracle = ovdata2[0]["rec oracle"];
+	      var ovhprange = (ovdata2[0]["hp range"]=="-") ? 0 : ovdata2[0]["hp range"];
+	      var ovstatsrange = (ovdata2[0]["stats range"]=="-") ? 0 : ovdata2[0]["stats range"];
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
@@ -1228,11 +1261,11 @@ var evoQuery = [
 	      +'<td colspan="5" style="border:0px;"><h3><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
-	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-qq text-success"></i> '; }
+	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
 	      else if (ovgender == 'Paired(FF)') { ovHTML+=' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '; }
 	      else if (ovgender == 'Paired(MM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Paired(FM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '; }
-	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-qq fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
+	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
 	      /*Release status*/
 	      if (ovGlobal.toLowerCase()!='false') {
@@ -1309,34 +1342,34 @@ var evoQuery = [
 	      +'<td>'+ovweightedlord+'</td></tr>';
 	      /*Omit display for lord type only units*/
 	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
-	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span> &#177; <small>'+ovdata2[0]["hp range"]+'</small></td>'
+	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovhprange+'</small></td>'
 	      +'<td class="atkMod">'+ovatkanima+'</td>'
 	      +'<td class="defMod">'+ovdefanima+'</td>'
-	      +'<td class="recMod bg-warning">'+ovrecanima+'</td>'
+	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Breaker</strong></td><td class="hpMod">'+ovhpbreaker+'</td>'
-	      +'<td class="atkMod bg-success">'+ovatkbreaker+'</td>'
-	      +'<td class="defMod bg-warning">'+ovdefbreaker+'</td>'
+	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-	      +'<td class="atkMod bg-warning">'+ovatkguardian+'</td>'
-	      +'<td class="defMod bg-success">'+ovdefguardian+'</td>'
+		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecguardian+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="hpMod bg-warning">'+ovhporacle+'</td>'
+	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="atkMod">'+ovatkoracle+'</td>'
 	      +'<td class="defMod">'+ovdeforacle+'</td>'
-	      +'<td class="recMod bg-success">'+ovrecoracle+'</td>'
+		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td>&nbsp;</td></tr>';
 	      }
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="") {
-	      ovHTML+='<tr><td class="active va"><i class="fa fa-flask"></i> <b>Max PIMP</b></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span></td>'
+	      ovHTML+='<tr><td class="active va"><i class="fa fa-thumbs-o-up"></i> <b>Max PIMP</b></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
@@ -1399,13 +1432,23 @@ var evoQuery = [
 } /*End openCard fn*/
 </script>
 
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
 <body>
     <!-- Static navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
 	<div class="navbar-header">
 	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	    <span class="sr-only">Toggle navigation</span>
@@ -1413,7 +1456,7 @@ var evoQuery = [
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="//bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
+	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
 	</div>
 	
 	<!-- Collapse Nav-->
@@ -1424,14 +1467,14 @@ var evoQuery = [
 		<ul class="dropdown-menu">
 		    <li><a href="fusionxpcalculator.html"><i class="fa fa-calculator"></i> Fusion XP Calculator</a></li>
 		    <li><a href="summonerxp.html"><i class="fa fa-database"></i> Summoner LV/XP</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
 		    <li class="divider"></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/allposts">All blog posts</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/mostwanted">Most wanted features</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel">YouTube channel</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/allposts">All blog posts</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted">Most wanted features</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel">YouTube channel</a></li>
 		    <li class="divider"></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/publishedqa">Published Q&amp;A</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/ask">Ask a question</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/publishedqa">Published Q&amp;A</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/ask">Ask a question</a></li>
 		</ul>
 		</li>
 	  </ul>
@@ -1440,8 +1483,8 @@ var evoQuery = [
 	    <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-question-circle"></i></a>
 		<ul class="dropdown-menu">
-		    <li><a href="//bravefrontierpros.tumblr.com/dbfeedback" class="bg-default"><i class="fa fa-bullhorn"></i> Report bug / Suggest idea</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/post/96261699894/donation" class="bg-default"><i class="fa fa-coffee"></i> Buy me a coffee!</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/dbfeedback" class="bg-default"><i class="fa fa-bullhorn"></i> Report bug / Suggest idea</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/post/96261699894/donation" class="bg-default"><i class="fa fa-coffee"></i> Buy me a coffee!</a></li>
 		    <li class="divider"></li>
 		    <li class="dropdown-header">Usage tips</li>
 		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="Show / Hide Columns" data-content="Information is categorised for ease of access. The default view is optimised at best for all screensizes. Use on Show / Hide Columns to trigger sets of data as needed.">Show / Hide Columns</a></li>
@@ -1453,8 +1496,8 @@ var evoQuery = [
 		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="What is Wt Stats?" data-content="EXPERIMENTATION - Wt Stats is the abbreviation for Weighted Stats, a calculated stat-point based on Lord-type HP, ATK, DEF and REC of the unit. Formula is HP/3 + ATK + DEF + 75% REC.">What is Wt Stats?</a></li>
 		    <li class="divider"></li>
 		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="About this database" data-content="This database-interface is developed by Brave Frontier PROs using various free solutions and built upon bootstrap v3. It pulls data from the OPEN community database established by Sam GreenPuck and the volunteer Database moderators. Data is publicly accessible by anyone or any application via Google API. This database-interface is a model example of it."><i class="fa fa-info-circle"></i> About this database</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/techbits"><i class="fa fa-wrench"></i> Tech bits</a></li>
-		    <li><a href="//bravefrontierpros.tumblr.com/gamedata">Access OPEN data</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/techbits"><i class="fa fa-wrench"></i> Tech bits</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/gamedata">Access OPEN data</a></li>
 		</ul>
 		</li>
 	  </ul>
@@ -1464,7 +1507,7 @@ var evoQuery = [
 	  <button id="resetbtn" type="button" class="btn nav-tt navbar-right btn-danger navbar-btn" data-toggle="tooltip" title="Reset / Reload DB" style="margin-right:5px;"><i class="fa fa-power-off fa-lg"></i></button>
     <!--Favourite button group-->
     <div class="btn-group navbar-right navbar-btn" id="favBtnGroup" style="margin-right:5px;">
-	<button type="button" id="showFavBtn" data-toggle="tooltip" title="Show favourites" class="btn btn-info"><i class="fa fa-star"></i></button>
+	<button type="button" id="showFavBtn" data-toggle="tooltip" title="Show favourites" class="btn btn-info">Show <i class="fa fa-star"></i></button>
 	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
 	<span class="caret"></span>
 	<span class="sr-only">Toggle Dropdown</span>
@@ -1476,9 +1519,9 @@ var evoQuery = [
 	</ul>
     </div>
     
-    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i></a></button>
-    <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i></button>
-    <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i></button>
+    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i> Compare</a></button>
+    <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i> Summon</button>
+    <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i> Filter</button>
    
    <form class="navbar-form navbar-right" role="search" style="padding:0 20px 0 5px;">
 	  <div class="form-group">
@@ -1496,7 +1539,7 @@ var evoQuery = [
 </div>
 
 <!-- Mainbody -->
-<div class="container">
+<div class="container-fluid">
 <!-- Sub Navigation
 <div class="subnav"></div>-->
 <div style="height:60px;"></div>
@@ -1567,7 +1610,7 @@ var evoQuery = [
 		<th><i class="fa fa-star"></i></th>
 		<th>Element</th>
 		<th>Cost</th>
-		<th><span class="fa-stack fa-lg"><i class="fa fa-qq fa-stack-1x"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span></th>
+		<th>Sex</th>
 		<th style="white-space:nowrap;">Leader Skill</th>
 		<th style="white-space:nowrap;">BB Skill</th>
 		<th style="white-space:nowrap;">SBB Skill</th>
@@ -1620,7 +1663,7 @@ var evoQuery = [
 		<th><i class="fa fa-star"></i></th>
 		<th>Element</th>
 		<th>Cost</th>
-		<th><span class="fa-stack fa-lg"><i class="fa fa-qq fa-stack-1x"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span></th>
+		<th>Sex</th>
 		<th style="white-space:nowrap;">Leader Skill</th>
 		<th style="white-space:nowrap;">BB Skill</th>
 		<th style="white-space:nowrap;">SBB Skill</th>
@@ -1952,7 +1995,8 @@ $('#mytable').on( 'page.dt', function (e) {
 $(document).on("click", "#rareSummon", function(e){
     var typeArr=['Lord','Anima','Breaker','Guardian','Oracle'];
     var rareReRoll=false;
-    var rateUP=0;
+    var rateUP=1; /*0 for elemental rates up*/
+    var rateUPElement="Water";
     e.preventDefault();
 	var linkVal=Math.floor((Math.random() * deserialdata.length));
 	while (deserialdata[linkVal]['acquire'].indexOf('Rare') == -1) {
@@ -1967,7 +2011,7 @@ $(document).on("click", "#rareSummon", function(e){
 	}
 	/*Elemental rate UP*/
 	while (rateUP < 1) {
-	    if ((deserialdata[linkVal]['acquire'].indexOf('Rare') != -1) &&(deserialdata[linkVal]['element'] != 'Water')) {
+	    if ((deserialdata[linkVal]['acquire'].indexOf('Rare') != -1) &&(deserialdata[linkVal]['element'] != rateUPElement)) {
 		linkVal=Math.floor((Math.random() * deserialdata.length));
 	    }
 	    rateUP+=1;
@@ -2067,12 +2111,42 @@ $(document).on("change", "#bossSelect", function(e){
 $(document).on("click", "#rareSummonBtn", function(e){
 	    e.preventDefault();
 	    $('#summonModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raresummonfeature',
+  		'title': 'Brave Frontier PROs Rare Summon Feature'
+	});
 })
 
 /*Filter Button*/
 $(document).on("click", "#filterBtn", function(e){
 	    e.preventDefault();
 	    $('#filterModal').modal('show');
+	    	/*Google analytics*/
+		ga('send', 'pageview', {
+  			'page': '/vurl/filterfeature',
+  			'title': 'Brave Frontier PROs Filter Feature'
+		});
+})
+
+/*Sel ALL / None*/
+$(document).on("click", ".selEleFilter, .selRareFilter", function(e){
+	var selAction=$(this).text();
+	if ($(this).hasClass('selEleFilter'))
+		var changeClass=".filElement";
+	else
+		var changeClass=".filRarity";
+	$(changeClass).each( function(){
+		if (selAction=="ALL") {
+			$(this).prop('checked',true);
+			if (!$(this).parent().hasClass("active"))
+				$(this).parent().addClass("active")
+		} else {
+			$(this).prop('checked',false);
+			if ($(this).parent().hasClass("active"))
+				$(this).parent().removeClass("active")
+		}
+	})
 })
 
 /*Execute Filter*/
@@ -2138,6 +2212,11 @@ $(document).on("click", "#execFilter", function(e){
 /*Bind REFRESH*/
     $(document).on("click", "#refreshBtn", function(e){
 	    e.preventDefault();
+		/*Google analytics*/
+		ga('send', 'pageview', {
+	  		'page': '/vurl/refresh',
+	  		'title': 'Brave Frontier PROs Refresh'
+		});
 	    /*loader*/
 	    bfpAlert("Refresh",'Clearing all selections ... please wait<div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	    var bfPROsTable = $('#mytable').DataTable();
@@ -2440,7 +2519,7 @@ var delay = (function(){
       <div class="modal-body">
 <button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
 <!--summon code here-->
-<div class="container" style="height:540px;">
+<div class="container-fluid" style="height:540px;">
     <!--door art animation and circle-->
     <img style="position:absolute;top:0px;left:50px;" src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/summon-door.jpg" id="summonIMG" width="500"/></a>
     <!--summoned unit centering in middle of 500px div-->
@@ -2490,7 +2569,7 @@ var delay = (function(){
 	<h4 class="modal-title" id="favTitle"></h4>
     </div>
       <div class="modal-body">
-	    <div class="container">
+	    <div class="container-fluid">
 	    <!-- For Buttons -->
 		<div class="row">
 		    <div class="col-xs-11 col-sm-11 col-md-11" style="margin-bottom:10px;">
@@ -2563,12 +2642,12 @@ var delay = (function(){
 	<table id="compareTable" class="table table-striped table-bordered table-responsive table-condensed small"></table>
   </div>
   <div class="tab-pane fade" id="evoCalc">
-	<div class="container">
+	<div class="container-fluid">
 	    <div id="evoCalcContent" class="row" style="margin-top:15px;"></div>
 	</div>
     </div>
   <div class="tab-pane fade" id="squadPlay">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-6" style="margin:auto;margin-top:15px;padding:0;height:400px;">
 	    <div style="position:absolute;overflow:hidden;">
@@ -2664,7 +2743,7 @@ var delay = (function(){
   </div>
 
   <div class="tab-pane fade" id="unitCardSprite">
-<div class="container">
+<div class="container-fluid">
 <!--Main display width 350 resize-->
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12" style="margin:auto;margin-top:15px;padding:0;height:365px;">
@@ -2814,12 +2893,16 @@ var delay = (function(){
 	
 	<h5><b>by Elements</b></h5>
 	
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary selEleFilter">ALL</button>
+	  <button type="button" class="btn btn-info selEleFilter">None</button>
+	</div>
+	
 	<div class="btn-group" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="checkbox" class="filElement" value="Fire" checked>
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/fireminiicon.png"/>
-	    
 	  </label>
 	  
 	  <label class="btn btn-default active">
@@ -2846,10 +2929,15 @@ var delay = (function(){
 	    <input type="checkbox" class="filElement" value="Dark" checked>
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/darkminiicon.png"/>
 	  </label>
-	  
+
 	</div>
 	
 	<h5><b>by Rarity</b></h5>
+	
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary selRareFilter">ALL</button>
+	  <button type="button" class="btn btn-info selRareFilter">None</button>
+	</div>
 	
 	<div class="btn-group" data-toggle="buttons">
 	  <label class="btn btn-default active">
@@ -3030,17 +3118,7 @@ var delay = (function(){
   </div>
 </div>
 
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48617906-1', 'auto');
-  ga('send', 'pageview');
-</script>
 <!--Chatroom-->
-<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='//st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+<script id="sid0020000073204835322">(function() {function async_load(){s.id="cid0020000073204835322";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204835322'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
 </html>
