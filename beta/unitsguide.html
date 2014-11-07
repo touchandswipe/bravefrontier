@@ -1280,15 +1280,15 @@ var evoQuery = [
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><b>Normal:</b> '+ovhits+' &middot; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:14px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><b>Normal:</b> '+ovhits+' &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
 	      if (ovrarity >= 6) {
-		ovHTML+=' &middot; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:14px;vertical-align:middle" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
+		ovHTML+=' &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
-	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' | <b>Type:</b> '+ovbbtype+'</td></tr>';
+	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
-		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' | <b>Type:</b> '+ovsbbtype+'</td></tr>'
+		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
@@ -1298,14 +1298,14 @@ var evoQuery = [
 	     	if (ovJapan.toLowerCase()!="false")	
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本 source</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
-			ovHTML+=' <span class="text-danger"><i class="fa fa-warning"></i> <b>Skills details</b>:</span> May contain spoilers.</td></tr>';
+			ovHTML+=' <span class="text-danger"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
 	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
 		ovHTML+='No prior evo / No known materials';
 	      } else {
-		ovHTML+='<i class="fa fa-level-up fa-lg"></i> Evolve from ';
+		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
 		for(var i=0; i < 5; i++) {
 		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
 			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" alt="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
@@ -1317,7 +1317,7 @@ var evoQuery = [
 		      if (ovevo[i] != 'None') {
 			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" alt="'+ovevo[i]+'"/> '; }
 		  }
-		  ovHTML+='Evolve to <i class="fa fa-level-up fa-lg"></i>';
+		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
 		  ovHTML+='No further evo / No known materials';
 	      }
@@ -1359,7 +1359,7 @@ var evoQuery = [
 	      }
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="") {
-	      ovHTML+='<tr><td class="active va"><i class="fa fa-thumbs-o-up"></i> <b>Max PIMP</b></td>'
+	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
@@ -1368,7 +1368,7 @@ var evoQuery = [
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
-	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/profile.php?id=100006167385076" target="_blank">BossMarv</a>\'s Type preferences: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/profile.php?id=100006167385076" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
 	}
 	
 	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
