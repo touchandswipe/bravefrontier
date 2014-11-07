@@ -823,7 +823,7 @@ function initialize() {
 	      for (var i=0; i < units.length; i++) {
 		  cHTML+='<td width="'+tWidth+'%"><img src="'+cData[i]['icon']+'" width="60" /></td>' }
 	      cHTML+='</tr>';
-	  cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>Simply <kbd>COPY</kbd> browser link or <a href="'+cShareURL.id+'"><b>'+cShareURL.id+'</b></a></td></tr>';
+	  cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+cShareURL.id+'"><b>'+cShareURL.id+'</b></a></td></tr>';
 	      cHTML+='<td class="active"><b>Unit</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
@@ -1279,7 +1279,7 @@ var evoQuery = [
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
 	      ovHTML+='</small></h3></td></tr>';
-	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>Simply <kbd>COPY</kbd> browser link or <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
 	      ovHTML+='<tr><td class="active" ><strong>Hits</strong></td><td>'+ovhits+'</td>'
 	      +'<td class="active"><strong>BB hits</strong></td><td>'+ovbbhits+' / '+ovbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="16"/></td>'
 	      +'<td class="active"><strong>SBB hits</strong></td>';
@@ -1288,10 +1288,10 @@ var evoQuery = [
 	      } else {
 		ovHTML+='<td>'+ovsbbhits+' / '+ovsbbfill+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png" height="16"/></td></tr>';
 	      }
-	      ovHTML+='<tr><td class="active"><strong>Leader skill</strong></td><td colspan="5">'+ovleaderskill+'</td></tr>'
-	      +'<tr><td class="active"><strong>BB skill</strong></td><td colspan="5">'+ovbbskill+' | <b>Type:</b> '+ovbbtype+'</td></tr>';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
+	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' | <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
-		    ovHTML+='<tr><td class="active"><strong>SBB skill</strong></td><td colspan="5">'+ovsbbskill+' | <b>Type:</b> '+ovsbbtype+'</td></tr>'
+		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' | <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
