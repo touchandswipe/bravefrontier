@@ -377,8 +377,8 @@ function initialize() {
 	    { "data": fusionData.columns.indexOf("Acquire") }
 		  ],
 		  "order": [[ 0, "asc" ]],
-		  "dom": '<"small"C><"small"p>rt<"small pull-left"i><"small"p>',
-/*		  "dom": '<"row"<"col-md-3 col-xs-12 col-sm-12"f><"col-md-2 col-xs-3 col-sm-3"C><"col-md-7 col-xs-8 col-sm-8 pull"p>>rt<"small pull-left"i><"small"p>',*/
+		  /*"dom": '<"small"C><"small"p>rt<"small pull-left"i><"small"p>',*/
+		  "dom": '<"container-fluid" id="searchAffix2"<"row"<"col-md-3 col-xs-12 col-sm-12"f><"col-md-2 col-xs-3 col-sm-3"C><"col-md-7 col-xs-8 col-sm-8 pull"p>>rt<"small pull-left"i><"small"p>',
 		  "colVis": {   buttonText: "Show / Hide Columns",
 		  		overlayFade: 0,
 				restore: "Restore Default",
@@ -429,9 +429,9 @@ function initialize() {
 			/*Unbind Search*/
 			/*$('.dataTables_filter input').off();*/
 			/*custom replace search field*/
-			/*$('.dataTables_filter').html('<label style="margin-right:10px;"><div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');*/
-			$('#searchAffix').affix({
-			  offset: { top: 160 }
+			$('.dataTables_filter').html('<label style="margin-right:10px;"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
+			$('#searchAffix2').affix({
+			  offset: { top: 200 }
 			});
 			/*Show Table upon DRAW and remove progress bar*/
 			$('#mytable').show();
