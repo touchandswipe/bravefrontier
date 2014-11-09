@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (ZX) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Zeta Release) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Units Guide - Zeta Release by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.0/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
@@ -426,7 +426,12 @@ function initialize() {
 			/*Unbind Search*/
 			$('.dataTables_filter input').off();
 			/*custom replace search field*/
-			$('.dataTables_filter').html('<label style="margin-right:10px;"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
+			$('.dataTables_filter').html('<label style="margin-right:10px;"><div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
+			$('#searchAffix').affix({
+			  offset: {
+			    top: 100
+			  }
+			});
 			/*Show Table upon DRAW and remove progress bar*/
 			$('#mytable').show();
 			bossDataLoad();
@@ -478,6 +483,10 @@ function initialize() {
 		  },
 		  "pageLength": pLength,
 		  "language": {
+			"paginate": {
+			      "next": ">",
+			      "previous": "<"
+			},
 		      "search": "",
 		      "infoFiltered": " - filtered from _MAX_ Total Units",
 		      "zeroRecords": "No units found matching criteria.",
@@ -1294,9 +1303,9 @@ var evoQuery = [
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsglobal.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="rawskillsjapan.html?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
