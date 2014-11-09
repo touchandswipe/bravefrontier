@@ -425,9 +425,9 @@ function initialize() {
 			}   
 		    });
 			/*Unbind Search*/
-			$('.dataTables_filter input').off();
+			/*$('.dataTables_filter input').off();*/
 			/*custom replace search field*/
-			$('.dataTables_filter').html('<label style="margin-right:10px;"><div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
+			/*$('.dataTables_filter').html('<label style="margin-right:10px;"><div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');*/
 			$('#searchAffix').affix({
 			  offset: {
 			    top: 55
@@ -1594,15 +1594,13 @@ var evoQuery = [
     );
   
     (adsbygoogle = window.adsbygoogle || []).push({});
- 
 </script>
- 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </div>
-
-<!-- Main component for a primary marketing message or call to action -->
-
+<!--mainbody / Search box Custom-->
+<div class="row">
+	<div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID. ENTER to update browser URL." aria-controls="mytable"></div>
+</div>
 <table id="mytable" class="table-bordered table-responsive table-hover table-striped table-condensed" style="display:none;clear:both;" width="100%">
 	  <thead>
 	    <tr>
