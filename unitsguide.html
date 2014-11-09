@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .affix { position:fixed;left:0px;top:40px;width:100%;background:#EEEEFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
+    .affix-top { position:static; }
     .vidContain {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -375,7 +377,7 @@ function initialize() {
 	    { "data": fusionData.columns.indexOf("Acquire") }
 		  ],
 		  "order": [[ 0, "asc" ]],
-		  "dom": '<"pull-left"f><"small pull-left"C><"small"p>rt<"small pull-left"i><"small"p>',
+		  "dom": '<"container-fluid searchAffix"<"row"<"col-md-11 col-xs-7 col-sm-9"<"#cSearchBox"f>><"col-md-1 col-xs-5 col-sm-3"C>>><"small pull-right"p>rt<"small pull-left"i><"small"p>',
 		  "colVis": {   buttonText: "Show / Hide Columns",
 		  		overlayFade: 0,
 				restore: "Restore Default",
@@ -426,7 +428,10 @@ function initialize() {
 			/*Unbind Search*/
 			$('.dataTables_filter input').off();
 			/*custom replace search field*/
-			$('.dataTables_filter').html('<label style="margin-right:10px;"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
+			$('.dataTables_filter').html('<div class="input-group input-group-sm pull-left" style="width:95%;"><span class="input-group-addon" style="width:15px;"><i class="fa fa-search"></i></span><input type="search" class="form-control" placeholder="e.g. Name, Series, ID. ENTER to update browser URL."></div>');
+			$('.searchAffix').affix({
+			  offset: { top: 180 }
+			});
 			/*Show Table upon DRAW and remove progress bar*/
 			$('#mytable').show();
 			bossDataLoad();
@@ -1588,15 +1593,10 @@ var evoQuery = [
     );
   
     (adsbygoogle = window.adsbygoogle || []).push({});
- 
 </script>
- 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </div>
-
-<!-- Main component for a primary marketing message or call to action -->
-
+<!--mainbody / Search box Custom-->
 <table id="mytable" class="table-bordered table-responsive table-hover table-striped table-condensed" style="display:none;clear:both;" width="100%">
 	  <thead>
 	    <tr>
@@ -2312,6 +2312,7 @@ var delay = (function(){
 	var bfPROsTable = $('#mytable').DataTable();
 	var sField='.dataTables_filter input';
 	bfPROsTable.search( $(sField).val() ).draw();
+	window.scrollTo(0,0);
 	/*Enter Key only*/
 	if (e.which == 13) {
 	    var state = { stateFilter: $(sField).val() };
