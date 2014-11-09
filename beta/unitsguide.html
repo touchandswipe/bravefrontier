@@ -375,8 +375,8 @@ function initialize() {
 	    { "data": fusionData.columns.indexOf("Acquire") }
 		  ],
 		  "order": [[ 0, "asc" ]],
-	/*	  "dom": '<"pull-left"f><"small pull-left"C><"small"p>rt<"small pull-left"i><"small"p>',*/
-		  "dom": '<"row"<"col-md-3 col-xs-12 col-sm-12"f><"col-md-2 col-xs-3 col-sm-3"C><"col-md-7 col-xs-8 col-sm-8 pull"p>>rt<"small pull-left"i><"small"p>',
+		  "dom": '<"small"C><"small"p>rt<"small pull-left"i><"small"p>',
+/*		  "dom": '<"row"<"col-md-3 col-xs-12 col-sm-12"f><"col-md-2 col-xs-3 col-sm-3"C><"col-md-7 col-xs-8 col-sm-8 pull"p>>rt<"small pull-left"i><"small"p>',*/
 		  "colVis": {   buttonText: "Show / Hide Columns",
 		  		overlayFade: 0,
 				restore: "Restore Default",
@@ -1598,9 +1598,9 @@ var evoQuery = [
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </div>
 <!--mainbody / Search box Custom-->
-<div class="row">
-	<div id="searchAffix" class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID. ENTER to update browser URL." aria-controls="mytable"></div>
-</div>
+<div class="row" id="searchAffix"><div class="col-xs-12 col-sm-12 col-md-12">
+	<div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID. ENTER to update browser URL." aria-controls="mytable"></div>
+</div></div>
 <table id="mytable" class="table-bordered table-responsive table-hover table-striped table-condensed" style="display:none;clear:both;" width="100%">
 	  <thead>
 	    <tr>
