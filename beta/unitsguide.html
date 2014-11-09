@@ -2312,6 +2312,7 @@ var delay = (function(){
 	var bfPROsTable = $('#mytable').DataTable();
 	var sField='.dataTables_filter input';
 	bfPROsTable.search( $(sField).val() ).draw();
+	window.scrollTo(0,0);
 	/*Enter Key only*/
 	if (e.which == 13) {
 	    var state = { stateFilter: $(sField).val() };
