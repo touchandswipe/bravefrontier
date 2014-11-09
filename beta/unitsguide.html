@@ -378,7 +378,7 @@ function initialize() {
 		  ],
 		  "order": [[ 0, "asc" ]],
 		  /*"dom": '<"small"C><"small"p>rt<"small pull-left"i><"small"p>',*/
-		  "dom": '<"#searchAffix2" "container-fluid"<"row"<"col-md-10 col-xs-8 col-sm-8"f><"col-md-2 col-xs-4 col-sm-4"C>>><"col-md-7 col-xs-8 col-sm-8 pull"p>rt<"small pull-left"i><"small"p>',
+		  "dom": '<"searchAffix2 container-fluid"<"row"<"col-md-10 col-xs-8 col-sm-8"f><"col-md-2 col-xs-4 col-sm-4"C>>><"col-md-7 col-xs-8 col-sm-8 pull"p>rt<"small pull-left"i><"small"p>',
 		  "colVis": {   buttonText: "Show / Hide Columns",
 		  		overlayFade: 0,
 				restore: "Restore Default",
@@ -430,7 +430,7 @@ function initialize() {
 			/*$('.dataTables_filter input').off();*/
 			/*custom replace search field*/
 			$('.dataTables_filter').html('<label style="margin-right:10px;"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input type="search" class="form-control input-sm" placeholder="e.g. Name, Series, ID.         ENTER to update browser URL." aria-controls="mytable"></div></label>');
-			$('#searchAffix2').affix({
+			$('.searchAffix2').affix({
 			  offset: { top: 200 }
 			});
 			/*Show Table upon DRAW and remove progress bar*/
