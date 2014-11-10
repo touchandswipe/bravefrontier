@@ -89,10 +89,6 @@ var favUnitObj=[];
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
-var ownSquad = ['','','','','',''];
-var oppSquad = ['','','','','',''];
-var gEvoUnits = []; /*global variable to selected units evoMats*/
-var bossList = [];
 var prevStatsMod=[0,0,0,0,0];
 var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
 var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.3">30%</option>';
@@ -181,7 +177,7 @@ function findidloc(locobj,locval ) {
     }
 }
 
-/**/
+/*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
 var outputArray=[];
@@ -194,7 +190,7 @@ var outputArray=[];
 	for (i in outputArray) {
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'".png"/></a></div>';
 	}
-$('#searchOuput').html(outputHTML);
+$('#searchOutput').html(outputHTML);
 }
 
 /*Convert Google JSON REST*/
@@ -865,58 +861,23 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 	    openCard($(this).text());
 	    e.preventDefault();
 	})
-	
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  }
-})();
-
-/*Update URL based on search filters*/
-    $(document).on("keyup", '.dataTables_filter input', function(e){
-	delay(function(){
-	var bfPROsTable = $('#mytable').DataTable();
-	var sField='.dataTables_filter input';
-	bfPROsTable.search( $(sField).val() ).draw();
-	window.scrollTo(0,0);
-	/*Enter Key only*/
-	if (e.which == 13) {
-	    var state = { stateFilter: $(sField).val() };
-	    history.pushState(state, "Fstate", "?query="+encodeURIComponent($(sField).val()) );
-	}
-	}, 450 );
-})
     
 /*POP state*/
 $(window).on('popstate', function(e) {
 	var state = e.originalEvent.state;
 	/*card state*/
 	if (state.stateUnit) {
-	    $('#compareModal').modal('hide');
 	    openCard( state.stateUnit );
 	}
-	/*comp state*/
-	if (state.stateCompare) {
-	    var tempArray = ( state.stateCompare ).split(',');
-	    $('#cardModal').modal('hide');
-	    openCompare(tempArray);
-	}
-	/*Search query state*/
-	if (state.stateFilter) {
-	    var bfPROsTable = $('#mytable').DataTable();
-	    bfPROsTable.search( state.stateFilter ).draw();
-	}
-
 })
 
 /*Modification fields*/
 $(document).on("change", "#sphereA,#sphereB,.askill,.lskill", function(){
 	totalStatsMod();
-    })
-    /*PimpMod*/
-    $(document).on("click", "#pimpBtn", function(){
+})
+
+/*PimpMod*/
+$(document).on("click", "#pimpBtn", function(){
 	var cToAdd=($(this).hasClass("btn-success")) ? "btn-danger" : "btn-success";
 	var cToRem=(cToAdd=="btn-danger") ? "btn-success" : "btn-danger";
 	var vToCng=($(this).val()=="true") ? "false" : "true";
