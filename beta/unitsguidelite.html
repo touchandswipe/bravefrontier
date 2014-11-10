@@ -183,7 +183,7 @@ var outputHTML="";
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push(deserialdata.id);
+			outputArray.push(deserialdata[i].id);
 		}
 	}
 	alert("found units are "+outputArray);
