@@ -474,8 +474,6 @@ function openCard(whatunit) {
 	      $('#unitSpriteShow').error(function() {
 		  $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
 		})
-	      var ovnext = "";
-	      var ovprevious = "";
 	    /*NaN Check*/
 	    if (isNaN(ovweightedlord)) { ovweightedlord = "-" }
 	    /*Evo trail variable*/
@@ -659,18 +657,6 @@ function openCard(whatunit) {
 	    ovHTML+='<i>None at the moment.<i>'
 	}
 	ovHTML+='</td></tr></table>'
-	    /*Next & Previous links*/
-	    +'<div class="row">';
-	    if (ovid > 1) {
-		var ovprevious = deserialdata[findidloc(deserialdata,ovid)-1]["name"];
-		ovHTML+='<div class="col-md-6 text-primary pull-left"><h4 id="previousUnit"><i class="fa fa-arrow-left"></i>  '+ovprevious+'</h4></div>';
-	    }
-	    var ovnext = findidloc(deserialdata,ovid);
-	    if (ovnext < deserialdata.length-1) {
-		ovnext = deserialdata[findidloc(deserialdata,ovid)+1]["name"];
-		ovHTML+='<div class="col-md-6 text-primary pull-right"><h4 class="text-right" id="nextUnit">'+ovnext+' <i class="fa fa-arrow-right"></i></h4> </div>';
-	    }
-	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
 	    /*image accordion*/
 	    $('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
