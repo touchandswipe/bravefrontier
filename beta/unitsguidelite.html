@@ -78,14 +78,12 @@
     </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
 var deserialdata = {};
 var ovdata2 = {};
-var favUnitObj=[];
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
@@ -175,22 +173,6 @@ function findidloc(locobj,locval ) {
 	    return i;
 	}
     }
-}
-
-/*Search*/
-function searchNameRun(searchTxt) {
-var outputHTML="";
-var outputArray=[];
-	for (i in deserialdata) {
-		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push(deserialdata[i].id);
-		}
-	}
-	alert("found units are "+outputArray);
-	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'".png"/></a></div>';
-	}
-$('#searchOutput').html(outputHTML);
 }
 
 /*Convert Google JSON REST*/
