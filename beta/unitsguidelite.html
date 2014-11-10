@@ -160,7 +160,7 @@ var outputArray=[];
 	}
 	alert("found units are "+outputArray);
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#" class="unitID"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
 $('#searchOutput').html(outputHTML);
 }
@@ -855,7 +855,7 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 
 /*Binding unitcard*/
     $(document).on("click", ".unitID", function(e){
-	    openCard($(this).text());
+	    openCard($(this).val());
 	    e.preventDefault();
 	})
     
