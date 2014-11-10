@@ -160,7 +160,7 @@ var outputArray=[];
 	}
 	alert("found units are "+outputArray);
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png"/></a></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#" class="unitID"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
 $('#searchOutput').html(outputHTML);
 }
@@ -360,30 +360,28 @@ var evoQuery = [
 /*Query unit and openCard*/
 function openCard(whatunit) {
 	/*Loader*/
-	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning Unit ID:'+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	/*Choose Main Card n Show Card Modal*/
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
 	/*update state*/
 	    var state = { stateUnit: whatunit };
-	    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+	    history.pushState(state, "test state", "?unit="+whatunit );
 	/*Google analytics*/
-	var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+	var compileURL=location.host + location.pathname + "?unit=" + whatunit;
 	ga('send', 'pageview', {
   		'page': compileURL,
-  		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
+  		'title': 'Brave Frontier PROs Unit Card (Lite) - ' + whatunit
 	});
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
 	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	var ovshareURL=buildShareURL.id;
-	/*Fix Apostrophe*/
-	var whatunit = whatunit.replace("'","\\'");
 	var qunitname = "'" + whatunit + "'";
 	/*Query*/
 	var query2 = "SELECT * FROM " + gTable + 
-	    " WHERE 'Name' = " + qunitname;
+	    " WHERE 'ID' = " + qunitname;
 	var encodedQuery2 = encodeURIComponent(query2);
 	
 	/*Construct URL*/
@@ -856,7 +854,7 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 })
 
 /*Binding unitcard*/
-    $(document).on("click", ".unitName", function(e){
+    $(document).on("click", ".unitID", function(e){
 	    openCard($(this).text());
 	    e.preventDefault();
 	})
