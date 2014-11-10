@@ -135,7 +135,7 @@ var outputArray=[];
 	for (i in outputArray) {
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
-outputHTML='<h4><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4>'+outputHTML;
+outputHTML='<h4><i class="fa fa-search text-success"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4>'+outputHTML;
 $('#searchOutput').html(outputHTML);
 }
 
