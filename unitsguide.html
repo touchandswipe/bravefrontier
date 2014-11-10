@@ -32,6 +32,12 @@
 	width: 100%;
 	height: 100%;
     }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:14px;
+    }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
     .kdb-r {
@@ -722,7 +728,7 @@ function initialize() {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div style="position:relative;white-space:nowrap;top:-10px;left:10px;"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
