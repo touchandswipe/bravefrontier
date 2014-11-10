@@ -698,13 +698,9 @@ function openCard(whatunit) {
 	  </button>
 	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
 	</div>
-	
+
 	<!-- Collapse Nav-->
 	<div class="navbar-collapse collapse">
-	  
-<!-- RIGHT NAV -->
-	  <button id="refreshBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Clear filters" style="margin-right:5px;"><i class="fa fa-lg fa-refresh fa-spin"></i></button>
-	  <button id="resetbtn" type="button" class="btn nav-tt navbar-right btn-danger navbar-btn" data-toggle="tooltip" title="Reset / Reload DB" style="margin-right:5px;"><i class="fa fa-power-off fa-lg"></i></button>
     
     </div><!--/.nav-collapse -->
 </div>
@@ -799,7 +795,7 @@ $('.nav-tt').tooltip({placement:'bottom'});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
-    e.preventDefault();
+	e.preventDefault();
 	searchNameRun($('#searchBox').val())
 })
 
@@ -832,17 +828,16 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 })
 
 /*Binding unitcard*/
-    $(document).on("click", ".unitID", function(e){
-	    openCard($(this).attr('value'));
-	    e.preventDefault();
-	})
+$(document).on("click", ".unitID", function(e){
+    openCard($(this).attr('value'));
+    e.preventDefault();
+})
     
 /*POP state*/
 $(window).on('popstate', function(e) {
 	var state = e.originalEvent.state;
 	/*card state*/
 	if (state.stateUnit) {
-		alert(state.stateUnit)
 		openCard(state.stateUnit);
 	}
 })
