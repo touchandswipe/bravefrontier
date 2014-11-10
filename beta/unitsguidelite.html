@@ -502,7 +502,7 @@ function openCard(whatunit) {
 	    var evotrailHTML='';
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
-		if ($(evotrail[i].name)==ovname.toLowerCase()) {
+		if (evotrail[i].name==ovname) {
 		    evotrailHTML+='<span style="background:#99FF99;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>)</span> ';
 		    evoUnitIdx=i;
 		}
