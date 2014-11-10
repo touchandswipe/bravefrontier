@@ -40,6 +40,12 @@
     font-size:10px;
     padding:2px 3px 2px 3px;
     }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:14px;
+    }
     .release {
     border: 1px solid #CCCCCC;
     display: inline-block;
@@ -129,11 +135,11 @@ var outputHTML="";
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push(deserialdata[i].id);
+			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity});
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
@@ -673,15 +679,16 @@ function openCard(whatunit) {
 	    <span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
-	  <ul class="nav navbar-nav hidden-xs">
-	  	<li><h3><b>Brave Frontier PROs</b> - Units Guide Lite</h3></li>
-	  </ul>
+	  <a class="navbar-brand hidden-xs" href="http://bravefrontierpros.tumblr.com"><b>Brave Frontier PROs</b> - Units Guide Lite</a>
 	</div>
 
 	<!-- Collapse Nav-->
 	<div class="navbar-collapse collapse">
-    
-    </div><!--/.nav-collapse -->
+	  <ul class="nav navbar-nav">
+		    <li><a href="unitsguide"><i class="fa fa-database"></i> Units guide advance</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chatroom</a></li>
+	  </ul>
+    	</div><!--/.nav-collapse -->
 </div>
 </div>
 
