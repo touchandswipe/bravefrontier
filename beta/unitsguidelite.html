@@ -158,7 +158,6 @@ var outputArray=[];
 			outputArray.push(deserialdata[i].id);
 		}
 	}
-	alert("found units are "+outputArray);
 	for (i in outputArray) {
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
@@ -208,23 +207,13 @@ function convertJSON( serialObj ) {
 	for(var j=0; j < s.columns.length; j++)
 	{ /*replace space with - and lowercase for all*/
 	    if (isNaN(s.rows[i][j])) {
-		/*check for blanks in hits and fill fields and lord*/
-		if ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("lord") != -1)) {
-		    temp[s.columns[j].toLowerCase()] = 0;
-		/*Call Unit Card*/
-		} else if (s.columns[j].toLowerCase().search("name") != -1) {
-		    temp[s.columns[j].toLowerCase()] = '<a href="#" class="unitName notranslate">'+s.rows[i][j]+'</a>';
-		} else if (s.rows[i][j].substr(0,4) == "http") {
-		    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
-		} else { /*general string*/
 		    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
-		}
 	    }
 	     /*is blank*/
 	    else if (s.rows[i][j] == "") {
 		    temp[s.columns[j].toLowerCase()] = "None";
 	    } else { /*else number*/
-		temp[s.columns[j].toLowerCase()] = parseInt(s.rows[i][j]);
+			temp[s.columns[j].toLowerCase()] = parseInt(s.rows[i][j]);
 		}
 	}
 	/*save the new row with column names*/
@@ -285,7 +274,6 @@ function initialize() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
-	      alert("done");
 	      deserialdata = convertJSON(fusionData);
 	      $('#progressModal').modal('hide');
 	  }
@@ -515,7 +503,7 @@ function openCard(whatunit) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
+		    evotrailHTML+='<span style="background:#99FF99;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>)</span> ';
 		    evoUnitIdx=i;
 		}
 		else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
@@ -1009,74 +997,13 @@ $(document).on("click", "#pimpBtn", function(){
 	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
 	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Unit Art</a></li>
 	      <li class="hidden-xs"><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
-	      <li class="hidden-xs"><a href="#unitCardSprite" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Sprite Play</a></li>
 	</ul>
 <!-- Tab panes -->
-    <div class="tab-content">
+<div class="tab-content">
 	<div class="tab-pane fade in active" id="unitCardHome"></div>
-    <div class="tab-pane fade" id="unitCardArt">
-	<div id="unitimageacc"></div>
-    </div>
-<!--Evolutionary-->
-  <div class="tab-pane fade" id="evolutionary">
-    <div id="evoTab" class="row"></div>
-  </div>
-
-  <div class="tab-pane fade" id="unitCardSprite">
-<div class="container-fluid">
-<!--Main display width 350 resize-->
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12" style="margin:auto;margin-top:15px;padding:0;height:365px;">
-	    <div style="position:absolute;"><img id="bgSpriteShow" src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg" width="350"/></div>
-	    <div id="bgSpriteEffectDiv" style="position:absolute;"><img style="display:none;" id="bgSpriteEffect" src="" width="350"/></div>
-	    <div style="position:absolute;left:110px;top:140px;"><img id="unitSpriteShow" src=""/></div>
-    </div>
-
-<div class="col-xs-12 col-sm-12 col-md-12">
-    <h4>Pick an Effect</h4>
-	<div class="radio-inline">
-	    <label class="label label-info"><input class="effects" value="snow" y-pos="0" type="radio" name="effectsRadio"> <i class="fa fa-asterisk"></i></label>
-	</div>
-	<div class="radio-inline">
-	    <label class="label label-info"><input class="effects" value="pixelclouds" y-pos="20" type="radio" name="effectsRadio"> <i class="fa fa-cloud"></i></label>
-	</div>
-	<div class="radio-inline">
-	    <label class="label label-warning"><input class="effects" value="lightning" y-pos="60" type="radio" name="effectsRadio"> <i class="fa fa-flash"></i></label>
-	</div>
-	<div class="radio-inline">
-	    <label class="label label-danger"><input class="effects" value="fire" y-pos="80" type="radio" name="effectsRadio"> <i class="fa fa-fire"></i></label>
-	</div>
-	<div class="radio-inline">
-	    <label class="label label-primary"><input class="effects" value="water" y-pos="55" type="radio" name="effectsRadio"> <i class="fa fa-tint"></i></label>
-	</div>
-	<div class="radio-inline">
-	    <label class="label label-default"><input class="effects" value="none" y-pos="0" type="radio" name="effectsRadio" checked> None</label>
-	</div>
-
-    <h4 style="margin-top:25px;">Pick a Background</h4>
-    <!--Thumbnail for selection-->
-    <div class="row">
-	  <div class="col-xs-3 col-sm-3">
-	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_summoncircle1.jpg" class="img-circle" alt="summon circle"/></a>
-	  </div>
-	  <div class="col-xs-3 col-sm-3">
-	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_trialcircle.jpg" class="img-circle" alt="trial circle"/></a>
-	  </div>
-	  <div class="col-xs-3 col-sm-3">
-	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg" class="img-circle" alt="arena"/></a>
-	  </div>
-    </div><!--End Nested Row-->
-</div>
-</div><!--End ROw-->
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-	<small>Animated Sprites - Courtesy of <a href="https://felixfelice.imgur.com/" target="_blank">FelixFelice &amp; Team</a></small>
-    </div>
-</div>
-
-</div><!--End Container-->
-</div><!--EndSpritePane-->
+	<div class="tab-pane fade" id="unitCardArt"><div id="unitimageacc"></div></div>
+	<!--Evolutionary-->
+  	<div class="tab-pane fade" id="evolutionary"><div id="evoTab" class="row"></div></div>
 </div><!--End Tab Content-->
 
       </div>
