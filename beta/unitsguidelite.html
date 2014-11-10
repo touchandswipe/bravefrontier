@@ -40,6 +40,12 @@
     font-size:10px;
     padding:2px 3px 2px 3px;
     }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:10px;
+    }
     .release {
     border: 1px solid #CCCCCC;
     display: inline-block;
@@ -53,7 +59,6 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="/js/imagesloaded.pkgd.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -134,12 +139,10 @@ var outputArray=[];
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+deserialdata[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
-imagesLoaded( document.querySelector('#searchOutput'), function( e ) {
-  alert('all images are loaded');
-});
 }
 
 /*Bootstrap alerts*/
@@ -642,8 +645,8 @@ function openCard(whatunit) {
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
-		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
-		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
+		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i].id+'.gif" height="140"/>';
+		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	  }
@@ -676,6 +679,9 @@ function openCard(whatunit) {
 	    <span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
+	  <ul class="nav navbar-nav hidden-xs">
+	  	<li><h3><b>Brave Frontier PROs</b> - Units Guide Lite</h3></li>
+	  </ul>
 	</div>
 
 	<!-- Collapse Nav-->
@@ -742,7 +748,7 @@ function openCard(whatunit) {
 <!--mainbody goes here-->
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-<h3>A lite and quick units guide, just because you need it!</h3>
+<h4>A quick and lite Brave Frontier units guide, because you need it.</h4>
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
@@ -750,7 +756,7 @@ function openCard(whatunit) {
 	</div>
 </div></div>
 <!--Search Results-->
-<div class="row" id="searchOutput"></div>
+<div class="row" id="searchOutput" style="margin-bottom:25px;"></div>
 
 <!-- ACTIVATION SCRIPTS -->
 <script type="text/javascript">
@@ -893,7 +899,7 @@ $(document).on("click", "#pimpBtn", function(){
 </div>
 
 <!-- disqus discussion -->
-<div id="disqus_thread" style="width:100%;margin:0 auto;"></div>
+<div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
     <script type="text/javascript">
 	var disqus_shortname = 'bravefrontierpros';
 	(function() {
@@ -944,18 +950,6 @@ $(document).on("click", "#pimpBtn", function(){
     <div class="modal-content">
       <div class="modal-body">
 	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
-	
-<!-- Google link text across all tab panes -->
-<div class="text-center">
-    <!-- BFPROsLinkUnits DB Overlay -->
-    <ins class="adsbygoogle"
-	 style="display:inline-block;width:468px;height:15px"
-	 data-ad-client="ca-pub-2145833818900192"
-	 data-ad-slot="7885767265"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
 	
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
