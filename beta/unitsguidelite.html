@@ -149,6 +149,22 @@ function totalStatsMod() {
     prevStatsMod=totalMod;
 }
 
+/*Search*/
+function searchNameRun(searchTxt) {
+var outputHTML="";
+var outputArray=[];
+	for (i in deserialdata) {
+		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
+			outputArray.push(deserialdata[i].id);
+		}
+	}
+	alert("found units are "+outputArray);
+	for (i in outputArray) {
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'".png"/></a></div>';
+	}
+$('#searchOutput').html(outputHTML);
+}
+
 /*Bootstrap alerts*/
 function bfpAlert(aTitle,aBody) {
     $("#alertSpace").html('<i class="fa fa-fire-extinguisher"></i> <strong>'+aTitle+':</strong> '+aBody);
@@ -269,8 +285,8 @@ function initialize() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
-	      deserialdata = convertJSON(fusionData);
 	      alert("done");
+	      //deserialdata = convertJSON(fusionData);
 	  }
 	})
 }/*End init fn*/
