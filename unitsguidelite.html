@@ -53,7 +53,6 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -136,10 +135,8 @@ var outputArray=[];
 	for (i in outputArray) {
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
+outputHTML='<h4><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4>'+outputHTML;
 $('#searchOutput').html(outputHTML);
-imagesLoaded( document.querySelector('#searchOutput'), function( e ) {
-  alert('all images are loaded');
-});
 }
 
 /*Bootstrap alerts*/
