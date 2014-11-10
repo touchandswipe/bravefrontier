@@ -261,7 +261,7 @@ function gooShorten(URLtoShort) {
 
 /*Initialise datapull from Google Tables*/
 function initialize() {
-  var query = "SELECT ID,Name,Series,Rarity FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -677,7 +677,7 @@ function openCard(whatunit) {
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    for (i=0; i<evotrail.length;i++) {
-		evoTabHTML+='<div class="col-xs-4 col-sm-4 col-md-4">';
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
 		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
