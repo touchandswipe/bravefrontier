@@ -181,6 +181,22 @@ function findidloc(locobj,locval ) {
     }
 }
 
+/**/
+function searchNameRun(searchTxt) {
+var outputHTML="";
+var outputArray=[];
+	for (i in deserialdata) {
+		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
+			outputArray.push(deserialdata.id);
+		}
+	}
+	alert("found units are "+outputArray);
+	for (i in outputArray) {
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'".png"/></a></div>';
+	}
+$('#searchOuput').html(outputHTML);
+}
+
 /*Convert Google JSON REST*/
 function convertJSON( serialObj ) {
     var s = serialObj || {};
@@ -785,6 +801,7 @@ function openCard(whatunit) {
 <!--mainbody goes here-->
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+<h3>A lite and quick units guide, just because you need it!</h3>
 	<div class="input-group" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
@@ -809,8 +826,21 @@ $(document).ready( function(e) {
 /*BootStrap Stuff*/
 $('.nav-tt').tooltip({placement:'bottom'});
 
+/*Update URL based on search filters*/
+$(document).on("click", '#searchBtn', function(e){
+    e.preventDefault();
+	searchNameRun($('#searchBox').val())
+})
+
+/*Binds Enter KEY to BOX*/
+$( "#searchBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchNameRun($('#searchBox').val())
+  }
+})
+
 /*VideoModal*/
-    $(document).on("click", ".videoBtn", function(e){
+$(document).on("click", ".videoBtn", function(e){
 	    e.preventDefault();
 	    var vLink=$(this).attr('src');
 	    $('.modal').each( function() {
@@ -818,7 +848,7 @@ $('.nav-tt').tooltip({placement:'bottom'});
 	    })
 	    $('#vidEmbed').attr( 'src', vLink );
 	    $('#videoModal').modal('show');
-	})
+})
 	
 /*VideoModal Close Remove Video*/
 $('#videoModal').on('hide.bs.modal', function (e) {
