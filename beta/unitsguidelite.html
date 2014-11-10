@@ -286,7 +286,8 @@ function initialize() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 	      alert("done");
-	      //deserialdata = convertJSON(fusionData);
+	      deserialdata = convertJSON(fusionData);
+	      $('#progressModal').modal('hide');
 	  }
 	})
 }/*End init fn*/
