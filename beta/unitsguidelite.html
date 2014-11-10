@@ -855,7 +855,7 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 
 /*Binding unitcard*/
     $(document).on("click", ".unitID", function(e){
-	    openCard($(this).val());
+	    openCard($(this).attr('value'));
 	    e.preventDefault();
 	})
     
