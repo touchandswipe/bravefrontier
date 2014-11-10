@@ -14,8 +14,6 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
-    .affix { position:fixed;left:0px;top:40px;width:100%;background:#E6CCFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
-    .affix-top { position:static; }
     .vidContain {
     	position: relative;
     	padding-bottom: 56.25%;
@@ -30,6 +28,7 @@
     	width: 100%;
     	height: 100%;
     }
+    .pad { margin-bottom:10px; }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
     .kdb-r {
@@ -159,7 +158,7 @@ var outputArray=[];
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
 $('#searchOutput').html(outputHTML);
 }
