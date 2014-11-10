@@ -135,7 +135,7 @@ var outputArray=[];
 	for (i in outputArray) {
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i]+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i]+'.png" width="50" height="50"/></a></div>';
 	}
-outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4><i class="fa fa-search text-success"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
 }
 
@@ -742,7 +742,7 @@ function openCard(whatunit) {
 <!--mainbody goes here-->
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-<h3>A lite and quick units guide, just because you need it!</h3>
+<h4>A quick and lite Brave Frontier units guide, because you need it.</h4>
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
