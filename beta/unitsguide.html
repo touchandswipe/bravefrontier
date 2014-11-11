@@ -783,7 +783,7 @@ function initialize() {
 	favDraw(unitObj);
 	/*Generate Share URL*/
 	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
-	setTimeOut(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),2000);
+	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),2000);
 	} /*End Else when fav unit exists*/
     }
 
@@ -1023,7 +1023,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    evoCHTML+='<div class="col-xs-12 col-md-12"><h6><small>Zel Costs .. may be coming soon</h6></div>';
 	    $('#evoCalcContent').html(evoCHTML);
 	    /*End Evo*/
-	    setTimeOut(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),2000);
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),2000);
 	  }
 	})
 } /*End openCompare*/
@@ -1190,7 +1190,7 @@ var evoQuery = [
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
-	      var ovshareURL='<span id="shareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
+	      var ovshareURL='<span id="cardShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
 	      /*Type preference string generation*/
 	      var ovtypeprefHTML="";
 	      if (ovtypepref.length!=0) {
@@ -1431,7 +1431,7 @@ var evoQuery = [
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
-	    setTimeOut(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
 	  }
 	})
 } /*End openCard fn*/
