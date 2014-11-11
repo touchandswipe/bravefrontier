@@ -234,14 +234,18 @@ function sconvertJSON( serialObj ) {
 }
 
 /*AJAX Call to Google URL Shortener API*/
-function gooShorten(URLtoShort) {
-    return $.ajax({
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
 	    type: 'POST',
 	    async: false,
 	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
 	    contentType: 'application/json; charset=utf-8',
-	    data: '{ longUrl: "'+ URLtoShort +'"}'
-	}).responseText; /*Returns Stringify JSON*/
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	         }
+	})
 }
 
 /*Initialise datapull from Google Tables*/
@@ -261,6 +265,11 @@ function initialize() {
 	  success: function (fusionData) {
 	      deserialdata = convertJSON(fusionData);
 	      $('#progressModal').modal('hide');
+	      	/*check for card param for Unit*/
+		var idParam=urlParam('unit');
+		if ( (idParam != "") && ( idParam != null) ) {
+		    openCard(idParam);
+		}
 	  }
 	})
 }/*End init fn*/
@@ -349,8 +358,6 @@ function openCard(whatunit) {
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
-	var ovshareURL=buildShareURL.id;
 	var qunitname = "'" + whatunit + "'";
 	/*Query*/
 	var query2 = "SELECT * FROM " + gTable + 
@@ -368,11 +375,9 @@ function openCard(whatunit) {
 	  url: url2.join(''),
 	  dataType: 'jsonp',
 	  success: function (data2) {
-	    /*alert(JSON.stringify(data2));*/
 	    ovdata2 = sconvertJSON(data2);
 	      var ovid = ovdata2[0]["id"];
 	      var ovname = ovdata2[0]["name"];
-	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
 	      var ovseries = ovdata2[0]["series"];
 	      var ovicon = ovdata2[0]["icon"];
 	      var ovimage = ovdata2[0]["image"];
@@ -427,6 +432,7 @@ function openCard(whatunit) {
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
+	      var ovshareURL='<span id="shareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
 	      /*Type preference string generation*/
 	      var ovtypeprefHTML="";
 	      if (ovtypepref.length!=0) {
@@ -523,7 +529,7 @@ function openCard(whatunit) {
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
 	      ovHTML+='</small></h4></td></tr>';
-	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
 	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity >= 6) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
@@ -641,19 +647,21 @@ function openCard(whatunit) {
 	} else {
 	    ovHTML+='<i>None at the moment.<i>'
 	}
-	ovHTML+='</td></tr></table>'
-	    $('#unitCardHome').html(ovHTML);
-	    /*image accordion*/
-	    $('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
-	    /*Evolutionary Generation*/
-	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
-	    for (i=0; i<evotrail.length;i++) {
+	ovHTML+='</td></tr></table>';
+	$('#unitCardHome').html(ovHTML);
+	/*image accordion*/
+	$('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
+	/*Evolutionary Generation*/
+	var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
+	for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
 		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i].id+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
-	    }
-	    $('#evoTab').html(evoTabHTML+'</div>');
-	  }
+	}
+	$('#evoTab').html(evoTabHTML+'</div>');
+	/*html call is synchronous*/
+	setTimeout(gooShorten(location.protocol + '//' + compileURL,$('#shareURL')),2000);
+	}
 	})
 } /*End openCard fn*/
 </script>
@@ -774,11 +782,6 @@ $(document).ready( function(e) {
     })
 	/*initialise initial data load*/
 	initialize();
-	/*check for card param for Unit*/
-	var idParam=urlParam('unit');
-	if ( (idParam != "") && ( idParam != null) ) {
-	    openCard(idParam);
-	}
 
 /*BootStrap Stuff*/
 $('.nav-tt').tooltip({placement:'bottom'});
