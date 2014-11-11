@@ -427,7 +427,7 @@ function openCard(whatunit) {
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
-	      var ovshareURL='<span id="shareURL" class="text-danger">Generating sharing link</span>';
+	      var ovshareURL='<span id="shareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
 	      /*Type preference string generation*/
 	      var ovtypeprefHTML="";
 	      if (ovtypepref.length!=0) {
@@ -524,7 +524,7 @@ function openCard(whatunit) {
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
 	      ovHTML+='</small></h4></td></tr>';
-	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b><i class="fa fa-spinner fa-spin"></i> '+ovshareURL+'</td></tr>'
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
 	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity >= 6) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
