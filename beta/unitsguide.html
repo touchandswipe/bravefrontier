@@ -16,7 +16,7 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
-    .affix { position:fixed;left:0px;top:40px;width:100%;background:#EEEEFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
+    .affix { position:fixed;left:0px;top:40px;width:100%;background:#E6CCFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
     .vidContain {
 	position: relative;
@@ -31,6 +31,12 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+    }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:14px;
     }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
@@ -305,7 +311,7 @@ function initialize() {
     var xtraDefCol=[]; var pLength=100;
   } else if ( ( $( document ).width() < 1600 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8]; var pLength=100; 
   } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16]; var pLength=100;
-  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50;
+  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=100;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50; }
   var query = "SELECT * FROM " +
   gTable + " ORDER BY 'ID' ASC";
@@ -445,8 +451,6 @@ function initialize() {
 				    var idParamName=$(deserialdata[i].name).text();
 			    }
 			    openCard(idParamName);
-			    /*needed as show is not included in function*/
-			    $('#cardModal').modal('show');
 			}
 			/*check for card param*/
 			var cardParam=urlParam('unit');
@@ -483,10 +487,6 @@ function initialize() {
 		  },
 		  "pageLength": pLength,
 		  "language": {
-			"paginate": {
-			      "next": ">",
-			      "previous": "<"
-			},
 		      "search": "",
 		      "infoFiltered": " - filtered from _MAX_ Total Units",
 		      "zeroRecords": "No units found matching criteria.",
@@ -728,7 +728,7 @@ function initialize() {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div style="position:relative;white-space:nowrap;top:-10px;left:10px;"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -1377,7 +1377,7 @@ var evoQuery = [
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
-	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/profile.php?id=100006167385076" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/markrvhie.luceropimentel" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
 	}
 	
 	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
@@ -1425,7 +1425,7 @@ var evoQuery = [
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    for (i=0; i<evotrail.length;i++) {
-		evoTabHTML+='<div class="col-xs-4 col-sm-4 col-md-4">';
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
 		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
@@ -2494,13 +2494,10 @@ var delay = (function(){
 </div>
 
 <!-- disqus discussion -->
-<div id="disqus_thread" style="width:100%;margin:0 auto;"></div>
+<div id="disqus_thread" style="width:100%;margin:0 10px;"></div>
     <script type="text/javascript">
-	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-	var disqus_shortname = 'bravefrontierpros'; // required: replace example with your forum shortname
-	var disqus_url = 'http://bravefrontierpros.tumblr.com/unitsdatabase';
+	var disqus_shortname = 'bravefrontierpros';
 
-	/* * * DON'T EDIT BELOW THIS LINE * * */
 	(function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
