@@ -265,6 +265,11 @@ function initialize() {
 	  success: function (fusionData) {
 	      deserialdata = convertJSON(fusionData);
 	      $('#progressModal').modal('hide');
+	      	/*check for card param for Unit*/
+		var idParam=urlParam('unit');
+		if ( (idParam != "") && ( idParam != null) ) {
+		    openCard(idParam);
+		}
 	  }
 	})
 }/*End init fn*/
@@ -777,11 +782,6 @@ $(document).ready( function(e) {
     })
 	/*initialise initial data load*/
 	initialize();
-	/*check for card param for Unit*/
-	var idParam=urlParam('unit');
-	if ( (idParam != "") && ( idParam != null) ) {
-	    openCard(idParam);
-	}
 
 /*BootStrap Stuff*/
 $('.nav-tt').tooltip({placement:'bottom'});
