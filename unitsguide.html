@@ -294,14 +294,18 @@ function sconvertJSON( serialObj ) {
 }
 
 /*AJAX Call to Google URL Shortener API*/
-function gooShorten(URLtoShort) {
-    return $.ajax({
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
 	    type: 'POST',
 	    async: false,
 	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
 	    contentType: 'application/json; charset=utf-8',
-	    data: '{ longUrl: "'+ URLtoShort +'"}'
-	}).responseText; /*Returns Stringify JSON*/
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	         }
+	})
 }
 
 /*Initialise datapull from Google Tables*/
@@ -778,10 +782,9 @@ function initialize() {
 	favUnitObj=unitObj;
 	favDraw(unitObj);
 	/*Generate Share URL*/
-	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()) ));
-	/*AJAX Call to Google URL Shortener API*/
-	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+cShareURL.id+'">'+cShareURL.id+'</a></h5></div>');
-	    } /*End Else when fav unit exists*/
+	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
+	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),2000);
+	} /*End Else when fav unit exists*/
     }
 
 /*Compare function*/
@@ -799,8 +802,6 @@ function initialize() {
   		'page': compileURL,
   		'title': "Brave Frontier PROs Compare "+units
 	});
-	
-	var cShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
 	
 	for (var i=0; i < units.length; i++) {
 	    qunitname += "'"+units[i].replace("'","\\'")+"'";
@@ -830,10 +831,10 @@ function initialize() {
 	      
 	      /*Construct comparison*/
 	      for (var i=0; i < units.length; i++) {
-		  cHTML+='<td width="'+tWidth+'%"><img src="'+cData[i]['icon']+'" width="60" /></td>' }
-	      cHTML+='</tr>';
-	  cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+cShareURL.id+'"><b>'+cShareURL.id+'</b></a></td></tr>';
-	      cHTML+='<td class="active"><b>Unit</b></td>';
+			cHTML+='<td width="'+tWidth+'%"><img src="'+cData[i]['icon']+'" width="60" /></td>' }
+		cHTML+='</tr>';
+		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
+		cHTML+='<td class="active"><b>Unit</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
@@ -1022,6 +1023,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    evoCHTML+='<div class="col-xs-12 col-md-12"><h6><small>Zel Costs .. may be coming soon</h6></div>';
 	    $('#evoCalcContent').html(evoCHTML);
 	    /*End Evo*/
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),2000);
 	  }
 	})
 } /*End openCompare*/
@@ -1110,8 +1112,6 @@ var evoQuery = [
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
-	var ovshareURL=buildShareURL.id;
 	/*Fix Apostrophe*/
 	var whatunit = whatunit.replace("'","\\'");
 	var qunitname = "'" + whatunit + "'";
@@ -1190,6 +1190,7 @@ var evoQuery = [
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
+	      var ovshareURL='<span id="cardShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
 	      /*Type preference string generation*/
 	      var ovtypeprefHTML="";
 	      if (ovtypepref.length!=0) {
@@ -1288,7 +1289,7 @@ var evoQuery = [
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
 	      ovHTML+='</small></h4></td></tr>';
-	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
 	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity >= 6) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
@@ -1430,6 +1431,7 @@ var evoQuery = [
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
 	  }
 	})
 } /*End openCard fn*/
