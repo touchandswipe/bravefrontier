@@ -243,9 +243,10 @@ function gooShorten(URLtoShort,linkAsset) {
 	    data: '{ longUrl: "'+ URLtoShort +'"}',
 		success : function(text)
 	         {
-	             tempURL=JSON.parse(text);
-	             alert(tempURL.id);
-	             linkAsset.html('<a href="'+tempURL.id+'">'+tempURL.id+'</a>');
+	         	alert(text);
+	             	tempURL=JSON.parse(text);
+	             	alert(tempURL.id);
+	             	linkAsset.html('<a href="'+tempURL.id+'">'+tempURL.id+'</a>');
 	         }
 	})
 }
@@ -657,7 +658,7 @@ function openCard(whatunit) {
 	}
 	$('#evoTab').html(evoTabHTML+'</div>');
 	/*html call is synchronous*/
-	var buildShareURL = gooShorten(location.protocol + '//' + compileURL,$('#shareURL'));
+	gooShorten(location.protocol + '//' + compileURL,$('#shareURL'));
 	//
 	}
 	})
