@@ -243,10 +243,8 @@ function gooShorten(URLtoShort,linkAsset) {
 	    data: '{ longUrl: "'+ URLtoShort +'"}',
 		success : function(text)
 	         {
-	         	alert(text);
-	             	tempURL=JSON.parse(text);
-	             	alert(tempURL.id);
-	             	linkAsset.html('<a href="'+tempURL.id+'">'+tempURL.id+'</a>');
+	         	alert(text.id);
+	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
 	         }
 	})
 }
