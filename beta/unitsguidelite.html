@@ -349,8 +349,6 @@ function openCard(whatunit) {
 	
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
-	var ovshareURL=buildShareURL.id;
 	var qunitname = "'" + whatunit + "'";
 	/*Query*/
 	var query2 = "SELECT * FROM " + gTable + 
@@ -368,11 +366,9 @@ function openCard(whatunit) {
 	  url: url2.join(''),
 	  dataType: 'jsonp',
 	  success: function (data2) {
-	    /*alert(JSON.stringify(data2));*/
 	    ovdata2 = sconvertJSON(data2);
 	      var ovid = ovdata2[0]["id"];
 	      var ovname = ovdata2[0]["name"];
-	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
 	      var ovseries = ovdata2[0]["series"];
 	      var ovicon = ovdata2[0]["icon"];
 	      var ovimage = ovdata2[0]["image"];
@@ -427,6 +423,7 @@ function openCard(whatunit) {
 	      var ovvideo = ovdata2[0]["video"];
 	      var ovgender = ovdata2[0]["gender"];
 	      var ovtypepref = ovdata2[0]["type pref"];
+	      var ovshareURL='<span id="shareURL">generating sharing link</span>';
 	      /*Type preference string generation*/
 	      var ovtypeprefHTML="";
 	      if (ovtypepref.length!=0) {
@@ -523,7 +520,7 @@ function openCard(whatunit) {
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
 	      ovHTML+='</small></h4></td></tr>';
-	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <a href="'+ovshareURL+'"><b>'+ovshareURL+'</b></a></td></tr>'
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
 	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity >= 6) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
@@ -612,7 +609,7 @@ function openCard(whatunit) {
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
-	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/profile.php?id=100006167385076" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/markrvhie.luceropimentel" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
 	}
 	
 	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
@@ -641,19 +638,22 @@ function openCard(whatunit) {
 	} else {
 	    ovHTML+='<i>None at the moment.<i>'
 	}
-	ovHTML+='</td></tr></table>'
-	    $('#unitCardHome').html(ovHTML);
-	    /*image accordion*/
-	    $('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
-	    /*Evolutionary Generation*/
-	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
-	    for (i=0; i<evotrail.length;i++) {
+	ovHTML+='</td></tr></table>';
+	$('#unitCardHome').html(ovHTML);
+	/*image accordion*/
+	$('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
+	/*Evolutionary Generation*/
+	var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
+	for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
 		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i].id+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
-	    }
-	    $('#evoTab').html(evoTabHTML+'</div>');
-	  }
+	}
+	$('#evoTab').html(evoTabHTML+'</div>');
+	/*html call is synchronous*/
+	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
+	$('#shareURL').html('<a href="'+buildShareURL.id+'">'+buildShareURL.id+'</a>');
+	}
 	})
 } /*End openCard fn*/
 </script>
