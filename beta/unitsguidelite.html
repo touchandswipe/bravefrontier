@@ -234,14 +234,20 @@ function sconvertJSON( serialObj ) {
 }
 
 /*AJAX Call to Google URL Shortener API*/
-function gooShorten(URLtoShort) {
-    return $.ajax({
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
 	    type: 'POST',
 	    async: false,
 	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
 	    contentType: 'application/json; charset=utf-8',
-	    data: '{ longUrl: "'+ URLtoShort +'"}'
-	}).responseText; /*Returns Stringify JSON*/
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             tempURL=JSON.parse(text);
+	             alert(tempURL.id);
+	             linkAsset.html('<a href="'+tempURL.id+'">'+tempURL.id+'</a>');
+	         }
+	})
 }
 
 /*Initialise datapull from Google Tables*/
@@ -651,8 +657,8 @@ function openCard(whatunit) {
 	}
 	$('#evoTab').html(evoTabHTML+'</div>');
 	/*html call is synchronous*/
-	var buildShareURL = JSON.parse(gooShorten(location.protocol + '//' + compileURL));
-	$('#shareURL').html('<a href="'+buildShareURL.id+'">'+buildShareURL.id+'</a>');
+	var buildShareURL = gooShorten(location.protocol + '//' + compileURL,$('#shareURL'));
+	//
 	}
 	})
 } /*End openCard fn*/
