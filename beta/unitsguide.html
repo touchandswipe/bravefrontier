@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Zeta Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide Advance (Peta Release) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide - Zeta Release by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Advance - Peta Release by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -1082,6 +1082,7 @@ var evoQuery = [
 ['Light Bulb','icon8041.png'],
 ['Dark Bulb','icon8042.png'],
 ['Miracle Bulb','icon8043.png'],
+['Soul Crystal','iconitem11010.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
@@ -1424,12 +1425,13 @@ var evoQuery = [
 	    /*image accordion*/
 	    $('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
 	    /*Evolutionary Generation*/
-	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
+	    var evoTabHTML='';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
-		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
+		evoTabHTML+='<img src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
+	    /*Assault Spite*/
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
 	  }
