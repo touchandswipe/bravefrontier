@@ -129,7 +129,7 @@ Beta development.
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h5>Data presented is based on <b class="text-danger">Global Server</b> data.</h5>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd></h5>
 
 <!--Search-->
 <div class="input-group" style="margin-bottom:5px;">
@@ -226,7 +226,6 @@ Beta development.
 </div>
 
 <script type="text/javascript">
-countVar=0;
 rawParseObj=[]; /*holder variable in array*/
 
 /*JQ Param handling*/
@@ -281,8 +280,8 @@ function searchIdRun() {
         $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
     } else {
     	for (i in rawParseObj) {
-    	    if ( rawParseObj[i]['id']==sVal) {
-    	        alert("found "+rawParseObj[i].name+" "+rawParseObj[i].bbMaxATK)
+    	    if ( rawParseObj[i].id==sVal) {
+    	        alert("found "+rawParseObj[i].name+" "+rawParseObj[i].bbMaxATK);
     	        break;
     	    }
     	}
