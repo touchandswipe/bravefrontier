@@ -270,7 +270,7 @@ function buildDB(unit) {
         };
       rawParseObj.push(unitObj);
     }); /*Each record*/
-    alert("test first record"+rawParseObj[0].name);
+    alert("test first record"+rawParseObj[100].name+rawParseObj[100].id);
     $('#progressModal').modal('hide');
 }
 
@@ -283,7 +283,7 @@ function searchIdRun() {
     	alert("searching");
     	for (i=0;i<rawParseObj.length;i++) {
     	    if (rawParseObj[i].id==parseInt(sVal)) {
-    	        alert("found "+rawParseObj[i].name+" "+rawParseObj[i].bbMaxATK);
+    	        alert("found ");
     	        break;
     	    }
     	}
