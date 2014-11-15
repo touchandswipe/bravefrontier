@@ -584,6 +584,11 @@ function calc_DMG() {
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
 	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
 	$('#dmgModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMG',
+  		'title': 'Brave Frontier PROs Calculate DMG'
+	});
 }
 
 /*Binds Enter KEY to BOX*/
