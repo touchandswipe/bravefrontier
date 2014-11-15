@@ -488,7 +488,7 @@ function searchIdRun() {
   }
 }
 
-function calc() {
+function calc_DMG() {
 	/*total modifier*/
 	var basemod=1+$("#base_pot option:selected").val()+$("#base_ore option:selected").val()+$("#base_ls option:selected").val()+$("#base_as option:selected").val()+$("#base_buff option:selected").val()+$("#base_sphere option:selected").val();
 	var sparkmod=1.5+$("#spark_ls option:selected").val()+$("#spark_as option:selected").val()+$("#spark_sphere option:selected").val();
@@ -511,6 +511,11 @@ $( "#searchIdBox" ).keypress( function( event ) {
 $(document).on("click", '#searchIdBtn', function(e){
 	e.preventDefault();
 	searchIdRun()
+})
+
+$(document).on("click", '#calcBtn', function(e){
+	e.preventDefault();
+	calc_DMG()
 })
 
 $(document).ready( function(e) {
