@@ -292,8 +292,14 @@ function searchIdRun() {
 /*Binds Enter KEY to BOX*/
 $( "#searchIdBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchIdRun()
+     searchIdRun();
+     alert("run")
   }
+})
+
+$(document).on("click", '#searchIdBtn', function(e){
+	e.preventDefault();
+	searchIdRun()
 })
 
 $(document).ready( function(e) {
