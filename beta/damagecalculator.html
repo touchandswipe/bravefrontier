@@ -141,13 +141,26 @@ Beta development.
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h4></div>
+    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Provide a Unit ID, select modifiers and Calculate.</h4></div>
 </div>
 
 <!--Button-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
 	<button type="button" class="btn btn-success btn-lg" id="calcBtn">Calculate</button>
 </div></div>
+
+<!-- all modifiers panel-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Set your Damage Modifiers</h3>
+  </div>
+  <div class="panel-body">
+<!-- Unit Panel Content -->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+
+</div></div>
+  
+</div></div> <!--End Unit Panel-->
 
 <!-- all modifiers panel-->
 <div class="panel panel-default">
@@ -442,6 +455,7 @@ Beta development.
 
 <script type="text/javascript">
 rawParseObj=[]; /*holder variable in array*/
+selectUnitObj={};
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
@@ -487,7 +501,8 @@ function searchIdRun() {
     } else {
     	for (i=0;i<rawParseObj.length;i++) {
     	    if (rawParseObj[i].id==sVal) {
-		$(rawTable).html('<h4 class="text-success">Found'+JSON.stringify(rawParseObj[i])+'</h4>');
+		selectUnitObj=rawParseObj[i];
+		$(rawTable).html('<h4 class="text-success">Found'+JSON.stringify(selectUnitObj)+'</h4>');
 		idFound=true;
     	        break;
     	    }
