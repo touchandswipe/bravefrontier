@@ -143,6 +143,67 @@ Beta development.
     <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
 </div>
 
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Potion</span>
+			<select class="form-control" id="base_pot">
+				<option value="0.5" selected="selected">50%</option>
+				<option value="0.3">30%</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">@</span>
+			<select class="form-control" id="base_ore">
+				<option value="0.5" selected="selected">Yes</option>
+				<option value="0">No</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">@</span>
+			<select class="form-control" id="base_ls">
+				<option value="0.65" selected="selected">65%</option>
+				<option value="0.5">50%</option>
+				<option value="0.25">25%</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">@</span>
+			<select class="form-control" id="base_as">
+				<option value="0.65" selected="selected">65%</option>
+				<option value="0.5">50%</option>
+				<option value="0.25">25%</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">@</span>
+			<select class="form-control" id="base_buff">
+				<option value="2">200%</option>
+				<option value="1.15" selected="selected">115%</option>
+				<option value="1">100%</option>
+				<option value="0.9">90%</option>
+				<option value="0.8">80%</option>
+				<option value="0.76">76%</option>
+				<option value="0.7">70%</option>
+				<option value="0.7">60%</option>
+				<option value="0.5">50%</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	
+</div><!--END Filters -->
+
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-2"></div>
@@ -251,14 +312,14 @@ function buildDB(unit) {
     	var bbFlatATK=0;
     }
     
-      if (valObj.sbb) {
-        var sbbMaxATK=valObj.sbb.levels[9].effects[0]['bb atk%'];
-        var sbbFlatATK=valObj.sbb.levels[9].effects[0]['bb flat atk'];
-      }
-      else {
-        var sbbMaxATK=0;
-        var sbbFlatATK=0;
-      }
+    if (valObj.sbb) {
+    	var sbbMaxATK=(valObj.sbb.levels[9].effects[0]['bb atk%']) ? valObj.sbb.levels[9].effects[0]['bb atk%'] : 0;
+    	var sbbFlatATK=(valObj.sbb.levels[9].effects[0]['bb flat atk']) ? valObj.sbb.levels[9].effects[0]['bb flat atk'] : 0;
+    } else {
+    	var sbbMaxATK=0;
+    	var sbbFlatATK=0;
+    }
+    
       var unitObj={
         "id":valObj.guide_id,
         "name":valObj.name,
