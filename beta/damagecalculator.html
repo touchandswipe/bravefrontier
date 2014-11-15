@@ -499,10 +499,10 @@ function searchIdRun() {
 
 function calc_DMG() {
 	/*total modifier*/
-	var basemod=1+parseInt($("#base_pot option:selected").val())+parseInt($("#base_ore option:selected").val())+parseInt($("#base_ls option:selected").val())+parseInt($("#base_as option:selected").val())+parseInt($("#base_buff option:selected").val())+parseInt($("#base_sphere option:selected").val());
-	var sparkmod=1.5+parseInt($("#spark_ls option:selected").val())+parseInt($("#spark_as option:selected").val())+parseInt($("#spark_buff option:selected").val())+parseInt($("#spark_sphere option:selected").val());
-	var weakmod=parseInt($("#weak_base option:selected").val())+parseInt($("#weak_ls option:selected").val())+parseInt($("#weak_as option:selected").val());
-	var critmod=1.5+parseInt($("#crit_ls option:selected").val())+parseInt($("#crit_as option:selected").val())+parseInt($("#crit_sphere option:selected").val());
+	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
+	var sparkmod=1.5+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
+	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
+	var critmod=1.5+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
 	/*update mods*/
 	$("#base_totalmod").html(basemod);
 	$("#spark_totalmod").html(sparkmod);
