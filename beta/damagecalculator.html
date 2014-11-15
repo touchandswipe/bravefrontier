@@ -495,10 +495,10 @@ function calc_DMG() {
 	var weakmod=$("#weak_base option:selected").val()+$("#weak_ls option:selected").val()+$("#weak_as option:selected").val();
 	var critmod=$("#crit_ls option:selected").val()+$("#crit_as option:selected").val()+$("#crit_sphere option:selected").val();
 	/*update mods*/
-	$("base_totalmod").html(basemod);
-	$("spark_totalmod").html(sparkmod);
-	$("weak_totalmod").html(weakmod);
-	$("crit_totalmod").html(critmod);
+	$("#base_totalmod").html(basemod);
+	$("#spark_totalmod").html(sparkmod);
+	$("#weak_totalmod").html(weakmod);
+	$("#crit_totalmod").html(critmod);
 }
 
 /*Binds Enter KEY to BOX*/
