@@ -263,30 +263,32 @@ function buildDB(unit) {
         "id":valObj.guide_id,
         "name":valObj.name,
         "rarity":valObj.rarity,
-        "bbMaxATK":bbMaxATK,
-        "bbFlatATK":bbFlatATK,
-        "sbbMaxATK":sbbMaxATK,
-        "sbbFlatATK":sbbFlatATK
+        "bbMaxATK":parseInt(bbMaxATK),
+        "bbFlatATK":parseInt(bbFlatATK),
+        "sbbMaxATK":parseInt(sbbMaxATK),
+        "sbbFlatATK":parseInt(sbbFlatATK)
         };
       rawParseObj.push(unitObj);
     }); /*Each record*/
-    alert("test first record"+rawParseObj[100].name+rawParseObj[100].id);
     $('#progressModal').modal('hide');
 }
 
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
+    var idFound=false;
     if (sVal.length <1) {
         $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
     } else {
-    	alert("searching");
     	for (i=0;i<rawParseObj.length;i++) {
     	    if (rawParseObj[i].id==sVal) {
 		$(rawTable).html('<h3 class="text-success">Found '+rawParseObj[i].name+' '+rawParseObj[i].rarity+'<i class="fa fa-star"></i> BB Max ATK='+rawParseObj[i].bbMaxATK/100+'x '+'</h3>');
+		idFound=true;
     	        break;
     	    }
     	}
+    	if (!idFound)
+    		$(rawTable).html('<h3 class="text-danger">No unit found.</h3>')
   }
 }
 
