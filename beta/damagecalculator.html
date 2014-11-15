@@ -239,9 +239,13 @@ Beta development.
 		<div class="input-group">
 			<span class="input-group-addon">Sphere</span>
 			<select class="form-control" id="base_sphere">
-				<option value="1" selected="selected">100%</option>
-				<option value="0.75">75%</option>
-				<option value="0.5">50%</option>
+				<option value="1" selected="selected">100% Wicked</option>
+				<option value="0.75">75% Amano</option>
+				<option value="0.5">50% Divine</option>
+				<option value="0.3">30% Malice</option>
+				<option value="0.25">25% Legwand</option>
+				<option value="0.2">20% Medulla</option>
+				<option value="0.15">15% Sacred</option>
 				<option value="0">None</option>
 			</select>
 		</div>
@@ -470,15 +474,15 @@ Beta development.
 	      <div class="row">
 	      		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<h3><b>Unit Selected</b></h3>
-				<h2 id="unit_Display"></h2>
+				<h2 id="unit_Display" class="text-success"></h2>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<h3><b>Max BB Damage</b></h3>
-				<h2 id="maxBB_Display">None</h2>
+				<h1 id="maxBB_Display" class="text-danger">None</h1>
 			</div>
 	      		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<h3><b>Max SBB Damage</b></h3>
-				<h2 id="maxSBB_Display">None</h2>
+				<h1 id="maxSBB_Display" class="text-danger">None</h1>
 			</div>
 	      </div>
       </div>
@@ -515,6 +519,7 @@ function buildDB(unit) {
     
       var unitObj={
         "id":valObj.guide_id,
+        "img_id":valObj.id,
         "name":valObj.name,
         "rarity":valObj.rarity,
         "attack":valObj.stats._lord.atk,
@@ -575,9 +580,9 @@ function calc_DMG() {
 	} else
 		var sbb_MaxDMG="None";
 	/*display*/
-	$("#unit_Display").html(selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
-	$("#maxBB_Display").html(bb_MaxDMG);
-	$("#maxSBB_Display").html(sbb_MaxDMG);
+	$("#unit_Display").html('<img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
+	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
+	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
 	$('#dmgModal').modal('show');
 }
 
