@@ -434,17 +434,6 @@ Beta development.
 <script type="text/javascript">
 rawParseObj=[]; /*holder variable in array*/
 
-/*JQ Param handling*/
-function urlParam(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return '';
-    }
-    else{
-       return decodeURIComponent(results[1]) || '';
-    }
-}
-
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*Process for Each Unit*/
@@ -469,7 +458,7 @@ function buildDB(unit) {
         "id":valObj.guide_id,
         "name":valObj.name,
         "rarity":valObj.rarity,
-        "attack":(valObj.stats.lord['atk max']+valObj.stats.breaker['atk min'])/2,
+        "attack":valObj.stats._lord.atk,
         "bbMaxATK":parseInt(bbMaxATK),
         "bbFlatATK":parseInt(bbFlatATK),
         "sbbMaxATK":parseInt(sbbMaxATK),
@@ -497,6 +486,19 @@ function searchIdRun() {
     	if (!idFound)
     		$(rawTable).html('<h4 class="text-danger">No unit found.</h4>')
   }
+}
+
+function calc() {
+	/*total modifier*/
+	var basemod=1+$("#base_pot option:selected").val()+$("#base_ore option:selected").val()+$("#base_ls option:selected").val()+$("#base_as option:selected").val()+$("#base_buff option:selected").val()+$("#base_sphere option:selected").val();
+	var sparkmod=1.5+$("#spark_ls option:selected").val()+$("#spark_as option:selected").val()+$("#spark_sphere option:selected").val();
+	var weakmod=$("#weak_base option:selected").val()+$("#weak_ls option:selected").val()+$("#weak_as option:selected").val();
+	var critmod=$("#crit_ls option:selected").val()+$("#crit_as option:selected").val()+$("#crit_sphere option:selected").val();
+	/*update mods*/
+	$("base_totalmod").html(basemod);
+	$("spark_totalmod").html(sparkmod);
+	$("weak_totalmod").html(weakmod);
+	$("crit_totalmod").html(critmod);
 }
 
 /*Binds Enter KEY to BOX*/
