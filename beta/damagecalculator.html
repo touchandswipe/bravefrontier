@@ -458,6 +458,23 @@ Beta development.
   </div>
 </div>
 
+<!--Show DMG-->
+<div class="modal fade" id="dmgModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Maximum Brave Burst Damage</h4>
+      </div>
+      <div class="modal-body" id="dmgModalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script type="text/javascript">
 rawParseObj=[]; /*holder variable in array*/
 selectUnitObj={};
@@ -524,11 +541,19 @@ function calc_DMG() {
 	var sparkmod=1.5+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
 	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
 	var critmod=1.5+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
+	var unitbaseatk=$("#unit_ATK").val();
+	alert(unitbaseatk);
 	/*update mods*/
 	$("#base_totalmod").html(basemod);
 	$("#spark_totalmod").html(sparkmod);
 	$("#weak_totalmod").html(weakmod);
 	$("#crit_totalmod").html(critmod);
+	/*calculate*/
+	if (selectUnitObj.bbMaxATK!=0) {
+		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
+		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
+		alert(bb_MaxDMG);
+	}
 }
 
 /*Binds Enter KEY to BOX*/
