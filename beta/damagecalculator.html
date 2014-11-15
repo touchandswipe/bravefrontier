@@ -140,13 +140,13 @@ Beta development.
 </div>
 
 <!--Containing Div-->
-<div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Provide a Unit ID, select modifiers and Calculate.</h4></div>
-</div>
-
-<!--Button-->
-<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<button type="button" class="btn btn-success btn-lg" id="calcBtn">Calculate</button>
+<div class="row" id="rawMod"><div class="col-xs-12 col-sm-12 col-md-12">
+	<div class="col-xs-6 col-sm-6 col-md-10">
+    		<div id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Provide a Unit ID, select modifiers and Calculate.</h4></div>
+    	</div>
+    	<div class="col-xs-6 col-sm-6 col-md-2">
+    		<button type="button" class="btn btn-success btn-lg disabled" id="calcBtn">Calculate</button>
+    	</div>
 </div></div>
 
 <!-- all modifiers panel-->
@@ -545,6 +545,7 @@ function searchIdRun() {
 		selectUnitObj=rawParseObj[i];
 		$("#unit_ATK").val(selectUnitObj.attack);
 		$(rawTable).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
+		$("#calcBtn").removeClass("disabled");
 		idFound=true;
     	        break;
     	    }
