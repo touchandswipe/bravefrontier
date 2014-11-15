@@ -467,6 +467,20 @@ Beta development.
         <h4 class="modal-title">Maximum Brave Burst Damage</h4>
       </div>
       <div class="modal-body" id="dmgModalBody">
+	      <div class="row">
+	      		<div class="col-xs-12 col-sm-12 col-md-12">
+				<h3><b>Unit Selected</b></h3>
+				<h2 id="unit_Display"></h2>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<h3><b>Max BB Damage</b></h3>
+				<h2 id="maxBB_Display">None</h2>
+			</div>
+	      		<div class="col-xs-12 col-sm-12 col-md-12">
+				<h3><b>Max SBB Damage</b></h3>
+				<h2 id="maxSBB_Display">None</h2>
+			</div>
+	      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -548,12 +562,22 @@ function calc_DMG() {
 	$("#spark_totalmod").html(sparkmod);
 	$("#weak_totalmod").html(weakmod);
 	$("#crit_totalmod").html(critmod);
-	/*calculate*/
+	/*calculate bb*/
 	if (selectUnitObj.bbMaxATK!=0) {
 		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
 		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
-		alert(bb_MaxDMG);
-	}
+	} else
+		var bb_MaxDMG="None";
+	/*calculate sbb*/
+	if (selectUnitObj.sbbMaxATK!=0) {
+		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+basemod;
+		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
+	} else
+		var sbb_MaxDMG="None";
+	/*display*/
+	$("#unit_Display").html(selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
+	$("#maxBB_Display").html(bb_MaxDMG);
+	$("#maxSBB_Display").html(sbb_MaxDMG);
 }
 
 /*Binds Enter KEY to BOX*/
