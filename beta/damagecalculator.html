@@ -141,7 +141,7 @@ Beta development.
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
+    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h4></div>
 </div>
 
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
@@ -464,6 +464,7 @@ function buildDB(unit) {
         "id":valObj.guide_id,
         "name":valObj.name,
         "rarity":valObj.rarity,
+        "attack":(valObj.stats.breaker['atk max']+valObj.stats.breaker['atk min'])/2,
         "bbMaxATK":parseInt(bbMaxATK),
         "bbFlatATK":parseInt(bbFlatATK),
         "sbbMaxATK":parseInt(sbbMaxATK),
@@ -483,7 +484,7 @@ function searchIdRun() {
     } else {
     	for (i=0;i<rawParseObj.length;i++) {
     	    if (rawParseObj[i].id==sVal) {
-		$(rawTable).html('<h4 class="text-success">Found '+rawParseObj[i].name+' '+rawParseObj[i].rarity+'<i class="fa fa-star"></i> BB Max ATK='+rawParseObj[i].bbMaxATK+' BB Flat ATK'+rawParseObj[i].bbFlatATK+'</h4>');
+		$(rawTable).html('<h4 class="text-success">Found'+JSON.stringify(rawParseObj[i])+'</h4>');
 		idFound=true;
     	        break;
     	    }
