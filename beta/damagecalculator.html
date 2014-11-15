@@ -260,7 +260,7 @@ function buildDB(unit) {
         var sbbFlatATK=0;
       }
       var unitObj={
-        "id":valObj.id,
+        "id":valObj.guide_id,
         "name":valObj.name,
         "rarity":valObj.rarity,
         "bbMaxATK":bbMaxATK,
@@ -282,8 +282,8 @@ function searchIdRun() {
     } else {
     	alert("searching");
     	for (i=0;i<rawParseObj.length;i++) {
-    	    if (rawParseObj[i].id==parseInt(sVal)) {
-    	        alert("found ");
+    	    if (rawParseObj[i].id==sVal) {
+		$(rawTable).html('<h3 class="text-success">Found '+rawParsObj[i].name+' '+rawParsObj[i].rarity+'<i class="fa fa-star"></i> BB Max ATK='+rawParsObj[i].bbMaxATK/100+'x '+'</h3>');
     	        break;
     	    }
     	}
