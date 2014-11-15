@@ -279,7 +279,7 @@ function searchIdRun() {
     if (sVal.length <1) {
         $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
     } else {
-    	for (i in rawParseObj) {
+    	for (i=0;i<rawParseObj.length;i++) {
     	    if ( rawParseObj[i].id==sVal) {
     	        alert("found "+rawParseObj[i].name+" "+rawParseObj[i].bbMaxATK);
     	        break;
