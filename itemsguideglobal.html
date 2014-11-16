@@ -471,6 +471,11 @@ function itemRun(select) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_TypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide GL Type Filter'
+	});
 }
 
 /*spheretype Filter Search*/
@@ -498,6 +503,11 @@ function sphereRun(select) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_SphereFilter',
+  		'title': 'Brave Frontier PROs - Items Guide GL Sphere Filter'
+	});
 }
 
 /*Item effect Search*/
@@ -525,6 +535,11 @@ function skillRun(selectSkill) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_EffectsFilter',
+  		'title': 'Brave Frontier PROs - Items Guide GL Effects Filter'
+	});
 }
 
 /*Search by Name*/
@@ -559,6 +574,11 @@ function searchNameRun() {
 	var state = { stateNameFilter: sVal };
     history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
+    	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_Search',
+  		'title': 'Brave Frontier PROs - Items Guide Search'
+	});
 }
 
 /*Search by Ingredient*/
@@ -593,6 +613,11 @@ function searchIngredientRun() {
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
     }
+    	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_Ingredients',
+  		'title': 'Brave Frontier PROs - Items Guide Ingredients Search'
+	});
 }
 
 /*Binds Enter KEY to BOX*/
