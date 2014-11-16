@@ -222,6 +222,11 @@ barWidth=$('#markerBar').css('width');
     var newWidth=Math.ceil(btnVal*parseInt(barWidth)).toString()+'px';
     $('#markerBar').css('width',newWidth);
     $('#markerBarTall').css('width',newWidth);
+  	/*Google analytics*/
+  	ga('send', 'pageview', {
+    		'page': '/vurl/HP_Marker_Change',
+    		'title': 'Brave Frontier PROs - HP Marker Change HP'
+  	});
   })
 }) /*End DocReady*/
 $(window).load(function() {
