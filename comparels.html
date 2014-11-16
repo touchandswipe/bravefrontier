@@ -261,6 +261,8 @@ $.getJSON( dataChoice, function( unit ) {
 	                        return false; /*breaks loop*/
 	                }
             	})
+            	if (lsFound)
+            		break;
             }
 		if (!lsFound)
 			tArray.push("")
