@@ -237,7 +237,7 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>ID</th><th>Icon</th><th><i class="fa fa-star"></i></th>';
+    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
     exportSTR+='<th style="background-color:#FFCC99;">Normal Max BC Generated</th>';
     exportSTR+='<th style="background-color:#FFCC99;">Max BC / Normal Hit</th>';
     exportSTR+='<th style="background-color:#66FF99;">BB Max BC Generated</th>';
@@ -250,6 +250,7 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
     var tArray=[];
     tArray.push(valObj.guide_id);
     tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+    tArray.push(valObj.name);
     tArray.push(valObj.rarity);
     /*Normal hits*/
     if (valObj[fkeys[0]]) {
