@@ -68,7 +68,7 @@
 <i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
 <h5 class="text-danger"><b>*WARNING*</b> This page can take a while to load depending on your connection speed. Chrome / Safari / Firefox recommended. *Problem fixed for Safari*</h5>
 </div>
-<h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
+<h2>BB / SBB (Lv10) ailments rates comparison / rank</h2>
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -233,7 +233,7 @@ function genTable(dataChoice) {
     	toggle:true
     })
     $.getJSON( dataChoice, function( unit ) {
-    var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
+    var fKeys=['injury%','weaken%','poison%','curse%','paralysis%','sick%'];
     var tData=[];
     
     /*Build Header*/
