@@ -553,6 +553,11 @@ function searchIdRun() {
     	if (!idFound)
     		$(rawTable).html('<h4 class="text-danger">No unit found.</h4>')
   }
+  	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMGSearch',
+  		'title': 'Brave Frontier PROs Calculate DMG - Search'
+	});
 }
 
 function calc_DMG() {
