@@ -282,11 +282,17 @@ $.getJSON( dataChoice, function( unit ) {
             $('#progressModal').modal("hide");
         },
         "columnDefs":[
-            { "targets":[ 0 ],
+            	{ "targets":[ 0 ],
 		       "render": function(unitguide, type, row, full) {
 		            return '<a href="unitsguide.html?unitid='+unitguide+'" target="_showUnit">'+unitguide+'</a>';
 		       }
-		}]
+		},
+		{ "targets": [ 2 ],
+			"render": function (unitname, type, row, full )  {
+				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
+		    	}
+		}
+	]
     });
 })
 }
