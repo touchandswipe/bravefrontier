@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template -->
 <style type="text/css">
+    table.dataTable thead > tr > th {
+	padding-left: 7px;
+    }
     .clear {clear:both;}
     .bd {
         font-weight:bold;
@@ -289,8 +292,8 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
     })
     $('#rawTable').dataTable({
         "data": tData,
-        "pageLength": 50,
-        "lengthMenu": [ 50, 100, 200 ],
+        "pageLength": 25,
+        "lengthMenu": [ 25, 50, 100, 200 ],
         "deferRender": true,
         "scrollX": true,
         "dom": 'lprtip',
