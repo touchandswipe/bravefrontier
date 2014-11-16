@@ -262,13 +262,13 @@ $.getJSON( dataChoice, function( unit ) {
 	                }
             	})
             }
-	if (!lsFound)
-		tArray.push("")
-	else
-            tArray.push("")
+		if (!lsFound)
+			tArray.push("")
+		else
+	            tArray.push("")
+    	}
+    	tData.push(tArray);
     }
-    //$("#rawTable tbody").append(exportSTR+'<tr>');
-    tData.push(tArray);
     })
     $('#rawTable').dataTable({
         "data": tData,
