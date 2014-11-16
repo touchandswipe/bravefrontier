@@ -147,6 +147,11 @@ var outputArray=[];
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
+/*Google analytics*/
+ga('send', 'pageview', {
+	'page': '/vurl/unitsguideliteSearch',
+ 	'title': 'Brave Frontier PROs - Units Guide Lite Search'
+});
 }
 
 /*Bootstrap alerts*/
