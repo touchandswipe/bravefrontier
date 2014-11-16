@@ -258,7 +258,7 @@ $.getJSON( dataChoice, function( unit ) {
 	                if (lsKey==fKeys[i]) {
 	                        tArray.push(lsVal);
 	                        lsFound=true;
-	                        break;
+	                        return false; /*breaks loop*/
 	                }
             	})
             }
