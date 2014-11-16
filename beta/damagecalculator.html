@@ -137,7 +137,7 @@
 
 <!--Containing Div-->
 <div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<button type="button" class="btn btn-success btn-lg disabled" id="calcBtn">Calculate</button> <div id="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
 </div></div>
 
 <!-- all modifiers panel-->
@@ -173,6 +173,7 @@
 			<select class="form-control" id="base_pot">
 				<option value="0.5" selected="selected">50%</option>
 				<option value="0.3">30%</option>
+				<option value="0">None</option>
 			</select>
 		</div>
 	</div>
@@ -187,7 +188,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">LS</span>
+			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="base_ls">
 				<option value="0.65">65%</option>
 				<option value="0.5">50%</option>
@@ -198,7 +199,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">AS</span>
+			<span class="input-group-addon">Ally</span>
 			<select class="form-control" id="base_as">
 				<option value="0.65">65%</option>
 				<option value="0.5">50%</option>
@@ -248,7 +249,7 @@
 	<h4>SPARK Damage Modifiers <span id="spark_totalmod"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">LS</span>
+			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="spark_ls">
 				<option value="0.75">75% Hogar</option>
 				<option value="0.5">50% Leorone</option>
@@ -259,7 +260,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">AS</span>
+			<span class="input-group-addon">Ally</span>
 			<select class="form-control" id="spark_as">
 				<option value="0.75">75% Hogar</option>
 				<option value="0.5">50% Leorone</option>
@@ -307,7 +308,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">LS</span>
+			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="weak_ls">
 				<option value="1.25">125% Mare</option>
 				<option value="1">100% Maxwell</option>
@@ -319,7 +320,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">AS</span>
+			<span class="input-group-addon">Ally</span>
 			<select class="form-control" id="weak_as">
 				<option value="1.25">125% Mare</option>
 				<option value="1">100% Maxwell</option>
@@ -336,7 +337,7 @@
 	<h4>CRIT Damage Modifiers <span id="crit_totalmod"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">LS</span>
+			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="crit_ls">
 				<option value="1.5">150% Zebra</option>
 				<option value="1.25">125% Maxwell</option>
@@ -348,7 +349,7 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
-			<span class="input-group-addon">AS</span>
+			<span class="input-group-addon">Ally</span>
 			<select class="form-control" id="crit_as">
 				<option value="1.5">150% Zebra</option>
 				<option value="1.25">125% Maxwell</option>
@@ -370,6 +371,12 @@
 </div></div><!--END CRIT -->
 </div>
 </div> <!--End Panel-->
+
+<!--Containing Div-->
+<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
+</div></div>
+
 <span class="text-info">
 <h4>Assumptions:</h4>
 <ul>
@@ -537,21 +544,35 @@ function searchIdRun() {
     var sVal=$('#searchIdBox').val();
     var idFound=false;
     if (sVal.length <1) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+    	$('.rawTable').each( function() {
+		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+	});
     } else {
     	for (i=0;i<rawParseObj.length;i++) {
     	    if (rawParseObj[i].id==sVal) {
 		selectUnitObj=rawParseObj[i];
 		$("#unit_ATK").val(selectUnitObj.attack);
-		$(rawTable).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
-		$("#calcBtn").removeClass("disabled");
+		$('.rawTable').each( function() {
+			$(this).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
+		});
+		$('.calcBtn').each( function() {
+			$(this).removeClass("disabled");
+		});
 		idFound=true;
     	        break;
     	    }
     	}
-    	if (!idFound)
-    		$(rawTable).html('<h4 class="text-danger">No unit found.</h4>')
+    	if (!idFound) {
+    		$('.rawTable').each( function() {
+			$(this).html('<h4 class="text-danger">No unit found.</h4>')
+		});
+    	}
   }
+  	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMGSearch',
+  		'title': 'Brave Frontier PROs Calculate DMG - Search'
+	});
 }
 
 function calc_DMG() {
@@ -571,18 +592,23 @@ function calc_DMG() {
 		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
 		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
 	} else
-		var bb_MaxDMG="None";
+		var bb_MaxDMG=0;
 	/*calculate sbb*/
 	if (selectUnitObj.sbbMaxATK!=0) {
 		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+basemod;
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
-		var sbb_MaxDMG="None";
+		var sbb_MaxDMG=0;
 	/*display*/
 	$("#unit_Display").html('<img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
 	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
 	$('#dmgModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMG',
+  		'title': 'Brave Frontier PROs Calculate DMG'
+	});
 }
 
 /*Binds Enter KEY to BOX*/
@@ -597,7 +623,7 @@ $(document).on("click", '#searchIdBtn', function(e){
 	searchIdRun()
 })
 
-$(document).on("click", '#calcBtn', function(e){
+$(document).on("click", '.calcBtn', function(e){
 	e.preventDefault();
 	calc_DMG()
 })
