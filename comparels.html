@@ -264,11 +264,10 @@ $.getJSON( dataChoice, function( unit ) {
             }
 		if (!lsFound)
 			tArray.push("")
-		else
-	            tArray.push("")
-    	}
-    	tData.push(tArray);
+        } else
+		tArray.push("")
     }
+	tData.push(tArray);
     })
     $('#rawTable').dataTable({
         "data": tData,
