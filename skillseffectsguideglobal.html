@@ -541,6 +541,11 @@ function rarityRun(select) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_RarityFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide GL Rarity Filter'
+	});
 }
 
 /*Skill Filter Search*/
@@ -564,6 +569,11 @@ function lsRun(selectSkill) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_LSFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide GL LS Filter'
+	});
 }
 
 /*Skill SBB Filter Search*/
@@ -587,6 +597,11 @@ function skillRun2(selectSkill) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_SBBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide GL SBB Filter'
+	});
 }
 
 /*Skill BB Filter Search*/
@@ -610,6 +625,11 @@ function skillRun(selectSkill) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_BBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide GL BB Filter'
+	});
 }
 
 /*Search by Unit ID*/
@@ -632,6 +652,11 @@ function searchIdRun() {
 	var state = { stateIdFilter: sVal };
     history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
     }
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_Search_ID',
+  		'title': 'Brave Frontier PROs - Skills Guide GL Search ID'
+	});
 }
 
 /*Search by Unit Name*/
@@ -662,6 +687,11 @@ function searchNameRun() {
 	var state = { stateNameFilter: sVal };
     history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
+    	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguideGL_Search_Name',
+  		'title': 'Brave Frontier PROs - Skills Guide GL Search Name'
+	});
 }
 
 /*Binds Enter KEY to BOX*/
