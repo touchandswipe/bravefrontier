@@ -258,16 +258,14 @@ $.getJSON( dataChoice, function( unit ) {
 	                if (lsKey==fKeys[i]) {
 	                        tArray.push(lsVal);
 	                        lsFound=true;
+	                        break;
 	                }
             	})
             }
-
-            if (!lsFound) {
-                tArray.push("");
-            }
-        } else {
-            tArray.push("");
-        }
+	if (!lsFound)
+		tArray.push("")
+	else
+            tArray.push("")
     }
     //$("#rawTable tbody").append(exportSTR+'<tr>');
     tData.push(tArray);
