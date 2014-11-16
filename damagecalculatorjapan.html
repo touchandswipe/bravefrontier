@@ -553,6 +553,11 @@ function searchIdRun() {
     	if (!idFound)
     		$(rawTable).html('<h4 class="text-danger">No unit found.</h4>')
   }
+  	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMGSearch_JP',
+  		'title': 'Brave Frontier PROs Calculate DMG Search - JP'
+	});
 }
 
 function calc_DMG() {
@@ -586,8 +591,8 @@ function calc_DMG() {
 	$('#dmgModal').modal('show');
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/calculateDMG',
-  		'title': 'Brave Frontier PROs Calculate DMG'
+  		'page': '/vurl/calculateDMG_JP',
+  		'title': 'Brave Frontier PROs Calculate DMG - JP'
 	});
 }
 
