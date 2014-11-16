@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Brave Burst Damage Calculator Japan - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Brave Burst Damage Calculator Japan - by Brave Frontier PROs</title>
@@ -577,13 +576,13 @@ function calc_DMG() {
 		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
 		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
 	} else
-		var bb_MaxDMG="None";
+		var bb_MaxDMG=0;
 	/*calculate sbb*/
 	if (selectUnitObj.sbbMaxATK!=0) {
 		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+basemod;
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
-		var sbb_MaxDMG="None";
+		var sbb_MaxDMG=0;
 	/*display*/
 	$("#unit_Display").html('<img src="http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
