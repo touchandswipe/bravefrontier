@@ -246,8 +246,8 @@ function genTable(dataChoice) {
     $.each( unit, function( unitKey, valObj ) {
     var tArray=[];
     tArray.push(valObj.guide_id);
-    tArray.push(valObj.name);
     tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+    tArray.push(valObj.name);
     tArray.push(valObj.rarity);
     /*Check values*/
     for (i in fKeys) {
