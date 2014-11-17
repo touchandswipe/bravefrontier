@@ -14,7 +14,7 @@
 
     <!-- Custom styles for this template -->
 <style type="text/css">
-    .unitBox {margin-bottom:10px;}
+    .unitBox {margin-bottom:5px;}
     .clear {clear:both;}
     .input-group {margin-bottom:5px;}
 </style>
@@ -549,7 +549,7 @@ function searchIdRun() {
     	if (foundArray.length!=0) {
     		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><b>Found '+foundArray.length+' units. Select unit to calculate.</b></h4></div>';
 	    	for (i in foundArray) {
-			foundHTML+='<div class="col-xs-6 col-sm-6 col-md-3" class="unitBox"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
+			foundHTML+='<div class="col-xs-6 col-sm-6 col-md-3 unitBox"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
 	    	}
 	    	$('#sResults').html(foundHTML);
     	} else
