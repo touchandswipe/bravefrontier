@@ -511,6 +511,7 @@
 <script type="text/javascript">
 rawParseObj=[]; /*holder variable in array*/
 selectUnitObj={};
+foundArray=[];
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
@@ -551,9 +552,9 @@ function buildDB(unit) {
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
-    var foundArray=[];
     var foundHTML="";
     var idFound=false;
+    foundArray=[]; /*Resets Global Array*/
     if (sVal.length < 2) {
     	$('.rawTable').each( function() {
 		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
@@ -564,17 +565,24 @@ function searchIdRun() {
 		foundArray.push(rawParseObj[i]);
     	}
     	if (foundArray.length!=0) {
-    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4>Found '+foundArray.length+' units. Select unit to calculate.</div>';
+    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success">Found '+foundArray.length+' units. Select unit to calculate.</h4></div>';
 	    	for (i in foundArray) {
-			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="40"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</div>';
+			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="40"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
 	    	}
-    	}
+	    	$('#sResults').html(foundHTML);
+    	} else
+    		$('#sResults').html('<h4 class="text-danger">No results found</h4>');
   }
   	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/calculateDMGSearch',
   		'title': 'Brave Frontier PROs Calculate DMG - Search'
 	});
+}
+
+/*Select units to calculate*/
+function selectSearchUnits() {
+	
 }
 
 function calc_DMG() {
@@ -623,6 +631,12 @@ $( "#searchIdBox" ).keypress( function( event ) {
 $(document).on("click", '#searchIdBtn', function(e){
 	e.preventDefault();
 	searchIdRun()
+})
+
+$(document).on("click", '.searchLinks', function(e){
+	e.preventDefault();
+	var thisLink=$(this).attr("value");
+	alert(thisLink);
 })
 
 $(document).on("click", '.calcBtn', function(e){
