@@ -578,7 +578,6 @@ function calc_DMG() {
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var sbb_MaxDMG=0;
-	/*display*/
 	$("#unit_Display").html('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
 	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
