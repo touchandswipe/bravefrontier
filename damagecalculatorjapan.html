@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="description" content="Brave Frontier - Brave Burst Damage Calculator Japan v2 - A community effort by Brave Frontier PROs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Brave Burst Damage Calculator Japan v2 - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+<style type="text/css">
+    .clear {clear:both;}
+    .input-group {margin-bottom:5px;}
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
+                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
+                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container-fluid">
+<div style="min-height:55px;"></div>
+
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<h1>Brave Frontier Brave Burst Damage Calculator - Japan (日本) Server</h1>
+<h5>Data presented is based on <b class="text-danger">Japan (日本) Server</b> data. <b>Last Updated: </b><kbd id="lastModDate">TBD</kbd></h5>
+
+<!--Search-->
+<div class="input-group input-group-lg" style="margin-bottom:5px;">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
+        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+</div>
+
+<!--Containing Div-->
+<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
+</div></div>
+
+<!-- all modifiers panel-->
+<div class="panel panel-default panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><b>Unit Modifiers</b></h3>
+  </div>
+  <div class="panel-body">
+<!-- Unit Panel Content -->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>By default, LORD type ATK is loaded w/o pimping. Modify to suit your unit.</h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Unit ATK</span>
+	  		<input type="text" id="unit_ATK" class="form-control" placeholder="Select a unit above">
+		</div>
+	</div>
+</div></div>
+</div></div> <!--End Unit Panel-->
+
+<!-- all modifiers panel-->
+<div class="panel panel-default panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><b>Set your Damage Modifiers</b></h3>
+  </div>
+  <div class="panel-body">
+<!-- Content in Panel starting w/ base mods -->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>Base DMG Modifiers <span id="base_totalmod"></span></h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Potion</span>
+			<select class="form-control" id="base_pot">
+				<option value="0.5" selected="selected">50%</option>
+				<option value="0.3">30%</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Ore</span>
+			<select class="form-control" id="base_ore">
+				<option value="0.5" selected="selected">Yes</option>
+				<option value="0">No</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Leader</span>
+			<select class="form-control" id="base_ls">
+				<option value="0.65">65%</option>
+				<option value="0.5">50%</option>
+				<option value="0.25">25%</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Ally</span>
+			<select class="form-control" id="base_as">
+				<option value="0.65">65%</option>
+				<option value="0.5">50%</option>
+				<option value="0.25">25%</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Buff</span>
+			<select class="form-control" id="base_buff">
+				<option value="2">200% Farlon</option>
+				<option value="1.15" selected="selected">115% Mich</option>
+				<option value="1">100% Kuda</option>
+				<option value="0.9">90% Ciara</option>
+				<option value="0.8">80%</option>
+				<option value="0.76">76%</option>
+				<option value="0.7">70%</option>
+				<option value="0.6">60%</option>
+				<option value="0.5">50%</option>
+				<option value="0.4">40%</option>
+				<option value="0.3">30%</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Sphere</span>
+			<select class="form-control" id="base_sphere">
+				<option value="1" selected="selected">100% Wicked</option>
+				<option value="0.75">75% Amano</option>
+				<option value="0.5">50% Divine</option>
+				<option value="0.3">30% Malice</option>
+				<option value="0.25">25% Legwand</option>
+				<option value="0.2">20% Medulla</option>
+				<option value="0.15">15% Sacred</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+</div></div><!--END Base -->
+
+<!--Spark-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>SPARK Damage Modifiers <span id="spark_totalmod"></span></h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Leader</span>
+			<select class="form-control" id="spark_ls">
+				<option value="0.75">75% Hogar</option>
+				<option value="0.5">50% Leorone</option>
+				<option value="0.3">30% Others</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Ally</span>
+			<select class="form-control" id="spark_as">
+				<option value="0.75">75% Hogar</option>
+				<option value="0.5">50% Leorone</option>
+				<option value="0.3">30% Others</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Buff</span>
+			<select class="form-control" id="spark_buff">
+				<option value="0.7" selected="selected">70% Elza</option>
+				<option value="0.5">50% Luther</option>
+				<option value="0.4">40% Others</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Sphere</span>
+			<select class="form-control" id="spark_sphere">
+				<option value="1.5">150% Dual Sphere</option>
+				<option value="1">100% Heavenly.B</option>
+				<option value="0.5">50% Steeple</option>
+				<option value="0.25">25% Royal.B</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+</div></div><!--END Spark -->
+
+<!--Elemental-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>Elemental Weakness Damage Modifiers <span id="weak_totalmod"></span></h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Counter Element?</span>
+			<select class="form-control" id="weak_base">
+				<option value="1.5" selected="selected">Yes</option>
+				<option value="1">No</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Leader</span>
+			<select class="form-control" id="weak_ls">
+				<option value="1.25">125% Mare</option>
+				<option value="1">100% Maxwell</option>
+				<option value="0.75">75% Ciara</option>
+				<option value="0.25">25% Others</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Ally</span>
+			<select class="form-control" id="weak_as">
+				<option value="1.25">125% Mare</option>
+				<option value="1">100% Maxwell</option>
+				<option value="0.75">75% Ciara</option>
+				<option value="0.25">25% Others</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+</div></div><!--END Elemental Weakness -->
+
+<!--CRIT-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>CRIT Damage Modifiers <span id="crit_totalmod"></span></h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Leader</span>
+			<select class="form-control" id="crit_ls">
+				<option value="1.5">150% Zebra</option>
+				<option value="1.25">125% Maxwell</option>
+				<option value="1">100% Mariudeth</option>
+				<option value="0.5">50% Vishra</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Ally</span>
+			<select class="form-control" id="crit_as">
+				<option value="1.5">150% Zebra</option>
+				<option value="1.25">125% Maxwell</option>
+				<option value="1">100% Mariudeth</option>
+				<option value="0.5">50% Vishra</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Sphere</span>
+			<select class="form-control" id="crit_sphere">
+				<option value="2">200% Geldnite</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+</div></div><!--END CRIT -->
+</div>
+</div> <!--End Panel-->
+
+<!--Formula display-->
+<div class="alert alert-warning" role="alert">
+	<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+		<h3><b>Formula used</b>: <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
+	</div></div>
+	
+	<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>Assumptions:</h4>
+	<ul>
+		<li>Ignore armor effect is always on.</li>
+		<li>All hits are sparks.</li>
+		<li>Damage is critical.</li>
+	</ul>
+	</div></div>
+</div> <!--End bg-info-->
+
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-2"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-2');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0 auto;">
+    <script type="text/javascript">
+        var disqus_shortname = 'bravefrontierpros';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+</div> <!-- /container -->
+
+<!-- Modal for Progress-->
+<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Summoning units</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5>(Note: This can take a while depending on connection speed ...)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Show DMG-->
+<div class="modal fade" id="dmgModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Maximum Brave Burst Damage</h4>
+      </div>
+      <div class="modal-body" id="dmgModalBody">
+	      <div class="row">
+	      		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+				<h3><b>Unit Selected</b></h3>
+				<h2 id="unit_Display" class="text-success"></h2>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+				<h3><b>Max BB Damage</b></h3>
+				<h1 id="maxBB_Display" class="text-danger">None</h1>
+			</div>
+	      		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+				<h3><b>Max SBB Damage</b></h3>
+				<h1 id="maxSBB_Display" class="text-danger">None</h1>
+			</div>
+	      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+rawParseObj=[]; /*holder variable in array*/
+selectUnitObj={};
+
+/*Build DATABASE IN MEMORY*/
+function buildDB(unit) {
+    /*Process for Each Unit*/
+    $.each( unit, function( unitKey, valObj ) {
+    if (valObj.bb) {
+    	var bbMaxATK=(valObj.bb.levels[9].effects[0]['bb atk%']) ? valObj.bb.levels[9].effects[0]['bb atk%'] : 0;
+    	var bbFlatATK=(valObj.bb.levels[9].effects[0]['bb flat atk']) ? valObj.bb.levels[9].effects[0]['bb flat atk'] : 0;
+    } else {
+    	var bbMaxATK=0;
+    	var bbFlatATK=0;
+    }
+    
+    if (valObj.sbb) {
+    	var sbbMaxATK=(valObj.sbb.levels[9].effects[0]['bb atk%']) ? valObj.sbb.levels[9].effects[0]['bb atk%'] : 0;
+    	var sbbFlatATK=(valObj.sbb.levels[9].effects[0]['bb flat atk']) ? valObj.sbb.levels[9].effects[0]['bb flat atk'] : 0;
+    } else {
+    	var sbbMaxATK=0;
+    	var sbbFlatATK=0;
+    }
+    
+      var unitObj={
+        "id":valObj.guide_id,
+        "img_id":valObj.id,
+        "name":valObj.name,
+        "rarity":valObj.rarity,
+        "attack":valObj.stats._lord.atk,
+        "bbMaxATK":parseInt(bbMaxATK),
+        "bbFlatATK":parseInt(bbFlatATK),
+        "sbbMaxATK":parseInt(sbbMaxATK),
+        "sbbFlatATK":parseInt(sbbFlatATK)
+        };
+      rawParseObj.push(unitObj);
+    }); /*Each record*/
+    $('#progressModal').modal('hide');
+}
+
+/*Search by Unit ID*/
+function searchIdRun() {
+    var sVal=$('#searchIdBox').val();
+    var idFound=false;
+    if (sVal.length <1) {
+    	$('.rawTable').each( function() {
+		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+	});
+    } else {
+    	for (i=0;i<rawParseObj.length;i++) {
+    	    if (rawParseObj[i].id==sVal) {
+		selectUnitObj=rawParseObj[i];
+		$("#unit_ATK").val(selectUnitObj.attack);
+		$('.rawTable').each( function() {
+			$(this).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
+		});
+		$('.calcBtn').each( function() {
+			$(this).removeClass("disabled");
+		});
+		idFound=true;
+    	        break;
+    	    }
+    	}
+    	if (!idFound) {
+    		$('.rawTable').each( function() {
+			$(this).html('<h4 class="text-danger">No unit found.</h4>')
+		});
+    	}
+  }
+  	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMGSearch_JP',
+  		'title': 'Brave Frontier PROs Calculate DMG Search - JP'
+	});
+}
+
+function calc_DMG() {
+	/*total modifier*/
+	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
+	var sparkmod=1.5+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
+	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
+	var critmod=1.5+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
+	var unitbaseatk=$("#unit_ATK").val();
+	/*update mods*/
+	$("#base_totalmod").html(basemod+"x");
+	$("#spark_totalmod").html(sparkmod+"x");
+	$("#weak_totalmod").html(weakmod+"x");
+	$("#crit_totalmod").html(critmod+"x");
+	/*calculate bb*/
+	if (selectUnitObj.bbMaxATK!=0) {
+		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
+		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
+	} else
+		var bb_MaxDMG=0;
+	/*calculate sbb*/
+	if (selectUnitObj.sbbMaxATK!=0) {
+		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+basemod;
+		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
+	} else
+		var sbb_MaxDMG=0;
+	$("#unit_Display").html('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
+	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
+	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
+	$('#dmgModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/calculateDMG_JP',
+  		'title': 'Brave Frontier PROs Calculate DMG - JP'
+	});
+}
+
+/*Binds Enter KEY to BOX*/
+$( "#searchIdBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchIdRun()
+  }
+})
+
+$(document).on("click", '#searchIdBtn', function(e){
+	e.preventDefault();
+	searchIdRun()
+})
+
+$(document).on("click", '.calcBtn', function(e){
+	e.preventDefault();
+	calc_DMG()
+})
+
+$(document).ready( function(e) {
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: "//touchandswipe.github.io/bravefrontier_data/jp/info.json",
+        success: function(data, textStatus, request) {
+      		lastModified = request.getResponseHeader("Last-Modified");
+      		$(lastModDate).text(lastModified);
+      		buildDB(data);
+ 	      }
+    })
+})
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--Chatroom-->
+<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
