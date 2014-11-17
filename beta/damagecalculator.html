@@ -132,12 +132,21 @@
 <div class="input-group input-group-lg" style="margin-bottom:5px;">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
-        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+        <input type="search" placeholder="e.g. Elza or Luther" class="form-control" id="searchIdBox">
 </div>
+
+<!--Results Div Only Global-->
+<div class="row" style="margin-bottom:10px;"><div class="col-xs-12 col-sm-12 col-md-12" id="sResults">
+</div></div>
 
 <!--Containing Div-->
 <div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
 	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
+</div></div>
+
+<!--Formula display-->
+<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h3><b>Formula used</b> = <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
 </div></div>
 
 <!-- all modifiers panel-->
@@ -542,30 +551,23 @@ function buildDB(unit) {
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
+    var foundArray=[];
+    var foundHTML="";
     var idFound=false;
-    if (sVal.length <1) {
+    if (sVal.length < 2) {
     	$('.rawTable').each( function() {
-		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
 	});
     } else {
-    	for (i=0;i<rawParseObj.length;i++) {
-    	    if (rawParseObj[i].id==sVal) {
-		selectUnitObj=rawParseObj[i];
-		$("#unit_ATK").val(selectUnitObj.attack);
-		$('.rawTable').each( function() {
-			$(this).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
-		});
-		$('.calcBtn').each( function() {
-			$(this).removeClass("disabled");
-		});
-		idFound=true;
-    	        break;
-    	    }
+    	for (i in rawParseObj) {
+    	    if (rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
+		foundArray.push(rawParseObj[i]);
     	}
-    	if (!idFound) {
-    		$('.rawTable').each( function() {
-			$(this).html('<h4 class="text-danger">No unit found.</h4>')
-		});
+    	if (foundArray.length!=0) {
+    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4>Found '+foundArray.length+' units. Select unit to calculate.</div>';
+	    	for (i in foundArray) {
+			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="40"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</div>';
+	    	}
     	}
   }
   	/*Google analytics*/
