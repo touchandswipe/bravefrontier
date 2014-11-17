@@ -141,7 +141,7 @@
 
 <!--Containing Div-->
 <div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:10px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
 </div></div>
 
 <!--Formula display-->
@@ -565,9 +565,9 @@ function searchIdRun() {
 		foundArray.push(rawParseObj[i]);
     	}
     	if (foundArray.length!=0) {
-    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success">Found '+foundArray.length+' units. Select unit to calculate.</h4></div>';
+    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><b>Found '+foundArray.length+' units. Select unit to calculate.</b></h4></div>';
 	    	for (i in foundArray) {
-			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="40"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
+			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
 	    	}
 	    	$('#sResults').html(foundHTML);
     	} else
@@ -634,7 +634,7 @@ $(document).on("click", '.searchLinks', function(e){
 	selectUnitObj=foundArray[thisLink];
 	$("#unit_ATK").val(selectUnitObj.attack);
 	$('.rawTable').each( function() {
-		$(this).html('<h4><b>Chosen Unit:</b> <img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
+		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
 	});
 	$('.calcBtn').each( function() {
 		$(this).removeClass("disabled");
