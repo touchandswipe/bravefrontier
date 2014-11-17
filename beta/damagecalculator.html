@@ -144,11 +144,6 @@
 	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:10px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
 </div></div>
 
-<!--Formula display-->
-<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h3><b>Formula used</b> = <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
-</div></div>
-
 <!-- all modifiers panel-->
 <div class="panel panel-default panel-info">
   <div class="panel-heading">
@@ -386,14 +381,23 @@
 	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
 </div></div>
 
-<span class="text-info">
-<h4>Assumptions:</h4>
-<ul>
-	<li>Ignore armor effect is always on.</li>
-	<li>All hits are sparks.</li>
-	<li>Damage is critical.</li>
-</ul>
-</span>
+<!--Formula display-->
+<div class="bg-info">
+	<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
+		<h3><b>Formula used</b> = <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
+	</div></div>
+	
+	<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
+	<span class="text-info">
+	<h4>Assumptions:</h4>
+	<ul>
+		<li>Ignore armor effect is always on.</li>
+		<li>All hits are sparks.</li>
+		<li>Damage is critical.</li>
+	</ul>
+	</span>
+	</div></div>
+</div> <!--End bg-info-->
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -567,7 +571,7 @@ function searchIdRun() {
     	if (foundArray.length!=0) {
     		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><b>Found '+foundArray.length+' units. Select unit to calculate.</b></h4></div>';
 	    	for (i in foundArray) {
-			foundHTML+='<div class="col-xs-4 col-sm-4 col-md-3"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
+			foundHTML+='<div class="col-xs-6 col-sm-6 col-md-3"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
 	    	}
 	    	$('#sResults').html(foundHTML);
     	} else
