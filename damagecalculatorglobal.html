@@ -14,29 +14,9 @@
 
     <!-- Custom styles for this template -->
 <style type="text/css">
+    .unitBox {margin-bottom:5px;}
     .clear {clear:both;}
     .input-group {margin-bottom:5px;}
-    .bd {
-        font-weight:bold;
-        background:#EEEEEE;
-        text-transform:uppercase;
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .bi {
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .upper {
-        text-transform:uppercase;
-    }
-    .equal, .equal > div[class*='col-'] {  
-    display: -webkit-flex;
-    display: flex;
-    flex:1 1 auto;
-    }
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -131,22 +111,21 @@
 <!--Search-->
 <div class="input-group input-group-lg" style="margin-bottom:5px;">
         <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
-        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+        <button class="btn btn-primary" type="button" id="searchIdBtn">Search unit name</button></span>
+        <input type="search" placeholder="e.g. Elza or Luther" class="form-control" id="searchIdBox">
 </div>
+
+<!--Results Div Only Global-->
+<div class="row" style="margin-bottom:10px;"><div class="col-xs-12 col-sm-12 col-md-12" id="sResults">
+</div></div>
 
 <!--Containing Div-->
 <div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
-</div></div>
-
-<!--Formula display-->
-<div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h3><b>Formula used</b> = <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:10px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
 </div></div>
 
 <!-- all modifiers panel-->
-<div class="panel panel-default panel-info">
+<div class="panel panel-default panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><b>Unit Modifiers</b></h3>
   </div>
@@ -164,7 +143,7 @@
 </div></div> <!--End Unit Panel-->
 
 <!-- all modifiers panel-->
-<div class="panel panel-default panel-warning">
+<div class="panel panel-default panel-info">
   <div class="panel-heading">
     <h3 class="panel-title"><b>Set your Damage Modifiers</b></h3>
   </div>
@@ -379,17 +358,24 @@
 
 <!--Containing Div-->
 <div class="row" style="margin-bottom:25px;"><div class="col-xs-12 col-sm-12 col-md-12">
-	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Find a unit above.</h4></div>
+	<button type="button" class="btn btn-success btn-lg disabled calcBtn">Calculate</button> <div class="rawTable" style="margin-left:20px;display:inline-block;"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> TO BEGIN: Search for unit name and select from results.</h4></div>
 </div></div>
 
-<span class="text-info">
-<h4>Assumptions:</h4>
-<ul>
-	<li>Ignore armor effect is always on.</li>
-	<li>All hits are sparks.</li>
-	<li>Damage is critical.</li>
-</ul>
-</span>
+<!--Formula display-->
+<div class="alert alert-warning" role="alert">
+	<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+		<h3><b>Formula used</b>: <span class="text-success">{</span> <span class="text-danger">[</span> <span class="text-primary">(Unit ATK+Pimp)</span> x <span class="text-primary">(1+BaseMod+BBATK%)</span> <span class="text-danger">]</span>+FlatATK <span class="text-success">}</span> x <span class="text-primary">(1.5+SparkMod)</span> x <span class="text-primary">(1.5+EleMod)</span> x <span class="text-primary">(1.5+CritMod)</span></h3>
+	</div></div>
+	
+	<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>Assumptions:</h4>
+	<ul>
+		<li>Ignore armor effect is always on.</li>
+		<li>All hits are sparks.</li>
+		<li>Damage is critical.</li>
+	</ul>
+	</div></div>
+</div> <!--End bg-info-->
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -507,6 +493,7 @@
 <script type="text/javascript">
 rawParseObj=[]; /*holder variable in array*/
 selectUnitObj={};
+foundArray=[];
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
@@ -547,31 +534,26 @@ function buildDB(unit) {
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
+    var foundHTML="";
     var idFound=false;
-    if (sVal.length <1) {
+    foundArray=[]; /*Resets Global Array*/
+    if (sVal.length < 2) {
     	$('.rawTable').each( function() {
-		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+		$(this).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
 	});
     } else {
-    	for (i=0;i<rawParseObj.length;i++) {
-    	    if (rawParseObj[i].id==sVal) {
-		selectUnitObj=rawParseObj[i];
-		$("#unit_ATK").val(selectUnitObj.attack);
-		$('.rawTable').each( function() {
-			$(this).html('<h4><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
-		});
-		$('.calcBtn').each( function() {
-			$(this).removeClass("disabled");
-		});
-		idFound=true;
-    	        break;
-    	    }
+    	for (i in rawParseObj) {
+    	    if (rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
+		foundArray.push(rawParseObj[i]);
     	}
-    	if (!idFound) {
-    		$('.rawTable').each( function() {
-			$(this).html('<h4 class="text-danger">No unit found.</h4>')
-		});
-    	}
+    	if (foundArray.length!=0) {
+    		foundHTML+='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><b>Found '+foundArray.length+' units. Select unit to calculate.</b></h4></div>';
+	    	for (i in foundArray) {
+			foundHTML+='<div class="col-xs-6 col-sm-6 col-md-3 unitBox"><a href="#" class="searchLinks" value="'+i+'"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+foundArray[i].img_id+'.png" width="30"/> '+foundArray[i].name+' ('+foundArray[i].rarity+'<i class="fa fa-star"></i>)</a></div>';
+	    	}
+	    	$('#sResults').html(foundHTML);
+    	} else
+    		$('#sResults').html('<h4 class="text-danger">No results found</h4>');
   }
   	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -626,6 +608,19 @@ $( "#searchIdBox" ).keypress( function( event ) {
 $(document).on("click", '#searchIdBtn', function(e){
 	e.preventDefault();
 	searchIdRun()
+})
+
+$(document).on("click", '.searchLinks', function(e){
+	e.preventDefault();
+	var thisLink=$(this).attr("value");
+	selectUnitObj=foundArray[thisLink];
+	$("#unit_ATK").val(selectUnitObj.attack);
+	$('.rawTable').each( function() {
+		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
+	});
+	$('.calcBtn').each( function() {
+		$(this).removeClass("disabled");
+	})
 })
 
 $(document).on("click", '.calcBtn', function(e){
