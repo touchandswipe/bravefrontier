@@ -330,6 +330,15 @@
 	<h4>CRIT Damage Modifiers <span id="crit_totalmod"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
+			<span class="input-group-addon">CRITs?</span>
+			<select class="form-control" id="crit_base">
+				<option value="1.5" selected="selected">Yes</option>
+				<option value="1">No</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
 			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="crit_ls">
 				<option value="1.5">150% Zebra</option>
@@ -380,7 +389,6 @@
 	<h4>Assumptions:</h4>
 	<ul>
 		<li>Ignore armor effect is always on.</li>
-		<li>Damage is critical.</li>
 	</ul>
 	</div></div>
 </div> <!--End bg-info-->
@@ -575,7 +583,7 @@ function calc_DMG() {
 	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
 	var sparkmod=parseFloat($("#spark_base option:selected").val())+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
 	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
-	var critmod=1.5+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
+	var critmod=parseFloat($("#crit_base option:selected").val())+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
 	var unitbaseatk=$("#unit_ATK").val();
 	/*update mods*/
 	$("#base_totalmod").html(basemod+"x");
