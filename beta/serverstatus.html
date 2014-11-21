@@ -101,7 +101,7 @@
 </div>
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- main stack code goes here -->
-<h1>Server status <b><span id="serverState"></span></b></h1>
+<h1>Server status <b id="serverState"></b></h1>
 
 <div class="clear"></div>
 <!-- Google Manual labnol.org responsive ads-->
@@ -174,16 +174,16 @@
 $(document).ready( function(e) {
   $.ajax({url: "http://54.248.111.64",
           type: "HEAD",
-          timeout:1000,
+          timeout:3000,
           statusCode: {
               200: function (response) {
-                  $('#serverState').text("Online");
+                  $('#serverState').html('<span class="text-success">Online</span>');
               },
               400: function (response) {
-                  $('#serverState').text("Down");
+                  $('#serverState').html('<span class="text-danger">Down</span>');
               },
               0: function (response) {
-                  $('#serverState').text("Down");
+                  $('#serverState').html('<span class="text-danger">Online</span>');
               }              
           }
    });
