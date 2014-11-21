@@ -174,7 +174,7 @@
 $(document).ready( function(e) {
   $.ajax({url: "http://54.248.111.64",
           type: "HEAD",
-          timeout:3000,
+          timeout:1000,
           statusCode: {
               200: function (response) {
                   $('#serverState').html('<span class="text-success">Online</span>');
@@ -183,7 +183,7 @@ $(document).ready( function(e) {
                   $('#serverState').html('<span class="text-danger">Down</span>');
               },
               0: function (response) {
-                  $('#serverState').html('<span class="text-danger">Online</span>');
+                  $('#serverState').html('<span class="text-danger">Down</span>');
               }              
           }
    });
