@@ -177,13 +177,13 @@ $(document).ready( function(e) {
           timeout:1000,
           statusCode: {
               200: function (response) {
-                  $('#serverState').html('<span class="text-success">Online</span>');
+                  $('#serverState').html('<span class="text-success">Online 200</span>');
               },
               400: function (response) {
-                  $('#serverState').html('<span class="text-danger">Down</span>');
+                  $('#serverState').html('<span class="text-danger">Down 400</span>');
               },
               0: function (response) {
-                  $('#serverState').html('<span class="text-danger">Down</span>');
+                  $('#serverState').html('<span class="text-danger">Down 0</span>');
               }              
           }
    });
