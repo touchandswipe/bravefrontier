@@ -177,13 +177,13 @@ $(document).ready( function(e) {
           timeout:1000,
           statusCode: {
               200: function (response) {
-                  alert('Working!');
+                  $('#serverState').text("Online");
               },
               400: function (response) {
-                  alert('Not working!');
+                  $('#serverState').text("Down");
               },
               0: function (response) {
-                  alert('Not working!');
+                  $('#serverState').text("Down");
               }              
           }
    });
