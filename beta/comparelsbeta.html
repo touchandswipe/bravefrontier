@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template -->
 <style type="text/css">
+    table.dataTable thead > tr > th {
+	padding-left: 7px;
+    }
     .clear {clear:both;}
     .bd {
         font-weight:bold;
@@ -64,8 +67,8 @@
 <div style="min-height:55px;"></div>
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on extracts by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
-<h5 class="text-danger"><b>*WARNING*</b> This page can take a while to load depending on your connection speed. Chrome / Safari / Firefox recommended. *Problem fixed for Safari*</h5>
+<h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
+<h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
 </div>
 <h2>Leader skill effects comparison / rank</h2>
 
@@ -204,6 +207,20 @@
  </script>
 </div>
 
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0 auto;">
+    <script type="text/javascript">
+        var disqus_shortname = 'bravefrontierpros';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
 </div> <!-- /container -->
 
 <script type="text/javascript">
@@ -219,11 +236,11 @@ function genTable(dataChoice) {
     })
     
 $.getJSON( dataChoice, function( unit ) {
-    var fKeys=['hp% buff','atk% buff','def% buff','rec% buff','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacked high','bc fill when attacked low','bc drop% for spark','bb gauge fill rate%','bb fill per turn','hc drop% for spark','hc production%','hc effectiveness%'];
+    var fKeys=['hp% buff','atk% buff','first x turns atk%','def% buff','rec% buff','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacking high','bc fill when attacked high','reduced bb bc use% high','reduced bb bc cost%','bc drop% for spark','bb gauge fill rate%','bb fill per turn','hc drop% for spark','hc production%','hc effectiveness%'];
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>ID</th><th>Icon</th><th><i class="fa fa-star"></i></th>';
+    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
     for (i in fKeys) {
         exportSTR+='<th>'+fKeys[i]+'</th>';
     }
@@ -233,6 +250,7 @@ $.getJSON( dataChoice, function( unit ) {
     var tArray=[];
     tArray.push(valObj.guide_id);
     tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+    tArray.push(valObj.name);
     tArray.push(valObj.rarity);
     for (i in fKeys) {
         /*Checks LS*/
@@ -243,36 +261,41 @@ $.getJSON( dataChoice, function( unit ) {
 	                if (lsKey==fKeys[i]) {
 	                        tArray.push(lsVal);
 	                        lsFound=true;
+	                        return false; /*breaks loop*/
 	                }
             	})
+            	if (lsFound)
+            		break;
             }
-
-            if (!lsFound) {
-                tArray.push("");
-            }
-        } else {
-            tArray.push("");
-        }
+		if (!lsFound)
+			tArray.push("")
+        } else
+		tArray.push("")
     }
-    //$("#rawTable tbody").append(exportSTR+'<tr>');
-    tData.push(tArray);
+	tData.push(tArray);
     })
     $('#rawTable').dataTable({
         "data": tData,
-        "pageLength": 50,
-        "lengthMenu": [ 50, 100, 200 ],
+        "pageLength": 25,
+        "lengthMenu": [ 25, 50, 100, 200 ],
         "deferRender": true,
         "scrollX": true,
-        "dom": 'lprtip',
+        "dom": '<"clear"<"pull-left"l><"pull-right"fp>>rtip',
         "initComplete": function(settings, json) {
             $('#progressModal').modal("hide");
         },
         "columnDefs":[
-            { "targets":[ 0 ],
+            	{ "targets":[ 0 ],
 		       "render": function(unitguide, type, row, full) {
 		            return '<a href="unitsguide.html?unitid='+unitguide+'" target="_showUnit">'+unitguide+'</a>';
 		       }
-		}]
+		},
+		{ "targets": [ 2 ],
+			"render": function (unitname, type, row, full )  {
+				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
+		    	}
+		}
+	]
     });
 })
 }
