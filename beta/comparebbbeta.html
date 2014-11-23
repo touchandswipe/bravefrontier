@@ -340,7 +340,7 @@ function genTable(dataChoice) {
     if (localStorage.getItem(localServerSelect) != null) {
 	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
 	buildTable(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
     } else {
 	    $.ajax({
 	        dataType: "json",
