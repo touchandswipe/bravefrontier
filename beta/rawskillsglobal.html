@@ -131,11 +131,13 @@
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h5>Data presented is based on <b class="text-danger">Global Server</b> data.</h5>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5><b>Last Updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 
-<button type="button" class="btn btn-success" id="refreshData" style="margin-bottom:10px;">Refresh</button>
+<!-- Buttons row -->
+<div class="row" style="margin-bottom:10px;">
+<button type="button" class="btn btn-success" id="refreshData">Refresh</button>
 <!-- Leader Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Leader Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -153,7 +155,7 @@
   </ul>
 </div>
 <!-- BB Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by BB Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -172,7 +174,7 @@
   </ul>
 </div>
 <!-- SBB Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by SBB Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -191,7 +193,7 @@
   </ul>
 </div>
 <!-- Rarity Filter -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -203,6 +205,8 @@
     <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
   </ul>
 </div>
+</div> <!-- End button row -->
+
 <!--Search-->
 <div class="input-group" style="margin-bottom:5px;">
         <span class="input-group-btn">
@@ -724,7 +728,7 @@ $(document).on("click", '#refreshData', function(e){
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguideglobal",JSON.stringify(data));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$(lastModDate).text(lastModified);
+	    		$(lastModDate).text("Server data - "+lastModified);
 	 	}
 	    });
 })
@@ -774,11 +778,11 @@ $(document).ready( function(e) {
     	toggle:true
     })
     
-    /*Favourite localStorage Retreival and storage*/
+    /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	window.guideData=JSON.parse(localStorage.skillsguideglobal);
 	buildDB(guideData);
-	$(lastModDate).text("Local cache date: "+localStorage.skillsguideglobaldate);
+	$(lastModDate).text("Using local cache last updated - "+localStorage.skillsguideglobaldate);
     } else {
 	    $.ajax({
 	        dataType: "json",
@@ -792,7 +796,7 @@ $(document).ready( function(e) {
 	    		$(lastModDate).text(lastModified);
 	    		buildDB(data);
 	 	}
-	    });
+	    })
     };
     
 /*POP state*/
