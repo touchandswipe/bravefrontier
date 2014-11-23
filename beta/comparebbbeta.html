@@ -337,14 +337,20 @@ function genTable(dataChoice) {
 	buildTable(JSON.parse(guideData));
 	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
-	    $.getJSON( dataChoice, function(data) {
+    	
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: dataChoice,
+        success: function(data, textStatus, request){
 	    	lastModified = request.getResponseHeader("Last-Modified");
 	    	/*Save in local storage*/
 		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
 		localStorage.setItem(localServerSelect,lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
 	    	buildTable(data);
-	    });
+ 	}
+    })
     }
 }
 
