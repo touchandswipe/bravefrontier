@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Unit Skills and Effects Guide Japan - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
 <style type="text/css">
@@ -32,9 +32,12 @@
         text-transform:uppercase;
     }
     .equal, .equal > div[class*='col-'] {  
-    display: -webkit-flex;
-    display: flex;
-    flex:1 1 auto;
+	    display: -webkit-flex;
+	    display: flex;
+	    flex:1 1 auto;
+    }
+    .btn {
+    	margin-bottom:5px;
     }
 </style>
 <!-- START JSON Code-->
@@ -75,10 +78,9 @@
 <div style="min-height:55px;"></div>
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on what was cleverly extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. Thanks to <a href="http://www.reddit.com/user/Twofu" target="_blank">Twofu</a> from <a href="http://www.reddit.com/r/bravefrontier/" target="_blank">Brave Frontier reddit</a> for sending me the latest extracts. Also thanks to <a href="https://www.facebook.com/frayformana?fref=ufi">Formana</a> from <a href="https://www.facebook.com/groups/444458765689597/">Brave Frontier Elite Group</a> for bringing this to my attention.<br/>
+<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
 <i class="fa fa-exclamation-circle"></i> ALL types of Buff % indicated are incremental.<br/>
 <i class="fa fa-exclamation-circle"></i> CRIT has a hard cap at 70% and all units have 10% base CRIT. Credit to <a href="http://www.reddit.com/user/_nnng_" target="_blank">_nnng_</a> on <a href="http://www.reddit.com/r/bravefrontier/comments/2fbssl/about_base_crit_and_crit_spheres/" target="_blank">reddit</a>.<br/>
-<h5 class="text-danger"><b>*WARNING*</b> This page can take a while to load depending on your connection speed (~1.5MB uncompressed, ~100kb compressed). Let the script run and do not stop it till it's done.</h5>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -130,17 +132,19 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
  </script>
 </div>
- 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h5>Data presented is based on <b class="text-danger">日本(Japan) Server</b> data.</h5>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Unit Records:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h1>Skills & Effects Guide - <span class="text-danger">日本 (Japan)</span> Server</h1>
+<h5><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 
+<!-- Buttons row -->
+<div style="margin-bottom:5px;">
+<button type="button" class="btn btn-success" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 <!-- Leader Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Leader Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
+    <li><a href="#" class="lsEffect">bb page viewuge fill rate%</a></li>
     <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
     <li><a href="#" class="lsEffect">bc fill per turn</a></li>
     <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
@@ -149,12 +153,11 @@
     <li><a href="#" class="lsEffect">damage% for spark</a></li>
     <li><a href="#" class="lsEffect">dmg% for crits</a></li>
     <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
-    <li><a href="#" class="lsEffect">heal</a></li>
-    <li><a href="#" class="lsEffect">gradual heal</a></li>
+    <li><a href="#" class="lsEffect">turn heal</a></li>
   </ul>
 </div>
 <!-- BB Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by BB Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -162,8 +165,8 @@
     <li><a href="#" class="skillEffect">def% buff</a></li>
     <li><a href="#" class="skillEffect">rec% buff</a></li>
     <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
+    <li><a href="#" class="skillEffect">increase bb page viewuge</a></li>
+    <li><a href="#" class="skillEffect">increase bb page viewuge gradual</a></li>
     <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">bb bc%</a></li>
@@ -173,7 +176,7 @@
   </ul>
 </div>
 <!-- SBB Skills button -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by SBB Skill Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -181,8 +184,8 @@
     <li><a href="#" class="skillEffect2">def% buff</a></li>
     <li><a href="#" class="skillEffect2">rec% buff</a></li>
     <li><a href="#" class="skillEffect2">crit% buff</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
+    <li><a href="#" class="skillEffect2">increase bb page viewuge</a></li>
+    <li><a href="#" class="skillEffect2">increase bb page viewuge gradual</a></li>
     <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
     <li><a href="#" class="skillEffect2">bb bc%</a></li>
@@ -192,7 +195,7 @@
   </ul>
 </div>
 <!-- Rarity Filter -->
-<div class="btn-group" style="margin-bottom:10px;">
+<div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -204,6 +207,8 @@
     <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
   </ul>
 </div>
+</div> <!-- End button row -->
+
 <!--Search-->
 <div class="input-group" style="margin-bottom:5px;">
         <span class="input-group-btn">
@@ -212,13 +217,13 @@
 </div>
 <div class="input-group">
         <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Search JP Unit Name</button></span>
+        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
         <input type="search" placeholder="e.g. ラムナ" class="form-control" id="searchNameBox">
 </div>
 
 <!--Containing Div-->
-<div class="container-fluid">
-    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h4></div>
+<div class="container-fluid" id="rawMod">
+    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -321,6 +326,7 @@ function urlParam(name){
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
+countVar=0; /*reset count*/
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
@@ -482,7 +488,7 @@ function buildDB(unit) {
         	/*AI*/
         	$.each(valObj.ai[0], function(aiKey,aiVal) {
         		aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">'+aiKey+'</div>';
-	        	for (i in valObj.ai) {
+	        	for (i=0;i<valObj.ai.length;i++) {
 	        		aiSTR+='<div class="bi col-xs-2 col-md-2">'+valObj.ai[i][aiKey]+'</div>';
 	        	}
 			for (i=1;i<=5-aiCol;i++) {
@@ -500,7 +506,7 @@ function buildDB(unit) {
         collapseID+=1;
     }); /*Each record*/
     $("#unitCount").html(countVar);
-    $('#progressModal').modal('hide');
+    setTimeout($('#progressModal').modal('hide'),4000);
     
     /*check for card param*/
     var searchParam=urlParam('unitid');
@@ -544,7 +550,7 @@ function rarityRun(select) {
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
-	ga('send', 'pageview', {
+	page view('send', 'pageview', {
   		'page': '/vurl/skillsguideJP_RarityFilter',
   		'title': 'Brave Frontier PROs - Skills Guide JP Rarity Filter'
 	});
@@ -557,9 +563,9 @@ function lsRun(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across LS*/
-                if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
-                    outputObj.push(rawParseObj[i]);
-                }
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
 	}
 	/*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
@@ -572,7 +578,7 @@ function lsRun(selectSkill) {
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
-	ga('send', 'pageview', {
+	page view('send', 'pageview', {
   		'page': '/vurl/skillsguideJP_LSFilter',
   		'title': 'Brave Frontier PROs - Skills Guide JP LS Filter'
 	});
@@ -585,9 +591,9 @@ function skillRun2(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across BB / SBB*/
-                if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
-                    outputObj.push(rawParseObj[i]);
-                }
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
 	}
 	/*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
@@ -613,9 +619,9 @@ function skillRun(selectSkill) {
 	var outputHTML=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*searches for matching skill across BB / SBB*/
-                if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
-                    outputObj.push(rawParseObj[i]);
-                }
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
 	}
 	/*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
@@ -689,7 +695,7 @@ function searchNameRun() {
 	var state = { stateNameFilter: sVal };
     history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
-	/*Google analytics*/
+    	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/skillsguideJP_Search_Name',
   		'title': 'Brave Frontier PROs - Skills Guide JP Search Name'
@@ -710,6 +716,30 @@ $( "#searchNameBox" ).keypress( function( event ) {
   }
 })
 
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: "//touchandswipe.github.io/bravefrontier_data/jp/info.json",
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		rawParseObj=[]; /*reset*/
+    		buildDB(data);
+    		/*Save in local storage*/
+		localStorage.setItem("skillsguidejapan",JSON.stringify(data));
+		localStorage.setItem("skillsguidejapandate",lastModified);
+    		$(lastModDate).text("Server data - "+lastModified);
+ 	}
+    });
+})
+
 /*Update URL based on bb filters*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
@@ -721,6 +751,7 @@ $(document).on("click", '.skillEffect2', function(e){
     e.preventDefault();
 	skillRun2($(this).text());
 })
+
 
 /*Update URL based on rarity filters*/
 $(document).on("click", '.raritySelect', function(e){
@@ -747,23 +778,32 @@ $(document).on("click", '#searchNameBtn', function(e){
 })
 
 $(document).ready( function(e) {
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
-    /*AJAX Call shorthand*/
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/jp/info.json",
-        success: function(data, textStatus, request){
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		$(lastModDate).text(lastModified);
-    		buildDB(data);
- 	}
-    });
+    /*LocalStorage Retreival and storage*/
+    if (localStorage.skillsguidejapan) {
+	window.guideData=JSON.parse(localStorage.skillsguidejapan);
+	buildDB(guideData);
+	$(lastModDate).text("Using local cache - "+localStorage.skillsguidejapandate);
+    } else {
+	    /*Init loader*/
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	toggle:true
+	    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: "//touchandswipe.github.io/bravefrontier_data/jp/info.json",
+	        success: function(data, textStatus, request){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguidejapan",JSON.stringify(data));
+			localStorage.setItem("skillsguidejapandate",lastModified);
+	    		$(lastModDate).text("Server data - "+lastModified);
+	    		buildDB(data);
+	 	}
+	    })
+    };
     
 /*POP state*/
     $(window).on('popstate', function(ev) {
