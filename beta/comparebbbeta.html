@@ -320,6 +320,9 @@ function genTable(dataChoice) {
     	backdrop:'static',
     	toggle:true
     })
+    /*LocalStorage Retreival and storage*/
+    if (dataChoice.search('/jp/')==-1)
+    	alert("Japan")
     $.getJSON( dataChoice, function(data) {
     	buildTable(data);
     });
