@@ -338,6 +338,7 @@ function genTable(dataChoice) {
 	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
 	    $.getJSON( dataChoice, function(data) {
+	    	lastModified = request.getResponseHeader("Last-Modified");
 	    	/*Save in local storage*/
 		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
 		localStorage.setItem(localServerSelect,lastModified);
