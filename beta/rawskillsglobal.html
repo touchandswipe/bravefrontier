@@ -320,6 +320,7 @@ function urlParam(name){
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
+countVar=0; /*reset count*/
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
