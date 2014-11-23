@@ -387,27 +387,13 @@ $(document).on("click", '#refreshData', function(e){
     	backdrop:'static',
     	toggle:true
     })
-    /*LocalStorage Retreival and storage*/
-    if (serverChoice.search('/jp/')==-1) {
+    /*LocalStorage Delete and Refresh*/
+    if (serverChoice.search('/jp/')==-1)
     	var localServerSelect="skillsguideglobal";
-    	$('#serverText').text("Global");
-    } else {
+    else
     	var localServerSelect="skillsguidejapan";
-    	$('#serverText').text("Japan");
-    }
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: serverChoice,
-        success: function(data, textStatus, request){
-	    	lastModified = request.getResponseHeader("Last-Modified");
-	    	/*Save in local storage*/
-		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
-		localStorage.setItem(localServerSelect,lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
-	    	buildTable(data);
- 	}
-    })
+    localStorage.removeItem(localServerSelect);
+    location.reload();
 })
 
 </script>
