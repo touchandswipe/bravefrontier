@@ -398,7 +398,7 @@ $(document).on("click", '#refreshData', function(e){
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: dataChoice,
+        url: serverChoice,
         success: function(data, textStatus, request){
 	    	lastModified = request.getResponseHeader("Last-Modified");
 	    	/*Save in local storage*/
