@@ -32,9 +32,12 @@
         text-transform:uppercase;
     }
     .equal, .equal > div[class*='col-'] {  
-    display: -webkit-flex;
-    display: flex;
-    flex:1 1 auto;
+	    display: -webkit-flex;
+	    display: flex;
+	    flex:1 1 auto;
+    }
+    .btn {
+    	margin:5px;
     }
 </style>
 <!-- START JSON Code-->
@@ -134,8 +137,8 @@
 <h5><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 
 <!-- Buttons row -->
-<div style="margin:10px;">
-<button type="button" class="btn btn-success" id="refreshData">Refresh</button>
+<div style="margin:5px;">
+<button type="button" class="btn btn-success" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 <!-- Leader Skills button -->
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Leader Skill Effects <span class="caret"></span>
