@@ -480,7 +480,7 @@ function buildDB(unit) {
         	/*AI*/
         	$.each(valObj.ai[0], function(aiKey,aiVal) {
         		aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">'+aiKey+'</div>';
-	        	for (i in valObj.ai) {
+	        	for (i=0;i<valObj.ai.length;i++) {
 	        		aiSTR+='<div class="bi col-xs-2 col-md-2">'+valObj.ai[i][aiKey]+'</div>';
 	        	}
 			for (i=1;i<=5-aiCol;i++) {
