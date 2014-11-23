@@ -718,11 +718,12 @@ $(document).on("click", '#refreshData', function(e){
 	        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguideglobal",JSON.stringify(data));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
 	    		$(lastModDate).text(lastModified);
-	    		buildDB(data);
 	 	}
 	    });
 })
