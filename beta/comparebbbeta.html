@@ -72,9 +72,14 @@
 <h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
 </div>
 <h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
-<h5><b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span></h5>
-<h5><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
-
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-2">
+		<button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-10">
+		<h5><b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></h5>
+	</div>
+</div>
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
@@ -337,20 +342,19 @@ function genTable(dataChoice) {
 	buildTable(JSON.parse(guideData));
 	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
-    	
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: dataChoice,
-        success: function(data, textStatus, request){
-	    	lastModified = request.getResponseHeader("Last-Modified");
-	    	/*Save in local storage*/
-		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
-		localStorage.setItem(localServerSelect,lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
-	    	buildTable(data);
- 	}
-    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: dataChoice,
+	        success: function(data, textStatus, request){
+		    	lastModified = request.getResponseHeader("Last-Modified");
+		    	/*Save in local storage*/
+			localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+			localStorage.setItem(localServerSelect,lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+		    	buildTable(data);
+	 	}
+	    })
     }
 }
 
@@ -374,6 +378,38 @@ $( ".dataBtn" ).on( "click", function() {
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
 })
+
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    /*LocalStorage Retreival and storage*/
+    if (serverChoice.search('/jp/')==-1) {
+    	var localServerSelect="skillsguideglobal";
+    	$('#serverText').text("Global");
+    } else {
+    	var localServerSelect="skillsguidejapan";
+    	$('#serverText').text("Japan");
+    }
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: dataChoice,
+        success: function(data, textStatus, request){
+	    	lastModified = request.getResponseHeader("Last-Modified");
+	    	/*Save in local storage*/
+		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+		localStorage.setItem(localServerSelect,lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
+	    	buildTable(data);
+ 	}
+    })
+})
+
 </script>
 
 <!-- Google Analytics -->
