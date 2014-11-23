@@ -72,6 +72,8 @@
 <h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
 </div>
 <h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
+<h5><b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span></h5>
+<h5><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -322,20 +324,24 @@ function genTable(dataChoice) {
     	toggle:true
     })
     /*LocalStorage Retreival and storage*/
-    if (dataChoice.search('/jp/')==-1)
+    if (dataChoice.search('/jp/')==-1) {
     	var localServerSelect="skillsguideglobal";
-    else
+    	$('#serverText').text("Global");
+    } else {
     	var localServerSelect="skillsguidejapan";
+    	$('#serverText').text("Japan");
+    }
     	
     if (localStorage.getItem(localServerSelect) != null) {
-    	alert("using local storage "+localServerSelect);
 	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
 	buildTable(JSON.parse(guideData));
-	//$(lastModDate).text("Using local cache - "+localStorage.skillsguideglobaldate);
+	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
 	    $.getJSON( dataChoice, function(data) {
 	    	/*Save in local storage*/
 		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+		localStorage.setItem(localServerSelect,lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
 	    	buildTable(data);
 	    });
     }
