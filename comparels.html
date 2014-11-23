@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Leader Skills Effects Comparison - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Leader Skills Effects Comparison (Peta) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Leader Skill Effects Comparison - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Leader Skill Effects Comparison (Peta) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -33,6 +33,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -71,6 +72,14 @@
 <h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
 </div>
 <h2>Leader skill effects comparison / rank</h2>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-1">
+		<button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-11">
+		<h5><b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></h5>
+	</div>
+</div>
 
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
@@ -227,15 +236,7 @@
 /*Global Variable*/
 serverChoice="";
 
-function genTable(dataChoice) {
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
-    
-$.getJSON( dataChoice, function( unit ) {
+function buildTable(unit) {
     var fKeys=['hp% buff','atk% buff','first x turns atk%','def% buff','rec% buff','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacking high','bc fill when attacked high','reduced bb bc use% high','reduced bb bc cost%','bc drop% for spark','bb gauge fill rate%','bb fill per turn','hc drop% for spark','hc production%','hc effectiveness%'];
     var tData=[];
     
@@ -296,8 +297,44 @@ $.getJSON( dataChoice, function( unit ) {
 		    	}
 		}
 	]
-    });
-})
+    })
+}
+
+function genTable(dataChoice) {
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    /*LocalStorage Retreival and storage*/
+    if (dataChoice.search('/jp/')==-1) {
+    	var localServerSelect="skillsguideglobal";
+    	$('#serverText').text("Global");
+    } else {
+    	var localServerSelect="skillsguidejapan";
+    	$('#serverText').text("Japan");
+    }
+    	
+    if (localStorage.getItem(localServerSelect) != null) {
+	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
+	buildTable(JSON.parse(guideData));
+	$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
+    } else {
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: dataChoice,
+	        success: function(data, textStatus, request){
+		    	lastModified = request.getResponseHeader("Last-Modified");
+		    	/*Save in local storage*/
+			localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+			localStorage.setItem(localServerSelect+"date",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+		    	buildTable(data);
+	 	}
+	    })
+    }
 }
 
 $(document).ready( function(e) {
@@ -319,6 +356,23 @@ $( ".dataBtn" ).on( "click", function() {
 
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
+})
+
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    });
+    /*LocalStorage Delete and Refresh*/
+    if (serverChoice.search('/jp/')==-1)
+    	var localServerSelect="skillsguideglobal";
+    else
+    	var localServerSelect="skillsguidejapan";
+localStorage.removeItem(localServerSelect);
+location.reload();
 })
 
 </script>
