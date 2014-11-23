@@ -172,9 +172,11 @@
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-  $.ajax({url: "http://54.248.111.64:80",
+  $.ajax({url: "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php",
           type: "POST",
           timeout:1000,
+          contentType : "application/json; charset=utf-8",
+          GCLIENTID : "Android_sg.gumi.bravefrontier",
           statusCode: {
               200: function (response) {
                   $('#serverState').html('<span class="text-success">Online 200</span>');
