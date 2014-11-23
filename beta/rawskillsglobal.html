@@ -507,7 +507,7 @@ countVar=0; /*reset count*/
         collapseID+=1;
     }); /*Each record*/
     $("#unitCount").html(countVar);
-    $('#progressModal').modal('hide');
+    setTimeout($('#progressModal').modal('hide'),2000);
     
     /*check for card param*/
     var searchParam=urlParam('unitid');
