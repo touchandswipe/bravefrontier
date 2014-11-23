@@ -756,7 +756,7 @@ $(document).ready( function(e) {
     /*Favourite localStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	window.guideData=localStorage.skillsguideglobal;
-	alert("using local saved data");
+	alert(skillsguideglobal);
 	buildDB(guideData);
     } else {
 	    $.ajax({
