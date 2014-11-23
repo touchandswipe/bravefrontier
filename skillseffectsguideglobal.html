@@ -736,7 +736,7 @@ $(document).on("click", '#refreshData', function(e){
     		/*Save in local storage*/
 		localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
-    		$(lastModDate).text("Server data - "+lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
  	}
     });
 })
@@ -783,7 +783,7 @@ $(document).ready( function(e) {
     if (localStorage.skillsguideglobal) {
 	guideData=LZString.decompress(localStorage.skillsguideglobal);
 	buildDB(JSON.parse(guideData));
-	$(lastModDate).text("Using local cache - "+localStorage.skillsguideglobaldate);
+	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -800,7 +800,7 @@ $(document).ready( function(e) {
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$(lastModDate).text("Server data - "+lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
 	 	}
 	    })
