@@ -755,7 +755,7 @@ $(document).ready( function(e) {
     
     /*Favourite localStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
-	window.guideData=localStorage.skillsguideglobal;
+	window.guideData=JSON.parse(localStorage.skillsguideglobal);
 	alert(skillsguideglobal);
 	buildDB(guideData);
     } else {
@@ -766,7 +766,7 @@ $(document).ready( function(e) {
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",data);
+			localStorage.setItem("skillsguideglobal",JSON.stringify(data));
 	    		$(lastModDate).text(lastModified);
 	    		buildDB(data);
 	 	}
