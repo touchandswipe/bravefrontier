@@ -350,7 +350,7 @@ function genTable(dataChoice) {
 		    	lastModified = request.getResponseHeader("Last-Modified");
 		    	/*Save in local storage*/
 			localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
-			localStorage.setItem(localServerSelect,lastModified);
+			localStorage.setItem(localServerSelect+"date",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 		    	buildTable(data);
 	 	}
@@ -386,16 +386,15 @@ $(document).on("click", '#refreshData', function(e){
     	keyboard:false,
     	backdrop:'static',
     	toggle:true
-    })
+    });
     /*LocalStorage Delete and Refresh*/
     if (serverChoice.search('/jp/')==-1)
     	var localServerSelect="skillsguideglobal";
     else
     	var localServerSelect="skillsguidejapan";
-    localStorage.removeItem(localServerSelect);
-    location.reload();
+localStorage.removeItem(localServerSelect);
+location.reload();
 })
-
 </script>
 
 <!-- Google Analytics -->
