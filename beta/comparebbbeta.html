@@ -227,14 +227,8 @@
 /*Global Variable*/
 serverChoice="";
 
-function genTable(dataChoice) {
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
-    $.getJSON( dataChoice, function( unit ) {
+/*contruct table*/
+function buildTable(unit) {
     var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
     var tData=[];
     
@@ -317,7 +311,16 @@ function genTable(dataChoice) {
 		}
 	]
     });
-})
+}
+
+function genTable(dataChoice) {
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    $.getJSON( dataChoice, buildTable());
 }
 
 $(document).ready( function(e) {
