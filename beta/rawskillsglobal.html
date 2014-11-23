@@ -37,7 +37,7 @@
 	    flex:1 1 auto;
     }
     .btn {
-    	margin:5px;
+    	margin-bottom:5px;
     }
 </style>
 <!-- START JSON Code-->
@@ -719,21 +719,20 @@ $( "#searchNameBox" ).keypress( function( event ) {
 
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
-    e.preventDefault();
-	    $.ajax({
-	        dataType: "json",
-	        contentType: "text/plain; charset=UTF-8",
-	        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
-	        success: function(data, textStatus, request){
-	    		lastModified = request.getResponseHeader("Last-Modified");
-	    		rawParseObj=[]; /*reset*/
-	    		buildDB(data);
-	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",JSON.stringify(data));
-			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$(lastModDate).text("Server data - "+lastModified);
-	 	}
-	    });
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		rawParseObj=[]; /*reset*/
+    		buildDB(data);
+    		/*Save in local storage*/
+		localStorage.setItem("skillsguideglobal",JSON.stringify(data));
+		localStorage.setItem("skillsguideglobaldate",lastModified);
+    		$(lastModDate).text("Server data - "+lastModified);
+ 	}
+    });
 })
 
 /*Update URL based on bb filters*/
@@ -796,7 +795,7 @@ $(document).ready( function(e) {
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguideglobal",JSON.stringify(data));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$(lastModDate).text(lastModified);
+	    		$(lastModDate).text("Server data - "+lastModified);
 	    		buildDB(data);
 	 	}
 	    })
