@@ -33,6 +33,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -322,10 +323,22 @@ function genTable(dataChoice) {
     })
     /*LocalStorage Retreival and storage*/
     if (dataChoice.search('/jp/')==-1)
-    	alert("Japan")
-    $.getJSON( dataChoice, function(data) {
-    	buildTable(data);
-    });
+    	var localServerSelect="skillsguideglobal";
+    else
+    	var localServerSelect="skillsguidejapan";
+    	
+    if (localStorage.getItem(localServerSelect) != null) {
+    	alert("using local storage "+localServerSelect);
+	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
+	buildTable(JSON.parse(guideData));
+	//$(lastModDate).text("Using local cache - "+localStorage.skillsguideglobaldate);
+    } else {
+	    $.getJSON( dataChoice, function(data) {
+	    	/*Save in local storage*/
+		localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+	    	buildTable(data);
+	    });
+    }
 }
 
 $(document).ready( function(e) {
