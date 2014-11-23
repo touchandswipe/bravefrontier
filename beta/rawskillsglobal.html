@@ -783,7 +783,7 @@ $(document).ready( function(e) {
     if (localStorage.skillsguideglobal) {
 	window.guideData=JSON.parse(localStorage.skillsguideglobal);
 	buildDB(guideData);
-	$(lastModDate).text("Using local cache last updated - "+localStorage.skillsguideglobaldate);
+	$(lastModDate).text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
