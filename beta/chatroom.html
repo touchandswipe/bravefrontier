@@ -133,15 +133,15 @@ function getServerStatus(btnID,serverURL) {
       
       $.ajax({url: serverURL,
               type: "POST",
-              //contentType: 'application/json; charset=utf-8',
+              contentType: 'application/json; charset=utf-8',
               dataType: 'jsonp',
-              data: '{"method":"post","payload": { "Host" : "android.bravefrontier.gumi.sg", "contentType" : "application/json; charset=utf-8", "GCLIENTID" : "Android_sg.gumi.bravefrontier" }}',
-              success: function (jsonResult) {
-                alert("Second Success"+JSON.stringify(jsonResult));
-              },
-              error: function (jqXHR, textStatus) {
-                alert("Second Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus);
-              },
+              data: '{ "Host" : "android.bravefrontier.gumi.sg", "contentType" : "application/json; charset=utf-8", "GCLIENTID" : "Android_sg.gumi.bravefrontier" }',
+              //success: function (jsonResult) {
+              //  alert("Second Success"+JSON.stringify(jsonResult));
+              //},
+              //error: function (jqXHR, textStatus) {
+              //  alert("Second Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus);
+              //},
               statusCode: {
                   200: function (response) {
                       $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!'+JSON.stringify(response)+'</b></span>');
