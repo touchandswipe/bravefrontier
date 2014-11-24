@@ -134,7 +134,7 @@ function getServerStatus(btnID,serverURL) {
       $.ajax({url: serverURL,
               type: "POST",
               //contentType: 'application/json; charset=utf-8',
-              //dataType: 'jsonp',
+              dataType: 'jsonp',
               //crossDomain: true,
               success: function (jsonResult) {
                 alert("Second Success"+JSON.stringify(jsonResult));
