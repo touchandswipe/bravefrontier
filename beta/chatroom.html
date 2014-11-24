@@ -130,10 +130,20 @@ function getServerStatus(btnID,serverURL) {
   var currentTime = new Date().getTime();
   if (currentTime-lastChecked>=300000 || lastChecked==0) {
     lastChecked=currentTime;
+    var jqxhr = $.ajax( serverURL )
+      .done(function() {
+        alert( "success" );
+      })
+      .fail(function() {
+        alert( "error" );
+      })
+      .always(function() {
+        alert( "complete" );
+  });
+    
       $.ajax({url: serverURL,
               type: "POST",
-              timeout:3000,
-              contentType : "application/json; charset=utf-8",
+              contentType : "application/x-www-form-urlencoded",
               GCLIENTID : "Android_sg.gumi.bravefrontier",
               statusCode: {
                   200: function (response) {
@@ -143,7 +153,7 @@ function getServerStatus(btnID,serverURL) {
                       $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
                   },
                   0: function (response) {
-                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down0</span>');
                   }
               }
       })
