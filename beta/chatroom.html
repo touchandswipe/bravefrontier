@@ -145,6 +145,11 @@ function getServerStatus(btnID,serverURL) {
       $.ajax({url: serverURL,
               type: "POST",
               contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              crossDomain: true,
+              success: function (jsonResult) {
+                alert("Second "+JSON.stringify(jsonResult));
+              },
               statusCode: {
                   200: function (response) {
                       $(btnID).html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
