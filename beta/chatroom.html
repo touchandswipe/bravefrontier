@@ -92,7 +92,7 @@
       </div>
       <div class="boxMod" style="width:350px;">
         <h4><b>Global Server status</b></h4>
-          <button type="button" class="btn btn-default" id="serverStateGlobal">
+          <button type="button" class="btn btn-default" id="serverStateGlobal"></button>
         <div class="clear"></div>
         <h4 style="margin-bottom:0px;"><b>Useful resources</b></h4>
         <ul style="margin-top:0px;" class="small">
@@ -121,29 +121,34 @@
       </div>
   </div>
 </div><!--End ROW-->
-
 </div> <!-- /container -->
 
 <script type="text/javascript">
+var lastChecked=0;
 /*Get status*/
 function getServerStatus(btnID,serverURL) {
-  $.ajax({url: serverURL,
-          type: "POST",
-          timeout:3000,
-          contentType : "application/json; charset=utf-8",
-          GCLIENTID : "Android_sg.gumi.bravefrontier",
-          statusCode: {
-              200: function (response) {
-                  $(btnID).html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
-              },
-              400: function (response) {
-                  $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
-              },
-              0: function (response) {
-                  $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+  var currentTime = new Date().getTime();
+  if (currentTime-lastChecked>=5000 || lastChecked==0) {
+    lastChecked=currentTime;
+      $.ajax({url: serverURL,
+              type: "POST",
+              timeout:3000,
+              contentType : "application/json; charset=utf-8",
+              GCLIENTID : "Android_sg.gumi.bravefrontier",
+              statusCode: {
+                  200: function (response) {
+                      $(btnID).html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
+                  },
+                  400: function (response) {
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+                  },
+                  0: function (response) {
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+                  }
               }
-          }
-  })
+      })
+  } else
+    alert("You can only refresh every 5mins.");
 }
 
 $(document).ready( function(e) {
