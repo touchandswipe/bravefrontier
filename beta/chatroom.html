@@ -140,7 +140,7 @@ function getServerStatus(btnID,serverURL) {
       .always(function() {
         alert( "complete" );
       });
-      alert("jqxhr text is "+jqxhr.responseText);
+      alert("jqxhr text is "+JSON.stringify(jqxhr));
       
       $.ajax({url: serverURL,
               type: "POST",
