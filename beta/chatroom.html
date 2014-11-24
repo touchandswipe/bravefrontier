@@ -133,10 +133,9 @@ function getServerStatus(btnID,serverURL) {
       
     serverGrab=$.ajax({url: serverURL,
               type: "POST",
-              timeout: 2000,
+              timeout: 5000,
               contentType: 'application/json; charset=utf-8',
               dataType: 'jsonp',
-              data: {"GCLIENTID" : "Android_sg.gumi.bravefrontier"},
               success: function (jsonResult) {
                 alert("Second Success"+JSON.stringify(jsonResult));
               },
