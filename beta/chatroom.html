@@ -128,7 +128,7 @@ var lastChecked=0;
 /*Get status*/
 function getServerStatus(btnID,serverURL) {
   var currentTime = new Date().getTime();
-  if (currentTime-lastChecked>=5000 || lastChecked==0) {
+  if (currentTime-lastChecked>=300000 || lastChecked==0) {
     lastChecked=currentTime;
       $.ajax({url: serverURL,
               type: "POST",
