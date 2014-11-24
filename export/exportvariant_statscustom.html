@@ -125,7 +125,6 @@ $(document).on("click","#exportBtn", function(e) {
 $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
-    alert("run");
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -136,7 +135,7 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
         if (idFound) {
         nameSTR='<tr><td colspan="12" class="bg-primary upper"><h4><b>'+unitKey+'</b></h4></td></tr>';
         exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-        exportSTR='<td></td>';
+        exportSTR+='<td></td>';
         //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
         //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
         //exportSTR+='<td>'+valObj.stats._base.def+'</td>';
@@ -178,7 +177,6 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
         exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
         $("#rawTable").append(exportSTR+'<tr>');
-        alert("done");
         } /*End range check*/
     })
 })
