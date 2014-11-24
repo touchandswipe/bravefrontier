@@ -170,12 +170,12 @@ function getServerStatus(btnID,serverURL) {
 }
 
 $(document).ready( function(e) {
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php");
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 });
 
 /*Refresh status Button*/
 $(document).on("click", '#serverStateGlobal', function(e){
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php");
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 })
 
 </script>
