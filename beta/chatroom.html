@@ -125,29 +125,34 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-$(document).ready( function(e) {
-  $.ajax({url: "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php",
+/*Get status*/
+function getServerStatus(btnID,serverURL) {
+  $.ajax({url: serverURL,
           type: "POST",
           timeout:3000,
           contentType : "application/json; charset=utf-8",
           GCLIENTID : "Android_sg.gumi.bravefrontier",
           statusCode: {
               200: function (response) {
-                  $('#serverStateGlobal').html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
+                  $(btnID).html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
               },
               400: function (response) {
-                  $('#serverStateGlobal').html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+                  $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
               },
               0: function (response) {
-                  $('#serverStateGlobal').html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
-              }              
+                  $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+              }
           }
-   });
+  })
+}
+
+$(document).ready( function(e) {
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php");
 });
 
-/*Refresh Button*/
-$(document).on("click", '#refreshData', function(e){
-
+/*Refresh status Button*/
+$(document).on("click", '#serverStateGlobal', function(e){
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php");
 })
 
 </script>
