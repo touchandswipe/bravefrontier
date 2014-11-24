@@ -144,13 +144,13 @@ function getServerStatus(btnID,serverURL) {
               },
               statusCode: {
                   200: function (response) {
-                      $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!'+JSON.stringify(response)+'</b></span>');
+                      $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!</b></span>');
                   },
                   400: function (response) {
-                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down'+response+'</span>');
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
                   },
                   0: function (response) {
-                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down0'+response+'</span>');
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
                   }
               }
       })
