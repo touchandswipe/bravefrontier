@@ -144,11 +144,14 @@ function getServerStatus(btnID,serverURL) {
       
       $.ajax({url: serverURL,
               type: "POST",
-              contentType: 'application/json; charset=utf-8',
+              //contentType: 'application/json; charset=utf-8',
               dataType: 'json',
               crossDomain: true,
               success: function (jsonResult) {
                 alert("Second "+JSON.stringify(jsonResult));
+              },
+              error: function (jqXHR, textStatus) {
+                alert("Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus);
               },
               statusCode: {
                   200: function (response) {
