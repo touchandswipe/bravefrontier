@@ -92,7 +92,7 @@
       </div>
       <div class="boxMod" style="width:350px;">
         <h4><b>Global Server status</b></h4>
-        <span id="serverStateGlobal"></span>
+          <button type="button" class="btn btn-default" id="serverStateGlobal">
         <div class="clear"></div>
         <h4 style="margin-bottom:0px;"><b>Useful resources</b></h4>
         <ul style="margin-top:0px;" class="small">
@@ -133,17 +133,23 @@ $(document).ready( function(e) {
           GCLIENTID : "Android_sg.gumi.bravefrontier",
           statusCode: {
               200: function (response) {
-                  $('#serverStateGlobal').html('<button type="button" class="btn btn-default"><i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON! 200</span></button>');
+                  $('#serverStateGlobal').html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
               },
               400: function (response) {
-                  $('#serverStateGlobal').html('<button type="button" class="btn btn-default"><span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down 400</span></button>');
+                  $('#serverStateGlobal').html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
               },
               0: function (response) {
-                  $('#serverStateGlobal').html('<button type="button" class="btn btn-default"><span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down 0</span></button>');
+                  $('#serverStateGlobal').html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
               }              
           }
    });
 });
+
+/*Refresh Button*/
+$(document).on("click", '#refreshData', function(e){
+
+})
+
 </script>
 
 <!-- Google Analytics -->
