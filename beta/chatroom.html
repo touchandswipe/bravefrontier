@@ -135,7 +135,7 @@ function getServerStatus(btnID,serverURL) {
               type: "POST",
               //contentType: 'application/json; charset=utf-8',
               dataType: 'jsonp',
-              //crossDomain: true,
+              data: { "Host" : "android.bravefrontier.gumi.sg", "contentType" : "application/json; charset=utf-8", "GCLIENTID" : "Android_sg.gumi.bravefrontier" },
               success: function (jsonResult) {
                 alert("Second Success"+JSON.stringify(jsonResult));
               },
