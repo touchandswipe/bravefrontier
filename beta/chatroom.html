@@ -131,8 +131,9 @@ function getServerStatus(btnID,serverURL) {
   if (currentTime-lastChecked>=300000 || lastChecked==0) {
     lastChecked=currentTime;
       
-      $.ajax({url: serverURL,
+    serverGrab=$.ajax({url: serverURL,
               type: "POST",
+              timeout: 2000,
               contentType: 'application/json; charset=utf-8',
               dataType: 'jsonp',
               data: {"GCLIENTID" : "Android_sg.gumi.bravefrontier"},
@@ -149,8 +150,11 @@ function getServerStatus(btnID,serverURL) {
                   400: function (response) {
                       $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
                   },
+                  404: function (response) {
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down404</span>');
+                  },
                   0: function (response) {
-                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down</span>');
+                      $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down0</span>');
                   }
               }
       })
@@ -159,7 +163,7 @@ function getServerStatus(btnID,serverURL) {
 }
 
 $(document).ready( function(e) {
-  getServerStatus("#serverStateGlobal", "http://iosv2.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
   //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 });
 
