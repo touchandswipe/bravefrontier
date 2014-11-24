@@ -133,9 +133,9 @@ function getServerStatus(btnID,serverURL) {
       
       $.ajax({url: serverURL,
               type: "POST",
-              contentType: 'application/json; charset=utf-8',
-              dataType: 'jsonp',
-              crossDomain: true,
+              //contentType: 'application/json; charset=utf-8',
+              //dataType: 'jsonp',
+              //crossDomain: true,
               success: function (jsonResult) {
                 alert("Second Success"+JSON.stringify(jsonResult));
               },
@@ -144,7 +144,7 @@ function getServerStatus(btnID,serverURL) {
               },
               statusCode: {
                   200: function (response) {
-                      $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!'+response+'</b></span>');
+                      $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!'+JSON.stringify(response)+'</b></span>');
                   },
                   400: function (response) {
                       $(btnID).html('<span class="fa-stack fa-lg"><i class="fa fa-gamepad fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span><span class="text-success"><span class="text-danger"> Down'+response+'</span>');
