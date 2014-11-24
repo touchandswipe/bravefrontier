@@ -114,16 +114,18 @@
  
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+<!--Range Select-->
+From <input type="text" id="rangeFrom" class="form-control" placeholder="Range From">
+To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
+<button type="button" id="exportBtn" class="btn btn-default">Export</button>
 <!--TABLE-->
 <table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
 
 <script type="text/javascript">
-$(document).ready( function(e) {
-
-$.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function( unit ) {
-    //var items = [];
+$(document).on("click","#exportBtn", function(e) {
+$.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
     /*Process for Each Unit*/
-    var rangeID=[715,732];
+    var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -135,6 +137,10 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function( u
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
           if (valObj.name) {
               exportSTR+='<td>'+valObj.name+'</td>'
+          } else { exportSTR+='<td></td>' }
+          
+          if (valObj.cost) {
+              exportSTR+='<td>'+valObj.cost+'</td>'
           } else { exportSTR+='<td></td>' }
   
           $("#rawTable").append(exportSTR+'<tr>');
