@@ -124,8 +124,8 @@ To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 $(document).on("click","#exportBtn", function(e) {
 $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
     /*Process for Each Unit*/
-    alert(parseInt($("#rangeFrom").val()));
-    var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeFrom").val())];
+    var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
+    alert("run");
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -177,8 +177,8 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
         exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
         exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
-        
         $("#rawTable").append(exportSTR+'<tr>');
+        alert("done");
         } /*End range check*/
     })
 })
