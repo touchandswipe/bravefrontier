@@ -139,12 +139,12 @@ function getServerStatus(btnID,serverURL) {
       })
       .always(function() {
         alert( "complete" );
-  });
-    
+      });
+      alert("jqxhr text is "+jqxhr.responseText);
+      
       $.ajax({url: serverURL,
               type: "POST",
-              contentType : "application/x-www-form-urlencoded",
-              GCLIENTID : "Android_sg.gumi.bravefrontier",
+              contentType: 'application/json; charset=utf-8',
               statusCode: {
                   200: function (response) {
                       $(btnID).html('<i class="fa fa-gamepad fa-2x"></i><span class="text-success"> Game ON!</span>');
