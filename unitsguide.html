@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Zeta Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Peta Release) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide - Zeta Release by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Peta Release) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -91,6 +91,7 @@
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.0/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -99,7 +100,7 @@ var ovdata2 = {};
 var favUnitObj=[];
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
-var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
+var gTable = '1C7oKd1ko3PvX2mcOkw6es4aYP2D5o_aMFgFwMN5Z';
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
@@ -309,7 +310,7 @@ function gooShorten(URLtoShort,linkAsset) {
 }
 
 /*Initialise datapull from Google Tables*/
-function initialize() {
+function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
   if ( $( document ).width() >= 1600 ) {
     var xtraDefCol=[]; var pLength=100;
@@ -317,32 +318,17 @@ function initialize() {
   } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16]; var pLength=100;
   } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=100;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50; }
-  var query = "SELECT * FROM " +
-  gTable + " ORDER BY 'ID' ASC";
-  var encodedQuery = encodeURIComponent(query);
-  /*Construct the URL*/
-  var url = [gURL];
-  url.push('?sql=' + encodedQuery);
-  url.push('&key=' + gKey);
-  url.push('&callback=?');
-
-    /*Send the JSONP request*/
-	$.ajax({
-	  url: url.join(''),
-	  dataType: 'jsonp',
-	  success: function (fusionData) {
-	      /*AJAX Call*/
-	  deserialdata = convertJSON(fusionData);
-	  //console.log(JSON.stringify(fusionData["rows"]));
-	      bfPROsTable=$('#mytable').dataTable({
-		  "data":fusionData.rows,
-		  "columns": [
-	    { "data": fusionData.columns.indexOf("ID") },
-	    { "data": fusionData.columns.indexOf("Icon") },
-	    { "data": fusionData.columns.indexOf("Name") },
-	    { "data": fusionData.columns.indexOf("Series") },
-	    { "data": fusionData.columns.indexOf("Batch") },
-	    { "data": fusionData.columns.indexOf("Rarity") },
+  
+	deserialdata = convertJSON(fusionData);
+	bfPROsTable=$('#mytable').dataTable({
+		"data":fusionData.rows,
+		"columns": [
+		{ "data": fusionData.columns.indexOf("ID") },
+		{ "data": fusionData.columns.indexOf("Icon") },
+		{ "data": fusionData.columns.indexOf("Name") },
+		{ "data": fusionData.columns.indexOf("Series") },
+		{ "data": fusionData.columns.indexOf("Batch") },
+		{ "data": fusionData.columns.indexOf("Rarity") },
 	    { "data": fusionData.columns.indexOf("Element") },
 	    { "data": fusionData.columns.indexOf("Cost") },
 	    { "data": fusionData.columns.indexOf("Gender") },
@@ -355,6 +341,7 @@ function initialize() {
 	    { "data": fusionData.columns.indexOf("BB Fill") },
 	    { "data": fusionData.columns.indexOf("SBB Fill") },
 	    { "data": fusionData.columns.indexOf("Weighted Stats (Lord)") },
+	    { "data": fusionData.columns.indexOf("Weighted Pimped Stats (Lord)") },
 	    { "data": fusionData.columns.indexOf("HP Lord") },
 	    { "data": fusionData.columns.indexOf("ATK Lord") },
 	    { "data": fusionData.columns.indexOf("DEF Lord") },
@@ -395,7 +382,7 @@ function initialize() {
 				groups: [
 			    {   title: "More Unit Info",
 				columns: [ 2,3,6,7,8 ] },
-			{   title: "Unit Batch",
+				{   title: "Unit Batch",
 				columns: [ 4 ] },
 			    {   title: "Leader / BB Skills",
 				columns: [ 9,10 ] },
@@ -404,17 +391,19 @@ function initialize() {
 			    {   title: "Hits / Fills",
 				columns: [ 12,13,14,15,16 ] },
 			    {   title: "Evo Materials",
-				columns: [ 47 ] },				
+				columns: [ 47 ] },
+			    {   title: "Wt Pimped Stats",
+				columns: [ 18 ] },
 			    {   title: "(L)ord Stats",
-				columns: [ 18,19,20,21 ] },
+				columns: [ 19,20,21,22 ] },
 			    {   title: "(A)nima Stats",
-				columns: [ 22,23,24,25 ] },
+				columns: [ 23,24,25,26 ] },
 			    {   title: "(B)reaker Stats",
-				columns: [ 26,27,28,29 ] },
+				columns: [ 27,28,29,30 ] },
 			    {   title: "(G)uardian Stats",
-				columns: [ 30,31,32,33 ] },
+				columns: [ 31,32,33,34 ] },
 			    {   title: "(O)racle Stats",
-				columns: [ 34,35,36,37 ] 
+				columns: [ 35,36,37,38 ] 
 			    }]
 		  },
 		  "autoWidth": false,
@@ -498,8 +487,8 @@ function initialize() {
 		  /*Parsing Fields via Datatables*/
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11 ] },
-		{ "visible": false, "targets": [ 18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,46,47,48 ] },
+		{ "visible": false, "targets": [ 18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48 ].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -507,7 +496,7 @@ function initialize() {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgSource, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="'+imgSource+'" width="40" height="40" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="'+imgSource+'" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -521,7 +510,7 @@ function initialize() {
 		}
 		},
 		/*Stats*/
-		{ "targets":[ 7,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37 ],
+		{ "targets":[ 7,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -623,8 +612,25 @@ function initialize() {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			    if (isNaN(nanCol)) {
-				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats by Lord Type">'+'-'+'</div>';
-			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats by Lord Type">'+Math.round(nanCol)+'</div>'; }
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
+		    } else if (type === 'sort') {
+			    if (isNaN(nanCol)) {
+				return "-";
+			    } else { return Math.round(nanCol); }
+			}
+		    }
+		},
+		/*Wt Pimped Stats*/
+		{ "targets":[ 18 ],
+		"type": "num",
+		"width": "50",
+		/*NaN check n rounding*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			    if (isNaN(nanCol)) {
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
 		    } else if (type === 'sort') {
 			    if (isNaN(nanCol)) {
 				return "-";
@@ -642,7 +648,7 @@ function initialize() {
 		    }
 		},
 		/*Global Japan Release*/
-		{ "targets": [44,45],
+		{ "targets": [45,46],
 		"orderable": false,
 		"render": function(relVal, type, cRow, full) {
 	    if (relVal=="" || relVal=="TRUE") {
@@ -653,7 +659,7 @@ function initialize() {
 		}
 		},
 		/*Aggregated Evolution Materials*/
-		{ "targets": [47],
+		{ "targets": [48],
 		"orderable": false,
 		"render": function(evoVal, type, cRow, full) {
 		    var evoString='<div style="white-space:nowrap;">';
@@ -664,10 +670,9 @@ function initialize() {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [48],
+		{ "targets": [49],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
-
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
 		    if (favSelect.length!=0) {
 			for (var i=0;i<favSelect.length;i++) {
@@ -696,9 +701,8 @@ function initialize() {
 		"render": function(batchname, type, row, full) {
 		    return '<a href="#" class="batchlink">'+batchname+'</a>';}
 		}]
-	      })
-	  }
-    })
+	}) /*End Datatables Init*/
+
 	/*Custom filter for ID Range*/
 	$.fn.dataTable.ext.search.push (
 	    function( settings, data, dataIndex ) {
@@ -708,6 +712,7 @@ function initialize() {
 		    { return true; }
 		return false;
 	})
+	
 	/*Custom filter for Fav*/
 	$.fn.dataTable.ext.search.push (
 	    function( settings, data, dataIndex ) {
@@ -1510,7 +1515,7 @@ var evoQuery = [
 	  
 <!-- RIGHT NAV -->
 	  <button id="refreshBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Clear filters" style="margin-right:5px;"><i class="fa fa-lg fa-refresh fa-spin"></i></button>
-	  <button id="resetbtn" type="button" class="btn nav-tt navbar-right btn-danger navbar-btn" data-toggle="tooltip" title="Reset / Reload DB" style="margin-right:5px;"><i class="fa fa-power-off fa-lg"></i></button>
+	  <button id="resetBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Sync latest data" style="margin-right:5px;"><i class="fa fa-cloud-download fa-lg"></i> Sync</button>
     <!--Favourite button group-->
     <div class="btn-group navbar-right navbar-btn" id="favBtnGroup" style="margin-right:5px;">
 	<button type="button" id="showFavBtn" data-toggle="tooltip" title="Show favourites" class="btn btn-info">Show <i class="fa fa-star"></i></button>
@@ -1621,6 +1626,7 @@ var evoQuery = [
 		<th>BB Fill</th>
 		<th>SBB Fill</th>
 		<th>Wt Stats</th>
+		<th>Wt Pimped</th>
 		<th>HP (L)</th>
 		<th>ATK (L)</th>
 		<th>DEF (L)</th>
@@ -1674,6 +1680,7 @@ var evoQuery = [
 		<th>BB Fill</th>
 		<th>SBB Fill</th>
 		<th>Wt Stats</th>
+		<th>Wt Pimped</th>
 		<th>HP (L)</th>
 		<th>ATK (L)</th>
 		<th>DEF (L)</th>
@@ -1722,14 +1729,40 @@ $(document).ready( function(e) {
     window.sharedFavSelect=[];
     /*Fav custom filter*/
     window.showOnlyFavs=false;
-    /*Init loader*/
-    $('#progressModal').modal({
-	keyboard:false,
-	backdrop:'static',
-	toggle:true
-    })
-    /*initialise initial data load*/
-    initialize();
+    
+    /*LocalStorage Retreival and storage*/
+    if (localStorage.unitsguideadvance) {
+	guideData=LZString.decompress(localStorage.unitsguideadvance);
+	initialize(JSON.parse(guideData));
+    } else {
+	/*Init loader if no localstorage*/
+	$('#progressModal').modal({
+		keyboard:false,
+		backdrop:'static',
+		toggle:true
+	})
+    
+    	/*Query Fusion Tables 1st Time*/
+    	var query = "SELECT * FROM " +
+  	gTable + " ORDER BY 'ID' ASC";
+  	var encodedQuery = encodeURIComponent(query);
+  	/*Construct the URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+
+	/*Send the JSONP request*/
+	$.ajax({
+		url: url.join(''),
+		dataType: 'jsonp',
+		success: function (fusionData) {
+			/*Save in local storage*/
+			localStorage.setItem("unitsguideadvance",LZString.compress(JSON.stringify(fusionData)));
+			initialize(fusionData);
+	  	}
+	});
+	} /*End Else*/
 
 /*BootStrap Stuff*/
 $('.bfQn').popover();
@@ -1764,11 +1797,17 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 })
 
 /*RESET*/
-    $('#resetbtn').click( function(e) {
-	e.preventDefault();
+$('#resetBtn').click( function(e) {
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/syncUnitGuideAdvance',
+  		'title': 'Brave Frontier PROs Unit Guide Advance Sync'
+	});
+    	/*LocalStorage Delete and Refresh*/
+	localStorage.removeItem("unitsguideadvance");
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
-    })
+})
 
 /*Compare*/
 window.compareSelect=[];
