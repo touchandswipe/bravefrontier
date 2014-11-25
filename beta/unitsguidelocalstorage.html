@@ -1750,8 +1750,9 @@ $(document).ready( function(e) {
 		url: url.join(''),
 		dataType: 'jsonp',
 		success: function (quickData) {
-			alert("Entries Count "+quickData.columns.length);
-			serverUnitsCount=quickData.columns.length;
+			alert(JSON.stringify(quickData));
+			alert("Entries Count "+quickData.rows.length);
+			serverUnitsCount=quickData.rows.length;
 	  	}
 	});
 	/*Prompt to Sync*/
