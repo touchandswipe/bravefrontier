@@ -1750,15 +1750,13 @@ $(document).ready( function(e) {
 		url: url.join(''),
 		dataType: 'jsonp',
 		success: function (quickData) {
-			alert("Server Count "+quickData.rows.length);
 			serverUnitsCount=quickData.rows.length;
-	  	}
+			/*Prompt to Sync*/
+			alert("server "+serverUnitsCount+" local "+localUnitsCount);
+			if (serverUnitsCount > localUnitsCount)
+				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i>Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+	  		}
 	});
-	/*Prompt to Sync*/
-	alert("server "+serverUnitsCount+" local "+localUnitsCount);
-	if (serverUnitsCount > localUnitsCount) {
-		bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i>Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
-	}
 	guideData=LZString.decompress(localStorage.unitsguideadvance);
 	initialize(JSON.parse(guideData));
     } else {
