@@ -612,8 +612,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			    if (isNaN(nanCol)) {
-				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats by Lord Type">'+'-'+'</div>';
-			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats by Lord Type">'+Math.round(nanCol)+'</div>'; }
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
 		    } else if (type === 'sort') {
 			    if (isNaN(nanCol)) {
 				return "-";
@@ -629,8 +629,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			    if (isNaN(nanCol)) {
-				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+'-'+'</div>';
-			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
 		    } else if (type === 'sort') {
 			    if (isNaN(nanCol)) {
 				return "-";
