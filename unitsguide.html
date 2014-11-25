@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Peta Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Peta R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Peta Release) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Peta R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -202,7 +202,7 @@ function clearSquad() {
 
 /*Bootstrap alerts*/
 function bfpAlert(aTitle,aBody) {
-    $("#alertSpace").html('<i class="fa fa-fire-extinguisher"></i> <strong>'+aTitle+':</strong> '+aBody);
+    $("#alertSpace").html('<h3><i class="fa fa-fire-extinguisher"></i> <strong>'+aTitle+':</strong></h3> '+aBody);
     $("#alertmodal").modal("show");
 }
 
@@ -1732,6 +1732,28 @@ $(document).ready( function(e) {
     
     /*LocalStorage Retreival and storage*/
     if (localStorage.unitsguideadvance) {
+    	/*Quick query to check for new entries*/
+    	var serverUnitsCount=0;
+    	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
+    	var query = "SELECT 'ID' FROM " + gTable;
+  	var encodedQuery = encodeURIComponent(query);
+  	/*Construct the URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+
+	/*Send the JSONP request*/
+	$.ajax({
+		url: url.join(''),
+		dataType: 'jsonp',
+		success: function (quickData) {
+			serverUnitsCount=quickData.rows.length;
+			/*Prompt to Sync*/
+			if (serverUnitsCount > localUnitsCount)
+				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+	  		}
+	});
 	guideData=LZString.decompress(localStorage.unitsguideadvance);
 	initialize(JSON.parse(guideData));
     } else {
@@ -1759,6 +1781,7 @@ $(document).ready( function(e) {
 		success: function (fusionData) {
 			/*Save in local storage*/
 			localStorage.setItem("unitsguideadvance",LZString.compress(JSON.stringify(fusionData)));
+			localStorage.setItem("unitsguideadvanceCount",fusionData.rows.length);
 			initialize(fusionData);
 	  	}
 	});
@@ -1805,6 +1828,7 @@ $('#resetBtn').click( function(e) {
 	});
     	/*LocalStorage Delete and Refresh*/
 	localStorage.removeItem("unitsguideadvance");
+	localStorage.removeItem("unitsguideadvanceCount");
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
 })
@@ -1930,6 +1954,20 @@ $(document).on("click", "#importUnitsBtnGO", function(e){
 	    bfpAlert("Import completion",'Import is now completed and the database is refreshed to reflect the new favourties.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
 	    window.scrollTo(0,0);
 	    },2000);
+})
+
+/*New units detect*/
+$(document).on("click", "#syncDetectBtn", function(e){    
+    bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i>Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+})
+
+/*New units sync*/
+$(document).on("click", "#syncNewBtn", function(e){    
+	/*Force sync*/
+	localStorage.removeItem("unitsguideadvance");
+	localStorage.removeItem("unitsguideadvanceCount");
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
 })
 
 /*Filter Favourites*/
@@ -3181,7 +3219,7 @@ var delay = (function(){
 <div class="modal fade" id="alertmodal" tabindex="-1" role="dialog" aria-labelledby="alertmodal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Seria SCREAMS!</h3></div>
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
       <div class="modal-body">
 	<div id="alertSpace" class="alert"></div>
       </div>
