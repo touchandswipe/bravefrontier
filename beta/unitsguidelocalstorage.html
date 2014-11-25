@@ -1495,8 +1495,8 @@ var evoQuery = [
 	  </ul>
 	  
 <!-- RIGHT NAV -->
-	  <button id="refreshBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Clear filters" style="margin-right:5px;"><i class="fa fa-lg fa-refresh fa-spin"></i></button>
-	  <button id="resetbtn" type="button" class="btn nav-tt navbar-right btn-danger navbar-btn" data-toggle="tooltip" title="Reset / Reload DB" style="margin-right:5px;"><i class="fa fa-power-off fa-lg"></i></button>
+	  <button id="refreshBtn" type="button" class="btn nav-tt navbar-right btn-warning navbar-btn" data-toggle="tooltip" title="Clear filters" style="margin-right:5px;"><i class="fa fa-lg fa-refresh fa-spin"></i></button>
+	  <button id="resetBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Sync latest data" style="margin-right:5px;"><i class="fa fa-cloud-download fa-lg"></i> Sync</button>
     <!--Favourite button group-->
     <div class="btn-group navbar-right navbar-btn" id="favBtnGroup" style="margin-right:5px;">
 	<button type="button" id="showFavBtn" data-toggle="tooltip" title="Show favourites" class="btn btn-info">Show <i class="fa fa-star"></i></button>
@@ -1776,11 +1776,18 @@ $('#cardModal').on('hidden.bs.modal', function (e) {
 })
 
 /*RESET*/
-    $('#resetbtn').click( function(e) {
-	e.preventDefault();
+$('#resetBtn').click( function(e) {
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    });
+    /*LocalStorage Delete and Refresh*/
+	localStorage.removeItem("unitsguideadvance");
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
-    })
+})
 
 /*Compare*/
 window.compareSelect=[];
