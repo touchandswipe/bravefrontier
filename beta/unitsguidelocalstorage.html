@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Zeta Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Peta Release) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide - Zeta Release by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Peta Release) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -91,6 +91,7 @@
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.0/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -105,7 +106,7 @@ var oppSquad = ['','','','','',''];
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var bossList = [];
 var prevStatsMod=[0,0,0,0,0];
-var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
+var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.1,0.05,0.1,0.05">Ihsir\'s Guise</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.3,0,0,0.3">Lexida</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
 var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option>';
 var atkModHTML='<option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.5">50%</option><option value="0.65">65%</option><option value="0.75">75%</option>';
 var defModHTML='<option value="-0.5">-50%</option><option value="0.05">5%</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.5">50%</option>';
@@ -295,7 +296,6 @@ function sconvertJSON( serialObj ) {
 
 /*AJAX Call to Google URL Shortener API*/
 function gooShorten(URLtoShort,linkAsset) {
-	alert("calling api");
     $.ajax({
 	    type: 'POST',
 	    async: false,
@@ -310,7 +310,7 @@ function gooShorten(URLtoShort,linkAsset) {
 }
 
 /*Initialise datapull from Google Tables*/
-function initialize() {
+function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
   if ( $( document ).width() >= 1600 ) {
     var xtraDefCol=[]; var pLength=100;
@@ -318,32 +318,17 @@ function initialize() {
   } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16]; var pLength=100;
   } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=100;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50; }
-  var query = "SELECT * FROM " +
-  gTable + " ORDER BY 'ID' ASC";
-  var encodedQuery = encodeURIComponent(query);
-  /*Construct the URL*/
-  var url = [gURL];
-  url.push('?sql=' + encodedQuery);
-  url.push('&key=' + gKey);
-  url.push('&callback=?');
-
-    /*Send the JSONP request*/
-	$.ajax({
-	  url: url.join(''),
-	  dataType: 'jsonp',
-	  success: function (fusionData) {
-	      /*AJAX Call*/
-	  deserialdata = convertJSON(fusionData);
-	  //console.log(JSON.stringify(fusionData["rows"]));
-	      bfPROsTable=$('#mytable').dataTable({
-		  "data":fusionData.rows,
-		  "columns": [
-	    { "data": fusionData.columns.indexOf("ID") },
-	    { "data": fusionData.columns.indexOf("Icon") },
-	    { "data": fusionData.columns.indexOf("Name") },
-	    { "data": fusionData.columns.indexOf("Series") },
-	    { "data": fusionData.columns.indexOf("Batch") },
-	    { "data": fusionData.columns.indexOf("Rarity") },
+  
+	deserialdata = convertJSON(fusionData);
+	bfPROsTable=$('#mytable').dataTable({
+		"data":fusionData.rows,
+		"columns": [
+		{ "data": fusionData.columns.indexOf("ID") },
+		{ "data": fusionData.columns.indexOf("Icon") },
+		{ "data": fusionData.columns.indexOf("Name") },
+		{ "data": fusionData.columns.indexOf("Series") },
+		{ "data": fusionData.columns.indexOf("Batch") },
+		{ "data": fusionData.columns.indexOf("Rarity") },
 	    { "data": fusionData.columns.indexOf("Element") },
 	    { "data": fusionData.columns.indexOf("Cost") },
 	    { "data": fusionData.columns.indexOf("Gender") },
@@ -697,9 +682,8 @@ function initialize() {
 		"render": function(batchname, type, row, full) {
 		    return '<a href="#" class="batchlink">'+batchname+'</a>';}
 		}]
-	      })
-	  }
-    })
+	}) /*End Datatables Init*/
+
 	/*Custom filter for ID Range*/
 	$.fn.dataTable.ext.search.push (
 	    function( settings, data, dataIndex ) {
@@ -709,6 +693,7 @@ function initialize() {
 		    { return true; }
 		return false;
 	})
+	
 	/*Custom filter for Fav*/
 	$.fn.dataTable.ext.search.push (
 	    function( settings, data, dataIndex ) {
@@ -1024,7 +1009,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    evoCHTML+='<div class="col-xs-12 col-md-12"><h6><small>Zel Costs .. may be coming soon</h6></div>';
 	    $('#evoCalcContent').html(evoCHTML);
 	    /*End Evo*/
-	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),5000);
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),4000);
 	  }
 	})
 } /*End openCompare*/
@@ -1723,14 +1708,40 @@ $(document).ready( function(e) {
     window.sharedFavSelect=[];
     /*Fav custom filter*/
     window.showOnlyFavs=false;
-    /*Init loader*/
-    $('#progressModal').modal({
-	keyboard:false,
-	backdrop:'static',
-	toggle:true
-    })
-    /*initialise initial data load*/
-    initialize();
+    
+    /*LocalStorage Retreival and storage*/
+    if (localStorage.unitsguideadvance) {
+	guideData=LZString.decompress(localStorage.unitsguideadvance);
+	initialize(JSON.parse(guideData));
+    } else {
+	/*Init loader if no localstorage*/
+	$('#progressModal').modal({
+		keyboard:false,
+		backdrop:'static',
+		toggle:true
+	})
+    
+    	/*Query Fusion Tables 1st Time*/
+    	var query = "SELECT * FROM " +
+  	gTable + " ORDER BY 'ID' ASC";
+  	var encodedQuery = encodeURIComponent(query);
+  	/*Construct the URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+
+	/*Send the JSONP request*/
+	$.ajax({
+		url: url.join(''),
+		dataType: 'jsonp',
+		success: function (fusionData) {
+			/*Save in local storage*/
+			localStorage.setItem("unitsguideadvance",LZString.compress(JSON.stringify(fusionData)));
+			initialize(fusionData);
+	  	}
+	});
+	} /*End Else*/
 
 /*BootStrap Stuff*/
 $('.bfQn').popover();
@@ -3016,6 +3027,22 @@ var delay = (function(){
 	    <input type="checkbox" class="filSkills" value="Reduce BC">-BC to Fill BB 
 	  </label>
 	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="Reduce BB Gauge Used">Reduce BB Gauge Used
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="Full BB to Self">Full BB to Self
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BB Fill when ATKed">BB Fill when ATKed
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BB Fill on Spark">BB Fill on Spark
+	  </label>
+	  
 	  <label class="btn btn-danger">
 	    <input type="checkbox" class="filSkills" value="HC+">HC+ 
 	  </label>
@@ -3025,7 +3052,15 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-danger">
-	    <input type="checkbox" class="filSkills" value="Heal">Healing 
+	    <input type="checkbox" class="filSkills" value="Heal">Healing
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Drain HP">Drain HP
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Heal when ATKed">Heal when ATKed
 	  </label>
 	  
 	  <label class="btn btn-warning">
@@ -3041,7 +3076,7 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Add ">Add Element(s) 
+	    <input type="checkbox" class="filSkills" value="Add ">Add Ele / Ails
 	  </label>
 	  
 	  <label class="btn btn-default">
@@ -3053,7 +3088,7 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="1/2 DMG Received">1/2 DMG Reduction 
+	    <input type="checkbox" class="filSkills" value="Reduce DMG">Reduce DMG 
 	  </label>
 	  
 	  <label class="btn btn-default">
@@ -3091,6 +3126,15 @@ var delay = (function(){
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="Poison">Poison 
 	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Convert">Convert Stats
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Reduce Enemy">Reduce Enemy ATK/DEF
+	  </label>
+	  
 	</div>
 	
 	<div class="clear row"></div>
