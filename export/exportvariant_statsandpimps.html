@@ -122,7 +122,7 @@ To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 
 <script type="text/javascript">
 $(document).on("click","#exportBtn", function(e) {
-$.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
+$.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     $.each( unit, function( unitKey, valObj ) {
