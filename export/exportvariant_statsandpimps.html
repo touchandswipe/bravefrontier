@@ -176,6 +176,12 @@ $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function
         exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
         exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
+        /*imp data*/
+        exportSTR+='<td>'+valObj.imp["max hp"]+'</td>'
+        exportSTR+='<td>'+valObj.imp["max atk"]+'</td>'
+        exportSTR+='<td>'+valObj.imp["max def"]+'</td>'
+        exportSTR+='<td>'+valObj.imp["max rec"]+'</td>'
+        
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
