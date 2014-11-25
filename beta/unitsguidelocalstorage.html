@@ -1736,8 +1736,7 @@ $(document).ready( function(e) {
     	var serverUnitsCount=0;
     	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
     	alert("local count is "+localUnitsCount);
-    	var query = "SELECT 'ID' FROM " +
-  	gTable + " ORDER BY 'ID' ASC";
+    	var query = "SELECT 'ID' FROM " + gTable;
   	var encodedQuery = encodeURIComponent(query);
   	/*Construct the URL*/
 	var url = [gURL];
