@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Peta Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Peta R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Peta Release) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Peta R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -1735,7 +1735,6 @@ $(document).ready( function(e) {
     	/*Quick query to check for new entries*/
     	var serverUnitsCount=0;
     	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
-    	alert("local count is "+localUnitsCount);
     	var query = "SELECT 'ID' FROM " + gTable;
   	var encodedQuery = encodeURIComponent(query);
   	/*Construct the URL*/
@@ -1751,7 +1750,6 @@ $(document).ready( function(e) {
 		success: function (quickData) {
 			serverUnitsCount=quickData.rows.length;
 			/*Prompt to Sync*/
-			alert("server "+serverUnitsCount+" local "+localUnitsCount);
 			if (serverUnitsCount > localUnitsCount)
 				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
 	  		}
