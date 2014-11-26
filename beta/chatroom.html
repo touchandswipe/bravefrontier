@@ -139,11 +139,11 @@ function getServerStatus(btnID,serverURL) {
   if (currentTime-lastChecked>=5000 || lastChecked==0) {
     lastChecked=currentTime;
     var jqxhr = $.ajax( serverURL )
-      .done(function() {
-        alert("Test jq response success "+e.responseText);
+      .done(function(ex) {
+        alert("Test jq response success "+ex.responseText);
       })
-      .fail(function(e) {
-        alert("Test jq response error "+e.responseText);
+      .fail(function(ex) {
+        alert("Test jq response error "+ex.responseText);
       });
       
     serverGrab=$.ajax({
