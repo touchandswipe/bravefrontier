@@ -140,12 +140,12 @@ function getServerStatus(btnID,serverURL) {
     lastChecked=currentTime;
     var jqxhr = $.ajax( serverURL )
       .done(function() {
-        alert( "success" );
+        alert("Test jq response success "+e.responseText);
       })
-      .fail(function() {
-        alert( "error" );
+      .fail(function(e) {
+        alert("Test jq response error "+e.responseText);
       });
-      alert("Test jq response "+jqxhr.responseText);
+      
     serverGrab=$.ajax({
               url: serverURL,
               type: "HEAD",
