@@ -141,9 +141,9 @@ function getServerStatus(btnID,serverURL) {
     serverGrab=$.ajax({url: serverURL,
               type: "POST",
               timeout: 5000,
-              contentType: 'application/json; charset=utf-8',
+              contentType: 'application/x-www-form-urlencoded',
               dataType: 'jsonp',
-              data: {"Host":"android.bravefrontier.gumi.sg","contentType":"application/json; charset=utf-8","GCLIENTID":"Android_sg.gumi.bravefrontier"},
+              data: {"User-Agent":"android","Host":"android.bravefrontier.gumi.sg","contentType":"application/x-www-form-urlencoded"},
               success: function (jsonResult) {
                 alert("If Success"+JSON.stringify(jsonResult));
               },
@@ -170,13 +170,15 @@ function getServerStatus(btnID,serverURL) {
 }
 
 $(document).ready( function(e) {
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  getServerStatus("#serverStateGlobal", "http://iosv2.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
   //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 });
 
 /*Refresh status Button*/
 $(document).on("click", '#serverStateGlobal', function(e){
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  getServerStatus("#serverStateGlobal", "http://iosv2.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
   //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 })
 
