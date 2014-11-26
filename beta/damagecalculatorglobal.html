@@ -520,7 +520,7 @@ function buildDB(unit) {
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     if (valObj.bb) {
-    	for (i in valObj.sbb.levels[9].effects) {
+    	for (i in valObj.bb.levels[9].effects) {
     		var bbMaxATK=(valObj.bb.levels[9].effects[i]['bb atk%']) ? valObj.bb.levels[9].effects[i]['bb atk%'] : 0;
     		var bbFlatATK=(valObj.bb.levels[9].effects[i]['bb flat atk']) ? valObj.bb.levels[9].effects[i]['bb flat atk'] : 0;
     	}
