@@ -140,7 +140,7 @@ function getServerStatus(btnID,serverURL) {
     lastChecked=currentTime;
     serverGrab=$.ajax({
               url: serverURL,
-              type: "HEAD",
+              type: "POST",
               timeout: 5000,
               contentType: 'application/x-www-form-urlencoded',
               dataType: 'text jsonp',
