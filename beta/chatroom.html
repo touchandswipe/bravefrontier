@@ -130,9 +130,8 @@ var lastChecked=0;
 /*Get status*/
 function getServerStatus(btnID,serverURL) {
   var currentTime = new Date().getTime();
-  if (currentTime-lastChecked>=300000 || lastChecked==0) {
+  if (currentTime-lastChecked>=5000 || lastChecked==0) {
     lastChecked=currentTime;
-      
     serverGrab=$.ajax({url: serverURL,
               type: "POST",
               timeout: 5000,
@@ -161,7 +160,7 @@ function getServerStatus(btnID,serverURL) {
               }
       })
   } else
-    alert("You can only refresh every 5mins.");
+    alert("You can only refresh every 5secs.");
 }
 
 $(document).ready( function(e) {
