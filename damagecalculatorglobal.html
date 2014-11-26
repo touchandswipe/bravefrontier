@@ -519,20 +519,32 @@ foundArray=[];
 function buildDB(unit) {
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+	var bbMaxATK=0;
+	var sbbMaxATK=0;
+	var bbFlatATK=0;
+	var sbbFlatATK=0;
     if (valObj.bb) {
-    	var bbMaxATK=(valObj.bb.levels[9].effects[0]['bb atk%']) ? valObj.bb.levels[9].effects[0]['bb atk%'] : 0;
-    	var bbFlatATK=(valObj.bb.levels[9].effects[0]['bb flat atk']) ? valObj.bb.levels[9].effects[0]['bb flat atk'] : 0;
+    	for (i in valObj.bb.levels[9].effects) {
+    		if (bbMaxATK==0)
+    			bbMaxATK=(valObj.bb.levels[9].effects[i]['bb atk%']) ? valObj.bb.levels[9].effects[i]['bb atk%'] : 0 ;
+    		if (bbFlatATK==0)
+    			bbFlatATK=(valObj.bb.levels[9].effects[i]['bb flat atk']) ? valObj.bb.levels[9].effects[i]['bb flat atk'] : 0;
+    	}
     } else {
-    	var bbMaxATK=0;
-    	var bbFlatATK=0;
+    	bbMaxATK=0;
+    	bbFlatATK=0;
     }
     
     if (valObj.sbb) {
-    	var sbbMaxATK=(valObj.sbb.levels[9].effects[0]['bb atk%']) ? valObj.sbb.levels[9].effects[0]['bb atk%'] : 0;
-    	var sbbFlatATK=(valObj.sbb.levels[9].effects[0]['bb flat atk']) ? valObj.sbb.levels[9].effects[0]['bb flat atk'] : 0;
+    	for (i in valObj.sbb.levels[9].effects) {
+    		if (sbbMaxATK==0)
+    			sbbMaxATK=(valObj.sbb.levels[9].effects[i]['bb atk%']) ? valObj.sbb.levels[9].effects[i]['bb atk%'] : 0;
+		if (sbbFlatATK==0)
+    			sbbFlatATK=(valObj.sbb.levels[9].effects[i]['bb flat atk']) ? valObj.sbb.levels[9].effects[i]['bb flat atk'] : 0;
+    	}
     } else {
-    	var sbbMaxATK=0;
-    	var sbbFlatATK=0;
+    	sbbMaxATK=0;
+    	sbbFlatATK=0;
     }
     
       var unitObj={
