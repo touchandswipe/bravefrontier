@@ -150,6 +150,9 @@ function getServerStatus(btnID,serverURL) {
               error: function (jqXHR, textStatus) {
                 alert("If Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus);
               },
+              getAllResponseHeaders: function (response) {
+                alert("response headers "+response);
+              }
               statusCode: {
                   200: function (response) {
                       $(btnID).html('<i class="fa fa-gamepad fa-lg"></i><span class="text-success"> <B>Game ON!</b></span>');
