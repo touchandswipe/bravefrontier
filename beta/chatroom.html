@@ -138,7 +138,8 @@ function getServerStatus(btnID,serverURL) {
   var currentTime = new Date().getTime();
   if (currentTime-lastChecked>=5000 || lastChecked==0) {
     lastChecked=currentTime;
-    serverGrab=$.ajax({url: serverURL,
+    serverGrab=$.ajax({
+              url: serverURL,
               type: "POST",
               timeout: 5000,
               contentType: 'application/x-www-form-urlencoded',
@@ -147,11 +148,8 @@ function getServerStatus(btnID,serverURL) {
               success: function (jsonResult) {
                 alert("If Success"+JSON.stringify(jsonResult));
               },
-              error: function (jqXHR, textStatus) {
-                alert("If Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus);
-              },
-              getAllResponseHeaders: function (response) {
-                alert("response headers "+response);
+              error: function (jqXHR, textStatus,errorThrown) {
+                alert("If Error "+JSON.stringify(jqXHR)+" Textstatus "+textStatus+" "+errorThrown);
               },
               statusCode: {
                   200: function (response) {
