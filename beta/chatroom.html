@@ -140,10 +140,10 @@ function getServerStatus(btnID,serverURL) {
     lastChecked=currentTime;
     serverGrab=$.ajax({
               url: serverURL,
-              type: "POST",
+              type: "HEAD",
               timeout: 5000,
               contentType: 'application/x-www-form-urlencoded',
-              dataType: 'jsonp',
+              dataType: 'text jsonp',
               data: {"User-Agent":"android","Host":"android.bravefrontier.gumi.sg","contentType":"application/x-www-form-urlencoded"},
               success: function (jsonResult) {
                 alert("If Success"+JSON.stringify(jsonResult));
