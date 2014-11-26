@@ -138,6 +138,14 @@ function getServerStatus(btnID,serverURL) {
   var currentTime = new Date().getTime();
   if (currentTime-lastChecked>=5000 || lastChecked==0) {
     lastChecked=currentTime;
+    var jqxhr = $.ajax( serverURL )
+      .done(function() {
+        alert( "success" );
+      })
+      .fail(function() {
+        alert( "error" );
+      });
+      alert("Test jq response "+jqxhr.responseText);
     serverGrab=$.ajax({
               url: serverURL,
               type: "HEAD",
