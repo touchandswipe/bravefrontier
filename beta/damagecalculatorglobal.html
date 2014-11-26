@@ -514,15 +514,15 @@
 rawParseObj=[]; /*holder variable in array*/
 selectUnitObj={};
 foundArray=[];
-var bbMaxATK=0;
-var sbbMaxATK=0;
-var bbFlatATK=0;
-var sbbFlatATK=0;
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+	var bbMaxATK=0;
+	var sbbMaxATK=0;
+	var bbFlatATK=0;
+	var sbbFlatATK=0;
     if (valObj.bb) {
     	for (i in valObj.bb.levels[9].effects) {
     		if (bbMaxATK==0)
