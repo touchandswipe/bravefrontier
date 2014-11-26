@@ -96,7 +96,7 @@
         <div class="clear"></div>
         <h4 style="margin-bottom:0px;"><b>Useful resources</b></h4>
         <ul style="margin-top:0px;" class="small">
-            <li><a href="/chatroomhtml5" target="_blank">HTML5 Chatroom</a></li>
+            <li><a href="/chatroomhtml5">HTML5 Chatroom</a></li>
             <li>Units Guide <a href="/unitsguidelite" target="_blank">Lite</a> | <a href="/unitsguide" target="_blank">Advance</a></li>
             <li>Skills Effects Guide <a href="/skillseffectsguideglobal" target="_blank">Global</a> | <a href="/skillseffectsguidejapan" target="_blank">Japan</a></li>
             <li>Compare <a href="/comparels" target="_blank">Leader Skills</a> | <a href="/comparebbsbb" target="_blank">BB/SBB</a> | <a href="/comparebbailments" target="_blank">Ailments</a> | <a href="/comparemaxbc" target="_blank">Drop/Hit</a></li>
@@ -115,8 +115,11 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
-      <div class="boxMod" style="background:#000000;text-align:center;width:350px;padding:0;margin:5px;">
-        <iframe src="http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php" seamless height="100%" width="100%" sandbox=""></iframe>
+      <div class="boxMod" style="width:350px;height:50px;">
+        <button class="btn btn-default" id="resetNews" style="height:50px;width:100%;margin:0;padding:0;">Refresh / Reset News</button>
+        <div style="background:#000000;text-align:center;height:550px;width:350px;margin:0;">
+            <iframe src="http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php" seamless height="100%" width="100%" sandbox="" id="gameNews"></iframe>
+        </div>
       </div>
   </div>
 </div><!--End ROW-->
@@ -162,13 +165,14 @@ function getServerStatus(btnID,serverURL) {
 }
 
 $(document).ready( function(e) {
-  //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 });
 
 /*Refresh status Button*/
 $(document).on("click", '#serverStateGlobal', function(e){
-  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
+  getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/action.php?callback=?");
+  //getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
 })
 
 </script>
