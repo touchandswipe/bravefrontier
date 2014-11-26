@@ -565,7 +565,7 @@ function buildDB(unit) {
 
 /*Search by Unit ID*/
 function searchIdRun() {
-    var sVal=$('#searchIdBox').val();
+    var sVal=$('#searchIdBox').val().toLowerCase();
     var foundHTML="";
     var idFound=false;
     foundArray=[]; /*Resets Global Array*/
