@@ -1994,10 +1994,10 @@ $(document).on("click", "#syncNewBtn", function(e){
 /*Cancel sync*/
 $(document).on("click", "#syncCancel", function(e){    
 	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
-	if (isValidJSON(guideData))
+	if (isValidJSON(guideData)) {
 		$('#alertmodal').modal('hide');
 		initialize(JSON.parse(guideData));
-	else {
+	} else {
 		/*LocalStorage Delete and Refresh*/
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 		localStorage.removeItem("unitsguideadvance");
