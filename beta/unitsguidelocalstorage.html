@@ -2439,8 +2439,7 @@ var delay = (function(){
     
     /*Load skills in modal*/
     $(document).on("click", ".skillsOpen", function(){
-    	alert("skillseffectsliteglobal?unitid="+$(this).val()+" #mainBody");
-	$("#skillsContent").load("skillseffectsliteglobal?unitid="+$(this).val()+" #mainBody");
+	$("#skillsContent").load("skillseffectsliteglobal?unitid="+$(this).val());
 	$("#skillsModal").modal("show");
     })
     
