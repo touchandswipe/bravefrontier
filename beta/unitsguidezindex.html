@@ -1720,7 +1720,7 @@ var evoQuery = [
 <script type="text/javascript">
 $(document).ready( function(e) {
     /*Favourite localStorage Retreival and storage*/
-    if (localStorage.getItem("favourites") != null) {
+    if (localStorage.favourites) {
 	window.favSelect=localStorage.favourites.split(',');
     } else {
 	window.favSelect=[];
@@ -1731,7 +1731,7 @@ $(document).ready( function(e) {
     window.showOnlyFavs=false;
     
     /*LocalStorage Retreival and storage*/
-    if (localStorage.getItem("unitsguideadvance") != null) {
+    if (localStorage.unitsguideadvance) {
     	/*Quick query to check for new entries*/
     	var serverUnitsCount=0;
     	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
