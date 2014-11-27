@@ -1306,11 +1306,11 @@ var evoQuery = [
 	      if (ovrarity > 5) {
 		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
-	      /*Raw data integration buttons*/
+	      /*skills data buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     		ovHTML+='<button class="btn btn-xs btn-info" value="'+ovid+'"><i class="fa fa-external-link"></i> Global</button> ';
 	     	if (ovJapan.toLowerCase()!="false")	
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
@@ -2437,6 +2437,12 @@ var delay = (function(){
 	}
     })
     
+    /*Load skills in modal*/
+    $(document).on("click", "#skillsOpen", function(){
+	$("#skillsContent").load("http://touchandswipe.github.io/bravefrontier/skillseffectsguideglobal?unitid="+$(this).value());
+	$("#skillsModal").modal("show");
+    })
+    
     /*Effect*/
     $(document).on("change", ".effects", function(){
 	if ( $('input[name=effectsRadio]:checked').val() != 'none' ) {
@@ -2453,6 +2459,7 @@ var delay = (function(){
     $(document).on("change", "#sphereA,#sphereB,.askill,.lskill", function(){
 	totalStatsMod();
     })
+    
     /*PimpMod*/
     $(document).on("click", "#pimpBtn", function(){
 	var cToAdd=($(this).hasClass("btn-success")) ? "btn-danger" : "btn-success";
@@ -2574,9 +2581,11 @@ var delay = (function(){
 </div>
 
 <!-- disqus discussion -->
+<div class="row"><div class="col-xs-12">
 <div id="disqus_thread" style="width:100%;margin:0 10px;"></div>
     <script type="text/javascript">
 	var disqus_shortname = 'bravefrontierpros';
+	var disqus_url = 'http://bravefrontierpros.tumblr.com/unitsdatabase';
 
 	(function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -2586,6 +2595,7 @@ var delay = (function(){
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div></div>
 </div> <!-- /container -->
 
 <!-- Summon Modal-->
@@ -2788,17 +2798,17 @@ var delay = (function(){
       <div class="modal-body">
 	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
 	
-<!-- Google link text across all tab panes -->
-<div class="text-center">
-    <!-- BFPROsLinkUnits DB Overlay -->
-    <ins class="adsbygoogle"
-	 style="display:inline-block;width:468px;height:15px"
-	 data-ad-client="ca-pub-2145833818900192"
-	 data-ad-slot="7885767265"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
+	<!-- Google link text across all tab panes -->
+	<div class="text-center">
+	    <!-- BFPROsLinkUnits DB Overlay -->
+	    <ins class="adsbygoogle"
+		 style="display:inline-block;width:468px;height:15px"
+		 data-ad-client="ca-pub-2145833818900192"
+		 data-ad-slot="7885767265"></ins>
+	    <script>
+	    (adsbygoogle = window.adsbygoogle || []).push({});
+	    </script>
+	</div>
 	
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
@@ -2879,6 +2889,18 @@ var delay = (function(){
     </div>
   </div>
 </div> <!-- End Card Modal -->
+
+<!-- Modal for Skills Guide-->
+<div class="modal fade" id="skillsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+	<div id="skillsContent"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Filter Modal-->
 <div class="modal fade" id="filterModal">
