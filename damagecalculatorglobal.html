@@ -515,6 +515,16 @@ rawParseObj=[]; /*holder variable in array*/
 selectUnitObj={};
 foundArray=[];
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*Process for Each Unit*/
@@ -670,9 +680,18 @@ $(document).ready( function(e) {
 
 /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
-	guideData=LZString.decompress(localStorage.skillsguideglobal);
-	buildDB(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("skillsguideglobal");
+		localStorage.removeItem("skillsguideglobaldate");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -687,7 +706,7 @@ $(document).ready( function(e) {
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
@@ -713,7 +732,7 @@ $(document).on("click", '#refreshData', function(e){
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
-		localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
  	}
