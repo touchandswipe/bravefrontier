@@ -743,7 +743,7 @@ $(document).on("click", '#refreshData', function(e){
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
-		localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
  	}
@@ -790,7 +790,7 @@ $(document).on("click", '#searchNameBtn', function(e){
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
-	guideData=LZString.decompress(localStorage.skillsguideglobal);
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
@@ -816,7 +816,7 @@ $(document).ready( function(e) {
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
