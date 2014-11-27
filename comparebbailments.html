@@ -317,6 +317,7 @@ function buildTable(unit) {
     })
 }
 
+
 function genTable(dataChoice) {
     /*Init loader*/
     $('#progressModal').modal({
@@ -334,9 +335,18 @@ function genTable(dataChoice) {
     }
     	
     if (localStorage.getItem(localServerSelect) != null) {
-	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
-	buildTable(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
+	guideData=LZString.decompressFromUTF16(localStorage.getItem(localServerSelect));
+	if (isValidJSON(guideData)) {
+		buildTable(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem(localServerSelect);
+		localStorage.removeItem(localServerSelect+"date");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    $.ajax({
 	        dataType: "json",
