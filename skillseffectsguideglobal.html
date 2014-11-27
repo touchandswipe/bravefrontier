@@ -524,6 +524,16 @@ countVar=0; /*reset count*/
     }
 }
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*Rarity Filter*/
 function rarityRun(select) {
     var sVal=select;
@@ -781,8 +791,17 @@ $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	guideData=LZString.decompress(localStorage.skillsguideglobal);
-	buildDB(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("skillsguideglobal");
+		localStorage.removeItem("skillsguideglobaldate");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
