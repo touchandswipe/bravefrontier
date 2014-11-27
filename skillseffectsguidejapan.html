@@ -667,6 +667,16 @@ function searchIdRun() {
 	});
 }
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*Search by Unit Name*/
 function searchNameRun() {
     var sVal=$('#searchNameBox').val();
@@ -733,7 +743,7 @@ $(document).on("click", '#refreshData', function(e){
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
-		localStorage.setItem("skillsguidejapan",LZString.compress(JSON.stringify(data)));
+		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguidejapandate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
  	}
@@ -779,10 +789,19 @@ $(document).on("click", '#searchNameBtn', function(e){
 
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
-    if (localStorage.skillsguidejapan) {
-	guideData=LZString.decompress(localStorage.skillsguidejapan);
-	buildDB(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.skillsguidejapandate);
+    if (localStorage.skillsguideglobal) {
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("skillsguidejapan");
+		localStorage.removeItem("skillsguidejapandate");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -797,7 +816,7 @@ $(document).ready( function(e) {
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguidejapan",LZString.compress(JSON.stringify(data)));
+			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguidejapandate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
