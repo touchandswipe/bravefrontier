@@ -302,12 +302,6 @@ $( "#searchIdBox" ).keypress( function( event ) {
 
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
@@ -335,12 +329,6 @@ $(document).ready( function(e) {
 	buildDB(JSON.parse(guideData));
 	$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
     } else {
-	    /*Init loader*/
-	    $('#progressModal').modal({
-	    	keyboard:false,
-	    	backdrop:'static',
-	    	toggle:true
-	    })
 	    $.ajax({
 	        dataType: "json",
 	        contentType: "text/plain; charset=UTF-8",
