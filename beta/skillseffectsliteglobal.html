@@ -48,7 +48,6 @@
 countVar=0;
 collapseID=1;
 rawParseObj=[]; /*holder variable in array*/
-
 /*JQ Param handling*/
 function urlParam(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -59,7 +58,6 @@ function urlParam(name){
        return decodeURIComponent(results[1]) || '';
     }
 }
-
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
 countVar=0; /*reset count*/
@@ -109,7 +107,6 @@ countVar=0; /*reset count*/
             	}
             })
         } else lsSTR="";
-
         /*Checks BB*/
         if (valObj["bb"]) {
             bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
@@ -242,7 +239,6 @@ countVar=0; /*reset count*/
         collapseID+=1;
     }); /*Each record*/
     $("#unitCount").html(countVar);
-    setTimeout($('#progressModal').modal('hide'),4000);
     
     /*check for card param*/
     var searchParam=urlParam('unitid');
@@ -251,129 +247,6 @@ countVar=0; /*reset count*/
         $('#searchIdBox').val(searchParam);
         searchIdRun();
     }
-    /*check for card param*/
-    var searchParam=urlParam('query');
-    if ( (searchParam != "") && ( searchParam != null) ) {
-        /*sets searchbox value then execute*/
-        $('#searchNameBox').val(searchParam);
-        searchNameRun();
-    }
-}
-
-/*Rarity Filter*/
-function rarityRun(select) {
-    var sVal=select;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i in rawParseObj) {
-	    /*searches for matching skill across LS*/
-	    if ( rawParseObj[i]['rarity']==sVal) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort by Name*/
-	outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-	});
-    /*Build HTML Array*/
-    for (i in outputObj) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_RarityFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL Rarity Filter'
-	});
-}
-
-/*Skill Filter Search*/
-function lsRun(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across LS*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_LSFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL LS Filter'
-	});
-}
-
-/*Skill SBB Filter Search*/
-function skillRun2(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_SBBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL SBB Filter'
-	});
-}
-
-/*Skill BB Filter Search*/
-function skillRun(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_BBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL BB Filter'
-	});
 }
 
 /*Search by Unit ID*/
@@ -402,14 +275,12 @@ function searchIdRun() {
   		'title': 'Brave Frontier PROs - Skills Guide GL Search ID'
 	});
 }
-
 /*Binds Enter KEY to BOX*/
 $( "#searchIdBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchIdRun()
   }
 })
-
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
     /*Init loader*/
@@ -433,13 +304,11 @@ $(document).on("click", '#refreshData', function(e){
  	}
     });
 })
-
 /*Update URL based on search filters*/
 $(document).on("click", '#searchIdBtn', function(e){
     e.preventDefault();
 	searchIdRun()
 })
-
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
@@ -488,31 +357,6 @@ $(document).ready( function(e) {
 </head>
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
-        </div>
-        <!-- Collapse Nav-->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
-                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;" id="mainBody">
 <div style="min-height:55px;"></div>
@@ -726,7 +570,6 @@ $(document).ready( function(e) {
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
