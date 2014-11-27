@@ -309,6 +309,16 @@ function gooShorten(URLtoShort,linkAsset) {
 	})
 }
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*Initialise datapull from Google Tables*/
 function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
@@ -1751,10 +1761,19 @@ $(document).ready( function(e) {
 			serverUnitsCount=quickData.rows.length;
 			/*Prompt to Sync*/
 			if (serverUnitsCount > localUnitsCount)
-				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" id="syncCancel">Cancel</button></div>');
 			else {
 				guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
-				initialize(JSON.parse(guideData));
+				if (isValidJSON(guideData))
+					initialize(JSON.parse(guideData));
+				else {
+					/*LocalStorage Delete and Refresh*/
+					alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+					localStorage.removeItem("unitsguideadvance");
+					localStorage.removeItem("unitsguideadvanceCount");
+					history.pushState(null, null, location.pathname);
+					location.reload(true);
+					}
 				}
 	  		}
 	});
@@ -1970,6 +1989,21 @@ $(document).on("click", "#syncNewBtn", function(e){
 	localStorage.removeItem("unitsguideadvanceCount");
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
+})
+
+/*Cancel sync*/
+$(document).on("click", "#syncCancel", function(e){    
+	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
+	if (isValidJSON(guideData))
+		initialize(JSON.parse(guideData));
+	else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("unitsguideadvance");
+		localStorage.removeItem("unitsguideadvanceCount");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
 })
 
 /*Filter Favourites*/
