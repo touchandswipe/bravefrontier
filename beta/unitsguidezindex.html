@@ -1752,10 +1752,12 @@ $(document).ready( function(e) {
 			/*Prompt to Sync*/
 			if (serverUnitsCount > localUnitsCount)
 				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+			else {
+				guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
+				initialize(JSON.parse(guideData));
+				}
 	  		}
 	});
-	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
-	initialize(JSON.parse(guideData));
     } else {
 	/*Init loader if no localstorage*/
 	$('#progressModal').modal({
