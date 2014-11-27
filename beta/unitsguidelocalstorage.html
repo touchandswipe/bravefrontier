@@ -1310,7 +1310,7 @@ var evoQuery = [
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<button class="btn btn-xs btn-info" value="'+ovid+'"><i class="fa fa-external-link"></i> Global</button> ';
+	     		ovHTML+='<button class="btn btn-xs btn-info skillsOpen" value="'+ovid+'"><i class="fa fa-external-link"></i> Global</button> ';
 	     	if (ovJapan.toLowerCase()!="false")	
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
@@ -2438,7 +2438,7 @@ var delay = (function(){
     })
     
     /*Load skills in modal*/
-    $(document).on("click", "#skillsOpen", function(){
+    $(document).on("click", ".skillsOpen", function(){
 	$("#skillsContent").load("http://touchandswipe.github.io/bravefrontier/skillseffectsguideglobal?unitid="+$(this).value());
 	$("#skillsModal").modal("show");
     })
