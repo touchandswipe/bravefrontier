@@ -317,6 +317,15 @@ function buildTable(unit) {
     })
 }
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 
 function genTable(dataChoice) {
     /*Init loader*/
@@ -355,7 +364,7 @@ function genTable(dataChoice) {
 	        success: function(data, textStatus, request){
 		    	lastModified = request.getResponseHeader("Last-Modified");
 		    	/*Save in local storage*/
-			localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+			localStorage.setItem(localServerSelect,LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem(localServerSelect+"date",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 		    	buildTable(data);
