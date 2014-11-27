@@ -1995,6 +1995,7 @@ $(document).on("click", "#syncNewBtn", function(e){
 $(document).on("click", "#syncCancel", function(e){    
 	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
 	if (isValidJSON(guideData))
+		$('#alertmodal').modal('hide');
 		initialize(JSON.parse(guideData));
 	else {
 		/*LocalStorage Delete and Refresh*/
