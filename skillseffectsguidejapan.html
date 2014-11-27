@@ -789,11 +789,11 @@ $(document).on("click", '#searchNameBtn', function(e){
 
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
-    if (localStorage.skillsguideglobal) {
-	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+    if (localStorage.skillsguidejapan) {
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
-		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguidejapandate);
 	} else {
 		/*LocalStorage Delete and Refresh*/
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
