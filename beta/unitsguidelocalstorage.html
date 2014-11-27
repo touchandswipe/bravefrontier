@@ -2439,7 +2439,7 @@ var delay = (function(){
     
     /*Load skills in modal*/
     $(document).on("click", ".skillsOpen", function(){
-	$("#skillsContent").load("skillseffectsliteglobal",{"unitid":$(this).val()});
+	$("#skillsContent").load("skillseffectsliteglobal.html",{"unitid":$(this).val()});
 	$("#skillsModal").modal("show");
     })
     
