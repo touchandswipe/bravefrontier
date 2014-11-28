@@ -64,7 +64,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="../js/bloodhound.min.js"></script>
-<script src="../js/bootstrap3-typeahead.min.js"></script>
+<!--<script src="../js/bootstrap3-typeahead.min.js"></script>-->
+<script src="../js/typeahead.bundle.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -280,13 +281,15 @@ function initializeDB() {
 		var aheadNameRead = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.whitespace,
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			items: 15,
 			local: aheadName
 		});
-		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
-			items: 15,
-			source:aheadNameRead.ttAdapter()
+			hint: true,
+			highlight: true,
+			minLength: 1
+		},
+		{
+			source: aheadNameRead.ttAdapter()
 		});
 		
 		$('#progressModal').modal('hide');
