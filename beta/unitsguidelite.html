@@ -280,12 +280,12 @@ function initializeDB() {
 		var aheadNameRead = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		items: 15,
 		local: aheadName
 		});
 		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
 			items: 15,
-			hint: true,
 			source:aheadNameRead.ttAdapter()
 		});
 		
