@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
 	.imgShdw {
@@ -63,8 +64,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="js/bloodhound.min.js"></script>
-<script src="js/bootstrap3-typeahead.js"></script>
+<script src="js/typeahead.bundle.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -272,20 +272,22 @@ function initializeDB() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
-	      deserialdata = convertJSON(fusionData);
-		for (i in deserialdata)
-			aheadName.push(deserialdata[i].name);
-		
-		// constructs bloodhound
+		deserialdata = convertJSON(fusionData);
+	      
 		var aheadNameRead = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.whitespace,
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		local: aheadName
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			local: $.map(deserialdata, function(uName) { return { value: uName.name }; })
 		});
 		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
-			items: 15,
-			source:aheadNameRead.ttAdapter()
+			hint: true,
+			highlight: true,
+			minLength: 1
+		},
+		{
+  			displayKey: 'value',
+  			source: aheadNameRead.ttAdapter()
 		});
 		
 		$('#progressModal').modal('hide');
@@ -790,7 +792,7 @@ function openCard(whatunit) {
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
-	        <input type="text" placeholder="e.g. elza or zellha" class="form-control" id="searchBox" autocomplete="off">
+	        <input type="text" placeholder="e.g. elza or zellha" class="form-control input-lg" id="searchBox" autocomplete="off">
 	</div>
 </div></div>
 <!--Search Results-->
