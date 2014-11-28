@@ -498,7 +498,7 @@ function initialize(fusionData) {
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11 ] },
 		{ "visible": false, "targets": [ 18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49 ] },
+		{ "searchable": false, "targets": [ 1,7,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,47,48,49 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -2309,13 +2309,13 @@ $(document).on("click", "#execFilter", function(e){
 		bfPROsTable.column( 46 ).search("");
 		bfPROsTable.column( 45 ).search("");
 		    break;
-		case "Global":
-		bfPROsTable.column( 45 ).search("TRUE");
-		bfPROsTable.column( 46 ).search("");
-		    break;
 		case "Japan":
-		bfPROsTable.column( 46 ).search("TRUE");
 		bfPROsTable.column( 45 ).search("");
+		bfPROsTable.column( 46 ).search("TRUE");
+		    break;
+		case "Global":
+		bfPROsTable.column( 46 ).search("");
+		bfPROsTable.column( 45 ).search("TRUE");
 		    break;
 	}
 	/*Draw after all filters are made*/
