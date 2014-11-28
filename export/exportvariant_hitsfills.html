@@ -117,12 +117,18 @@
 From <input type="text" id="rangeFrom" class="form-control" placeholder="Range From">
 To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 <button type="button" id="exportBtn" class="btn btn-default">Export</button>
+<button type="button" id="japanBtn" value="//touchandswipe.github.io/bravefrontier_data/jp/info.json" class="btn btn-danger">Japan</button>
+<button type="button" id="globalBtn" value="//touchandswipe.github.io/bravefrontier_data/info.json" class="btn btn-success">Global</button>
 <!--TABLE-->
 <table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
 
 <script type="text/javascript">
+var serverSelect="//touchandswipe.github.io/bravefrontier_data/info.json";
+$(document).on("click","#globalBtn, #japanBtn", function(e) {
+  serverSelect=$(this).val();
+})
 $(document).on("click","#exportBtn", function(e) {
-$.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function( unit ) {
+$.getJSON( serverSelect, function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     $.each( unit, function( unitKey, valObj ) {
