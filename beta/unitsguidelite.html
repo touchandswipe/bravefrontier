@@ -333,9 +333,9 @@ function initializeDB() {
 		
 		// constructs bloodhound
 		var aheadNameRead = new Bloodhound({
-			datumTokenizer: Bloodhound.tokenizers.whitespace,
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			local: aheadName
+			local: $.map(aheadName, function(uName) { return { value: uName }; })
 		});
 		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
@@ -344,7 +344,8 @@ function initializeDB() {
 			minLength: 1
 		},
 		{
-			source: aheadNameRead.ttAdapter()
+  			displayKey: 'value',
+  			source: aheadNameRead.ttAdapter()
 		});
 		
 		$('#progressModal').modal('hide');
