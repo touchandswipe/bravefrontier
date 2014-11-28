@@ -284,9 +284,7 @@ function initializeDB() {
 		});
 		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
-			items: 10,
-			minLength:2,
-			showHintOnFocus:true,
+			items: 15,
 			source:aheadNameRead.ttAdapter()
 		});
 		
