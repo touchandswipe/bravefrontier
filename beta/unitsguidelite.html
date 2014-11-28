@@ -271,7 +271,7 @@ function initialize() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 		for (i in fusionData)
-			aheadName.push(fusionData.columns[2]);
+			aheadName.push(fusionData.columns[1]);
 	      deserialdata = convertJSON(fusionData);
 	      $('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
