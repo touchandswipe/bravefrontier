@@ -273,7 +273,7 @@ function initialize() {
 	      deserialdata = convertJSON(fusionData);
 		for (i in deserialdata)
 			aheadName.push(deserialdata[i].name);
-		$('#searchBox').typeahead({source:aheadName});
+		$('#searchBox').typeahead({source:aheadName, items:"all"});
 		$('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
 		var idParam=urlParam('unit');
@@ -799,7 +799,6 @@ $('.nav-tt').tooltip({placement:'bottom'});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
-	e.preventDefault();
 	searchNameRun($('#searchBox').val())
 })
 
