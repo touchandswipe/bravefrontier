@@ -272,11 +272,8 @@ function initializeDB() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
-	      deserialdata = convertJSON(fusionData);
-//		for (i in deserialdata)
-//			aheadName.push(deserialdata[i].name);
-		
-		// constructs bloodhound
+		deserialdata = convertJSON(fusionData);
+	      
 		var aheadNameRead = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
