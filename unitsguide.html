@@ -2306,16 +2306,16 @@ $(document).on("click", "#execFilter", function(e){
 	/*Server filter*/
 	switch ($('input:radio[name="filServer"]:checked').val()) {
 		case "All":
+		bfPROsTable.column( 46 ).search("");
 		bfPROsTable.column( 45 ).search("");
-		bfPROsTable.column( 44 ).search("");
 		    break;
 		case "Global":
-		bfPROsTable.column( 44 ).search("TRUE");
-		bfPROsTable.column( 45 ).search("");
+		bfPROsTable.column( 45 ).search("TRUE");
+		bfPROsTable.column( 46 ).search("");
 		    break;
 		case "Japan":
-		bfPROsTable.column( 45 ).search("TRUE");
-		bfPROsTable.column( 44 ).search("");
+		bfPROsTable.column( 46 ).search("TRUE");
+		bfPROsTable.column( 45 ).search("");
 		    break;
 	}
 	/*Draw after all filters are made*/
