@@ -278,11 +278,8 @@ function initializeDB() {
 		
 		// constructs bloodhound
 		var aheadNameRead = new Bloodhound({
-		datumTokenizer: function (d) {
-                	return Bloodhound.tokenizers.whitespace(d.value);
-            	},
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		limit:10,
 		minLength: 2,
 		local: aheadName
 		});
