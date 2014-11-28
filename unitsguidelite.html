@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (Alpha Release) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide Lite (PETA) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (Alpha Release) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite (PETA) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -63,9 +63,12 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="js/bloodhound.min.js"></script>
+<script src="js/bootstrap3-typeahead.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
+var aheadName=[];
 var deserialdata = {};
 var ovdata2 = {};
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
@@ -136,6 +139,7 @@ function totalStatsMod() {
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
+var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
@@ -254,7 +258,7 @@ function gooShorten(URLtoShort,linkAsset) {
 }
 
 /*Initialise datapull from Google Tables*/
-function initialize() {
+function initializeDB() {
   var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
@@ -269,7 +273,22 @@ function initialize() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 	      deserialdata = convertJSON(fusionData);
-	      $('#progressModal').modal('hide');
+		for (i in deserialdata)
+			aheadName.push(deserialdata[i].name);
+		
+		// constructs bloodhound
+		var aheadNameRead = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		local: aheadName
+		});
+		aheadNameRead.initialize();
+		$('#searchBox').typeahead({
+			items: 15,
+			source:aheadNameRead.ttAdapter()
+		});
+		
+		$('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
 		var idParam=urlParam('unit');
 		if ( (idParam != "") && ( idParam != null) ) {
@@ -771,7 +790,7 @@ function openCard(whatunit) {
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
-	        <input type="search" placeholder="e.g. elza or zellha" class="form-control" id="searchBox">
+	        <input type="text" placeholder="e.g. elza or zellha" class="form-control" id="searchBox" autocomplete="off">
 	</div>
 </div></div>
 <!--Search Results-->
@@ -787,14 +806,13 @@ $(document).ready( function(e) {
       	toggle:true
     })
 	/*initialise initial data load*/
-	initialize();
+	initializeDB();
 
 /*BootStrap Stuff*/
 $('.nav-tt').tooltip({placement:'bottom'});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
-	e.preventDefault();
 	searchNameRun($('#searchBox').val())
 })
 
