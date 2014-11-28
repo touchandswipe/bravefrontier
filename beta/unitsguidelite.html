@@ -63,7 +63,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/bootstrap3-typeahead.min.js"></script>
+<script src="../js/typeahead.bundle.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -256,7 +256,7 @@ function gooShorten(URLtoShort,linkAsset) {
 }
 
 /*Initialise datapull from Google Tables*/
-function initialize() {
+function initializeDB() {
   var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
@@ -273,7 +273,30 @@ function initialize() {
 	      deserialdata = convertJSON(fusionData);
 		for (i in deserialdata)
 			aheadName.push(deserialdata[i].name);
-		$('#searchBox').typeahead({source:aheadName, items:"all",minLength:2});
+		
+// constructs the suggestion engine
+var aheadName2 = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  // `states` is an array of state names defined in "The Basics"
+  local: aheadName})
+});
+ 
+// kicks off the loading/processing of `local` and `prefetch`
+aheadName2.initialize();
+ 
+$('#searchBox').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  displayKey: 'value',
+  // `ttAdapter` wraps the suggestion engine in an adapter that
+  // is compatible with the typeahead jQuery plugin
+  source: aheadName2.ttAdapter()
+});
+		
 		$('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
 		var idParam=urlParam('unit');
