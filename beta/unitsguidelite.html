@@ -139,6 +139,7 @@ function totalStatsMod() {
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
+var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
@@ -812,14 +813,12 @@ $('.nav-tt').tooltip({placement:'bottom'});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
-	alert($('#searchBox').val());
 	searchNameRun($('#searchBox').val())
 })
 
 /*Binds Enter KEY to BOX*/
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-  	alert($('#searchBox').val());
      searchNameRun($('#searchBox').val())
   }
 })
