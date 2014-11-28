@@ -63,7 +63,8 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/typeahead.bundle.min.js"></script>
+<script src="../js/bloodhound.min.js"></script>
+<script src="../js/bootstrap3-typeahead.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -284,16 +285,10 @@ var aheadName2 = new Bloodhound({
 // kicks off the loading/processing of `local` and `prefetch`
 aheadName2.initialize();
  
-$('#searchBox').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
+$('#searchBox').typeahead(
 {
-  displayKey: 'value',
-  // `ttAdapter` wraps the suggestion engine in an adapter that
-  // is compatible with the typeahead jQuery plugin
-  source: aheadName2.ttAdapter()
+items: 10,
+source:aheadName2.ttAdapter()  
 });
 		
 		$('#progressModal').modal('hide');
