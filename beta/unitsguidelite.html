@@ -775,7 +775,7 @@ function openCard(whatunit) {
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
-	        <input type="search" placeholder="e.g. elza or zellha" class="form-control" id="searchBox" data-provide="typeahead" data-source="aheadName">
+	        <input type="search" placeholder="e.g. elza or zellha" class="form-control" id="searchBox" autocomplete="off">
 	</div>
 </div></div>
 <!--Search Results-->
@@ -795,6 +795,9 @@ $(document).ready( function(e) {
 
 /*BootStrap Stuff*/
 $('.nav-tt').tooltip({placement:'bottom'});
+
+/*TypeAhead Stuff*/
+$('#searchBox').typeahead({source:aheadName});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
