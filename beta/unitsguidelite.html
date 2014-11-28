@@ -275,21 +275,17 @@ function initializeDB() {
 		for (i in deserialdata)
 			aheadName.push(deserialdata[i].name);
 		
-// constructs the suggestion engine
-var numbers = new Bloodhound({
-datumTokenizer: Bloodhound.tokenizers.whitespace,
-queryTokenizer: Bloodhound.tokenizers.whitespace,
-local: aheadName
-});
- 
-// kicks off the loading/processing of `local` and `prefetch`
-numbers.initialize();
- 
-$('#searchBox').typeahead(
-{
-items: 10,
-source:numbers.ttAdapter()
-});
+		// constructs bloodhound
+		var aheadNameRead = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		local: aheadName
+		});
+		numbers.initialize();
+		$('#searchBox').typeahead({
+			items: 10,
+			source:aheadNameRead.ttAdapter()
+		});
 		
 		$('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
@@ -816,12 +812,14 @@ $('.nav-tt').tooltip({placement:'bottom'});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
+	alert($('#searchBox').val());
 	searchNameRun($('#searchBox').val())
 })
 
 /*Binds Enter KEY to BOX*/
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
+  	alert($('#searchBox').val());
      searchNameRun($('#searchBox').val())
   }
 })
