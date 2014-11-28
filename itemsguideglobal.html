@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -40,7 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+<script src="js/typeahead.bundle.min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -413,6 +413,23 @@ function buildDB(unit) {
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
+    
+	var aheadNameRead = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		local: $.map(rawParseObj, function(uName) { return { value: uName.name }; })
+	});
+	aheadNameRead.initialize();
+	$('#searchNameBox').typeahead({
+		hint: true,
+		highlight: true,
+		minLength: 1
+	},
+	{
+		displayKey: 'value',
+		source: aheadNameRead.ttAdapter()
+	});
+    
     $("#unitCount").html(countVar);
     /*build item type*/
     var itemTypeArray=[];
