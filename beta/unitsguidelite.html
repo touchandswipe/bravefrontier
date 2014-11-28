@@ -63,9 +63,11 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap3-typeahead.min.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
+var aheadName=[];
 var deserialdata = {};
 var ovdata2 = {};
 var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
@@ -268,6 +270,8 @@ function initialize() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
+		for (i in fusionData)
+			aheadName.push(fusionData.columns[2]);
 	      deserialdata = convertJSON(fusionData);
 	      $('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
@@ -771,7 +775,7 @@ function openCard(whatunit) {
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
-	        <input type="search" placeholder="e.g. elza or zellha" class="form-control" id="searchBox">
+	        <input type="search" placeholder="e.g. elza or zellha" class="form-control" id="searchBox" data-provide="typeahead" data-source="aheadName">
 	</div>
 </div></div>
 <!--Search Results-->
