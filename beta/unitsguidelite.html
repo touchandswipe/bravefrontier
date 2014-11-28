@@ -798,7 +798,12 @@ $(document).ready( function(e) {
 $('.nav-tt').tooltip({placement:'bottom'});
 
 /*TypeAhead Stuff*/
-$('#searchBox').typeahead({source:aheadName});
+$('#searchBox').typeahead({
+	source:aheadName,
+	updater: function (item) {
+    		return item;
+	}
+});
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
