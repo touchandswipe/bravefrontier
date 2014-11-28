@@ -64,7 +64,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="../js/bloodhound.min.js"></script>
-<script src="../js/bootstrap3-typeahead.min.js"></script>
+<script src="../js/bootstrap3-typeahead.js"></script>
 
 <script type="text/javascript">
 /*Global object variabled*/
@@ -276,19 +276,19 @@ function initializeDB() {
 			aheadName.push(deserialdata[i].name);
 		
 // constructs the suggestion engine
-var aheadName2 = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  // `states` is an array of state names defined in "The Basics"
-  local: aheadName});
+var numbers = new Bloodhound({
+datumTokenizer: Bloodhound.tokenizers.whitespace,
+queryTokenizer: Bloodhound.tokenizers.whitespace,
+local: aheadName
+});
  
 // kicks off the loading/processing of `local` and `prefetch`
-aheadName2.initialize();
+numbers.initialize();
  
 $('#searchBox').typeahead(
 {
 items: 10,
-source:aheadName2.ttAdapter()  
+source:numbers.ttAdapter()
 });
 		
 		$('#progressModal').modal('hide');
