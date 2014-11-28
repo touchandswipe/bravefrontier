@@ -72,8 +72,8 @@ var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 var gTable = '1l6-hvkORxoKtJ8uVI3L9NqfK1Yhv1C1QewM9PLKp';
 var prevStatsMod=[0,0,0,0,0];
-var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
-var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.3">30%</option>';
+var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.1,0.05,0.1,0.05">Ihsir\'s Guise</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.3,0,0,0.3">Lexida</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,1,1,1">Wicked Blade</option>';
+var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option>';
 var atkModHTML='<option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.5">50%</option><option value="0.65">65%</option><option value="0.75">75%</option>';
 var defModHTML='<option value="-0.5">-50%</option><option value="0.05">5%</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.5">50%</option>';
 var recModHTML='<option value="0.1">10%</option><option value="0.05">5%</option><option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.5">50%</option>';
@@ -147,6 +147,11 @@ var outputArray=[];
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
+/*Google analytics*/
+ga('send', 'pageview', {
+	'page': '/vurl/unitsguideliteSearch',
+ 	'title': 'Brave Frontier PROs - Units Guide Lite Search'
+});
 }
 
 /*Bootstrap alerts*/
@@ -328,6 +333,7 @@ var evoQuery = [
 ['Light Bulb','icon8041.png'],
 ['Dark Bulb','icon8042.png'],
 ['Miracle Bulb','icon8043.png'],
+['Soul Crystal','iconitem11010.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
@@ -654,7 +660,7 @@ function openCard(whatunit) {
 	/*Evolutionary Generation*/
 	var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	for (i=0; i<evotrail.length;i++) {
-		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4">';
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
 		evoTabHTML+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite'+evotrail[i].id+'.gif" height="140"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	}
@@ -945,7 +951,6 @@ $(document).on("click", "#pimpBtn", function(){
 	    <h3 class="text-primary"><b>Summoning units</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
-	    <h5>(Note: Images will continue to load progressively after.)</h5>
 	</div>
       </div>
     </div>
