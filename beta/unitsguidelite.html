@@ -281,7 +281,7 @@ function initializeDB() {
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		local: aheadName
 		});
-		numbers.initialize();
+		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
 			items: 10,
 			source:aheadNameRead.ttAdapter()
