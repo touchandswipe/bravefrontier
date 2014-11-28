@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
 	.imgShdw {
@@ -59,62 +60,6 @@
     .purple {background:#FFDB4D;}
     .sp2 {margin:2px;}
     .clear {clear:both;}
-span.twitter-typeahead .tt-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
-  list-style: none;
-  font-size: 14px;
-  text-align: left;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
-}
-span.twitter-typeahead .tt-suggestion > p {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
-  white-space: nowrap;
-}
-span.twitter-typeahead .tt-suggestion > p:hover,
-span.twitter-typeahead .tt-suggestion > p:focus {
-  color: #ffffff;
-  text-decoration: none;
-  outline: 0;
-  background-color: #428bca;
-}
-span.twitter-typeahead .tt-suggestion.tt-cursor {
-  color: #ffffff;
-  background-color: #428bca;
-}
-span.twitter-typeahead {
-  width: 100%;
-}
-.input-group span.twitter-typeahead {
-  display: block !important;
-}
-.input-group span.twitter-typeahead .tt-dropdown-menu {
-  top: 32px !important;
-}
-.input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
-  top: 44px !important;
-}
-.input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
-  top: 28px !important;
-}
     </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -328,14 +273,14 @@ function initializeDB() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 	      deserialdata = convertJSON(fusionData);
-		for (i in deserialdata)
-			aheadName.push(deserialdata[i].name);
+//		for (i in deserialdata)
+//			aheadName.push(deserialdata[i].name);
 		
 		// constructs bloodhound
 		var aheadNameRead = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			local: $.map(aheadName, function(uName) { return { value: uName }; })
+			local: $.map(deserialdata, function(uName) { return { value: uName.name }; })
 		});
 		aheadNameRead.initialize();
 		$('#searchBox').typeahead({
