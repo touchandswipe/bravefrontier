@@ -94,6 +94,11 @@
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon.js"></script>
 <script type="text/javascript">
+var gEvoUnits = []; /*global variable to selected units evoMats*/
+var ownSquad = ['','','','','',''];
+var oppSquad = ['','','','','',''];
+var favUnitObj=[];
+
 /*Get Boss Data*/
 function bossDataLoad() {
 	var query = "SELECT * FROM " + '1CNQc8zBKPB2fnnLTWO4PXj3wiGAcahkFRVuyLgFB'
@@ -2800,6 +2805,9 @@ var delay = (function(){
 	    <input type="radio" name="filUnitId" value="8099">8000-8100 
 	  </label>
 	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="8199">8100-8200
+	  </label>
 	</div>
 	
 	<input type="hidden" id="selectunithide" value="0"/>
