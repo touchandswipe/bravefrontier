@@ -998,9 +998,9 @@ function initialize(fusionData) {
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    /*binds error n loads secondary path*/
 	    $(".evolutionary").error(function() {
+			$(this).unbind();
 	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
 	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile);
-	    		$(this).unbind()
   		})
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
 	  }
