@@ -781,7 +781,8 @@ function initialize(fusionData) {
 	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
 	      $('#unitSpriteShow').attr('src',ovsprite);
 	      $('#unitSpriteShow').error(function() {
-		  $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
+			$(this).unbind();
+			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
 		})
 	      var ovnext = "";
 	      var ovprevious = "";
@@ -993,6 +994,7 @@ function initialize(fusionData) {
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    /*loads non-matte on error*/
 	    $(".evolutionary").error(function() {
+	    		$(this).unbind();
 	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
 	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
   		})
@@ -1130,7 +1132,8 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  ownSquad[i]=ovsprite;
 		  $(squadEle).attr('src',ovsprite);
 		  $(squadEle).error( function() {
-		      $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		  	$(this).unbind();
+			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
 		    })
 	      }
 	      /*Sprite check OPPONENTS*/
@@ -1140,6 +1143,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  oppSquad[i]=ovsprite;
 		  $(squadOppEle).attr('src',ovsprite);
 		  $(squadOppEle).error( function() {
+		  	$(this).unbind();
 		      $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
 		    })
 	      }
@@ -1946,7 +1950,8 @@ $(document).on("click", ".squadALL", function(e){
     for (var i=0;i<6;i++) {
 	$('#squadUnit'+(i+1)).attr('src',ownSquad[linkVal]);
 	$('#squadUnit'+(i+1)).error( function() {
-	  $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		$(this).unbind();
+		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
 	})
     }
 })
@@ -1958,7 +1963,8 @@ $(document).on("change", ".cFSquad", function(e){
 	var deltaField=parseInt( $(this).attr('id').slice(-1) );
 	$('#squadUnit'+(deltaField+1)).attr('src',ownSquad[$(this).val()]);
 	$('#squadUnit'+(deltaField+1)).error( function() {
-	    $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		$(this).unbind();
+		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
 	})
     } else {
 	$('#squadUnit'+(deltaField+1)).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
@@ -1980,7 +1986,8 @@ $(document).on("click", "#randomOwn,#randomOpp", function(e){
 	var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+deserialdata[linkVal]['id']+".gif";
 	$(randomEle+(i+1)).attr('src',ovsprite);
 	$(randomEle+(i+1)).error( function() {
-	    $(this).attr('src',ownSquad[Math.floor((Math.random() * ownSquad.length))]);
+		$(this).unbind();
+		$(this).attr('src',ownSquad[Math.floor((Math.random() * ownSquad.length))]);
 	})
     }
 })
