@@ -691,7 +691,7 @@ function initialize(fusionData) {
 	  url: url2.join(''),
 	  dataType: 'jsonp',
 	  success: function (data2) {
-	    /*alert(JSON.stringify(data2));*/
+	    alert(JSON.stringify(data2));
 	    ovdata2 = sconvertJSON(data2);
 	      var ovid = ovdata2[0]["id"];
 	      var ovname = ovdata2[0]["name"];
@@ -999,7 +999,8 @@ function initialize(fusionData) {
 	    /*binds error n loads secondary path*/
 	    $(".evolutionary").error(function() {
 	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
-	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile);
+	    		$(this).unbind()
   		})
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
 	  }
