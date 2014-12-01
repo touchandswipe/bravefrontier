@@ -1009,7 +1009,8 @@ function initialize(fusionData) {
 } /*End openCard fn*/
 
 /*Compare function*/
-    function openCompare(units;tabSwitch="#unitCompareHome") {
+    function openCompare(units;tabSwitch) {
+    	tabSwitch = tabSwitch || "#unitCompareHome";
     	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
 	var qunitname = "";
