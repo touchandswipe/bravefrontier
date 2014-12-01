@@ -1017,6 +1017,7 @@ function initialize(fusionData) {
 	/*Loader*/
 	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
     	$('#compareModal').modal("show");
+    	$('.nav-tabs a[href="#unitCompareHome"]').tab('show');
     	
 	/*Google analytics*/
 	var compileURL=location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
@@ -1688,8 +1689,6 @@ $(document).on("click", ".compareUnit", function(e) {
 	    openCompare(compareSelect); //AJAX+Modal
 	    if ($(this).attr("id")=="evoBtn")
 	    	$('.nav-tabs a[href="#evoCalc"]').tab('show')
-	    else
-	    	$('.nav-tabs a[href="#unitCompareHome"]').tab('show');
 	    var compstate = { stateCompare: compareSelectURL };
 	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
 	}
