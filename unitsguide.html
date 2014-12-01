@@ -1010,10 +1010,11 @@ function initialize(fusionData) {
 
 /*Compare function*/
     function openCompare(units) {
-    /*Resets Prev Stats*/
+    	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
 	var qunitname = "";
-	 /*Loader*/
+	
+	/*Loader*/
 	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
     	$('#compareModal').modal("show");
     	
@@ -1340,6 +1341,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
     </div>
     
     <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i> Compare</button>
+    <button id="evoBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Evolution Materials for selected Units" style="margin-right:5px;"><i class="fa fa-users"></i> Evo</button>
     <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i> Summon</button>
     <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i> Filter</button>
    
@@ -1677,13 +1679,17 @@ $(document).on("click", ".compareUnit", function(e) {
 	}
 })
 /*Compare button*/
-    $(document).on("click", "#compareBtn", function(e) {
+    $(document).on("click", "#compareBtn, #evoBtn", function(e) {
 	e.preventDefault();
 	if ( compareSelect.length < 2 ) {
 	    bfpAlert('Too few units','You need to select at least 2 units to compare / calculate evolution materials and squad sprite simulation. Use  <div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div> to add units.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	} else {
 	    compareSelectURL=compareSelect.join();
 	    openCompare(compareSelect); //AJAX+Modal
+	    if ($(this).attr("id")=="evoBtn")
+	    	$('.nav-tabs a[href="#evoCalc"]').tab('show')
+	    else
+	    	$('.nav-tabs a[href="#unitCompareHome"]').tab('show');
 	    var compstate = { stateCompare: compareSelectURL };
 	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
 	}
