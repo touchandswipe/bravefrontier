@@ -1685,7 +1685,7 @@ $(document).on("click", ".compareUnit", function(e) {
 	} else {
 	    compareSelectURL=compareSelect.join();
 	    openCompare(compareSelect); //AJAX+Modal
-	    if ($(this).attr("id")="evoBtn")
+	    if ($(this).attr("id")=="evoBtn")
 	    	$('.nav-tabs a[href="#evoCalc"]').tab('show');
 	    var compstate = { stateCompare: compareSelectURL };
 	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
