@@ -1009,7 +1009,8 @@ function initialize(fusionData) {
 } /*End openCard fn*/
 
 /*Compare function*/
-    function openCompare(units) {
+    function openCompare(units, tabSwitch) {
+    	tabSwitch = tabSwitch || "#unitCompareHome";
     	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
 	var qunitname = "";
@@ -1248,6 +1249,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    $('#evoCalcContent').html(evoCHTML);
 	    /*End Evo*/
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),4000);
+	    $('.nav-tabs a[href="'+tabSwitch+'"]').tab('show')
 	  }
 	})
 } /*End openCompare*/
@@ -1685,11 +1687,11 @@ $(document).on("click", ".compareUnit", function(e) {
 	    bfpAlert('Too few units','You need to select at least 2 units to compare / calculate evolution materials and squad sprite simulation. Use  <div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div> to add units.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	} else {
 	    compareSelectURL=compareSelect.join();
-	    openCompare(compareSelect); //AJAX+Modal
 	    if ($(this).attr("id")=="evoBtn")
-	    	$('.nav-tabs a[href="#evoCalc"]').tab('show')
+	    	tabSwitch="#evoCalc"
 	    else
-    		$('.nav-tabs a[href="#unitCompareHome"]').tab('show')
+	    	tabSwitch="#unitCompareHome"
+	    openCompare(compareSelect,tabSwitch); //AJAX+Modal
 	    var compstate = { stateCompare: compareSelectURL };
 	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
 	}
@@ -2567,7 +2569,7 @@ var delay = (function(){
   </div>
   <div class="tab-pane fade" id="evoCalc">
 	<div class="container-fluid">
-	    <div id="evoCalcContent" class="row" style="margin-top:15px;"><div class="col-xs-12 text-center"><h2><i class="fa fa-spinner"></i> Loading data and calculating...</h2></div></div>
+	    <div id="evoCalcContent" class="row" style="margin-top:15px;"></div>
 	</div>
     </div>
   <div class="tab-pane fade" id="squadPlay">
