@@ -102,7 +102,8 @@ function sconvertJSON( serialObj ) {
 	return [];
     }
     var obj = [];
-    for(var i=0; i < s.rows.length; i++)
+    //for(var i=0; i < s.rows.length; i++)
+    for (i in s.rows)
     {
 	var temp = {};
 	for(var j=0; j < s.columns.length; j++)
