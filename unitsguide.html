@@ -654,7 +654,7 @@ function initialize(fusionData) {
 	favDraw(unitObj);
 	/*Generate Share URL*/
 	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
-	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),2000);
+	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
 	} /*End Else when fav unit exists*/
     }
     
@@ -1010,7 +1010,7 @@ function initialize(fusionData) {
 	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
 	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
   		})
-	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 2000);
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 5000);
 	  }
 	})
 } /*End openCard fn*/
@@ -1255,7 +1255,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    evoCHTML+='<div class="col-xs-12 col-md-12"><h6><small>Zel Costs .. may be coming soon</h6></div>';
 	    $('#evoCalcContent').html(evoCHTML);
 	    /*End Evo*/
-	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),4000);
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),5000);
 	    $('.nav-tabs a[href="'+tabSwitch+'"]').tab('show')
 	  }
 	})
@@ -1873,7 +1873,7 @@ $(document).on("click", "#deleteFav", function(e){
 	    setTimeout( function() {
 	    $('#alertmodal').modal('hide');
 	    window.scrollTo(0,0);
-	    },1000);
+	    },2000);
 })
 
 /*Series Query*/
@@ -2185,7 +2185,7 @@ $(document).on("click", "#execFilter", function(e){
 	    setTimeout( function() {
 	    $('#alertmodal').modal('hide');
 	    window.scrollTo(0,0);
-	    },1000);
+	    },2000);
 	})
 /*Binding Hashtags*/
     $(document).on("click", ".hashSelect", function(e){
