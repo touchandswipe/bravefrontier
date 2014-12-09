@@ -143,6 +143,7 @@
   <img src="" id="imgSprite"/>
   <img src="" id="imgVortex"/>
   <img src="" id="imgGacha"/>
+  <img src="" id="imgMonster"/>
   <p><a href="" id="linkAnimate"></a></p>
 </div>
 
@@ -217,7 +218,7 @@
 
 <script type="text/javascript">
 bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/"};
-fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_"};
+fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","monster":"monster/img/monster_anime_"};
 fSuffix=".png";
 coreDat={};
 
@@ -252,6 +253,7 @@ function grabIMG() {
   $("#linkAnimate").attr("href",urlAnimate);
   $("#imgVortex").attr("src","");
   $("#imgGacha").attr("src","");
+  $("#imgMonster").attr("src","");
   $("#linkAnimate").html("Download Spritesheet (CSV)");
 }
 
@@ -262,12 +264,14 @@ function grabIMG2() {
   var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
   var urlVortex=bfserver[$("#serverSelect").val()]+fPrefix.vortex+imgID+fSuffix;
   var urlGacha=bfserver[$("#serverSelect").val()]+fPrefix.gacha+imgID+fSuffix;
+  var urlMonster=bfserver[$("#serverSelect").val()]+fPrefix.monster+imgID+fSuffix;
   var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
   $("#imgSprite").attr("src",urlSprite);
   $("#imgVortex").attr("src",urlVortex);
   $("#imgGacha").attr("src",urlGacha);
+  $("#imgMonster").attr("src",urlMonster);
   $("#linkAnimate").attr("href",urlAnimate);
   $("#linkAnimate").html("Download Spritesheet (CSV)");
 }
