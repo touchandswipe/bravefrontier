@@ -200,6 +200,7 @@ var evoQuery = [
 ['Miracle Bulb','icon8043.png'],
 ['Soul Crystal','iconitem11010.png'],
 ['Turbo Cyclaw','icon8106.png'],
+['Turbo Hydraloid','icon8118.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
