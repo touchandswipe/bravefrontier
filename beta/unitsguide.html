@@ -726,6 +726,7 @@ function initialize(fusionData) {
 	      var ovhits = ovdata2[0]["hits"];
 	      var ovbbhits = ovdata2[0]["bb hits"];
 	      var ovsbbhits = ovdata2[0]["sbb hits"];
+	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
@@ -1094,9 +1095,6 @@ function initialize(fusionData) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
 		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
-		  else if (cData[i]['gender'] == 'Paired(FF)') {var ovgender = ' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '}
-		  else if (cData[i]['gender'] == 'Paired(MM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '}
-		  else if (cData[i]['gender'] == 'Paired(FM)') {var ovgender = ' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '}
 		  else {var ovgender = ' <i class="fa fa-question text-muted"></i> '}
 		  cHTML+='<td><kbd>'+cData[i]['id']+'</kbd>'+ovgender+cData[i]['name']+'</td>' }
 	      cHTML+='</tr><td class="active"><i class="fa fa-star"></i><b> / Cost</b></td>';
@@ -1111,9 +1109,12 @@ function initialize(fusionData) {
 	      cHTML+='</tr><td class="active"><b>SBB</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>' }
-	      cHTML+='</tr><td class="active"><b>Hits (N/BB/SBB)</b></td>';
+	      cHTML+='</tr><td class="active"><b>UBB</b></td>';
 	      for (var i=0; i < units.length; i++) {
-		  cHTML+='<td>'+cData[i]['hits']+' / '+cData[i]['bb hits']+' / '+cData[i]['sbb hits']+'</td>' }
+		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>' }
+	      cHTML+='</tr><td class="active"><b>Hits (N/BB/SBB/UBB)</b></td>';
+	      for (var i=0; i < units.length; i++) {
+		  cHTML+='<td>'+cData[i]['hits']+' / '+cData[i]['bb hits']+' / '+cData[i]['sbb hits']+' / '+cData[i]['ubb hits']+'</td>' }
 	      cHTML+='</tr><td class="active"><b>Fill (BB/SBB)</b></td>';
 	      for (var i=0; i < units.length; i++) {
 		  cHTML+='<td>'+cData[i]['bb fill']+' / '+cData[i]['sbb fill']+'</td>' }
