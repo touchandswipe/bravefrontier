@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Units Guide Lite (PETA) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (PETA) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite (Ultima) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -65,7 +65,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
-<script src="bfp.unitguidecommon.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon2.js"></script>
 <script type="text/javascript">
 /*Search*/
 function searchNameRun(searchTxt) {
@@ -212,13 +212,16 @@ function openCard(whatunit) {
 	      var ovhits = ovdata2[0]["hits"];
 	      var ovbbhits = ovdata2[0]["bb hits"];
 	      var ovsbbhits = ovdata2[0]["sbb hits"];
+	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
 	      var ovsbbtype = ovdata2[0]["sbb type"];
+	      var ovubbtype = ovdata2[0]["ubb type"];
 	      var ovleaderskill = ovdata2[0]["leader skill"];
 	      var ovbbskill = ovdata2[0]["bb skill"];
 	      var ovsbbskill = ovdata2[0]["sbb skill"];
+	      var ovubbskill = ovdata2[0]["ubb skill"];
 	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
 	      var ovGlobal = ovdata2[0]["global release"];
 	      var ovJapan = ovdata2[0]["japan release"];
@@ -358,14 +361,20 @@ function openCard(whatunit) {
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
 	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
-	      if (ovrarity >= 6) {
+	      if (ovrarity > 5) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+	      }
+	      if (ovrarity > 6) {
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits;
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
 	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
 		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
+	      }
+	      if (ovrarity > 6) {
+		    ovHTML+='<tr><td class="active"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>'
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
