@@ -378,7 +378,7 @@ function initialize(fusionData) {
 		}
 		},
 		/*Stats*/
-		{ "targets":[ 7,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38 ],
+		{ "targets":[ 7,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -394,7 +394,7 @@ function initialize(fusionData) {
 			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
 		}
 		},
-		{ "targets":[ 12 ],
+		{ "targets":[ 13 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -409,7 +409,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 13 ],
+		{ "targets":[ 14 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -424,7 +424,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 14 ],
+		{ "targets":[ 15 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -439,7 +439,22 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 15 ],
+		{ "targets":[ 16 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo" data-toggle="tooltip" title="UBB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo" data-toggle="tooltip" title="UBB Hits">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 17 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -454,7 +469,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 16 ],
+		{ "targets":[ 18 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -473,7 +488,7 @@ function initialize(fusionData) {
 		{ "targets":[ 0 ], "type": "num", "width": "20"
 		},
 		/*Wt Stats*/
-		{ "targets":[ 17 ],
+		{ "targets":[ 19 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -490,7 +505,7 @@ function initialize(fusionData) {
 		    }
 		},
 		/*Wt Pimped Stats*/
-		{ "targets":[ 18 ],
+		{ "targets":[ 20 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -516,7 +531,7 @@ function initialize(fusionData) {
 		    }
 		},
 		/*Global Japan Release*/
-		{ "targets": [45,46],
+		{ "targets": [47,48],
 		"orderable": false,
 		"render": function(relVal, type, cRow, full) {
 	    if (relVal=="" || relVal=="TRUE") {
@@ -527,7 +542,7 @@ function initialize(fusionData) {
 		}
 		},
 		/*Aggregated Evolution Materials*/
-		{ "targets": [48],
+		{ "targets": [50],
 		"orderable": false,
 		"render": function(evoVal, type, cRow, full) {
 		    var evoString='<div style="white-space:nowrap;">';
@@ -538,7 +553,7 @@ function initialize(fusionData) {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [49],
+		{ "targets": [51],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
@@ -2129,16 +2144,16 @@ $(document).on("click", "#execFilter", function(e){
 	/*Server filter*/
 	switch ($('input:radio[name="filServer"]:checked').val()) {
 		case "All":
-		bfPROsTable.column( 46 ).search("");
-		bfPROsTable.column( 45 ).search("");
+		bfPROsTable.column( 48 ).search("");
+		bfPROsTable.column( 47 ).search("");
 		    break;
 		case "Japan":
-		bfPROsTable.column( 45 ).search("");
-		bfPROsTable.column( 46 ).search("TRUE");
+		bfPROsTable.column( 47 ).search("");
+		bfPROsTable.column( 48 ).search("TRUE");
 		    break;
 		case "Global":
-		bfPROsTable.column( 46 ).search("");
-		bfPROsTable.column( 45 ).search("TRUE");
+		bfPROsTable.column( 48 ).search("");
+		bfPROsTable.column( 47 ).search("TRUE");
 		    break;
 	}
 	/*Draw after all filters are made*/
