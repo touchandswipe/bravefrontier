@@ -187,7 +187,7 @@ function initialize(fusionData) {
   
 	/*Check for latest ver of Data with UBB*/
 	alert(fusionData.columns.indexOf("UBB Hits"));
-	if (fusionData.columns.indexOf("UBB Hits")==-1)
+	if (fusionData.columns.indexOf("UBB Hits")==-1) {
 		/*LocalStorage Delete and Refresh*/
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 		localStorage.removeItem("unitsguideadvance");
