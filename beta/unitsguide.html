@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Units Guide (Peta R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Peta R2) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Ultima) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -185,6 +185,16 @@ function initialize(fusionData) {
   } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16]; var pLength=100;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16]; var pLength=50; }
   
+	/*Check for latest ver of Data with UBB*/
+	alert(fusionData.columns.indexOf("UBB Hits"));
+	if (fusionData.columns.indexOf("UBB Hits")==-1)
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("unitsguideadvance");
+		localStorage.removeItem("unitsguideadvanceCount");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	} else {
 	deserialdata = convertJSON(fusionData);
 	bfPROsTable=$('#mytable').dataTable({
 		"data":fusionData.rows,
@@ -613,6 +623,7 @@ function initialize(fusionData) {
 		    return true;
 		}
 	})
+	} /*End checking for right 7* dataset*/
 }/*End init fn*/
 
 /*Fav Modal Units Draw function*/
