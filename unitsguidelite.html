@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (Ultima) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide Lite (PETA) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Units Guide Lite (Ultima) by Brave Frontier PROs</title>
@@ -14,10 +14,10 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
-	.imgShdw {
-		-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
-		filter:         drop-shadow(0px 0px 5px #FF3300);
-	}
+    .imgShdw {
+	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
+	filter:         drop-shadow(0px 0px 5px #FF3300);
+    }
     .vidContain {
     	position: relative;
     	padding-bottom: 56.25%;
@@ -124,7 +124,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -215,7 +215,6 @@ function openCard(whatunit) {
 	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
-	      var ovubbfill = ovdata2[0]["ubb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
 	      var ovsbbtype = ovdata2[0]["sbb type"];
 	      var ovubbtype = ovdata2[0]["ubb type"];
@@ -310,7 +309,8 @@ function openCard(whatunit) {
 			'evo5':deserialdata[i]["evo 5"],
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
-			'id':deserialdata[i]["id"]
+			'id':deserialdata[i]["id"],
+			'icon':deserialdata[i]["icon"]
 			})
 		}
 	    }
@@ -322,15 +322,14 @@ function openCard(whatunit) {
 	    var evotrailHTML='';
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
-		if (evotrail[i].name==ovname) {
-		    evotrailHTML+='<span style="background:#99FF99;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>)</span> ';
+		if (evotrail[i].id==ovid) {
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
-		}
-		else { evotrailHTML+='<a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>) ';
-		}
+		} else
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<i class="fa fa-caret-right text-muted"></i> ';
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
@@ -340,9 +339,6 @@ function openCard(whatunit) {
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
 	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
-	      else if (ovgender == 'Paired(FF)') { ovHTML+=' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '; }
-	      else if (ovgender == 'Paired(MM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '; }
-	      else if (ovgender == 'Paired(FM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '; }
 	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
 	      /*Release status*/
@@ -366,7 +362,7 @@ function openCard(whatunit) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits;
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
