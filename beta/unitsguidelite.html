@@ -14,10 +14,16 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
-	.imgShdw {
-		-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
-		filter:         drop-shadow(0px 0px 5px #FF3300);
-	}
+    .imgShdw {
+	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
+	filter:         drop-shadow(0px 0px 5px #FF3300);
+    }
+    .evoShdw {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter:         drop-shadow(0px 0px 5px #AA00AA);
+    }
+    .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
+    .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
     .vidContain {
     	position: relative;
     	padding-bottom: 56.25%;
@@ -309,7 +315,8 @@ function openCard(whatunit) {
 			'evo5':deserialdata[i]["evo 5"],
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
-			'id':deserialdata[i]["id"]
+			'id':deserialdata[i]["id"],
+			'icon':deserialdata[i]["icon"]
 			})
 		}
 	    }
@@ -321,15 +328,14 @@ function openCard(whatunit) {
 	    var evotrailHTML='';
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
-		if (evotrail[i].name==ovname) {
-		    evotrailHTML+='<span style="background:#99FF99;"><a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>)</span> ';
+		if ($(evotrail[i]['name']).text()==ovname) {
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
-		}
-		else { evotrailHTML+='<a href="#" class="unitID" value="'+evotrail[i].id+'">'+evotrail[i].name+'</a> ('+evotrail[i].rarity+'<i class="fa fa-star-o"></i>) ';
-		}
+		} else
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<i class="fa fa-caret-right text-muted"></i> ';
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
