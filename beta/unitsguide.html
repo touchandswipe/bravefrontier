@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Peta R2) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Ultima R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Ultima) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Ultima R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -180,9 +180,9 @@ function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
   if ( $( document ).width() >= 1600 ) {
     var xtraDefCol=[]; var pLength=100;
-  } else if ( ( $( document ).width() < 1600 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16]; var pLength=100; 
-  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,13,14,15,16]; var pLength=100;
-  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18]; var pLength=100;
+  } else if ( ( $( document ).width() < 1600 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16,19]; var pLength=100; 
+  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,15,16,18,19]; var pLength=100;
+  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18,19]; var pLength=100;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18]; var pLength=50; }
   
 	/*Check for latest ver of Data with UBB*/
@@ -217,6 +217,7 @@ function initialize(fusionData) {
 	    { "data": fusionData.columns.indexOf("UBB Hits") },
 	    { "data": fusionData.columns.indexOf("BB Fill") },
 	    { "data": fusionData.columns.indexOf("SBB Fill") },
+	    { "data": fusionData.columns.indexOf("UBB Fill") },
 	    { "data": fusionData.columns.indexOf("Weighted Stats (Lord)") },
 	    { "data": fusionData.columns.indexOf("Weighted Pimped Stats (Lord)") },
 	    { "data": fusionData.columns.indexOf("HP Lord") },
@@ -265,22 +266,24 @@ function initialize(fusionData) {
 				columns: [ 9,10 ] },
 			    {   title: "SBB / UBB Skills",
 				columns: [ 11,12 ] },
-			    {   title: "Hits / Fills",
-				columns: [ 13,14,15,16,17,18 ] },
+			    {   title: "Hits,
+				columns: [ 13,14,15,16] },
+			    {   title: "Fills",
+				columns: [ 17,18,19 ] },
 			    {   title: "Evo Materials",
-				columns: [ 50 ] },
+				columns: [ 51 ] },
 			    {   title: "Wt Pimped Stats",
-				columns: [ 20 ] },
+				columns: [ 21 ] },
 			    {   title: "(L)ord Stats",
-				columns: [ 21,22,23,24 ] },
+				columns: [ 22,23,24,25 ] },
 			    {   title: "(A)nima Stats",
-				columns: [ 25,26,27,28 ] },
+				columns: [ 26,27,28,29 ] },
 			    {   title: "(B)reaker Stats",
-				columns: [ 29,30,31,32 ] },
+				columns: [ 30,31,32,33 ] },
 			    {   title: "(G)uardian Stats",
-				columns: [ 33,34,35,36 ] },
+				columns: [ 34,35,36,37 ] },
 			    {   title: "(O)racle Stats",
-				columns: [ 37,38,39,40 ] 
+				columns: [ 38,39,40,41 ] 
 			    }]
 		  },
 		  "autoWidth": false,
@@ -364,8 +367,8 @@ function initialize(fusionData) {
 		  /*Parsing Fields via Datatables*/
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
-		{ "visible": false, "targets": [ 20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,42,43,44,45,46,49,50,51 ] },
+		{ "visible": false, "targets": [ 21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51 ].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,43,44,45,46,47,50,51,52 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -496,6 +499,21 @@ function initialize(fusionData) {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
 			    return '<div class="statsInfo" data-toggle="tooltip" title="SBB Fill">'+'-'+'</div>';
 			} else { return '<div class="statsInfo" data-toggle="tooltip" title="SBB Fill">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 19 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo" data-toggle="tooltip" title="UBB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo" data-toggle="tooltip" title="UBB Fill">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -749,6 +767,7 @@ function initialize(fusionData) {
 	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
+	      var ovubbfill = ovdata2[0]["ubb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
 	      var ovsbbtype = ovdata2[0]["sbb type"];
 	      var ovubbtype = ovdata2[0]["ubb type"];
@@ -875,9 +894,6 @@ function initialize(fusionData) {
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
 	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
-	      else if (ovgender == 'Paired(FF)') { ovHTML+=' <i class="fa fa-female text-danger"></i><i class="fa fa-female text-danger"></i> '; }
-	      else if (ovgender == 'Paired(MM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-male text-primary"></i> '; }
-	      else if (ovgender == 'Paired(FM)') { ovHTML+=' <i class="fa fa-male text-primary"></i><i class="fa fa-female text-danger"></i> '; }
 	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
 	      /*Release status*/
@@ -901,7 +917,7 @@ function initialize(fusionData) {
 		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits;
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
@@ -1493,6 +1509,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th>UBB Hits</th>
 		<th>BB Fill</th>
 		<th>SBB Fill</th>
+		<th>UBB Fill</th>
 		<th>Wt Stats</th>
 		<th>Wt Pimped</th>
 		<th>HP (L)</th>
@@ -1549,6 +1566,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th>UBB Hits</th>
 		<th>BB Fill</th>
 		<th>SBB Fill</th>
+		<th>UBB Fill</th>
 		<th>Wt Stats</th>
 		<th>Wt Pimped</th>
 		<th>HP (L)</th>
@@ -2173,16 +2191,16 @@ $(document).on("click", "#execFilter", function(e){
 	/*Server filter*/
 	switch ($('input:radio[name="filServer"]:checked').val()) {
 		case "All":
+		bfPROsTable.column( 49 ).search("");
 		bfPROsTable.column( 48 ).search("");
-		bfPROsTable.column( 47 ).search("");
 		    break;
 		case "Japan":
-		bfPROsTable.column( 47 ).search("");
-		bfPROsTable.column( 48 ).search("TRUE");
+		bfPROsTable.column( 48 ).search("");
+		bfPROsTable.column( 49 ).search("TRUE");
 		    break;
 		case "Global":
-		bfPROsTable.column( 48 ).search("");
-		bfPROsTable.column( 47 ).search("TRUE");
+		bfPROsTable.column( 49 ).search("");
+		bfPROsTable.column( 48 ).search("TRUE");
 		    break;
 	}
 	/*Draw after all filters are made*/
