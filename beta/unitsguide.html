@@ -23,7 +23,7 @@
 	filter:         drop-shadow(0px 0px 3px #00EE85);
     }
     .evoUnit { display:inline-block;position:relative; }
-    .evoCaret { display:inline-block;position:relative;width:25px;text-align:center; }
+    .evoCaret { display:inline-block;position:relative;width:25px;text-align:center;vertical-align:middle; }
     .vidContain {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -896,7 +896,7 @@ function initialize(fusionData) {
 			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-2x fa-caret-right text-success"></i></div>';
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-warning"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
@@ -954,7 +954,7 @@ function initialize(fusionData) {
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
-	+'<tr><td colspan="6" style="vertical-align:middle;">'+evotrailHTML+'</td></tr>';
+	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
 	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
 		ovHTML+='No prior evo / No known materials';
