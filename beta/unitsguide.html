@@ -35,8 +35,8 @@
     .rShow {
     	position:relative;
     	white-space:nowrap;
-    	top:-10px;
-    	left:11px;
+    	top:-12px;
+    	left:10px;
     }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
@@ -878,16 +878,13 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    //evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
-		    evotrailHTML+='<div style="display:inline-block;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div style="display:inline-block;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" style="box-shadow: 3px 3px 3px #00FF95;" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
-		}
-		//else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
-		else
+		} else
 			evotrailHTML+='<div style="display:inline-block;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<i class="fa fa-caret-right text-muted"></i> ';
+		    evotrailHTML+='<div style="display:inline-block;"><i class="fa fa-2x fa-caret-right text-muted"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
