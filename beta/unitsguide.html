@@ -865,6 +865,7 @@ function initialize(fusionData) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"]
+			'icon':deserialdata[i]["icon"]
 			})
 		}
 	    }
@@ -877,10 +878,12 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
+		    //evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
+		    evotrailHTML+='<a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'">'+evotrail[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
 		    evoUnitIdx=i;
 		}
-		else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
+		//else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
+		else { evotrailHTML+='<a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'">'+evotrail[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
 		}
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
