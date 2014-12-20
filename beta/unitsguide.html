@@ -918,6 +918,10 @@ function initialize(fusionData) {
 	      }
 	      if (ovrarity > 6) {
 		ovHTML+='<span style="border-bottom:3px solid #FF0000;display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+(parseInt(ovubbfill)-parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+	      }
+	      if (ovrarity==6) {
+	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
