@@ -155,8 +155,8 @@ function convertJSON( serialObj ) {
 		/*Call Unit Card*/
 		} else if (s.columns[j].toLowerCase().search("name") != -1) {
 		    temp[s.columns[j].toLowerCase()] = '<a href="#" class="unitName notranslate">'+s.rows[i][j]+'</a>';
-		} else if (s.rows[i][j].substr(0,4) == "http") {
-		    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
+		//} else if (s.rows[i][j].substr(0,4) == "http") {
+		//    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
 		} else { /*general string*/
 		    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
 		}
@@ -658,7 +658,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="'+drawObj[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -879,12 +879,12 @@ function initialize(fusionData) {
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
 		    //evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
-		    evotrailHTML+='<a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'">'+evotrail[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
+		    evotrailHTML+='<a href="#" class="favIconLink" style="display:inline-block;" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
 		    evoUnitIdx=i;
 		}
 		//else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
-		else { evotrailHTML+='<a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'">'+evotrail[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
-		}
+		else
+			evotrailHTML+='<a href="#" class="favIconLink" style="display:inline-block;" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<i class="fa fa-caret-right text-muted"></i> ';
