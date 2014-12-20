@@ -525,7 +525,7 @@ function initialize(fusionData) {
 		{ "targets":[ 0 ], "type": "num", "width": "20"
 		},
 		/*Wt Stats*/
-		{ "targets":[ 19 ],
+		{ "targets":[ 20 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -542,7 +542,7 @@ function initialize(fusionData) {
 		    }
 		},
 		/*Wt Pimped Stats*/
-		{ "targets":[ 20 ],
+		{ "targets":[ 21 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -579,7 +579,7 @@ function initialize(fusionData) {
 		}
 		},
 		/*Aggregated Evolution Materials*/
-		{ "targets": [50],
+		{ "targets": [51],
 		"orderable": false,
 		"render": function(evoVal, type, cRow, full) {
 		    var evoString='<div style="white-space:nowrap;">';
@@ -590,7 +590,7 @@ function initialize(fusionData) {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [51],
+		{ "targets": [52],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
