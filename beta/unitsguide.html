@@ -390,7 +390,7 @@ function initialize(fusionData) {
 		}
 		},
 		/*Stats*/
-		{ "targets":[ 7,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40 ],
+		{ "targets":[ 7,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -546,16 +546,16 @@ function initialize(fusionData) {
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
-		"render": function(nanCol, type, row, full) {
+		"render": function(nanCol2, type, row, full) {
 		    if (type ==='display') {
-			    if (isNaN(nanCol)) {
+			    if (isNaN(nanCol2)) {
 				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+'-'+'</div>';
-			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+Math.round(nanCol2)+'</div>'; }
 		    } else if (type === 'sort') {
-			    if (isNaN(nanCol)) {
+			    if (isNaN(nanCol2)) {
 				return "-";
-			    } else { return Math.round(nanCol); }
-			} else { return Math.round(nanCol); }
+			    } else { return Math.round(nanCol2); }
+		    	}
 		    }
 		},
 		/*Name + Video*/
