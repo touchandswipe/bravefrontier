@@ -227,6 +227,7 @@ function openCard(whatunit) {
 	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
+	      var ovubbfill = ovdata2[0]["ubb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
 	      var ovsbbtype = ovdata2[0]["sbb type"];
 	      var ovubbtype = ovdata2[0]["ubb type"];
@@ -369,12 +370,16 @@ function openCard(whatunit) {
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="border-bottom:3px solid #00CCFF;display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity > 5) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="border-bottom:3px solid #FFEE00;display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+(parseInt(ovsbbfill)-parseInt(ovbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits;
+		ovHTML+='<span style="border-bottom:3px solid #FF0000;display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+(parseInt(ovubbfill)-parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+	      }
+	      if (ovrarity==6) {
+	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
