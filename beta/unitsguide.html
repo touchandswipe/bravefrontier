@@ -19,9 +19,11 @@
     .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:#E6CCFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
     .imgShdw {
-	-webkit-filter: drop-shadow(0px 0px 4px #00FF95);
-	filter:         drop-shadow(0px 0px 4px #00FF95);
+	-webkit-filter: drop-shadow(0px 0px 3px #00EE85);
+	filter:         drop-shadow(0px 0px 3px #00EE85);
     }
+    .evoUnit { display:inline-block;position:relative; }
+    .evoCaret { display:inline-block;position:relative;width:25px;text-align:center; }
     .vidContain {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -45,8 +47,8 @@
     .rEvo {
 	position: absolute;
 	white-space: nowrap;
-	top: 19px;
-	left: 6px;
+	top: 25px;
+	left: 8px;
     }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
@@ -888,13 +890,13 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="imgShdw" width="30"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="imgShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="30"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<div style="display:inline-block;position:relative;width:20px;"><i class="fa fa-2x fa-caret-right text-muted"></i></div>';
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-2x fa-caret-right text-success"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
