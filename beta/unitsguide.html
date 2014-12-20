@@ -45,8 +45,8 @@
     .rEvo {
 	position: absolute;
 	white-space: nowrap;
-	top: 27px;
-	left: 10px;
+	top: 17px;
+	left: 8px;
     }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
@@ -888,10 +888,10 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="imgShdw" width="40"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="imgShdw" width="30"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="40"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div style="display:inline-block;position:relative;"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="30"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div style="display:inline-block;position:relative;width:20px;"><i class="fa fa-2x fa-caret-right text-muted"></i> test test</div>';
