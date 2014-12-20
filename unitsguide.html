@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Ultima R2) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Ultima R3) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Ultima R2) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Ultima R3) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -18,6 +18,12 @@
     <style type="text/css">
     .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:#E6CCFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
+    .imgShdw {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter:         drop-shadow(0px 0px 5px #AA00AA);
+    }
+    .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
+    .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
     .vidContain {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -35,8 +41,14 @@
     .rShow {
     	position:relative;
     	white-space:nowrap;
-    	top:-10px;
-    	left:14px;
+    	top:-12px;
+    	left:10px;
+    }
+    .rEvo {
+	position: absolute;
+	white-space: nowrap;
+	top: 25px;
+	left: 8px;
     }
     .va {vertical-align:middle;}
     .text-fav {color:#FFFFFF;}
@@ -155,8 +167,8 @@ function convertJSON( serialObj ) {
 		/*Call Unit Card*/
 		} else if (s.columns[j].toLowerCase().search("name") != -1) {
 		    temp[s.columns[j].toLowerCase()] = '<a href="#" class="unitName notranslate">'+s.rows[i][j]+'</a>';
-		} else if (s.rows[i][j].substr(0,4) == "http") {
-		    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
+		//} else if (s.rows[i][j].substr(0,4) == "http") {
+		//    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
 		} else { /*general string*/
 		    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
 		}
@@ -658,7 +670,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'">'+drawObj[i]["icon"]+'</a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="'+drawObj[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -864,7 +876,8 @@ function initialize(fusionData) {
 			'evo5':deserialdata[i]["evo 5"],
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
-			'id':deserialdata[i]["id"]
+			'id':deserialdata[i]["id"],
+			'icon':deserialdata[i]["icon"]
 			})
 		}
 	    }
@@ -877,14 +890,13 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<span style="background:#99FF99;">'+evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>)</span> ';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="imgShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
-		}
-		else { evotrailHTML+=evotrail[i]['name']+' ('+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i>) ';
-		}
+		} else
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
-		    evotrailHTML+='<i class="fa fa-caret-right text-muted"></i> ';
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
 		}
 	    }
 	    /*Card HTML output*/
@@ -912,12 +924,16 @@ function initialize(fusionData) {
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="border-bottom:3px solid #00CCFF;display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      if (ovrarity > 5) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="border-bottom:3px solid #FFEE00;display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+(parseInt(ovsbbfill)-parseInt(ovbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="border-bottom:3px solid #FF0000;display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+' ('+(parseInt(ovubbfill)-parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+	      }
+	      if (ovrarity==6) {
+	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
@@ -946,14 +962,14 @@ function initialize(fusionData) {
 		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
 		for(var i=0; i < 5; i++) {
 		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
-			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" alt="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
 		 }
 	      }
 	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
 	      if (ovevo[0] != 'None') {
 		  for(var i=0; i < 5; i++) {
 		      if (ovevo[i] != 'None') {
-			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" alt="'+ovevo[i]+'"/> '; }
+			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
 		  }
 		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
@@ -998,10 +1014,10 @@ function initialize(fusionData) {
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="") {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
