@@ -334,7 +334,7 @@ function openCard(whatunit) {
 	    var evotrailHTML='';
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
-		if ($(evotrail[i]['name']).text()==ovname) {
+		if (evotrail[i].id==ovid) {
 		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
