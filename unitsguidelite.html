@@ -408,14 +408,14 @@ function openCard(whatunit) {
 		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
 		for(var i=0; i < 5; i++) {
 		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
-			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" alt="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
 		 }
 	      }
 	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
 	      if (ovevo[0] != 'None') {
 		  for(var i=0; i < 5; i++) {
 		      if (ovevo[i] != 'None') {
-			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" alt="'+ovevo[i]+'"/> '; }
+			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
 		  }
 		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
