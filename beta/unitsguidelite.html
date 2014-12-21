@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (PETA) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide Lite (Ultima R3) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (Ultima) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite (Ultima R3) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -14,13 +14,14 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .hitsIcon { height:15px;vertical-align:top; }
     .imgShdw {
 	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
 	filter:         drop-shadow(0px 0px 5px #FF3300);
     }
     .evoShdw {
-	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
-	filter:         drop-shadow(0px 0px 5px #AA00AA);
+	-webkit-filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
+	filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
     }
     .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
     .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
@@ -227,6 +228,7 @@ function openCard(whatunit) {
 	      var ovubbhits = ovdata2[0]["ubb hits"];
 	      var ovbbfill = ovdata2[0]["bb fill"];
 	      var ovsbbfill = ovdata2[0]["sbb fill"];
+	      var ovubbfill = ovdata2[0]["ubb fill"];
 	      var ovbbtype = ovdata2[0]["bb type"];
 	      var ovsbbtype = ovdata2[0]["sbb type"];
 	      var ovubbtype = ovdata2[0]["ubb type"];
@@ -369,12 +371,16 @@ function openCard(whatunit) {
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'</span><span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+' ('+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/></span><span style="border-bottom:3px solid #00CCFF;display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+ovbbfill+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      if (ovrarity > 5) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+' ('+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/>)</span>';
+		ovHTML+='<span style="border-bottom:3px solid #FFEE00;display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+(parseInt(ovsbbfill)-parseInt(ovbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits;
+		ovHTML+='<span style="border-bottom:3px solid #FF0000;display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+(parseInt(ovubbfill)-parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+	      }
+	      if (ovrarity==6) {
+	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
@@ -403,14 +409,14 @@ function openCard(whatunit) {
 		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
 		for(var i=0; i < 5; i++) {
 		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
-			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" alt="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
 		 }
 	      }
 	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
 	      if (ovevo[0] != 'None') {
 		  for(var i=0; i < 5; i++) {
 		      if (ovevo[i] != 'None') {
-			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" alt="'+ovevo[i]+'"/> '; }
+			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
 		  }
 		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
@@ -620,16 +626,6 @@ function openCard(whatunit) {
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
 <h4>A quick and lite Brave Frontier units guide, because you need it.</h4>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- BFPROResponsive TOP -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="7756941266"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 	<div class="input-group input-group-lg" style="margin-bottom:5px;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
@@ -793,15 +789,6 @@ $(document).on("click", "#pimpBtn", function(){
     <div class="modal-content">
       <div class="modal-body">
 <button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- BFPROsLinkUnits DB Overlay -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:468px;height:15px"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="7885767265"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <div class="vidContain">
 <iframe id="vidEmbed" src="" frameborder="0" width="100%"></iframe>
 </div>
@@ -832,6 +819,15 @@ $(document).on("click", "#pimpBtn", function(){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
+	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+    <!-- BFPROsLinkUnits DB Overlay -->
+    <ins class="adsbygoogle"
+	 style="display:inline-block;width:468px;height:15px"
+	 data-ad-client="ca-pub-2145833818900192"
+	 data-ad-slot="7885767265"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
 	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
