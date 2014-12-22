@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan  - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan (Ultima R3)  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Unit Skills and Effects Guide Japan - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Unit Skills and Effects Guide Japan (Ultima R3) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -445,7 +445,7 @@ countVar=0; /*reset count*/
                     	if (sbbKey!="bc cost")
                         	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
                         else
-                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+(valObj.bb.levels[i][sbbKey]+valObj.sbb.levels[i][sbbKey])+'</div>'
+                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
                     }
                     sbbSTR+="</div>";
                 } else if (sbbKey=="effects") {
@@ -473,6 +473,56 @@ countVar=0; /*reset count*/
                 }
             })
         } else sbbSTR="";
+	/*Checks UBB*/
+        if (valObj["ubb"]) {
+            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
+            if (valObj["ubb"]["hit dmg% distribution"]) {
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["hits"]+' hits distributed as '+valObj["ubb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            }
+            if (valObj["ubb"]["max bc generated"]) {
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
+            }
+            /*UBB Heading*/
+            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
+            for (i=0;i<10;i++) {
+                    ubbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
+                }
+            ubbSTR+="</div>";
+            $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
+                if (ubbKey!="effects") {
+                    ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
+                    for (i=0;i<10;i++) {
+                    	if (ubbKey!="bc cost")
+                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
+                        else
+                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
+                    }
+                    ubbSTR+="</div>";
+                } else if (ubbKey=="effects") {
+                	for (j in valObj.ubb.levels[0].effects) {
+                		ubbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
+                		$.each(valObj.ubb.levels[0].effects[j], function(ubbKey2,ubbVal2) {
+                			if (typeof ubbVal2 === 'object') {
+                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
+	                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
+							for (k=0;k<10;k++) {
+				                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2][ubbKey3]+'</div>'
+							}
+							ubbSTR+="</div>";
+                				})
+                			}
+                			else {
+                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey2+'</span></div>';
+						for (k=0;k<10;k++) {
+			                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2]+'</div>'
+						}
+                    				ubbSTR+="</div>";
+                			}
+                		})
+                	}
+                }
+            })
+        } else ubbSTR="";
         if (valObj.ai) {
 		/*AI Heading*/
 		var aiCol=valObj['ai'].length;
@@ -499,7 +549,7 @@ countVar=0; /*reset count*/
         } else aiSTR="";
         /*Append each HTML*/
         var splitSTR='<div class="row">&nbsp;</div>';
-        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+'</div></div></div></div>';
+        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+ubbSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
