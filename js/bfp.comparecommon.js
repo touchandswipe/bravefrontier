@@ -30,23 +30,22 @@ function checkUpdate(fileURL,localDate) {
 function resetLocalData(corrupted) {
 	if (corrupted)
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
-		
 	/*LocalStorage Delete and Refresh*/
-    if (serverChoice.search('/jp/')==-1)
-    	var localServerSelect="skillsguideglobal";
-    else
-    	var localServerSelect="skillsguidejapan";
-  /*Resets*/
-  localStorage.removeItem(localServerSelect);
-  localStorage.removeItem(localServerSelect+"date");
-  history.pushState(null, null, location.pathname);
-  location.reload();
+    	if (serverChoice.search('/jp/')==-1)
+    		var localServerSelect="skillsguideglobal";
+    	else
+    		var localServerSelect="skillsguidejapan";
+	/*Resets*/
+  	localStorage.removeItem(localServerSelect);
+  	localStorage.removeItem(localServerSelect+"date");
+  	history.pushState(null, null, location.pathname);
+  	location.reload();
 }
 
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
   /*Resets data*/
-	resetLocalData(false)
+  resetLocalData(false)
 })
 
 /*Refresh data*/
