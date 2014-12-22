@@ -2,11 +2,6 @@ countVar=0;
 collapseID=1;
 rawParseObj=[];
 
-/*Sync New Button*/
-$(document).on("click", '#syncNewBtn', function(e){
-	resetLocalData(false)
-})
-
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
     $.ajax({
@@ -23,12 +18,12 @@ function checkUpdate(fileURL,localDate) {
 }
 
 /*Reset Local Storage*/
-function resetLocalData(corrupted) {
+function resetLocalData(serverStr, corrupted) {
 	/*LocalStorage Delete and Refresh*/
 	if (corrupted)
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
-	localStorage.removeItem("skillsguideglobal");
-	localStorage.removeItem("skillsguideglobaldate");
+	localStorage.removeItem(serverStr);
+	localStorage.removeItem(serverStr+"date");
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
 }
