@@ -308,10 +308,26 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
 rawParseObj=[]; /*holder variable in array*/
+jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
 
 /*JQ Param handling*/
 function urlParam(name){
@@ -797,6 +813,32 @@ $( "#searchNameBox" ).keypress( function( event ) {
   }
 })
 
+/*Check filedate*/
+function checkUpdate(fileURL,localDate) {
+    $.ajax({
+    	type: "Head",
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: fileURL,
+        success: function(data, textStatus, request) {
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		if (lastModified > localDate)
+    			$("#alertmodal").modal("show")
+ 	}
+    })
+}
+
+/*Reset Local Storage*/
+function resetLocalData(corrupted) {
+	/*LocalStorage Delete and Refresh*/
+	if (corrupted)
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+	localStorage.removeItem("skillsguideglobal");
+	localStorage.removeItem("skillsguideglobaldate");
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+}
+
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
     /*Init loader*/
@@ -808,7 +850,7 @@ $(document).on("click", '#refreshData', function(e){
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+        url: jsonURL,
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObj=[]; /*reset*/
@@ -858,6 +900,11 @@ $(document).on("click", '#searchNameBtn', function(e){
 	searchNameRun()
 })
 
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+	resetLocalData(false)
+})
+
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
@@ -865,14 +912,10 @@ $(document).ready( function(e) {
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
-	} else {
-		/*LocalStorage Delete and Refresh*/
-		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
-		localStorage.removeItem("skillsguideglobal");
-		localStorage.removeItem("skillsguideglobaldate");
-		history.pushState(null, null, location.pathname);
-		location.reload(true);
-	}
+		/*checks for update on server*/
+		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
+	} else
+		resetLocalData(true)
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -883,7 +926,7 @@ $(document).ready( function(e) {
 	    $.ajax({
 	        dataType: "json",
 	        contentType: "text/plain; charset=UTF-8",
-	        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+	        url: jsonURL,
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
