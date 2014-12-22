@@ -536,16 +536,6 @@ rawParseObj=[];
 selectUnitObj={};
 foundArray=[];
 
-/*check valid json*/
-function isValidJSON(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
     /*Process for Each Unit*/
