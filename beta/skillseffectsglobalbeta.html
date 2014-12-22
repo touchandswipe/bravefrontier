@@ -505,6 +505,11 @@ function searchNameRun() {
 	});
 }
 
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+	resetLocalData("skillsguideglobal",false)
+})
+
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
     /*Init loader*/
@@ -536,10 +541,10 @@ $(document).ready( function(e) {
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
-		/*checks for update on server*/
+		/*checks for update on server*/ 
 		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
 	} else
-		resetLocalData(true)
+		resetLocalData("skillsguideglobal",true)
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
