@@ -19,8 +19,12 @@
     .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:#E6CCFF;padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
     .evoShdw {
-	-webkit-filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
-	filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+    }
+    .evoCurrent {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter: drop-shadow(0px 0px 5px #AA00AA);
     }
     .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
     .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
@@ -890,7 +894,7 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
 			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
