@@ -251,14 +251,14 @@ function buildTable(unit) {
     
     /*Build Header*/
     var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
-    exportSTR+='<th style="background-color:#FFCC99;">Normal Hits DC</th>';
-    exportSTR+='<th style="background-color:#FFCC99;">DC / Normal Hit</th>';
-    exportSTR+='<th style="background-color:#66FF99;">BB Hits DC</th>';
-    exportSTR+='<th style="background-color:#66FF99;">DC / BB Hit</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">SBB Hits DC</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">DC / SBB Hit</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">UBB Hits DC</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">DC / UBB Hit</th>';
+    exportSTR+='<th style="background-color:#EEEEEE;">Normal Hits DC</th>';
+    exportSTR+='<th style="background-color:#EEEEEE;">DC / Normal Hit</th>';
+    exportSTR+='<th style="background-color:#88DDFF;">BB Hits DC</th>';
+    exportSTR+='<th style="background-color:#88DDFF;">DC / BB Hit</th>';
+    exportSTR+='<th style="background-color:#FFFF33;">SBB Hits DC</th>';
+    exportSTR+='<th style="background-color:#FFFF33;">DC / SBB Hit</th>';
+    exportSTR+='<th style="background-color:#FFDDCC;">UBB Hits DC</th>';
+    exportSTR+='<th style="background-color:#FFDDCC;">DC / UBB Hit</th>';
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
