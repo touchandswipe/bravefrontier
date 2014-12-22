@@ -1,3 +1,13 @@
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
     $.ajax({
