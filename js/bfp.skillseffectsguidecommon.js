@@ -291,6 +291,23 @@ countVar=0; /*reset count*/
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
+    
+	var aheadNameRead = new Bloodhound({
+-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+-		queryTokenizer: Bloodhound.tokenizers.whitespace,
+-		local: $.map(rawParseObj, function(uName) { return { value: uName.name }; })
+-	});
+-	aheadNameRead.initialize();
+-	$('#searchNameBox').typeahead({
+-		hint: true,
+-		highlight: true,
+-		minLength: 1
+-	},
+-	{
+-		displayKey: 'value',
+-		source: aheadNameRead.ttAdapter()
+-	});
+    
     $("#unitCount").html(countVar);
     setTimeout($('#progressModal').modal('hide'),4000);
     
