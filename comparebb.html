@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - BB / SBB Skill Effects Comparison (Peta) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - BB / SBB Skill Effects Comparison (Ultima R3) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - BB / SBB Skill Effects Comparison (Peta) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - BB / SBB Skill Effects Comparison (Ultima R3) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -162,6 +162,21 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-2"></div>
@@ -225,23 +240,10 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
 </div> <!-- /container -->
 
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.comparecommon.js"></script>
 <script type="text/javascript">
-/*Global Variable*/
-serverChoice="";
-
-/*check valid json*/
-function isValidJSON(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
 /*contruct table*/
 function buildTable(unit) {
     var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
@@ -335,6 +337,7 @@ function genTable(dataChoice) {
     	backdrop:'static',
     	toggle:true
     })
+    
     /*LocalStorage Retreival and storage*/
     if (dataChoice.search('/jp/')==-1) {
     	var localServerSelect="skillsguideglobal";
@@ -349,14 +352,9 @@ function genTable(dataChoice) {
 	if (isValidJSON(guideData)) {
 		buildTable(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
-	} else {
-		/*LocalStorage Delete and Refresh*/
-		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
-		localStorage.removeItem(localServerSelect);
-		localStorage.removeItem(localServerSelect+"date");
-		history.pushState(null, null, location.pathname);
-		location.reload(true);
-	}
+		checkUpdate(dataChoice,localStorage.getItem(localServerSelect+"date"));
+	} else
+		resetLocalData(true)
     } else {
 	    $.ajax({
 	        dataType: "json",
@@ -382,34 +380,9 @@ $(document).ready( function(e) {
     	toggle:true
     })
 })
-/*Triggers*/
-$( ".dataBtn" ).on( "click", function() {
-  if ($(this).text()=="Global")
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/info.json"
-  else
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
-  $('#dataModal').modal("hide");
-});
 
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
-})
-
-/*Refresh data*/
-$(document).on("click", '#refreshData', function(e){
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    });
-    /*LocalStorage Delete and Refresh*/
-    if (serverChoice.search('/jp/')==-1)
-    	var localServerSelect="skillsguideglobal";
-    else
-    	var localServerSelect="skillsguidejapan";
-localStorage.removeItem(localServerSelect);
-location.reload();
 })
 </script>
 
