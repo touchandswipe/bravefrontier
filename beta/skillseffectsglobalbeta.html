@@ -877,6 +877,7 @@ $(document).on("click", '#searchNameBtn', function(e){
 })
 
 $(document).ready( function(e) {
+	checkUpdate();
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
