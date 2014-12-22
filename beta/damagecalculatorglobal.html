@@ -146,7 +146,7 @@
 		</div>
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
-		<h4 class="text-muted" id="unit_Misc"></h3>
+		<h5 class="text-muted" id="unit_Misc"></h5>
 	</div>
 </div></div>
 </div></div> <!--End Unit Panel-->
@@ -699,9 +699,9 @@ $(document).on("click", '.searchLinks', function(e){
 	selectUnitObj=foundArray[thisLink];
 	/*display retrieved stats*/
 	$("#unit_ATK").val(selectUnitObj.attack);
-	$("#unit_Misc").html("BB ATK%: "+selectUnitObj.bbMaxAtk);
+	$("#unit_Misc").html("<b>BB ATK%:</b> "+selectUnitObj.bbMaxATK+" | <b>BB Flat ATK:</b> "+selectUnitObj.bbFlatATK);
 	if (selectUnitObj.rarity > 5)
-		$("#unit_Misc").append(" | SBB ATK%: "+selectUnitObj.sbbMaxAtk);
+		$("#unit_Misc").append("<br/><b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
 	$('.rawTable').each( function() {
 		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
 	});
