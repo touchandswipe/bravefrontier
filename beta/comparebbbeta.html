@@ -382,15 +382,6 @@ $(document).ready( function(e) {
     })
 })
 
-/*Triggers*/
-$( ".dataBtn" ).on( "click", function() {
-  if ($(this).text()=="Global")
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/info.json"
-  else
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
-  $('#dataModal').modal("hide");
-});
-
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
 })
