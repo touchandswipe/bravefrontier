@@ -34,6 +34,7 @@
 <script type='text/javascript' src='//cdn.datatables.net/1.10.0/js/jquery.dataTables.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.comparecommon.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -162,6 +163,21 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-2"></div>
@@ -229,19 +245,6 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-/*Global Variable*/
-serverChoice="";
-
-/*check valid json*/
-function isValidJSON(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
 /*contruct table*/
 function buildTable(unit) {
     var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
@@ -382,6 +385,7 @@ $(document).ready( function(e) {
     	toggle:true
     })
 })
+
 /*Triggers*/
 $( ".dataBtn" ).on( "click", function() {
   if ($(this).text()=="Global")
@@ -393,23 +397,6 @@ $( ".dataBtn" ).on( "click", function() {
 
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
-})
-
-/*Refresh data*/
-$(document).on("click", '#refreshData', function(e){
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    });
-    /*LocalStorage Delete and Refresh*/
-    if (serverChoice.search('/jp/')==-1)
-    	var localServerSelect="skillsguideglobal";
-    else
-    	var localServerSelect="skillsguidejapan";
-localStorage.removeItem(localServerSelect);
-location.reload();
 })
 </script>
 
