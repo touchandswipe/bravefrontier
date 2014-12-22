@@ -352,7 +352,6 @@ function genTable(dataChoice) {
 	if (isValidJSON(guideData)) {
 		buildTable(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
-		alert("checking "+dataChoice);
 		checkUpdate(dataChoice,localStorage.getItem(localServerSelect+"date"));
 	} else
 		resetLocalData(true)
