@@ -44,6 +44,15 @@ function resetLocalData(corrupted) {
   	location.reload();
 }
 
+/*Triggers*/
+$( ".dataBtn" ).on( "click", function() {
+  if ($(this).text()=="Global")
+  	serverChoice="//touchandswipe.github.io/bravefrontier_data/info.json"
+  else
+  	serverChoice="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+  $('#dataModal').modal("hide");
+});
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
   /*Resets data*/
