@@ -73,11 +73,8 @@
 </div>
 <h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-1">
-		<button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
-	</div>
-	<div class="col-xs-12 col-sm-12 col-md-11">
-		<h5><b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></h5>
+	<div class="col-xs-12">
+		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
 	</div>
 </div>
 <!-- Google Manual labnol.org responsive ads-->
@@ -235,6 +232,16 @@
 /*Global Variable*/
 serverChoice="";
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 /*contruct table*/
 function buildTable(unit) {
     var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
@@ -338,9 +345,18 @@ function genTable(dataChoice) {
     }
     	
     if (localStorage.getItem(localServerSelect) != null) {
-	guideData=LZString.decompress(localStorage.getItem(localServerSelect));
-	buildTable(JSON.parse(guideData));
-	$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
+	guideData=LZString.decompressFromUTF16(localStorage.getItem(localServerSelect));
+	if (isValidJSON(guideData)) {
+		buildTable(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem(localServerSelect);
+		localStorage.removeItem(localServerSelect+"date");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    $.ajax({
 	        dataType: "json",
@@ -349,7 +365,7 @@ function genTable(dataChoice) {
 	        success: function(data, textStatus, request){
 		    	lastModified = request.getResponseHeader("Last-Modified");
 		    	/*Save in local storage*/
-			localStorage.setItem(localServerSelect,LZString.compress(JSON.stringify(data)));
+			localStorage.setItem(localServerSelect,LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem(localServerSelect+"date",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 		    	buildTable(data);
