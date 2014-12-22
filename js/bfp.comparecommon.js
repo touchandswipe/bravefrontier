@@ -13,6 +13,7 @@ function isValidJSON(str) {
 
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
+alert("debug file "+fileURL);
     $.ajax({
     	type: "Head",
         dataType: "json",
@@ -20,6 +21,7 @@ function checkUpdate(fileURL,localDate) {
         url: fileURL,
         success: function(data, textStatus, request) {
     		lastModified = request.getResponseHeader("Last-Modified");
+    		alert(lastModified+" Local is"+localData);
     		if (lastModified > localDate)
     			$("#alertmodal").modal("show")
  	}
