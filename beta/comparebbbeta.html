@@ -353,7 +353,7 @@ function genTable(dataChoice) {
 		buildTable(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
 		alert("checking "+dataChoice);
-		checkUpdate(dataChoice,localServerSelect+"date");
+		checkUpdate(dataChoice,localStorage.getItem(localServerSelect+"date"));
 	} else
 		resetLocalData(true)
     } else {
