@@ -542,6 +542,7 @@ $(document).ready( function(e) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguidejapandate);
 		/*checks for update on server*/
 		checkUpdate(jsonURL,localStorage.skillsguidejapandate);
 	} else
