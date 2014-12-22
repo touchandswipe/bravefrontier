@@ -541,7 +541,7 @@ $(document).ready( function(e) {
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
-		/*checks for update on server*/
+		/*checks for update on server*/ 
 		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
 	} else
 		resetLocalData("skillsguideglobal",true)
