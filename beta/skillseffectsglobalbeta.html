@@ -832,9 +832,10 @@ function checkUpdate(fileURL,localDate) {
 }
 
 /*Reset Local Storage*/
-function resetLocalData() {
+function resetLocalData(corrupted) {
 	/*LocalStorage Delete and Refresh*/
-	alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+	if (corrupted)
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem("skillsguideglobal");
 	localStorage.removeItem("skillsguideglobaldate");
 	history.pushState(null, null, location.pathname);
@@ -904,7 +905,7 @@ $(document).on("click", '#searchNameBtn', function(e){
 
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
-	resetLocalData()
+	resetLocalData(false)
 })
 
 $(document).ready( function(e) {
@@ -917,7 +918,7 @@ $(document).ready( function(e) {
 		/*checks for update on server*/
 		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
 	} else
-		resetLocalData()
+		resetLocalData(true)
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
