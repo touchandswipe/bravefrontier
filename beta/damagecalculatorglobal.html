@@ -139,15 +139,11 @@
 <!-- Unit Panel Content -->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
 	<h4>By default, LORD type ATK is loaded w/o pimping. Modify to suit your unit.</h4>
-	<div class="col-xs-6 col-sm-6 col-md-4">
-		<div class="input-group">
-			<span class="input-group-addon">Unit ATK</span>
-	  		<input type="text" id="unit_ATK" class="form-control" placeholder="Select a unit above">
-		</div>
+	<div class="input-group">
+		<span class="input-group-addon">Unit ATK</span>
+	 	<input type="text" id="unit_ATK" class="form-control" placeholder="Select a unit above">
 	</div>
-	<div class="col-xs-6 col-sm-6 col-md-4">
-		<h5 class="text-muted" id="unit_Misc"></h5>
-	</div>
+	<h5 class="text-muted" id="unit_Misc"></h5>
 </div></div>
 </div></div> <!--End Unit Panel-->
 
@@ -701,7 +697,7 @@ $(document).on("click", '.searchLinks', function(e){
 	$("#unit_ATK").val(selectUnitObj.attack);
 	$("#unit_Misc").html("<b>BB ATK%:</b> "+selectUnitObj.bbMaxATK+" | <b>BB Flat ATK:</b> "+selectUnitObj.bbFlatATK);
 	if (selectUnitObj.rarity > 5)
-		$("#unit_Misc").append("<br/><b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
+		$("#unit_Misc").append("<b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
 	$('.rawTable').each( function() {
 		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
 	});
