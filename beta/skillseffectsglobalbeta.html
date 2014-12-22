@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Global  - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Global (Ultima R3)  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Unit Skills and Effects Guide Global - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Unit Skills and Effects Guide Global (Ultima R3) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -44,7 +44,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
-
+<script src="js/typeahead.bundle.min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -135,11 +135,10 @@
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h1>Skills & Effects Guide - <span class="text-danger">Global</span> Server</h1>
-<h5><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd>
 
 <!-- Buttons row -->
 <div style="margin-bottom:5px;">
-<button type="button" class="btn btn-success" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 <!-- Leader Skills button -->
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Leader Skill Effects <span class="caret"></span>
@@ -393,9 +392,12 @@ countVar=0; /*reset count*/
             $.each(valObj.bb.levels[0], function(bbKey,bbVal) {
                 if (bbKey!="effects") {
                     bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
-                    for (i=0;i<10;i++) {
-                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[i][bbKey]+'</div>'
-                    }
+                    if (valObj.bb.levels[0][bbKey]==valObj.bb.levels[9][bbKey])
+                    	bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9][bbKey]+'</div>';
+                    else
+	                    for (i=0;i<10;i++) {
+	                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[i][bbKey]+'</div>'
+	                    }
                     bbSTR+="</div>";
                 } else if (bbKey=="effects") {
                 	for (j in valObj.bb.levels[0].effects) {
@@ -404,14 +406,20 @@ countVar=0; /*reset count*/
                 			if (typeof bbVal2 === 'object') {
                 				$.each(valObj.bb.levels[0].effects[j][bbKey2], function(bbKey3,bbVal3) {
 	                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
-							for (k=0;k<10;k++) {
-				                        	bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2][bbKey3]+'</div>'
-							}
+	                				if (valObj.bb.levels[0].effects[j][bbKey2][bbKey3]==valObj.bb.levels[9].effects[j][bbKey2][bbKey3])
+	                					bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9].effects[j][bbKey2][bbKey3]+'</div>';
+	                				else
+								for (k=0;k<10;k++) {
+					                        	bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2][bbKey3]+'</div>'
+								}
 							bbSTR+="</div>";
                 				})
                 			}
                 			else {
 						bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
+						if (valObj.bb.levels[0].effects[j][bbKey2]==valObj.bb.levels[9].effects[j][bbKey2])
+							bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
+						else
 				                    for (k=0;k<10;k++) {
 				                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2]+'</div>'
 				                    }
@@ -442,12 +450,12 @@ countVar=0; /*reset count*/
             $.each(valObj.sbb.levels[0], function(sbbKey,sbbVal) {
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey+'</span></div>';
-                    for (i=0;i<10;i++) {
-                    	if (sbbKey!="bc cost")
-                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
-                        else
-                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+(valObj.bb.levels[i][sbbKey]+valObj.sbb.levels[i][sbbKey])+'</div>'
-                    }
+                    if (valObj.sbb.levels[0][sbbKey]==valObj.sbb.levels[9][sbbKey])
+                    	sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9][sbbKey]+'</div>';
+                    else
+	                    for (i=0;i<10;i++) {
+				sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
+	                    }
                     sbbSTR+="</div>";
                 } else if (sbbKey=="effects") {
                 	for (j in valObj.sbb.levels[0].effects) {
@@ -456,17 +464,23 @@ countVar=0; /*reset count*/
                 			if (typeof sbbVal2 === 'object') {
                 				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
 	                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
-							for (k=0;k<10;k++) {
-				                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2][sbbKey3]+'</div>'
-							}
+	                				if (valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3]==valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3])
+	                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3]+'</div>';
+	                				else
+								for (k=0;k<10;k++) {
+					                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2][sbbKey3]+'</div>'
+								}
 							sbbSTR+="</div>";
                 				})
                 			}
                 			else {
                 				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+'</span></div>';
-						for (k=0;k<10;k++) {
-			                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2]+'</div>'
-						}
+                				if (valObj.sbb.levels[0].effects[j][sbbKey2]==valObj.sbb.levels[9].effects[j][sbbKey2])
+                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9].effects[j][sbbKey2]+'</div>';
+                				else
+							for (k=0;k<10;k++) {
+				                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2]+'</div>'
+							}
                     				sbbSTR+="</div>";
                 			}
                 		})
@@ -474,6 +488,62 @@ countVar=0; /*reset count*/
                 }
             })
         } else sbbSTR="";
+	/*Checks UBB*/
+        if (valObj["ubb"]) {
+            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
+            if (valObj["ubb"]["hit dmg% distribution"]) {
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["hits"]+' hits distributed as '+valObj["ubb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            }
+            if (valObj["ubb"]["max bc generated"]) {
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
+            }
+            /*UBB Heading*/
+            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
+            for (i=0;i<10;i++) {
+                    ubbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
+                }
+            ubbSTR+="</div>";
+            $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
+                if (ubbKey!="effects") {
+                    ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
+                    if (valObj.ubb.levels[0][ubbKey]==valObj.ubb.levels[9][ubbKey])
+                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9][ubbKey]+'</div>';
+                    else
+	                    for (i=0;i<10;i++) {
+				ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
+	                    }
+                    ubbSTR+="</div>";
+                } else if (ubbKey=="effects") {
+                	for (j in valObj.ubb.levels[0].effects) {
+                		ubbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
+                		$.each(valObj.ubb.levels[0].effects[j], function(ubbKey2,ubbVal2) {
+                			if (typeof ubbVal2 === 'object') {
+                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
+	                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
+	                				if (valObj.ubb.levels[0].effects[j][ubbKey2][ubbKey3]==valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3])
+	                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]+'</div>';
+	                				else
+								for (k=0;k<10;k++) {
+					                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2][ubbKey3]+'</div>'
+								}
+							ubbSTR+="</div>";
+                				})
+                			}
+                			else {
+                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey2+'</span></div>';
+                				if (valObj.ubb.levels[0].effects[j][ubbKey2]==valObj.ubb.levels[9].effects[j][ubbKey2])
+                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2]+'</div>'
+                				else
+							for (k=0;k<10;k++) {
+				                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2]+'</div>'
+							}
+                    				ubbSTR+="</div>";
+                			}
+                		})
+                	}
+                }
+            })
+        } else ubbSTR="";
         if (valObj.ai) {
 		/*AI Heading*/
 		var aiCol=valObj['ai'].length;
@@ -500,7 +570,7 @@ countVar=0; /*reset count*/
         } else aiSTR="";
         /*Append each HTML*/
         var splitSTR='<div class="row">&nbsp;</div>';
-        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+'</div></div></div></div>';
+        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+ubbSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
@@ -523,6 +593,16 @@ countVar=0; /*reset count*/
         $('#searchNameBox').val(searchParam);
         searchNameRun();
     }
+}
+
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 /*Rarity Filter*/
@@ -717,6 +797,24 @@ $( "#searchNameBox" ).keypress( function( event ) {
   }
 })
 
+/*Check filedate*/
+function checkUpdate() {
+    $.ajax({
+    	type: "Head",
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: "//touchandswipe.github.io/bravefrontier_data/info.json",
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		alert("old "+localStorage.skillsguideglobaldate+" | NEW "+lastModified);
+    		if (lastModified > localStorage.skillsguideglobaldate)
+    			alert("update is needed")
+    		else
+    			alert("update NOT needed")
+ 	}
+    })
+}
+
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
     /*Init loader*/
@@ -734,9 +832,9 @@ $(document).on("click", '#refreshData', function(e){
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
-		localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
-    		$(lastModDate).text("Server data - "+lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
  	}
     });
 })
@@ -781,9 +879,18 @@ $(document).on("click", '#searchNameBtn', function(e){
 $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
-	guideData=LZString.decompress(localStorage.skillsguideglobal);
-	buildDB(JSON.parse(guideData));
-	$(lastModDate).text("Using local cache - "+localStorage.skillsguideglobaldate);
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("skillsguideglobal");
+		localStorage.removeItem("skillsguideglobaldate");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -798,9 +905,9 @@ $(document).ready( function(e) {
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$(lastModDate).text("Server data - "+lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
 	 	}
 	    })
