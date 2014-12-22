@@ -490,7 +490,7 @@ countVar=0; /*reset count*/
         } else sbbSTR="";
 	/*Checks UBB*/
         if (valObj["ubb"]) {
-            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
+            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
             if (valObj["ubb"]["hit dmg% distribution"]) {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["hits"]+' hits distributed as '+valObj["ubb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
             }
