@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Max BC Generated Comparison (Peta) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Drop Check Comparison (Ultima R3) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Max BC Generated / Hit Comparison (Peta) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Drop Check Comparison (Ultima R3) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -71,7 +71,7 @@
 <h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
 <h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
 </div>
-<h2>Max BC per Normal / BB / SBB Hit Comparison</h2>
+<h2>Drop Check (DC) Comparison for Normal / BB / SBB / UBB Hits</h2>
 <div class="row">
 	<div class="col-xs-12">
 		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
@@ -162,6 +162,21 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-2"></div>
@@ -228,22 +243,22 @@
 
 </div> <!-- /container -->
 
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.comparecommon.js"></script>
 <script type="text/javascript">
-/*Global Variable*/
-serverChoice="";
-
 function buildTable(unit) {
     var fkeys=['max bc generated','hits'];
     var tData=[];
     
     /*Build Header*/
     var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
-    exportSTR+='<th style="background-color:#FFCC99;">Normal Max BC Generated</th>';
-    exportSTR+='<th style="background-color:#FFCC99;">Max BC / Normal Hit</th>';
-    exportSTR+='<th style="background-color:#66FF99;">BB Max BC Generated</th>';
-    exportSTR+='<th style="background-color:#66FF99;">Max BC / BB Hit</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">SBB Max BC Generated</th>';
-    exportSTR+='<th style="background-color:#CC99FF;">Max BC / SBB Hit</th>';
+    exportSTR+='<th style="background-color:#EEEEEE;">Normal Hits DC</th>';
+    exportSTR+='<th style="background-color:#EEEEEE;">DC / Normal Hit</th>';
+    exportSTR+='<th style="background-color:#88DDFF;">BB Hits DC</th>';
+    exportSTR+='<th style="background-color:#88DDFF;">DC / BB Hit</th>';
+    exportSTR+='<th style="background-color:#FFFF33;">SBB Hits DC</th>';
+    exportSTR+='<th style="background-color:#FFFF33;">DC / SBB Hit</th>';
+    exportSTR+='<th style="background-color:#FFDDCC;">UBB Hits DC</th>';
+    exportSTR+='<th style="background-color:#FFDDCC;">DC / UBB Hit</th>';
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
@@ -283,6 +298,18 @@ function buildTable(unit) {
     } else {
         tArray.push(0,0);
     }
+    
+    /*UBB hits*/
+    if (valObj.ubb) {
+        if (valObj.ubb[fkeys[0]]) {
+            tArray.push(valObj.ubb[fkeys[0]]);
+            tArray.push(parseInt(valObj.ubb[fkeys[0]])/parseInt(valObj.ubb.hits));
+        } else {
+            tArray.push(0,0);
+        }
+    } else {
+        tArray.push(0,0);
+    }
 
     //$("#rawTable tbody").append(exportSTR+'<tr>');
     tData.push(tArray);
@@ -312,16 +339,6 @@ function buildTable(unit) {
     })
 }
 
-/*check valid json*/
-function isValidJSON(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
 function genTable(dataChoice) {
     /*Init loader*/
     $('#progressModal').modal({
@@ -343,14 +360,9 @@ function genTable(dataChoice) {
 	if (isValidJSON(guideData)) {
 		buildTable(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.getItem(localServerSelect+"date"));
-	} else {
-		/*LocalStorage Delete and Refresh*/
-		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
-		localStorage.removeItem(localServerSelect);
-		localStorage.removeItem(localServerSelect+"date");
-		history.pushState(null, null, location.pathname);
-		location.reload(true);
-	}
+		checkUpdate(dataChoice,localStorage.getItem(localServerSelect+"date"));
+	} else
+		resetLocalData(true)
     } else {
 	    $.ajax({
 	        dataType: "json",
@@ -376,34 +388,9 @@ $(document).ready( function(e) {
     	toggle:true
     })
 })
-/*Triggers*/
-$( ".dataBtn" ).on( "click", function() {
-  if ($(this).text()=="Global")
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/info.json"
-  else
-  	serverChoice="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
-  $('#dataModal').modal("hide");
-});
 
 $('#dataModal').on('hidden.bs.modal', function (e) {
   genTable(serverChoice);
-})
-
-/*Refresh data*/
-$(document).on("click", '#refreshData', function(e){
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    });
-    /*LocalStorage Delete and Refresh*/
-    if (serverChoice.search('/jp/')==-1)
-    	var localServerSelect="skillsguideglobal";
-    else
-    	var localServerSelect="skillsguidejapan";
-localStorage.removeItem(localServerSelect);
-location.reload();
 })
 </script>
 
