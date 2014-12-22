@@ -21,7 +21,7 @@ alert("debug file "+fileURL);
         url: fileURL,
         success: function(data, textStatus, request) {
     		lastModified = request.getResponseHeader("Last-Modified");
-    		alert(lastModified+" Local is"+localData);
+    		alert(lastModified+" Local is"+localDate);
     		if (lastModified > localDate)
     			$("#alertmodal").modal("show")
  	}
