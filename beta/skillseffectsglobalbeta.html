@@ -822,11 +822,8 @@ function checkUpdate(fileURL,localDate) {
         url: fileURL,
         success: function(data, textStatus, request) {
     		lastModified = request.getResponseHeader("Last-Modified");
-    		alert("OLD "+localStorage.skillsguideglobaldate+" | NEW "+lastModified);
     		if (lastModified > localDate)
     			$("#alertmodal").modal("show")
-    		else
-    			alert("NO Update Needed.")
  	}
     })
 }
