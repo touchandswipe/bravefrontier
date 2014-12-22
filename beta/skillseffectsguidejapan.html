@@ -27,7 +27,8 @@
         border:1px solid #CCCCCC;
         padding:3px;
         word-wrap: break-word;
-        text-align:center;
+	-webkit-align-items: center;
+	align-items: center;
     }
     .upper {
         text-transform:uppercase;
@@ -508,10 +509,10 @@ countVar=0; /*reset count*/
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
                     if (valObj.ubb.levels[0][ubbKey]==valObj.ubb.levels[9][ubbKey])
-                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi text-center">'+valObj.ubb.levels[9][ubbKey]+'</div>';
+                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9][ubbKey]+'</div>';
                     else
 	                    for (i=0;i<10;i++) {
-				ubbSTR+='<div class="col-xs-1 col-md-1 bi text-center">'+valObj.ubb.levels[i][ubbKey]+'</div>'
+				ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
 	                    }
                     ubbSTR+="</div>";
                 } else if (ubbKey=="effects") {
