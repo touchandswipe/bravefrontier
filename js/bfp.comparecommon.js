@@ -20,7 +20,7 @@ function checkUpdate(fileURL,localDate) {
         url: fileURL,
         success: function(data, textStatus, request) {
     		lastModified = request.getResponseHeader("Last-Modified");
-    		if (lastModified > localDate)
+    		if (Date.parse(lastModified) > Date.parse(localDate))
     			$("#alertmodal").modal("show")
  	}
     })
