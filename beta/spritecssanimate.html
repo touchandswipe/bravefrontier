@@ -27,6 +27,11 @@
 	width: 79px;
 	height: 62px;
 }
+#spriteTest {
+	background: transparent url('http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_anime_30445.png') 0 0 no-repeat;
+	width: 128px;
+	height: 73px;
+}
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -73,12 +78,14 @@
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-  $('#spriteTest').sprite({fps: 8, no_of_frames: 4});
+  $('#spriteTest').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest2').sprite({fps: 6, no_of_frames: 4});
 }) /*End DocReady*/
 
 /*Sync New Button*/
 $(document).on("click", '#animateToggle', function(e){
-	$('#spriteTest').spToggle()
+	$('#spriteTest').spToggle();
+	$('#spriteTest2').spToggle();
 })
 </script>
 
