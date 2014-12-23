@@ -66,6 +66,8 @@
 <div style="min-height:55px;"></div>
 <h1>BF Sprite animation test via CSS</h1>
 <div id="spriteTest"></div>
+<p></p>
+<button class="btn btn-default" id="animateToggle">Toggle</button>
 
 </div> <!-- /container -->
 
@@ -73,6 +75,11 @@
 $(document).ready( function(e) {
   $('#spriteTest').sprite({fps: 8, no_of_frames: 4});
 }) /*End DocReady*/
+
+/*Sync New Button*/
+$(document).on("click", '#animateToggle', function(e){
+	$('#spriteTest').spToggle()
+})
 </script>
 
 <!-- Google Analytics -->
