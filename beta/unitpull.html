@@ -123,11 +123,11 @@
     <option value="kr">Korea</option>
   </select>
 </div>
-<div class="row">
-	<div class="col-xs-12 col-md-12">
-		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
-	</div>
+
+<div class="col-xs-12 col-md-12">
+	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
 </div>
+
 <div class="clear">&nbsp;</div>
 <div class="col-xs-12 col-sm-12 col-md-12">
 <!--Search-->
@@ -335,12 +335,11 @@ function resetLocalData(serverStr, corrupted) {
 	location.reload(true);
 }
 
-$(document).ready( function(e) {
-	/*Determine server data*/
-	var jsonURL=($('serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
-	var serverGuide=($('serverSelect').val()=='gl')?"skillsguideglobal":"skillsguidejapan";
-	alert($('serverSelect').val());
-	alert(jsonURL+serverGuide);
+function serverCheckRun() {
+/*Determine server data*/
+jsonURL=($('#serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+serverGuide=($('#serverSelect').val()=='gl')?"skillsguideglobal":"skillsguidejapan";
+alert(jsonURL+serverGuide);
 
   /*LocalStorage Retreival and storage*/
     if (localStorage.getItem(serverGuide) != null) {
@@ -373,7 +372,16 @@ $(document).ready( function(e) {
 	 	}
 	    })
     }
-    
+}
+
+$(document).ready( function(e) {
+serverCheckRun();
+
+/*On server change*/
+$(document).on("change", '#serverSelect', function(e){
+  serverCheckRun();
+})
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
   /*Resets data*/
