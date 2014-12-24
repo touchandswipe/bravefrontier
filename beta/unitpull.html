@@ -339,6 +339,7 @@ $(document).ready( function(e) {
 	/*Determine server data*/
 	var jsonURL=($('serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 	var serverGuide=($('serverSelect').val()=='gl')?"skillsguideglobal":"skillsguidejapan";
+	alert($('serverSelect').val());
 	alert(jsonURL+serverGuide);
 
   /*LocalStorage Retreival and storage*/
