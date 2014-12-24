@@ -124,7 +124,7 @@
   </select>
 </div>
 
-<div class="col-xs-12 col-md-12">
+<div class="col-xs-12 col-md-12" style="margin-top:5px;">
 	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
 </div>
 
@@ -345,7 +345,7 @@ alert(jsonURL+serverGuide);
     if (localStorage.getItem(serverGuide) != null) {
 	guideData=LZString.decompressFromUTF16(localStorage.getItem(serverGuide));
 	if (isValidJSON(guideData)) {
-		coreDat=guideData;
+		coreDat=JSON.parse(guideData);
 		$('#lastModDate').text("Using local cache - "+localStorage.getItem(serverGuide+"date"));
 		checkUpdate(jsonURL,localStorage.getItem(serverGuide+"date"));
 	} else 
