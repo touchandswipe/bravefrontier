@@ -335,17 +335,6 @@ function resetLocalData(serverStr, corrupted) {
 	location.reload(true);
 }
 
-/*Refresh data*/
-$(document).on("click", '#refreshData', function(e){
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    });
-  resetLocalData(serverGuide,false)
-})
-
 $(document).ready( function(e) {
 	/*Determine server data*/
 	var jsonURL=($('serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
@@ -383,6 +372,23 @@ $(document).ready( function(e) {
 	 	}
 	    })
     }
+    
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+  /*Resets data*/
+  resetLocalData(serverGuide,false)
+})
+
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    });
+  resetLocalData(serverGuide,false)
+})
   
 /*Binds Enter KEY to BOX*/
 $( "#idBox" ).keypress( function( event ) {
