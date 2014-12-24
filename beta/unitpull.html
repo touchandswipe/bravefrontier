@@ -26,6 +26,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -122,6 +123,11 @@
     <option value="kr">Korea</option>
   </select>
 </div>
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
+	</div>
+</div>
 <div class="clear">&nbsp;</div>
 <div class="col-xs-12 col-sm-12 col-md-12">
 <!--Search-->
@@ -145,6 +151,7 @@
   <img src="" id="imgGacha"/>
   <img src="" id="imgMonster"/>
   <p><a href="" id="linkAnimate"></a></p>
+  <p><a href="" id="linkCGG"></a></p>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -215,12 +222,28 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/"};
 fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","monster":"monster/img/monster_anime_"};
 fSuffix=".png";
 coreDat={};
+serverGuide="";
+jsonURL="";
 
 function convertID(guideid) {
   var idFound=false;
@@ -276,17 +299,90 @@ function grabIMG2() {
   $("#linkAnimate").html("Download Spritesheet (CSV)");
 }
 
-$(document).ready( function(e) {
-  /*Init loader*/
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+/*Check filedate*/
+function checkUpdate(fileURL,localDate) {
+    $.ajax({
+    	type: "Head",
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: fileURL,
+        success: function(data, textStatus, request) {
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		if (Date.parse(lastModified) > Date.parse(localDate))
+    			$("#alertmodal").modal("show")
+ 	}
+    })
+}
+
+/*Reset Local Storage*/
+function resetLocalData(serverStr, corrupted) {
+	/*LocalStorage Delete and Refresh*/
+	if (corrupted)
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+	localStorage.removeItem(serverStr);
+	localStorage.removeItem(serverStr+"date");
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+}
+
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
     	backdrop:'static',
     	toggle:true
-    })
-  $.getJSON( "//touchandswipe.github.io/bravefrontier_data/jp/info.json", function( unit ) {
-      coreDat=unit;
-      $('#progressModal').modal('hide');
-  })
+    });
+  resetLocalData(serverGuide,false)
+})
+
+$(document).ready( function(e) {
+	/*Determine server data*/
+	var jsonURL=($('serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+	var serverGuide=($('serverSelect').val()=='gl')?"skillsguideglobal":"skillsguidejapan";
+	alert(jsonURL+serverGuide);
+
+  /*LocalStorage Retreival and storage*/
+    if (localStorage.getItem(serverGuide) != null) {
+	guideData=LZString.decompressFromUTF16(localStorage.getItem(serverGuide));
+	if (isValidJSON(guideData)) {
+		coreDat=guideData;
+		$('#lastModDate').text("Using local cache - "+localStorage.getItem(serverGuide+"date"));
+		checkUpdate(jsonURL,localStorage.getItem(serverGuide+"date"));
+	} else 
+		resetLocalData(serverGuide,true)
+    } else {
+	    /*Init loader*/
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	toggle:true
+	    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: jsonURL,
+	        success: function(data, textStatus, request){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		/*Save in local storage*/
+			localStorage.setItem(serverGuide,LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem(serverGuide+"date",lastModified);
+			$('#lastModDate').text("Server data - "+lastModified);
+	    		coreDat=data;
+	    		$('#progressModal').modal('hide');
+	 	}
+	    })
+    }
   
 /*Binds Enter KEY to BOX*/
 $( "#idBox" ).keypress( function( event ) {
