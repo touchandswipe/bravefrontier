@@ -239,7 +239,7 @@
 
 <script type="text/javascript">
 bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/"};
-fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","monster":"monster/img/monster_anime_"};
+fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","cgg":"unit/cgg/unit_cgg_","monster":"monster/img/monster_anime_"};
 fSuffix=".png";
 coreDat={};
 serverGuide="";
@@ -270,14 +270,17 @@ function grabIMG() {
   var urlFull=bfserver[$("#serverSelect").val()]+fPrefix.full+imgID+fSuffix;
   var urlSprite=bfserver[$("#serverSelect").val()]+fPrefix.sprite+imgID+fSuffix;
   var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
+  var urlCGG=bfserver[$("#serverSelect").val()]+fPrefix.cgg+imgID+".csv";
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
   $("#imgSprite").attr("src",urlSprite);
-  $("#linkAnimate").attr("href",urlAnimate);
   $("#imgVortex").attr("src","");
   $("#imgGacha").attr("src","");
   $("#imgMonster").attr("src","");
-  $("#linkAnimate").html("Download Spritesheet (CSV)");
+  $("#linkAnimate").attr("href",urlAnimate);
+  $("#linkAnimate").html("Download ATK Spritesheet (CSV)");
+  $("#linkCGG").attr("href",urlCGG);
+  $("#linkCGG").html("Download CGG Spritesheet (CSV)");
 }
 
 function grabIMG2() {
@@ -289,6 +292,7 @@ function grabIMG2() {
   var urlGacha=bfserver[$("#serverSelect").val()]+fPrefix.gacha+imgID+fSuffix;
   var urlMonster=bfserver[$("#serverSelect").val()]+fPrefix.monster+imgID+fSuffix;
   var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
+  var urlCGG=bfserver[$("#serverSelect").val()]+fPrefix.cgg+imgID+".csv";
   $("#imgThumb").attr("src",urlThumb);
   $("#imgFull").attr("src",urlFull);
   $("#imgSprite").attr("src",urlSprite);
@@ -296,7 +300,9 @@ function grabIMG2() {
   $("#imgGacha").attr("src",urlGacha);
   $("#imgMonster").attr("src",urlMonster);
   $("#linkAnimate").attr("href",urlAnimate);
-  $("#linkAnimate").html("Download Spritesheet (CSV)");
+  $("#linkAnimate").html("Download ATK Spritesheet (CSV)");
+  $("#linkCGG").attr("href",urlAnimate);
+  $("#linkCGG").html("Download CGG Spritesheet (CSV)");
 }
 
 /*check valid json*/
@@ -339,7 +345,6 @@ function serverCheckRun() {
 /*Determine server data*/
 jsonURL=($('#serverSelect').val()=='gl')?"//touchandswipe.github.io/bravefrontier_data/info.json":"//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 serverGuide=($('#serverSelect').val()=='gl')?"skillsguideglobal":"skillsguidejapan";
-alert(jsonURL+serverGuide);
 
   /*LocalStorage Retreival and storage*/
     if (localStorage.getItem(serverGuide) != null) {
