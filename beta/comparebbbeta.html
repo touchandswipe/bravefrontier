@@ -368,9 +368,9 @@ function buildTable(unit) {
 			"render": function (stats, type, row, full )  {
 				if (type==='display')
 					if (stats.target=="self")
-						return stats.value+" (SELF)";
+						return stats.value+" <i class="fa fa-user text-danger"></i>";
 					else
-						return stats.value;
+						return stats.value+" <i class="fa fa-users text-success"></i>";;
 				else if (type==='sort')
 					return stats.value;
 				else
