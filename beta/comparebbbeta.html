@@ -277,10 +277,10 @@ function buildTable(unit) {
 	                })
                 }
                 if (!bbFound) {
-                    tArray.push("");
+                    tArray.push({"value":"","target":""});
                 }
             } else {
-                tArray.push("");
+                tArray.push({"value":"","target":""});
             }
     	}
 	tData.push(tArray);
@@ -305,10 +305,10 @@ function buildTable(unit) {
 		                })
 	                }
 	                if (!sbbFound) {
-	                    tArray2.push("");
+	                    tArray2.push({"value":"","target":""});
 	                }
 	            } else {
-	                tArray2.push("");
+	                tArray2.push({"value":"","target":""});
 	            }
 	    }
             tData.push(tArray2);
@@ -334,10 +334,10 @@ function buildTable(unit) {
 		                })
 	                }
 	                if (!ubbFound) {
-	                    tArray3.push("");
+	                    tArray3.push({"value":"","target":""});
 	                }
 	            } else {
-	                tArray3.push("");
+	                tArray3.push({"value":"","target":""});
 	            }
 		}
             tData.push(tArray3);
@@ -364,7 +364,7 @@ function buildTable(unit) {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
 		    	}
 		},
-		{ "targets": [ 6,7,8,9,10,11,12 ],
+		{ "targets": [ 5,6,7,8,9,10,11,12,13,14,15],
 			"render": function (stats, type, row, full )  {
 				if (type==='display')
 					if (stats.target=="self")
