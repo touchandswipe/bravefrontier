@@ -363,6 +363,19 @@ function buildTable(unit) {
 			"render": function (unitname, type, row, full )  {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
 		    	}
+		},
+		{ "targets": [ 6,7,8,9,10,11,12 ],
+			"render": function (stats, type, row, full )  {
+				if (type==='display')
+					if (stats.target=="self")
+						return stats.value+" (SELF)";
+					else
+						return stats.value;
+				else if (type==='sort')
+					return stats.value;
+				else
+					return stats.value;
+		    	}
 		}
 	]
     });
