@@ -252,7 +252,7 @@ function buildTable(unit) {
     /*Build Header*/
     var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th><th>Type</th>';
     for (i in fKeys) {
-        exportSTR+='<th>'+fKeys[i]+'</th>';
+        exportSTR+='<th class="effect">'+fKeys[i]+'</th>';
     }
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
@@ -364,7 +364,7 @@ function buildTable(unit) {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
 		    	}
 		},
-		{ "targets": [ 5,6,7,8,9,10,11,12,13,14,15],
+		{ "targets": "effect",
 			"render": function (stats, type, row, full )  {
 				if (type==='display')
 					if (stats.target=="self")
