@@ -69,7 +69,8 @@
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 <h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
-<h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
+<h4 class="text-success"><b>Tip</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h4>
+<h4><b>Note</b> <i class="fa fa-user text-danger"></i>: Skill effects target SELF only.</h4>
 </div>
 <h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
 <div class="row">
@@ -252,7 +253,7 @@ function buildTable(unit) {
     /*Build Header*/
     var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th><th>Type</th>';
     for (i in fKeys) {
-        exportSTR+='<th>'+fKeys[i]+'</th>';
+        exportSTR+='<th class="effect">'+fKeys[i]+'</th>';
     }
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
@@ -271,16 +272,16 @@ function buildTable(unit) {
                 for (j in valObj.bb.levels[9].effects) {
 	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
 	                    if (bbKey==fKeys[i]) {
-	                        tArray.push(bbVal);
+	                        tArray.push({"value":bbVal,"target":valObj.bb.levels[9].effects[j]['target type']});
 	                        bbFound=true;
 	                    }
 	                })
                 }
                 if (!bbFound) {
-                    tArray.push("");
+                    tArray.push({"value":"","target":""});
                 }
             } else {
-                tArray.push("");
+                tArray.push({"value":"","target":""});
             }
     	}
 	tData.push(tArray);
@@ -299,16 +300,16 @@ function buildTable(unit) {
 	                for (j in valObj.sbb.levels[9].effects) {
 				$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
 		                    if (sbbKey==fKeys[i]) {
-		                        tArray2.push(sbbVal);
+		                        tArray2.push({"value":sbbVal,"target":valObj.sbb.levels[9].effects[j]['target type']});
 		                        sbbFound=true;
 		                    }
 		                })
 	                }
 	                if (!sbbFound) {
-	                    tArray2.push("");
+	                    tArray2.push({"value":"","target":""});
 	                }
 	            } else {
-	                tArray2.push("");
+	                tArray2.push({"value":"","target":""});
 	            }
 	    }
             tData.push(tArray2);
@@ -328,16 +329,16 @@ function buildTable(unit) {
 	                for (j in valObj.ubb.levels[9].effects) {
 				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
 		                    if (ubbKey==fKeys[i]) {
-		                        tArray3.push(ubbVal);
+		                        tArray3.push({"value":ubbVal,"target":valObj.ubb.levels[9].effects[j]['target type']});
 		                        ubbFound=true;
 		                    }
 		                })
 	                }
 	                if (!ubbFound) {
-	                    tArray3.push("");
+	                    tArray3.push({"value":"","target":""});
 	                }
 	            } else {
-	                tArray3.push("");
+	                tArray3.push({"value":"","target":""});
 	            }
 		}
             tData.push(tArray3);
@@ -362,6 +363,19 @@ function buildTable(unit) {
 		{ "targets": [ 2 ],
 			"render": function (unitname, type, row, full )  {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
+		    	}
+		},
+		{ "targets": "effect",
+			"render": function (stats, type, row, full )  {
+				if (type==='display')
+					if (stats.target=="self")
+						return stats.value+' <i class="fa fa-user text-danger"></i>';
+					else
+						return stats.value;
+				else if (type==='sort')
+					return stats.value;
+				else
+					return stats.value;
 		    	}
 		}
 	]
