@@ -250,40 +250,22 @@ function buildTable(unit) {
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
+    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th><th>Type</th>';
     for (i in fKeys) {
         exportSTR+='<th>'+fKeys[i]+'</th>';
     }
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
-    var tArray=[];
-    tArray.push(valObj.guide_id);
-    tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
-    tArray.push(valObj.name);
-    tArray.push(valObj.rarity);
-    /*Check values*/
-    for (i in fKeys) {
-        /*Checks rarity*/
-        if (valObj.rarity==6) {
-            if (valObj.sbb) {
-                sbbFound=false;
-                for (j in valObj.sbb.levels[9].effects) {
-			$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
-	                    if (sbbKey==fKeys[i]) {
-	                        tArray.push(sbbVal);
-	                        sbbFound=true;
-	                    }
-	                })
-                }
-                if (!sbbFound) {
-                    tArray.push("");
-                }
-            } else {
-                tArray.push("");
-            }
-        } else {
-        /*Reports BB*/
+        /*BB Only */
+	var tArray=[];
+	tArray.push(valObj.guide_id);
+	tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+	tArray.push(valObj.name);
+	tArray.push(valObj.rarity);
+	tArray.push("BB");
+    	/*Check values*/
+    	for (i in fKeys) {
             if (valObj.bb) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
@@ -300,10 +282,66 @@ function buildTable(unit) {
             } else {
                 tArray.push("");
             }
-        }
-    }
-    //$("#rawTable tbody").append(exportSTR+'<tr>');
-    tData.push(tArray);
+    	}
+	tData.push(tArray);
+
+        /*SBB Check*/
+        if (valObj.rarity==6) {
+	    var tArray2=[];
+	    tArray2.push(valObj.guide_id);
+	    tArray2.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+	    tArray2.push(valObj.name);
+	    tArray2.push(valObj.rarity);
+	    tArray2.push("SBB");
+	    for (i in fKeys) {
+	            if (valObj.sbb) {
+	                sbbFound=false;
+	                for (j in valObj.sbb.levels[9].effects) {
+				$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
+		                    if (sbbKey==fKeys[i]) {
+		                        tArray2.push(sbbVal);
+		                        sbbFound=true;
+		                    }
+		                })
+	                }
+	                if (!sbbFound) {
+	                    tArray2.push("");
+	                }
+	            } else {
+	                tArray2.push("");
+	            }
+	    }
+            tData.push(tArray2);
+        } /*End SBB*/
+        
+	/*UBB Check*/
+        if (valObj.rarity==7) {
+	    var tArray3=[];
+	    tArray3.push(valObj.guide_id);
+	    tArray3.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
+	    tArray3.push(valObj.name);
+	    tArray3.push(valObj.rarity);
+	    tArray3.push("UBB");
+	    for (i in fKeys) {
+	            if (valObj.ubb) {
+	                ubbFound=false;
+	                for (j in valObj.ubb.levels[9].effects) {
+				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
+		                    if (ubbKey==fKeys[i]) {
+		                        tArray3.push(ubbVal);
+		                        ubbFound=true;
+		                    }
+		                })
+	                }
+	                if (!ubbFound) {
+	                    tArray3.push("");
+	                }
+	            } else {
+	                tArray3.push("");
+	            }
+		}
+            tData.push(tArray3);
+        } /*End UBB*/
     })
     $('#rawTable').dataTable({
         "data": tData,
