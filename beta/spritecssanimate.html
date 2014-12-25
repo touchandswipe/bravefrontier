@@ -37,6 +37,11 @@
 	width: 160px;
 	height: 110px;
 }
+#spriteTest4 {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
+	width: 170px;
+	height: 136px;
+}
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -78,6 +83,7 @@
 <div id="spriteTest"></div>
 <div id="spriteTest2"></div>
 <div id="spriteTest3"></div>
+<div id="spriteTest4"></div>
 <p></p>
 <button class="btn btn-default" id="animateToggle">Toggle</button>
 
@@ -88,12 +94,15 @@ $(document).ready( function(e) {
   $('#spriteTest').sprite({fps: 6, no_of_frames: 4});
   $('#spriteTest2').sprite({fps: 6, no_of_frames: 4});
   $('#spriteTest3').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest4').sprite({fps: 6, no_of_frames: 4});
 }) /*End DocReady*/
 
 /*Sync New Button*/
 $(document).on("click", '#animateToggle', function(e){
 	$('#spriteTest').spToggle();
 	$('#spriteTest2').spToggle();
+	$('#spriteTest3').spToggle();
+	$('#spriteTest4').spToggle();
 })
 </script>
 
