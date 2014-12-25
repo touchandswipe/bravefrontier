@@ -32,6 +32,11 @@
 	width: 112px;
 	height: 80px;
 }
+#spriteTest3 {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_10585.png') 0 0 no-repeat;
+	width: 160px;
+	height: 110px;
+}
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -72,6 +77,7 @@
 <h1>BF Sprite animation test via CSS</h1>
 <div id="spriteTest"></div>
 <div id="spriteTest2"></div>
+<div id="spriteTest3"></div>
 <p></p>
 <button class="btn btn-default" id="animateToggle">Toggle</button>
 
@@ -81,6 +87,7 @@
 $(document).ready( function(e) {
   $('#spriteTest').sprite({fps: 6, no_of_frames: 4});
   $('#spriteTest2').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest3').sprite({fps: 6, no_of_frames: 4});
 }) /*End DocReady*/
 
 /*Sync New Button*/
