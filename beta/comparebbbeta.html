@@ -257,8 +257,6 @@ function buildTable(unit) {
     $("#rawTable thead").append(exportSTR+'</tr>');
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
-    /*Check values*/
-    for (i in fKeys) {
         /*BB Only */
 	var tArray=[];
 	tArray.push(valObj.guide_id);
@@ -266,7 +264,8 @@ function buildTable(unit) {
 	tArray.push(valObj.name);
 	tArray.push(valObj.rarity);
 	tArray.push("BB");
-        /*Reports BB*/
+    	/*Check values*/
+    	for (i in fKeys) {
             if (valObj.bb) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
@@ -283,6 +282,7 @@ function buildTable(unit) {
             } else {
                 tArray.push("");
             }
+    	}
 	tData.push(tArray);
 
         /*SBB Check*/
@@ -293,22 +293,24 @@ function buildTable(unit) {
 	    tArray2.push(valObj.name);
 	    tArray2.push(valObj.rarity);
 	    tArray2.push("SBB");
-            if (valObj.sbb) {
-                sbbFound=false;
-                for (j in valObj.sbb.levels[9].effects) {
-			$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
-	                    if (sbbKey==fKeys[i]) {
-	                        tArray2.push(sbbVal);
-	                        sbbFound=true;
-	                    }
-	                })
-                }
-                if (!sbbFound) {
-                    tArray2.push("");
-                }
-            } else {
-                tArray2.push("");
-            }
+	    for (i in fKeys) {
+	            if (valObj.sbb) {
+	                sbbFound=false;
+	                for (j in valObj.sbb.levels[9].effects) {
+				$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
+		                    if (sbbKey==fKeys[i]) {
+		                        tArray2.push(sbbVal);
+		                        sbbFound=true;
+		                    }
+		                })
+	                }
+	                if (!sbbFound) {
+	                    tArray2.push("");
+	                }
+	            } else {
+	                tArray2.push("");
+	            }
+	    }
             tData.push(tArray2);
         } /*End SBB*/
         
@@ -320,25 +322,26 @@ function buildTable(unit) {
 	    tArray3.push(valObj.name);
 	    tArray3.push(valObj.rarity);
 	    tArray3.push("UBB");
-            if (valObj.ubb) {
-                ubbFound=false;
-                for (j in valObj.ubb.levels[9].effects) {
-			$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
-	                    if (ubbKey==fKeys[i]) {
-	                        tArray3.push(ubbVal);
-	                        ubbFound=true;
-	                    }
-	                })
-                }
-                if (!ubbFound) {
-                    tArray3.push("");
-                }
-            } else {
-                tArray3.push("");
-            }
+	    for (i in fKeys) {
+	            if (valObj.ubb) {
+	                ubbFound=false;
+	                for (j in valObj.ubb.levels[9].effects) {
+				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
+		                    if (ubbKey==fKeys[i]) {
+		                        tArray3.push(ubbVal);
+		                        ubbFound=true;
+		                    }
+		                })
+	                }
+	                if (!ubbFound) {
+	                    tArray3.push("");
+	                }
+	            } else {
+	                tArray3.push("");
+	            }
+		}
             tData.push(tArray3);
         } /*End UBB*/
-    }
     })
     $('#rawTable').dataTable({
         "data": tData,
