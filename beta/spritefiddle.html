@@ -153,8 +153,8 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-defaultWidth=168;
-defaultHeight=136;
+defaultWidth=128;
+defaultHeight=100;
 
 function playSprite() {
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
@@ -202,10 +202,10 @@ $(document).ready( function(e) {
 	/*Add animation*/
 	$.keyframe.define([{
 		name: 'spriteAnimate_1',
-		'0%': {'background-position': '0px 0px'},
-		'33%': {'background-position': '-165px 8px'},
-		'67%': {'background-position': '-327px 10px'},
-		'100%': {'background-position': '-494px 6px'}
+		'0%': {'background-position': '-5px 0px'},
+		'33%': {'background-position': '-170px 8px'},
+		'67%': {'background-position': '-333px 10px'},
+		'100%': {'background-position': '-499px 6px'}
 	}]);
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
