@@ -242,13 +242,19 @@ $(document).on("click", '#animateStop', function(e){
 
 /*Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
+	/*Grabs Value from Inputs*/
+	var f1Prop={'background-position':$(f1X).val()+'px '+$(f1Y).val()+'px'};
+	var f2Prop={'background-position':$(f2X).val()+'px '+$(f2Y).val()+'px'};
+	var f3Prop={'background-position':$(f3X).val()+'px '+$(f3Y).val()+'px'};
+	var f4Prop={'background-position':$(f4X).val()+'px '+$(f4Y).val()+'px'};
+	
 	/*redefine position*/
 	$.keyframe.define([{
 		name: 'spriteAnimate_1',
-		'0%': {'background-position': '50px 0px'},
-		'33%': {'background-position': '-155px 8px'},
-		'67%': {'background-position': '-350px 10px'},
-		'100%': {'background-position': '-600px 6px'}
+		'0%': f1Prop,
+		'33%': f2Prop,
+		'67%': f3Prop,
+		'100%': f4Prop
 	}]);
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 })
