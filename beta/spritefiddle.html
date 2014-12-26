@@ -95,14 +95,17 @@ $('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 
 /*Toggle Animation*/
 $(document).on("click", '#animateToggle', function(e){
-/*redefine position*/
-$.keyframe.define([{
-	name: 'spriteAnimate_1',
-	'0%': {'background-position': '50px 0px'},
-	'33%': {'background-position': '-155px 8px'},
-	'67%': {'background-position': '-350px 10px'},
-	'100%': {'background-position': '-600px 6px'}
-}]);
+	/*redefine position*/
+	$.keyframe.define([{
+		name: 'spriteAnimate_1',
+		'0%': {'background-position': '50px 0px'},
+		'33%': {'background-position': '-155px 8px'},
+		'67%': {'background-position': '-350px 10px'},
+		'100%': {'background-position': '-600px 6px'}
+	}]);
+	/*Resets*/
+	$('#sprite').css("-webkit-animation","");
+	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 })
 </script>
 
