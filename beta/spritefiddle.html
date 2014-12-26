@@ -88,10 +88,10 @@
 			<h3>Sprite Dimension</h3>
 		</div>
 		<div class="col-xs-6 text-center">
-			<div class="input-group"><div class="input-group-addon"><b>Width</b></div><input type="text" class="form-control" id="sizeX" value="168"></div>
+			<div class="input-group"><div class="input-group-addon"><b>Width</b></div><input type="text" class="form-control" id="sizeX"></div>
 		</div>
 		<div class="col-xs-6 text-center">
-			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY" value="136"></div>
+			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY"></div>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -101,14 +101,14 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-2 text-center">
-			<h4><b>1st Frame</b></h4>
+			<h4><b>1st</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
 			<div class="input-group">
 		      		<span class="input-group-btn">
 		        		<button class="btn btn-default" type="button" id="f1XMinus"><b>-</b></button>
 		      		</span>
-		      		<input type="text" class="form-control" id="f1X">
+		      		<input type="text" class="form-control" id="f1X" value="0">
 		      		<span class="input-group-btn">
 		        		<button class="btn btn-default" type="button" id="f1XPlus"><b>+</b></button>
 		      		</span>
@@ -119,7 +119,7 @@
 		      		<span class="input-group-btn">
 		        		<button class="btn btn-default" type="button" id="f1YMinus"><b>-</b></button>
 		      		</span>
-		      		<input type="text" class="form-control" id="f1Y">
+		      		<input type="text" class="form-control" id="f1Y" value="0">
 		      		<span class="input-group-btn">
 		        		<button class="btn btn-default" type="button" id="f1YPlus"><b>+</b></button>
 		      		</span>
@@ -128,7 +128,7 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-2 text-center">
-			<h4><b>2nd Frame</b></h4>
+			<h4><b>2nd</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
 			<div class="input-group">
@@ -155,7 +155,7 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-2 text-center">
-			<h4><b>3rd Frame</b></h4>
+			<h4><b>3rd</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
 			<div class="input-group">
@@ -182,7 +182,7 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-2 text-center">
-			<h4><b>4th Frame</b></h4>
+			<h4><b>4th</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
 			<div class="input-group">
@@ -210,7 +210,19 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
+defaultWidth=168;
+defaultHeight=136;
+
 $(document).ready( function(e) {
+	/*Assigns default*/
+	$("#sizeX").val(defaultWidth);
+	$("#sizeY").val(defaultHeight);
+	for (i=1;i<5;i++) {
+		selectorX="f"+i+"X";
+		selectorY="f"+i+"Y";
+		$(selectorX).val(parseInt(i)*defaultWidth);
+		$(selectorY).val(0);
+	}
 	/*Add animation*/
 	$.keyframe.define([{
 		name: 'spriteAnimate_1',
