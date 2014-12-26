@@ -24,12 +24,9 @@
     }
 
 #sprite {
-  width: 168px;
-  height: 136px;
   margin:0px auto 10px auto;
   padding:0;
   border:1px solid #EEEEEE;
-  background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
 }
 
 </style>
@@ -85,12 +82,25 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
+			<h3>Sprite ID</h3>
+		</div>
+		<div class="col-xs-12 text-center">
+			<input type="text" class="form-control" id="spriteID" value="50645">
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-12 text-center">
 			<h3>Sprite Dimension</h3>
 		</div>
-		<div class="col-xs-6 text-center">
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-2 text-center">
+			<button class="btn btn-default" id="resetSize">Reset size</button>
+		</div>
+		<div class="col-xs-5 text-center">
 			<div class="input-group"><div class="input-group-addon"><b>Width</b></div><input type="text" class="form-control" id="sizeX"></div>
 		</div>
-		<div class="col-xs-6 text-center">
+		<div class="col-xs-5 text-center">
 			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY"></div>
 		</div>
 	</div>
@@ -104,26 +114,10 @@
 			<h4><b>1st</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f1XMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f1X">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f1XPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+			<input type="text" class="form-control" id="f1X">
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f1YMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f1Y">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f1YPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f1Y">
 		</div>
 	</div>
 	<div class="row text-center">
@@ -131,26 +125,10 @@
 			<h4><b>2nd</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f2XMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f2X">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f2XPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f2X">
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f2YMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f2Y">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f2YPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f2Y">
 		</div>
 	</div>
 	<div class="row text-center">
@@ -158,26 +136,10 @@
 			<h4><b>3rd</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f3XMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f3X">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f3XPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f3X">
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f3YMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f3Y">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f3YPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f3Y">
 		</div>
 	</div>
 	<div class="row text-center">
@@ -185,26 +147,10 @@
 			<h4><b>4th</b></h4>
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f4XMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f4X">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f4XPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f4X">
 		</div>
 		<div class="col-xs-5 text-center">
-			<div class="input-group">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f4YMinus"><b>-</b></button>
-		      		</span>
-		      		<input type="text" class="form-control" id="f4Y">
-		      		<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button" id="f4YPlus"><b>+</b></button>
-		      		</span>
-		    	</div><!-- /input-group -->
+		      	<input type="text" class="form-control" id="f4Y">
 		</div>
 	</div>
 </div> <!-- /container -->
@@ -214,20 +160,24 @@ defaultWidth=168;
 defaultHeight=136;
 
 function playSprite() {
-	alert("playing");
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }
 
-$(document).ready( function(e) {
+functions setSpriteSize(dX,dY) {
 	/*Assigns default*/
-	$("#sizeX").val(defaultWidth);
-	$("#sizeY").val(defaultHeight);
+	$("#sprite").css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
+	$("#sizeX").val(dX);
+	$("#sizeY").val(dY);
 	for (i=1;i<5;i++) {
 		selectorX="#f"+i+"X";
 		selectorY="#f"+i+"Y";
-		$(selectorX).val(parseInt(i-1)*defaultWidth*-1);
+		$(selectorX).val(parseInt(i-1)*dX*-1);
 		$(selectorY).val(0);
 	}
+}
+
+$(document).ready( function(e) {
+	setSpriteSize(defaultWidth,defaultHeight);
 	/*Add animation*/
 	$.keyframe.define([{
 		name: 'spriteAnimate_1',
@@ -238,6 +188,11 @@ $(document).ready( function(e) {
 	}]);
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
+
+/*resets size*/
+$(document).on("click", '#resetSize', function(e){
+	setSpriteSize($("#sizeX").val(),$("#sizeY").val(););
+})
 
 /*Stop Animation*/
 $(document).on("click", '#animateStop', function(e){
@@ -264,7 +219,6 @@ $(document).on("click", '#animateStart', function(e){
 	$('#sprite').css("-webkit-animation","");
 	setTimeout(playSprite(), 3000);
 })
-
 </script>
 
 <!-- Google Analytics -->
