@@ -217,7 +217,9 @@ $(document).on("click", '#animateStart', function(e){
 		'100%': f4Prop
 	}]);
 	$('#sprite').css("-webkit-animation","");
-	setTimeout(playSprite(), 5000);
+	/*quirk to make animation reset*/
+	document.getElementById("sprite").offsetWidth = document.getElementById("sprite").offsetWidth;
+	playSprite();
 })
 </script>
 
