@@ -213,6 +213,11 @@
 defaultWidth=168;
 defaultHeight=136;
 
+function playSprite() {
+	alert(playing);
+	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+}
+
 $(document).ready( function(e) {
 	/*Assigns default*/
 	$("#sizeX").val(defaultWidth);
@@ -240,7 +245,7 @@ $(document).on("click", '#animateStop', function(e){
 	$('#sprite').css("-webkit-animation","");
 })
 
-/*Plays Animation*/
+/*Resets & Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
 	/*Grabs Value from Inputs*/
 	var f1Prop={'background-position':$(f1X).val()+'px '+$(f1Y).val()+'px'};
@@ -256,7 +261,8 @@ $(document).on("click", '#animateStart', function(e){
 		'67%': f3Prop,
 		'100%': f4Prop
 	}]);
-	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	$('#sprite').css("-webkit-animation","");
+	setTimeout(playSprite(), 3000);
 })
 
 </script>
