@@ -94,13 +94,10 @@
 		</div>
 	</div>
 	<div class="row text-center">
-		<div class="col-xs-2 text-center">
-			<button class="btn btn-default" id="resetSize">Reset size</button>
-		</div>
-		<div class="col-xs-5 text-center">
+		<div class="col-xs-6 text-center">
 			<div class="input-group"><div class="input-group-addon"><b>Width</b></div><input type="text" class="form-control" id="sizeX"></div>
 		</div>
-		<div class="col-xs-5 text-center">
+		<div class="col-xs-6 text-center">
 			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY"></div>
 		</div>
 	</div>
@@ -163,6 +160,29 @@ function playSprite() {
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }
 
+function resetsPlays() {
+	/*Grabs new dimension*/
+	setSpriteSize($("#sizeX").val(),$("#sizeY").val());
+	/*Grabs Value from Inputs*/
+	var f1Prop={'background-position':$(f1X).val()+'px '+$(f1Y).val()+'px'};
+	var f2Prop={'background-position':$(f2X).val()+'px '+$(f2Y).val()+'px'};
+	var f3Prop={'background-position':$(f3X).val()+'px '+$(f3Y).val()+'px'};
+	var f4Prop={'background-position':$(f4X).val()+'px '+$(f4Y).val()+'px'};
+	
+	/*redefine position*/
+	$.keyframe.define([{
+		name: 'spriteAnimate_1',
+		'0%': f1Prop,
+		'33%': f2Prop,
+		'67%': f3Prop,
+		'100%': f4Prop
+	}]);
+	$('#sprite').css("-webkit-animation","");
+	/*quirk to make animation reset*/
+	document.getElementById("sprite").offsetWidth = document.getElementById("sprite").offsetWidth;
+	playSprite();
+}
+
 function setSpriteSize(dX,dY) {
 	/*Assigns default*/
 	$("#sprite").css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
@@ -190,11 +210,6 @@ $(document).ready( function(e) {
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
 
-/*resets size*/
-$(document).on("click", '#resetSize', function(e){
-	setSpriteSize($("#sizeX").val(),$("#sizeY").val());
-})
-
 /*Stop Animation*/
 $(document).on("click", '#animateStop', function(e){
 	/*Resets*/
@@ -203,24 +218,7 @@ $(document).on("click", '#animateStop', function(e){
 
 /*Resets & Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
-	/*Grabs Value from Inputs*/
-	var f1Prop={'background-position':$(f1X).val()+'px '+$(f1Y).val()+'px'};
-	var f2Prop={'background-position':$(f2X).val()+'px '+$(f2Y).val()+'px'};
-	var f3Prop={'background-position':$(f3X).val()+'px '+$(f3Y).val()+'px'};
-	var f4Prop={'background-position':$(f4X).val()+'px '+$(f4Y).val()+'px'};
-	
-	/*redefine position*/
-	$.keyframe.define([{
-		name: 'spriteAnimate_1',
-		'0%': f1Prop,
-		'33%': f2Prop,
-		'67%': f3Prop,
-		'100%': f4Prop
-	}]);
-	$('#sprite').css("-webkit-animation","");
-	/*quirk to make animation reset*/
-	document.getElementById("sprite").offsetWidth = document.getElementById("sprite").offsetWidth;
-	playSprite();
+	resetsPlays()
 })
 </script>
 
