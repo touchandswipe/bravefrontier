@@ -26,7 +26,7 @@
 #sprite {
   width: 168px;
   height: 136px;
-  margin:0 auto 0 auto;
+  margin:0px auto 10px auto;
   padding:0;
   border:1px solid #EEEEEE;
   background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
@@ -80,22 +80,29 @@
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
 			<button class="btn btn-lg btn-default" id="animateStop">Stop</button>
-			<button class="btn btn-lg btn-default btn-success" id="animateStart">Play</button>
+			<button class="btn btn-lg btn-success" id="animateStart">Play</button>
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-12 text-center">
+			<h3>Sprite Dimension</h3>
+			<div class="input-group"><div class="input-group-addon">X</div><input type="text" class="form-control" id="sizeX" value="168"></div>
+			<div class="input-group"><div class="input-group-addon">X</div><input type="text" class="form-control" id="sizeY" value="136"></div>
 		</div>
 	</div>
 </div> <!-- /container -->
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-/*Add animation*/
-$.keyframe.define([{
-	name: 'spriteAnimate_1',
-	'0%': {'background-position': '0px 0px'},
-	'33%': {'background-position': '-165px 8px'},
-	'67%': {'background-position': '-327px 10px'},
-	'100%': {'background-position': '-494px 6px'}
-}]);
-$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	/*Add animation*/
+	$.keyframe.define([{
+		name: 'spriteAnimate_1',
+		'0%': {'background-position': '0px 0px'},
+		'33%': {'background-position': '-165px 8px'},
+		'67%': {'background-position': '-327px 10px'},
+		'100%': {'background-position': '-494px 6px'}
+	}]);
+	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
 
 /*Stop Animation*/
