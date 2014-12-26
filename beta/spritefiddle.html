@@ -23,7 +23,7 @@
         text-transform:uppercase;
     }
 
-#spriteTest {
+#sprite {
   width: 168px;
   height: 136px;
   margin:0;
@@ -67,9 +67,11 @@
     </div>
 
 <!-- Main Body Space-->
-<div class="container-fluid" style="margin:0px;padding:5px;">
+<div class="container">
 <div style="min-height:55px;"></div>
-<h1>BF Sprite animation test via CSS</h1>
+<div class="row text-center">
+	<div class="col-xs-12 text-center"><h1>BF Sprite animation test via CSS</h1></div>
+</div>
 <div id="spriteTest"></div>
 <p></p>
 <button class="btn btn-default" id="animateToggle">Toggle</button>
@@ -86,11 +88,12 @@ $.keyframe.define([{
 	'67%': {'background-position': '-327px 10px'},
 	'100%': {'background-position': '-494px 6px'}
 }]);
-
+$('#spriteTest').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
 
 /*Toggle Animation*/
 $(document).on("click", '#animateToggle', function(e){
+/*redefine position*/
 $.keyframe.define([{
 	name: 'spriteAnimate_1',
 	'0%': {'background-position': '50px 0px'},
@@ -98,7 +101,6 @@ $.keyframe.define([{
 	'67%': {'background-position': '-350px 10px'},
 	'100%': {'background-position': '-600px 6px'}
 }]);
-	$('#spriteTest').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 })
 </script>
 
