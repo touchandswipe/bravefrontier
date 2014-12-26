@@ -91,6 +91,13 @@ $.keyframe.define([{
 
 /*Toggle Animation*/
 $(document).on("click", '#animateToggle', function(e){
+$.keyframe.define([{
+	name: 'spriteAnimate_1',
+	'0%': {'background-position': '50px 0px'},
+	'33%': {'background-position': '-155px 8px'},
+	'67%': {'background-position': '-350px 10px'},
+	'100%': {'background-position': '-600px 6px'}
+}]);
 	$('#spriteTest').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 })
 </script>
