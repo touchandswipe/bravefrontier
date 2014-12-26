@@ -220,7 +220,7 @@ $(document).ready( function(e) {
 	for (i=1;i<5;i++) {
 		selectorX="#f"+i+"X";
 		selectorY="#f"+i+"Y";
-		$(selectorX).val(parseInt(i-1)*defaultWidth);
+		$(selectorX).val(parseInt(i-1)*defaultWidth*-1);
 		$(selectorY).val(0);
 	}
 	/*Add animation*/
