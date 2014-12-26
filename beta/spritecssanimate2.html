@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - For Unit Art Grabbing - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - For Unit Art Grabbing - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<style type="text/css">
+    .clear {clear:both;}
+    .bd {
+        font-weight:bold;
+        background:#EEEEEE;
+        text-transform:uppercase;
+    }
+    .upper {
+        text-transform:uppercase;
+    }
+#spriteTest {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_60645.png') 0 0 no-repeat;
+	width: 120px;
+	height: 104px;
+}
+#spriteTest2 {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_30545.png') 0 0 no-repeat;
+	width: 112px;
+	height: 80px;
+}
+#spriteTest3 {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_10585.png') 0 0 no-repeat;
+	width: 160px;
+	height: 110px;
+}
+#spriteTest4 {
+	background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
+	width: 170px;
+	height: 136px;
+}
+
+#spriteTest5 {
+  width: 168px;
+  height: 136px;
+  margin:0;
+  padding:0;
+  border:1px solid #EEEEEE;
+  background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
+  -webkit-animation: animateSprite5 0.8s steps(1) infinite;
+}
+
+@-webkit-keyframes animateSprite5 {
+	0%   {background-position: 0px 0px;}
+	33%  {background-position: -165px 8px;}
+	67%  {background-position: -327px 10px;}
+	100%  {background-position: -494px 6px;}
+}
+
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/jquery.spritely.js"></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
+                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container-fluid" style="margin:0px;padding:5px;">
+<div style="min-height:55px;"></div>
+<h1>BF Sprite animation test via CSS</h1>
+<div id="spriteTest"></div>
+<div id="spriteTest2"></div>
+<div id="spriteTest3"></div>
+<div id="spriteTest4"></div>
+<div id="spriteTest5"></div>
+<p></p>
+<button class="btn btn-default" id="animateToggle">Toggle</button>
+
+</div> <!-- /container -->
+
+<script type="text/javascript">
+$(document).ready( function(e) {
+  $('#spriteTest').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest2').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest3').sprite({fps: 6, no_of_frames: 4});
+  $('#spriteTest4').sprite({fps: 6, no_of_frames: 4});
+}) /*End DocReady*/
+
+/*Sync New Button*/
+$(document).on("click", '#animateToggle', function(e){
+	$('#spriteTest').spToggle();
+	$('#spriteTest2').spToggle();
+	$('#spriteTest3').spToggle();
+	$('#spriteTest4').spToggle();
+})
+</script>
+
+<!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-48617906-1', 'tumblr.com');
+      ga('send', 'pageview');
+    </script>
+<!--Chatroom-->
+<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='http://st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
