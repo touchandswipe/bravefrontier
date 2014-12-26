@@ -67,7 +67,7 @@
 <div class="container">
 	<div style="min-height:55px;"></div>
 	<div class="row text-center">
-		<div class="col-xs-12 text-center"><h1>Brave Frontier Sprite Fiddle</h1></div>
+		<div class="col-xs-12 text-center"><h1>Brave Frontier Sprite Fiddle (Beta)</h1></div>
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
@@ -192,7 +192,8 @@ function setSpriteSize(dX,dY) {
 		selectorX="#f"+i+"X";
 		selectorY="#f"+i+"Y";
 		$(selectorX).val(parseInt(i-1)*dX*-1);
-		$(selectorY).val(0);
+		if ($(selectorY).val()=="")
+			$(selectorY).val(0);
 	}
 	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
 }
