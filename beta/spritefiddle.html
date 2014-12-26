@@ -26,7 +26,7 @@
 #sprite {
   width: 168px;
   height: 136px;
-  margin:0;
+  margin:0 auto 0 auto;
   padding:0;
   border:1px solid #EEEEEE;
   background: transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_50645.png') 0 0 no-repeat;
@@ -75,7 +75,8 @@
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
 			<div id="sprite"></div>
-			<button class="btn btn-default" id="animateToggle">Toggle</button>
+			<button class="btn btn-default" id="animateStop">Stop</button>
+			<button class="btn btn-default btn-success" id="animateStart">Play</button>
 		</div>
 	</div>
 </div> <!-- /container -->
@@ -93,8 +94,14 @@ $.keyframe.define([{
 $('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }) /*End DocReady*/
 
-/*Toggle Animation*/
-$(document).on("click", '#animateToggle', function(e){
+/*Stop Animation*/
+$(document).on("click", '#animateStop', function(e){
+	/*Resets*/
+	$('#sprite').css("-webkit-animation","");
+})
+
+/*Plays Animation*/
+$(document).on("click", '#animateStop', function(e){
 	/*redefine position*/
 	$.keyframe.define([{
 		name: 'spriteAnimate_1',
@@ -103,10 +110,9 @@ $(document).on("click", '#animateToggle', function(e){
 		'67%': {'background-position': '-350px 10px'},
 		'100%': {'background-position': '-600px 6px'}
 	}]);
-	/*Resets*/
-	$('#sprite').css("-webkit-animation","");
-	//$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 })
+
 </script>
 
 <!-- Google Analytics -->
