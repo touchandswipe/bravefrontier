@@ -80,7 +80,7 @@
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
 			<button class="btn btn-lg btn-default" id="animateStop">Stop</button>
-			<button class="btn btn-lg btn-success" id="animateStart">Play</button>
+			<button class="btn btn-lg btn-success" id="animateStart">Reset & Play</button>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -88,10 +88,43 @@
 			<h3>Sprite Dimension</h3>
 		</div>
 		<div class="col-xs-6 text-center">
-			<div class="input-group"><div class="input-group-addon">X</div><input type="text" class="form-control" id="sizeX" value="168"></div>
+			<div class="input-group"><div class="input-group-addon"><b>Width</b></div><input type="text" class="form-control" id="sizeX" value="168"></div>
 		</div>
 		<div class="col-xs-6 text-center">
-			<div class="input-group"><div class="input-group-addon">X</div><input type="text" class="form-control" id="sizeY" value="136"></div>
+			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY" value="136"></div>
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-12 text-center">
+			<h3>Adjust Frames</h3>
+		</div>
+		<div class="col-xs-2 text-center">
+			<h4><b>1st Frame</b></h4>
+		</div>
+		<div class="col-xs-5 text-center">
+			<div class="input-group">
+		      		<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button" id="f1XMinus"><b>-</b></button>
+		      		</span>
+		      		<input type="text" class="form-control" id="f1X">
+		      		<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button" id="f1XPlus"><b>+</b></button>
+		      		</span>
+		    	</div><!-- /input-group -->
+		</div>
+		<div class="col-xs-5 text-center">
+			<div class="input-group">
+		      		<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button" id="f1YMinus"><b>-</b></button>
+		      		</span>
+		      		<input type="text" class="form-control" id="f1Y">
+		      		<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button" id="f1YPlus"><b>+</b></button>
+		      		</span>
+		    	</div><!-- /input-group -->
+		</div>
+		<div class="col-xs-5 text-center">
+			<div class="input-group"><div class="input-group-addon"><b>Height</b></div><input type="text" class="form-control" id="sizeY" value="136"></div>
 		</div>
 	</div>
 </div> <!-- /container -->
