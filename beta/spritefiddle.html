@@ -95,25 +95,25 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-6 text-center">
+			<h4><b>Width</b></h4>
 			<div class="input-group">
-				<div class="input-group-addon"><b>Width</b></div>
       				<span class="input-group-btn">
         				<button class="btn btn-default btn-danger modWidth" value="-1" type="button"><i class="fa fa-minus"></i></button>
       				</span>
 				<input type="text" class="form-control" id="sizeX"></div>
       				<span class="input-group-btn">
-        				<button class="btn btn-default btn-danger modWidth" value="1" type="button"><i class="fa fa-plus"></i></button>
+        				<button class="btn btn-default btn-success modWidth" value="1" type="button"><i class="fa fa-plus"></i></button>
       				</span>
 			</div>
 		<div class="col-xs-6 text-center">
+			<h4><b>Height</b></h4>
 			<div class="input-group">
-				<div class="input-group-addon"><b>Height</b></div>
       				<span class="input-group-btn">
         				<button class="btn btn-default btn-danger modHeight" value="-1" type="button"><i class="fa fa-minus"></i></button>
       				</span>
 				<input type="text" class="form-control" id="sizeY"></div>
       				<span class="input-group-btn">
-        				<button class="btn btn-default btn-danger modHeight" value="1" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success modHeight" value="1" type="button"><i class="fa fa-plus"></i></button>
       				</span>
 		</div>
 	</div>
@@ -242,9 +242,9 @@ $(document).on("click", '#animateStart', function(e){
 $(document).on("click", '.modWidth, .modHeight', function(e){
 	var dVal=parseInt($(this).val());
 	if ($(this).hasClass('modWidth'))
-		$('#sizeX').val(dVal);
+		$('#sizeX').val(parseInt($('#sizeX').val())+dVal);
 	else
-		$('#sizeY').val(dVal);
+		$('#sizeY').val(parseInt($('#sizeY').val())+dVal);
 	resetsPlays()
 })
 </script>
