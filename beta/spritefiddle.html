@@ -239,7 +239,7 @@ $(document).on("click", '#animateStart', function(e){
 })
 
 /*Modify width*/
-$(document).on("click", '.modWidth .modHeight', function(e){
+$(document).on("click", '.modWidth, .modHeight', function(e){
 	var dVal=parseInt($(this).val());
 	if ($(this).hasClass('modWidth'))
 		$('#sizeX').val(dVal);
