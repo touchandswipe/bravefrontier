@@ -71,7 +71,7 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center" id="spriteMother">
-			<div id="sprite1" class="sprite"></div>
+			<div id="sprite1" class="sprite" style="position:relative;"></div>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -185,7 +185,6 @@ function grabTemplate() { /*Grab Template*/
 }
 
 function addNewLayer() { /*Adds new layer on top*/
-	alert("adding sprite");
 	var len = 1+$('.sprite').length;
 	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+len).css({"background":"#FF0000","position":"absolute"}).appendTo('#spriteMother');
 }
