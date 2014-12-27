@@ -187,11 +187,14 @@ function grabTemplate() { /*Grab Template*/
 function addNewLayer() { /*Adds new layer on top*/
 	alert("adding sprite");
 	var len = $('.sprite').length;
-	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+len).css({"background":"#FF0000","position":"absolute"})appendTo('#spriteMother');
+	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+len).css({"background":"#FF0000","position":"absolute"}).appendTo('#spriteMother');
 }
 
 function playSprite() {
-	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	//for (i in $('.sprite').length)
+	$('.sprite').each(function( index ) {
+		$(this).css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	})
 }
 
 function resetsPlays() {
