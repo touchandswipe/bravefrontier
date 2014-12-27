@@ -121,7 +121,7 @@
 <div class="container" id="spriteLayerTemplate">
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
-			<h3 id="layerHead">Layer XX: Adjust frames position template</h3>
+			<h4 id="layerHead"></h4>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -177,7 +177,7 @@ defaultHeight=136;
 function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
-    	//$html.find('[name=firstname]')[0].name="firstname" + len;
+    	$html.find('[id="layerHead"]')[0].html("Layer "+len+": Adjust position of each frame");
 	//$html.find('[name=lastname]')[0].name="lastname" + len;
 	//$html.find('[name=gender]')[0].name="gender" + len;
 	return $html.html();    
