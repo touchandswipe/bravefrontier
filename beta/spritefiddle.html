@@ -237,12 +237,12 @@ $(document).ready( function(e) {
 	}]);
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 	/*load initial config layers*/
-	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).removeAttr("id").appendTo('#layersConfigHolder'); //Grab Template
+	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#layersConfigHolder');
 	
      	$('#addLayer').click(function () {
 		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
-	}).hide().appendTo('#layersConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
-	
+		}).hide().appendTo('#layersConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+     	})
 }) /*End DocReady*/
 
 /*Stop Animation*/
