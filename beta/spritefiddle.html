@@ -177,7 +177,7 @@ defaultHeight=136;
 function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
-    	$html.find('[id="layerHead"]')[0].html("Layer "+len+": Adjust position of each frame");
+    	$html.find('[id=layerHead]')[0].html("Layer "+len+": Adjust position of each frame");
 	//$html.find('[name=lastname]')[0].name="lastname" + len;
 	//$html.find('[name=gender]')[0].name="gender" + len;
 	return $html.html();    
