@@ -113,7 +113,7 @@
 <div class="container" style="margin-top:10px;">
 	<div class="row">
 		<div class="col-xs-12">
-			<button class="btn btn-default btn-lg" type="button" style="width:100%;"><i class="fa fa-plus"></i> Add new layer</button>
+			<button class="btn btn-default btn-lg" type="button" id="addLayer" style="width:100%;"><i class="fa fa-plus"></i> Add new layer</button>
 		</div>
 	</div>
 </div>
@@ -174,6 +174,15 @@
 defaultWidth=168;
 defaultHeight=136;
 
+function grabTemplate() { /*Grab Template*/
+	var len = $('.spriteLayers').length;
+	var $html = $('#spriteLayerTemplate').clone();
+    	//$html.find('[name=firstname]')[0].name="firstname" + len;
+	//$html.find('[name=lastname]')[0].name="lastname" + len;
+	//$html.find('[name=gender]')[0].name="gender" + len;
+	return $html.html();    
+}
+
 function playSprite() {
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }
@@ -227,6 +236,13 @@ $(document).ready( function(e) {
 		'100%': {'background-position': '-499px 6px'}
 	}]);
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	/*load initial config layers*/
+	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).removeAttr("id").appendTo('#layersConfigHolder'); //Grab Template
+	
+     	$('#addLayer').click(function () {
+		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+	}).hide().appendTo('#layersConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+	
 }) /*End DocReady*/
 
 /*Stop Animation*/
