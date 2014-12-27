@@ -186,13 +186,13 @@ function grabTemplate() { /*Grab Template*/
 
 function addNewLayer() { /*Adds new layer on top*/
 	alert("adding sprite");
-	var len = $('.sprite').length;
+	var len = 1+$('.sprite').length;
 	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+len).css({"background":"#FF0000","position":"absolute"}).appendTo('#spriteMother');
 }
 
 function playSprite() {
 	//for (i in $('.sprite').length)
-	$('.sprite').each(function( index ) {
+	$('.sprite').each(function( e ) {
 		$(this).css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 	})
 }
@@ -214,25 +214,29 @@ function resetsPlays() {
 		'67%': f3Prop,
 		'100%': f4Prop
 	}]);
-	$('#sprite').css("-webkit-animation","");
+	$('.sprite').each(function( e ) {
+		$(this).css("-webkit-animation","");
+	})
 	/*quirk to make animation reset*/
-	document.getElementById("sprite").offsetWidth = document.getElementById("sprite").offsetWidth;
+	document.getElementsByClassName("sprite").offsetWidth = document.getElementsByClassName("sprite").offsetWidth;
 	playSprite();
 }
 
 function setSpriteSize(dX,dY) {
 	/*Assigns default*/
-	$("#sprite").css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
-	$("#sizeX").val(dX);
-	$("#sizeY").val(dY);
-	for (i=1;i<5;i++) {
-		selectorX="#f"+i+"X";
-		selectorY="#f"+i+"Y";
-		$(selectorX).val(parseInt(i-1)*dX*-1);
-		if ($(selectorY).val()=="")
-			$(selectorY).val(0);
-	}
-	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
+	$('.sprite').each(function( e ) {
+		$(this).css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
+		$("#sizeX").val(dX);
+		$("#sizeY").val(dY);
+		for (i=1;i<5;i++) {
+			selectorX="#f"+i+"X";
+			selectorY="#f"+i+"Y";
+			$(selectorX).val(parseInt(i-1)*dX*-1);
+			if ($(selectorY).val()=="")
+				$(selectorY).val(0);
+		}
+	})
+		$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
 }
 
 $(document).ready( function(e) {
@@ -245,7 +249,8 @@ $(document).ready( function(e) {
 		'67%': {'background-position': '-333px 10px'},
 		'100%': {'background-position': '-499px 6px'}
 	}]);
-	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
+	playSprite();
+	//$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 	/*load initial config layers*/
 	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	
