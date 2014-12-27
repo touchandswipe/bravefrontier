@@ -23,7 +23,7 @@
         text-transform:uppercase;
     }
 
-#sprite {
+.sprite {
   margin:0px auto 10px auto;
   padding:0;
   border:1px solid #EEEEEE;
@@ -70,8 +70,8 @@
 		<div class="col-xs-12 text-center"><h1>Brave Frontier Sprite Fiddle (Beta)</h1></div>
 	</div>
 	<div class="row text-center">
-		<div class="col-xs-12 text-center">
-			<div id="sprite"></div>
+		<div class="col-xs-12 text-center" id="spriteMother">
+			<div id="sprite1" class="sprite"></div>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -184,6 +184,12 @@ function grabTemplate() { /*Grab Template*/
 	return $html.html();    
 }
 
+function addNewLayer() { /*Adds new layer on top*/
+	alert("adding sprite");
+	var len = $('.sprite').length;
+	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+len).css({"background":"#FF0000","position":"absolute"})appendTo('#spriteMother');
+}
+
 function playSprite() {
 	$('#sprite').css("-webkit-animation","spriteAnimate_1 0.8s steps(1) infinite");
 }
@@ -244,6 +250,7 @@ $(document).ready( function(e) {
      		//alert("Adding layer");
 		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
 		}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+		addNewLayer();
      	})
 }) /*End DocReady*/
 
