@@ -233,8 +233,8 @@ function resetsPlays() {
 	for (i=1;i<=len;i++) {
 		var layerName = 'spriteAnimate_'+i;
 		step1={'background-position': layerProp[i-1].f1.X+'px '+layerProp[i-1].f1.Y+'px'};
-		alert(step1);
 		step2={'background-position': layerProp[i-1].f2.X+'px '+layerProp[i-1].f2.Y+'px'};
+		alert(JSON.stringify(step2));
 		step3={'background-position': layerProp[i-1].f3.X+'px '+layerProp[i-1].f3.Y+'px'};
 		step4={'background-position': layerProp[i-1].f4.X+'px '+layerProp[i-1].f4.Y+'px'};
 		$.keyframe.define([{
@@ -246,9 +246,9 @@ function resetsPlays() {
 		}]);
 	}
 	/*stop animation*/
-	$('.sprite').each(function( e ) {
-		$(this).css("-webkit-animation","");
-	})
+//	$('.sprite').each(function( e ) {
+//		$(this).css("-webkit-animation","");
+//	})
 	/*quirk to make animation reset*/
 	for (i=1;i<=len;i++)
 		document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
