@@ -197,7 +197,9 @@ function grabTemplate() { /*Grab Template*/
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
 		alert((i-1)*$('#sizeX').val());
-		$("#f"+i+"X",$html).val((i-1)*$('#sizeX').val()).attr("id","f"+i+"X_Layer"+(len+1));
+		$("#f"+i+"X",$html).val((i-1)*$('#sizeX').val());
+		$("#f"+i+"X",$html).attr("id","f"+i+"X_Layer"+(len+1));
+		$("#f"+i+"Y",$html).val(len*$('#sizeY').val());
 		$("#f"+i+"Y",$html).val(len*$('#sizeY').val()).attr("id","f"+i+"Y_Layer"+(len+1));
 	}
     	//$html.find('[id=layerHead]')[0].html("Layer "+len+": Adjust position of each frame");
