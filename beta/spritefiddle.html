@@ -208,7 +208,6 @@ function addNewLayer() { /*Adds new layer on top*/
 }
 
 function playSprite() {
-	//for (i in $('.sprite').length)
 	var len = $('.sprite').length;
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css("-webkit-animation","spriteAnimate_"+i+" 0.8s steps(1) infinite");
@@ -246,7 +245,8 @@ function resetsPlays() {
 		$(this).css("-webkit-animation","");
 	})
 	/*quirk to make animation reset*/
-	document.getElementsByClassName("sprite").offsetWidth = document.getElementsByClassName("sprite").offsetWidth;
+	for (i=1;i<=len;i++)
+		document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
 	playSprite();
 }
 
