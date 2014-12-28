@@ -22,10 +22,19 @@
     .upper {
         text-transform:uppercase;
     }
-    
+
+#spriteBG {
+	margin:0px auto 10px auto;
+	width:640px;
+	height:440px;
+	background: transparent url('https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_vocaloids.jpg') 0 0 no-repeat"}
+}
+
 #spriteMother {
-	margin:0px auto 10px auto;	
-	position:relative;
+	margin:0px auto 10px auto;
+	position:absolute;
+	top:175px;
+	left:240px;
 }
 .sprite {
 	padding:0;
@@ -75,8 +84,10 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
-			<div  id="spriteMother">
-				<div id="sprite1" class="sprite"></div>
+			<div id="spriteBG">
+				<div  id="spriteMother">
+					<div id="sprite1" class="sprite"></div>
+				</div>
 			</div>
 		</div>
 	</div>
