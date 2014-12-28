@@ -196,7 +196,6 @@ function grabTemplate() { /*Grab Template*/
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
-		alert((i-1)*$('#sizeX').val());
 		$("#f"+i+"X",$html).val((i-1)*$('#sizeX').val());
 		$("#f"+i+"X",$html).attr("id","f"+i+"X_Layer"+(len+1));
 		$("#f"+i+"Y",$html).val(len*$('#sizeY').val());
@@ -280,6 +279,7 @@ $(document).ready( function(e) {
 	
 	/*load default 1st layer*/
 	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
+	$('#f2X_Layer1').val(100);
 	
 	/*Add animation*/
 	$.keyframe.define([{
