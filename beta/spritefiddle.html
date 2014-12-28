@@ -232,15 +232,20 @@ function resetsPlays() {
 	/*Define / Re-Define position*/
 	for (i=1;i<=len;i++) {
 		var layerName = 'spriteAnimate_'+i;
+		step1={'background-position': layerProp[i-1].f1.X+'px '+layerProp[i-1].f1.Y+'px'};
+		alert(step1);
+		step2={'background-position': layerProp[i-1].f2.X+'px '+layerProp[i-1].f2.Y+'px'};
+		step3={'background-position': layerProp[i-1].f3.X+'px '+layerProp[i-1].f3.Y+'px'};
+		step4={'background-position': layerProp[i-1].f4.X+'px '+layerProp[i-1].f4.Y+'px'};
 		$.keyframe.define([{
 			name: layerName,
-			'0%': {'background-position': layerProp[i-1].f1.X+'px '+layerProp[i-1].f1.Y+'px'},
-			'33%': {'background-position': layerProp[i-1].f2.X+'px '+layerProp[i-1].f2.Y+'px'},
-			'67%': {'background-position': layerProp[i-1].f3.X+'px '+layerProp[i-1].f3.Y+'px'},
-			'100%': {'background-position': layerProp[i-1].f4.X+'px '+layerProp[i-1].f4.Y+'px'}
+			'0%': step1,
+			'33%': step2,
+			'67%': step3,
+			'100%': step4
 		}]);
 	}
-	
+	/*stop animation*/
 	$('.sprite').each(function( e ) {
 		$(this).css("-webkit-animation","");
 	})
