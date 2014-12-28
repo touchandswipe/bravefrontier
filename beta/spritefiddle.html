@@ -229,7 +229,7 @@ function resetsPlays() {
 		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()+'px', 'Y':$("#f2X"+"_Layer"+i).val()+'px'};
 		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()+'px', 'Y':$("#f3X"+"_Layer"+i).val()+'px'};
 		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()+'px', 'Y':$("#f4X"+"_Layer"+i).val()+'px'};
-		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop, });
+		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
 		//var f1Prop={'background-position':$(f1X).val()+'px '+$(f1Y).val()+'px'};
 		//var f2Prop={'background-position':$(f2X).val()+'px '+$(f2Y).val()+'px'};
 		//var f3Prop={'background-position':$(f3X).val()+'px '+$(f3Y).val()+'px'};
@@ -237,14 +237,15 @@ function resetsPlays() {
 	}
 	
 	/*Define / Re-Define position*/
+	alert(JSON.stringify(layerProp[0]));
 	for (i=1;i<=len;i++) {
 		var layerName = 'spriteAnimate_'+i;
 		$.keyframe.define([{
 			name: layerName,
-			'0%': {'background-position': layerProp[i].f1.X+'px '+layerProp[i].f1.Y+'px'},
-			'33%': {'background-position': layerProp[i].f2.X+'px '+layerProp[i].f2.Y+'px'},
-			'67%': {'background-position': layerProp[i].f3.X+'px '+layerProp[i].f3.Y+'px'},
-			'100%': {'background-position': layerProp[i].f4.X+'px '+layerProp[i].f4.Y+'px'}
+			'0%': {'background-position': layerProp[i-1].f1.X+'px '+layerProp[i-1].f1.Y+'px'},
+			'33%': {'background-position': layerProp[i-1].f2.X+'px '+layerProp[i-1].f2.Y+'px'},
+			'67%': {'background-position': layerProp[i-1].f3.X+'px '+layerProp[i-1].f3.Y+'px'},
+			'100%': {'background-position': layerProp[i-1].f4.X+'px '+layerProp[i-1].f4.Y+'px'}
 		}]);
 	}
 	
