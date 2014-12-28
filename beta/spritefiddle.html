@@ -241,10 +241,10 @@ function resetsPlays() {
 		var layerName = 'spriteAnimate_'+i;
 		$.keyframe.define([{
 			name: layerName,
-			'0%': {'background-position': layerProp[0].X+'px '+layerProp[0].Y+'px'},
-			'33%': {'background-position': layerProp[1].X+'px '+layerProp[1].Y+'px'},
-			'67%': {'background-position': layerProp[2].X+'px '+layerProp[2].Y+'px'},
-			'100%': {'background-position': layerProp[3].X+'px '+layerProp[3].Y+'px'}
+			'0%': {'background-position': layerProp[i].f1.X+'px '+layerProp[i].f1.Y+'px'},
+			'33%': {'background-position': layerProp[i].f2.X+'px '+layerProp[i].f2.Y+'px'},
+			'67%': {'background-position': layerProp[i].f3.X+'px '+layerProp[i].f3.Y+'px'},
+			'100%': {'background-position': layerProp[i].f4.X+'px '+layerProp[i].f4.Y+'px'}
 		}]);
 	}
 	
