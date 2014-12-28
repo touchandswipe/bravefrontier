@@ -199,8 +199,6 @@ function grabTemplate() { /*Grab Template*/
 		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX').val()).attr("id","f"+i+"X_Layer"+(len+1));
 		$("#f"+i+"Y",$html).attr("value",len*$('#sizeY').val()).attr("id","f"+i+"Y_Layer"+(len+1));
 	}
-    	//$html.find('[id=layerHead]')[0].html("Layer "+len+": Adjust position of each frame");
-	//$html.find('[name=lastname]')[0].name="lastname" + len;
 	return $html.html();    
 }
 
@@ -224,7 +222,6 @@ function resetsPlays() {
 	/*Grabs new dimension*/
 	setSpriteSize($("#sizeX").val(),$("#sizeY").val());
 	/*Grabs Value from Inputs*/
-	alert($("#f1X_Layer1").val());
 	for (i=1;i<=len;i++) {
 		var f1Prop={'X':$("#f1X"+"_Layer"+i).val()+'px', 'Y':$("#f1X"+"_Layer"+i).val()+'px'};
 		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()+'px', 'Y':$("#f2X"+"_Layer"+i).val()+'px'};
@@ -234,7 +231,6 @@ function resetsPlays() {
 	}
 	
 	/*Define / Re-Define position*/
-	alert(JSON.stringify(layerProp[0]));
 	for (i=1;i<=len;i++) {
 		var layerName = 'spriteAnimate_'+i;
 		$.keyframe.define([{
@@ -277,7 +273,6 @@ $(document).ready( function(e) {
 	
 	/*load default 1st layer*/
 	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
-	$('#f2X_Layer1').val(100);
 	
 	/*Add animation*/
 	$.keyframe.define([{
