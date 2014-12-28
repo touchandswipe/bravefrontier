@@ -222,10 +222,10 @@ function resetsPlays() {
 	setSpriteSize($("#sizeX").val(),$("#sizeY").val());
 	/*Grabs Value from Inputs*/
 	for (i=1;i<=len;i++) {
-		var f1Prop={'X':$("#f1X"+"_Layer"+i).val(), 'Y':$("#f1Y"+"_Layer"+i).val()};
-		var f2Prop={'X':$("#f2X"+"_Layer"+i).val(), 'Y':$("#f2Y"+"_Layer"+i).val()};
-		var f3Prop={'X':$("#f3X"+"_Layer"+i).val(), 'Y':$("#f3Y"+"_Layer"+i).val()};
-		var f4Prop={'X':$("#f4X"+"_Layer"+i).val(), 'Y':$("#f4Y"+"_Layer"+i).val()};
+		var f1Prop={'X':$("#f1X"+"_Layer"+i).val()*-1, 'Y':$("#f1Y"+"_Layer"+i).val()*-1};
+		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()*-1, 'Y':$("#f2Y"+"_Layer"+i).val()*-1};
+		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()*-1, 'Y':$("#f3Y"+"_Layer"+i).val()*-1};
+		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()*-1, 'Y':$("#f4Y"+"_Layer"+i).val()*-1};
 		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
 	}
 	
