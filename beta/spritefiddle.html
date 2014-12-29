@@ -104,28 +104,11 @@
 			<input type="text" class="form-control" id="spriteID" value="50645">
 		</div>
 	</div>
-	<div class="row text-center">
-		<div class="col-xs-6 text-center">
-			<h4><b>Width</b></h4>
-			<div class="input-group">
-      				<span class="input-group-btn">
-        				<button class="btn btn-default btn-danger modWidth" value="-1" type="button"><i class="fa fa-minus"></i></button>
-        				<button class="btn btn-default btn-success modWidth" value="1" type="button"><i class="fa fa-plus"></i></button>
-      				</span>
-				<input type="text" class="form-control" id="sizeX"></div>
-			</div>
-		<div class="col-xs-6 text-center">
-			<h4><b>Height</b></h4>
-			<div class="input-group">
-      				<span class="input-group-btn">
-        				<button class="btn btn-default btn-danger modHeight" value="-1" type="button"><i class="fa fa-minus"></i></button>
-        				<button class="btn btn-default btn-success modHeight" value="1" type="button"><i class="fa fa-plus"></i></button>
-      				</span>
-				<input type="text" class="form-control" id="sizeY"></div>
-		</div>
-	</div>
 </div><!--End 1st Container-->
+
+<!-- all layers config goes into this -->
 <div class="container" id="spriteConfigHolder"></div>
+
 <div class="container" style="margin-top:10px;">
 	<div class="row">
 		<div class="col-xs-12">
@@ -140,6 +123,46 @@
     <h4 class="layerHead panel-title">Template ONLY - To be hidden in future </h4>
   </div>
   <div class="panel-body">
+  	<div class="row text-center">
+		<div class="col-xs-6 text-center">
+			<h4><b>Width</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="sizeX" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="sizeX" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="sizeX"></div>
+			</div>
+		<div class="col-xs-6 text-center">
+			<h4><b>Height</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="sizeY" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="sizeY" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="sizeY"></div>
+		</div>
+	</div>
+  	<div class="row text-center">
+		<div class="col-xs-6 text-center">
+			<h4><b>Offset - Horizontal</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="offsetX" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="offsetY" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="offsetX"></div>
+			</div>
+		<div class="col-xs-6 text-center">
+			<h4><b>Offset - Vertical</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="offsetY" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="offsetY" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="offsetY"></div>
+		</div>
+	</div>
 	<div class="row text-center">
 		<div class="col-xs-2 text-center">
 			<h4><b>1st</b></h4>
@@ -317,13 +340,14 @@ $(document).on("click", '#animateStart', function(e){
 	resetsPlays()
 })
 
-/*Modify width*/
-$(document).on("click", '.modWidth, .modHeight', function(e){
-	var dVal=parseInt($(this).val());
-	if ($(this).hasClass('modWidth'))
-		$('#sizeX').val(parseInt($('#sizeX').val())+dVal);
+/*Plus Minus Buttons*/
+$(document).on("click", '.plusBtn, .minusBtn', function(e){
+	var changeField=$(this).val();
+	alert(changeField);
+	if ($(this).hasClass('plusBtn'))
+		$(changeField).val(parseInt($(changeField).val())+1)
 	else
-		$('#sizeY').val(parseInt($('#sizeY').val())+dVal);
+		$(changeField).val(parseInt($(changeField).val())-1)
 	resetsPlays()
 })
 </script>
