@@ -360,14 +360,14 @@ function loadAnimationScript() {
 			}
 		}
 		for (i=1;i<=animationArray.length;i++) {
-			$('#sizeX_Layer'+i).val()=animationArray[i-1].sizeX;
-			$('#sizeY_Layer'+i).val()=animationArray[i-1].sizeY;
-			$('#zIndex_Layer'+i).val()=animationArray[i-1].zIndex;
-			$('#offsetX_Layer'+i).val()=animationArray[i-1].offsetX;
-			$('#offsetY_Layer'+i).val()=animationArray[i-1].offsetY;
+			$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
+			$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
+			$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
+			$('#offsetX_Layer'+i).val(animationArray[i-1].offsetX);
+			$('#offsetY_Layer'+i).val(animationArray[i-1].offsetY);
 			for (j=1;j<=4;j++) {
-				$('#f'+j+'X_Layer'+i).val()=animationArray[i-1]['f'+j].X;
-				$('#f'+j+'Y_Layer'+i).val()=animationArray[i-1]['f'+j].Y;
+				$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
+				$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
 			}
 		}
 		resetsPlays()
