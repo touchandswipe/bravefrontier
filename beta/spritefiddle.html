@@ -219,11 +219,15 @@ function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
+	/*plus minus btn values*/
+	$(".plusBtn, .minusBtn",$html).each(function() {
+        	$(this).attr('value',$(this).attr('value')+'_Layer'+(len+1))
+    	});
 	/*Change ID of size and offset inputs*/
-	$('sizeX',$html).attr('id',$('sizeX',$html).attr('id')+'_Layer'+(len+1));
-	$('sizeY',$html).attr('id',$('sizeY',$html).attr('id')+'_Layer'+(len+1));
-	$('offsetX',$html).attr('id',$('offsetY',$html).attr('id')+'_Layer'+(len+1));
-	$('offsetY',$html).attr('id',$('offsetY',$html).attr('id')+'_Layer'+(len+1));
+	$('#sizeX',$html).attr('id',$('#sizeX',$html).attr('id')+'_Layer'+(len+1));
+	$('#sizeY',$html).attr('id',$('#sizeY',$html).attr('id')+'_Layer'+(len+1));
+	$('#offsetX',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
+	$('#offsetY',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
 		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX').val()).attr("id","f"+i+"X_Layer"+(len+1));
