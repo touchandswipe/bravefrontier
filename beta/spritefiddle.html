@@ -96,7 +96,18 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-4 text-left">
+		<div class="col-xs-8">
+			<div class="row">
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_battle.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_stone.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_ice.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_earth.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_water.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_thunder.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg"></a></div>
+			</div>
+		</div>
+		<div class="col-xs-12 text-left">
 			<button class="btn btn-primary btnspace" id="loadScriptBtn">Load script</button><br/>
 			<button class="btn btn-danger btnspace" id="animateStop">Stop</button><br/>
 			<button class="btn btn-success btnspace" id="animateStart">Reset & Play</button><br/>
@@ -547,6 +558,12 @@ $(document).on("click", '#animateStop', function(e){
 /*Resets & Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
 	resetsPlays()
+})
+
+/*change spriteBG*/
+$(document).on("click", '.thumbnail', function(e){
+	alert($(this).children('img').attr('data-src'));
+	$('#spriteBG').css('background-image','url("'+$(this).children('img').attr('data-src')+'")')
 })
 
 /*Plus Minus Buttons*/
