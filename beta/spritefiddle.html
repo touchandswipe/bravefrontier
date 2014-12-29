@@ -22,6 +22,9 @@
     .upper {
         text-transform:uppercase;
     }
+    .btnspace {
+    	margin-bottom:5px;
+    }
 
 #spriteLayerTemplate {
 	display:none;
@@ -93,11 +96,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-4 text-center">
-			<button class="btn btn-lg btn-primary" id="loadScriptBtn">Load script</button><br/>
-			<button class="btn btn-lg btn-danger" id="animateStop">Stop</button><br/>
-			<button class="btn btn-lg btn-success" id="animateStart">Reset & Play</button><br/>
-			<button class="btn btn-lg btn-default" id="toggleBorderBtn">Show/Hide Borders</button>
+		<div class="col-xs-4 text-left">
+			<button class="btn btn-primary btnspace" id="loadScriptBtn">Load script</button><br/>
+			<button class="btn btn-danger btnspace" id="animateStop">Stop</button><br/>
+			<button class="btn btn-success btnspace" id="animateStart">Reset & Play</button><br/>
+			<button class="btn btn-default btnspace" id="toggleBorderBtn">Show/Hide Borders</button>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -506,7 +509,6 @@ $(document).ready( function(e) {
 	
      	/*checks for URL Parameter*/
      	var spriteParam=urlParam('spriteKey');
-     	alert(spriteParam);
 	if ( (spriteParam != "") && ( spriteParam != null) )
 		    loadAnimationScript(spriteParam)
 	
