@@ -342,7 +342,7 @@ $(document).on("click", '#animateStart', function(e){
 
 /*Plus Minus Buttons*/
 $(document).on("click", '.plusBtn, .minusBtn', function(e){
-	var changeField=$(this).val();
+	var changeField='#'+$(this).val();
 	alert(changeField);
 	if ($(this).hasClass('plusBtn'))
 		$(changeField).val(parseInt($(changeField).val())+1)
