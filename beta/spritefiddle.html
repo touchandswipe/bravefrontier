@@ -99,6 +99,7 @@
 			<button class="btn btn-lg btn-primary" id="loadScriptBtn">Load script</button>
 			<button class="btn btn-lg btn-danger" id="animateStop">Stop</button>
 			<button class="btn btn-lg btn-success" id="animateStart">Reset & Play</button>
+			<button class="btn btn-lg btn-success" id="toggleBorderBtn">Show/Hide Borders</button>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -410,6 +411,17 @@ function playSprite() {
 	}
 }
 
+function toggleBorder() {
+	var len = $('.sprite').length;
+	if ($('#sprite1').css("border")!="")
+		var toggleStr=""
+	else
+		var toggleStr="1px solid #FF0000"
+	for (i=1;i<=len;i++) {
+		$("#sprite"+i).css("border",toggleStr);
+	}
+}
+
 function resetsPlays() {
 	var layerProp=[];
 	/*Reset URL for original files*/
@@ -482,6 +494,11 @@ $(document).ready( function(e) {
 		playSprite();
      	})
 }) /*End DocReady*/
+
+/*Toggle Borders*/
+$(document).on("click", '#toggleBorderBtn', function(e){
+	toggleBorder()
+})
 
 /*Stop Animation*/
 $(document).on("click", '#loadScriptBtn', function(e){
