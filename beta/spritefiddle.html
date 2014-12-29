@@ -96,7 +96,8 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
-			<button class="btn btn-lg btn-default" id="animateStop">Stop</button>
+			<button class="btn btn-lg btn-primary" id="loadScriptBtn">Load script</button>
+			<button class="btn btn-lg btn-danger" id="animateStop">Stop</button>
 			<button class="btn btn-lg btn-success" id="animateStart">Reset & Play</button>
 		</div>
 	</div>
@@ -104,7 +105,7 @@
 		<div class="col-xs-12 text-center">
 			<h3>Sprite ID <small>(<a href="#" id="spriteSheet" target="_blank">Spritesheet</a> | <a href="#" id="spriteURL">Datasheet</a>)</small></h3>
 		</div>
-		<div class="col-xs-12 text-center">
+		<div class="col-xs-12 text-center" style="margin-top:5px;">
 			<input type="text" class="form-control" id="spriteID" value="30445">
 			<div class="input-group">
   				<span class="input-group-addon">Sprite script</span>
@@ -343,6 +344,37 @@ function grabTemplate() { /*Grab Template*/
 	return $html.html();
 }
 
+function loadAnimationScript() {
+	var len = $('.spriteLayers').length;
+	var animationObj=JSON.parse($('#spriteScript').val());
+	if isValidJSON(animationObj) {
+		var animationArray=animationObj.animation;
+		/*writes value to fields*/
+		layersGap=len-animationArray.length-len;
+		if (layersGap>0) {
+			for (i=1;i<=layersGap;i++) {
+				/*Add new layer and config*/
+				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+				}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+				addNewLayer();
+			}
+		}
+		for (i=1;i<=animationArray.length;i++) {
+			$('#sizeX_Layer'+i).val()=animationArray[i-1].sizeX;
+			$('#sizeY_Layer'+i).val()=animationArray[i-1].sizeY;
+			$('#zIndex_Layer'+i).val()=animationArray[i-1].zIndex;
+			$('#offsetX_Layer'+i).val()=animationArray[i-1].offsetX;
+			$('#offsetY_Layer'+i).val()=animationArray[i-1].offsetY;
+			for (j=1;j<=4;j++) {
+				$('#f'+j+'X_Layer'+i).val()=animationArray[i-1]['f'+j].X;
+				$('#f'+j+'Y_Layer'+i).val()=animationArray[i-1]['f'+j].Y;
+			}
+		}
+		resetsPlays()
+	} else
+		alert('Invalid sprite Script')
+}
+
 function buildAnimationScript() {
 	var len = $('.spriteLayers').length;
 	var animationObj={};
@@ -445,14 +477,6 @@ $(document).ready( function(e) {
 	$("#sizeX_Layer1").val(defaultWidth);
 	$("#sizeY_Layer1").val(defaultHeight);
 	
-	/*Add animation*/
-//	$.keyframe.define([{
-//		name: 'spriteAnimate_1',
-//		'0%': {'background-position': '-5px 0px'},
-//		'33%': {'background-position': '-170px 8px'},
-//		'67%': {'background-position': '-333px 10px'},
-//		'100%': {'background-position': '-499px 6px'}
-//	}]);
 	resetsPlays()
 	
 	/*load default value*/
@@ -469,6 +493,11 @@ $(document).ready( function(e) {
 		playSprite();
      	})
 }) /*End DocReady*/
+
+/*Stop Animation*/
+$(document).on("click", '#loadScriptBtn', function(e){
+	loadAnimationScript()
+})
 
 /*Stop Animation*/
 $(document).on("click", '#animateStop', function(e){
