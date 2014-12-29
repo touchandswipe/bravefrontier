@@ -408,9 +408,10 @@ function playSprite() {
 	var len = $('.sprite').length;
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css({
-			"-webkit-animation":"spriteAnimate_"+i+" 2s steps(1) infinite",
-			"-webkit-animation-fill-mode":"forwards"
-			
+			"-webkit-animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
+			"-webkit-animation-fill-mode":"forwards",
+			"animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
+			"animation-fill-mode":"forwards"
 		});
 	}
 }
