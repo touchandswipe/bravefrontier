@@ -42,7 +42,6 @@
 }
 .sprite {
 	position:absolute;
-	border:1px solid #EEEEEE;
 }
 
 </style>
@@ -414,7 +413,7 @@ function playSprite() {
 function toggleBorder() {
 	var len = $('.sprite').length;
 	alert($('#sprite1').css("border"));
-	if ($('#sprite1').css("border")!="")
+	if ($('#sprite1').css("border")!="none")
 		var toggleStr=""
 	else
 		var toggleStr="1px solid #FF0000"
