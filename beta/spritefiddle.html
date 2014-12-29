@@ -407,7 +407,11 @@ function addNewLayer() { /*Adds new layer on top*/
 function playSprite() {
 	var len = $('.sprite').length;
 	for (i=1;i<=len;i++) {
-		$("#sprite"+i).css("-webkit-animation","spriteAnimate_"+i+" 3s steps(1) infinite");
+		$("#sprite"+i).css({
+			"-webkit-animation":"spriteAnimate_"+i+" 2s steps(1) infinite",
+			"-webkit-animation-fill-mode":"forwards";
+			
+		});
 	}
 }
 
