@@ -98,13 +98,13 @@
 		</div>
 		<div class="col-xs-8">
 			<div class="row">
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_battle.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_stone.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_ice.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_earth.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_water.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_thunder.jpg"></a></div>
-				<div class="col-xs-4"><a href="#" class="thumbnail"><img data-src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_battle.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_stone.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_ice.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_earth.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_water.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_thunder.jpg"></a></div>
+				<div class="col-xs-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg"></a></div>
 			</div>
 		</div>
 		<div class="col-xs-12 text-left">
@@ -562,8 +562,7 @@ $(document).on("click", '#animateStart', function(e){
 
 /*change spriteBG*/
 $(document).on("click", '.thumbnail', function(e){
-	alert($(this).children('img').attr('data-src'));
-	$('#spriteBG').css('background-image','url("'+$(this).children('img').attr('data-src')+'")')
+	$('#spriteBG').css('background-image','url("'+$(this).children('img').attr('src')+'")')
 })
 
 /*Plus Minus Buttons*/
