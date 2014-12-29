@@ -412,15 +412,12 @@ function playSprite() {
 
 function toggleBorder() {
 	var len = $('.sprite').length;
-	alert($('#sprite1').css("border"));
-	if ($('#sprite1').css("border")!="none")
+	if ($('#sprite1').css("border").search("none")==-1)
 		var toggleStr=""
 	else
 		var toggleStr="1px solid #FF0000"
-	alert("toggle is "+toggleStr)
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css("border",toggleStr);
-		alert("css changed");
 	}
 }
 
