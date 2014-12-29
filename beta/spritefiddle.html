@@ -349,6 +349,7 @@ function loadAnimationScript() {
 	if (isValidJSON($('#spriteScript').val())) {
 		var animationObj=JSON.parse($('#spriteScript').val());
 		var animationArray=animationObj.animation;
+		$('#spriteID').val(animationObj.unitID);
 		/*writes value to fields*/
 		var layersGap=animationArray.length-len;
 		if (layersGap > 0) {
