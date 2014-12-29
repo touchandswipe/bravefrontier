@@ -149,7 +149,7 @@
 			<div class="input-group">
       				<span class="input-group-btn">
         				<button class="btn btn-default btn-danger minusBtn" value="offsetX" type="button"><i class="fa fa-minus"></i></button>
-        				<button class="btn btn-default btn-success plusBtn" value="offsetY" type="button"><i class="fa fa-plus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="offsetX" type="button"><i class="fa fa-plus"></i></button>
       				</span>
 				<input type="text" class="form-control" id="offsetX"></div>
 			</div>
@@ -163,7 +163,7 @@
 				<input type="text" class="form-control" id="offsetY"></div>
 		</div>
 	</div>
-	<div class="row text-center">
+	<div class="row text-center" style="margin-top:10px;">
 		<div class="col-xs-2 text-center">
 			<h4><b>1st</b></h4>
 		</div>
@@ -219,6 +219,11 @@ function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
+	/*Change ID of size and offset inputs*/
+	$('sizeX',$html).attr('id',$('sizeX',$html).attr('id')+'_Layer'+(len+1));
+	$('sizeY',$html).attr('id',$('sizeY',$html).attr('id')+'_Layer'+(len+1));
+	$('offsetX',$html).attr('id',$('offsetY',$html).attr('id')+'_Layer'+(len+1));
+	$('offsetY',$html).attr('id',$('offsetY',$html).attr('id')+'_Layer'+(len+1));
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
 		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX').val()).attr("id","f"+i+"X_Layer"+(len+1));
