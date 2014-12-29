@@ -466,7 +466,7 @@ function resetsPlays() {
 		var zIndex=$('#zIndex_Layer'+i).val();
 		var offsetX=$('#offsetX_Layer'+i).val()+'px';
 		var offsetY=$('#offsetY_Layer'+i).val()+'px';
-		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
+		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+offsetX+" "+offsetY+" no-repeat"});
 	}
 		
 	/*Grabs Frame Value from Inputs*/
