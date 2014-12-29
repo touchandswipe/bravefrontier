@@ -459,23 +459,19 @@ function resetsPlays() {
 	$('#spriteSheet').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png")
 	/*Grabs no. of layers*/
 	var len = $('.spriteLayers').length;
-	/*Resize and offset each layer*/
+	/*grab input for each layer*/
 	for (i=1;i<=len;i++) {
 		var sizeX=$('#sizeX_Layer'+i).val()+'px';
 		var sizeY=$('#sizeY_Layer'+i).val()+'px';
 		var zIndex=$('#zIndex_Layer'+i).val();
 		var offsetX=$('#offsetX_Layer'+i).val()+'px';
 		var offsetY=$('#offsetY_Layer'+i).val()+'px';
-		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+offsetX+" "+offsetY+" no-repeat"});
-	}
-		
-	/*Grabs Frame Value from Inputs*/
-	for (i=1;i<=len;i++) {
 		var f1Prop={'X':$("#f1X"+"_Layer"+i).val()*-1, 'Y':$("#f1Y"+"_Layer"+i).val()*-1};
 		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()*-1, 'Y':$("#f2Y"+"_Layer"+i).val()*-1};
 		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()*-1, 'Y':$("#f3Y"+"_Layer"+i).val()*-1};
 		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()*-1, 'Y':$("#f4Y"+"_Layer"+i).val()*-1};
 		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
+		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
 	}
 	
 	/*Define / Re-Define position*/
