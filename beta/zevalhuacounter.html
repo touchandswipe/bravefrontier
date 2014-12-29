@@ -233,25 +233,25 @@
 
 <script type="text/javascript">
 turnEffect=[
-{"ss":2,"des":0},
 {"ss":0,"des":0},
-{"ss":3,"des":0},
-{"ss":1,"des":0},
-{"ss":2,"des":1},
 {"ss":0,"des":0},
-{"ss":3,"des":0},
+{"ss":0,"des":0},
 {"ss":1,"des":0},
-{"ss":2,"des":0},
 {"ss":0,"des":1},
-{"ss":3,"des":0},
+{"ss":0,"des":0},
+{"ss":0,"des":0},
 {"ss":1,"des":0},
-{"ss":2,"des":0},
-{"ss":3,"des":0},
+{"ss":0,"des":0},
+{"ss":0,"des":1},
+{"ss":0,"des":0},
+{"ss":1,"des":0},
+{"ss":0,"des":0},
+{"ss":0,"des":0},
 {"ss":0,"des":1},
 {"ss":1,"des":0},
-{"ss":2,"des":0},
 {"ss":0,"des":0},
-{"ss":3,"des":0},
+{"ss":0,"des":0},
+{"ss":0,"des":0},
 {"ss":1,"des":1}
 ];
 currentStep=0;
@@ -262,8 +262,8 @@ function genSteps() {
 		if (i % 4==0)
 			bHTML+='<div class="row">';
 		bHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><div class="panel panel-default turnCount"><div class="panel-heading"><small><b>Turn '+(parseInt(i)+1)+'</b></small></div>';
-		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : (turnEffect[i].ss==1) ? "R+SS T1" : (turnEffect[i].ss==3) ? '<i class="fa fa-exclamation-circle text-warning"></i>' : '<i class="fa fa-bomb text-success"></i> SS T2';
-		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Destiny";
+		bSS=(turnEffect[i].ss==0) ? "&nbsp;" : "Glorious (BB Drain)";
+		bDES=(turnEffect[i].des==0) ? "&nbsp;" : "Endless";
 		bConnect=(bDES!="&nbsp;" && bSS!="&nbsp;") ? ", " : "";
 		bHTML+='<div class="panel-body equal"><small>'+bSS+bConnect+bDES+'</small></div></div></div>';
 		if (i % 4==3)
@@ -276,25 +276,17 @@ function updateGuide() {
 	pText="";
 	mText="";
 	if (turnEffect[currentStep].ss==1) {
-		mText+="<p>Maxwell will cast Sacred Song (3Turns ATK Buff, 2Turns Ignore DEF, Angel Idol) and Rune(Single TGT Light ATK, Removes all your buffs).</p>";
-		pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units, especially dark units.</p>";
-	}
-	if (turnEffect[currentStep].ss==2) {
-		mText+="<p>Maxwell's Sacred Song Turn 2 (Ignore DEF in effect).</p>";
-		pText+='<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel) if you can and attack with units > 7.5k HP. Guard all others units, especially dark units. If you cannot mitigate, clear ailments and heal if needed and Guard everyone.</p><p><i class="fa fa-bomb text-success"></i> Kill Maxwell in this turn, when her HP is low so that she revives and giving you 3 turns to finish her off without Sacred Song\'s Angel Idol Skill.</p>';
-	}
-  if (turnEffect[currentStep].ss==3) {
-		mText+="<p>Maxwell will user her regular and random skills. Nothing special.</p>";
-		pText+='<p><b><i class="fa fa-exclamation-circle"></i>TIP</b> For Lilly Matah users, use your BB this turn so that your support units (Oulu / Darvanshel / Altri / Healers) will have greater success in filling up their BB going through Sacred Song cycles or Destiny next turn onwards.</p>';
+		mText+="<p>Zevalhua will cast Glorious Skill - Massive Dark (AOE) which will drain your BB.</p>";
+		pText+="<p>Mitigate if needed.</p>";
 	}
 	if (turnEffect[currentStep].des==1) {
-		mText+="<p>Maxwell will cast Destiny (Single TGT Fixed 14k DMG).</p>";
+		mText+="<p>Zevalhua will cast Endless. Massive Dark (AOE).</p>";
 		if (pText=="")
-			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Attack with units > 7.5k HP. Guard all others units, especially dark units.</p>";
+			pText+="<p>Activate DMG Mitigation (e.g. Oulu / Darvanshel). Guard all others units, especially light units.</p>";
 	}
 	if (mText=="") {
-		mText+="<p>Random skills / attacks. Watch out when Maxwell's HP is at 70%, 30% and 20%.</p>";
-		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Maxwell is pushed through 70%, 30% and especially 20% HP.</p>";
+		mText+="<p>Random skills / attacks. Watch out when Zevalhua's HP is 50% (all 3 forms) and 20% (final form).</p>";
+		pText+="<p>Attack with all units. Heal where necessary. Optional DMG Mitigation (e.g. Oulu / Darvanshel). Use when Zevalhua is pushed through 50% and 20%.</p>";
 	}
 	$("#playerText").html(pText);
 	$("#maxwellText").html(mText);
