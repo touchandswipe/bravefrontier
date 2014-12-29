@@ -102,10 +102,14 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-xs-12 text-center">
-			<h3>Sprite ID <small>(<a href="#" id="spriteURL">Sprite datasheet</a>)</small></h3>
+			<h3>Sprite ID <small>(<a href="#" id="spriteSheet" target="_blank">Spritesheet</a> | <a href="#" id="spriteURL">Datasheet</a>)</small></h3>
 		</div>
 		<div class="col-xs-12 text-center">
 			<input type="text" class="form-control" id="spriteID" value="30445">
+			<div class="input-group">
+  				<span class="input-group-addon">Sprite script</span>
+				<input type="text" class="form-control" id="spriteScript">
+			</div>
 		</div>
 	</div>
 </div><!--End 1st Container-->
@@ -203,7 +207,7 @@
   </div>
   <div class="panel-body">
   	<div class="row text-center">
-		<div class="col-xs-6 text-center">
+		<div class="col-xs-4 text-center">
 			<h4><b>Width</b></h4>
 			<div class="input-group">
       				<span class="input-group-btn">
@@ -212,7 +216,7 @@
       				</span>
 				<input type="text" class="form-control" id="sizeX" value="0"></div>
 			</div>
-		<div class="col-xs-6 text-center">
+		<div class="col-xs-4 text-center">
 			<h4><b>Height</b></h4>
 			<div class="input-group">
       				<span class="input-group-btn">
@@ -220,6 +224,15 @@
         				<button class="btn btn-default btn-success plusBtn" value="sizeY" type="button"><i class="fa fa-plus"></i></button>
       				</span>
 				<input type="text" class="form-control" id="sizeY" value="0"></div>
+		</div>
+		<div class="col-xs-4 text-center">
+			<h4><b>Z-index</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="zIndex" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="zIndex" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="zIndex" value="0"></div>
 		</div>
 	</div>
   	<div class="row text-center">
@@ -294,6 +307,16 @@
 defaultWidth=128;
 defaultHeight=88;
 
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
@@ -305,9 +328,11 @@ function grabTemplate() { /*Grab Template*/
     	/*apply default frame size*/
     	$('#sizeX',$html).attr('value',defaultWidth);
     	$('#sizeY',$html).attr('value',defaultHeight);
+    	$('#zIndex',$html).attr('value',10+parseInt(len);
 	/*Change ID of size and offset inputs*/
 	$('#sizeX',$html).attr('id',$('#sizeX',$html).attr('id')+'_Layer'+(len+1));
 	$('#sizeY',$html).attr('id',$('#sizeY',$html).attr('id')+'_Layer'+(len+1));
+	$('#zIndex',$html).attr('id',$('#zIndex',$html).attr('id')+'_Layer'+(len+1));
 	$('#offsetX',$html).attr('id',$('#offsetX',$html).attr('id')+'_Layer'+(len+1));
 	$('#offsetY',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
@@ -316,6 +341,29 @@ function grabTemplate() { /*Grab Template*/
 		$("#f"+i+"Y",$html).attr("value",len*parseInt($('#sizeY_Layer'+(len+1),$html).val())).attr("id","f"+i+"Y_Layer"+(len+1));
 	}
 	return $html.html();
+}
+
+function buildAnimationScript() {
+	var len = $('.spriteLayers').length;
+	var animationObj={};
+	var animationArray=[];
+	/*build each layer*/
+	for (i=1;i<=len;i++) {
+		var layerObj={
+			'sizeX':$('#sizeX_Layer'+i).val(),
+			'sizeY':$('#sizeY_Layer'+i).val(),
+			'zIndex':$('#zIndex_Layer'+i).val(),
+			'offsetX':$('#offsetX_Layer'+i).val(),
+			'offsetY':$('#offsetY_Layer'+i).val(),
+			'f1'={'X':$('#f1X_Layer'+i).val(), 'Y':$('#f1Y_Layer'+i).val()},
+			'f2'={'X':$('#f2X_Layer'+i).val(), 'Y':$('#f2Y_Layer'+i).val()},
+			'f3'={'X':$('#f2X_Layer'+i).val(), 'Y':$('#f3Y_Layer'+i).val()},
+			'f4'={'X':$('#f2X_Layer'+i).val(), 'Y':$('#f4Y_Layer'+i).val()}
+		}
+		animationArray.push(layerObj);
+	}
+	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray};
+	$('#spriteScript').val(JSON.stringify(animationObj));
 }
 
 function addNewLayer() { /*Adds new layer on top*/
@@ -332,8 +380,9 @@ function playSprite() {
 
 function resetsPlays() {
 	var layerProp=[];
-	/*Reset URL for CGG File*/
+	/*Reset URL for original files*/
 	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
+	$('#spriteSheet').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png")
 	/*Grabs no. of layers*/
 	var len = $('.spriteLayers').length;
 	/*Resize and offset each layer*/
@@ -378,6 +427,7 @@ function resetsPlays() {
 	for (i=1;i<=len;i++)
 		document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
 	playSprite();
+	buildAnimationScript()
 }
 
 $(document).ready( function(e) {
