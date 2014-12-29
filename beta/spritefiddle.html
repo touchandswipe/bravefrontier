@@ -309,6 +309,17 @@
 defaultWidth=128;
 defaultHeight=88;
 
+/*JQ Param handling no unencoding*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return results[1] || '';
+    }
+}
+
 /*check valid json*/
 function isValidJSON(str) {
     try {
@@ -345,9 +356,9 @@ function grabTemplate() { /*Grab Template*/
 	return $html.html();
 }
 
-function loadAnimationScript() {
+function loadAnimationScript(spriteString) {
 	var len = $('.spriteLayers').length;
-	var animationLoad=LZString.decompressFromEncodedURIComponent($('#spriteScript').val());
+	var animationLoad=LZString.decompressFromEncodedURIComponent(spriteString);
 	if (isValidJSON(animationLoad)) {
 		var animationObj=JSON.parse(animationLoad);
 		var animationArray=animationObj.animation;
@@ -398,7 +409,11 @@ function buildAnimationScript() {
 		animationArray.push(layerObj);
 	}
 	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray};
-	$('#spriteScript').val(LZString.compressToEncodedURIComponent(JSON.stringify(animationObj)));
+	var encodeSpriteKey=LZString.compressToEncodedURIComponent(JSON.stringify(animationObj));
+	$('#spriteScript').val(encodeSpriteKey);
+	/*update HTML5 state*/
+	var state = { stateSprite: encodeSpriteKey };
+	history.pushState(state, "spriteKey State", "?spriteKey="+encodeSpriteKey );
 }
 
 function addNewLayer() { /*Adds new layer on top*/
@@ -500,6 +515,13 @@ $(document).ready( function(e) {
 		addNewLayer();
 		playSprite();
      	})
+     	
+     	/*checks for URL Parameter*/
+     	var spriteParam=urlParam('spriteKey');
+	if ( (spriteParam != "") && ( spriteParam != null) ) {
+		    loadAnimationScript(spriteParam)
+	}
+     	
 }) /*End DocReady*/
 
 /*Toggle Borders*/
@@ -509,7 +531,7 @@ $(document).on("click", '#toggleBorderBtn', function(e){
 
 /*Stop Animation*/
 $(document).on("click", '#loadScriptBtn', function(e){
-	loadAnimationScript()
+	loadAnimationScript($('#spriteScript').val())
 })
 
 /*Stop Animation*/
@@ -531,6 +553,15 @@ $(document).on("click", '.plusBtn, .minusBtn', function(e){
 	else
 		$(changeField).val(parseInt($(changeField).val())-1)
 	resetsPlays()
+})
+
+/*POP state*/
+$(window).on('popstate', function(e) {
+	var state = e.originalEvent.state;
+	/*card state*/
+	if (state.stateSprite) {
+		loadAnimationScript(state.stateSprite);
+	}
 })
 </script>
 
