@@ -38,7 +38,7 @@
 #spriteMother {
 	margin:0px auto 0px auto;
 	position:inherit;
-	top:100px;
+	top:50px;
 }
 .sprite {
 	position:absolute;
@@ -113,12 +113,64 @@
 <!-- all layers config goes into this -->
 <div class="container" id="spriteConfigHolder" style="margin-top:10px;"></div>
 
-<div class="container">
+<div class="container" style="margin:0 0 10px 0;">
 	<div class="row">
 		<div class="col-xs-12">
 			<button class="btn btn-default btn-lg" type="button" id="addLayer" style="width:100%;"><i class="fa fa-plus"></i> Add new layer</button>
 		</div>
 	</div>
+</div>
+<!--Bottom Ad-->
+<div class="container">
+	<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:0 auto;">
+<!-- Google Manual labnol.org responsive ads-->
+<div id="google-ads-2"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-2');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
 
 <!-- disqus discussion -->
