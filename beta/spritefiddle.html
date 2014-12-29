@@ -347,7 +347,7 @@ function grabTemplate() { /*Grab Template*/
 
 function loadAnimationScript() {
 	var len = $('.spriteLayers').length;
-	var animationLoad=LZString.decompressFromUTF16($('#spriteScript').val());
+	var animationLoad=LZString.decompressFromEncodedURIComponent($('#spriteScript').val());
 	if (isValidJSON(animationLoad)) {
 		var animationObj=JSON.parse(animationLoad);
 		var animationArray=animationObj.animation;
@@ -398,7 +398,7 @@ function buildAnimationScript() {
 		animationArray.push(layerObj);
 	}
 	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray};
-	$('#spriteScript').val(LZString.compressToUTF16(JSON.stringify(animationObj)));
+	$('#spriteScript').val(LZString.compressToEncodedURIComponent(JSON.stringify(animationObj)));
 }
 
 function addNewLayer() { /*Adds new layer on top*/
