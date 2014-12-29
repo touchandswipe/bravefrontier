@@ -309,8 +309,8 @@ function grabTemplate() { /*Grab Template*/
 	$('#offsetY',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
-		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX_Layer'+(len+1)).val()).attr("id","f"+i+"X_Layer"+(len+1));
-		$("#f"+i+"Y",$html).attr("value",len*$('#sizeY_Layer'+(len+1)).val()).attr("id","f"+i+"Y_Layer"+(len+1));
+		$("#f"+i+"X",$html).attr("value",(i-1)*parseInt($('#sizeX_Layer'+(len+1)).val())).attr("id","f"+i+"X_Layer"+(len+1));
+		$("#f"+i+"Y",$html).attr("value",len*parseInt($('#sizeY_Layer'+(len+1)).val())).attr("id","f"+i+"Y_Layer"+(len+1));
 	}
 	return $html.html();
 }
