@@ -506,8 +506,16 @@ $(document).ready( function(e) {
 	$("#sizeX_Layer1").val(defaultWidth);
 	$("#sizeY_Layer1").val(defaultHeight);
 	
+     	/*checks for URL Parameter*/
+     	var spriteParam=urlParam('spriteKey');
+     	alert(spriteParam);
+	if ( (spriteParam != "") && ( spriteParam != null) )
+		    loadAnimationScript(spriteParam)
+	
+	/*Plays script*/
 	resetsPlays()
 	
+	/*add new layer event handling*/
      	$('#addLayer').on("click", function () {
      		//alert("Adding layer");
 		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
@@ -515,12 +523,6 @@ $(document).ready( function(e) {
 		addNewLayer();
 		playSprite();
      	})
-     	
-     	/*checks for URL Parameter*/
-     	var spriteParam=urlParam('spriteKey');
-     	alert(spriteParam);
-	if ( (spriteParam != "") && ( spriteParam != null) )
-		    loadAnimationScript(spriteParam)
 }) /*End DocReady*/
 
 /*Toggle Borders*/
