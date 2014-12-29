@@ -346,8 +346,8 @@ function grabTemplate() { /*Grab Template*/
 
 function loadAnimationScript() {
 	var len = $('.spriteLayers').length;
-	var animationObj=JSON.parse($('#spriteScript').val());
-	if (isValidJSON(animationObj)) {
+	if (isValidJSON($('#spriteScript').val())) {
+		var animationObj=JSON.parse($('#spriteScript').val());
 		var animationArray=animationObj.animation;
 		/*writes value to fields*/
 		layersGap=len-animationArray.length-len;
