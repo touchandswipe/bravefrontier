@@ -120,6 +120,26 @@
 		</div>
 	</div>
 </div>
+
+<!-- disqus discussion -->
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+<div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
+    <script type="text/javascript">
+	var disqus_shortname = 'bravefrontierpros';
+	(function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div>
+	</div>
+</div>
+
 <!--Template hidden-->
 <div class="container" id="spriteLayerTemplate">
 <div class="panel panel-default">
@@ -237,10 +257,10 @@ function grabTemplate() { /*Grab Template*/
 	$('#offsetY',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
 	/*Change ID of 4 frames each layer w/ default value by size of sprite */
 	for (i=1;i<5;i++) {
-		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX').val()).attr("id","f"+i+"X_Layer"+(len+1));
-		$("#f"+i+"Y",$html).attr("value",len*$('#sizeY').val()).attr("id","f"+i+"Y_Layer"+(len+1));
+		$("#f"+i+"X",$html).attr("value",(i-1)*$('#sizeX_Layer'+(len+1)).val()).attr("id","f"+i+"X_Layer"+(len+1));
+		$("#f"+i+"Y",$html).attr("value",len*$('#sizeY_Layer'+(len+1)).val()).attr("id","f"+i+"Y_Layer"+(len+1));
 	}
-	return $html.html();    
+	return $html.html();
 }
 
 function addNewLayer() { /*Adds new layer on top*/
