@@ -99,7 +99,7 @@
 			<button class="btn btn-lg btn-primary" id="loadScriptBtn">Load script</button>
 			<button class="btn btn-lg btn-danger" id="animateStop">Stop</button>
 			<button class="btn btn-lg btn-success" id="animateStart">Reset & Play</button>
-			<button class="btn btn-lg btn-success" id="toggleBorderBtn">Show/Hide Borders</button>
+			<button class="btn btn-lg btn-default" id="toggleBorderBtn">Show/Hide Borders</button>
 		</div>
 	</div>
 	<div class="row text-center">
@@ -413,6 +413,7 @@ function playSprite() {
 
 function toggleBorder() {
 	var len = $('.sprite').length;
+	alert($('#sprite1').css("border"));
 	if ($('#sprite1').css("border")!="")
 		var toggleStr=""
 	else
