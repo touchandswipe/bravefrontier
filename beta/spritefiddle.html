@@ -39,10 +39,10 @@
 	margin:0px auto 0px auto;
 	position:inherit;
 	top:100px;
-	border:1px solid #EEEEEE;
 }
 .sprite {
 	position:absolute;
+	border:1px solid #EEEEEE;
 }
 
 </style>
@@ -135,7 +135,7 @@
         				<button class="btn btn-default btn-danger minusBtn" value="sizeX" type="button"><i class="fa fa-minus"></i></button>
         				<button class="btn btn-default btn-success plusBtn" value="sizeX" type="button"><i class="fa fa-plus"></i></button>
       				</span>
-				<input type="text" class="form-control" id="sizeX"></div>
+				<input type="text" class="form-control" id="sizeX" value="0"></div>
 			</div>
 		<div class="col-xs-6 text-center">
 			<h4><b>Height</b></h4>
@@ -144,7 +144,7 @@
         				<button class="btn btn-default btn-danger minusBtn" value="sizeY" type="button"><i class="fa fa-minus"></i></button>
         				<button class="btn btn-default btn-success plusBtn" value="sizeY" type="button"><i class="fa fa-plus"></i></button>
       				</span>
-				<input type="text" class="form-control" id="sizeY"></div>
+				<input type="text" class="form-control" id="sizeY" value="0"></div>
 		</div>
 	</div>
   	<div class="row text-center">
@@ -155,7 +155,7 @@
         				<button class="btn btn-default btn-danger minusBtn" value="offsetX" type="button"><i class="fa fa-minus"></i></button>
         				<button class="btn btn-default btn-success plusBtn" value="offsetX" type="button"><i class="fa fa-plus"></i></button>
       				</span>
-				<input type="text" class="form-control" id="offsetX"></div>
+				<input type="text" class="form-control" id="offsetX" value="0"></div>
 			</div>
 		<div class="col-xs-6 text-center">
 			<h4><b>Offset - Vertical</b></h4>
@@ -164,7 +164,7 @@
         				<button class="btn btn-default btn-danger minusBtn" value="offsetY" type="button"><i class="fa fa-minus"></i></button>
         				<button class="btn btn-default btn-success plusBtn" value="offsetY" type="button"><i class="fa fa-plus"></i></button>
       				</span>
-				<input type="text" class="form-control" id="offsetY"></div>
+				<input type="text" class="form-control" id="offsetY" value="0"></div>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-top:10px;">
@@ -227,6 +227,9 @@ function grabTemplate() { /*Grab Template*/
 	$(".plusBtn, .minusBtn",$html).each(function() {
         	$(this).attr('value',$(this).attr('value')+'_Layer'+(len+1))
     	});
+    	/*apply default frame size*/
+    	$('#sizeX',$html).attr('value',defaultWidth);
+    	$('#sizeY',$html).attr('value',defaultHeight);
 	/*Change ID of size and offset inputs*/
 	$('#sizeX',$html).attr('id',$('#sizeX',$html).attr('id')+'_Layer'+(len+1));
 	$('#sizeY',$html).attr('id',$('#sizeY',$html).attr('id')+'_Layer'+(len+1));
@@ -256,9 +259,16 @@ function resetsPlays() {
 	var layerProp=[];
 	/*Grabs no. of layers*/
 	var len = $('.spriteLayers').length;
-	/*Grabs new dimension*/
-	setSpriteSize($("#sizeX").val(),$("#sizeY").val());
-	/*Grabs Value from Inputs*/
+	/*Resize and offset each layer*/
+	for (i=1;i<=len;i++) {
+		var sizeX=$('#sizeX_Layer'+i).val()+'px';
+		var sizeY=$('#sizeY_Layer'+i).val()+'px';
+		var offsetX=$('#offsetX_Layer'+i).val()+'px';
+		var offsetY=$('#offsetY_Layer'+i).val()+'px';
+		$("#sprite"+i).css({"width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY});
+	}
+		
+	/*Grabs Frame Value from Inputs*/
 	for (i=1;i<=len;i++) {
 		var f1Prop={'X':$("#f1X"+"_Layer"+i).val()*-1, 'Y':$("#f1Y"+"_Layer"+i).val()*-1};
 		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()*-1, 'Y':$("#f2Y"+"_Layer"+i).val()*-1};
@@ -295,9 +305,8 @@ function resetsPlays() {
 
 function setSpriteSize(dX,dY) {
 	/*Assigns default*/
-	$('#spriteMother').css({"width":dX+"px","height":dY+"px"});
-	$("#sizeX").val(dX);
-	$("#sizeY").val(dY);
+	$("#sizeX_Layer1").val(dX);
+	$("#sizeY_Layer1").val(dY);
 	/*set CSS and value for all layers*/
 	$('.sprite').each(function( e ) {
 		$(this).css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"})
