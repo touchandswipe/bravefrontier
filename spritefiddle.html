@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Sprite Fiddle - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Sprite Fiddle - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<style type="text/css">
+    .clear {clear:both;}
+    .bd {
+        font-weight:bold;
+        background:#EEEEEE;
+        text-transform:uppercase;
+    }
+    .upper {
+        text-transform:uppercase;
+    }
+    .btnspace {
+    	margin-bottom:5px;
+    }
+
+#spriteLayerTemplate {
+	display:none;
+}
+
+#spriteBG {
+	margin:0px auto 10px auto;
+	width:500px;
+	height:250px;
+	position:inherit;
+	box-shadow: 0px 0px 10px 1px #888888;
+	background: transparent url('https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_earth.jpg') -70px -50px no-repeat;
+}
+
+#spriteMother {
+	margin:0px auto 0px auto;
+	position:inherit;
+	top:80px;
+}
+.sprite {
+	position:absolute;
+}
+
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/jquery.keyframes.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/unitsguide"><i class="fa fa-database"></i></i> Units Guide Advance</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/unitsguidelite"><i class="fa fa-database"></i> Units Guide Lite</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container">
+	<div style="min-height:55px;"></div>
+	<div class="row text-center">
+		<div class="col-xs-12 text-center"><h1>Brave Frontier Sprite Fiddle (Beta)</h1></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8">
+			<div id="spriteBG">
+				<div  id="spriteMother">
+					<div id="sprite1" class="sprite"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center btnspace">
+					<button class="btn btn-primary btnspace" id="loadScriptBtn">Load script</button>
+					<button class="btn btn-danger btnspace" id="animateStop"><i class="fa fa-stop"></i></button>
+					<button class="btn btn-success btnspace" id="animateStart"><i class="fa fa-play"></i></button>
+					<button class="btn btn-default btnspace" id="toggleBorderBtn">Show/Hide Borders</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="row">
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_battle.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_stone.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_ice.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_earth.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_water.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_thunder.jpg"></a></div>
+				<div class="col-xs-6 col-md-4"><a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_dungeon_vocaloids.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-info">
+	  			<div class="panel-heading">
+	  				<h3 class="panel-title"><b>Sprite ID</b> (<a href="#" id="spriteSheet" target="_blank">Spritesheet</a> | <a href="#" id="spriteURL">Datasheet</a>)</h3>
+	  			</div>
+	  			<div class="panel-body">
+					<input type="text" class="form-control" id="spriteID" value="30445">
+					<div class="input-group" style="margin-top:5px;">
+		  				<span class="input-group-addon">Sprite script</span>
+						<input type="text" class="form-control" id="spriteScript">
+					</div>
+	  			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- all layers config goes into this -->
+<div class="container" id="spriteConfigHolder"></div>
+
+<div class="container" style="margin:0 auto 10px auto;">
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-info" type="button" id="addLayer" style="width:100%;"><i class="fa fa-plus"></i> Add new layer</button>
+		</div>
+	</div>
+</div>
+
+<!--Bottom Ad-->
+<div class="container">
+<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:0 auto;">
+<!-- Google Manual labnol.org responsive ads-->
+<div id="google-ads-2"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-2');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</div>
+</div>
+
+<!-- disqus discussion -->
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+<div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
+    <script type="text/javascript">
+	var disqus_shortname = 'bravefrontierpros';
+	(function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div>
+	</div>
+</div>
+
+<!--Template hidden-->
+<div class="container" id="spriteLayerTemplate">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="layerHead panel-title">Template ONLY - To be hidden in future </h4>
+  </div>
+  <div class="panel-body">
+  	<div class="row text-center">
+		<div class="col-xs-4 text-center">
+			<h4><b>Width</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="sizeX" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="sizeX" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="sizeX" value="0"></div>
+			</div>
+		<div class="col-xs-4 text-center">
+			<h4><b>Height</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="sizeY" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="sizeY" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="sizeY" value="0"></div>
+		</div>
+		<div class="col-xs-4 text-center">
+			<h4><b>Z-index</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="zIndex" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="zIndex" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="zIndex" value="0"></div>
+		</div>
+	</div>
+  	<div class="row text-center">
+		<div class="col-xs-6 text-center">
+			<h4><b>Offset - Horizontal</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="offsetX" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="offsetX" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="offsetX" value="0"></div>
+			</div>
+		<div class="col-xs-6 text-center">
+			<h4><b>Offset - Vertical</b></h4>
+			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-default btn-danger minusBtn" value="offsetY" type="button"><i class="fa fa-minus"></i></button>
+        				<button class="btn btn-default btn-success plusBtn" value="offsetY" type="button"><i class="fa fa-plus"></i></button>
+      				</span>
+				<input type="text" class="form-control" id="offsetY" value="0"></div>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-top:10px;">
+		<div class="col-xs-2 text-center">
+			<h5><b>Frame 1</b></h5>
+		</div>
+		<div class="col-xs-5 text-center">
+			<input type="text" class="form-control" value="0" id="f1X">
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f1Y">
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-2 text-center">
+			<h5><b>Frame 2</b></h5>
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f2X">
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f2Y">
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-2 text-center">
+			<h5><b>Frame 3</b></h5>
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f3X">
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f3Y">
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-xs-2 text-center">
+			<h5><b>Frame 4</b></h5>
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f4X">
+		</div>
+		<div class="col-xs-5 text-center">
+		      	<input type="text" class="form-control" value="0" id="f4Y">
+		</div>
+	</div>
+  </div>
+</div> <!-- end Panel-->
+</div> <!-- spriteLayerTemplate -->
+
+<script type="text/javascript">
+defaultWidth=128;
+defaultHeight=88;
+
+/*JQ Param handling no unencoding*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return results[1] || '';
+    }
+}
+
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+function grabTemplate() { /*Grab Template*/
+	var len = $('.spriteLayers').length;
+	var $html = $('#spriteLayerTemplate').clone();
+	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
+	/*plus minus btn values*/
+	$(".plusBtn, .minusBtn",$html).each(function() {
+        	$(this).attr('value',$(this).attr('value')+'_Layer'+(len+1))
+    	});
+    	/*apply default frame size*/
+    	$('#sizeX',$html).attr('value',defaultWidth);
+    	$('#sizeY',$html).attr('value',defaultHeight);
+    	$('#zIndex',$html).attr('value',90+parseInt(len));
+	/*Change ID of size and offset inputs*/
+	$('#sizeX',$html).attr('id',$('#sizeX',$html).attr('id')+'_Layer'+(len+1));
+	$('#sizeY',$html).attr('id',$('#sizeY',$html).attr('id')+'_Layer'+(len+1));
+	$('#zIndex',$html).attr('id',$('#zIndex',$html).attr('id')+'_Layer'+(len+1));
+	$('#offsetX',$html).attr('id',$('#offsetX',$html).attr('id')+'_Layer'+(len+1));
+	$('#offsetY',$html).attr('id',$('#offsetY',$html).attr('id')+'_Layer'+(len+1));
+	/*Change ID of 4 frames each layer w/ default value by size of sprite */
+	for (i=1;i<5;i++) {
+		$("#f"+i+"X",$html).attr("value",(i-1)*parseInt($('#sizeX_Layer'+(len+1),$html).val())).attr("id","f"+i+"X_Layer"+(len+1));
+		$("#f"+i+"Y",$html).attr("value",len*parseInt($('#sizeY_Layer'+(len+1),$html).val())).attr("id","f"+i+"Y_Layer"+(len+1));
+	}
+	return $html.html();
+}
+
+function loadAnimationScript(spriteString) {
+	var len = $('.spriteLayers').length;
+	var animationLoad=LZString.decompressFromEncodedURIComponent(spriteString);
+	if (isValidJSON(animationLoad)) {
+		var animationObj=JSON.parse(animationLoad);
+		var animationArray=animationObj.animation;
+		$('#spriteID').val(animationObj.unit_id);
+		/*writes value to fields*/
+		var layersGap=animationArray.length-len;
+		if (layersGap > 0) {
+			for (i=1;i<=layersGap;i++) {
+				/*Add new layer and config*/
+				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+				}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+				addNewLayer();
+			}
+		}
+		for (i=1;i<=animationArray.length;i++) {
+			$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
+			$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
+			$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
+			$('#offsetX_Layer'+i).val(animationArray[i-1].offsetX);
+			$('#offsetY_Layer'+i).val(animationArray[i-1].offsetY);
+			for (j=1;j<=4;j++) {
+				$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
+				$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
+			}
+		}
+		resetsPlays()
+	} else
+		alert('Invalid sprite Script')
+}
+
+function buildAnimationScript() {
+	var len = $('.spriteLayers').length;
+	var animationObj={};
+	var animationArray=[];
+	/*build each layer*/
+	for (i=1;i<=len;i++) {
+		var layerObj={
+			'sizeX':$('#sizeX_Layer'+i).val(),
+			'sizeY':$('#sizeY_Layer'+i).val(),
+			'zIndex':$('#zIndex_Layer'+i).val(),
+			'offsetX':$('#offsetX_Layer'+i).val(),
+			'offsetY':$('#offsetY_Layer'+i).val(),
+			'f1':{'X':$('#f1X_Layer'+i).val(), 'Y':$('#f1Y_Layer'+i).val()},
+			'f2':{'X':$('#f2X_Layer'+i).val(), 'Y':$('#f2Y_Layer'+i).val()},
+			'f3':{'X':$('#f3X_Layer'+i).val(), 'Y':$('#f3Y_Layer'+i).val()},
+			'f4':{'X':$('#f4X_Layer'+i).val(), 'Y':$('#f4Y_Layer'+i).val()}
+		}
+		animationArray.push(layerObj);
+	}
+	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray};
+	var encodeSpriteKey=LZString.compressToEncodedURIComponent(JSON.stringify(animationObj));
+	$('#spriteScript').val(encodeSpriteKey);
+	/*update HTML5 state*/
+	var state = { stateSprite: encodeSpriteKey };
+	history.pushState(state, "spriteKey State", "?spriteKey="+encodeSpriteKey );
+}
+
+function addNewLayer() { /*Adds new layer on top*/
+	var len = $('.sprite').length;
+	var $cloneSpriteDiv = $('#sprite1').clone().attr('id','sprite'+(len+1)).css({"background":"#FF0000"}).appendTo('#spriteMother');
+}
+
+function playSprite() {
+	var len = $('.sprite').length;
+	for (i=1;i<=len;i++) {
+		$("#sprite"+i).css({
+			"-webkit-animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
+			"-webkit-animation-fill-mode":"forwards",
+			"animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
+			"animation-fill-mode":"forwards"
+		});
+	}
+}
+
+function toggleBorder() {
+	var len = $('.sprite').length;
+	if ($('#sprite1').css("border").search("none")==-1)
+		var toggleStr=""
+	else
+		var toggleStr="1px solid #FF0000"
+	for (i=1;i<=len;i++) {
+		$("#sprite"+i).css("border",toggleStr);
+	}
+}
+
+function resetsPlays() {
+	var layerProp=[];
+	/*Reset URL for original files*/
+	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
+	$('#spriteSheet').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png")
+	/*Grabs no. of layers*/
+	var len = $('.spriteLayers').length;
+	/*grab input for each layer*/
+	for (i=1;i<=len;i++) {
+		var sizeX=$('#sizeX_Layer'+i).val()+'px';
+		var sizeY=$('#sizeY_Layer'+i).val()+'px';
+		var zIndex=$('#zIndex_Layer'+i).val();
+		var offsetX=$('#offsetX_Layer'+i).val()+'px';
+		var offsetY=$('#offsetY_Layer'+i).val()+'px';
+		var f1Prop={'X':$("#f1X"+"_Layer"+i).val()*-1, 'Y':$("#f1Y"+"_Layer"+i).val()*-1};
+		var f2Prop={'X':$("#f2X"+"_Layer"+i).val()*-1, 'Y':$("#f2Y"+"_Layer"+i).val()*-1};
+		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()*-1, 'Y':$("#f3Y"+"_Layer"+i).val()*-1};
+		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()*-1, 'Y':$("#f4Y"+"_Layer"+i).val()*-1};
+		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
+		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
+	}
+	
+	/*Define / Re-Define position*/
+	for (i=1;i<=len;i++) {
+		var layerName = 'spriteAnimate_'+i;
+		step1={'background-position': layerProp[i-1].f1.X+'px '+layerProp[i-1].f1.Y+'px'};
+		step2={'background-position': layerProp[i-1].f2.X+'px '+layerProp[i-1].f2.Y+'px'};
+		step3={'background-position': layerProp[i-1].f3.X+'px '+layerProp[i-1].f3.Y+'px'};
+		step4={'background-position': layerProp[i-1].f4.X+'px '+layerProp[i-1].f4.Y+'px'};
+		//alert(JSON.stringify(step1)+JSON.stringify(step2)+JSON.stringify(step3)+JSON.stringify(step4));
+		$.keyframe.define([{
+			name: layerName,
+			'0%': step1,
+			'25%': step2,
+			'50%': step3,
+			'75%': step4
+		}]);
+	}
+	/*stop animation*/
+	$('.sprite').each(function( e ) {
+		$(this).css("-webkit-animation","");
+	})
+	/*quirk to make animation reset*/
+	for (i=1;i<=len;i++)
+		document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
+	playSprite();
+	buildAnimationScript()
+}
+
+$(document).ready( function(e) {
+	/*load default 1st layer*/
+	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
+	
+	/*Assigns default*/
+	$('#spriteMother').css({"width":defaultWidth});
+	$("#sizeX_Layer1").val(defaultWidth);
+	$("#sizeY_Layer1").val(defaultHeight);
+	
+     	/*checks for URL Parameter*/
+     	var spriteParam=urlParam('spriteKey');
+	if ( (spriteParam != "") && ( spriteParam != null) )
+		    loadAnimationScript(spriteParam)
+	
+	/*Plays script*/
+	resetsPlays()
+	
+	/*add new layer event handling*/
+     	$('#addLayer').on("click", function () {
+     		//alert("Adding layer");
+		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+		}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+		addNewLayer();
+		playSprite();
+     	})
+}) /*End DocReady*/
+
+/*Toggle Borders*/
+$(document).on("click", '#toggleBorderBtn', function(e){
+	toggleBorder()
+})
+
+/*Stop Animation*/
+$(document).on("click", '#loadScriptBtn', function(e){
+	loadAnimationScript($('#spriteScript').val())
+})
+
+/*Stop Animation*/
+$(document).on("click", '#animateStop', function(e){
+	/*Resets*/
+	$('.sprite').css("-webkit-animation","");
+})
+
+/*Resets & Plays Animation*/
+$(document).on("click", '#animateStart', function(e){
+	resetsPlays()
+})
+
+/*change spriteBG*/
+$(document).on("click", '.thumbnail', function(e){
+	$('#spriteBG').css('background-image','url("'+$(this).children('img').attr('src')+'")')
+})
+
+/*Plus Minus Buttons*/
+$(document).on("click", '.plusBtn, .minusBtn', function(e){
+	var changeField='#'+$(this).val();
+	if ($(this).hasClass('plusBtn'))
+		$(changeField).val(parseInt($(changeField).val())+1)
+	else
+		$(changeField).val(parseInt($(changeField).val())-1)
+	resetsPlays()
+})
+
+/*POP state*/
+$(window).on('popstate', function(e) {
+	var state = e.originalEvent.state;
+	/*card state*/
+	if (state.stateSprite) {
+		loadAnimationScript(state.stateSprite);
+	}
+})
+</script>
+
+<!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-48617906-1', 'tumblr.com');
+      ga('send', 'pageview');
+    </script>
+<!--Chatroom-->
+<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='http://st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
