@@ -257,6 +257,8 @@ function playSprite() {
 
 function resetsPlays() {
 	var layerProp=[];
+	/*Reset URL for CGG File*/
+	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
 	/*Grabs no. of layers*/
 	var len = $('.spriteLayers').length;
 	/*Resize and offset each layer*/
@@ -265,7 +267,7 @@ function resetsPlays() {
 		var sizeY=$('#sizeY_Layer'+i).val()+'px';
 		var offsetX=$('#offsetX_Layer'+i).val()+'px';
 		var offsetY=$('#offsetY_Layer'+i).val()+'px';
-		$("#sprite"+i).css({"width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY});
+		$("#sprite"+i).css({"width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"});
 	}
 		
 	/*Grabs Frame Value from Inputs*/
@@ -303,39 +305,30 @@ function resetsPlays() {
 	playSprite();
 }
 
-function setSpriteSize(dX,dY) {
-	/*Assigns default*/
-	$('#spriteMother').css({"width":dX});
-	$("#sizeX_Layer1").val(dX);
-	$("#sizeY_Layer1").val(dY);
-	/*set CSS and value for all layers*/
-	$('.sprite').each(function( e ) {
-		$(this).css({"width":dX+"px", "height":dY+"px", "background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') 0 0 no-repeat"})
-	})
-	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
-}
-
 $(document).ready( function(e) {
 	var defaultLayer={	"f1":{"X":0,"Y":0},
 				"f2":{"X":0,"Y":0},
 				"f3":{"X":0,"Y":0},
 				"f4":{"X":0,"Y":0}
 			};
-	/*set default layer size*/
-	setSpriteSize(defaultWidth,defaultHeight);
 	
 	/*load default 1st layer*/
 	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	
+	/*Assigns default*/
+	$('#spriteMother').css({"width":defaultWidth});
+	$("#sizeX_Layer1").val(defaultWidth);
+	$("#sizeY_Layer1").val(defaultHeight);
+	
 	/*Add animation*/
-	$.keyframe.define([{
-		name: 'spriteAnimate_1',
-		'0%': {'background-position': '-5px 0px'},
-		'33%': {'background-position': '-170px 8px'},
-		'67%': {'background-position': '-333px 10px'},
-		'100%': {'background-position': '-499px 6px'}
-	}]);
-	playSprite();
+//	$.keyframe.define([{
+//		name: 'spriteAnimate_1',
+//		'0%': {'background-position': '-5px 0px'},
+//		'33%': {'background-position': '-170px 8px'},
+//		'67%': {'background-position': '-333px 10px'},
+//		'100%': {'background-position': '-499px 6px'}
+//	}]);
+	resetsPlays()
 	
 	/*load default value*/
 	for (i=1;i<5;i++) {
@@ -366,7 +359,6 @@ $(document).on("click", '#animateStart', function(e){
 /*Plus Minus Buttons*/
 $(document).on("click", '.plusBtn, .minusBtn', function(e){
 	var changeField='#'+$(this).val();
-	alert(changeField);
 	if ($(this).hasClass('plusBtn'))
 		$(changeField).val(parseInt($(changeField).val())+1)
 	else
