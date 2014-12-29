@@ -418,8 +418,10 @@ function toggleBorder() {
 		var toggleStr=""
 	else
 		var toggleStr="1px solid #FF0000"
+	alert("toggle is "+toggleStr)
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css("border",toggleStr);
+		alert("css changed");
 	}
 }
 
