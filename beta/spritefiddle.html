@@ -385,9 +385,10 @@ function loadAnimationScript(spriteString) {
 		$('#spriteID').val(animationObj.unit_id);
 		/*writes value to fields*/
 		var layersGap=animationArray.length-len;
-		alert(layersGap+1);
+		layersGap+=1;
+		alert(layersGap);
 		if (layersGap > 0) {
-			for (i=1;i<=layersGap+1;i++) {
+			for (i=1;i<=layersGap;i++) {
 				/*Add new layer and config*/
 				alert("layer created");
 				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
