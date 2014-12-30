@@ -524,10 +524,9 @@ $(document).ready( function(e) {
      	/*checks for URL Parameter*/
      	var spriteParam=urlParam('spriteKey');
 	if ( (spriteParam != "") && ( spriteParam != null) )
-		    loadAnimationScript(spriteParam)
-	
-	/*Plays script*/
-	resetsPlays()
+		loadAnimationScript(spriteParam) /*includes resetsPlays already*/
+	else
+		resetsPlays()
 	
 	/*add new layer event handling*/
      	$('#addLayer').on("click", function () {
@@ -543,7 +542,7 @@ $(document).on("click", '#toggleBorderBtn', function(e){
 	toggleBorder()
 })
 
-/*Stop Animation*/
+/*Load Animation*/
 $(document).on("click", '#loadScriptBtn', function(e){
 	loadAnimationScript($('#spriteScript').val())
 })
