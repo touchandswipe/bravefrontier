@@ -391,7 +391,7 @@ function loadAnimationScript(spriteString) {
 				setTimeout( function() {
 					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder');
 					addNewLayer();
-				} ,0);
+				} ,100);
 			}
 		}
 		setTimeout( function() {
@@ -406,8 +406,8 @@ function loadAnimationScript(spriteString) {
 					$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
 				}
 			}
-			resetsPlays()
-		},0);
+		},100);
+		resetsPlays()
 	} else
 		alert('Invalid sprite Script')
 }
