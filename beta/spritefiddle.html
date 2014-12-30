@@ -388,15 +388,12 @@ function loadAnimationScript(spriteString) {
 		layersGap+=1;
 		alert(layersGap);
 		if (layersGap > 0) {
-			for (i=1;i<=layersGap;i++) {
+			for (j=1;j<=layersGap;j++) {
 				/*Add new layer and config*/
 				setTimeout( function() {
-					alert("layer created");
-					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
-					}).appendTo('#spriteConfigHolder');//Get the html from template and hide and slideDown for transtion.
+					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder');
 					addNewLayer();
-				}
-				,5000);
+				} ,3000);
 			}
 		}
 		for (i=1;i<=animationArray.length;i++) {
