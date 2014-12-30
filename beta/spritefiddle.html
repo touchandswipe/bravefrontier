@@ -391,11 +391,11 @@ function loadAnimationScript(spriteString) {
 				setTimeout( function() {
 					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder');
 					addNewLayer();
-				} ,100);
+				} ,200);
 			}
 		}
-		setTimeout( function() {
-			for (i=1;i<=animationArray.length;i++) {
+		for (i=1;i<=animationArray.length;i++) {
+			setTimeout( function() {
 				$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
 				$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
 				$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
@@ -405,11 +405,11 @@ function loadAnimationScript(spriteString) {
 					$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
 					$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
 				}
-			}
-		},100);
+			},200);
+		}
 		resetsPlays()
 	} else
-		alert('Invalid sprite Script')
+		alert('Invalid Sprite Script')
 }
 
 function buildAnimationScript() {
