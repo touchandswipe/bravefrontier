@@ -386,27 +386,26 @@ function loadAnimationScript(spriteString) {
 		/*writes value to fields*/
 		var layersGap=animationArray.length-len;
 		if (layersGap > 0) {
-			for (i=1;i<=layersGap;i++) {
+			for (j=1;j<=layersGap;j++) {
 				/*Add new layer and config*/
-				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
-				}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
+				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder').delay(500);
 				addNewLayer();
 			}
 		}
 		for (i=1;i<=animationArray.length;i++) {
-			$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
-			$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
-			$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
-			$('#offsetX_Layer'+i).val(animationArray[i-1].offsetX);
-			$('#offsetY_Layer'+i).val(animationArray[i-1].offsetY);
-			for (j=1;j<=4;j++) {
-				$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
-				$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
-			}
+				$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
+				$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
+				$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
+				$('#offsetX_Layer'+i).val(animationArray[i-1].offsetX);
+				$('#offsetY_Layer'+i).val(animationArray[i-1].offsetY);
+				for (j=1;j<=4;j++) {
+					$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
+					$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
+				}
 		}
 		resetsPlays()
 	} else
-		alert('Invalid sprite Script')
+		alert('Invalid Sprite Script')
 }
 
 function buildAnimationScript() {
@@ -532,7 +531,6 @@ $(document).ready( function(e) {
 	
 	/*add new layer event handling*/
      	$('#addLayer').on("click", function () {
-     		//alert("Adding layer");
 		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
 		}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
 		addNewLayer();
