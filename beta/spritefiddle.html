@@ -388,14 +388,11 @@ function loadAnimationScript(spriteString) {
 		if (layersGap > 0) {
 			for (j=1;j<=layersGap;j++) {
 				/*Add new layer and config*/
-				setTimeout( function() {
-					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder');
-					addNewLayer();
-				} ,200);
+				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder').delay(500);
+				addNewLayer();
 			}
 		}
 		for (i=1;i<=animationArray.length;i++) {
-			setTimeout( function() {
 				$('#sizeX_Layer'+i).val(animationArray[i-1].sizeX);
 				$('#sizeY_Layer'+i).val(animationArray[i-1].sizeY);
 				$('#zIndex_Layer'+i).val(animationArray[i-1].zIndex);
@@ -405,9 +402,8 @@ function loadAnimationScript(spriteString) {
 					$('#f'+j+'X_Layer'+i).val(animationArray[i-1]['f'+j].X);
 					$('#f'+j+'Y_Layer'+i).val(animationArray[i-1]['f'+j].Y);
 				}
-			},200);
 		}
-		setTimeout( resetsPlays(),1000);
+		resetsPlays()
 	} else
 		alert('Invalid Sprite Script')
 }
