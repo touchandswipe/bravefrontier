@@ -385,7 +385,6 @@ function loadAnimationScript(spriteString) {
 		$('#spriteID').val(animationObj.unit_id);
 		/*writes value to fields*/
 		var layersGap=animationArray.length-len;
-		layersGap+=1;
 		alert(layersGap);
 		if (layersGap > 0) {
 			for (j=1;j<=layersGap;j++) {
@@ -393,7 +392,7 @@ function loadAnimationScript(spriteString) {
 				setTimeout( function() {
 					$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder');
 					addNewLayer();
-				} ,3000);
+				} ,1000);
 			}
 		}
 		for (i=1;i<=animationArray.length;i++) {
