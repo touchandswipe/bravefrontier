@@ -129,8 +129,10 @@
  </script>
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h2>Brave Frontier Items Guide - <span class="text-danger">Global</span></h2>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
+<h5><b>Last Updated: </b><kbd id="lastModDateGL">TBD</kbd>
+<h5><b>Last Updated: </b><kbd id="lastModDateJP">TBD</kbd>
+<h5><b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
@@ -355,10 +357,7 @@ function isArray(obj) {
 function getNameIMG(unitdata,idFind,server) {
 	var retArray=[];
 	var retFound=false;
-	if (server='JP')
-		var imgprefix=imgprefixJP;
-	else
-		var imgprefix=imgprefixGL;
+	var imgprefix=(server=='JP')?imgprefixJP:imgprefixGL;
 	/*Process for Each Unit*/
 	$.each( unitdata, function( unitKey, valObj2 ) {
     		if (valObj2.id==idFind) {
@@ -387,10 +386,7 @@ var findIndex=function(key,arr) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit,server) {
-	if (server='JP')
-		var imgprefix=imgprefixJP;
-	else
-		var imgprefix=imgprefixGL;
+	var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
     /*build sphere type*/
     var sphereTypeArray=[];
     var sphereArray=[]
@@ -404,7 +400,11 @@ function buildDB(unit,server) {
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
-        nameSTR+='<b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	nameSTR+='<b>'+valObj.name;
+	/*Grab English name if available*/
+	if (server=='JP' && dataGL.unitKey)
+		nameSTR+=' ('+dataGL.unitKey.name+')';
+        nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
