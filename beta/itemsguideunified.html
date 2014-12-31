@@ -799,9 +799,10 @@ $(document).on("click", '#refreshData', function(e){
 $(document).ready( function(e) {
     /*checks GL local data*/
     if (localStorage.itemsguideglobal) {
-	dataGL=LZString.decompressFromUTF16(localStorage.itemsguideglobal);
-	if (isValidJSON(dataGL)) {
-		buildDB(JSON.parse(dataGL),'GL');
+	dataTemp=LZString.decompressFromUTF16(localStorage.itemsguideglobal);
+	if (isValidJSON(dataTemp)) {
+		dataGL=JSON.parse(dataTemp);
+		buildDB(dataGL,'GL');
 		$('#lastModDateGL').text("GLOBAL (local cache) - "+localStorage.itemsguideglobaldate);
 		/*checks for global server update*/ 
 		checkUpdate(jsonGL,localStorage.itemsguideglobaldate);
@@ -810,9 +811,10 @@ $(document).ready( function(e) {
     };
     /*check JP local data*/
     if (localStorage.itemsguidejapan) {
-	dataJP=LZString.decompressFromUTF16(localStorage.itemsguidejapan);
-	if (isValidJSON(dataJP)) {
-		buildDB(JSON.parse(dataJP),'JP');
+	dataTemp=LZString.decompressFromUTF16(localStorage.itemsguidejapan);
+	if (isValidJSON(dataTemp)) {
+		dataJP=JSON.parse(dataTemp);
+		buildDB(dataJP,'JP');
 		$('#lastModDateJP').text("JAPAN (local cache) - "+localStorage.itemsguideglobaldate);
 		/*checks for japan server update*/ 
 		checkUpdate(jsonJP,localStorage.itemsguidejapandate);
