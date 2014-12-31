@@ -40,6 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 <script src="js/typeahead.bundle.min.js"></script>
 </head>
 
@@ -262,7 +263,7 @@
     <div class="modal-content">
       <div class="modal-body">
 	<div class="text-center">
-	    <h3 class="text-primary"><b>Chasing wild koalas</b></h3>
+	    <h3 class="text-primary" id="loadStatusText"><b>Chasing wild koalas</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
 	    <h5>(Note: This can take a while depending on connection speed ...)</h5>
@@ -272,11 +273,67 @@
   </div>
 </div>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
-imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
+imgprefixGL="http://3.cdn.bravefrontier.gumi.sg/content/item/";
+imgprefixJP="http://v2.cdn.android.brave.a-lim.jp/item/";
+jsonGL="//touchandswipe.github.io/bravefrontier_data/info.json";
+jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+dataGL=[];
+dataJP=[];
 rawParseObj=[]; /*holder variable in array*/
+
+/*check valid json*/
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+/*Check filedate*/
+function checkUpdate(fileURL,localDate) {
+    $.ajax({
+    	type: "Head",
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: fileURL,
+        success: function(data, textStatus, request) {
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		if (Date.parse(lastModified) > Date.parse(localDate))
+    			$("#alertmodal").modal("show")
+ 	}
+    })
+}
+
+/*Reset Local Storage*/
+function resetLocalData(serverStr, corrupted) {
+	/*LocalStorage Delete and Refresh*/
+	if (corrupted)
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+	localStorage.removeItem(serverStr);
+	localStorage.removeItem(serverStr+"date");
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+}
 
 /*JQ Param handling*/
 function urlParam(name){
@@ -687,8 +744,53 @@ $(document).on("click", '#searchIngredientBtn', function(e){
 	searchIngredientRun()
 })
 
+/*Refresh data*/
+$(document).on("click", '#refreshData', function(e){
+    /*Init loader*/
+    $('#loadStatusText').html('<b>Refreshing GLOBAL data</b>');
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: jsonGL,
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		dataGL=data;
+    		/*Save in local storage*/
+		localStorage.setItem("itemsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+		localStorage.setItem("itemsguideglobaldate",lastModified);
+    		$('#lastModDateGL').text("GL Server data - "+lastModified);
+    		/*Calls JP after Global*/
+    		$('#loadStatusText').html('<b>Refreshing JAPAN data</b>');
+		$.ajax({
+		        dataType: "json",
+		        contentType: "text/plain; charset=UTF-8",
+		        url: jsonJP,
+		        success: function(data2, textStatus, request){
+		    		lastModified2 = request.getResponseHeader("Last-Modified");
+		    		rawParseObj=[]; /*reset memory data*/
+		    		dataJP=data2;
+		    		/*Aggregate data realtime*/
+		    		$('#loadStatusText').html('<b>Consolidating data</b>');
+		    		buildDB(dataGL);
+		    		buildDB(dataJP);
+		    		/*Save in local storage*/
+				localStorage.setItem("itemsguidejapan",LZString.compressToUTF16(JSON.stringify(data2)));
+				localStorage.setItem("itemsguidejapandate",lastModified2);
+		    		$('#lastModDateJP').text("JP Server data - "+lastModified2);
+		 	}
+		    });
+ 	}
+    });
+})
+
 $(document).ready( function(e) {
     /*Init loader*/
+    $('#loadStatusText').html('<b>Validating existing data</b>');
     $('#progressModal').modal({
     	keyboard:false,
     	backdrop:'static',
@@ -705,6 +807,74 @@ $(document).ready( function(e) {
     		buildDB(data);
  	}
     });
+    
+$(document).ready( function(e) {
+    /*checks GL local data*/
+    if (localStorage.itemsguideglobal) {
+	dataGL=LZString.decompressFromUTF16(localStorage.itemsguideglobal);
+	if (isValidJSON(dataGL)) {
+		buildDB(JSON.parse(dataGL));
+		$('#lastModDateGL').text("GLOBAL (local cache) - "+localStorage.itemsguideglobaldate);
+		/*checks for global server update*/ 
+		checkUpdate(jsonGL,localStorage.itemsguideglobaldate);
+	} else
+		resetLocalData("itemsguideglobal",true)
+    };
+    /*check JP local data*/
+    if (localStorage.itemsguidejapan) {
+	dataJP=LZString.decompressFromUTF16(localStorage.itemsguidejapan);
+	if (isValidJSON(dataJP)) {
+		buildDB(JSON.parse(dataJP));
+		$('#lastModDateJP').text("JAPAN (local cache) - "+localStorage.itemsguideglobaldate);
+		/*checks for japan server update*/ 
+		checkUpdate(jsonJP,localStorage.itemsguidejapandate);
+	} else
+		resetLocalData("itemsguidejapan",true)
+    };
+    /*only when there's no data*/
+    if (!localStorage.itemsguideglobal && !localStorage.itemsguidejapan) {
+	    /*Init loader*/
+	    $('#loadStatusText').html('<b>Loading Global and JP data for the first time.</b>');
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	toggle:true
+	    });
+		/*load both JP and GL data*/
+		    $.ajax({
+		        dataType: "json",
+		        contentType: "text/plain; charset=UTF-8",
+		        url: jsonGL,
+		        success: function(data, textStatus, request){
+		    		lastModified = request.getResponseHeader("Last-Modified");
+		    		dataGL=data;
+		    		/*Save in local storage*/
+				localStorage.setItem("itemsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+				localStorage.setItem("itemsguideglobaldate",lastModified);
+		    		$('#lastModDateGL').text("GL Server data - "+lastModified);
+		    		/*Calls JP after Global*/
+		    		$('#loadStatusText').html('<b>Refreshing JAPAN data</b>');
+				$.ajax({
+				        dataType: "json",
+				        contentType: "text/plain; charset=UTF-8",
+				        url: jsonJP,
+				        success: function(data2, textStatus, request){
+				    		lastModified2 = request.getResponseHeader("Last-Modified");
+				    		rawParseObj=[]; /*reset memory data*/
+				    		dataJP=data2;
+				    		/*Aggregate data realtime*/
+				    		$('#loadStatusText').html('<b>Consolidating data</b>');
+				    		buildDB(dataGL);
+				    		buildDB(dataJP);
+				    		/*Save in local storage*/
+						localStorage.setItem("itemsguidejapan",LZString.compressToUTF16(JSON.stringify(data2)));
+						localStorage.setItem("itemsguidejapandate",lastModified2);
+				    		$('#lastModDateJP').text("JP Server data - "+lastModified2);
+				 	}
+				    });
+		 	}
+		    });
+})
     
 /*POP state*/
     $(window).on('popstate', function(ev) {
