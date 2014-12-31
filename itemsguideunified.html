@@ -520,6 +520,9 @@ function buildDB(unit,server) {
             itemTypeArray.push(rawParseObj[i].type);
         }
     }
+    /*load up drop downs*/
+    $("#itemTypeList").html("");
+    $("#sphereTypeList").html("");
     for (i in itemTypeArray) {
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
     }
