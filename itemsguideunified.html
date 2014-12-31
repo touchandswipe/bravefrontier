@@ -572,8 +572,8 @@ function itemRun(select) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_TypeFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Type Filter'
+  		'page': '/vurl/itemsguideU_TypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Type Filter'
 	});
 }
 
@@ -604,8 +604,8 @@ function sphereRun(select) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_SphereFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Sphere Filter'
+  		'page': '/vurl/itemsguideU_SphereFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Sphere Filter'
 	});
 }
 
@@ -636,8 +636,8 @@ function skillRun(selectSkill) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_EffectsFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Effects Filter'
+  		'page': '/vurl/itemsguideU_EffectsFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Effects Filter'
 	});
 }
 
@@ -671,13 +671,14 @@ function searchNameRun() {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Search',
-  		'title': 'Brave Frontier PROs - Items Guide GL Search'
+  		'page': '/vurl/itemsguideU_Search',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Search by Ingredient*/
@@ -714,9 +715,10 @@ function searchIngredientRun() {
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Ingredients',
-  		'title': 'Brave Frontier PROs - Items Guide GL Ingredients Search'
+  		'page': '/vurl/itemsguideU_Ingredients',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Ingredients Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Binds Enter KEY to BOX*/
