@@ -402,6 +402,8 @@ function buildDB(unit,server) {
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
 	nameSTR+='<b>'+valObj.name;
 	/*Grab English name if available*/
+	if (server=='JP')
+		alert(unitKey+" calling other"+dataGL[unitKey]);
 	if (server=='JP' && dataGL[unitKey])
 		nameSTR+=' ('+dataGL[unitKey].name+')';
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
