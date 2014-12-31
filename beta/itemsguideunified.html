@@ -787,26 +787,6 @@ $(document).on("click", '#refreshData', function(e){
  	}
     });
 })
-
-$(document).ready( function(e) {
-    /*Init loader*/
-    $('#loadStatusText').html('<b>Validating existing data</b>');
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
-    /*AJAX Call shorthand*/
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/items.json",
-        success: function(data, textStatus, request){
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		$(lastModDate).text(lastModified);
-    		buildDB(data);
- 	}
-    });
     
 $(document).ready( function(e) {
     /*checks GL local data*/
@@ -874,22 +854,21 @@ $(document).ready( function(e) {
 				    });
 		 	}
 		    });
-})
+});
     
 /*POP state*/
-    $(window).on('popstate', function(ev) {
+$(window).on('popstate', function(ev) {
 	var state = ev.originalEvent.state;
 	/*Search query state*/
 	if (state.stateNameFilter) {
         $('#searchNameBox').val(state.stateNameFilter);
-        searchRun();
+        searchNameRun();
 	}
 	/*Search ingredient state*/
 	if (state.stateIngredientFilter) {
         $('#searchIngredientBox').val(state.stateIngredientFilter);
         searchIngredientRun();
 	}
-    })
 })
 </script>
 
