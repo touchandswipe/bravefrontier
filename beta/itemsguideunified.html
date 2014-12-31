@@ -76,7 +76,7 @@
 <div style="min-height:55px;"></div>
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
+<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -130,6 +130,7 @@
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
+<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 <h5><b>Last Updated: </b><kbd id="lastModDateGL">TBD</kbd>
 <h5><b>Last Updated: </b><kbd id="lastModDateJP">TBD</kbd>
 <h5><b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
@@ -446,8 +447,14 @@ function buildDB(unit,server) {
 			if (lsKey=="materials") {
 				for (i in valObj.recipe.materials) {
 					ingArray=getNameIMG(unit,valObj.recipe.materials[i].id,server);
-					if (!ingArray)
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name+"</span></div>";
+					if (!ingArray) {
+						/*Grab English name if available*/
+						if (server=='JP' && dataGL[valObj.recipe.materials[i].id])
+							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
+						else
+							ingEnglish='';
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name"</span>"+valObj.recipe.materials[i].id+</div>";
+					}
 					else
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a></div>";
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
