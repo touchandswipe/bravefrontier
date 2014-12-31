@@ -301,6 +301,9 @@ jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items.json";
 dataGL=[];
 dataJP=[];
 rawParseObj=[]; /*holder variable in array*/
+/*build sphere type*/
+sphereTypeArray=[];
+sphereArray=[]
 
 /*check valid json*/
 function isValidJSON(str) {
@@ -388,9 +391,6 @@ var findIndex=function(key,arr) {
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit,server) {
 	var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
-    /*build sphere type*/
-    var sphereTypeArray=[];
-    var sphereArray=[]
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	/*fill dropdown for sphere type*/
@@ -455,8 +455,14 @@ function buildDB(unit,server) {
 							ingEnglish='';
 						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name+"</span>"+ingEnglish+"</div>";
 					}
-					else
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a></div>";
+					else {
+						/*Grab English name if available*/
+						if (server=='JP' && dataGL[valObj.recipe.materials[i].id])
+							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
+						else
+							ingEnglish='';
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a>"+ingEnglish+"</div>";
+					}
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
 				}
 			} else {
@@ -514,6 +520,9 @@ function buildDB(unit,server) {
             itemTypeArray.push(rawParseObj[i].type);
         }
     }
+    /*load up drop downs*/
+    $("#itemTypeList").html("");
+    $("#sphereTypeList").html("");
     for (i in itemTypeArray) {
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
     }
@@ -566,8 +575,8 @@ function itemRun(select) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_TypeFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Type Filter'
+  		'page': '/vurl/itemsguideU_TypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Type Filter'
 	});
 }
 
@@ -598,8 +607,8 @@ function sphereRun(select) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_SphereFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Sphere Filter'
+  		'page': '/vurl/itemsguideU_SphereFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Sphere Filter'
 	});
 }
 
@@ -630,8 +639,8 @@ function skillRun(selectSkill) {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_EffectsFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Effects Filter'
+  		'page': '/vurl/itemsguideU_EffectsFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Effects Filter'
 	});
 }
 
@@ -665,13 +674,14 @@ function searchNameRun() {
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Search',
-  		'title': 'Brave Frontier PROs - Items Guide GL Search'
+  		'page': '/vurl/itemsguideU_Search',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Search by Ingredient*/
@@ -708,9 +718,10 @@ function searchIngredientRun() {
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Ingredients',
-  		'title': 'Brave Frontier PROs - Items Guide GL Ingredients Search'
+  		'page': '/vurl/itemsguideU_Ingredients',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Ingredients Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Binds Enter KEY to BOX*/
@@ -793,6 +804,7 @@ $(document).on("click", '#refreshData', function(e){
 		        success: function(data2, textStatus, request){
 		    		lastModified2 = request.getResponseHeader("Last-Modified");
 		    		rawParseObj=[]; /*reset memory data*/
+		    		countVar=0;
 		    		dataJP=data2;
 		    		/*Aggregate data realtime*/
 		    		$('#loadStatusText').html('<b>Consolidating data</b>');
