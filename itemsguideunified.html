@@ -801,6 +801,7 @@ $(document).on("click", '#refreshData', function(e){
 		        success: function(data2, textStatus, request){
 		    		lastModified2 = request.getResponseHeader("Last-Modified");
 		    		rawParseObj=[]; /*reset memory data*/
+		    		countVar=0;
 		    		dataJP=data2;
 		    		/*Aggregate data realtime*/
 		    		$('#loadStatusText').html('<b>Consolidating data</b>');
