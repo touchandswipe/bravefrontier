@@ -449,6 +449,7 @@ function buildDB(unit,server) {
 					ingArray=getNameIMG(unit,valObj.recipe.materials[i].id,server);
 					if (!ingArray) {
 						/*Grab English name if available*/
+						alert(valObj.recipe.materials[i].id+" "+dataGL[valObj.recipe.materials[i].id]);
 						if (server=='JP' && dataGL[valObj.recipe.materials[i].id])
 							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
 						else
