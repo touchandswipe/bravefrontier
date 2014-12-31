@@ -301,6 +301,9 @@ jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items.json";
 dataGL=[];
 dataJP=[];
 rawParseObj=[]; /*holder variable in array*/
+/*build sphere type*/
+sphereTypeArray=[];
+sphereArray=[]
 
 /*check valid json*/
 function isValidJSON(str) {
@@ -388,9 +391,6 @@ var findIndex=function(key,arr) {
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit,server) {
 	var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
-    /*build sphere type*/
-    var sphereTypeArray=[];
-    var sphereArray=[]
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	/*fill dropdown for sphere type*/
