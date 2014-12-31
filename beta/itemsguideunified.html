@@ -402,8 +402,6 @@ function buildDB(unit,server) {
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
 	nameSTR+='<b>'+valObj.name;
 	/*Grab English name if available*/
-	if (server=='JP')
-		alert(unitKey+" calling other "+JSON.stringify(dataGL[unitKey]));
 	if (server=='JP' && dataGL[unitKey])
 		nameSTR+=' ('+dataGL[unitKey]["name"]+')';
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
@@ -474,8 +472,13 @@ function buildDB(unit,server) {
         })
         /*Append each HTML*/
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
+	/*Grab English name if available*/
+	if (server=='JP' && dataGL[unitKey])
+		OBJSearchName=valObj.name+" "+dataGL[unitKey]["name"];
+	else
+		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
