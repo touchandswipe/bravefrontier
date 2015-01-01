@@ -230,7 +230,7 @@
   <div class="panel-heading">
     <h4 class="panel-title"><a class="layerHead" data-toggle="collapse" data-parent="#spriteConfigHolder" href="#collapse_Layer">Template ONLY - To be hidden in future</a></h4>
   </div>
-  <div id="collapse_Layer" class="panel-collapse collapse in">
+  <div id="collapse_Layer" class="panel-collapse collapse">
   <div class="panel-body">
   	<div class="row text-center">
 		<div class="col-xs-4 text-center">
@@ -360,7 +360,9 @@ function grabTemplate() { /*Grab Template*/
 	var $html = $('#spriteLayerTemplate').clone();
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
 	$(".layerHead", $html).attr('href','#collapse_Layer'+(len+1));
-	$("#collapse_Layer", $html).attr('id','collapse_Layer'+(len+1));
+	$("#collapse_Layer", $html).attr('id','collapse_Layer'+(len+1))
+	if (len=0)
+		$("#collapse_Layer", $html).addClass('in');
 	/*plus minus btn values*/
 	$(".plusBtn, .minusBtn",$html).each(function() {
         	$(this).attr('value',$(this).attr('value')+'_Layer'+(len+1))
