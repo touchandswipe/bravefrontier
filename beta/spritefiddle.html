@@ -360,7 +360,7 @@ function grabTemplate() { /*Grab Template*/
 	var $html = $('#spriteLayerTemplate').clone();
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
 	$(".layerHead", $html).attr('href','#collapse_Layer'+(len+1));
-	if (len=0)
+	if (len==0)
 		$("#collapse_Layer", $html).addClass('in');
 	$("#collapse_Layer", $html).attr('id','collapse_Layer'+(len+1))
 	/*plus minus btn values*/
