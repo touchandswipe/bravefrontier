@@ -521,7 +521,7 @@ function resetsPlays() {
 
 $(document).ready( function(e) {
 	/*load default 1st layer*/
-	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
+	$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	
 	/*Assigns default*/
 	$('#spriteMother').css({"width":defaultWidth});
@@ -537,7 +537,7 @@ $(document).ready( function(e) {
 	
 	/*add new layer event handling*/
      	$('#addLayer').on("click", function () {
-		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+		$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate()
 		}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
 		addNewLayer();
 		playSprite();
