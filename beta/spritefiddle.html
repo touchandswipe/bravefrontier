@@ -540,7 +540,8 @@ $(document).ready( function(e) {
 		formatter: function(value) {
 			return value+'sec/frame';
 		}
-	}).on('change', playSprite());
+	});
+	$('#speedSlider').on('slide', playSprite());
 	
 	/*Assigns default*/
 	$('#spriteMother').css({"width":defaultWidth});
