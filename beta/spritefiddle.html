@@ -134,8 +134,12 @@
 	  			<div class="panel-body">
 					<input type="text" class="form-control" id="spriteID" value="30445">
 					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-addon">Sprite script</span>
+		  				<span class="input-group-addon">Sprite script identifier</span>
 						<input type="text" class="form-control" id="spriteScript">
+					</div>
+					<div class="input-group" style="margin-top:5px;">
+		  				<span class="input-group-btn"><button class="btn btn-default" type="button" id="getSharingURL">Generate sharing link</button></span>
+						<input type="text" class="form-control" id="sharingBox">
 					</div>
 	  			</div>
 			</div>
@@ -338,6 +342,22 @@
 <script type="text/javascript">
 defaultWidth=128;
 defaultHeight=88;
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+
+/*AJAX Call to Google URL Shortener API*/
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
+	    type: 'POST',
+	    async: false,
+	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
+	    contentType: 'application/json; charset=utf-8',
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             	linkAsset.val(text.id);
+	         }
+	})
+}
 
 /*JQ Param handling no unencoding*/
 function urlParam(name){
@@ -593,6 +613,13 @@ $(document).on("click", '#animateStop', function(e){
 /*Resets & Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
 	resetsPlays()
+})
+
+/*Generate Sharing URL*/
+$(document).on("click", '#getSharingURL', function(e){
+	resetsPlays();
+	var compileURL=window.location.href;
+	gooShorten(compileURL, $('#sharingBox'));
 })
 
 /*change spriteBG*/
