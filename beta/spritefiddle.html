@@ -461,9 +461,9 @@ function playSprite() {
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css({
 			"-webkit-animation":"spriteAnimate_"+i+" "+animSpeed+"s steps(1) infinite",
-			"-webkit-animation-fill-mode":"forwards",
-			"animation":"spriteAnimate_"+i+" "+animSpeed+"s steps(1) infinite",
-			"animation-fill-mode":"forwards"
+			//"-webkit-animation-fill-mode":"forwards",
+			"animation":"spriteAnimate_"+i+" "+animSpeed+"s steps(1) infinite"
+			//"animation-fill-mode":"forwards"
 		});
 	}
 }
