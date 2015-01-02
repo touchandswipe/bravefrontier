@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bootstrap-slider/stylesheets/bootstrap-slider.css" rel="stylesheet">
+    
 <!-- Custom CSS -->
 <style type="text/css">
     .clear {clear:both;}
@@ -47,6 +49,8 @@
 .sprite {
 	position:absolute;
 }
+#speedSliderDiv .slider-selection {background: #BABABA;}
+}
 
 </style>
 <!-- START JSON Code-->
@@ -54,6 +58,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/jquery.keyframes.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
+<script src="//touchandswipe.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -85,21 +90,13 @@
 <div class="container">
 	<div style="min-height:55px;"></div>
 	<div class="row text-center">
-		<div class="col-xs-12 text-center"><h2><b>Brave Frontier Sprite Fiddle (Beta)</b></h2></div>
+		<div class="col-xs-12 text-center"><h2><b>Brave Frontier Sprite Fiddle (Beta v2)</b></h2></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-8">
 			<div id="spriteBG">
 				<div  id="spriteMother">
 					<div id="sprite1" class="sprite"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-center btnspace">
-					<button class="btn btn-primary btnspace" id="loadScriptBtn">Load script</button>
-					<button class="btn btn-danger btnspace" id="animateStop"><i class="fa fa-stop"></i></button>
-					<button class="btn btn-success btnspace" id="animateStart"><i class="fa fa-play"></i></button>
-					<button class="btn btn-default btnspace" id="toggleBorderBtn">Show/Hide Borders</button>
 				</div>
 			</div>
 		</div>
@@ -115,6 +112,16 @@
 			</div>
 		</div>
 	</div>
+	<!--controls-->
+	<div class="row">
+		<div class="col-xs-12 text-center btnspace">
+			<button class="btn btn-primary btnspace" id="loadScriptBtn">Load script</button>
+			<button class="btn btn-danger btnspace" id="animateStop"><i class="fa fa-stop"></i></button>
+			<button class="btn btn-success btnspace" id="animateStart"><i class="fa fa-play"></i></button>
+			<button class="btn btn-default btnspace" id="toggleBorderBtn">Show/Hide Borders</button>
+			<b>Slower</b> <input id="speedSlider" type="text"/> <b>Faster</b>
+		</div>
+	</div>
 </div>
 
 <div class="container">
@@ -127,8 +134,12 @@
 	  			<div class="panel-body">
 					<input type="text" class="form-control" id="spriteID" value="30445">
 					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-addon">Sprite script</span>
+		  				<span class="input-group-addon">Sprite script identifier</span>
 						<input type="text" class="form-control" id="spriteScript">
+					</div>
+					<div class="input-group" style="margin-top:5px;">
+		  				<span class="input-group-btn"><button class="btn btn-info" type="button" id="getSharingURL">Generate sharing link</button></span>
+						<input type="text" value="click button to generate when you are done with the sprite animation" class="form-control" id="sharingBox">
 					</div>
 	  			</div>
 			</div>
@@ -137,7 +148,10 @@
 </div>
 
 <!-- all layers config goes into this -->
-<div class="container" id="spriteConfigHolder"></div>
+<div class="container">
+	<div class="panel-group" id="spriteConfigHolder"></div>
+</div>
+
 
 <div class="container" style="margin:0 auto 10px auto;">
 	<div class="row">
@@ -222,11 +236,11 @@
 </div>
 
 <!--Template hidden-->
-<div class="container" id="spriteLayerTemplate">
-<div class="panel panel-default">
+<div class="panel panel-default" id="spriteLayerTemplate">
   <div class="panel-heading">
-    <h4 class="layerHead panel-title">Template ONLY - To be hidden in future </h4>
+    <h4 class="panel-title"><a class="layerHead" data-toggle="collapse" data-parent="#spriteConfigHolder" href="#collapse_Layer">Template ONLY - To be hidden in future</a></h4>
   </div>
+  <div id="collapse_Layer" class="panel-collapse collapse">
   <div class="panel-body">
   	<div class="row text-center">
 		<div class="col-xs-4 text-center">
@@ -321,13 +335,29 @@
 		      	<input type="text" class="form-control" value="0" id="f4Y">
 		</div>
 	</div>
-  </div>
+  </div> <!-- end Panel Body-->
+  </div> <!-- end collapse body-->
 </div> <!-- end Panel-->
-</div> <!-- spriteLayerTemplate -->
 
 <script type="text/javascript">
 defaultWidth=128;
 defaultHeight=88;
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+
+/*AJAX Call to Google URL Shortener API*/
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
+	    type: 'POST',
+	    async: false,
+	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
+	    contentType: 'application/json; charset=utf-8',
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             	linkAsset.val(text.id);
+	         }
+	})
+}
 
 /*JQ Param handling no unencoding*/
 function urlParam(name){
@@ -354,6 +384,8 @@ function grabTemplate() { /*Grab Template*/
 	var len = $('.spriteLayers').length;
 	var $html = $('#spriteLayerTemplate').clone();
 	$(".layerHead", $html).html("<b>Layer "+(len+1)+":</b> Adjust position of each frame");
+	$(".layerHead", $html).attr('href','#collapse_Layer'+(len+1));
+	$("#collapse_Layer", $html).attr('id','collapse_Layer'+(len+1))
 	/*plus minus btn values*/
 	$(".plusBtn, .minusBtn",$html).each(function() {
         	$(this).attr('value',$(this).attr('value')+'_Layer'+(len+1))
@@ -388,7 +420,7 @@ function loadAnimationScript(spriteString) {
 		if (layersGap > 0) {
 			for (j=1;j<=layersGap;j++) {
 				/*Add new layer and config*/
-				$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()}).appendTo('#spriteConfigHolder').delay(500);
+				$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate()}).appendTo('#spriteConfigHolder').delay(500);
 				addNewLayer();
 			}
 		}
@@ -441,13 +473,14 @@ function addNewLayer() { /*Adds new layer on top*/
 }
 
 function playSprite() {
+	var animSpeed=$('#speedSlider').slider('getValue');
 	var len = $('.sprite').length;
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css({
-			"-webkit-animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
-			"-webkit-animation-fill-mode":"forwards",
-			"animation":"spriteAnimate_"+i+" 0.8s steps(1) infinite",
-			"animation-fill-mode":"forwards"
+			"-webkit-animation":"spriteAnimate_"+i+" "+animSpeed+"s steps(1) infinite",
+			//"-webkit-animation-fill-mode":"forwards",
+			"animation":"spriteAnimate_"+i+" "+animSpeed+"s steps(1) infinite"
+			//"animation-fill-mode":"forwards"
 		});
 	}
 }
@@ -514,7 +547,31 @@ function resetsPlays() {
 
 $(document).ready( function(e) {
 	/*load default 1st layer*/
-	$('<div/>', {'class' : 'spriteLayers', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
+	$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
+	/*Speed Control and event*/
+	$('#speedSlider').slider({
+		id:'speedSliderDiv',
+		min:0.1,
+		max:5,
+		step:0.1,
+		value:1,
+		reversed:true,
+		formatter: function(value) {
+			return value+'sec / frame';
+		}
+	});
+	$('#speedSlider').on("slideStop", function(e) {
+		/*Grabs no. of layers*/
+		var len = $('.spriteLayers').length;
+		/*stop animation*/
+		$('.sprite').each(function( e ) {
+			$(this).css("-webkit-animation","");
+		})
+		/*quirk to make animation reset*/
+		for (i=1;i<=len;i++)
+			document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
+		playSprite()
+	});
 	
 	/*Assigns default*/
 	$('#spriteMother').css({"width":defaultWidth});
@@ -530,7 +587,7 @@ $(document).ready( function(e) {
 	
 	/*add new layer event handling*/
      	$('#addLayer').on("click", function () {
-		$('<div/>', {'class' : 'spriteLayers', html: grabTemplate()
+		$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate()
 		}).hide().appendTo('#spriteConfigHolder').slideDown('slow');//Get the html from template and hide and slideDown for transtion.
 		addNewLayer();
 		playSprite();
@@ -556,6 +613,13 @@ $(document).on("click", '#animateStop', function(e){
 /*Resets & Plays Animation*/
 $(document).on("click", '#animateStart', function(e){
 	resetsPlays()
+})
+
+/*Generate Sharing URL*/
+$(document).on("click", '#getSharingURL', function(e){
+	resetsPlays();
+	var compileURL=window.location.href;
+	gooShorten(compileURL, $('#sharingBox'));
 })
 
 /*change spriteBG*/
