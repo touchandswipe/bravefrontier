@@ -542,7 +542,16 @@ $(document).ready( function(e) {
 			return value+'sec / frame';
 		}
 	});
-	$('#speedSlider').on("slideStop", function(slideEvt) {
+	$('#speedSlider').on("slideStop", function(e) {
+		/*Grabs no. of layers*/
+		var len = $('.spriteLayers').length;
+		/*stop animation*/
+		$('.sprite').each(function( e ) {
+			$(this).css("-webkit-animation","");
+		})
+		/*quirk to make animation reset*/
+		for (i=1;i<=len;i++)
+			document.getElementById("sprite"+i).offsetWidth = document.getElementById("sprite"+i).offsetWidth;
 		playSprite()
 	});
 	
