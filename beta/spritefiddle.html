@@ -531,10 +531,10 @@ $(document).ready( function(e) {
 	$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	/*Speed Control*/
 	$('#speedSlider').slider({
-		min:"0.5",
-		max:"5",
-		step:"0.5",
-		value:"1",
+		min:0.5,
+		max:5,
+		step:0.5,
+		value:1,
 		reversed:true,
 		formatter: function(value) {
 			return 'Current value: ' + value;
