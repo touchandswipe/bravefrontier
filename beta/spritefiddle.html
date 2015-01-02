@@ -538,10 +538,12 @@ $(document).ready( function(e) {
 		value:1,
 		reversed:true,
 		formatter: function(value) {
-			return value+'sec/frame';
+			return value+'sec / frame';
 		}
 	});
-	$('#speedSlider').on('slide', playSprite());
+	$('#speedSlider').on("slide", function(slideEvt) {
+		playSprite()
+	});
 	
 	/*Assigns default*/
 	$('#spriteMother').css({"width":defaultWidth});
