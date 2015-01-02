@@ -456,6 +456,7 @@ function addNewLayer() { /*Adds new layer on top*/
 
 function playSprite() {
 	var animSpeed=$('#speedSlider').slider('getValue');
+	alert(animSpeed);
 	var len = $('.sprite').length;
 	for (i=1;i<=len;i++) {
 		$("#sprite"+i).css({
