@@ -49,7 +49,7 @@
 .sprite {
 	position:absolute;
 }
-#speedSlider .slider-selection {background: #BABABA;}
+#speedSliderDiv .slider-selection {background: #BABABA;}
 }
 
 </style>
@@ -530,6 +530,7 @@ $(document).ready( function(e) {
 	$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	/*Speed Control and event*/
 	$('#speedSlider').slider({
+		id:'speedSliderDiv';
 		min:0.1,
 		max:5,
 		step:0.1,
