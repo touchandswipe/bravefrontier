@@ -400,11 +400,12 @@ function buildDB(unit,server) {
         }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
         if (valObj['sphere type'])
-        	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
-	nameSTR+='<b>'+valObj.name;
+        	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
 	if (server=='JP' && dataGL[unitKey])
-		nameSTR+=' ('+dataGL[unitKey]["name"]+')';
+		nameSTR+=dataGL[unitKey]["name"]+' ('+valObj.name+')';
+	else
+		nameSTR+=valObj.name;
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
