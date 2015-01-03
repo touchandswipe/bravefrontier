@@ -108,7 +108,7 @@ countVar=0; /*reset count*/
                 if (bbKey!="effects") {
                     bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
                     if (valObj.bb.levels[0][bbKey]==valObj.bb.levels[9][bbKey])
-                    	bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9][bbKey]+'</div>';
+                    	bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9][bbKey]+'</div>';
                     else
 	                    for (i=0;i<10;i++) {
 	                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[i][bbKey]+'</div>'
@@ -166,7 +166,7 @@ countVar=0; /*reset count*/
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey+'</span></div>';
                     if (valObj.sbb.levels[0][sbbKey]==valObj.sbb.levels[9][sbbKey])
-                    	sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9][sbbKey]+'</div>';
+                    	sbbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.sbb.levels[9][sbbKey]+'</div>';
                     else
 	                    for (i=0;i<10;i++) {
 				sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
@@ -222,7 +222,7 @@ countVar=0; /*reset count*/
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
                     if (valObj.ubb.levels[0][ubbKey]==valObj.ubb.levels[9][ubbKey])
-                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9][ubbKey]+'</div>';
+                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.ubb.levels[9][ubbKey]+'</div>';
                     else
 	                    for (i=0;i<10;i++) {
 				ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
