@@ -140,34 +140,52 @@ $.getJSON( serverSelect, function( unit ) {
         }
         if (idFound) {
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-          if (valObj.hits) {
+          if (valObj.hits)
               exportSTR+='<td>'+valObj.hits+'</td>'
-          } else { exportSTR+='<td></td>' }
-          if (valObj.bb.hits) {
+          else
+              exportSTR+='<td></td>'
+          
+          if (valObj.bb.hits)
               exportSTR+='<td>'+valObj.bb.hits+'</td>'
-          } else { exportSTR+='<td></td>' }
-          if (valObj.sbb) {
-            if (valObj.sbb.hits) {
+          else
+              exportSTR+='<td></td>'
+          
+          if (valObj.sbb)
+            if (valObj.sbb.hits)
               exportSTR+='<td>'+valObj.sbb.hits+'</td>'
-            } else { exportSTR+='<td></td>' }
-          if (valObj.ubb) {
-            if (valObj.ubb.hits) {
+            else
+              exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>'
+          
+          if (valObj.ubb)
+            if (valObj.ubb.hits)
               exportSTR+='<td>'+valObj.ubb.hits+'</td>'
-            } else { exportSTR+='<td></td>' }
-          } else { exportSTR+='<td></td>' }
-          if (valObj.bb.levels[9]["bc cost"]) {
+            else
+              exportSTR+='<td></td>'
+          else 
+              exportSTR+='<td></td>'
+              
+          if (valObj.bb.levels[9]["bc cost"])
               exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
-          } else { exportSTR+='<td></td>' }
-          if (valObj.sbb) {
-            if (valObj.sbb.levels[9]["bc cost"]) {
+          else
+              exportSTR+='<td></td>'
+              
+          if (valObj.sbb)
+            if (valObj.sbb.levels[9]["bc cost"])
                 exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
-            } else { exportSTR+='<td></td>' }
-          } else { exportSTR+='<td></td>' }
-          if (valObj.ubb) {
-            if (valObj.ubb.levels[9]["bc cost"]) {
+            else
+                exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>'
+            
+          if (valObj.ubb)
+            if (valObj.ubb.levels[9]["bc cost"])
                 exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
-            } else { exportSTR+='<td></td>' }
-          } else { exportSTR+='<td></td>' }
+            else
+                exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>'
   
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
