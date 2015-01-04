@@ -169,10 +169,13 @@ $.getJSON( serverSelect, function( unit ) {
           else 
               exportSTR+='<td></td>'
               
-          if (valObj.bb.levels[9]["bc cost"])
-              exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
+          if (valObj.bb)
+            if (valObj.bb.levels[9]["bc cost"])
+                exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
+            else
+                exportSTR+='<td></td>'
           else
-              exportSTR+='<td></td>'
+            exportSTR+='<td></td>'
               
           if (valObj.sbb)
             if (valObj.sbb.levels[9]["bc cost"])
