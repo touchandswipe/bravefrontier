@@ -150,13 +150,22 @@ $.getJSON( serverSelect, function( unit ) {
             if (valObj.sbb.hits) {
               exportSTR+='<td>'+valObj.sbb.hits+'</td>'
             } else { exportSTR+='<td></td>' }
+          if (valObj.ubb) {
+            if (valObj.ubb.hits) {
+              exportSTR+='<td>'+valObj.ubb.hits+'</td>'
+            } else { exportSTR+='<td></td>' }
           } else { exportSTR+='<td></td>' }
           if (valObj.bb.levels[9]["bc cost"]) {
               exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
           } else { exportSTR+='<td></td>' }
           if (valObj.sbb) {
             if (valObj.sbb.levels[9]["bc cost"]) {
-                exportSTR+='<td>'+(valObj.sbb.levels[9]["bc cost"]+valObj.bb.levels[9]["bc cost"])+'</td>'
+                exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+            } else { exportSTR+='<td></td>' }
+          } else { exportSTR+='<td></td>' }
+          if (valObj.ubb) {
+            if (valObj.ubb.levels[9]["bc cost"]) {
+                exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
             } else { exportSTR+='<td></td>' }
           } else { exportSTR+='<td></td>' }
   
