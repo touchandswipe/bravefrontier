@@ -112,6 +112,8 @@ var canvasObj={
 
 function buildBtns(buildObjItem) {
   btnArray=canvasObj[buildObjItem];
+  /*clear img*/
+  $('#snapIMG').attr('src','');
   /*load img*/
   $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
   /*destroy any existing*/
