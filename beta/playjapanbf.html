@@ -25,9 +25,9 @@ background: rgba(255,255,255,0.6);
 border: 3px solid #FFFFFF;
 border-radius: 5px;
 font-size: 9pt;
-color: #FFFFFF;
+color: #FFFF00;
 font-weight: bold;
-text-shadow: -2px 0 1px black, 0 2px 2px black, 2px 0 2px black, 0 -2px 2px black;
+text-shadow: -3px 0 1px black, 0 3px 1px black, 3px 0 1px black, 0 -3px 1px black;
 }
 </style>
 <!-- START JSON Code-->
@@ -151,7 +151,9 @@ $(document).ready( function(e) {
 /*activate links*/
 $(document).on("click", '.aidLink, .engBtn', function(e){
   var linkID=$(this).attr('data-link');
-  buildBtns(linkID);
+  e.preventDefault();
+  if ($(this).attr('href')!="#")
+    buildBtns(linkID);
 })
 
 </script>
