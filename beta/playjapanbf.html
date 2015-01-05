@@ -94,7 +94,7 @@
     </div>
     <div class="col-xs-12 col-md-6">
       <ul>
-        <li>Raid interface</li>
+        <li><a href="#" class="aidLink" data-link="raid1">Raid interface</a></li>
       </ul>
     </div>
 </div>
@@ -126,8 +126,8 @@ $(document).ready( function(e) {
     buildBtns("raid1");
 });
 /*Refresh status Button*/
-$(document).on("click", '#serverStateGlobal', function(e){
-    getServerStatus("#serverStateGlobal", "https://android.bravefrontier.gumi.sg/bf/gme/featureCheck.php?callback=?");
+$(document).on("click", '.aidLink .engBtn', function(e){
+    buildBtns($(this).attr('data-link'));
 })
 /*Refresh / ResetNews*/
 $(document).on("click", "#resetNews", function(e){
