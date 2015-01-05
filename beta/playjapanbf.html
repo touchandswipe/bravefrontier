@@ -152,8 +152,9 @@ $(document).ready( function(e) {
 $(document).on("click", '.aidLink, .engBtn', function(e){
   var linkID=$(this).attr('data-link');
   e.preventDefault();
-  if ($(this).attr('href')!="#")
-    buildBtns(linkID);
+  if (canvasObj[linkID])
+    if (canvasObj[linkID].link!="#")
+      buildBtns(linkID)
 })
 
 </script>
