@@ -125,14 +125,13 @@ $(document).ready( function(e) {
     /*build initial with raid*/
     buildBtns("raid1");
 });
-/*Refresh status Button*/
-$(document).on("click", '.aidLink .engBtn', function(e){
-    buildBtns($(this).attr('data-link'));
+/*activate links*/
+$(document).on("click", '.aidLink, .engBtn', function(e){
+  var linkID=$(this).attr('data-link');
+  alert(linkID);
+  buildBtns(linkID);
 })
-/*Refresh / ResetNews*/
-$(document).on("click", "#resetNews", function(e){
-    $('#gameNews').attr( 'src', function ( i, val ) { return val; });
-})
+
 </script>
 
 <!-- Google Analytics -->
