@@ -104,9 +104,10 @@ text-shadow: -2px 0 1px black, 0 2px 2px black, 2px 0 2px black, 0 -2px 2px blac
         <img id="snapIMG" src=""/>
       </div>
     </div>
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-6 pull-left">
+    <h3>Sections of Game Interface</h3>
       <ul>
-        <li><a href="#" class="aidLink" data-link="raid1">Raid interface</a></li>
+        <li><a href="#" class="aidLink" data-link="raid1">Entering Raid</a></li>
       </ul>
     </div>
 </div>
@@ -118,6 +119,8 @@ var canvasObj={
             {"x":"175px","y":"307px","h":"64px","w":"153px","txt":"Server 2","link":"raid1-1"},
             {"x":"175px","y":"384px","h":"64px","w":"153px","txt":"Server 3","link":"raid1-1"},
             {"x":"230px","y":"456px","h":"47px","w":"115px","txt":"Ally's Raid Rooms","link":"raid1-2"}
+            {"x":"188px","y":"50px","h":"33px","w":"78px","txt":"Results","link":"raid1-3"}
+            {"x":"268px","y":"50px","h":"33px","w":"78px","txt":"Help","link":"raid1-4"}
     ],
 "raid1-1": [{"x":"160px","y":"230px","h":"48px","w":"169px","txt":"Create Raid Room","link":"raid1-1-1"},
             {"x":"160px","y":"294px","h":"48px","w":"169px","txt":"Search Raid Rooms","link":"raid1-1-2"},
@@ -126,16 +129,18 @@ var canvasObj={
 };
 
 function buildBtns(buildObjItem) {
-  btnArray=canvasObj[buildObjItem];
   /*clear img*/
   $('#snapIMG').attr('src','');
   /*load img*/
   $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
   /*destroy any existing*/
   $('.engBtn').remove();
-  /*build new layers*/
-  for (i=0;i<btnArray.length;i++) {
-    $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+  /*build new layers if exists*/
+  if (canvasObj[buildObjItem]) {
+    btnArray=canvasObj[buildObjItem];
+    for (i=0;i<btnArray.length;i++) {
+      $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+    }
   }
 }
 
