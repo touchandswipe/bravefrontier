@@ -21,7 +21,7 @@ position: absolute;
 display:flex;
 align-items: flex-end;
 justify-content: center;
-background: rgba(255,255,255,0.3);
+background: rgba(255,255,255,0.6);
 border: 3px solid #FFFFFF;
 border-radius: 5px;
 font-size: 9pt;
@@ -114,11 +114,13 @@ text-shadow: -2px 0 1px black, 0 2px 2px black, 2px 0 2px black, 0 -2px 2px blac
 
 <script type="text/javascript">
 var canvasObj={
-"raid1": [{"x":"10px","y":"10px","h":"30px","w":"50px","txt":"Server 1","link":"raid1-1"},
-            {"x":"10px","y":"120px","h":"30px","w":"50px","txt":"Server 2","link":"raid1-1"}
+"raid1": [{"x":"175px","y":"230px","h":"153px","w":"64px","txt":"Server 1","link":"raid1-1"},
+            {"x":"175px","y":"307px","h":"153px","w":"64px","txt":"Server 2","link":"raid1-1"},
+            {"x":"175px","y":"384px","h":"153px","w":"64px","txt":"Server 3","link":"raid1-1"}
     ],
-"raid1-1": [{"x":"10px","y":"10px","h":"30px","w":"50px","txt":"Server 1","link":"raid1-1"},
-            {"x":"10px","y":"120px","h":"30px","w":"50px","txt":"Server 2","link":"raid1-1"}
+"raid1-1": [{"x":"160px","y":"230px","h":"48px","w":"169px","txt":"Create Raid Room","link":"raid2-1"},
+            {"x":"160px","y":"294px","h":"48px","w":"169px","txt":"Search Raid Rooms","link":"raid3-1"},
+            {"x":"160px","y":"358px","h":"48px","w":"169px","txt":"Auto-Join Raid Rooms","link":"raid4-1"}
     ]
 };
 
@@ -129,6 +131,7 @@ function buildBtns(buildObjItem) {
   /*load img*/
   $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
   /*destroy any existing*/
+  $('.engBtn').remove();
   /*build new layers*/
   for (i=0;i<btnArray.length;i++) {
     $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
