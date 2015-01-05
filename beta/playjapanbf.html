@@ -16,6 +16,7 @@
     .clear {clear:both;}
     .btn {margin-bottom:10px;}
     #snapIMG {width:350px;height:auto;}
+    .engBtn {position:absolute;display:block;background:#00FF00;}
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -36,7 +37,7 @@
 <!-- Main Body Space-->
 <div class="container-fluid">
 <div style="min-height:55px;"></div>
-<div class="row"><div class="col-xs-12 center-block">
+<div class="row"><div class="col-xs-12 text-center">
 <!-- Google Manual labnol.org responsive ads-->
 <div id="google-ads-1"></div>
 <script type="text/javascript"> 
@@ -87,7 +88,9 @@
 <!-- main stack code goes here -->
 <div class="row">
     <div class="col-xs-12 col-md-6">
-      <img id="snapIMG" src="https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/raid1.png"/>
+      <div id="mainCanvas" style="margin:0 auto 0 auto;width:350px;position:inherit;border:1px solid #ff0000;">
+        <img id="snapIMG" src="https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/raid1.png"/>
+      </div>
     </div>
     <div class="col-xs-12 col-md-6">
       <ul>
@@ -98,9 +101,29 @@
 </div> <!-- /container -->
 
 <script type="text/javascript">
-var lastChecked=0;
+var canvasObj={
+"raid1": [{"x":"10px","y":"10px","h":"30px","w":"50px","txt":"Server 1","link":"raid1-1"},
+            {"x":"10px","y":"120px","h":"30px","w":"50px","txt":"Server 2","link":"raid1-1"}
+    ],
+"raid1-1": [{"x":"10px","y":"10px","h":"30px","w":"50px","txt":"Server 1","link":"raid1-1"},
+            {"x":"10px","y":"120px","h":"30px","w":"50px","txt":"Server 2","link":"raid1-1"}
+    ]
+};
+
+function buildBtns(buildObjItem) {
+  btnArray=canvasObj[buildObjItem];
+  /*load img*/
+  $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
+  /*destroy any existing*/
+  /*build new layers*/
+  for (i=0;i<btnArray.length;i++) {
+    $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+  }
+}
+
 $(document).ready( function(e) {
-    
+    /*build initial with raid*/
+    buildBtns(raid1)
 });
 /*Refresh status Button*/
 $(document).on("click", '#serverStateGlobal', function(e){
