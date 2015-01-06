@@ -230,6 +230,17 @@ var canvasObj={
                 {"x":"188px","y":"308px","h":"43px","w":"109px","txt":"Cancel","link":"raid1-1-1-4"}],
 };
 
+/*JQ Param handling no unencoding*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return results[1] || '';
+    }
+}
+
 function buildBtns(buildObjItem) {
   /*clear img*/
   $('#snapIMG').attr('src','');
@@ -246,10 +257,17 @@ function buildBtns(buildObjItem) {
         }
       }
   });
+  /*update HTML5 state*/
+	var state = { stateStep: buildObjItem };
+	history.pushState(state, "spriteStep State", "?aidStep="+buildObjItem );
 }
 
 $(document).ready( function(e) {
-    /*build initial with raid*/
+  /*checks for URL Parameter*/
+  var stepParam=urlParam('aidStep');
+	if ( (stepParam != "") && ( stepParam != null) )
+    buildBtns(stepParam);
+	else
     buildBtns("raid1");
 });
 /*activate links*/
@@ -259,6 +277,14 @@ $(document).on("click", '.aidLink, .engBtn', function(e){
   if (canvasObj[linkID])
     if (canvasObj[linkID].link!="#")
       buildBtns(linkID)
+})
+
+/*POP state*/
+$(window).on('popstate', function(e) {
+	var state = e.originalEvent.state;
+	if (state.stateStep) {
+		buildBtns(state.stateStep);
+	}
 })
 
 </script>
