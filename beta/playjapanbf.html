@@ -259,6 +259,7 @@ function buildBtns(buildObjItem,stateUpdate) {
       }
   });
   /*update HTML5 state*/
+  alert(stateUpdate);
   if (stateUpdate) {
 	var state = { stateStep: buildObjItem };
 	history.pushState(state, "spriteStep State", "?aidStep="+buildObjItem );
