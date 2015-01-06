@@ -214,7 +214,7 @@ function buildBtns(buildObjItem) {
   $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
   /*destroy any existing layers*/
   $('.engBtn').remove();
-  imagesLoaded( document.querySelector('#snapIMG'), function(e) {
+  imagesLoaded( $('#snapIMG'), function(e) {
       /*build new layers if exists*/
       if (canvasObj[buildObjItem]) {
         btnArray=canvasObj[buildObjItem];
