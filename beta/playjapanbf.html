@@ -241,7 +241,8 @@ function urlParam(name){
     }
 }
 
-function buildBtns(buildObjItem) {
+function buildBtns(buildObjItem,stateUpdate) {
+  stateUpdate = typeof a !== 'undefined' ? true : false;
   /*clear img*/
   $('#snapIMG').attr('src','');
   /*load img*/
@@ -258,18 +259,21 @@ function buildBtns(buildObjItem) {
       }
   });
   /*update HTML5 state*/
+  if (stateUpdate) {
 	var state = { stateStep: buildObjItem };
 	history.pushState(state, "spriteStep State", "?aidStep="+buildObjItem );
+}
 }
 
 $(document).ready( function(e) {
   /*checks for URL Parameter*/
   var stepParam=urlParam('aidStep');
 	if ( (stepParam != "") && ( stepParam != null) )
-    buildBtns(stepParam);
+    		buildBtns(stepParam,false);
 	else
-    buildBtns("raid1");
+    		buildBtns("raid1",false);
 });
+
 /*activate links*/
 $(document).on("click", '.aidLink, .engBtn', function(e){
   var linkID=$(this).attr('data-link');
@@ -283,7 +287,7 @@ $(document).on("click", '.aidLink, .engBtn', function(e){
 $(window).on('popstate', function(e) {
 	var state = e.originalEvent.state;
 	if (state.stateStep) {
-		buildBtns(state.stateStep);
+		buildBtns(state.stateStep,false);
 	}
 })
 
