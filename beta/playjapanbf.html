@@ -270,7 +270,7 @@ alert("1st "+stateUpdate);
 $(document).ready( function(e) {
   /*checks for URL Parameter*/
   var stepParam=urlParam('aidStep');
-	if ( (stepParam != "") && ( stepParam != null) )
+	if (stepParam != '')
     		buildBtns(stepParam,false);
 	else
     		buildBtns("raid1",false);
