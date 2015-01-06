@@ -334,7 +334,7 @@ function initialize(fusionData) {
 			$('#progressModal').modal('hide');
 	    /*check for card param for UnitID*/
 			var idParam=urlParam('unitid');
-			if ( (idParam != "") && ( idParam != null) ) {
+			if (idParam != "") {
 			    for (i in deserialdata) {
 				if (deserialdata[i].id==idParam)
 				    var idParamName=$(deserialdata[i].name).text();
@@ -343,20 +343,20 @@ function initialize(fusionData) {
 			}
 			/*check for card param*/
 			var cardParam=urlParam('unit');
-			if ( (cardParam != "") && ( cardParam != null) ) {
+			if (cardParam != "") {
 			    openCard(cardParam);
 			    /*needed as show is not included in function*/
 			    $('#cardModal').modal('show');
 			}
 			/*check for compare param*/
 			var compareParam=urlParam('compare');
-			if ( (compareParam != "") && ( compareParam != null) ) {
+			if (compareParam != "") {
 			    var tempArray = compareParam.split(',');
 			    openCompare(tempArray);
 			}
 			/*check for Batch Parameter*/
 			var batchParam=urlParam('batch');
-			if ( (batchParam != "") && ( batchParam != null) ) {
+			if (batchParam != "") {
 		    DTapi
 			.columns( 4 )
 			.search( batchParam );
@@ -369,7 +369,7 @@ function initialize(fusionData) {
 			}
 			/*Open Favs via URL*/
 			var favParam=urlParam('favUnits');
-			if ( (favParam != "") && ( favParam != null) ) {
+			if (favParam != "") {
 			    sharedFavSelect=favParam.split(',');
 		openFav(sharedFavSelect,"Shared units by other players",true);
 			}
