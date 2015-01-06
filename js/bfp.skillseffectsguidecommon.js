@@ -313,14 +313,14 @@ countVar=0; /*reset count*/
     
     /*check for card param*/
     var searchParam=urlParam('unitid');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchIdBox').val(searchParam);
         searchIdRun();
     }
     /*check for card param*/
     var searchParam=urlParam('query');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
         searchNameRun();
