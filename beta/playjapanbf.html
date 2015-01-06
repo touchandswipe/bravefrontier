@@ -242,7 +242,7 @@ function urlParam(name){
 }
 
 function buildBtns(buildObjItem,stateUpdate) {
-  stateUpdate=stateUpdate || true;
+  stateUpdate = typeof stateUpdate !== 'undefined' ? stateUpdate : true;
   /*clear img*/
   $('#snapIMG').attr('src','');
   /*load img*/
