@@ -21,12 +21,13 @@ position: absolute;
 display:flex;
 align-items: flex-end;
 justify-content: center;
-background: rgba(255,255,255,0.6);
+background: rgba(255,255,255,0.5);
 border: 3px solid #FFFFFF;
 border-radius: 5px;
 font-size: 9pt;
 color: #FFFF00;
 font-weight: bold;
+text-align: center;
 text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px black;
 }
 </style>
@@ -129,11 +130,23 @@ var canvasObj={
               {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-1-1"},
               {"x":"152px","y":"332px","h":"37px","w":"182px","txt":"Select Play Style","link":"raid1-1-1a"},
               {"x":"152px","y":"378px","h":"37px","w":"182px","txt":"Select Minimal Raid Class","link":"raid1-1-1b"}],
-"raid1-1-1-1": [{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1-1"},
-                {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-1-1"},
+"raid1-1-1-1": [{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1-1-1"},
+                {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-1-2"},
                 {"x":"153px","y":"334px","h":"36px","w":"86px","txt":"Auto-Join ON","link":"#"},
                 {"x":"249px","y":"334px","h":"36px","w":"86px","txt":"Auto-Join OFF","link":"raid1-1-1-1a"},
+                {"x":"14px","y":"432px","h":"34px","w":"105px","txt":"Previous","link":"raid1-1-1"}],
+"raid1-1-1-2": [{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1-1-1-1"},
+                {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-1-3"},
+                {"x":"153px","y":"334px","h":"36px","w":"86px","txt":"Force Quit ON","link":"#"},
+                {"x":"249px","y":"334px","h":"36px","w":"86px","txt":"Force Quit OFF","link":"#"},
+                {"x":"153px","y":"384px","h":"36px","w":"86px","txt":"In-Battle Join ON","link":"#"},
+                {"x":"249px","y":"384px","h":"36px","w":"86px","txt":"In-Battle Join OFF","link":"#"},
                 {"x":"14px","y":"432px","h":"34px","w":"105px","txt":"Previous","link":"raid1-1-1-1"}],
+"raid1-1-1-3": [{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1-1-1-2"},
+                {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-1-3"},
+                {"x":"153px","y":"334px","h":"36px","w":"86px","txt":"ForceQuit ON","link":"#"},
+                {"x":"249px","y":"334px","h":"36px","w":"86px","txt":"ForceQuit OFF","link":"#"},
+                {"x":"14px","y":"432px","h":"34px","w":"105px","txt":"Previous","link":"raid1-1-1-2"}],
 "raid1-3":[{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1"}],
 "raid1-4":[{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1"}],
 "raid1-1-1a":[{"x":"45px","y":"195px","h":"43px","w":"260px","txt":"Beginners are welcomed","link":"raid1-1-1"},
