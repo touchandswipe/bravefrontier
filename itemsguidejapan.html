@@ -431,14 +431,14 @@ function buildDB(unit) {
     
     /*check for card param*/
     var searchParam=urlParam('query');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
         searchNameRun();
     }
     
     var searchParam=urlParam('ingredient');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchIngredientBox').val(searchParam);
         searchIngredientRun();
