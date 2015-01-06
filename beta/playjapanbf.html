@@ -242,7 +242,6 @@ function urlParam(name){
 }
 
 function buildBtns(buildObjItem,stateUpdate) {
-alert("1st "+stateUpdate);
   stateUpdate = typeof stateUpdate !== 'undefined' ? stateUpdate : true;
   /*clear img*/
   $('#snapIMG').attr('src','');
@@ -260,7 +259,6 @@ alert("1st "+stateUpdate);
       }
   });
   /*update HTML5 state*/
-  alert(stateUpdate);
   if (stateUpdate) {
 	var state = { stateStep: buildObjItem };
 	history.pushState(state, "spriteStep State", "?aidStep="+buildObjItem );
