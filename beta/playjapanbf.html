@@ -34,6 +34,7 @@ text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px blac
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/imagesloaded.pkgd.min.js"></script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -211,15 +212,17 @@ function buildBtns(buildObjItem) {
   $('#snapIMG').attr('src','');
   /*load img*/
   $('#snapIMG').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/'+buildObjItem+'.png');
-  /*destroy any existing*/
+  /*destroy any existing layers*/
   $('.engBtn').remove();
-  /*build new layers if exists*/
-  if (canvasObj[buildObjItem]) {
-    btnArray=canvasObj[buildObjItem];
-    for (i=0;i<btnArray.length;i++) {
-      $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
-    }
-  }
+  imagesLoaded( document.querySelector('#snapIMG'), function(e) {
+      /*build new layers if exists*/
+      if (canvasObj[buildObjItem]) {
+        btnArray=canvasObj[buildObjItem];
+        for (i=0;i<btnArray.length;i++) {
+          $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+        }
+      }
+  });
 }
 
 $(document).ready( function(e) {
