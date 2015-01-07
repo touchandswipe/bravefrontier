@@ -132,15 +132,29 @@
 	  				<h3 class="panel-title"><b>Sprite ID</b> (<a href="#" id="spriteSheet" target="_blank">Spritesheet</a> | <a href="#" id="spriteURL">Datasheet</a>)</h3>
 	  			</div>
 	  			<div class="panel-body">
-					<input type="text" class="form-control" id="spriteID" value="30445">
-					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-addon">Sprite script identifier</span>
-						<input type="text" class="form-control" id="spriteScript">
+	  				<div class="row">
+	  					<div class="col-xs-4">
+				  			<select class="form-control" id="spriteServer">
+							  <option value="global">Global</option>
+							  <option value="japan" selected="selected">Japan</option>
+							</select>
+						</div>
+						<div class="col-xs-8">
+							<input type="text" class="form-control" id="spriteID" value="30445">
+						</div>
 					</div>
-					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-btn"><button class="btn btn-info" type="button" id="getSharingURL">Generate sharing link</button></span>
-						<input type="text" value="click button to generate when you are done with the sprite animation" class="form-control" id="sharingBox">
-					</div>
+	  				<div class="row"><div class="col-xs-12">
+						<div class="input-group" style="margin-top:5px;">
+			  				<span class="input-group-addon">Sprite script identifier</span>
+							<input type="text" class="form-control" id="spriteScript">
+						</div>
+					</div></div>
+					<div class="row"><div class="col-xs-12">
+						<div class="input-group" style="margin-top:5px;">
+			  				<span class="input-group-btn"><button class="btn btn-info" type="button" id="getSharingURL">Generate sharing link</button></span>
+							<input type="text" value="click button to generate when you are done with the sprite animation" class="form-control" id="sharingBox">
+						</div>
+					</div></div>
 	  			</div>
 			</div>
 		</div>
@@ -415,6 +429,9 @@ function loadAnimationScript(spriteString) {
 		var animationObj=JSON.parse(animationLoad);
 		var animationArray=animationObj.animation;
 		$('#spriteID').val(animationObj.unit_id);
+		/*if server tag exist*/
+		if (animationObj.server)
+			$('#spriteServer').val(animationObj.server);
 		/*writes value to fields*/
 		var layersGap=animationArray.length-len;
 		if (layersGap > 0) {
@@ -459,7 +476,7 @@ function buildAnimationScript() {
 		}
 		animationArray.push(layerObj);
 	}
-	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray};
+	animationObj={'unit_id':$('#spriteID').val(), 'animation':animationArray, 'server':$('#spriteServer').val()};
 	var encodeSpriteKey=LZString.compressToEncodedURIComponent(JSON.stringify(animationObj));
 	$('#spriteScript').val(encodeSpriteKey);
 	/*update HTML5 state*/
@@ -499,8 +516,9 @@ function toggleBorder() {
 function resetsPlays() {
 	var layerProp=[];
 	/*Reset URL for original files*/
-	$('#spriteURL').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
-	$('#spriteSheet').attr("href","http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png")
+	var serverPath=($('#spriteServer').val()=='global') ? "http://2.cdn.bravefrontier.gumi.sg/content" : "http://v2.cdn.android.brave.a-lim.jp";
+	$('#spriteURL').attr("href",serverPath+"/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
+	$('#spriteSheet').attr("href",serverPath+"/unit/img/unit_anime_"+$('#spriteID').val()+".png")
 	/*Grabs no. of layers*/
 	var len = $('.spriteLayers').length;
 	/*grab input for each layer*/
@@ -515,7 +533,7 @@ function resetsPlays() {
 		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()*-1, 'Y':$("#f3Y"+"_Layer"+i).val()*-1};
 		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()*-1, 'Y':$("#f4Y"+"_Layer"+i).val()*-1};
 		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
-		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
+		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('"+serverPath+"/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
 	}
 	
 	/*Define / Re-Define position*/
