@@ -132,19 +132,29 @@
 	  				<h3 class="panel-title"><b>Sprite ID</b> (<a href="#" id="spriteSheet" target="_blank">Spritesheet</a> | <a href="#" id="spriteURL">Datasheet</a>)</h3>
 	  			</div>
 	  			<div class="panel-body">
-		  			<select class="form-control" id="spriteServer">
-					  <option value="global">Global</option>
-					  <option value="japan" selected="selected">Japan</option>
-					</select>
-					<input type="text" class="form-control" id="spriteID" value="30445">
-					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-addon">Sprite script identifier</span>
-						<input type="text" class="form-control" id="spriteScript">
+	  				<div class="row">
+	  					<div class="col-xs-4">
+				  			<select class="form-control" id="spriteServer">
+							  <option value="global">Global</option>
+							  <option value="japan" selected="selected">Japan</option>
+							</select>
+						</div>
+						<div class="col-xs-8">
+							<input type="text" class="form-control" id="spriteID" value="30445">
+						</div>
 					</div>
-					<div class="input-group" style="margin-top:5px;">
-		  				<span class="input-group-btn"><button class="btn btn-info" type="button" id="getSharingURL">Generate sharing link</button></span>
-						<input type="text" value="click button to generate when you are done with the sprite animation" class="form-control" id="sharingBox">
-					</div>
+	  				<div class="row"><div class="col-xs-12">
+						<div class="input-group" style="margin-top:5px;">
+			  				<span class="input-group-addon">Sprite script identifier</span>
+							<input type="text" class="form-control" id="spriteScript">
+						</div>
+					</div></div>
+					<div class="row"><div class="col-xs-12">
+						<div class="input-group" style="margin-top:5px;">
+			  				<span class="input-group-btn"><button class="btn btn-info" type="button" id="getSharingURL">Generate sharing link</button></span>
+							<input type="text" value="click button to generate when you are done with the sprite animation" class="form-control" id="sharingBox">
+						</div>
+					</div></div>
 	  			</div>
 			</div>
 		</div>
@@ -507,6 +517,7 @@ function resetsPlays() {
 	var layerProp=[];
 	/*Reset URL for original files*/
 	var serverPath=($('#spriteServer').val()=='global') ? "http://2.cdn.bravefrontier.gumi.sg/content" : "http://v2.cdn.android.brave.a-lim.jp";
+	alert($('#spriteServer').val()+serverPath);
 	$('#spriteURL').attr("href",serverPath+"/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
 	$('#spriteSheet').attr("href",serverPath+"/unit/img/unit_anime_"+$('#spriteID').val()+".png")
 	/*Grabs no. of layers*/
