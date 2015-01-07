@@ -517,7 +517,6 @@ function resetsPlays() {
 	var layerProp=[];
 	/*Reset URL for original files*/
 	var serverPath=($('#spriteServer').val()=='global') ? "http://2.cdn.bravefrontier.gumi.sg/content" : "http://v2.cdn.android.brave.a-lim.jp";
-	alert($('#spriteServer').val()+serverPath);
 	$('#spriteURL').attr("href",serverPath+"/unit/cgg/unit_cgg_"+$('#spriteID').val()+".csv")
 	$('#spriteSheet').attr("href",serverPath+"/unit/img/unit_anime_"+$('#spriteID').val()+".png")
 	/*Grabs no. of layers*/
