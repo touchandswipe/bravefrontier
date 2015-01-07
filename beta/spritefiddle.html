@@ -580,7 +580,7 @@ $(document).ready( function(e) {
 	
      	/*checks for URL Parameter*/
      	var spriteParam=urlParam('spriteKey');
-	if ( (spriteParam != "") && ( spriteParam != null) )
+	if (spriteParam != "")
 		loadAnimationScript(spriteParam) /*includes resetsPlays already*/
 	else
 		resetsPlays()
