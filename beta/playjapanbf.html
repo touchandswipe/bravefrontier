@@ -302,9 +302,11 @@ $(document).on("click", '.aidLink, .engBtn', function(e){
   var linkID=$(this).attr('data-link');
   e.preventDefault();
   if (canvasObj[linkID])
-  	if (canvasObj[linkID].link.toLowerCase()=="#back")
-		window.history.go(-1)
-    	else if (canvasObj[linkID].link!="#")
+  	if (canvasObj[linkID].link.toLowerCase()=="#back") {
+		alert("going back");
+		window.history.go(-1);
+  	}
+    	else if (canvasObj[linkID].link != "#")
       		buildBtns(linkID)
 })
 
