@@ -534,7 +534,7 @@ function resetsPlays() {
 		var f3Prop={'X':$("#f3X"+"_Layer"+i).val()*-1, 'Y':$("#f3Y"+"_Layer"+i).val()*-1};
 		var f4Prop={'X':$("#f4X"+"_Layer"+i).val()*-1, 'Y':$("#f4Y"+"_Layer"+i).val()*-1};
 		layerProp.push({'f1':f1Prop, 'f2':f2Prop, 'f3':f3Prop, 'f4':f4Prop });
-		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
+		$("#sprite"+i).css({"z-index":zIndex, "width":sizeX,"height":sizeY,"left":offsetX,"top":offsetY,"background": "transparent url('"+serverPath+"/unit/img/unit_anime_"+$('#spriteID').val()+".png') "+f1Prop.X+"px "+f1Prop.Y+"px no-repeat"});
 	}
 	
 	/*Define / Re-Define position*/
