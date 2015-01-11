@@ -250,7 +250,7 @@ function buildTable(unit) {
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th><i class="fa fa-star"></i></th>';
+    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th>Element</th><th><i class="fa fa-star"></i></th>';
     exportSTR+='<th style="background-color:#EEEEEE;">Normal Hits DC</th>';
     exportSTR+='<th style="background-color:#EEEEEE;">DC / Normal Hit</th>';
     exportSTR+='<th style="background-color:#88DDFF;">BB Hits DC</th>';
@@ -266,6 +266,7 @@ function buildTable(unit) {
     tArray.push(valObj.guide_id);
     tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
     tArray.push(valObj.name);
+    tArray.push(valObj.element);
     tArray.push(valObj.rarity);
     /*Normal hits*/
     if (valObj[fkeys[0]]) {
