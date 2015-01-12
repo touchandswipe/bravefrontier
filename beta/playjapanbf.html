@@ -452,7 +452,7 @@ function buildBtns(buildObjItem,stateUpdate) {
       if (canvasObj[buildObjItem]) {
         btnArray=canvasObj[buildObjItem];
         for (i=0;i<btnArray.length;i++) {
-        	if (btnArray[i].txt=="#")
+        	if (btnArray[i].link=="#")
         		var linkText='<i class="fa fa-info-circle"></i> '+btnArray[i].txt;
         	else
         		var linkText=btnArray[i].txt;
