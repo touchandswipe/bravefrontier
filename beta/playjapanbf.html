@@ -111,18 +111,24 @@ text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px blac
 <div class="panel panel-primary">
   <div class="panel-heading">Japan Server Interfaces</div>
   <div class="panel-body">
-<b>Raid</b>
+<b>Raid Preparation</b>
       <ul>
         <li><a href="#" class="aidLink" data-link="raid1">Entering raid</a></li>
         <li><a href="#" class="aidLink" data-link="raid1-1-1">Creating a raid room</a></li>
         <li><a href="#" class="aidLink" data-link="raid1-1-2">Searching for raid rooms</a></li>
         <li><a href="#" class="aidLink" data-link="raid1-1-3">Quick-Join a raid room</a></li>
         <li><a href="#" class="aidLink" data-link="raid2-1">Inside raid room</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1">Inside raid room</a></li>
         <li><a href="#" class="aidLink" data-link="raid2-1-1">Edit / View Squad</a></li>
         <li><a href="#" class="aidLink" data-link="raid2-1-1d">Equip items</a></li>
         <li><a href="#" class="aidLink" data-link="raid2-1-2">Check quest details</a></li>
         <li><a href="#" class="aidLink" data-link="raid2-1-3">Check room settings</a></li>
+        <li>More to be elaborated</li>
+      </ul>
+<b>Raid Battle</b>
+      <ul>
+        <li><a href="#" class="aidLink" data-link="raid1">Raid battle</a></li>
+        <li><a href="#" class="aidLink" data-link="raid1-1-1">Mining materials</a></li>
+        <li><a href="#" class="aidLink" data-link="raid1-1-2">Searching for raid rooms</a></li>
         <li>More to be elaborated</li>
       </ul>
     <b>Achievements</b>
@@ -141,6 +147,7 @@ Do swing around to support & thank them.
       	<li><a href="http://www.reddit.com/r/bravefrontier/comments/24t6lc/jp_mega_thread_questions_and_guides_for_jp_brave/" target="_blank">JP Megathread by Reddit / Install guide for iOS</a></li>
       	<li><a href="https://www.facebook.com/UshiGamingChannel/posts/299702073532088" target="_blank">Install guide for Android by Ushi</a></li>
         <li><a href="http://appinvasion.com/threads/raid-battle-guide-updated-dec-25th.91999/" target="_blank">Raid Battle / Crafting Guide by Steven @ AI</a></li>
+        <li><a href="http://appinvasion.com/threads/achievements-system-breakdown.259017/" target="_blank">Achievement points translation by Trystansr @ AI</a></li
         <li>More to be elaborated</li>
       </ul>
   </div>
@@ -250,7 +257,8 @@ var canvasObj={
               {"x":"233px","y":"432px","h":"34px","w":"105px","txt":"Next","link":"raid1-1-2-1"},
               {"x":"152px","y":"332px","h":"37px","w":"182px","txt":"Select Play Style","link":"raid1-1-2a"},
               {"x":"152px","y":"378px","h":"37px","w":"182px","txt":"Select Minimal Raid Class","link":"raid1-1-2b"}],
-"raid1-1-2a":[{"x":"45px","y":"195px","h":"43px","w":"260px","txt":"Beginners are welcomed","link":"raid1-1-2"},
+"raid1-1-2a":[{"x":"45px","y":"140px","h":"43px","w":"260px","txt":"Default","link":"raid1-1-2"},
+		{"x":"45px","y":"195px","h":"43px","w":"260px","txt":"Beginners are welcomed","link":"raid1-1-2"},
               {"x":"45px","y":"250px","h":"43px","w":"260px","txt":"Relaxed-Pace","link":"raid1-1-2"},
               {"x":"45px","y":"305px","h":"43px","w":"260px","txt":"Everyone is welcomed","link":"raid1-1-2"},
               {"x":"45px","y":"360px","h":"43px","w":"260px","txt":"Tactical focused gameplay","link":"raid1-1-2"},
@@ -328,8 +336,9 @@ var canvasObj={
 "raid1-1-1-5": [{"x":"51px","y":"308px","h":"43px","w":"109px","txt":"OK","link":"raid2-1"},
                 {"x":"188px","y":"308px","h":"43px","w":"109px","txt":"Cancel","link":"raid1-1-1-4"}],
 "raid1-3":[{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1"}],
-"raid1-4":[{"x":"10px","y":"50px","h":"43px","w":"60px","txt":"Back","link":"raid1"}],
-"raid1-1-1a":[{"x":"45px","y":"195px","h":"43px","w":"260px","txt":"Beginners are welcomed","link":"raid1-1-1"},
+"raid1-4":[{"x":"0px","y":"95px","h":"43px","w":"55px","txt":"Back","link":"raid1"}],
+"raid1-1-1a":[{"x":"45px","y":"140px","h":"43px","w":"260px","txt":"Default","link":"raid1-1-1"},
+		{"x":"45px","y":"195px","h":"43px","w":"260px","txt":"Beginners are welcomed","link":"raid1-1-1"},
               {"x":"45px","y":"250px","h":"43px","w":"260px","txt":"Relaxed-Pace","link":"raid1-1-1"},
               {"x":"45px","y":"305px","h":"43px","w":"260px","txt":"Everyone is welcomed","link":"raid1-1-1"},
               {"x":"45px","y":"360px","h":"43px","w":"260px","txt":"Tactical focused gameplay","link":"raid1-1-1"},
@@ -345,8 +354,9 @@ var canvasObj={
             {"x":"230px","y":"175px","h":"28px","w":"85px","txt":"Edit/view","link":"raid2-1-1"},
             {"x":"230px","y":"50px","h":"42px","w":"110px","txt":"Chatrooms","link":"raid2-1-1f"},
             {"x":"10px","y":"250px","h":"100px","w":"330px","txt":'<img src="https://googledrive.com/host/0B4hJr8BXxvFZSENJamYzbGhUa0U/raidstatus.png"/>',"link":"#"},
+            {"x":"88px","y":"445px","h":"55px","w":"170px","txt":"Ready up / Start for Room-Lead","link":"raid3-1"},
+            {"x":"265px","y":"457px","h":"34px","w":"75px","txt":"Help","link":"#"},
             {"x":"10px","y":"50px","h":"42px","w":"110px","txt":"Exit Room","link":"raid1-1"}],
-            
 "raid2-1-2": [{"x":"18px","y":"105px","h":"25px","w":"105px","txt":"Raid Team","link":"raid2-1"},
             {"x":"125px","y":"105px","h":"25px","w":"105px","txt":"Quest","link":"#"},
             {"x":"232px","y":"105px","h":"25px","w":"105px","txt":"Room Config","link":"raid2-1-3"},
@@ -398,7 +408,10 @@ var canvasObj={
             	{"x":"290px","y":"100px","h":"45px","w":"55px","txt":"Items","link":"raid2-1-1d"},
 		{"x":"230px","y":"50px","h":"42px","w":"110px","txt":"Chatrooms","link":"raid2-1-1f"},
             	{"x":"10px","y":"50px","h":"42px","w":"110px","txt":"Exit Room","link":"raid1-1"}],
-"raid2-1-1f": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}]
+"raid2-1-1f": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}],
+"raid3-1": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}],
+"raid3-1-1": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}],
+"raid3-1-2": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}]
 };
 /*JQ Param handling no unencoding*/
 function urlParam(name){
