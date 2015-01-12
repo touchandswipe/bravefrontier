@@ -21,7 +21,7 @@ function escapeRegExp(str) {
 function totalStatsMod() {
     var lsMod=[$('#lsHP').val(),$('#lsATK').val(),$('#lsDEF').val(),$('#lsREC').val()];
     var asMod=[$('#asHP').val(),$('#asATK').val(),$('#asDEF').val(),$('#asREC').val()];
-    var 7sMod=[$('#7sHP').val(),$('#7sATK').val(),$('#7sDEF').val(),$('#7sREC').val()];
+    var SsMod=[$('#7sHP').val(),$('#7sATK').val(),$('#7sDEF').val(),$('#7sREC').val()];
     if ($('#pimpHP').length)
     	var pMod=[$('#pimpHP').text(),$('#pimpATK').text(),$('#pimpDEF').text(),$('#pimpREC').text()]
     else
@@ -31,7 +31,7 @@ function totalStatsMod() {
     var totalMod=[];
     /*Combines Modifiers*/
     for (i=0;i<4;i++) {
-	tmp=parseFloat(lsMod[i])+parseFloat(asMod[i])+parseFloat(7sMod[i])+parseFloat(sphereA[i])+parseFloat(sphereB[i]);
+	tmp=parseFloat(lsMod[i])+parseFloat(asMod[i])+parseFloat(SsMod[i])+parseFloat(sphereA[i])+parseFloat(sphereB[i]);
 	totalMod.push(tmp.toFixed(2));
     }
     if ($('#pimpBtn').val()=="true")
