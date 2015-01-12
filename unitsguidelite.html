@@ -489,7 +489,15 @@ function openCard(whatunit) {
 	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>'
-	    +'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Ally skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
 	+'<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
 	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
 	+'</div></td></tr>'
@@ -702,7 +710,7 @@ $(window).on('popstate', function(e) {
 })
 
 /*Modification fields*/
-$(document).on("change", "#sphereA,#sphereB,.askill,.lskill", function(){
+$(document).on("change", "#sphereA,#sphereB,.askill,.lskill,.7skill", function(){
 	totalStatsMod();
 })
 
