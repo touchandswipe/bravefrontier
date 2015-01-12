@@ -106,28 +106,40 @@ text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px blac
         <img id="snapIMG" src=""/>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 pull-left">
+<div class="col-xs-12 col-sm-6 col-md-6 pull-left">
 <!--Panel-->
 <div class="panel panel-primary">
   <div class="panel-heading">Japan Server Interfaces</div>
   <div class="panel-body">
-<b>Raid</b>
-      <ul>
-        <li><a href="#" class="aidLink" data-link="raid1">Entering raid</a></li>
-        <li><a href="#" class="aidLink" data-link="raid1-1-1">Creating a raid room</a></li>
-        <li><a href="#" class="aidLink" data-link="raid1-1-2">Searching for raid rooms</a></li>
-        <li><a href="#" class="aidLink" data-link="raid1-1-3">Quick-Join a raid room</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1">Inside raid room</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1-1">Edit / View Squad</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1-1d">Equip items</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1-2">Check quest details</a></li>
-        <li><a href="#" class="aidLink" data-link="raid2-1-3">Check room settings</a></li>
-        <li>More to be elaborated</li>
-      </ul>
-    <b>Achievements</b>
-	<ul>
-        	<li>Coming soon</li>
-	</ul>
+  	<div class="row">
+  		<div class="col-xs-6">
+			<b>Raid Preparation</b>
+			      <ul>
+			        <li><a href="#" class="aidLink" data-link="raid1">Entering raid</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid1-1-1">Create room</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid1-1-2">Search rooms</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid1-1-3">Quick-Join room</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid2-1">Inside raid room</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid2-1-1">Edit / View Squad</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid2-1-1d">Equip items</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid2-1-2">Check quest details</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid2-1-3">Check room settings</a></li>
+			        <li>More to be elaborated</li>
+			      </ul>
+			<b>Raiding</b>
+			      <ul>
+			        <li><a href="#" class="aidLink" data-link="raid3-1">At base</a></li>
+			        <li><a href="#" class="aidLink" data-link="raid3-1-1">Out of base</a></li>
+			        <li>More to be elaborated</li>
+			      </ul>
+      		</div>
+      		<div class="col-xs-6">
+		    <b>Achievements</b>
+			<ul>
+		        	<li>Coming soon</li>
+			</ul>
+		</div>
+	</div>
   </div>
 </div>
 <!--Panel-->
@@ -401,7 +413,27 @@ var canvasObj={
             	{"x":"290px","y":"100px","h":"45px","w":"55px","txt":"Items","link":"raid2-1-1d"},
 		{"x":"230px","y":"50px","h":"42px","w":"110px","txt":"Chatrooms","link":"raid2-1-1f"},
             	{"x":"10px","y":"50px","h":"42px","w":"110px","txt":"Exit Room","link":"raid1-1"}],
-"raid2-1-1f": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}]
+"raid2-1-1f": [{"x":"304px","y":"15px","h":"25px","w":"45px","txt":"Back","link":"raid2-1"}],
+"raid3-1": [{"x":"0px","y":"470px","h":"60px","w":"58px","txt":"Map","link":"#"},
+		{"x":"58px","y":"470px","h":"60px","w":"58px","txt":"Item","link":"#"},
+		{"x":"116px","y":"470px","h":"60px","w":"58px","txt":"Squad","link":"#"},
+		{"x":"174px","y":"470px","h":"60px","w":"58px","txt":"Chat","link":"#"},
+		{"x":"232px","y":"470px","h":"60px","w":"58px","txt":"Raid team","link":"#"},
+		{"x":"290px","y":"470px","h":"60px","w":"58px","txt":"Quest","link":"#"},
+		{"x":"168px","y":"358px","h":"40px","w":"58px","txt":"Rest / Revive","link":"#"},
+		{"x":"226px","y":"358px","h":"40px","w":"58px","txt":"Make items","link":"#"},
+		{"x":"20px","y":"286px","h":"43px","w":"62px","txt":"Move","link":"raid3-1-1"}],
+"raid3-1-1": [{"x":"0px","y":"470px","h":"60px","w":"58px","txt":"Map","link":"#"},
+		{"x":"58px","y":"470px","h":"60px","w":"58px","txt":"Item","link":"#"},
+		{"x":"116px","y":"470px","h":"60px","w":"58px","txt":"Squad","link":"#"},
+		{"x":"174px","y":"470px","h":"60px","w":"58px","txt":"Chat","link":"#"},
+		{"x":"232px","y":"470px","h":"60px","w":"58px","txt":"Raid team","link":"#"},
+		{"x":"290px","y":"470px","h":"60px","w":"58px","txt":"Quest","link":"#"},
+		{"x":"165px","y":"52px","h":"43px","w":"62px","txt":"Move","link":"#"},
+		{"x":"95px","y":"297px","h":"43px","w":"62px","txt":"Mine item","link":"raid3-1-2"},
+		{"x":"153px","y":"297px","h":"43px","w":"62px","txt":"Battle","link":"#"},
+		{"x":"212px","y":"297px","h":"43px","w":"62px","txt":"Make items","link":"#"}],
+"raid3-1-2": [{"x":"120px","y":"370px","h":"45px","w":"110px","txt":"OK","link":"raid3-1-1"}]
 };
 /*JQ Param handling no unencoding*/
 function urlParam(name){
@@ -426,7 +458,11 @@ function buildBtns(buildObjItem,stateUpdate) {
       if (canvasObj[buildObjItem]) {
         btnArray=canvasObj[buildObjItem];
         for (i=0;i<btnArray.length;i++) {
-          $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+        	if (btnArray[i].link=="#")
+        		var linkText='<i class="fa fa-info-circle"></i> '+btnArray[i].txt;
+        	else
+        		var linkText=btnArray[i].txt;
+          $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+linkText+'</a>');
         }
       }
   });
