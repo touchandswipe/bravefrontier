@@ -452,7 +452,11 @@ function buildBtns(buildObjItem,stateUpdate) {
       if (canvasObj[buildObjItem]) {
         btnArray=canvasObj[buildObjItem];
         for (i=0;i<btnArray.length;i++) {
-          $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+btnArray[i].txt+'</a>');
+        	if (btnArray[i].txt=="#")
+        		var linkText='<i class="fa fa-info-circle"></i> '+btnArray[i].txt;
+        	else
+        		var linkText=btnArray[i].txt;
+          $('#mainCanvas').append('<a href="#" data-link="'+btnArray[i].link+'" class="engBtn" style="width:'+btnArray[i].w+';height:'+btnArray[i].h+';top:'+btnArray[i].y+';left:'+btnArray[i].x+'">'+linkText+'</a>');
         }
       }
   });
