@@ -222,6 +222,16 @@
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
+			<span class="input-group-addon">Element Buff</span>
+			<select class="form-control" id="base_elebuff">
+				<option value="0.75" selected="selected">75% Cerise/Dranoel</option>
+				<option value="0.4">40% Grybe/Zephyr</option>
+				<option value="0">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
 			<span class="input-group-addon">Sphere</span>
 			<select class="form-control" id="base_sphere">
 				<option value="1" selected="selected">100% Wicked</option>
@@ -635,7 +645,7 @@ function searchIdRun() {
 
 function calc_DMG() {
 	/*total modifier*/
-	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
+	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_elebuff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
 	var sparkmod=parseFloat($("#spark_base option:selected").val())+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
 	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
 	var critmod=parseFloat($("#crit_base option:selected").val())+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
