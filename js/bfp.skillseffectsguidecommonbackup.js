@@ -176,7 +176,7 @@ countVar=0; /*reset count*/
                 	for (j in valObj.sbb.levels[0].effects) {
                 		sbbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
                 		$.each(valObj.sbb.levels[0].effects[j], function(sbbKey2,sbbVal2) {
-                			if (!sbbVal2) {
+                			if (sbbVal2) {
 	                			if (sbbVal2.constructor === Object) {
 	                				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
 		                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
