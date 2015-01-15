@@ -131,7 +131,6 @@ countVar=0; /*reset count*/
                 				})
                 			}
                 			else {
-                				alert("non object ? "+valObj.name);
 						bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
 						if (valObj.bb.levels[0].effects[j][bbKey2]==valObj.bb.levels[9].effects[j][bbKey2])
 							bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
@@ -177,7 +176,7 @@ countVar=0; /*reset count*/
                 	for (j in valObj.sbb.levels[0].effects) {
                 		sbbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
                 		$.each(valObj.sbb.levels[0].effects[j], function(sbbKey2,sbbVal2) {
-                			if (sbbVal2.constructor === Object') {
+                			if (sbbVal2.constructor === Object) {
                 				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
 	                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
 	                				if (valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3]==valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3])
