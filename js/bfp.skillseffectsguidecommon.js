@@ -118,6 +118,7 @@ countVar=0; /*reset count*/
                 	for (j in valObj.bb.levels[0].effects) {
                 		bbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
                 		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
+                			alert(valObj.name);
                 			if (typeof bbVal2 === 'object') {
                 				$.each(valObj.bb.levels[0].effects[j][bbKey2], function(bbKey3,bbVal3) {
 	                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
