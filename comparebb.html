@@ -271,7 +271,7 @@ function buildTable(unit) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
 	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
-	                    if (bbKey==fKeys[i]) {
+	                    if (bbKey.toLowerCase().search(fKeys[i])!=-1) {
 	                        tArray.push({"value":bbVal,"target":valObj.bb.levels[9].effects[j]['target type']});
 	                        bbFound=true;
 	                    }
