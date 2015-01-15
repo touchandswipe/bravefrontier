@@ -131,6 +131,7 @@ countVar=0; /*reset count*/
                 				})
                 			}
                 			else {
+                				alert("non object ? "+valObj.name);
 						bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
 						if (valObj.bb.levels[0].effects[j][bbKey2]==valObj.bb.levels[9].effects[j][bbKey2])
 							bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
