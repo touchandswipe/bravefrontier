@@ -153,8 +153,9 @@ text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px blac
 			</ul>
 		    <b>Game settings & functions</b>
 			<ul>
-		        	<li><a href="#" class="aidLink" data-link="transfer1">Initiate account transfer</a></li>
-		        	<li><a href="#" class="aidLink" data-link="transferaccept1">Accepting account transfer</a></li>
+		        	<li><a href="#" class="aidLink" data-link="transfer1">Transferring OUT</a></li>
+		        	<li><a href="#" class="aidLink" data-link="transferin1">Transfer IN via settings</a></li>
+		        	<li><a href="#" class="aidLink" data-link="transferin2">Transfer IN via startup</a></li>
 			</ul>
 		</div>
 	</div>
@@ -506,7 +507,7 @@ var canvasObj={
 		{"x":"235px","y":"250px","h":"85px","w":"98px","txt":"Settings","link":"transfer3"}],
 "transfer3": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"transfer2"},
 		{"x":"45px","y":"370px","h":"45px","w":"110px","txt":"Transfer OUT","link":"transfer4"},
-		{"x":"200px","y":"370px","h":"45px","w":"110px","txt":"Transfer IN","link":"#"}],
+		{"x":"200px","y":"370px","h":"45px","w":"110px","txt":"Transfer IN","link":"transferin1"}],
 "transfer4": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"transfer3"},
 		{"x":"57px","y":"205px","h":"32px","w":"242px","txt":"Enter an ID (4-12 chars) for transfer","link":"#"},
 		{"x":"120px","y":"282px","h":"45px","w":"110px","txt":"Transfer OUT","link":"transfer5"}],
@@ -515,6 +516,13 @@ var canvasObj={
 		{"x":"54px","y":"296px","h":"30px","w":"240px","txt":"ID provided earlier","link":"#"},
 		{"x":"54px","y":"342px","h":"30px","w":"240px","txt":"Expiration date","link":"#"},
 		{"x":"120px","y":"382px","h":"45px","w":"110px","txt":"OK","link":"#"}],
+"transferin1": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"transfer3"},
+		{"x":"235px","y":"250px","h":"85px","w":"98px","txt":"Transfer","link":"#"}],
+"transferin2": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Transfer IN","link":"transfer2-1"}]
+"transferin2-1": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Cancel","link":"transferin2"},
+		{"x":"235px","y":"250px","h":"85px","w":"98px","txt":"Confirm","link":"#"}],
+"transferin2-2": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Confirm","link":"#"},
+		{"x":"235px","y":"250px","h":"85px","w":"98px","txt":"Cancel","link":"transferin2"}]
 };
 /*JQ Param handling no unencoding*/
 function urlParam(name){
