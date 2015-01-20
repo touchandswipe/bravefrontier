@@ -151,6 +151,11 @@ text-shadow: -3px 0 3px black, 0 3px 3px black, 3px 0 3px black, 0 -3px 3px blac
 		        	<li><a href="#" class="aidLink" data-link="randall1-1-3">Trade for points</a></li>
 		        	<li><a href="#" class="aidLink" data-link="randall1-1-4">Exchange for items</a></li>
 			</ul>
+		    <b>Game settings & functions</b>
+			<ul>
+		        	<li><a href="#" class="aidLink" data-link="transfer1">Initiate account transfer</a></li>
+		        	<li><a href="#" class="aidLink" data-link="transferaccept1">Accepting account transfer</a></li>
+			</ul>
 		</div>
 	</div>
   </div>
@@ -495,7 +500,18 @@ var canvasObj={
 "randall1-1-3c": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"randall1-1-3"}],
 "randall1-1-4": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"randall1-1"}],
 "randall1-2": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"randall1"}],
-"randall1-3": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"randall1"}]
+"randall1-3": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"randall1"}],
+"transfer1": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"transfer2"}],
+"transfer2": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"transfer3"}],
+"transfer3": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"#"},
+		{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Transfer OUT","link":"transfer4"},
+		{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Transfer IN","link":"#"}],
+"transfer4": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Back","link":"#"},
+		{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Enter an ID (4-12 characters) for transfer","link":"#"},
+		{"x":"0px","y":"195px","h":"45px","w":"55px","txt":"Submit","link":"transfer5"}],
+"transfer5": [{"x":"0px","y":"95px","h":"45px","w":"55px","txt":"Passcode generated for transferring","link":"#"},
+		{"x":"0px","y":"195px","h":"45px","w":"55px","txt":"","The ID you provided earlier":"#"},
+		{"x":"0px","y":"295px","h":"45px","w":"55px","txt":"OK","link":"#"}],
 };
 /*JQ Param handling no unencoding*/
 function urlParam(name){
