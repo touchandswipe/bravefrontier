@@ -183,10 +183,20 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
         /*imp data*/
-        exportSTR+='<td>'+valObj.imp["max hp"]+'</td>'
-        exportSTR+='<td>'+valObj.imp["max atk"]+'</td>'
-        exportSTR+='<td>'+valObj.imp["max def"]+'</td>'
-        exportSTR+='<td>'+valObj.imp["max rec"]+'</td>'
+        exportSTR+='<td>'+valObj.imp["max hp"]+'</td>';
+        exportSTR+='<td>'+valObj.imp["max atk"]+'</td>';
+        exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
+        exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
+        
+        /*bb atk%*/
+        if (valObj.bb) {
+            for (i in valObj.bb.levels[9].effects) {
+              $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
+                if (bbKey=="bb atk%")
+                  exportSTR+='<td>'+bbVal+'</td>'
+              }
+            }
+        }
         
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
