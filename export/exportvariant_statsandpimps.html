@@ -217,6 +217,21 @@ $.getJSON( serverSelect, function( unit ) {
         }
         if (!sbbFound)
           exportSTR+='<td></td>';
+          
+        /*ubb atk%*/
+        ubbFound=false;
+        if (valObj.ubb) {
+            for (i in valObj.ubb.levels[9].effects) {
+              $.each(valObj.ubb.levels[9].effects[i], function(ubbKey,ubbVal) {
+                  if (ubbKey=="bb atk%" && !ubbFound) {
+                    exportSTR+='<td>'+ubbVal+'</td>';
+                    ubbFound=true;
+                  }
+              })
+            }
+        }
+        if (!ubbFound)
+          exportSTR+='<td></td>';
         
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
