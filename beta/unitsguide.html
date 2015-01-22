@@ -16,6 +16,9 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .bbtxt {color:#0099FF;font-weight:bold;}
+    .sbbtxt {color:#FFAA00;font-weight:bold;}
+    .ubbtxt {color:#DD0000;font-weight:bold;}
     .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:rgba(0, 230, 240, 0.60);padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
     .evoShdw {
@@ -447,8 +450,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="BB Hits">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="BB Hits">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Hits">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -462,8 +465,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="SBB Hits">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="SBB Hits">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Hits">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -477,8 +480,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="UBB Hits">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="UBB Hits">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Hits">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -492,8 +495,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="BB Fill">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="BB Fill">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Fill">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -507,8 +510,8 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="SBB Fill">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="SBB Fill">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Fill">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
@@ -522,8 +525,53 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="statsInfo" data-toggle="tooltip" title="UBB Fill">'+'-'+'</div>';
-			} else { return '<div class="statsInfo" data-toggle="tooltip" title="UBB Fill">'+nanCol+'</div>'; }
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Fill">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 20 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB ATK%">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 21 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB ATK%">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 22 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB ATK%">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
 			    return 0;
