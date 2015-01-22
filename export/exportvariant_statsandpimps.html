@@ -193,7 +193,9 @@ $.getJSON( serverSelect, function( unit ) {
             for (i in valObj.bb.levels[9].effects) {
               $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
                 if (bbKey=="bb atk%")
-                  exportSTR+='<td>'+bbVal+'</td>'
+                  exportSTR+='<td>'+bbVal+'</td>';
+                else
+                  exportSTR+='<td></td>';
               }
             }
         }
