@@ -189,16 +189,34 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
         
         /*bb atk%*/
+        bbFound=false;
         if (valObj.bb) {
             for (i in valObj.bb.levels[9].effects) {
               $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
-                if (bbKey=="bb atk%")
-                  exportSTR+='<td>'+bbVal+'</td>';
-                else
-                  exportSTR+='<td></td>';
+                  if (bbKey=="bb atk%" && !bbFound) {
+                    exportSTR+='<td>'+bbVal+'</td>';
+                    bbFound=true;
+                  }
               })
             }
         }
+        if (!bbFound)
+          exportSTR+='<td></td>';
+          
+        /*sbb atk%*/
+        sbbFound=false;
+        if (valObj.sbb) {
+            for (i in valObj.sbb.levels[9].effects) {
+              $.each(valObj.sbb.levels[9].effects[i], function(sbbKey,sbbVal) {
+                  if (sbbKey=="bb atk%" && !sbbFound) {
+                    exportSTR+='<td>'+sbbVal+'</td>';
+                    sbbFound=true;
+                  }
+              })
+            }
+        }
+        if (!sbbFound)
+          exportSTR+='<td></td>';
         
         $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
