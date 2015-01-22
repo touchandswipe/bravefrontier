@@ -984,18 +984,18 @@ function initialize(fusionData) {
 	      ovHTML+='</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
 	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-	      if (ovdata2[0]['bb atk%'] != "")
+	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+=ovdata2[0]['bb atk%']+"% ";
 	      ovHTML+=ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
 		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    if (ovdata2[0]['sbb atk%'] != "")
+		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+=ovdata2[0]['sbb atk%']+"% ";
 		    ovHTML+=ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    if (ovdata2[0]['ubb atk%'] != "")
+		    if (ovdata2[0]['ubb atk%'] != "-")
 		    	ovHTML+=ovdata2[0]['ubb atk%']+"% ";
 		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>'
 	      }
