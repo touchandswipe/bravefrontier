@@ -188,6 +188,9 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
         exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
         
+        /*spacing for weighted*/
+        exportSTR+='<td></td>';
+        
         /*bb atk%*/
         bbFound=false;
         if (valObj.bb) {
