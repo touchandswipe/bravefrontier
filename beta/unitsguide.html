@@ -1720,6 +1720,7 @@ $(document).ready( function(e) {
 		dataType: 'jsonp',
 		success: function (quickData) {
 			/*Total JP Global Release Count*/
+			alert(JSON.stringify(quickData.rows));
 			for (i in quickData.rows) {
 				if (quickData.rows[i]['Global Release']=="" || quickData.rows[i]['Global Release']=="TRUE")
 					serverUnitsCount++;
