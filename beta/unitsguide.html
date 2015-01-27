@@ -1706,7 +1706,7 @@ $(document).ready( function(e) {
     	/*Quick query to check for new entries*/
     	var serverUnitsCount=0;
     	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
-    	var query = "SELECT 'ID' FROM " + gTable;
+    	var query = "SELECT 'Global Release','Japan Release' FROM " + gTable;
   	var encodedQuery = encodeURIComponent(query);
   	/*Construct the URL*/
 	var url = [gURL];
@@ -1719,10 +1719,17 @@ $(document).ready( function(e) {
 		url: url.join(''),
 		dataType: 'jsonp',
 		success: function (quickData) {
-			serverUnitsCount=quickData.rows.length;
+			/*Total JP Global Release Count*/
+			for (i in quickData.rows) {
+				if (quickData.rows[i]['Global Release']=="" || quickData.rows[i]['Global Release']=="TRUE")
+					serverUnitsCount++;
+				if (quickData.rows[i]['Japan Release']=="" || quickData.rows[i]['Japan Release']=="TRUE")
+					serverUnitsCount++;
+			}
+			alert(serverUnitsCount);
 			/*Prompt to Sync*/
 			if (serverUnitsCount > localUnitsCount)
-				bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" id="syncCancel">Cancel</button></div>');
+				bfpAlert("New Units / Release update Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" id="syncCancel">Cancel</button></div>');
 			else {
 				guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
 				if (isValidJSON(guideData))
@@ -1739,6 +1746,7 @@ $(document).ready( function(e) {
 	  		}
 	});
     } else {
+    	var serverUnitsCount=0;
 	/*Init loader if no localstorage*/
 	$('#progressModal').modal({
 		keyboard:false,
@@ -1761,9 +1769,16 @@ $(document).ready( function(e) {
 		url: url.join(''),
 		dataType: 'jsonp',
 		success: function (fusionData) {
+			/*Total JP Global Release Count*/
+			for (i in fusionData.rows) {
+				if (fusionData.rows[i]['Global Release']=="" || fusionData.rows[i]['Global Release']=="TRUE")
+					serverUnitsCount++;
+				if (fusionData.rows[i]['Japan Release']=="" || fusionData.rows[i]['Japan Release']=="TRUE")
+					serverUnitsCount++;
+			}
 			/*Save in local storage*/
 			localStorage.setItem("unitsguideadvance",LZString.compressToUTF16(JSON.stringify(fusionData)));
-			localStorage.setItem("unitsguideadvanceCount",fusionData.rows.length);
+			localStorage.setItem("unitsguideadvanceCount",serverUnitsCount);
 			initialize(fusionData);
 	  	}
 	})
