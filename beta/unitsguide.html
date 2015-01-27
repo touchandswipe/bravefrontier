@@ -1722,9 +1722,9 @@ $(document).ready( function(e) {
 			/*Total JP Global Release Count*/
 			alert(JSON.stringify(quickData.rows));
 			for (i in quickData.rows) {
-				if (quickData.rows[i]['Global Release']=="" || quickData.rows[i]['Global Release']=="TRUE")
+				if (quickData.rows[i][0]=="" || quickData.rows[i][0]=="TRUE")
 					serverUnitsCount++;
-				if (quickData.rows[i]['Japan Release']=="" || quickData.rows[i]['Japan Release']=="TRUE")
+				if (quickData.rows[i][1]=="" || quickData.rows[i][1]=="TRUE")
 					serverUnitsCount++;
 			}
 			alert(serverUnitsCount);
