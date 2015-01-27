@@ -1777,7 +1777,6 @@ $(document).ready( function(e) {
 				if (fusionData.rows[i][jp_idx]=="" || fusionData.rows[i][jp_idx]=="TRUE")
 					serverUnitsCount++;
 			}
-			alert(serverUnitsCount);
 			/*Save in local storage*/
 			localStorage.setItem("unitsguideadvance",LZString.compressToUTF16(JSON.stringify(fusionData)));
 			localStorage.setItem("unitsguideadvanceCount",serverUnitsCount);
