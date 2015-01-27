@@ -1769,10 +1769,12 @@ $(document).ready( function(e) {
 		success: function (fusionData) {
 			/*Total JP Global Release Count*/
 			var serverUnitsCount=0;
+			var gl_idx=fusionData.columns.indexOf("Global Release");
+			var jp_idx=fusionData.columns.indexOf("Japan Release");
 			for (i in fusionData.rows) {
-				if (fusionData.rows[i][0]=="" || fusionData.rows[i][0]=="TRUE")
+				if (fusionData.rows[i][gl_idx]=="" || fusionData.rows[i][gl_idx]=="TRUE")
 					serverUnitsCount++;
-				if (fusionData.rows[i][1]=="" || fusionData.rows[i][1]=="TRUE")
+				if (fusionData.rows[i][jp_idx]=="" || fusionData.rows[i][jp_idx]=="TRUE")
 					serverUnitsCount++;
 			}
 			alert(serverUnitsCount);
