@@ -1704,7 +1704,6 @@ $(document).ready( function(e) {
     /*LocalStorage Retreival and storage*/
     if (localStorage.unitsguideadvance) {
     	/*Quick query to check for new entries*/
-    	var serverUnitsCount=0;
     	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
     	var query = "SELECT 'Global Release','Japan Release' FROM " + gTable;
   	var encodedQuery = encodeURIComponent(query);
@@ -1720,14 +1719,13 @@ $(document).ready( function(e) {
 		dataType: 'jsonp',
 		success: function (quickData) {
 			/*Total JP Global Release Count*/
-			alert(JSON.stringify(quickData.rows));
+			var serverUnitsCount=0;
 			for (i in quickData.rows) {
 				if (quickData.rows[i][0]=="" || quickData.rows[i][0]=="TRUE")
 					serverUnitsCount++;
 				if (quickData.rows[i][1]=="" || quickData.rows[i][1]=="TRUE")
 					serverUnitsCount++;
 			}
-			alert(serverUnitsCount);
 			/*Prompt to Sync*/
 			if (serverUnitsCount > localUnitsCount)
 				bfpAlert("New Units / Release update Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" id="syncCancel">Cancel</button></div>');
@@ -1747,7 +1745,6 @@ $(document).ready( function(e) {
 	  		}
 	});
     } else {
-    	var serverUnitsCount=0;
 	/*Init loader if no localstorage*/
 	$('#progressModal').modal({
 		keyboard:false,
@@ -1771,10 +1768,11 @@ $(document).ready( function(e) {
 		dataType: 'jsonp',
 		success: function (fusionData) {
 			/*Total JP Global Release Count*/
+			var serverUnitsCount=0;
 			for (i in fusionData.rows) {
-				if (fusionData.rows[i]['Global Release']=="" || fusionData.rows[i]['Global Release']=="TRUE")
+				if (fusionData.rows[i][0]=="" || fusionData.rows[i][0]=="TRUE")
 					serverUnitsCount++;
-				if (fusionData.rows[i]['Japan Release']=="" || fusionData.rows[i]['Japan Release']=="TRUE")
+				if (fusionData.rows[i][1]=="" || fusionData.rows[i][1]=="TRUE")
 					serverUnitsCount++;
 			}
 			/*Save in local storage*/
