@@ -598,7 +598,7 @@ function sphereRun(select) {
 	var outputHTML=[];
 	for (i in rawParseObj) {
 	    /*searches for sphere type*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal) != -1) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal+'</span>') != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
