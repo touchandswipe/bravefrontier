@@ -357,6 +357,16 @@ function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+	localStorage.removeItem('itemsguideglobal');
+	localStorage.removeItem('itemsguidejapan');
+	localStorage.removeItem('itemsguideglobaldate');
+	localStorage.removeItem('itemsguidejapandate');
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+})
+
 /*Grab item name and image*/
 function getNameIMG(unitdata,idFind,server) {
 	var retArray=[];
