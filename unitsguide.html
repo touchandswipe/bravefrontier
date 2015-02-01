@@ -996,8 +996,11 @@ function initialize(fusionData) {
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
 		    if (ovdata2[0]['ubb atk%'] != "-")
-		    	ovHTML+='<span class="ubbtxt">'+ovdata2[0]['ubb atk%']+"%</span> ";
-		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>'
+		    	ovHTML+='<span class="ubbtxt">'+ovdata2[0]['ubb atk%']+'%</span> ';
+		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>';
+		    /*passive skill*/
+		    ovHTML+='<tr><td class="active"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+' | '+ovdata2[0]['passive skill']+'</span></td></tr>';
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
