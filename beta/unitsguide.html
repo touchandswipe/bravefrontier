@@ -16,6 +16,12 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .hashbox {
+    	border: 1px solid #CCCCCC;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 1px 0px 0px 3px;
+    }
     .bbtxt {color:#0099FF;}
     .sbbtxt {color:#FFAA00;}
     .ubbtxt {color:#DD0000;}
@@ -985,13 +991,13 @@ function initialize(fusionData) {
 	      }
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span class="release"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/></span> <span class="release"><b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['ubb atk%'] != "-")
 		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
 		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>';
 		    /*passive skill*/
 		    ovHTML+='<tr><td class="active"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span> &nbsp;&middot;&nbsp; '+ovdata2[0]['passive skill']+'</td></tr>';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
