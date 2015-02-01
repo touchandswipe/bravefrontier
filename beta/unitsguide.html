@@ -970,22 +970,22 @@ function initialize(fusionData) {
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
-	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;">'+ovhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &middot; '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;">'+ovhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> '+ovleaderskill+'</span></td></tr>';
 	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-	      ovHTML+='<span style="display:inline-block;">'+ovbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &middot; '+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
+	      ovHTML+='<span style="display:inline-block;">'+ovbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> '+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
 	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
 		    ovHTML+='<tr><td class="active sbbtxt"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span style="display:inline-block;">'+ovsbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &middot; '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
+		    ovHTML+='<span style="display:inline-block;">'+ovsbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
 		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span style="display:inline-block;">'+ovubbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &middot; '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
+		    ovHTML+='<span style="display:inline-block;">'+ovubbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> &middot; ';
 		    if (ovdata2[0]['ubb atk%'] != "-")
 		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
 		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>';
