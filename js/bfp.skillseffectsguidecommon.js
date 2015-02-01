@@ -149,6 +149,7 @@ countVar=0; /*reset count*/
                 }
             })
         } else bbSTR="";
+        
         /*Checks SBB*/
         if (valObj["sbb"]) {
             sbbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>SBB Skill: </b>['+valObj["sbb"]["name"]+'] '+valObj["sbb"]["desc"]+'</h5></div></div>';
@@ -207,6 +208,7 @@ countVar=0; /*reset count*/
                 }
             })
         } else sbbSTR="";
+        
 	/*Checks UBB*/
         if (valObj["ubb"]) {
             ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
@@ -265,6 +267,24 @@ countVar=0; /*reset count*/
                 }
             })
         } else ubbSTR="";
+        
+	/*Checks Extra Skill*/
+        if (valObj["extra skill"]) {
+            exSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Extra/Passive Skill: </b>['+valObj["extra skill"]["name"]+'] '+valObj["extra skill"]["desc"]+'</h5></div></div>';
+            /*xtra Heading*/
+            exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bd">Tech Bits</div><div class="col-xs-7 col-md-7 bd">Value</div></div>';
+            $.each(valObj["extra skill"], function(exKey,exVal) {
+            	if (exKey=="effects") {
+            		for (j in valObj["extra skill"].effects) {
+            			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
+            				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
+                			exSTR+='<div class="col-xs-7 col-md-7 bi">'+exVal2+'</div></div>';
+            			})
+            		}
+            	}
+            })
+        } else exSTR="";
+        
         if (valObj.ai) {
 		/*AI Heading*/
 		var aiCol=valObj['ai'].length;
@@ -291,7 +311,7 @@ countVar=0; /*reset count*/
         } else aiSTR="";
         /*Append each HTML*/
         var splitSTR='<div class="row">&nbsp;</div>';
-        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+ubbSTR+'</div></div></div></div>';
+        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+ubbSTR+splitSTR+exSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
         rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
