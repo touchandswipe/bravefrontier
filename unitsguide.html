@@ -16,9 +16,9 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
-    .bbtxt {color:#0099FF;font-weight:bold;}
-    .sbbtxt {color:#FFAA00;font-weight:bold;}
-    .ubbtxt {color:#DD0000;font-weight:bold;}
+    .bbtxt {color:#0099FF;}
+    .sbbtxt {color:#FFAA00;}
+    .ubbtxt {color:#DD0000;}
     .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:rgba(0, 230, 240, 0.60);padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
     .affix-top { position:static; }
     .evoShdw {
@@ -985,22 +985,22 @@ function initialize(fusionData) {
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
 	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
 	      if (ovdata2[0]['bb atk%'] != "-")
-		    ovHTML+='<span class="bbtxt">'+ovdata2[0]['bb atk%']+"%</span> ";
+		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
 		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
 		    if (ovdata2[0]['sbb atk%'] != "-")
-		    	ovHTML+='<span class="sbbtxt">'+ovdata2[0]['sbb atk%']+"%</span> ";
+		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
 		    if (ovdata2[0]['ubb atk%'] != "-")
-		    	ovHTML+='<span class="ubbtxt">'+ovdata2[0]['ubb atk%']+'%</span> ';
+		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
 		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>';
 		    /*passive skill*/
 		    ovHTML+='<tr><td class="active"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+' | '+ovdata2[0]['passive skill']+'</span></td></tr>';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span> | '+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
