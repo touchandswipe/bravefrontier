@@ -215,6 +215,12 @@ var evoQuery = [
 ['Turbo Cyclaw','icon8106.png'],
 ['Turbo Hydraloid','icon8118.png'],
 ['Turbo Netherhound','icon8133.png'],
+['Fire Tone','icon8137.png'],
+['Water Tone','icon8138.png'],
+['Earth Tone','icon8139.png'],
+['Thunder Tone','icon8140.png'],
+['Light Tone','icon8141.png'],
+['Dark Tone','icon8142.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
