@@ -982,26 +982,28 @@ function initialize(fusionData) {
 	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+(parseInt(ovbbfill)+parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      }
 	      ovHTML+='</td></tr>';
-	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
-	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader skill</b></td><td colspan="5"><span style="display:inline-block;">'+ovhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &nbsp;&middot;&nbsp; '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+	      ovHTML+='<span style="display:inline-block;">'+ovbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &nbsp;&middot;&nbsp; '+ovbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
 	      if (ovrarity > 5) {
-		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<tr><td class="active sbbtxt"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;">'+ovsbbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &nbsp;&middot;&nbsp; '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
 	      }
 	      if (ovrarity > 6) {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span style="display:inline-block;">'+ovubbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+		    ovHTML+='<span style="display:inline-block;">'+ovubbhits+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> &nbsp;&middot;&nbsp; '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
 		    if (ovdata2[0]['ubb atk%'] != "-")
 		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
 		    ovHTML+=ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>';
 		    /*passive skill*/
 		    ovHTML+='<tr><td class="active"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
-		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span> | '+ovdata2[0]['passive skill']+'</td></tr>';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span> &nbsp;&middot;&nbsp; '+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
