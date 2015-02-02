@@ -22,7 +22,7 @@
 	margin: 0 auto 0 auto;
 	position: absolute;
 	background: rgba(230,230,255,0.8);
-	padding: 0px 20px 20px 20px;
+	padding: 10px 20px 20px 20px;
 	border: 1px solid #DDDDDD;
 	border-radius: 15px;
     }
@@ -1145,7 +1145,7 @@ function initialize(fusionData) {
 	    /*Unit Art and Lore*/
 	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" width="50" height="50"/><b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
