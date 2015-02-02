@@ -16,6 +16,13 @@
 
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .loreBox {
+	bottom:0px;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	position: absolute;
+	background: rgba(255,255,255,0.85);
+    }
     .hashbox {
 	border: 1px solid #CCCCCC;
 	display: inline-block;
@@ -1132,8 +1139,11 @@ function initialize(fusionData) {
 	    }
 	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
-	    /*image accordion*/
-	    $('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
+	    /*Unit Art and Lore*/
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
+	    if (ovdata2[0]['unit lore'] != "")
+	    	artLoreHTML+='<div class="loreBox">'+ovdata2[0]['unit lore']+'</div>';
+	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    /*Assault Spite*/
@@ -2828,7 +2838,7 @@ var delay = (function(){
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
 	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
-	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Unit Art</a></li>
+	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Lore / Art</a></li>
 	      <li class="hidden-xs"><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
 	      <li class="hidden-xs"><a href="#unitCardSprite" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Sprite Play</a></li>
 	</ul>
@@ -2836,7 +2846,7 @@ var delay = (function(){
     <div class="tab-content">
 	<div class="tab-pane fade in active" id="unitCardHome"></div>
     <div class="tab-pane fade" id="unitCardArt">
-	<div id="unitimageacc"></div>
+	<div id="unitimageacc" style="position:inherit;"></div>
     </div>
 <!--Evolutionary-->
   <div class="tab-pane fade" id="evolutionary">
