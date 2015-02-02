@@ -143,7 +143,7 @@ $.getJSON( serverSelect, function( unit ) {
           if (valObj.hits)
               exportSTR+='<td>'+valObj.hits+'</td>'
           else
-              exportSTR+='<td></td>'
+              exportSTR+='<td></td>';
           
           if (valObj.bb)
             if (valObj.bb.hits)
@@ -151,7 +151,7 @@ $.getJSON( serverSelect, function( unit ) {
             else
                 exportSTR+='<td></td>'
           else
-            exportSTR+='<td></td>'
+            exportSTR+='<td></td>';
           
           if (valObj.sbb)
             if (valObj.sbb.hits)
@@ -159,7 +159,7 @@ $.getJSON( serverSelect, function( unit ) {
             else
               exportSTR+='<td></td>'
           else
-            exportSTR+='<td></td>'
+            exportSTR+='<td></td>';
           
           if (valObj.ubb)
             if (valObj.ubb.hits)
@@ -167,7 +167,7 @@ $.getJSON( serverSelect, function( unit ) {
             else
               exportSTR+='<td></td>'
           else 
-              exportSTR+='<td></td>'
+              exportSTR+='<td></td>';
               
           if (valObj.bb)
             if (valObj.bb.levels[9]["bc cost"])
@@ -175,7 +175,7 @@ $.getJSON( serverSelect, function( unit ) {
             else
                 exportSTR+='<td></td>'
           else
-            exportSTR+='<td></td>'
+            exportSTR+='<td></td>';
               
           if (valObj.sbb)
             if (valObj.sbb.levels[9]["bc cost"])
@@ -183,7 +183,7 @@ $.getJSON( serverSelect, function( unit ) {
             else
                 exportSTR+='<td></td>'
           else
-            exportSTR+='<td></td>'
+            exportSTR+='<td></td>';
             
           if (valObj.ubb)
             if (valObj.ubb.levels[9]["bc cost"])
@@ -191,7 +191,40 @@ $.getJSON( serverSelect, function( unit ) {
             else
                 exportSTR+='<td></td>'
           else
-            exportSTR+='<td></td>'
+            exportSTR+='<td></td>';
+            
+          /*Normal DC*/
+          if (valObj["max bc generated"])
+            exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>';
+          
+          /*BB DC*/  
+          if (valObj.bb)
+            if (valObj["bb"]["max bc generated"])
+                exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
+            else
+                exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>';
+  
+          /*SBB DC*/  
+          if (valObj.sbb)
+            if (valObj["sbb"]["max bc generated"])
+                exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
+            else
+                exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>';
+
+          /*UBB DC*/  
+          if (valObj.ubb)
+            if (valObj["ubb"]["max bc generated"])
+                exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
+            else
+                exportSTR+='<td></td>'
+          else
+            exportSTR+='<td></td>';
   
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
