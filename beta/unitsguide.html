@@ -1145,7 +1145,7 @@ function initialize(fusionData) {
 	    /*Unit Art and Lore*/
 	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" width="35" height="35"/><b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
