@@ -17,11 +17,14 @@
     <!-- Custom styles for this template -->
     <style type="text/css">
     .loreBox {
-	bottom:0px;
+	bottom: 25px;
 	width: 100%;
 	margin: 0 auto 0 auto;
 	position: absolute;
-	background: rgba(255,255,255,0.85);
+	background: rgba(230,230,255,0.8);
+	padding: 20px;
+	border: 1px solid #DDDDDD;
+	border-radius: 15px;
     }
     .hashbox {
 	border: 1px solid #CCCCCC;
@@ -1142,7 +1145,7 @@ function initialize(fusionData) {
 	    /*Unit Art and Lore*/
 	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox">'+ovdata2[0]['unit lore']+'</div>';
+	    	artLoreHTML+='<div class="loreBox"><h3><b>Something about '+ovname+'</b></h3>'+ovdata2[0]['unit lore']+'</div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
