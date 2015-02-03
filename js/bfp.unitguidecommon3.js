@@ -109,7 +109,7 @@ function sconvertJSON( serialObj ) {
 	var temp = {};
 	for(var j=0; j < s.columns.length; j++)
 	{ /*check for NaN values*/
-	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("range") != -1)||(s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
+	    if (isNaN(s.rows[i][j]) && ((s.columns[j].toLowerCase().search("range") != -1)||(s.columns[j].toLowerCase().search(" dc") != -1)||(s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("zel") != -1)||(s.columns[j].toLowerCase().search("hp") != -1)||(s.columns[j].toLowerCase().search("atk") != -1)||(s.columns[j].toLowerCase().search("def") != -1)||(s.columns[j].toLowerCase().search("rec") != -1)||(s.columns[j].toLowerCase().search("cost") != -1))) {
 		    temp[s.columns[j].toLowerCase()] = "-";
 	    } else {
 	    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
