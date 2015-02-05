@@ -538,7 +538,7 @@ function openCard(whatunit) {
 	ovHTML+='</td></tr></table>';
 	$('#unitCardHome').html(ovHTML);
 	/*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:30px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
 	    $('#unitimageacc').html(artLoreHTML);
