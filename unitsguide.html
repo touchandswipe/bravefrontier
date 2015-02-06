@@ -1143,7 +1143,7 @@ function initialize(fusionData) {
 	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:30px;"/>';
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:80px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse in">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
