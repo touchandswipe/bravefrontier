@@ -17,7 +17,7 @@
     <!-- Custom styles for this template -->
     <style type="text/css">
     .loreBox {
-	bottom: 25px;
+	bottom: 5px;
 	width: 100%;
 	margin: 0 auto 0 auto;
 	position: absolute;
@@ -1143,9 +1143,9 @@ function initialize(fusionData) {
 	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" />';
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:30px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b>Something about '+ovname+'</b></h4>'+ovdata2[0]['unit lore']+'</div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b>Something about '+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
