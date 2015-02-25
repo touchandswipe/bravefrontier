@@ -42,6 +42,7 @@ function totalStatsMod() {
     /*Make changes*/
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
+		alert("debug call");
 	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[0])) )+(parseInt(pMod[0])*pFlip);
 	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[0])))); }
 	})
