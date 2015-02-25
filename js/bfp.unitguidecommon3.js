@@ -43,8 +43,8 @@ function totalStatsMod() {
     $('.hpMod').each( function(){
 	if ( $(this).text() != "-" ) {
 	    bCalc=( parseInt($(this).text())/(1+parseFloat(prevStatsMod[0])) )+(parseInt(pMod[0])*pFlip);
-	    alert(bCalc+" and pFlip is "+pFlip);
-	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[0])))); }
+	    alert(bCalc+" and pFlip is "+pFlip+" and tMod is "+totalMod[0]);
+	    $(this).text(Math.round( bCalc*(1+parseFloat(totalMod[0]))).toString()); }
 	})
     
     $('.atkMod').each( function(){
