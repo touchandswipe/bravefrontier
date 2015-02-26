@@ -178,8 +178,8 @@ $.getJSON( serverSelect, function( unit ) {
                     if (skillSeek=="stats buff") {
                       for (ix in statsBuffArray) {
                           $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==StatsBuffArray[ix]["skillid"]) {
-                              groupSTR+=effectVal+StatsBuffArray[ix]["suffix"];
+                            if (effectKey==statsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
