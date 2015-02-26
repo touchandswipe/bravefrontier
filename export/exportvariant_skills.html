@@ -164,7 +164,7 @@ $.getJSON( serverSelect, function( unit ) {
           var bbSkillFound=0;
           exportSTR+="<td>";
           if (valObj.bb)
-            if (valObj.bb.levels[9]["effects"])
+            if (valObj.bb.levels[9]["effects"]) {
               for (i=0;i<skillParseObj.length;i++) {
                 var skillSeek=skillParseObj[i]["skillid"];
                 /*looking each effect array*/
@@ -212,9 +212,11 @@ $.getJSON( serverSelect, function( unit ) {
                     }
                   })
               }
-        if (bbSkillFound < valObj.bb.levels[9]["effects"].length)
-          exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
-        exportSTR+="</td>";
+            /*check for missing skill effects*/
+            if (bbSkillFound < valObj.bb.levels[9]["effects"].length)
+              exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
+            exportSTR+="</td>";
+          } /*End of Effects Loop*/
 
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
