@@ -131,6 +131,12 @@ $(document).on("click","#exportBtn", function(e) {
 $.getJSON( serverSelect, function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
+    /*parsing object reference*/
+    var skillParseObj=[
+        {"skillid":"bb atk%", "skillref":["!Elemental (","target area","!)"]},
+        {"skillid":"increase bb gauge", "skillref":["!BB Fill (","increase bb gauge","!BC) 1Turn"]}
+      ];
+    var skillConnect=" / ";
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -138,94 +144,44 @@ $.getJSON( serverSelect, function( unit ) {
         } else {
             var idFound=false;
         }
+        /*Parsing code here*/
         if (idFound) {
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
-          if (valObj.hits)
-              exportSTR+='<td>'+valObj.hits+'</td>'
-          else
-              exportSTR+='<td></td>';
           
+          /*BB Skill*/
+          var bbSkillFound=0;
+          exportSTR+="<td>";
           if (valObj.bb)
-            if (valObj.bb.hits)
-                exportSTR+='<td>'+valObj.bb.hits+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-          
-          if (valObj.sbb)
-            if (valObj.sbb.hits)
-              exportSTR+='<td>'+valObj.sbb.hits+'</td>'
-            else
-              exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-          
-          if (valObj.ubb)
-            if (valObj.ubb.hits)
-              exportSTR+='<td>'+valObj.ubb.hits+'</td>'
-            else
-              exportSTR+='<td></td>'
-          else 
-              exportSTR+='<td></td>';
-              
-          if (valObj.bb)
-            if (valObj.bb.levels[9]["bc cost"])
-                exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-              
-          if (valObj.sbb)
-            if (valObj.sbb.levels[9]["bc cost"])
-                exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-            
-          if (valObj.ubb)
-            if (valObj.ubb.levels[9]["bc cost"])
-                exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-            
-          /*Normal DC*/
-          if (valObj["max bc generated"])
-            exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
-          else
-            exportSTR+='<td></td>';
-          
-          /*BB DC*/  
-          if (valObj.bb)
-            if (valObj["bb"]["max bc generated"])
-                exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-  
-          /*SBB DC*/  
-          if (valObj.sbb)
-            if (valObj["sbb"]["max bc generated"])
-                exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
+            if (valObj.bb.levels[9]["effects"])
+              for (i=0;i<skillParseObj.length;i++) {
+                var skillSeek=skillParseObj[i]["skillid"];
+                /*looking each effect array*/
+                for (j in valObj.bb.levels[9]["effects"])
+                  /*looping each effect*/
+                  $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                    if (effectKey==skillSeek) {
+                      /*add connector if not first skill found*/
+                      if (i != 0)
+                        exportSTR+=skillConnect;
+                      bbSkillFound+=1;
+                      for (k in skillParseObj[i]["skillref"]) {
+                        if (skillParseObj[i]["skillref"][k].charAt(0) != "!") {
+                          /*handling identified obj value*/
+                          var callObjName=skillParseObj[i]["skillref"][k];
+                          if (valObj.bb.levels[9]["effects"][j][callObjName])
+                            exportSTR+=valObj.bb.levels[9]["effects"][j][callObjName];
+                          else
+                            exportSTR+="unknown";
+                        } else {
+                          /*handling str additions*/
+                          exportSTR+=skillParseObj[i]["skillref"][k].slice(0);
+                        }
+                      }
+                    }
+                  })
+              }
+        exportSTR+="</td>";
 
-          /*UBB DC*/  
-          if (valObj.ubb)
-            if (valObj["ubb"]["max bc generated"])
-                exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
-            else
-                exportSTR+='<td></td>'
-          else
-            exportSTR+='<td></td>';
-  
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
