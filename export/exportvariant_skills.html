@@ -174,7 +174,9 @@ $.getJSON( serverSelect, function( unit ) {
                         if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
                           /*handling special obj values*/
                           var specialKey=skillParseObj[i]["skillref"][k].slice(1);
-                          exportSTR+=valObj[specialKey];
+                          var specialValue=valObj[specialKey];
+                          specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
+                          exportSTR+=specialValue;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
                           /*handling str additions*/
                           exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
@@ -182,7 +184,17 @@ $.getJSON( serverSelect, function( unit ) {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
                           if (valObj.bb.levels[9]["effects"][j][callObjName])
-                            exportSTR+=valObj.bb.levels[9]["effects"][j][callObjName];
+                            var exportValue=valObj.bb.levels[9]["effects"][j][callObjName];
+                            /*value replacement and formatting*/
+                            switch (exportValue) {
+                              case "aoe":
+                                exportValue="AOE";
+                                break;
+                              case "single":
+                                exportValue="TGT";
+                                break;
+                            }
+                            exportSTR+=exportValue;
                           else
                             exportSTR+="unknown";
                         }
