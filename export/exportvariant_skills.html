@@ -131,10 +131,16 @@ $(document).on("click","#exportBtn", function(e) {
 $.getJSON( serverSelect, function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
-    /*parsing object reference*/
+    /*parsing definition*/
     var skillParseObj=[
-        {"skillid":"bb atk%", "skillref":["!Elemental (","target area","!)"]},
-        {"skillid":"increase bb gauge", "skillref":["!BB Fill (","increase bb gauge","!BC) 1Turn"]}
+        {"skillid":"bb atk%", "skillref":["?element", " (","target area","!)"]},
+        {"skillid":"increase bb gauge", "skillref":["!BB Fill (","increase bb gauge","!BC) 1Turn(s)"]},
+        {"skillid":"increase bb gauge gradual", "skillref":["!BB Fill (","increase bb gauge gradual","!BC) ","increase bb gauge gradual (37)","!Turn(s)"]},
+        {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%)", "dmg% reduction turns (36)","Turn(s)"]},
+        {"skillid":"bc drop rate% buff (10)", "skillref":["bc drop rate% buff (10)", "!% BC+", "drop rate buff turns","Turn(s)"]},
+        {"skillid":"hc drop rate% buff (9)", "skillref":["hc drop rate% buff (9)", "!% HC+", "drop rate buff turns","Turn(s)"]},
+        {"skillid":"item drop rate% buff (11)", "skillref":["item drop rate% buff (11)", "!% Item+", "drop rate buff turns","Turn(s)"]},
+        {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+", "buff turns","Turn(s)"]}
       ];
     var skillConnect=" / ";
     $.each( unit, function( unitKey, valObj ) {
@@ -165,16 +171,20 @@ $.getJSON( serverSelect, function( unit ) {
                         exportSTR+=skillConnect;
                       bbSkillFound+=1;
                       for (k in skillParseObj[i]["skillref"]) {
-                        if (skillParseObj[i]["skillref"][k].charAt(0) != "!") {
+                        if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
+                          /*handling special obj values*/
+                          var specialKey=skillParseObj[i]["skillref"][k].slice(1);
+                          exportSTR+=valObj[specialKey];
+                        } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
+                          /*handling str additions*/
+                          exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
+                        } else {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
                           if (valObj.bb.levels[9]["effects"][j][callObjName])
                             exportSTR+=valObj.bb.levels[9]["effects"][j][callObjName];
                           else
                             exportSTR+="unknown";
-                        } else {
-                          /*handling str additions*/
-                          exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
                         }
                       }
                     }
