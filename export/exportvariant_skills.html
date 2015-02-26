@@ -183,18 +183,19 @@ $.getJSON( serverSelect, function( unit ) {
                         } else {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
-                          if (valObj.bb.levels[9]["effects"][j][callObjName])
-                            var exportValue=valObj.bb.levels[9]["effects"][j][callObjName];
-                            /*value replacement and formatting*/
-                            switch (exportValue) {
-                              case "aoe":
-                                exportValue="AOE";
-                                break;
-                              case "single":
-                                exportValue="TGT";
-                                break;
-                            }
-                            exportSTR+=exportValue;
+                          if (valObj.bb.levels[9]["effects"][j][callObjName]) {
+                              var exportValue=valObj.bb.levels[9]["effects"][j][callObjName];
+                              /*value replacement and formatting*/
+                              switch (exportValue) {
+                                case "aoe":
+                                  exportValue="AOE";
+                                  break;
+                                case "single":
+                                  exportValue="TGT";
+                                  break;
+                              }
+                              exportSTR+=exportValue;
+                          }
                           else
                             exportSTR+="unknown";
                         }
