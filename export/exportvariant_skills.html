@@ -212,6 +212,8 @@ $.getJSON( serverSelect, function( unit ) {
                     }
                   })
               }
+        if (bbSkillFound < valObj.bb.levels[9]["effects"].length)
+          exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
         exportSTR+="</td>";
 
           $("#rawTable").append(exportSTR+'<tr>');
