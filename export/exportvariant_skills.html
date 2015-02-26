@@ -161,7 +161,7 @@ $.getJSON( serverSelect, function( unit ) {
                   $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
                     if (effectKey==skillSeek) {
                       /*add connector if not first skill found*/
-                      if (i != 0)
+                      if (bbSkillFound != 0)
                         exportSTR+=skillConnect;
                       bbSkillFound+=1;
                       for (k in skillParseObj[i]["skillref"]) {
