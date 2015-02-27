@@ -307,7 +307,11 @@ $.getJSON( serverSelect, function( unit ) {
                                 if (elementCount>0)
                                   groupSTR+=",";
                                 elementCount+=1;
+                                if (elementCount==1)
+                                  groupSTR+="("
                                 groupSTR+=lsWeakElementArray[ix]["suffix"];
+                                if (ix==lsWeakElementArray.length-1)
+                                  groupSTR+=")"
                                 effectFound=true;
                             }
                           })
@@ -398,7 +402,7 @@ $.getJSON( serverSelect, function( unit ) {
                       } /*End loop for REF*/
                       if (valObj["leader skill"]["effects"][j]["elements buffed"])
                         exportSTR+=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')'
-                      else if (groupSTR.search("(ALL)")==-1)
+                      else if (skillSeek!="elemental weakness")
                         exportSTR+=' (ALL)';
                   } /*End Output String Build*/
                 }
