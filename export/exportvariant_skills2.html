@@ -133,7 +133,12 @@ $.getJSON( serverSelect, function( unit ) {
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     /*parsing definition for LS*/
     var lsParseObj=[
-        {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
+        {"skillid":"fire resist%", "skillref":["fire resist%", "% Fire Resist"]},
+        {"skillid":"water resist%", "skillref":["water resist%", "% Water Resist"]},
+        {"skillid":"earth resist%", "skillref":["earth resist%", "% Earth Resist"]},
+        {"skillid":"thunder resist%", "skillref":["thunder resist%", "% Thunder Resist"]},
+        {"skillid":"light resist%", "skillref":["light resist%", "% Light Resist"]},
+        {"skillid":"dark resist%", "skillref":["dark resist%", "% Dark Resist"]},
         {"skillid":"hp drain chance%", "skillref":["hp drain chance%", "!% Chance Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP"]},
         {"skillid":"bc fill per turn", "skillref":["bc fill per turn","!BC Fill Each Turn"]},
         {"skillid":"dmg reduction chance%", "skillref":["dmg reduction chance%", "!% Chance Reduce DMG (", "dmg reduction%", "!%)"]},
