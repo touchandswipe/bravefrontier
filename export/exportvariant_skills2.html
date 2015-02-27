@@ -144,11 +144,11 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"crit% buff (7)", "skillref":["crit% buff (7)", "!% CRIT+ ", "buff turns","!Turns"]},
         {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "buff turns","!Turns"]},
-        {"skillid":"stats buff", "skillref":["@", "buff turns", "!Turns"]},
-        {"skillid":"ails buff", "skillref":["@", "buff turns", "!Turns"]}
+        {"skillid":"stats buff", "skillref":["@", "target type", " ","buff turns", "!Turns"]},
+        {"skillid":"ails buff", "skillref":["@", "target type", " ","buff turns", "!Turns"]}
       ];
-    var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+"}, {"skillid":"def% buff (3)", "suffix":"% DEF+"}, {"skillid":"rec% buff (5)", "suffix":"% REC+"}];
-    var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury"}, {"skillid":"weaken% buff", "suffix":"% Weak"}, {"skillid":"sick% buff", "suffix":"% Sick"}, {"skillid":"poison% buff", "suffix":"% Poison"}, {"skillid":"paralysis% buff", "suffix":"% Para"}, {"skillid":"curse% buff", "suffix":"% Curse"}];
+    var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     var skillConnect=" / ";
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
