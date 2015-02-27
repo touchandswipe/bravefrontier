@@ -170,9 +170,11 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"damage% for spark", "skillref":["damage% for spark", "!% Spark DMG+"]},
         {"skillid":"dmg% for crits", "skillref":["dmg% for crits", "!% CRIT DMG+"]},
         {"skillid":"dmg% for elemental weakness", "skillref":["dmg% for elemental weakness", "!% Elemental Weakness DMG+"]},
+        {"skillid":"base crit% resist", "skillref":["!Nulls CRIT"]},
         {"skillid":"stats buff", "skillref":["@"]},
         {"skillid":"xturns buff", "skillref":["@", "first x turns", "!Turns"]},
         {"skillid":"ails", "skillref":["@"]},
+        {"skillid":"ails resist", "skillref":["@"]}
       ];
     /*parsing definiton for BB*/
     var skillParseObj=[
@@ -216,6 +218,7 @@ $.getJSON( serverSelect, function( unit ) {
     var lsstatsBuffArray=[{"skillid":"hp% buff", "suffix":"% HP "}, {"skillid":"atk% buff", "suffix":"% ATK "}, {"skillid":"def% buff", "suffix":"% DEF "}, {"skillid":"rec% buff", "suffix":"% REC "}, {"skillid":"crit% buff", "suffix":"% CRIT "}];
     var lsXTurnsArray=[{"skillid":"first x turns atk% (1)", "suffix":"% ATK "}, {"skillid":"first x turns def% (3)", "suffix":"% DEF "}];
     var lsailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
+    var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
     var skillConnect=' | ';
     var bbArray=["bb","sbb","ubb"];
     $.each( unit, function( unitKey, valObj ) {
@@ -264,6 +267,25 @@ $.getJSON( serverSelect, function( unit ) {
                             }
                           })
                       }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective ails resist buff*/
+                    else if (skillSeek=="ails resist") {
+                      var resistRate="";
+                      var consistentRate=false;
+                      for (ix in lsailsResistArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsailsResistArray[ix]["skillid"]) {
+                                resistRate=effectVal;
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (resistRate==100)
+                          groupSTR+="Null ails"
+                        else
+                          groupSTR+=resistRate+"% Resist ails"
                     } /*End Grouping check*/
                     
                     /*Check collective xturns buff*/
