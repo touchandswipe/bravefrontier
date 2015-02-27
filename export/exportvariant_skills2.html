@@ -142,6 +142,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"item drop rate% buff (11)", "skillref":["item drop rate% buff (11)", "!% Item+ ", "drop rate buff turns","1Turns"]},
         {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
         {"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
+        {"skillid":"ailments cured", "skillref":["!Cure ails"]},
         {"skillid":"crit% buff (7)", "skillref":["crit% buff (7)", "!% CRIT+ ", "buff turns","!Turns"]},
         {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "buff turns","!Turns"]},
         {"skillid":"stats buff", "skillref":["@", "target type", "! ","buff turns", "!Turns"]},
@@ -152,6 +153,7 @@ $.getJSON( serverSelect, function( unit ) {
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     var skillConnect=" / ";
+    var bbArray=["bb","sbb","ubb"];
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -163,15 +165,16 @@ $.getJSON( serverSelect, function( unit ) {
         if (idFound) {
           exportSTR='<tr><td>'+valObj.guide_id+'</td>';
           
+          for (ibb in bbArray) {
           /*BB Skill*/
           var bbSkillFound=0;
           exportSTR+="<td>";
-          if (valObj.bb)
-            if (valObj.bb.levels[9]["effects"]) {
+          if (valObj[ibb])
+            if (valObj[ibb].levels[9]["effects"]) {
               for (i=0;i<skillParseObj.length;i++) {
                 var skillSeek=skillParseObj[i]["skillid"];
                 /*looking each effect array*/
-                for (j in valObj.bb.levels[9]["effects"]) {
+                for (j in valObj[ibb].levels[9]["effects"]) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
@@ -179,7 +182,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group buff*/
                     if (skillSeek=="stats buff") {
                       for (ix in statsBuffArray) {
-                          $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[ibb].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -191,7 +194,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails buff*/
                     else if (skillSeek=="ails") {
                       for (ix in ailsArray) {
-                          $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[ibb].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsArray[ix]["suffix"];
                               effectFound=true;
@@ -203,7 +206,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails buff*/
                     else if (skillSeek=="ails buff") {
                       for (ix in ailsBuffArray) {
-                          $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[ibb].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -214,7 +217,7 @@ $.getJSON( serverSelect, function( unit ) {
                     
                     else
                   /*looping non grouping buff*/
-                  $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                  $.each( valObj[ibb].levels[9]["effects"][j], function( effectKey, effectVal ) {
                     if (effectKey==skillSeek) {
                       effectFound=true;
                     }
@@ -241,8 +244,8 @@ $.getJSON( serverSelect, function( unit ) {
                         } else {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
-                          if (valObj.bb.levels[9]["effects"][j][callObjName]) {
-                              var exportValue=valObj.bb.levels[9]["effects"][j][callObjName];
+                          if (valObj[ibb].levels[9]["effects"][j][callObjName]) {
+                              var exportValue=valObj[ibb].levels[9]["effects"][j][callObjName];
                               /*value replacement and formatting*/
                               switch (exportValue) {
                                 case "aoe":
@@ -265,11 +268,12 @@ $.getJSON( serverSelect, function( unit ) {
                 }
               }
             /*check for missing skill effects*/
-            if (bbSkillFound < valObj.bb.levels[9]["effects"].length)
+            if (bbSkillFound < valObj[ibb].levels[9]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
             exportSTR+="</td>";
           } /*End of Effects Loop*/
-
+        } /*BB Types Loop*/
+        
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
