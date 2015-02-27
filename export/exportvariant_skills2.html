@@ -419,7 +419,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group crystals buff*/
                     else if (skillSeek=="crystals buff") {
                       for (ix in bbCrystalsBuffArray) {
-                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbCrystalsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
