@@ -315,8 +315,6 @@ $.getJSON( serverSelect, function( unit ) {
                                 if (elementCount==1)
                                   groupSTR+="("
                                 groupSTR+=lsWeakElementArray[ix]["suffix"];
-                                if (ix==lsWeakElementArray.length-1)
-                                  groupSTR+=")"
                                 effectFound=true;
                             }
                           })
@@ -324,6 +322,8 @@ $.getJSON( serverSelect, function( unit ) {
                       if (effectFound)
                         if (elementCount==6)
                           groupSTR="(ALL)"
+                        else
+                          groupSTR+=")"
                     } /*End Grouping check*/
                     
                     /*Check collective xturns buff*/
@@ -407,8 +407,11 @@ $.getJSON( serverSelect, function( unit ) {
                             exportSTR+='<span style="color:#FF0000;">Unknown</span>';
                         }
                       } /*End loop for REF*/
-                      if (valObj["leader skill"]["effects"][j]["elements buffed"])
-                        exportSTR+=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')'
+                      if (valObj["leader skill"]["effects"][j]["elements buffed"]) {
+                        eleString=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')';
+                        eleString=eleString.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                        exportSTR+=eleString;
+                      }
                       else if (skillSeek!="element weakness")
                         exportSTR+=' (ALL)';
                   } /*End Output String Build*/
