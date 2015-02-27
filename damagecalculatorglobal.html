@@ -535,6 +535,10 @@
 				<h3><b>Max SBB Damage</b></h3>
 				<h1 id="maxSBB_Display" class="text-danger">None</h1>
 			</div>
+	      		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+				<h3><b>Max UBB Damage</b></h3>
+				<h1 id="maxUBB_Display" class="text-danger">None</h1>
+			</div>
 	      </div>
       </div>
       <div class="modal-footer">
@@ -556,8 +560,12 @@ function buildDB(unit) {
     $.each( unit, function( unitKey, valObj ) {
 	var bbMaxATK=0;
 	var sbbMaxATK=0;
+	var ubbMaxATK=0;
 	var bbFlatATK=0;
 	var sbbFlatATK=0;
+	var ubbFlatATK=0;
+
+/*BB*/
     if (valObj.bb) {
     	for (i in valObj.bb.levels[9].effects) {
     		if (bbMaxATK==0)
@@ -570,6 +578,7 @@ function buildDB(unit) {
     	bbFlatATK=0;
     }
     
+    /*SBB*/
     if (valObj.sbb) {
     	for (i in valObj.sbb.levels[9].effects) {
     		if (sbbMaxATK==0)
@@ -582,6 +591,19 @@ function buildDB(unit) {
     	sbbFlatATK=0;
     }
     
+    /*UBB*/
+    if (valObj.ubb) {
+    	for (i in valObj.ubb.levels[9].effects) {
+    		if (ubbMaxATK==0)
+    			ubbMaxATK=(valObj.ubb.levels[9].effects[i]['bb atk%']) ? valObj.ubb.levels[9].effects[i]['bb atk%'] : 0;
+		if (ubbFlatATK==0)
+    			ubbFlatATK=(valObj.ubb.levels[9].effects[i]['bb flat atk']) ? valObj.ubb.levels[9].effects[i]['bb flat atk'] : 0;
+    	}
+    } else {
+    	ubbMaxATK=0;
+    	ubbFlatATK=0;
+    }
+    
       var unitObj={
         "id":valObj.guide_id,
         "img_id":valObj.id,
@@ -591,7 +613,9 @@ function buildDB(unit) {
         "bbMaxATK":parseInt(bbMaxATK),
         "bbFlatATK":parseInt(bbFlatATK),
         "sbbMaxATK":parseInt(sbbMaxATK),
-        "sbbFlatATK":parseInt(sbbFlatATK)
+        "sbbFlatATK":parseInt(sbbFlatATK),
+        "ubbMaxATK":parseInt(ubbMaxATK),
+        "ubbFlatATK":parseInt(ubbFlatATK)
         };
       rawParseObj.push(unitObj);
     }); /*Each record*/
@@ -670,10 +694,17 @@ function calc_DMG() {
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var sbb_MaxDMG=0;
+	/*calculate ubb*/
+	if (selectUnitObj.ubbMaxATK!=0) {
+		var ubase_multiplier=(selectUnitObj.ubbMaxATK/100)+basemod;
+		var ubb_MaxDMG=((unitbaseatk*ubase_multiplier)+selectUnitObj.ubbFlatATK)*sparkmod*weakmod*critmod;
+	} else
+		var ubb_MaxDMG=0;
 	/*display*/
 	$("#unit_Display").html('<img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
 	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
+	$("#maxUBB_Display").html(parseInt(ubb_MaxDMG));
 	$('#dmgModal').modal('show');
 	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -703,6 +734,8 @@ $(document).on("click", '.searchLinks', function(e){
 	$("#unit_Misc").html("<b>BB ATK%:</b> "+selectUnitObj.bbMaxATK+" | <b>BB Flat ATK:</b> "+selectUnitObj.bbFlatATK);
 	if (selectUnitObj.rarity > 5)
 		$("#unit_Misc").append(" | <b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
+	if (selectUnitObj.rarity > 6)
+		$("#unit_Misc").append(" | <b>UBB ATK%:</b> "+selectUnitObj.ubbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.ubbFlatATK);
 	$('.rawTable').each( function() {
 		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
 	});
