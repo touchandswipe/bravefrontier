@@ -157,11 +157,6 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"bc fill on enemy defeat%", "skillref":["bc fill on enemy defeat%", "!% Chance ", "bc fill on enemy defeat low", "!-", "bc fill on enemy defeat high", "!BC Fill on Enemy Kill"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked%", "!% Chance ", "bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed"]},
         {"skillid":"dmg% to hp% when attacked chance%", "skillref":["dmg% to hp% when attacked chance%", "!% Chance Heal ", "dmg% to hp% when attacked low", "!-", "dmg% to hp% when attacked high", "!% DMG when ATKed"]},
-        {"skillid":"bc drop rate% buff", "skillref":["bc drop rate% buff", "!% BC+"]},
-        {"skillid":"hc drop rate% buff", "skillref":["hc drop rate% buff", "!% HC+"]},
-        {"skillid":"item drop rate% buff", "skillref":["item drop rate% buff", "!% Item+"]},
-        {"skillid":"karma drop rate% buff", "skillref":["karma drop rate% buff", "!% Karma+"]},
-        {"skillid":"zel drop rate% buff", "skillref":["karma drop rate% buff", "!% Zel+ "]},
         {"skillid":"turn heal high", "skillref":["!Heal Each Turn"]},
         {"skillid":"atk% buff (13)", "skillref":["atk% buff (13)", "!% ATK+ to ", "element buffed", "! ", "buff turns","!Turns"]},
         {"skillid":"def% buff (4)", "skillref":["def% buff (4)", "!% DEF ", "target type", "! ", "buff turns","!Turns"]},
@@ -172,9 +167,8 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"atk% extra buff based on hp", "skillref":["atk% base buff", "!-", "atk% extra buff based on hp", "!% ATK+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"def% extra buff based on hp", "skillref":["def% base buff", "!-", "def% extra buff based on hp", "!% DEF+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"dmg% reflect chance%", "skillref":["dmg% reflect chance%", "!% Chance Reflect ", "dmg% reflect low", "!-", "dmg% reflect high", "!DMG"]},
-        
-        
         {"skillid":"base crit% resist", "skillref":["!Nulls CRIT"]},
+        {"skillid":"crystals buff", "skillref":["@"]},
         {"skillid":"stats buff", "skillref":["@"]},
         {"skillid":"xturns buff", "skillref":["@", "first x turns", "!Turns"]},
         {"skillid":"ails", "skillref":["@"]},
@@ -193,9 +187,6 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
         {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
-        {"skillid":"bc drop rate% buff (10)", "skillref":["bc drop rate% buff (10)", "!% BC+ ", "drop rate buff turns","!Turns"]},
-        {"skillid":"hc drop rate% buff (9)", "skillref":["hc drop rate% buff (9)", "!% HC+ ", "drop rate buff turns","!Turns"]},
-        {"skillid":"item drop rate% buff (11)", "skillref":["item drop rate% buff (11)", "!% Item+ ", "drop rate buff turns", "!Turns"]},
         {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
         {"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
@@ -210,16 +201,19 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"max hp% increase", "skillref":["max hp% increase", "!% Max HP+ till Death/Battle End"]},
         {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "target type", "! ", "buff turns","!Turns"]},
         {"skillid":"hit increase/hit", "skillref":["!Normal HitCount +", "hit increase/hit", "!00% (", "dmg% buff on extra hits", "!% DMG) ", "hit increase buff turns (50)", "!Turns"]},
-        {"skillid":"stats buff", "skillref":["@", "target type", "! ","buff turns", "!Turns"]},
+        {"skillid":"stats buff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
+        {"skillid":"crystals buff", "skillref":["@"], "target type","! ", "drop rate buff turns", "!Turns"},
         {"skillid":"atk% buff (46)", "skillref":["!Convert ", "atk% buff (46)", "!% ","converted attribute", "! to ATK ", "target type", "! ", "% converted turns", "!Turns"]},
         {"skillid":"ails", "skillref":["@"]},
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var CrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}];
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     /*LS group definition*/
     var lsstatsBuffArray=[{"skillid":"hp% buff", "suffix":"% HP "}, {"skillid":"atk% buff", "suffix":"% ATK "}, {"skillid":"def% buff", "suffix":"% DEF "}, {"skillid":"rec% buff", "suffix":"% REC "}, {"skillid":"crit% buff", "suffix":"% CRIT "}];
+    var lsCrystalsBuffArray=[{"skillid":"bc drop rate% buff", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}, {"skillid":"zel drop rate% buff", "suffix":"% Zel+ "}];
     var lsXTurnsArray=[{"skillid":"first x turns atk% (1)", "suffix":"% ATK "}, {"skillid":"first x turns def% (3)", "suffix":"% DEF "}];
     var lsailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
@@ -255,6 +249,18 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==lsstatsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+
+                    /*Check collective group crystals buff*/
+                    if (skillSeek=="crystals buff") {
+                      for (ix in lsCrystalsBuffArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+lsCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
@@ -404,6 +410,18 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective group crystals buff*/
+                    if (skillSeek=="crystals buff") {
+                      for (ix in CrystalsBuffArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==CrystalsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+CrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
