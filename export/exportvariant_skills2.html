@@ -367,6 +367,8 @@ $.getJSON( serverSelect, function( unit ) {
                           var callObjName=lsParseObj[i]["skillref"][k];
                           if (valObj["leader skill"]["effects"][j][callObjName]) {
                               var exportValue=valObj["leader skill"]["effects"][j][callObjName];
+                              if (callObjName=="elements buffed")
+                                exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                               /*value replacement and formatting*/
                               switch (exportValue) {
                                 case "aoe":
