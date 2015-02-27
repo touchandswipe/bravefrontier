@@ -133,7 +133,7 @@ $.getJSON( serverSelect, function( unit ) {
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     /*parsing definition*/
     var skillParseObj=[
-        {"skillid":"bb atk%", "skillref":["?element", "! (","target area","!)"]},
+        {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
         {"skillid":"increase bb gauge", "skillref":["!BB Fill (","increase bb gauge","!BC) 1Turn"]},
         {"skillid":"increase bb gauge gradual", "skillref":["!BB Fill (","increase bb gauge gradual","!BC) ","increase bb gauge gradual turns (37)","!Turns"]},
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)","!Turns"]},
@@ -145,9 +145,11 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"crit% buff (7)", "skillref":["crit% buff (7)", "!% CRIT+ ", "buff turns","!Turns"]},
         {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "buff turns","!Turns"]},
         {"skillid":"stats buff", "skillref":["@", "target type", "! ","buff turns", "!Turns"]},
-        {"skillid":"ails buff", "skillref":["@", "target type", "! ","buff turns", "!Turns"]}
+        {"skillid":"ails", "skillref":["@"]},
+        {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     var skillConnect=" / ";
     $.each( unit, function( unitKey, valObj ) {
@@ -185,7 +187,19 @@ $.getJSON( serverSelect, function( unit ) {
                           })
                       }
                     } /*End Grouping check*/
-                    
+
+                    /*Check collective ails buff*/
+                    else if (skillSeek=="ails") {
+                      for (ix in ailsArray) {
+                          $.each( valObj.bb.levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==ailsArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+ailsArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+
                     /*Check collective ails buff*/
                     else if (skillSeek=="ails buff") {
                       for (ix in ailsBuffArray) {
@@ -232,13 +246,13 @@ $.getJSON( serverSelect, function( unit ) {
                               /*value replacement and formatting*/
                               switch (exportValue) {
                                 case "aoe":
-                                  exportValue="AOE";
+                                  exportValue="(AOE)";
                                   break;
                                 case "single":
-                                  exportValue="TGT";
+                                  exportValue="(TGT)";
                                   break;
                                 case "party":
-                                  exportValue="ALL";
+                                  exportValue="(ALL)";
                                   break;
                               }
                               exportSTR+=exportValue;
