@@ -315,7 +315,9 @@ $.getJSON( serverSelect, function( unit ) {
                         }
                       } /*End loop for REF*/
                       if (valObj["leader skill"]["effects"][j]["elements buffed"])
-                        exportSTR+=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')';
+                        exportSTR+=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')'
+                      else
+                        exportSTR+=' (ALL)';
                   } /*End Output String Build*/
                 }
               }
