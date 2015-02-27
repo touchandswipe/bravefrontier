@@ -124,14 +124,14 @@ To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 
 <script type="text/javascript">
 var serverSelect="//touchandswipe.github.io/bravefrontier_data/info.json";
-/*Title Case conversion*/
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
 $(document).on("click","#globalBtn, #japanBtn", function(e) {
   serverSelect=$(this).val();
 })
 $(document).on("click","#exportBtn", function(e) {
+/*Title Case conversion*/
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 $.getJSON( serverSelect, function( unit ) {
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
