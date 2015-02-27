@@ -450,6 +450,9 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==debuffArray[ix]["skillid"]) {
                               effectFound=true;
+                              /*separator for multiple buffs*/
+                              if (ix != 0)
+                                groupSTR+=skillConnect;
                               groupSTR+=effectVal['proc chance%']+'% Chance ';
                               if (effectVal['atk% buff (2)'])
                                 groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
