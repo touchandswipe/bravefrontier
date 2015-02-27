@@ -137,8 +137,8 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill 1Turn"]},
         {"skillid":"increase bb gauge gradual", "skillref":["increase bb gauge gradual","!BC Fill ","increase bb gauge gradual turns (37)", "!Turns"]},
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
-        {"skillid":"buff #1 (atk% buff (2))", "skillref":["buff #1 (proc chance%)", "! Reduce Enemy ATK ", "buff #1 (atk% buff (2))", "! ","buff turns", "!Turns"]},
-        {"skillid":"buff #2 (def% buff (4))", "skillref":["buff #2 (proc chance%)", "! Reduce Enemy DEF ", "buff #2 (def% buff (4))", "! ","buff turns", "!Turns"]},
+        {"skillid":"buff #1", "skillref":["?proc chance%", "! Reduce Enemy ATK ", "?atk% buff (2)", "! ","buff turns", "!Turns"]},
+        {"skillid":"buff #2", "skillref":["?proc chance%", "! Reduce Enemy DEF ", "?def% buff (4)", "! ","buff turns", "!Turns"]},
         {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
         {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
@@ -245,8 +245,13 @@ $.getJSON( serverSelect, function( unit ) {
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
                           /*handling special obj values*/
                           var specialKey=skillParseObj[i]["skillref"][k].slice(1);
-                          var specialValue=valObj[specialKey];
-                          specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
+                          /*coping with reduce enemy def/atk buff types*/
+                          if (skillSeek.search("buff #") != -1)
+                            var specialValue=valObj[skillSeek][specialKey];
+                          else {
+                            var specialValue=valObj[specialKey];
+                            specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
+                          }
                           exportSTR+=specialValue;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
                           /*handling str additions*/
