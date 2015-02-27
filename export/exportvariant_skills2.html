@@ -156,7 +156,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"damage% for spark", "skillref":["damage% for spark", "!% Spark DMG+"]},
         {"skillid":"dmg% for crits", "skillref":["dmg% for crits", "!% CRIT DMG+"]},
         {"skillid":"dmg% for elemental weakness", "skillref":["dmg% for elemental weakness", "!% Elemental Weakness DMG+"]},
-        {"skillid":"stats buff", "skillref":["@", "target type", "! "]},
+        {"skillid":"stats buff", "skillref":["@","! (", "elements buffed", "!)"]},
         {"skillid":"ails", "skillref":["@"]},
       ];
     /*parsing definiton for BB*/
@@ -261,9 +261,9 @@ $.getJSON( serverSelect, function( unit ) {
                   /*Build output string*/
                   if (effectFound) {
                   /*add connector if not first skill found*/
-                      if (bbSkillFound != 0)
+                      if (lsSkillFound != 0)
                         exportSTR+=skillConnect;
-                      bbSkillFound+=1;
+                      lsSkillFound+=1;
                       for (k in lsParseObj[i]["skillref"]) {
                         if (lsParseObj[i]["skillref"][k].charAt(0) == "@") {
                           exportSTR+=groupSTR;
@@ -313,7 +313,7 @@ $.getJSON( serverSelect, function( unit ) {
                 }
               }
             /*check for missing skill effects*/
-            if (bbSkillFound < valObj["leader skill"]["effects"].length)
+            if (lsSkillFound < valObj["leader skill"]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
             exportSTR+="</td>";
           } /*End of LS Effects Loop*/
