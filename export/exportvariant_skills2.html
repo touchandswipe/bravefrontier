@@ -208,7 +208,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
-    //var CrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}];
+    var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}];
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     /*LS group definition*/
@@ -410,6 +410,18 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective group crystals buff*/
+                    else if (skillSeek=="crystals buff") {
+                      for (ix in bbCrystalsBuffArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==bbCrystalsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+bbCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
