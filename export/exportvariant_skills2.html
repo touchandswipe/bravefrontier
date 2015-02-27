@@ -367,7 +367,7 @@ $.getJSON( serverSelect, function( unit ) {
                           var callObjName=lsParseObj[i]["skillref"][k];
                           if (valObj["leader skill"]["effects"][j][callObjName]) {
                               var exportValue=valObj["leader skill"]["effects"][j][callObjName];
-                              if (callObjName=="elements buffed")
+                              if (callObjName=="element buffed")
                                 exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                               /*value replacement and formatting*/
                               switch (exportValue) {
@@ -537,7 +537,7 @@ $.getJSON( serverSelect, function( unit ) {
                           var callObjName=skillParseObj[i]["skillref"][k];
                           if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]) {
                               var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
-                              if (callObjName=="elements added")
+                              if (callObjName=="elements added" || callObjName=="element buffed")
                                 exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                               /*value replacement and formatting*/
                               switch (exportValue) {
