@@ -533,7 +533,8 @@ $.getJSON( serverSelect, function( unit ) {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
                           if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]) {
-                              var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName].toProperCase();
+                              var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                              exportValue=exportValue.toProperCase();
                               /*value replacement and formatting*/
                               switch (exportValue) {
                                 case "aoe":
