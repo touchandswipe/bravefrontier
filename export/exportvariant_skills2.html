@@ -515,10 +515,10 @@ $.getJSON( serverSelect, function( unit ) {
                           exportSTR+=groupSTR;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
                           /*handling special obj values*/
-                            var specialKey=lsParseObj[i]["skillref"][k].slice(1);
-                            var specialValue=valObj[specialKey];
-                            specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
-                            exportSTR+=specialValue;
+                          var specialKey=skillParseObj[i]["skillref"][k].slice(1);
+                          var specialValue=valObj[specialKey];
+                          specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
+                          exportSTR+=specialValue;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
                           /*handling str additions*/
                           exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
