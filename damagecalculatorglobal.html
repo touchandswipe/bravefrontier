@@ -735,7 +735,7 @@ $(document).on("click", '.searchLinks', function(e){
 	if (selectUnitObj.rarity > 5)
 		$("#unit_Misc").append(" | <b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
 	if (selectUnitObj.rarity > 6)
-		$("#unit_Misc").append(" | <b>UBB ATK%:</b> "+selectUnitObj.ubbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.ubbFlatATK);
+		$("#unit_Misc").append(" | <b>UBB ATK%:</b> "+selectUnitObj.ubbMaxATK+" | <b>UBB Flat ATK:</b> "+selectUnitObj.ubbFlatATK);
 	$('.rawTable').each( function() {
 		$(this).html('<h4 class="text-success"><img src="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>) <b>*CHOSEN*</b> </h4>');
 	});
