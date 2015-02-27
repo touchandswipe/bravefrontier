@@ -184,8 +184,6 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill 1Turn"]},
         {"skillid":"increase bb gauge gradual", "skillref":["increase bb gauge gradual","!BC Fill ","increase bb gauge gradual turns (37)", "!Turns"]},
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
-        {"skillid":"buff #1", "skillref":["?proc chance%", "!% Chance ", "?atk% buff (2)", "!% Enemy ATK ","buff turns", "!Turns"]},
-        {"skillid":"buff #2", "skillref":["?proc chance%", "!% Chance ", "?def% buff (4)", "!% Enemy DEF ","buff turns", "!Turns"]},
         {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
         {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
@@ -209,9 +207,11 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"stats buff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
         {"skillid":"crystals buff", "skillref":["@", "target type", "! ", "drop rate buff turns", "!Turns"]},
         {"skillid":"atk% buff (46)", "skillref":["!Convert ", "atk% buff (46)", "!% ","converted attribute", "! to ATK ", "target type", "! ", "% converted turns", "!Turns"]},
+        {"skillid":"debuff skills", "skillref":["@"]},
         {"skillid":"ails", "skillref":["@"]},
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
+    var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
     var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}];
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
@@ -444,6 +444,22 @@ $.getJSON( serverSelect, function( unit ) {
                       }
                     } /*End Grouping check*/
                     
+                    /*Check collective group debuff*/
+                    else if (skillSeek=="debuff skills") {
+                      for (ix in debuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==debuffArray[ix]["skillid"]) {
+                              effectFound=true;
+                              groupSTR+=effectVal['proc chance%']+'% Chance ';
+                              if (effectVal['atk% buff (2)'])
+                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                              if (effectVal['def% buff (4)'])
+                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
                     /*Check collective group crystals buff*/
                     else if (skillSeek=="crystals buff") {
                       for (ix in bbCrystalsBuffArray) {
@@ -456,7 +472,7 @@ $.getJSON( serverSelect, function( unit ) {
                       }
                     } /*End Grouping check*/
 
-                    /*Check collective ails buff*/
+                    /*Check collective ails rate*/
                     else if (skillSeek=="ails") {
                       for (ix in ailsArray) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
@@ -499,18 +515,9 @@ $.getJSON( serverSelect, function( unit ) {
                           exportSTR+=groupSTR;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
                           /*handling special obj values*/
-                          var specialKey=skillParseObj[i]["skillref"][k].slice(1);
-                          /*coping with reduce enemy def/atk buff types*/
-                          if (skillSeek.search("buff #") != -1)
-                            if (valObj[bbArray[ibb]].levels[9]["effects"][j][skillSeek][specialKey])
-                              var specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j][skillSeek][specialKey];
-                            else
-                              var specialValue=""
-                          else {
                             var specialValue=valObj[specialKey];
                             specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
-                          }
-                          exportSTR+=specialValue;
+                            exportSTR+=specialValue;
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
                           /*handling str additions*/
                           exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
