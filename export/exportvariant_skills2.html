@@ -247,7 +247,7 @@ $.getJSON( serverSelect, function( unit ) {
                           var specialKey=skillParseObj[i]["skillref"][k].slice(1);
                           /*coping with reduce enemy def/atk buff types*/
                           if (skillSeek.search("buff #") != -1)
-                            var specialValue=valObj[skillSeek][specialKey];
+                            var specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j][skillSeek][specialKey];
                           else {
                             var specialValue=valObj[specialKey];
                             specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
