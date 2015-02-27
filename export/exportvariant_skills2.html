@@ -196,7 +196,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
         {"skillid":"ailments cured", "skillref":["!Cure ails"]},
         {"skillid":"remove all status ailments", "skillref":["!Cure ails"]},
-        {"skillid":"resist status ails turns", "skillref":["!Null ails ", "resist status ails turns", "!Turns"]},
+        {"skillid":"resist status ails turns", "skillref":["!Null Ails ", "resist status ails turns", "!Turns"]},
         {"skillid":"elements added", "skillref":["!Add ", "elements added", "! to ATK ", "target type", "! ", "elements added turns", "!Turns"]},
         {"skillid":"atk% buff (13)", "skillref":["atk% buff (13)", "!% ATK+ to ", "element buffed", "! ", "buff turns","!Turns"]},
         {"skillid":"def% buff (4)", "skillref":["def% buff (4)", "!% DEF ", "target type", "! ", "buff turns","!Turns"]},
@@ -218,7 +218,7 @@ $.getJSON( serverSelect, function( unit ) {
     var lsXTurnsArray=[{"skillid":"first x turns atk% (1)", "suffix":"% ATK "}, {"skillid":"first x turns def% (3)", "suffix":"% DEF "}];
     var lsailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
-    var skillConnect=' | ';
+    var skillConnect=' / ';
     var bbArray=["bb","sbb","ubb"];
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
@@ -282,7 +282,7 @@ $.getJSON( serverSelect, function( unit ) {
                       }
                       if (effectFound)
                         if (resistRate==100)
-                          groupSTR+="Null ails"
+                          groupSTR+="Null Ails"
                         else
                           groupSTR+=resistRate+"% Resist ails"
                     } /*End Grouping check*/
