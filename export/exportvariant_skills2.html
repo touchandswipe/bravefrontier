@@ -519,6 +519,9 @@ $.getJSON( serverSelect, function( unit ) {
                           var specialValue=valObj[specialKey];
                           specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
                           exportSTR+=specialValue;
+                          /*Extra BB Elements*/
+                          if (skillSeek="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"])
+                            exportSTR+=","+valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"];
                         } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
                           /*handling str additions*/
                           exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
