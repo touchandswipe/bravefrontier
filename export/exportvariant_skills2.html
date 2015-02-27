@@ -161,7 +161,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"damage% for spark", "skillref":["damage% for spark", "!% Spark DMG+"]},
         {"skillid":"dmg% for crits", "skillref":["dmg% for crits", "!% CRIT DMG+"]},
         {"skillid":"dmg% for elemental weakness", "skillref":["dmg% for elemental weakness", "!% Elemental Weakness DMG+"]},
-        {"skillid":"stats buff", "skillref":["@","! (", "elements buffed", "!)"]},
+        {"skillid":"stats buff", "skillref":["@"]},
         {"skillid":"ails", "skillref":["@"]},
       ];
     /*parsing definiton for BB*/
@@ -313,7 +313,9 @@ $.getJSON( serverSelect, function( unit ) {
                           else
                             exportSTR+="unknown";
                         }
-                      }
+                      } /*End loop for REF*/
+                      if (valObj["leader skill"]["effects"][j]["elements buffed"])
+                        exportSTR+=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')';
                   } /*End Output String Build*/
                 }
               }
