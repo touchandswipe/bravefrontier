@@ -2,7 +2,7 @@
 var aheadName=[];
 var deserialdata = {};
 var ovdata2 = {};
-var gURL = 'https://www.googleapis.com/fusiontables/v1/query';
+var gURL = 'https://www.googleapis.com/fusiontables/v2/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 var gTable = '1mt1vs-NCjdnl__v2Ik8Z2yNdidm2ayQlVobJatcf';
 var prevStatsMod=[0,0,0,0,0];
