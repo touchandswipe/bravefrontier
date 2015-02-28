@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Units Guide (Rave R1) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide (Rave R2) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Rave RX) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -1109,7 +1109,7 @@ function initialize(fusionData) {
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>'
 	
-	+'<tr class="modRows collapse out"><td class="active"><b>7* Sphere bonus</b></td><td colspan="5">'
+	+'<tr class="modRows collapse out"><td class="active"><b>Extra skill</b></td><td colspan="5">'
 	+'<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
 	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
 	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
@@ -1143,9 +1143,9 @@ function initialize(fusionData) {
 	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:30px;"/>';
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:100px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b>Something about '+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse in">'+ovdata2[0]['unit lore']+'</div></div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse in">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
@@ -1286,6 +1286,14 @@ cHTML+='<div class="form-inline"><select id="asHP" class="form-control askill in
 	+'<select class="form-control askill input-sm sp2" id="asATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>';
+
+cHTML+='<tr class="compRows collapse out"><td><b>Extra skill</b></td>';
+cHTML+='<td colspan="'+units.length+'">';
+cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
 
 cHTML+='<tr class="compRows collapse out"><td><b>Spheres</b></td>';
@@ -3104,7 +3112,7 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-primary">
-	    <input type="checkbox" class="filSkills" value="DMG+ to Weak">Weak Elements DMG 
+	    <input type="checkbox" class="filSkills" value="Element Weakness DMG+">Weak Elements DMG 
 	  </label>
 	  
 	  <label class="btn btn-primary">
@@ -3128,31 +3136,31 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="BC Fill">BC Fill+ 
+	    <input type="checkbox" class="filSkills" value="BC Fill+">BC Fill+ 
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="BB Fill">BB Fill 
+	    <input type="checkbox" class="filSkills" value="BC Fill ">BC Fill
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="Reduce BC">-BC to Fill BB 
+	    <input type="checkbox" class="filSkills" value="BB Cost">Reduce BB Cost 
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="Reduce BB Gauge Used">Reduce BB Gauge Used
+	    <input type="checkbox" class="filSkills" value="BB Gauge Used">Reduce BB Gauge Used
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="Full BB to Self">Full BB to Self
+	    <input type="checkbox" class="filSkills" value="100% BB Fill">100% BB Fill
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="BB Fill when ATKed">BB Fill when ATKed
+	    <input type="checkbox" class="filSkills" value="BC Fill when ATKed">BC Fill when ATKed
 	  </label>
 	  
 	  <label class="btn btn-info">
-	    <input type="checkbox" class="filSkills" value="BB Fill on Spark">BB Fill on Spark
+	    <input type="checkbox" class="filSkills" value="BC Fill on Spark">BC Fill on Spark
 	  </label>
 	  
 	  <label class="btn btn-danger">
@@ -3168,11 +3176,11 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-danger">
-	    <input type="checkbox" class="filSkills" value="Drain HP">Drain HP
+	    <input type="checkbox" class="filSkills" value="Chance Drain">Drain HP
 	  </label>
 	  
 	  <label class="btn btn-danger">
-	    <input type="checkbox" class="filSkills" value="Heal when ATKed">Heal when ATKed
+	    <input type="checkbox" class="filSkills" value="Chance Heal">Heal when ATKed
 	  </label>
 	  
 	  <label class="btn btn-warning">
@@ -3188,15 +3196,7 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Add ">Add Ele / Ails
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Powerful">Powerful BB 
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Massive">Massive BB 
+	    <input type="checkbox" class="filSkills" value="Add ">Add Element / Ails
 	  </label>
 	  
 	  <label class="btn btn-default">
@@ -3204,15 +3204,11 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Random Ail">Random Ail 
-	  </label>
-	  
-	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="Cure Ails">Cure Ails 
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Nulls Ails">Nulls Ails 
+	    <input type="checkbox" class="filSkills" value="Null Ails">Null Ails 
 	  </label>
 	  
 	  <label class="btn btn-default">
@@ -3244,7 +3240,7 @@ var delay = (function(){
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="Reduce Enemy">Reduce Enemy ATK/DEF
+	    <input type="checkbox" class="filSkills" value="% Chance -">Reduce Enemy ATK/DEF
 	  </label>
 	  
 	</div>
@@ -3275,6 +3271,7 @@ var delay = (function(){
 </div>
 
 <!--Chatroom-->
-<script id="sid0020000073204835322">(function() {function async_load(){s.id="cid0020000073204835322";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204835322'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+<script id="sid0020000073204732184">(function() {function async_load(){s.id="cid0020000073204732184";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204732184'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
+</script>
 </body>
 </html>
