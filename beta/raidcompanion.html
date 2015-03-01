@@ -406,7 +406,7 @@ function buildDB(boss) {
 
 	/*Process Mission Collapsibles*/
 	$.each( missionsObj, function( miKey, miVal ) {
-    		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><b>'+miVal+'</a></h4></div>'
+    		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'">'+miVal+'</a></h4></div>'
 		+'<div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
     			for (i in bossParseObj) {
     				for (j in bossParseObj[i].missions) {
