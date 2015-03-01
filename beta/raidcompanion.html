@@ -391,7 +391,7 @@ function buildDB(boss) {
     					};
     					bossSTR+='<div class="col-xs-12 col-sm-12">';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
-    						bossSTR+=dropKey+' ('+dropVal+') &nbsp;';
+    						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
     				bossSTR+='</div>'
     			+'</div>'
