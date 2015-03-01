@@ -378,7 +378,7 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;font-weight:bold;">'+bossKey+' - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
+    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+bossObj.bodyparts[i].element+'miniicon.png"/> &nbsp;<b>'+bossObj.bodyparts[i].partname+'</b> Vulnerable to: ';
     						if (bossObj.bodyparts[i].weakails != "") {
