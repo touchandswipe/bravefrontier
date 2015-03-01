@@ -381,7 +381,13 @@ function buildDB(boss) {
     				+'<div class="row">'
     					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;font-weight:bold;">'+bossKey+' - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
     					for (i in bossObj.bodyparts) {
-    						bossSTR+='<div class="col-xs-12 col-sm-12">'+bossObj.bodyparts[i].partname+' <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+bossObj.bodyparts[i].element+'miniicon.png"/> &nbsp; Vulnerable to: '+bossObj.bodyparts[i].weakails+'</div>';
+    						bossSTR+='<div class="col-xs-12 col-sm-12"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+bossObj.bodyparts[i].element+'miniicon.png"/> &nbsp;<b>'+bossObj.bodyparts[i].partname+'</b> Vulnerable to: ';
+    						if (bossObj.bodyparts[i].weakails != "") {
+    							var ailsArray=string.split(',');
+    							for (j in ailsArray)
+    								bossSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/icon_'+ailsArray[j]+'curse.png" /> ';
+    						}
+    						bossSTR+='</div>';
     					};
     					bossSTR+='<div class="col-xs-12 col-sm-12">';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
