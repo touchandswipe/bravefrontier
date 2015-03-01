@@ -14,7 +14,7 @@
         "炎喰の牙": "Blaze Fang"
       }
     ],
-    "missions" [
+    "missions": [
       "RC1M1",
       "RC1M5",
       "RC2M5",
@@ -41,7 +41,7 @@
         "氷堅の爪": "Frozen Claw"
       }
     ],
-    "missions" [
+    "missions": [
       "RC1M2",
       "RC1M6",
       "RC2M6",
@@ -74,7 +74,7 @@
         "悠久の樹皮": "Eternal Tree"
       }
     ],
-    "missions" [
+    "missions": [
       "RC1M3",
       "RC1M7",
       "RC2M6",
@@ -107,7 +107,7 @@
         "崩雷棘管": "Thunder Bone"
       }
     ],
-    "missions" [
+    "missions": [
       "RC2M2",
       "RC2M5",
       "RC2M9",
@@ -129,7 +129,7 @@
         "翠旋の牙": "Verdant Fang"
       }
     ],
-    "missions" [
+    "missions": [
       "RC1M4",
       "RC2M4",
       "RC3M3",
@@ -150,7 +150,7 @@
         "碧殻の皮": "Cobalt Pelt"
       }
     ],
-    "missions" [
+    "missions": [
       "RC2M1",
       "RC2M4",
       "RC3M3"
