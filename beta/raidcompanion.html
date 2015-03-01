@@ -366,17 +366,38 @@ var findIndex=function(key,arr) {
 };
 
 /*Build DATABASE IN MEMORY*/
-function buildDB(unit) {
-    /*build sphere type*/
-    var sphereTypeArray=[];
-    var sphereArray=[]
+function buildDB(boss) {
+	/*Process Boss Segments*/
+	alert("success ajax called");
+	$.each( boss, function( bossKey, bossObj ) {
+    		bossSTR='<div class="panel panel-default"><div class="panel-body">'
+    		+'<div class="row">'
+    			+'<div class="col-xs-12 col-sm-4">'
+    				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="100" width="auto" />'
+    			+'</div>'
+    			+'<div class="col-xs-12 col-sm-8">'
+    				+'<div class="row">'
+    					+'<div class="col-xs-12 col-sm-12"><h3>'+bossKey+' ('+bossObj.bodyparts.length+' Part(s))</h3></div>';
+    					for (i in bossObj.bodyparts) {
+    						bossSTR+='<div class="col-xs-12 col-sm-12">'+bossObj.bodyparts[i].partname+bossObj.bodyparts[i].element+bossObj.bodyparts[i].weakails+'</div>';
+    					};
+    					bossSTR+='<div class="col-xs-12 col-sm-12">';
+    					$.each( bossObj.drops, function( dropKey, dropVal ) {
+    						bossSTR+=dropKey+' ('+dropVal+') ';
+    					});
+    				bossSTR+='</div>'
+    			+'</div>'
+    		+'</div>'; /*end row*/
+    		bossSTR+='</div></div>'; /*end*/
+    		
+    		/*debug*/
+    		$('#rawTable').html(bossSTR);
+    	});
+
+	/*Process Mission Collapsibles*/
+
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
-    	/*fill dropdown for sphere type*/
-    	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
-            	sphereTypeArray.push(valObj['sphere type text']);
-            	sphereArray.push(valObj['sphere type']);
-        }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
