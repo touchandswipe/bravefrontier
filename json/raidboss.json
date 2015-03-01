@@ -8,12 +8,10 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "不燃の皮": "Solid Pelt",
         "炎喰の牙": "Blaze Fang"
-      }
-    ],
+      },
     "missions": [
       "RC1M1",
       "RC1M5",
@@ -35,12 +33,10 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "氷堅の皮": "Frozen Pelt",
         "氷堅の爪": "Frozen Claw"
-      }
-    ],
+      },
     "missions": [
       "RC1M2",
       "RC1M6",
@@ -67,13 +63,11 @@
         "weakails": "injury"
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "メルの実": "Meru Nut",
         "大妖樹果": "Fairy Fruit",
         "悠久の樹皮": "Eternal Tree"
-      }
-    ],
+      },
     "missions": [
       "RC1M3",
       "RC1M7",
@@ -102,11 +96,9 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "崩雷棘管": "Thunder Bone"
-      }
-    ],
+      },
     "missions": [
       "RC2M2",
       "RC2M5",
@@ -123,12 +115,10 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "翠殻の皮": "Verdant Pelt",
         "翠旋の牙": "Verdant Fang"
-      }
-    ],
+      },
     "missions": [
       "RC1M4",
       "RC2M4",
@@ -145,11 +135,9 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "碧殻の皮": "Cobalt Pelt"
-      }
-    ],
+      },
     "missions": [
       "RC2M1",
       "RC2M4",
@@ -175,15 +163,13 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "闇夜の爪": "Dark Claw",
         "闇の欠片": "Dark Stone",
         "闇の皮膜": "Dark Pelt",
         "闇天宝珠": "Dark Jewel",
         "闇天翼骨": "Dark Bone"
-      }
-    ],
+      },
     "missions": [
       "RC1M8",
       "RC2M11",
@@ -215,14 +201,12 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "背樹の実": "Timber Nut",
         "輝鱗の皮": "Scaly Pelt",
         "輝暴の実": "Shiny Nut",
         "輝煌閃珠": "Shiny Jewel"
-      }
-    ],
+      },
     "missions": [
       "RC2M3",
       "RC2M10",
@@ -254,13 +238,11 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "炎纏の皮": "Blaze Pelt",
         "炎纏宝珠": "Flame Jewel",
         "炎纏極鱗": "Flame Scale"
-      }
-    ],
+      },
     "missions": [
       "RC3M1",
       "RC3M9",
@@ -287,12 +269,10 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "覇妃霊珠": "Queen Jewel",
         "覇霊の瞳": "Spirit Eye"
-      }
-    ],
+      },
     "missions": [
       "RC2M12",
       "RC3M7",
@@ -323,16 +303,14 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "禍恨の瞳": "Ominous Eye",
         "真禍の瞳": "Calamity Eye",
         "災厄の瞳": "Disaster Eye",
         "大災厄珠": "Doom Jewel",
         "災禍煉環": "Calamity Ring",
         "断獄の拳": "Prison Claw"
-      }
-    ],
+      },
     "missions": [
       "RC3M8",
       "RC3M11",
@@ -348,16 +326,14 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "堕落の瞳": "Fallen Eye",
         "堕落の涙": "Ruin Tear",
         "堕落の腕": "Fallen Hand",
         "神の歯車": "Holy Gear",
         "堕落の螺子": "Fallen Screw",
         "神の炉心": "Holy Core"
-      }
-    ],
+      },
     "missions": [
       "RC2M7",
       "RC3M4",
@@ -373,16 +349,14 @@
         "weakails": ""
       }
     ],
-    "drops": [
-      {
+    "drops": {
         "悪意の瞳": "Wicked Eye",
         "悪意の涙": "Wicked Tear",
         "悪意の腕": "Wicked Hand",
         "神の回路": "Holy Circuit",
         "悪意の螺子": "Wicked Screw",
         "神の信管": "Holy Fuse"
-      }
-    ],
+      },
     "missions": [
       "RC2M8",
       "RC3M4",
