@@ -271,6 +271,8 @@ countVar=0;
 collapseID=1;
 imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 rawParseObj=[]; /*holder variable in array*/
+bossParseObj=[]; /*boss panels*/
+missionsParseObj=[]; /*collapsible mission panels*/
 missionsObj={
 	"RC1M1":"RC1 Mission 1 (炎を喰らう者)",
 	"RC1M2":"RC1 Mission 2 (20年越しの仇討ち)",
@@ -372,14 +374,14 @@ function buildDB(boss) {
 	$.each( boss, function( bossKey, bossObj ) {
     		bossSTR='<div class="panel panel-default"><div class="panel-body">'
     		+'<div class="row">'
-    			+'<div class="col-xs-12 col-sm-4">'
+    			+'<div class="col-xs-12 col-sm-3">'
     				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="100" width="auto" />'
     			+'</div>'
-    			+'<div class="col-xs-12 col-sm-8">'
+    			+'<div class="col-xs-12 col-sm-7">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3>'+bossKey+' ('+bossObj.bodyparts.length+' Part(s))</h3></div>';
+    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;font-weight:bold;">'+bossKey+' - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
     					for (i in bossObj.bodyparts) {
-    						bossSTR+='<div class="col-xs-12 col-sm-12">'+bossObj.bodyparts[i].partname+bossObj.bodyparts[i].element+bossObj.bodyparts[i].weakails+'</div>';
+    						bossSTR+='<div class="col-xs-12 col-sm-12">'+bossObj.bodyparts[i].partname+' <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/"'+bossObj.bodyparts[i].element+'miniicon.png"/> &nbsp; Vulnerable to: '+bossObj.bodyparts[i].weakails+'</div>';
     					};
     					bossSTR+='<div class="col-xs-12 col-sm-12">';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
@@ -391,13 +393,28 @@ function buildDB(boss) {
     		bossSTR+='</div></div>'; /*end*/
     		
     		/*debug*/
+    		bossParseObj.push({"name":bossKey, "panelCode": bossSTR, "missions": bossObj.missions});
     		$('#rawTable').append(bossSTR);
     		countVar+=1;
-        	collapseID+=1;
     	});
 
 	/*Process Mission Collapsibles*/
-
+	$.each( missionsObj, function( miKey, miVal ) {
+    		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><b>'+miVal+'</a></h4></div>'
+		+'<div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+    			for (i in bossParseObj) {
+    				for (j in bossParseObj[i].missions) {
+    					if (bossParseObj[i].missions[j]==miKey)
+    						miSTR+=bossParseObj[i].panelCode;
+    				}
+    			}
+    		miSTR+='</div></div></div></div>'; /*close panel*/
+    		
+    		/*debug*/
+    		missionsParseObj.push({"mission":miKey, "panelCode": miSTR});
+    		$('#rawTable').append(miSTR);
+    		collapseID+=1;
+    	});
     
 /*
 	var aheadNameRead = new Bloodhound({
