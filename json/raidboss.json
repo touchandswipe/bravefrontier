@@ -155,5 +155,148 @@
       "RC2M4",
       "RC3M3"
     ]
+  },
+  "Reduhark": {
+    "id": "7",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      },
+      {
+        "partname": "Upper Wing",
+        "element": "dark",
+        "weakails": ""
+      },
+      {
+        "partname": "Lower Wing",
+        "element": "light",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "闇夜の爪": "Dark Claw",
+        "闇の欠片": "Dark Stone",
+        "闇の皮膜": "Dark Pelt",
+        "闇天宝珠": "Dark Jewel",
+        "闇天翼骨": "Dark Bone"
+      }
+    ],
+    "missions": [
+      "RC1M8",
+      "RC2M11",
+      "RC3M6",
+      "RC3M10"
+    ]
+  },
+  "Laguna Rex": {
+    "id": "8",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Lower Body",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Upper Wing",
+        "element": "earth",
+        "weakails": ""
+      },
+      {
+        "partname": "Lower Wing",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "背樹の実": "Timber Nut",
+        "輝鱗の皮": "Scaly Pelt",
+        "輝暴の実": "Shiny Nut",
+        "輝煌閃珠": "Shiny Jewel"
+      }
+    ],
+    "missions": [
+      "RC2M3",
+      "RC2M10",
+      "RC3M5",
+      "RC3M11"
+    ]
+  },
+  "Claudalus": {
+    "id": "9",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "fire",
+        "weakails": ""
+      },
+      {
+        "partname": "Right Arm",
+        "element": "light",
+        "weakails": ""
+      },
+      {
+        "partname": "Left Arm",
+        "element": "light",
+        "weakails": ""
+      },
+      {
+        "partname": "Wing",
+        "element": "thunder",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "炎纏の皮": "Blaze Pelt",
+        "炎纏宝珠": "Flame Jewel",
+        "炎纏極鱗": "Flame Scale"
+      }
+    ],
+    "missions": [
+      "RC3M1",
+      "RC3M9",
+      "RC3M11",
+      "RC5M3"
+    ]
+  },
+  "Marian": {
+    "id": "10",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      },
+      {
+        "partname": "Arm",
+        "element": "earth",
+        "weakails": ""
+      },
+      {
+        "partname": "Top",
+        "element": "thunder",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "覇妃霊珠": "Queen Jewel",
+        "覇霊の瞳": "Spirit Eye"
+      }
+    ],
+    "missions": [
+      "RC2M12",
+      "RC3M7",
+      "RC3M10"
+    ]
   }
 }
