@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Items Guide and Recipes Global - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Raid Companion - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Items Guide and Recipes Global - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Raid Companion - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -73,11 +73,6 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
-</div>
-
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
@@ -128,7 +123,7 @@
  </script>
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h2>Brave Frontier Items Guide - <span class="text-danger">Global</span></h2>
+<h2>Brave Frontier - Raid Companion</h2>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
@@ -169,7 +164,6 @@
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
-
 
 <!--Search item-->
 <div class="input-group">
@@ -277,6 +271,24 @@ countVar=0;
 collapseID=1;
 imgprefix="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 rawParseObj=[]; /*holder variable in array*/
+missionsArray=[
+	{"RC1M1":"RC1 ★ Mission 1 (炎を喰らう者)"},
+	{"RC1M2":"RC1 ★ Mission 2 (20年越しの仇討ち)"},
+	{"RC1M3":"RC1 ★ Mission 3 (牙を剥く森の調査)"},
+	{"RC1M4":"RC1 ★ Mission 4 (地中の徘徊者)"},
+	{"RC1M5":"RC1 ★ Mission 5 (燃え盛る舌)"},
+	{"RC1M6":"RC1 ★ Mission 6 (堅牢なる氷殻)"},
+	{"RC1M7":"RC1 ★ Mission 7 (12年前の仇討ち)"},
+	{"RC1M8":"RC1 ★ Mission 8 Final (宵闇の支配者)"},
+	{"RC2M1":"RC2 ★★ Mission 1 (炎を喰らう者)"},
+	{"RC2M2":"RC2 ★★ Mission 2 (炎を喰らう者)"},
+	{"RC2M3":"RC2 ★★ Mission 3 (炎を喰らう者)"},
+	{"RC2M4":"RC2 ★★ Mission 4 (炎を喰らう者)"},
+	{"RC2M5":"RC2 ★★ Mission 3 (炎を喰らう者)"},
+	{"RC2M6":"RC2 ★★ Mission 4 (炎を喰らう者)"},
+	{"RC2M7":"RC2 ★★ Mission 3 (炎を喰らう者)"},
+	{"RC2M8":"RC2 ★★ Mission 4 (炎を喰らう者)"},
+],
 
 /*JQ Param handling*/
 function urlParam(name){
@@ -698,7 +710,7 @@ $(document).ready( function(e) {
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/items.json",
+        url: "//touchandswipe.github.io/bravefrontier/json/raidboss.json",
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
