@@ -298,5 +298,95 @@
       "RC3M7",
       "RC3M10"
     ]
+  },
+  "Nalda Delia": {
+    "id": "11",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "earth",
+        "weakails": ""
+      },
+      {
+        "partname": "Arm",
+        "element": "light",
+        "weakails": ""
+      },
+      {
+        "partname": "Top",
+        "element": "thunder",
+        "weakails": ""
+      },
+      {
+        "partname": "Lower Body",
+        "element": "fire",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "禍恨の瞳": "Ominous Eye",
+        "真禍の瞳": "Calamity Eye",
+        "災厄の瞳": "Disaster Eye",
+        "大災厄珠": "Doom Jewel",
+        "災禍煉環": "Calamity Ring",
+        "断獄の拳": "Prison Claw"
+      }
+    ],
+    "missions": [
+      "RC3M8",
+      "RC3M11",
+      "RC4M6"
+    ]
+  },
+  "Van Lucy": {
+    "id": "12",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "light",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "堕落の瞳": "Fallen Eye",
+        "堕落の涙": "Ruin Tear",
+        "堕落の腕": "Fallen Hand",
+        "神の歯車": "Holy Gear",
+        "堕落の螺子": "Fallen Screw",
+        "神の炉心": "Holy Core"
+      }
+    ],
+    "missions": [
+      "RC2M7",
+      "RC3M4",
+      "RC4M3"
+    ]
+  },
+    "Van Nader": {
+    "id": "13",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": [
+      {
+        "悪意の瞳": "Wicked Eye",
+        "悪意の涙": "Wicked Tear",
+        "悪意の腕": "Wicked Hand",
+        "神の回路": "Holy Circuit",
+        "悪意の螺子": "Wicked Screw",
+        "神の信管": "Holy Fuse"
+      }
+    ],
+    "missions": [
+      "RC2M8",
+      "RC3M4",
+      "RC4M3"
+    ]
   }
 }
