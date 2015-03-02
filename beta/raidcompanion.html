@@ -126,20 +126,20 @@
 <h2>Brave Frontier - Raid Companion</h2>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
-<button type="button" id="btnBoss" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> Boss view</button>
+<button type="button" id="btnBoss" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Bosses</button>
 <!-- Show by missions-->
-<button type="button" id="btnMission" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> Missions view</button>
+<button type="button" id="btnMission" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Missions</button>
 <!-- items type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Raid Class <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
-</div>
-<!-- sphere type button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
+  <ul class="dropdown-menu" role="menu" id="itemTypeList">
+	<li><a href="#" class="raidClass">RC1</a></li>
+	<li><a href="#" class="raidClass">RC2</a></li>
+	<li><a href="#" class="raidClass">RC3</a></li>
+	<li><a href="#" class="raidClass">RC4</a></li>
+	<li><a href="#" class="raidClass">RC5</a></li>
+  </ul>
 </div>
 
 <!--Search boss drops -->
@@ -470,7 +470,37 @@ function showMissions() {
 	});
 }
 
-/*itemtype Filter Search*/
+/*by RaidClass*/
+function showRC(select) {
+    var outputHTML=[];
+    var outputObj=[];
+    var sVal=select;
+    /*search*/
+    for (i in missionsParseObj)
+	/*searches for RC*/
+	if ( missionsParseObj[i].mission.search(sVal)!=-1)
+		outputObj.push(missionsParseObj[i]);
+    /*Sort*/
+    outputParseObj=outputParseObj.sort(function(a,b) {
+        if (a.mission < b.mission)
+            return -1;
+        if (a.mission > b.mission)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i in outputParseObj)
+        outputHTML.push(outputParseObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raidCompanion_showMissions_by_RC',
+  		'title': 'Brave Frontier PROs - Raid Companion Show Missions by RC'
+	});
+}
+
+/*Raid Class Filter Search*/
 function itemRun(select) {
     var sVal=select;
     var outputObj=[];
@@ -670,16 +700,10 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on itemtype filters*/
-$(document).on("click", '.itemType', function(e){
+/*by Raid Class*/
+$(document).on("click", '.raidClass', function(e){
     e.preventDefault();
-	itemRun($(this).text());
-})
-
-/*Update URL based on spheretype filters*/
-$(document).on("click", '.sphereType', function(e){
-    e.preventDefault();
-	sphereRun($(this).text());
+    showRC($(this).text());
 })
 
 /*Update URL based on search filters*/
