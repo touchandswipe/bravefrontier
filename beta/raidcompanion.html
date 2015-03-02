@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <!-- <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -40,7 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<!-- <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script> -->
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -144,8 +144,8 @@
 <!--Search boss drops -->
 <div class="input-group" style="margin-top:5px;">
         <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Boss drops</button></span>
-        <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
+        <button class="btn btn-primary" type="button" id="searchDropsBtn">Search Boss drops</button></span>
+        <input type="search" placeholder="e.g. 迷妄幻珠 or Ghost Jewel" class="form-control" id="searchDropsBox">
 </div>
 
 <!--Containing Div-->
@@ -368,11 +368,11 @@ function buildDB(boss) {
     							bossSTR+='None';
     						bossSTR+='</div>';
     					};
-    					bossSTR+='<div class="col-xs-12 col-sm-12"><b>Drops</b> ';
+    					bossSTR+='<div class="row" style="margin-top:5px;"><div class="col-xs-12 col-sm-12"><b>Drops</b> ';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
     						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
-    					bossSTR+='</div>';
+    					bossSTR+='</div></div>';
     				bossSTR+='</div>'
     			+'</div>'
     		+'</div>'; /*end row*/
@@ -496,184 +496,43 @@ function showRC(select) {
 	});
 }
 
-/*Raid Class Filter Search*/
-function itemRun(select) {
+/*Search for Drops*/
+function searchDrops(select) {
+    var outputHTML=[];
+    var outputObj=[];
     var sVal=select;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i in rawParseObj) {
-	    /*searches for matching item type*/
-	    if ( rawParseObj[i].type==sVal) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
+    /*search*/
+    if (sVal.length<2)
+        $('#rawTable').html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    else
+    	for (i in bossParseObj)
+	/*searches for RC*/
+	if ( missionsParseObj[i].panelCode.search(sVal)!=-1)
+		outputObj.push(missionsParseObj[i]);
+    /*Sort*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
+        if (a.mission < b.mission)
             return -1;
-        if (a.name > b.name)
+        if (a.mission > b.mission)
             return 1;
         return 0;
     });
     /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+    for (i in outputObj)
+        outputHTML.push(outputObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_TypeFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Type Filter'
-	});
-}
-
-/*spheretype Filter Search*/
-function sphereRun(select) {
-    var sVal=select;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i in rawParseObj) {
-	    /*searches for sphere type*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal+'</span>') != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_SphereFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Sphere Filter'
-	});
-}
-
-/*Item effect Search*/
-function skillRun(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="iEffect">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_EffectsFilter',
-  		'title': 'Brave Frontier PROs - Items Guide GL Effects Filter'
-	});
-}
-
-/*Search by Name*/
-function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
-    var outputObj=[];
-	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*pushstate update*/
-	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
-    }
-    	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Search',
-  		'title': 'Brave Frontier PROs - Items Guide GL Search'
-	});
-}
-
-/*Search by Ingredient*/
-function searchIngredientRun() {
-    var sVal=$('#searchIngredientBox').val();
-    var outputObj=[];
-	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search('class="ingredient">'+sVal.toLowerCase())!=-1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*pushstate update*/
-	var state = { stateIngredientFilter: sVal };
-    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
-    }
-    	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideGL_Ingredients',
-  		'title': 'Brave Frontier PROs - Items Guide GL Ingredients Search'
+  		'page': '/vurl/raidCompanion_searchDrops',
+  		'title': 'Brave Frontier PROs - Raid Companion Search Drops'
 	});
 }
 
 /*Binds Enter KEY to BOX*/
-$( "#searchNameBox" ).keypress( function( event ) {
+$( "#searchDropsBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun()
+     searchDrops()
   }
 })
 
@@ -689,13 +548,6 @@ $(document).on("click", '#btnMission', function(e){
 	showMissions()
 })
 
-/*click on recipe to show item*/
-$(document).on("click", '.ingredient', function(e){
-    	e.preventDefault();
-    	$("#searchNameBox").val($(this).text());
-	searchNameRun()
-})
-
 /*by Raid Class*/
 $(document).on("click", '.raidClass', function(e){
     e.preventDefault();
@@ -703,9 +555,9 @@ $(document).on("click", '.raidClass', function(e){
 })
 
 /*Update URL based on search filters*/
-$(document).on("click", '#searchNameBtn', function(e){
+$(document).on("click", '#searchDropsBtn', function(e){
     e.preventDefault();
-	searchNameRun()
+    searchDrops()
 })
 
 $(document).ready( function(e) {
@@ -725,21 +577,6 @@ $(document).ready( function(e) {
     		$(lastModDate).text(lastModified);
     		buildDB(data);
  	}
-    });
-    
-/*POP state*/
-    $(window).on('popstate', function(ev) {
-	var state = ev.originalEvent.state;
-	/*Search query state*/
-	if (state.stateNameFilter) {
-        $('#searchNameBox').val(state.stateNameFilter);
-        searchRun();
-	}
-	/*Search ingredient state*/
-	if (state.stateIngredientFilter) {
-        $('#searchIngredientBox').val(state.stateIngredientFilter);
-        searchIngredientRun();
-	}
     })
 })
 </script>
