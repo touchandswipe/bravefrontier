@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+<!--    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -40,7 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<!-- <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script> -->
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 </head>
 
@@ -505,7 +505,7 @@ function buildDB(unit,server) {
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
-
+/* does not seem to work with Japanese 
 	var aheadNameRead = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -521,6 +521,7 @@ function buildDB(unit,server) {
 		displayKey: 'value',
 		source: aheadNameRead.ttAdapter()
 	});
+*/
 
     $("#unitCount").html(countVar);
     
