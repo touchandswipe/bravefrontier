@@ -659,9 +659,9 @@ function searchNameRun() {
     var sVal=$('#searchNameBox').val();
     var outputObj=[];
 	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
-    } else {
+	if (sVal.length <2)
+        	$(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
+    	else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
@@ -683,8 +683,8 @@ function searchNameRun() {
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes for <b>'+sVal+'</b></button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
-	var state = { stateNameFilter: sVal };
-    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+	//var state = { stateNameFilter: sVal };
+    	//history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
