@@ -382,9 +382,9 @@ function buildDB(boss) {
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12">';
     						/*elements*/
-    						var eleArray=bossObj.bodyparts[i].weakails.split(',');
-    						for (j in eleArray)
-    							bossSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+bossObj.bodyparts[i].element+'miniicon.png"/> ';
+    						var eleArray=bossObj.bodyparts[i].element.split(',');
+    						for (k in eleArray)
+    							bossSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+eleArray[k]+'miniicon.png"/> ';
     						bossSTR+='&nbsp;<b>'+bossObj.bodyparts[i].partname+'</b> Vulnerable to: ';
     						/*ailments*/
     						if (bossObj.bodyparts[i].weakails != "") {
