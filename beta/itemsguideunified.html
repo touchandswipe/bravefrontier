@@ -74,11 +74,66 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
+<h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
+<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+<h6><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+<!-- items type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
+</div>
+<!-- sphere type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
+</div>
+<!-- Item Effects -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  <li><a href="#" class="skillEffect">hp% buff</a></li>
+    <li><a href="#" class="skillEffect">atk% buff</a></li>
+    <li><a href="#" class="skillEffect">def% buff</a></li>
+    <li><a href="#" class="skillEffect">rec% buff</a></li>
+    <li><a href="#" class="skillEffect">crit% buff</a></li>
+    <li><a href="#" class="skillEffect">first x turns atk%</a></li>
+    <li><a href="#" class="skillEffect">first x turns def%</a></li>
+    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
+    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
+    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
+    <li><a href="#" class="skillEffect">damage% for spark</a></li>
+    <li><a href="#" class="skillEffect">turn heal</a></li>
+    <li><a href="#" class="skillEffect">ignore def%</a></li>
+    <li><a href="#" class="skillEffect">gender required</a></li>
+    <li><a href="#" class="skillEffect">unique elements required</a></li>
+  </ul>
 </div>
 
+
+<!--Search item-->
+<div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
+        <input type="search" placeholder="e.g. flag flower or 闇珠石" class="form-control" id="searchNameBox">
+</div>
+
+<!--Search by ingredient-->
+<div class="input-group" style="margin-top:8px;margin-bottom:8px;">
+        <span class="input-group-btn">
+        <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
+        <input type="search" placeholder="e.g. ghost jewel (only works for Global Server English-Named items)" class="form-control" id="searchIngredientBox">
+</div>
+
+<!--Containing Div-->
+<div class="container-fluid" id="rawMod">
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
@@ -129,69 +184,7 @@
  </script>
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
-<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
-<h5><b>Last Updated: </b><kbd id="lastModDateGL">TBD</kbd>
-<h5><b>Last Updated: </b><kbd id="lastModDateJP">TBD</kbd>
-<h5><b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
-<!-- items type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
-</div>
-<!-- sphere type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
-</div>
-<!-- Item Effects -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-  <li><a href="#" class="skillEffect">hp% buff</a></li>
-    <li><a href="#" class="skillEffect">atk% buff</a></li>
-    <li><a href="#" class="skillEffect">def% buff</a></li>
-    <li><a href="#" class="skillEffect">rec% buff</a></li>
-    <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">first x turns atk%</a></li>
-    <li><a href="#" class="skillEffect">first x turns def%</a></li>
-    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
-    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
-    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="skillEffect">damage% for spark</a></li>
-    <li><a href="#" class="skillEffect">turn heal</a></li>
-    <li><a href="#" class="skillEffect">ignore def%</a></li>
-    <li><a href="#" class="skillEffect">gender required</a></li>
-    <li><a href="#" class="skillEffect">unique elements required</a></li>
-  </ul>
-</div>
-
-
-<!--Search item-->
-<div class="input-group">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
-        <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
-</div>
-
-<!--Search by ingredient-->
-<div class="input-group" style="margin-top:10px;">
-        <span class="input-group-btn">
-        <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. zealot eye" class="form-control" id="searchIngredientBox">
-</div>
-
-<!--Containing Div-->
-<div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the item / sphere name you wish to view.</h3></div>
+    <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the item / sphere name you wish to view.</h4></div>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -244,10 +237,16 @@
  </script>
 </div>
 
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
+</div>
+
 <!-- disqus discussion -->
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
         var disqus_shortname = 'bravefrontierpros';
+        var disqus_url = 'http://touchandswipe.github.io/bravefrontier/itemsguideunified';
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -297,7 +296,7 @@ collapseID=1;
 imgprefixGL="http://3.cdn.bravefrontier.gumi.sg/content/item/";
 imgprefixJP="http://v2.cdn.android.brave.a-lim.jp/item/";
 jsonGL="//touchandswipe.github.io/bravefrontier_data/items.json";
-jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items.json";
+jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items_light.json";
 dataGL=[];
 dataJP=[];
 rawParseObj=[]; /*holder variable in array*/
@@ -356,6 +355,16 @@ function urlParam(name){
 function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
+
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+	localStorage.removeItem('itemsguideglobal');
+	localStorage.removeItem('itemsguidejapan');
+	localStorage.removeItem('itemsguideglobaldate');
+	localStorage.removeItem('itemsguidejapandate');
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+})
 
 /*Grab item name and image*/
 function getNameIMG(unitdata,idFind,server) {
@@ -534,14 +543,14 @@ function buildDB(unit,server) {
     
     /*check for card param*/
     var searchParam=urlParam('query');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
         searchNameRun();
     }
     
     var searchParam=urlParam('ingredient');
-    if ( (searchParam != "") && ( searchParam != null) ) {
+    if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchIngredientBox').val(searchParam);
         searchIngredientRun();
@@ -573,7 +582,7 @@ function itemRun(select) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_TypeFilter',
@@ -588,7 +597,7 @@ function sphereRun(select) {
 	var outputHTML=[];
 	for (i in rawParseObj) {
 	    /*searches for sphere type*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal) != -1) {
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sphTypeTxt">'+sVal+'</span>') != -1) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -605,7 +614,7 @@ function sphereRun(select) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_SphereFilter',
@@ -637,7 +646,7 @@ function skillRun(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_EffectsFilter',
@@ -651,7 +660,7 @@ function searchNameRun() {
     var outputObj=[];
 	var outputHTML=[];
 	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+        $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
     } else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
@@ -672,7 +681,7 @@ function searchNameRun() {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes for <b>'+sVal+'</b></button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
     	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
@@ -690,9 +699,9 @@ function searchIngredientRun() {
     var sVal=$('#searchIngredientBox').val();
     var outputObj=[];
 	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
+	if (sVal.length <2)
+        	$(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    	else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search('class="ingredient">'+sVal.toLowerCase())!=-1) {
@@ -708,11 +717,11 @@ function searchIngredientRun() {
         return 0;
     });
     /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
+    for (i=0;i<outputObj.length;i++)
+        outputHTML.push(outputObj[i].collapseCode);
+        
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
@@ -773,7 +782,14 @@ $(document).on("click", '#searchNameBtn', function(e){
 /*Update URL based on search filters*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
-	searchIngredientRun()
+    searchIngredientRun()
+})
+
+/*Prompt to view recipe*/
+$(document).on("click", '#viewRecipe', function(e){
+    e.preventDefault();
+    $('#searchIngredientBox').val($('#searchNameBox').val());
+    searchIngredientRun()
 })
 
 /*Refresh data*/
