@@ -29,6 +29,7 @@
         word-wrap: break-word;
     }
     .btnSpace { margin-left:3px; margin-right:3px; }
+    .rowSpace { margin:3px; }
     .upper {
         text-transform:uppercase;
     }
@@ -356,7 +357,7 @@ function buildDB(boss) {
     				+'<div class="row">'
     					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
     					for (i in bossObj.bodyparts) {
-    						bossSTR+='<div class="col-xs-12 col-sm-12">';
+    						bossSTR+='<div class="col-xs-12 col-sm-12 rowSpace">';
     						/*elements*/
     						var eleArray=bossObj.bodyparts[i].element.split(',');
     						for (k in eleArray)
