@@ -407,10 +407,11 @@ function buildDB(boss) {
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
     						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
+    					bossSTR+='</div>';
     				bossSTR+='</div>'
     			+'</div>'
     		+'</div>'; /*end row*/
-    		bossSTR+='</div></div>'; /*end*/
+    		bossSTR+='</div></div>'; /*end panel*/
     		bossParseObj.push({"name":bossKey, "panelCode": bossSTR, "missions": bossObj.missions});
     		countVar+=1;
     		//$('#rawTable').append(bossSTR);
