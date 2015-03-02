@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
@@ -75,8 +75,8 @@
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
 <h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
-<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
-<h6><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd>
+<h6><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd></h6>
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
@@ -515,7 +515,7 @@ function buildDB(unit,server) {
 	$('#searchNameBox').typeahead({
 		hint: true,
 		highlight: true,
-		minLength: 2
+		minLength: 1
 	},
 	{
 		displayKey: 'value',
@@ -556,7 +556,6 @@ function buildDB(unit,server) {
         $('#searchIngredientBox').val(searchParam);
         searchIngredientRun();
     }
-    
 }
 
 /*itemtype Filter Search*/
@@ -737,16 +736,14 @@ function searchIngredientRun() {
 
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
+  if ( event.which == 13 )
      searchNameRun()
-  }
 })
 
 /*Binds Enter KEY to BOX*/
 $( "#searchIngredientBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
+  if ( event.which == 13 )
      searchIngredientRun()
-  }
 })
 
 /*click on recipe to show item*/
