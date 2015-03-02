@@ -535,8 +535,8 @@
         "魔獣剛爪": "Magical Beast Claw",
         "魔獣緋毛": "Magical Beast Hair",
         "魔獣心珠": "Magical Beast Heart",
-        "大業焔珠": "Flame Pearl",
-      },
+        "大業焔珠": "Flame Pearl"
+    },
     "missions": [
       "RC4M7",
       "RC5M4"
@@ -591,5 +591,5 @@
       "MR3",
       "MR4"
     ]
-  },
+  }
 }
