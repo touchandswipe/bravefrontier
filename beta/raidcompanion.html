@@ -125,6 +125,10 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h2>Brave Frontier - Raid Companion</h2>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<!-- Show Bosses -->
+<button type="button" id="btnBoss" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> Boss view</button>
+<!-- Show by missions-->
+<button type="button" id="btnMission" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> Missions view</button>
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
@@ -318,7 +322,11 @@ missionsObj={
 	"RC4M9":"RC4 Mission 9 Final (本体を叩け！)",
 	"RC5M1":"RC5 Mission 1 (沼が森になった話)",
 	"RC5M2":"RC5 Mission 2 (暁に浮かぶ竜の影)",
-	"RC5M3":"RC5 Mission 3 (増し続ける脅威)"
+	"RC5M3":"RC5 Mission 3 (増し続ける脅威)",
+	"RC1MR1":"RC1 Medal Rush (メダルラッシュLv1)",
+	"RC2MR2":"RC2 Medal Rush (メダルラッシュLv2)",
+	"RC3MR3":"RC3 Medal Rush (メダルラッシュLv3)",
+	"RC4MR4":"RC4 Medal Rush (メダルラッシュLv4)"
 };
 
 /*JQ Param handling*/
@@ -403,11 +411,9 @@ function buildDB(boss) {
     			+'</div>'
     		+'</div>'; /*end row*/
     		bossSTR+='</div></div>'; /*end*/
-    		
-    		/*debug*/
     		bossParseObj.push({"name":bossKey, "panelCode": bossSTR, "missions": bossObj.missions});
-    		$('#rawTable').append(bossSTR);
     		countVar+=1;
+    		//$('#rawTable').append(bossSTR);
     	});
 
 	/*Process Mission Collapsibles*/
@@ -421,11 +427,11 @@ function buildDB(boss) {
     				}
     			}
     		miSTR+='</div></div></div></div>'; /*close panel*/
-    		
-    		/*debug*/
-    		missionsParseObj.push({"mission":miKey, "panelCode": miSTR});
-    		$('#rawTable').append(miSTR);
+    		missionsParseObj.push({"mission":miKey, "missiondesc":miVal, "panelCode": miSTR});
     		collapseID+=1;
+    		/*debug*/
+    		//$('#rawTable').append(miSTR);
+    		showBoss();
     	});
     
 /*
@@ -449,6 +455,52 @@ function buildDB(boss) {
     $("#unitCount").html(countVar);
 
     $('#progressModal').modal('hide');
+}
+
+/*Show Boss*/
+function showBoss() {
+    var outputHTML=[];
+    /*Sort array*/
+    bossParseObj=bossParseObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i in bossParseObj)
+        outputHTML.push(bossParseObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raidCompanion_showBoss',
+  		'title': 'Brave Frontier PROs - Raid Companion Show Bosses'
+	});
+}
+
+/*Show Boss*/
+function showMissions() {
+    var outputHTML=[];
+    /*Sort array*/
+    missionsParseObj=missionsParseObj.sort(function(a,b) {
+        if (a.mission < b.mission)
+            return -1;
+        if (a.mission > b.mission)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i in missionsParseObj)
+        outputHTML.push(missionsParseObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raidCompanion_showMissions',
+  		'title': 'Brave Frontier PROs - Raid Companion Show Missions'
+	});
 }
 
 /*itemtype Filter Search*/
@@ -637,6 +689,18 @@ $( "#searchIngredientBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchIngredientRun()
   }
+})
+
+/*boss btn*/
+$(document).on("click", '#btnBoss', function(e){
+    	e.preventDefault();
+	showBoss()
+})
+
+/*mission btn*/
+$(document).on("click", '#btnMission', function(e){
+    	e.preventDefault();
+	showMissions()
 })
 
 /*click on recipe to show item*/
