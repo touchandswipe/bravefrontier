@@ -758,19 +758,19 @@ $(document).on("click", '.ingredient', function(e){
 /*Update URL based on itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
-	itemRun($(this).text());
+    itemRun($(this).text());
 })
 
 /*Update URL based on spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
-	sphereRun($(this).text());
+    sphereRun($(this).text());
 })
 
 /*Update URL based on Effect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
-	skillRun($(this).text());
+    skillRun($(this).text());
 })
 
 /*Update URL based on search filters*/
@@ -913,13 +913,14 @@ $(window).on('popstate', function(ev) {
 	var state = ev.originalEvent.state;
 	/*Search query state*/
 	if (state.stateNameFilter) {
-        $('#searchNameBox').val(state.stateNameFilter);
-        searchNameRun();
+		alert("pop");
+        	$('#searchNameBox').val(state.stateNameFilter);
+        	searchNameRun();
 	}
 	/*Search ingredient state*/
 	if (state.stateIngredientFilter) {
-        $('#searchIngredientBox').val(state.stateIngredientFilter);
-        searchIngredientRun();
+        	$('#searchIngredientBox').val(state.stateIngredientFilter);
+        	searchIngredientRun();
 	}
 })
 </script>
