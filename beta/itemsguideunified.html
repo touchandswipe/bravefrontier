@@ -505,7 +505,7 @@ function buildDB(unit,server) {
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
-    /*
+
 	var aheadNameRead = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -515,14 +515,15 @@ function buildDB(unit,server) {
 	$('#searchNameBox').typeahead({
 		hint: true,
 		highlight: true,
-		minLength: 1
+		minLength: 2
 	},
 	{
 		displayKey: 'value',
 		source: aheadNameRead.ttAdapter()
 	});
-    */
+
     $("#unitCount").html(countVar);
+    
     /*build item type*/
     var itemTypeArray=[];
     for (i in rawParseObj) {
@@ -913,7 +914,6 @@ $(window).on('popstate', function(ev) {
 	var state = ev.originalEvent.state;
 	/*Search query state*/
 	if (state.stateNameFilter) {
-		alert("pop");
         	$('#searchNameBox').val(state.stateNameFilter);
         	searchNameRun();
 	}
