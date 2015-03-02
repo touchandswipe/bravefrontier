@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!--    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -40,7 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<!-- <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script> -->
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 </head>
 
@@ -62,9 +62,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
                     <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
-                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units guide advance</a></li>
+                    <li><a href="raidcompanion.html"><i class="fa fa-cogs"></i> Raid companion</a></li>
                     <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -74,11 +73,10 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<h2>Brave Frontier Items Guide - <span class="text-danger">Unified Global & Japan</span></h2>
-<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
-<h5><b>Last Updated: </b><kbd id="lastModDateGL">TBD</kbd>
-<h5><b>Last Updated: </b><kbd id="lastModDateJP">TBD</kbd>
-<h5><b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h3 style="margin-top:0px;">Brave Frontier Items Guide<span class="hidden-xs"> - Unified Global & Japan</span></h3>
+<div class="row"><div class="col-xs-12"><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></div></div>
+<h6 class="hidden-xs hidden-sm"><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd></h6>
+<div class="row"><div class="col-xs-12">
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
@@ -118,21 +116,25 @@
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
+</div></div>
 
-
+<div class="row"><div class="col-xs-12">
 <!--Search item-->
 <div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
-        <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
+        <input type="search" placeholder="e.g. flag flower or 闇珠石" class="form-control" id="searchNameBox">
 </div>
+</div></div>
 
+<div class="row"><div class="col-xs-12">
 <!--Search by ingredient-->
 <div class="input-group" style="margin-top:8px;margin-bottom:8px;">
         <span class="input-group-btn">
         <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. zealot eye" class="form-control" id="searchIngredientBox">
+        <input type="search" placeholder="e.g. ghost jewel (only works for Global Server English-Named items)" class="form-control" id="searchIngredientBox">
 </div>
+</div></div>
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
@@ -248,6 +250,7 @@
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
         var disqus_shortname = 'bravefrontierpros';
+        var disqus_url = 'http://touchandswipe.github.io/bravefrontier/itemsguideunified';
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -506,7 +509,7 @@ function buildDB(unit,server) {
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
-    
+/* does not seem to work with Japanese 
 	var aheadNameRead = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -522,8 +525,10 @@ function buildDB(unit,server) {
 		displayKey: 'value',
 		source: aheadNameRead.ttAdapter()
 	});
-    
+*/
+
     $("#unitCount").html(countVar);
+    
     /*build item type*/
     var itemTypeArray=[];
     for (i in rawParseObj) {
@@ -556,7 +561,6 @@ function buildDB(unit,server) {
         $('#searchIngredientBox').val(searchParam);
         searchIngredientRun();
     }
-    
 }
 
 /*itemtype Filter Search*/
@@ -615,7 +619,7 @@ function sphereRun(select) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_SphereFilter',
@@ -647,7 +651,7 @@ function skillRun(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_EffectsFilter',
@@ -660,9 +664,9 @@ function searchNameRun() {
     var sVal=$('#searchNameBox').val();
     var outputObj=[];
 	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
+	if (sVal.length <2)
+        	$(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
+    	else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
@@ -682,7 +686,7 @@ function searchNameRun() {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes using \"<b>'+sVal+'</b>\" ingredient</button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
     	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
@@ -700,9 +704,9 @@ function searchIngredientRun() {
     var sVal=$('#searchIngredientBox').val();
     var outputObj=[];
 	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
+	if (sVal.length <2)
+        	$(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    	else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['collapseCode'].toLowerCase().search('class="ingredient">'+sVal.toLowerCase())!=-1) {
@@ -718,11 +722,11 @@ function searchIngredientRun() {
         return 0;
     });
     /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
+    for (i=0;i<outputObj.length;i++)
+        outputHTML.push(outputObj[i].collapseCode);
+        
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
@@ -737,16 +741,14 @@ function searchIngredientRun() {
 
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
+  if ( event.which == 13 )
      searchNameRun()
-  }
 })
 
 /*Binds Enter KEY to BOX*/
 $( "#searchIngredientBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
+  if ( event.which == 13 )
      searchIngredientRun()
-  }
 })
 
 /*click on recipe to show item*/
@@ -759,19 +761,19 @@ $(document).on("click", '.ingredient', function(e){
 /*Update URL based on itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
-	itemRun($(this).text());
+    itemRun($(this).text());
 })
 
 /*Update URL based on spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
-	sphereRun($(this).text());
+    sphereRun($(this).text());
 })
 
 /*Update URL based on Effect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
-	skillRun($(this).text());
+    skillRun($(this).text());
 })
 
 /*Update URL based on search filters*/
@@ -783,7 +785,14 @@ $(document).on("click", '#searchNameBtn', function(e){
 /*Update URL based on search filters*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
-	searchIngredientRun()
+    searchIngredientRun()
+})
+
+/*Prompt to view recipe*/
+$(document).on("click", '#viewRecipe', function(e){
+    e.preventDefault();
+    $('#searchIngredientBox').val($('#searchNameBox').val());
+    searchIngredientRun()
 })
 
 /*Refresh data*/
@@ -907,13 +916,13 @@ $(window).on('popstate', function(ev) {
 	var state = ev.originalEvent.state;
 	/*Search query state*/
 	if (state.stateNameFilter) {
-        $('#searchNameBox').val(state.stateNameFilter);
-        searchNameRun();
+        	$('#searchNameBox').val(state.stateNameFilter);
+        	searchNameRun();
 	}
 	/*Search ingredient state*/
 	if (state.stateIngredientFilter) {
-        $('#searchIngredientBox').val(state.stateIngredientFilter);
-        searchIngredientRun();
+        	$('#searchIngredientBox').val(state.stateIngredientFilter);
+        	searchIngredientRun();
 	}
 })
 </script>
@@ -929,6 +938,6 @@ $(window).on('popstate', function(ev) {
   ga('send', 'pageview');
 </script>
 <!--Chatroom-->
-<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
 </html>
