@@ -481,7 +481,7 @@ function showRC(select) {
 	if ( missionsParseObj[i].mission.search(sVal)!=-1)
 		outputObj.push(missionsParseObj[i]);
     /*Sort*/
-    outputParseObj=outputParseObj.sort(function(a,b) {
+    outputObj=outputObj.sort(function(a,b) {
         if (a.mission < b.mission)
             return -1;
         if (a.mission > b.mission)
@@ -489,8 +489,8 @@ function showRC(select) {
         return 0;
     });
     /*Build HTML Array*/
-    for (i in outputParseObj)
-        outputHTML.push(outputParseObj[i].panelCode)
+    for (i in outputObj)
+        outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
     $('#rawTable').html(outputHTML.join(' '));
 	/*Google analytics*/
