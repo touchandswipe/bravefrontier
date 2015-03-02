@@ -373,7 +373,7 @@ function buildDB(boss) {
     						bossSTR+='</div>';
     					};
     					bossSTR+='<div class="row"><div class="col-xs-12 col-sm-12 dropslist"><b>Drops</b> ';
-    					if (!bossObj.drops.isEmptyObject())
+    					if (!$.bossObj.drops.isEmptyObject())
 	    					$.each( bossObj.drops, function( dropKey, dropVal ) {
 	    						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
 	    					});
