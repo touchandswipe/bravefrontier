@@ -497,10 +497,12 @@ function showRC(select) {
 }
 
 /*Search for Drops*/
-function searchDrops(select) {
+function searchDrops() {
     var outputHTML=[];
     var outputObj=[];
-    var sVal=select;
+    var sVal=$('#searchDropsBox').val();
+    /*TitleCase*/
+    sVal=sVal.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     /*search*/
     if (sVal.length<2)
         $('#rawTable').html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
