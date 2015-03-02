@@ -124,7 +124,7 @@
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <h2>Brave Frontier - Raid Companion</h2>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
 <button type="button" id="btnBoss" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Bosses</button>
 <!-- Show by missions-->
@@ -141,9 +141,8 @@
 	<li><a href="#" class="raidClass">RC5</a></li>
   </ul>
 </div>
-
 <!--Search boss drops -->
-<div class="input-group">
+<div class="input-group" style="margin-top:5px;">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Search Boss drops</button></span>
         <input type="search" placeholder="e.g. flag flower" class="form-control" id="searchNameBox">
@@ -151,7 +150,7 @@
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the item / sphere name you wish to view.</h3></div>
+    <div class="panel-group" id="rawTable" style="padding:5px;"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Select a view or search.</h3></div>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -359,7 +358,7 @@ function buildDB(boss) {
     						var eleArray=bossObj.bodyparts[i].element.split(',');
     						for (k in eleArray)
     							bossSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/'+eleArray[k]+'miniicon.png"/> ';
-    						bossSTR+='&nbsp;<b>'+bossObj.bodyparts[i].partname+'</b> Vulnerable to: ';
+    						bossSTR+='&nbsp;<b>'+bossObj.bodyparts[i].partname+'</b> vulnerable to: ';
     						/*ailments*/
     						if (bossObj.bodyparts[i].weakails != "") {
     							var ailsArray=bossObj.bodyparts[i].weakails.split(',');
@@ -369,7 +368,7 @@ function buildDB(boss) {
     							bossSTR+='None';
     						bossSTR+='</div>';
     					};
-    					bossSTR+='<div class="col-xs-12 col-sm-12">';
+    					bossSTR+='<div class="col-xs-12 col-sm-12"><b>Drops</b> ';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
     						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
@@ -380,7 +379,6 @@ function buildDB(boss) {
     		bossSTR+='</div></div>'; /*end panel*/
     		bossParseObj.push({"name":bossKey, "panelCode": bossSTR, "missions": bossObj.missions});
     		countVar+=1;
-    		//$('#rawTable').append(bossSTR);
     	});
 
 	/*Process Mission Collapsibles*/
@@ -396,8 +394,6 @@ function buildDB(boss) {
     		miSTR+='</div></div></div></div>'; /*close panel*/
     		missionsParseObj.push({"mission":miKey, "missiondesc":miVal, "panelCode": miSTR});
     		collapseID+=1;
-    		/*debug*/
-    		//$('#rawTable').append(miSTR);
     		showBoss();
     	});
     
