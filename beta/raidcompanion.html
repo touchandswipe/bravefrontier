@@ -32,7 +32,7 @@
         text-transform:uppercase;
     }
     .dropslist {
-    	padding-left: 30px;
+    	padding-left: 15px;
 	padding-top: 5px;
     }
     .equal, .equal > div[class*='col-'] {  
@@ -370,7 +370,7 @@ function buildDB(boss) {
     							bossSTR+='no ailments';
     						bossSTR+='</div>';
     					};
-    					bossSTR+='<div class="row dropslist"><div class="col-xs-12 col-sm-12"><b>Drops</b> ';
+    					bossSTR+='<div class="row"><div class="col-xs-12 col-sm-12 dropslist"><b>Drops</b> ';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
     						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
