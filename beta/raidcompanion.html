@@ -31,6 +31,10 @@
     .upper {
         text-transform:uppercase;
     }
+    .dropslist {
+    	padding-left: 30px;
+	padding-top: 5px;
+    }
     .equal, .equal > div[class*='col-'] {  
     display: -webkit-flex;
     display: flex;
@@ -72,7 +76,7 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<h2 style="margin-top:5px;">Brave Frontier - Raid Companion</h2>
+<h2 style="margin-top:5px;">Brave Frontier - Raid Companion (BETA)</h2>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
 <button type="button" id="btnBoss" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Bosses</button>
@@ -345,7 +349,7 @@ function buildDB(boss) {
     		bossSTR='<div class="panel panel-default"><div class="panel-body">'
     		+'<div class="row">'
     			+'<div class="col-xs-12 col-sm-3 col-lg-2">'
-    				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="100" width="auto" />'
+    				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="125" width="auto" />'
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
@@ -363,10 +367,10 @@ function buildDB(boss) {
     							for (j in ailsArray)
     								bossSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/icon_'+ailsArray[j]+'.png" width="20" /> ';
     						} else
-    							bossSTR+='None';
+    							bossSTR+='no ailments';
     						bossSTR+='</div>';
     					};
-    					bossSTR+='<div class="row" style="margin-top:5px;"><div class="col-xs-12 col-sm-12"><b>Drops</b> ';
+    					bossSTR+='<div class="row dropslist"><div class="col-xs-12 col-sm-12"><b>Drops</b> ';
     					$.each( bossObj.drops, function( dropKey, dropVal ) {
     						bossSTR+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal+'" target="itemSearch">'+dropVal+'</a>) &nbsp;|&nbsp; ';
     					});
@@ -502,7 +506,7 @@ function searchDrops() {
     /*TitleCase*/
     sVal=sVal.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     $('#searchDropsBox').val(sVal);
-    alert("search for "+sVal);
+    //alert("search for "+sVal);
     /*search*/
     if (sVal.length<2)
         $('#rawTable').html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
