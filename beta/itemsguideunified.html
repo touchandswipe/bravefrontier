@@ -682,7 +682,7 @@ function searchNameRun() {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes for <b>'+sVal+'</b></button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes using \"<b>'+sVal+'</b>\" ingredient</button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
     	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
