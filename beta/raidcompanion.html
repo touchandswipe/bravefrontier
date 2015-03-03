@@ -472,6 +472,37 @@ function showRC(select) {
 	});
 }
 
+/*by specific Boss*/
+function missionsByBoss(select) {
+    var outputHTML=[];
+    var outputObj=[];
+    var sVal=select.split(',');
+    /*search*/
+    for (i in sVal)
+	/*searches for matching mission key*/
+	for (j in missionsParseObj)
+		if ( missionsParseObj[j].mission == sVal[i] )
+			outputObj.push(missionsParseObj[j]);
+    /*Sort*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.mission < b.mission)
+            return -1;
+        if (a.mission > b.mission)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i in outputObj)
+        outputHTML.push(outputObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raidCompanion_showMissions_by_Boss',
+  		'title': 'Brave Frontier PROs - Raid Companion Show Missions by Boss'
+	});
+}
+
 /*Search for Drops*/
 function searchDrops() {
     var outputHTML=[];
@@ -525,7 +556,7 @@ $(document).on("click", '#btnBoss', function(e){
 /*show specific boss mission btn*/
 $(document).on("click", '.showBossMissions', function(e){
     	e.preventDefault();
-	alert($(this).val());
+	missionsByBoss($(this).val());
 })
 
 /*mission btn*/
