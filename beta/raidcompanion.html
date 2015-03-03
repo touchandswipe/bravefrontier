@@ -496,10 +496,11 @@ function missionsByBoss(select) {
         outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
     $('#rawTable').html(outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/raidCompanion_showMissions_by_Boss',
-  		'title': 'Brave Frontier PROs - Raid Companion Show Missions by Boss'
+    window.scrollTo(0,0);
+    /*Google analytics*/
+    ga('send', 'pageview', {
+  	'page': '/vurl/raidCompanion_showMissions_by_Boss',
+  	'title': 'Brave Frontier PROs - Raid Companion Show Missions by Boss'
 	});
 }
 
