@@ -591,5 +591,54 @@
       "RC3MR3",
       "RC4MR4"
     ]
+  },
+  "Alushtar": {
+    "id": "22",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "light",
+        "weakails": "injury"
+      },
+      {
+        "partname": "Wing",
+        "element": "fire",
+        "weakails": "poison"
+      },
+      {
+        "partname": "Flower (Lower)",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "桜養の葉": "Sakura Leaf",
+        "炎麟の羽": "Bright Flame Leaf"
+      },
+    "missions": [
+      "RC5M5"
+    ]
+  },
+  "Queen Pula": {
+    "id": "23",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "earth",
+        "weakails": "weak,curse"
+      },
+      {
+        "partname": "Flower",
+        "element": "earth",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "剛搦の茎": "Rough Stem",
+        "吸命の花心": "Absorption Heart"
+      },
+    "missions": [
+      "RC5M6"
+    ]
   }
 }
