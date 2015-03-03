@@ -106,13 +106,13 @@
       "RC3M2"
     ]
   },
-"Granomus": {
+"Granomos": {
     "id": "5",
     "bodyparts": [
       {
         "partname": "Body",
         "element": "earth",
-        "weakails": ""
+        "weakails": "para"
       }
     ],
     "drops": {
