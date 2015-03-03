@@ -81,9 +81,9 @@
 <h2 style="margin-top:5px;">Brave Frontier - Raid Companion (BETA)</h2>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
-<button type="button" id="btnBoss" class="btn btn-info btnSpace" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Bosses</button>
+<button type="button" id="btnBoss" class="btn btn-info btnSpace"><i class="fa fa-list"></i> ALL Bosses</button>
 <!-- Show by missions-->
-<button type="button" id="btnMission" class="btn btn-info btnSpace" data-toggle="dropdown"><i class="fa fa-list"></i> ALL Missions</button>
+<button type="button" id="btnMission" class="btn btn-info btnSpace"><i class="fa fa-list"></i> ALL Missions</button>
 <!-- items type button -->
 <div class="btn-group btnSpace">
   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">by Raid Class <span class="caret"></span>
@@ -313,36 +313,6 @@ function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
-/*Grab item name and image*/
-function getNameIMG(unitdata,idFind) {
-	var retArray=[];
-	var retFound=false;
-	/*Process for Each Unit*/
-	$.each( unitdata, function( unitKey, valObj2 ) {
-    		if (valObj2.id==idFind) {
-    			retArray.push(valObj2.name);
-    			retArray.push(imgprefix+valObj2.thumbnail);
-    			retFound=true;
-    			/*break .each loop*/
-    			return false;
-    		}
-	})
-	/*not returned prior = not found*/
-	if (retFound)
-		return retArray;
-	else
-		return false;
-}
-
-var findIndex=function(key,arr) {
-    for(var i=0, j=arr.length; i<j; i++) {
-        if(arr[i].hasOwnProperty(key)) {
-            return i;
-        }
-    }
-    return -1;
-};
-
 /*Build DATABASE IN MEMORY*/
 function buildDB(boss) {
 	/*Process Boss Segments*/
@@ -354,7 +324,7 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s)</h3></div>';
+    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossObj.missions+'"><i class="fa fa-filter"></i> Show missions with '+bossKey+'</button> </h3></div>';
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12 rowSpace">';
     						/*elements*/
@@ -502,6 +472,38 @@ function showRC(select) {
 	});
 }
 
+/*by specific Boss*/
+function missionsByBoss(select) {
+    var outputHTML=[];
+    var outputObj=[];
+    var sVal=select.split(',');
+    /*search*/
+    for (i in sVal)
+	/*searches for matching mission key*/
+	for (j in missionsParseObj)
+		if ( missionsParseObj[j].mission == sVal[i] )
+			outputObj.push(missionsParseObj[j]);
+    /*Sort*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.mission < b.mission)
+            return -1;
+        if (a.mission > b.mission)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i in outputObj)
+        outputHTML.push(outputObj[i].panelCode)
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML.join(' '));
+    window.scrollTo(0,0);
+    /*Google analytics*/
+    ga('send', 'pageview', {
+  	'page': '/vurl/raidCompanion_showMissions_by_Boss',
+  	'title': 'Brave Frontier PROs - Raid Companion Show Missions by Boss'
+	});
+}
+
 /*Search for Drops*/
 function searchDrops() {
     var outputHTML=[];
@@ -550,6 +552,12 @@ $( "#searchDropsBox" ).keypress( function( event ) {
 $(document).on("click", '#btnBoss', function(e){
     	e.preventDefault();
 	showBoss()
+})
+
+/*show specific boss mission btn*/
+$(document).on("click", '.showBossMissions', function(e){
+    	e.preventDefault();
+	missionsByBoss($(this).val());
 })
 
 /*mission btn*/
