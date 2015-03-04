@@ -136,7 +136,7 @@
       }
     ],
     "drops": {
-        "碧殻の皮": "Cobalt Pelt"
+        "碧殻の皮": {"Eng":"Cobalt Pelt","icon":"item_thum_801.png"}
       },
     "missions": [
       "RC2M1",
