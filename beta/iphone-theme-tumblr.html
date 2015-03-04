@@ -21,6 +21,68 @@
             background: url('http://assets.tumblr.com/images/iphone/tumblelog/bg.png') top left repeat #757778;
             font-family: Helvetica, Arial, sans-serif;
         }
+        
+.slideout-menu {
+	position: fixed;
+	top: 0;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background: #333;
+	z-index: 100;
+}
+.slideout-menu h3 {
+	position: relative;
+	padding: 12px 10px;
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 400;
+	border-bottom: 4px solid #222;
+}
+.slideout-menu .slideout-menu-toggle {
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	display: inline-block;
+	padding: 6px 9px 5px;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	line-height: 1;
+	background: #222;
+	color: #999;
+	text-decoration: none;
+	vertical-align: top;
+}
+.slideout-menu .slideout-menu-toggle:hover {
+	color: #fff;
+}
+.slideout-menu ul {
+	list-style: none;
+	font-weight: 300;
+	border-top: 1px solid #151515;
+	border-bottom: 1px solid #454545;
+}
+.slideout-menu ul li {
+	border-top: 1px solid #454545;
+	border-bottom: 1px solid #151515;
+}
+.slideout-menu ul li a {
+	position: relative;
+	display: block;
+	padding: 10px;
+	color: #999;
+	text-decoration: none;
+}
+.slideout-menu ul li a:hover {
+	background: #000;
+	color: #fff;
+}
+.slideout-menu ul li a i {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	opacity: .5;
+}
 
         .clear {
             clear: both;
@@ -559,6 +621,33 @@
             -webkit-box-shadow: none !important;
         }
     </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.slideout-menu-toggle').on('click', function(event){
+    	event.preventDefault();
+    	// create menu variables
+    	var slideoutMenu = $('.slideout-menu');
+    	var slideoutMenuWidth = $('.slideout-menu').width();
+    	
+    	// toggle open class
+    	slideoutMenu.toggleClass("open");
+    	
+    	// slide menu
+    	if (slideoutMenu.hasClass("open")) {
+	    	slideoutMenu.animate({
+		    	left: "0px"
+	    	});	
+    	} else {
+	    	slideoutMenu.animate({
+		    	left: -slideoutMenuWidth
+	    	}, 250);	
+    	}
+    });
+});
+</script>
+    
     <script type="text/javascript" charset="utf-8">
         setTimeout(function() { window.scrollTo(0,1) }, 100);
                 
@@ -687,6 +776,17 @@
     </script>
 </head>
 <body>
+
+<div class="slideout-menu">
+	<h3>Menu <a href="#" class="slideout-menu-toggle">×</a></h3>
+	<ul>
+	{block:HasPages}
+	    {block:Pages}
+		<li><a href="{URL}">{Label}<i class="fa fa-angle-right"></i></a></li>
+		{/block:Pages}
+	{/block:HasPages}
+	</ul>
+</div>
  
     <header class="gray_bubble">
         <a href="/" class="tPortrait"><img src="{PortraitURL-128}"/></a>
