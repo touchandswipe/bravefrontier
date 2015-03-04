@@ -51,11 +51,12 @@
 }
 .slideout-menu h3 {
 	position: relative;
-	padding: 12px 10px;
+	padding: 15px 10px;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 400;
 	border-bottom: 4px solid #222;
+	margin:0;
 }
 .slideout-menu .slideout-menu-toggle {
 	position: absolute;
@@ -76,9 +77,10 @@
 }
 .slideout-menu ul {
 	list-style: none;
-	font-weight: 300;
 	border-top: 1px solid #151515;
 	border-bottom: 1px solid #454545;
+	padding:0;
+	margin:0;
 }
 .slideout-menu ul li {
 	border-top: 1px solid #454545;
@@ -94,12 +96,6 @@
 .slideout-menu ul li a:hover {
 	background: #000;
 	color: #fff;
-}
-.slideout-menu ul li a i {
-	position: absolute;
-	top: 15px;
-	right: 10px;
-	opacity: .5;
 }
 
         .clear {
@@ -775,16 +771,16 @@
 <div class="slideout-menu">
 	<h3>Menu <a href="#" class="slideout-menu-toggle">×</a></h3>
 	<ul>
-	{block:HasPages}
-	    {block:Pages}
-		<li><a href="{URL}">{Label}<i class="fa fa-angle-right"></i></a></li>
-		{/block:Pages}
-	{/block:HasPages}
+    	{block:HasPages}
+    	    {block:Pages}
+    		<li><a href="{URL}">{Label}</a></li>
+    		{/block:Pages}
+    	{/block:HasPages}
 	</ul>
 </div>
 
 <div class="header2">
-	<a href="#" class="slideout-menu-toggle"><i class="fa fa-bars"></i> Menu</a>
+	<a href="#" class="slideout-menu-toggle" style="line-height: 29px;"><i class="fa fa-bars"></i> Guides / Links</a>
 </div>
  
     <header class="gray_bubble">
