@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=640"/>
     <link rel="shortcut icon" href="{Favicon}" />
     <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
     <style type="text/css">
         html {
@@ -21,6 +22,23 @@
             background: url('http://assets.tumblr.com/images/iphone/tumblelog/bg.png') top left repeat #757778;
             font-family: Helvetica, Arial, sans-serif;
         }
+        
+	.header2 {
+		padding: 15px;
+		background: #000;
+	}
+	.header2 .slideout-menu-toggle {
+		font-size: 1.2em;
+		color: #999;
+		text-decoration: none;
+	}
+	.header2 .slideout-menu-toggle:hover {
+		color: #fff;
+	}
+	.header2 .slideout-menu-toggle i {
+		vertical-align: top;
+		margin: 5px 3px 0 0;
+	}
         
 .slideout-menu {
 	position: fixed;
@@ -621,34 +639,8 @@
             -webkit-box-shadow: none !important;
         }
     </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-    $('.slideout-menu-toggle').on('click', function(event){
-    	event.preventDefault();
-    	// create menu variables
-    	var slideoutMenu = $('.slideout-menu');
-    	var slideoutMenuWidth = $('.slideout-menu').width();
-    	
-    	// toggle open class
-    	slideoutMenu.toggleClass("open");
-    	
-    	// slide menu
-    	if (slideoutMenu.hasClass("open")) {
-	    	slideoutMenu.animate({
-		    	left: "0px"
-	    	});	
-    	} else {
-	    	slideoutMenu.animate({
-		    	left: -slideoutMenuWidth
-	    	}, 250);	
-    	}
-    });
-});
-</script>
     
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
         setTimeout(function() { window.scrollTo(0,1) }, 100);
                 
         function microAjax(B,A) {
@@ -774,6 +766,9 @@ $(document).ready(function () {
             return input.replace(/<a /g, '<u ').replace(/<\/a>/g, '<\/u>');
         }
     </script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    
 </head>
 <body>
 
@@ -786,6 +781,10 @@ $(document).ready(function () {
 		{/block:Pages}
 	{/block:HasPages}
 	</ul>
+</div>
+
+<div class="header2">
+	<a href="#" class="slideout-menu-toggle"><i class="fa fa-bars"></i> Menu</a>
 </div>
  
     <header class="gray_bubble">
@@ -1081,6 +1080,31 @@ var disqus_shortname = 'bravefrontierpros';
   s.src = 'http://disqus.com/forums/' + disqus_shortname + '/count.js';
   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.slideout-menu-toggle').on('click', function(event){
+    	event.preventDefault();
+    	// create menu variables
+    	var slideoutMenu = $('.slideout-menu');
+    	var slideoutMenuWidth = $('.slideout-menu').width();
+    	
+    	// toggle open class
+    	slideoutMenu.toggleClass("open");
+    	
+    	// slide menu
+    	if (slideoutMenu.hasClass("open")) {
+	    	slideoutMenu.animate({
+		    	left: "0px"
+	    	});	
+    	} else {
+	    	slideoutMenu.animate({
+		    	left: -slideoutMenuWidth
+	    	}, 250);	
+    	}
+    })
+})
 </script>
 
 </body>
