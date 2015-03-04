@@ -60,7 +60,7 @@
       {
         "partname": "Bottom",
         "element": "water",
-        "weakails": "injury"
+        "weakails": "injury,poison"
       }
     ],
     "drops": {
