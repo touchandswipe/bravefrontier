@@ -46,6 +46,7 @@
             -webkit-box-shadow: inset 0 3px 5px #292a2b,
                                 0 2px 0 rgba(255,255,255,0.14);
             margin: 20px 20px 0 20px;
+            text-align:center;
 
         }
         
@@ -53,17 +54,20 @@
             padding: 31px 27px 24px 28px;
         }
         
+            header a.tPortrait {
+                border:0;
+                display:block;
+            }
+        
             header a.title {
-                max-width: 317px;
                 color: #fff;
-                font-size: 52px;
+                font-size: 40px;
                 font-weight: bold;
                 word-wrap: break-word;
                 letter-spacing: -1px;
-                line-height: 54px;
+                line-height: 30px;
                 margin: 0 0 5px 0;
                 display: inline-block;
-                float: left;
             }
             
             header .info {
@@ -677,18 +681,6 @@
         
         var showing_info = 0;        
 
-        function show_more_info() {
-            if (showing_info == 0) {
-                $('show_more_info_link').innerHTML = 'X';
-                $('info_container').className = 'info showing';
-                showing_info = 1;
-            } else {
-                $('show_more_info_link').innerHTML = 'Show all';
-                $('info_container').className = 'info';
-                showing_info = 0;
-            }
-        }
-        
         function strip_anchors(input) {
             return input.replace(/<a /g, '<u ').replace(/<\/a>/g, '<\/u>');
         }
@@ -697,18 +689,13 @@
 <body>
  
     <header class="gray_bubble">
-        <a href="/" class="title">{Title}&nbsp;</a>
+        <a href="/" class="tPortrait"><img src="{PortraitURL-128}"/></a>
+        <a href="/" class="title">{Title}</a>
         <div class="clear"></div>
         {block:IndexPage}
             <div class="info" id="info_container">
                 <div class="body" id="body_container">
                     {block:Description}<span class="description_words">{PlaintextDescription}</span>{/block:Description}
-                    <div class="show" id="show_more_info" style="display:none">
-                        <a href="#" id="show_more_info_link" onclick="show_more_info(); return false;">
-                            Show all
-                        </a>
-                        <div class="gradient" id="show_gradient"></div>
-                    </div>
                 </div>
             </div>
         {/block:IndexPage}
@@ -838,7 +825,7 @@
                              Hide notes
                         </a>
                     {/block:NoteCount}
-                    {block:Date}<a href="{Permalink}#disqus_thread" class="note_count" style="padding-left:6px;">Comments</a>{/block:Date}
+                    {block:Date}<a href="{Permalink}" class="note_count" style="padding-left:6px;"><span class="disqus-comment-count" data-disqus-identifier="{Permalink}"></span> Comments</a>{/block:Date}
                     <div class="clear"></div>
                 </div>
                 <div class="bottom"></div>
@@ -921,10 +908,6 @@
     
     <script type="text/javascript" charset="utf-8">
         var info_style = window.getComputedStyle(document.getElementById('body_container'), null);
-
-        if (parseInt(info_style.height) > 70) {
-            $('show_more_info').style.display = 'block'
-        }
 
         if (navigator.userAgent.match(/Android/i)) {
             document.body.className = 'android';
