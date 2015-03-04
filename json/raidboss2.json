@@ -9,8 +9,8 @@
       }
     ],
     "drops": {
-        "不燃の皮": "Solid Pelt",
-        "炎喰の牙": "Blaze Fang"
+        "不燃の皮": {"Eng":"Solid Pelt","icon":"item_thum_800.png"},
+        "炎喰の牙": {"Eng":"Blaze Fang","icon":"item_thum_604.png"}
       },
     "missions": [
       "RC1M1",
@@ -409,10 +409,10 @@
       }
     ],
     "drops": {
-        "剛雷豪皮": "Stiff Skin",
-        "剛雷強爪": "Stiff Claw",
-        "雷脈の心臓": "Thunder Heart",
-        "雷の剛晶": "Thunder Crystal"
+        "剛雷豪皮": {"Eng":"Stiff Skin","icon":"item_thum_802.png"},
+        "剛雷強爪": {"Eng":"Stiff Claw","icon":"item_thum_501.png"},
+        "雷脈の心臓": {"Eng":"Thunder Heart","icon":"item_thum_1100.png"},
+        "雷の剛晶": {"Eng":"Thunder Crystal","icon":"item_thum_1103.png"}
       },
     "missions": [
       "RC4M1",
