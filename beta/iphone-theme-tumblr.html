@@ -43,8 +43,8 @@
 .slideout-menu {
 	position: fixed;
 	top: 0;
-	left: -250px;
-	width: 250px;
+	left: -300px;
+	width: 300px;
 	height: 100%;
 	background: #333;
 	z-index: 100;
@@ -118,21 +118,21 @@
             text-shadow: 0px 2px 5px rgba(0,0,0,.75);
             -webkit-font-smoothing: antialiased;
             background: #38393b;
-            border-radius: 16px;
             -webkit-box-shadow: inset 0 3px 5px #292a2b,
                                 0 2px 0 rgba(255,255,255,0.14);
-            margin: 20px 20px 0 20px;
+            margin: 0;
             text-align:center;
-
         }
         
         header {
             padding: 31px 27px 24px 28px;
         }
         
-            header a.tPortrait {
-                border:0;
-                display:block;
+            .tPortrait {
+                border-radius: 150px;
+                	-webkit-border-radius: 150px;
+                	-moz-border-radius: 150px;
+                box-shadow: 3px -5px 15px #FF3C00;
             }
         
             header a.title {
@@ -784,7 +784,7 @@
 </div>
  
     <header class="gray_bubble">
-        <a href="/" class="tPortrait"><img src="{PortraitURL-128}"/></a>
+        <a href="/"><img class="tPortrait" src="{PortraitURL-128}"/></a><br/>
         <a href="/" class="title">{Title}</a>
         <div class="clear"></div>
         {block:IndexPage}
@@ -881,7 +881,7 @@
                     {/block:Photo}
 
                     {block:Photoset}
-                        <div class="video">
+                        <div>
                             {Photoset-500}
                         </div>
                         {block:Caption}
