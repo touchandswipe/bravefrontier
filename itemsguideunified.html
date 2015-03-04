@@ -411,7 +411,7 @@ function buildDB(unit,server) {
             	sphereTypeArray.push(valObj['sphere type text']);
             	sphereArray.push(valObj['sphere type']);
         }
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> '+valObj.thumbnail+' ';
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
