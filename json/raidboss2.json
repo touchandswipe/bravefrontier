@@ -5,7 +5,7 @@
       {
         "partname":"Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak"
       }
     ],
     "drops": {
@@ -155,7 +155,7 @@
       {
         "partname": "Upper Wing",
         "element": "dark",
-        "weakails": ""
+        "weakails": "weak"
       },
       {
         "partname": "Lower Wing",
@@ -193,12 +193,12 @@
       {
         "partname": "Upper Wing",
         "element": "earth",
-        "weakails": ""
+        "weakails": "para"
       },
       {
         "partname": "Lower Wing",
         "element": "dark",
-        "weakails": ""
+        "weakails": "curse"
       }
     ],
     "drops": {
