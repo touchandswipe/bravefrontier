@@ -246,7 +246,6 @@ $.getJSON( serverSelect, function( unit ) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
-                    var statsSuffix="";
                     
                     /*Check collective group buff*/
                     if (skillSeek=="stats buff") {
@@ -256,12 +255,13 @@ $.getJSON( serverSelect, function( unit ) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
-                            if (effectKey=="unique elements required")
-                              var statsSuffix=" ("+effectVal+" elements required)";
                           })
                       }
-                      if (statsSuffix!="")
-                        groupSTR+=statsSuffix;
+                      /*checks unique elements requirements*/
+                      $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                        if (effectKey=="unique elements required")
+                          groupSTR+=" ("+effectVal+" elements required)";
+                      })
                     } /*End Grouping check*/
 
                     /*Check collective group crystals buff*/
