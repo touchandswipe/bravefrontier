@@ -255,11 +255,13 @@ $.getJSON( serverSelect, function( unit ) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
-                            if (effectKey=="unique elements required")
-                              var statsSuffix="("+effectVal+" elements required)"
+                            if (effectKey=="unique elements required") {
+                              var statsSuffix=" ("+effectVal+" elements required)";
+                              alert("found");
+                            }
                           })
                       }
-                      if( typeof statsSuffix !== 'undefined' )
+                      if ( typeof statsSuffix != 'undefined' )
                         groupSTR+=statsSuffix;
                     } /*End Grouping check*/
 
