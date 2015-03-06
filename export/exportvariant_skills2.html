@@ -255,8 +255,12 @@ $.getJSON( serverSelect, function( unit ) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
+                            if (effectKey=="unique elements required")
+                              var statsSuffix="("+effectVal+" elements required)"
                           })
                       }
+                      if (statsSuffix)
+                        groupSTR+=statsSuffix;
                     } /*End Grouping check*/
 
                     /*Check collective group crystals buff*/
