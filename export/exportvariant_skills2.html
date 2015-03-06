@@ -246,6 +246,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
+                    var statsSuffix="";
                     
                     /*Check collective group buff*/
                     if (skillSeek=="stats buff") {
@@ -255,13 +256,11 @@ $.getJSON( serverSelect, function( unit ) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
-                            if (effectKey=="unique elements required") {
+                            if (effectKey=="unique elements required")
                               var statsSuffix=" ("+effectVal+" elements required)";
-                              alert("found");
-                            }
                           })
                       }
-                      if ( typeof statsSuffix != 'undefined' )
+                      if (statsSuffix!="")
                         groupSTR+=statsSuffix;
                     } /*End Grouping check*/
 
