@@ -259,7 +259,7 @@ $.getJSON( serverSelect, function( unit ) {
                               var statsSuffix="("+effectVal+" elements required)"
                           })
                       }
-                      if (statsSuffix)
+                      if( typeof statsSuffix !== 'undefined' )
                         groupSTR+=statsSuffix;
                     } /*End Grouping check*/
 
