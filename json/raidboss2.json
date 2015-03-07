@@ -220,22 +220,22 @@
       {
         "partname": "Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak"
       },
       {
         "partname": "Right Arm",
         "element": "light",
-        "weakails": ""
+        "weakails": "curse"
       },
       {
         "partname": "Left Arm",
         "element": "light",
-        "weakails": ""
+        "weakails": "para"
       },
       {
         "partname": "Wing",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "weak"
       }
     ],
     "drops": {
