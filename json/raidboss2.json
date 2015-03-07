@@ -466,7 +466,8 @@
         "業焔の翼": {"Eng":"Gohomura Wings","icon":"item_thum_200.png"},
         "禍水の雫": {"Eng":"Misfortune Tear","icon":"item_thum_401.png"},
         "大瀑布結晶": {"Eng":"Waterfall Crystal","icon":"item_thum_1101.png"},
-        "凝固した炎": {"Eng":"Solidified Flame","icon":"item_thum_200.png"}
+        "凝固した炎": {"Eng":"Solidified Flame","icon":"item_thum_200.png"},
+        "大業焔珠": {"Eng":"Flame Pearl","icon":"item_thum_705.png"}
       },
     "missions": [
       "RC4M9",
