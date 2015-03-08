@@ -340,7 +340,7 @@ function resetLocalData(serverStr, corrupted) {
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
-	history.pushState(null, null, location.pathname);
+	//history.pushState(null, null, location.pathname);
 	var fullURL=location.href+location.search;
 	location.replace(fullURL);
 }
@@ -367,9 +367,8 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguidejapan');
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
-	history.pushState(null, null, location.pathname);
+	//history.pushState(null, null, location.pathname);
 	var fullURL=location.href+location.search;
-	alert(fullURL);
 	location.replace(fullURL);
 })
 
