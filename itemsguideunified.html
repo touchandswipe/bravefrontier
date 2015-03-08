@@ -341,7 +341,8 @@ function resetLocalData(serverStr, corrupted) {
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
 	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	var fullURL=location.href+location.search;
+	location.replace(fullURL);
 }
 
 /*JQ Param handling*/
