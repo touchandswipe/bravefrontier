@@ -341,8 +341,7 @@ function resetLocalData(serverStr, corrupted) {
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
 	//history.pushState(null, null, location.pathname);
-	var fullURL=location.href+location.search;
-	location.replace(fullURL);
+	location.replace(location.href);
 }
 
 /*JQ Param handling*/
@@ -368,8 +367,7 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
 	//history.pushState(null, null, location.pathname);
-	var fullURL=location.href+location.search;
-	location.replace(fullURL);
+	location.replace(location.href);
 })
 
 /*Grab item name and image*/
