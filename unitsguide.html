@@ -1993,8 +1993,7 @@ $(document).on("click", "#syncNewBtn", function(e){
 	/*Force sync*/
 	localStorage.removeItem("unitsguideadvance");
 	localStorage.removeItem("unitsguideadvanceCount");
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	location.replace(location.href);
 })
 
 /*Cancel sync*/
