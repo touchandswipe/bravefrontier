@@ -369,6 +369,7 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguidejapandate');
 	history.pushState(null, null, location.pathname);
 	var fullURL=location.href+location.search;
+	alert(fullURL);
 	location.replace(fullURL);
 })
 
