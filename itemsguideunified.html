@@ -368,7 +368,8 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
 	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	var fullURL=location.href+location.search;
+	location.replace(fullURL);
 })
 
 /*Grab item name and image*/
