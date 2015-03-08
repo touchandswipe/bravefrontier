@@ -24,8 +24,7 @@ function resetLocalData(serverStr, corrupted) {
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	location.replace(location.href);
 }
 
 /*JQ Param handling*/
