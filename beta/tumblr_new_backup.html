@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Raid Companion - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Raid Companion - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+body {
+    font-family: 'Quicksand', sans-serif;
+    height:100%;
+    background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/congruent_pentagon.png');
+}
+
+#mainnews {
+	margin: 70px auto 10px auto;
+	min-height:300px;
+}
+
+#footer {
+	margin:20px auto 0px auto;
+	background:#999;
+	color:#fff;
+	min-height:100px;
+}
+
+#footer .row {
+	margin:0px auto;
+	width:85%;
+}
+
+/*salvattore*/
+#grid[data-columns]::before {
+	content: '3 .column.size-1of3';
+}
+
+.griditem {
+	border:solid 1px #888;
+	background:#EEE;
+	margin: 0px 8px 16px 8px;
+}
+
+@media screen and (max-width: 480px){
+	#grid[data-columns]::before {
+		content: '1 .column.size-1of1';
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	#grid[data-columns]::before {
+		content: '2 .column.size-1of2';
+	}
+}
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+	#grid[data-columns]::before {
+		content: '3 .column.size-1of3';
+	}
+}
+
+@media screen and (min-width: 1281px) {
+	#grid[data-columns]::before {
+		content: '4 .column.size-1of4';
+	}
+}
+
+.column { float: left; }
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.333%; }
+.size-1of4 { width: 25%; }
+
+.btn-menu {
+  border: solid 1px rgba(235,175,125,1);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.65);
+  color: #555555;
+  font-weight: bold;
+  padding: 8px 5px;
+  margin-bottom:5px;
+}
+#overlayC {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 51px;
+	left: 0;
+	background: rgba(255,195,145,0.95);
+	z-index:999;
+	padding:15px;
+}
+.close {
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+}
+.open {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+.navC {
+	top:0;
+	left:0;
+	height: 50px;
+	padding: 5px;
+	position: fixed;
+	width: 100%;
+	z-index: 995;
+	box-shadow: 0px 1px 5px #AAA;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(241,241,241,1) 90%, rgba(235,235,235,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(90%,rgba(241,241,241,1)), color-stop(100%,rgba(235,235,235,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
+}
+.logo {
+	width: 40px;
+	box-shadow: 1px 1px 6px #999;
+	margin-right: 10px;
+}
+.headerC, .headerC:hover {
+	font-size: 13pt;
+	font-weight: 600;
+	color: #444;
+	text-decoration:none;
+}
+.menuC {
+  background: 0;
+  padding: 0;
+  font-size: 12pt;
+  color: #666;
+  font-weight: 600;
+  height: initial;
+  top: 13px;
+  right: 55px;
+  position: absolute;
+  text-transform: uppercase;
+}
+#nav-toggle { cursor: pointer; padding: 10px 30px 16px 0px; }
+#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  width: 30px;
+  background: black;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 500ms ease-in-out;
+}
+#nav-toggle span {
+  top: 23px;
+  right: 20px;
+}
+#nav-toggle span:before {
+  top: -10px; 
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+
+#nav-toggle.active span {
+  background-color: transparent;
+  padding: 0;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: translateY(-10px) rotate(-45deg);
+  top: 10px;
+}
+    .clear {clear:both;}
+    .itemicon {width:25px;vertical-align:bottom;}
+    .bd {
+        font-weight:bold;
+        background:#EEEEEE;
+        text-transform:uppercase;
+        border:1px solid #CCCCCC;
+        padding:3px;
+        word-wrap: break-word;
+    }
+    .bi {
+        border:1px solid #CCCCCC;
+        padding:3px;
+        word-wrap: break-word;
+    }
+    .btnSpace { margin-left:3px; margin-right:3px; }
+    .rowSpace { margin:3px; }
+    .upper {
+        text-transform:uppercase;
+    }
+    .dropslist {
+    	padding-left: 30px;
+	padding-top: 10px;
+    }
+    .equal, .equal > div[class*='col-'] {  
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+    }
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://static.tumblr.com/ij0lvcr/Ooqnfq4tc/jquery.photoset-grid.min.js"></script>
+
+{block:IndexPage}
+<script>
+    $(document).ready(function() {
+        $('.photoset-grid-lightbox').photosetGrid({
+          highresLinks: true,
+          rel: $('.photoset-grid-lightbox').attr('data-id'),
+          gutter: '1px',
+        
+          onComplete: function(){
+            $('.photoset-grid-lightbox').attr('style', '');
+            $('.photoset-grid-lightbox a').colorbox({
+                rel: $('.photoset-grid-lightbox').attr('data-id'),
+                photo: true,
+                scalePhotos: true,
+                scrolling: false,
+                innerHeight:'100%',
+                maxHeight:'95%',
+                maxWidth:'100%'
+            });
+          }
+        })
+    })
+</script>
+{/block:IndexPage}
+
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navC">
+      <div class="container-fluid">
+        <div class="pull-left">
+          <a class="headerC" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle logo"/>Brave Frontier PROs</a>
+        </div>
+        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">MENU</div><span></span></a></div>
+      </div>
+    </div>
+
+<!--Overlay Menu-->    
+<div id="overlayC" class="close">
+	<div class="container">
+		<div class="row">
+			{block:HasPages}{block:Pages}
+			<div class="col-xs-12 col-sm-4 col-md-3"><a href="{URL}" class="btn btn-default btn-block btn-menu">{Label}</a></div>
+			{/block:Pages}{/block:HasPages}
+		</div>
+	</div>
+</div>
+
+<div id="mainnews" class="container-fluid">
+	<div id="grid" data-columns>
+		
+{block:Posts}
+<div class="griditem" id="{PostID}">
+                    {block:Text}
+                        <div class="post-content">
+                            <div class="post-content--padded">
+                                {block:Title}<a href="{Permalink}"><h2>{Title}</h2></a>{/block:Title}
+                                {Body}
+                    {/block:Text}
+                    {block:Photo}
+                        <div class="post-content">
+                        {block:IndexPage}<a href="{Permalink}"><img src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="img-responsive"></a>{/block:IndexPage}
+                        {block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">{LinkCloseTag}{/block:PermalinkPage}
+                            <div class="post-content--padded">
+                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {/block:Photo}  
+                    {block:Photoset}
+                        <div class="post-content">
+                            <div class="photoset-grid-lightbox" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
+                              {block:Photos}
+                                <div class="photo-data">
+                                  <a rel="post-{PostID}" href="{PhotoURL-HighRes}" {block:Caption}title="{Caption}"{/block:Caption}>
+                                  <div class="pxu-photo">
+                                    <img alt="{PhotoAlt}" src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-HighRes}" class="img-responsive" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}">
+                                  </div>
+                                  </a>
+                                </div>
+                              {/block:Photos}
+                            </div>
+                            <div class="post-content--padded">
+                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {/block:Photoset}
+                    {block:Panorama}
+                        <div class="post-content">
+                        {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+                            <div class="post-content--padded">
+                                {block:Caption}{Caption}{/block:Caption}
+                    {/block:Panorama}
+                    {block:Quote}
+                        <div class="post-content">
+                            <div class="post-content--padded">
+                                <blockquote>"{Quote}"</blockquote>
+                                {block:Source}<cite>- {Source}</cite>{/block:Source}
+                    {/block:Quote}
+                    {block:Link}
+                        <div class="post-content">
+                            <a href="{URL}" target="_blank" class="link">
+                                <h2><i aria-hidden="true" data-icon="&#x2b04;"></i>{Name}</h2>
+                            </a>
+                            <div class="post-content--padded">
+                                {block:Description}{Description}{/block:Description}
+                    {/block:Link}
+                    {block:Chat}
+                        <div class="post-content">
+                            <div class="post-content--padded">
+                                {block:Title}<a href="{Permalink}"><h2>{Title}</h2></a>{/block:Title}
+                                {Body}
+                                <div class="chat">
+                                    {block:Lines}
+                                        {block:Label}<p><span>{Label} </span>{/block:Label} {Line}</p>
+                                    {/block:Lines}
+                                </div>
+                    {/block:Chat}
+                    {block:Audio}
+                        <div class="post-content">
+                            <div class="post-content--padded">
+                                {block:TrackName}<a href="{Permalink}"><h2>{TrackName}</h2></a>{/block:TrackName}
+                            </div>
+                                {block:AlbumArt}<img src="{AlbumArtURL}"/>{/block:AlbumArt}
+                                {AudioEmbed-400}
+                            <div class="post-content--padded">
+                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                    {/block:Audio}
+                    {block:Video}
+                        <div class="post-content">
+                            <div class="embed-responsive embed-responsive-4by3">{Video-500}</div>
+                            <div class="post-content--padded">
+                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                     {/block:Video}
+                    {block:Answer}
+                        <div class="post-content">
+                            <div class="post-content--padded">
+                                <div class="question">
+                                    <div class="inside">
+                                        <div class="gw">
+                                            <div class="g one-fifth">
+                                                <img src="{AskerPortraitURL-96}">
+                                            </div>
+                                            <div class="g four-fifths">
+                                                <p class="title">{lang:Asker asked}:</p>
+                                                <p class="content">{Question}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gw">
+                                        <div class="g one-fifth">
+                                            <img src="{PortraitURL-128}">
+                                        </div>
+                                        <div class="g four-fifths">
+                                            <p class="title">{Title} {lang:Answer}:</p>
+                                            <p class="content">{Answer}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                     {/block:Answer}
+                                {block:HasTags}             
+                                <span class="tags">
+                                    <p>
+                                    {block:Tags}
+                                        <a href="{TagURL}">{Tag}</a>
+                                    {/block:Tags}
+                                    </p>
+                                </span>
+                                {/block:HasTags}
+                                <div class="actions">
+                                    <hr>
+                                    <a href="{ReblogURL}" target="_blank" class="reblog_button" aria-hidden="true" data-icon="&#x292e;"></a>
+                                    <div class="like-wrap">
+                                        <i class="icon-love" aria-hidden="true" data-icon="&#x2665;"></i>
+                                        {LikeButton color="black" size="14"}
+                                    </div>
+                                    <div class="share-wrap">
+                                        <a href="#" class="share_button icon-share js-share action" aria-hidden="true"></a>
+                                        <a href="#" class="share_button icon-close js-share action" aria-hidden="true"></a>
+                                        <div class="share">
+                                            <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank" class="icon-twitter" aria-hidden="true" data-icon="&#x54;"></a>
+                                            <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank" class="icon-facebook" aria-hidden="true" data-icon="&#x46;"></a>
+                                            <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus" aria-hidden="true" data-icon="&#x47;"></a>
+                                        </div>
+                                    </div>
+                                    <div class="date">
+                                        {block:Date}
+                                        <a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}, {Year}</a>
+                                        {/block:Date}
+                                    </div>
+                                </div>
+                                {PostNotes-16}
+                            </div>
+                        </div>
+                    </div>
+                {/block:Posts}
+		
+	</div>
+</div>
+
+<div id="footer" class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 1</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 2</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 3</h3>
+		</div>
+	</div>
+</div>
+
+</div> <!-- /container -->
+
+<script type="text/javascript">
+document.querySelector('#nav-toggle').addEventListener('click', function () {
+    this.classList.toggle('active');
+    if ($('#overlayC').hasClass('close')) {
+    	$('#overlayC').removeClass('close');
+    	$('#overlayC').addClass('open');
+    }
+    else {
+	$('#overlayC').removeClass('open');
+    	$('#overlayC').addClass('close');
+    }
+});
+</script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--Chatroom-->
+<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
+</script>
+<script src="//touchandswipe.github.io/bravefrontier/js/salvattore.min.js"></script>
+</body>
+</html>
