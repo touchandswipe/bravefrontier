@@ -57,6 +57,11 @@ body {font-family: 'Quicksand', sans-serif;}
   position: absolute;
   display: block;
   content: '';
+  transition: all 500ms ease-in-out;
+}
+#nav-toggle span {
+  top: 23px;
+  right: 20px;
 }
 #nav-toggle span:before {
   top: -10px; 
@@ -64,11 +69,7 @@ body {font-family: 'Quicksand', sans-serif;}
 #nav-toggle span:after {
   bottom: -10px;
 }
-#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
-  transition: all 500ms ease-in-out;
-  top: 23px;
-  right: 20px;
-}
+
 #nav-toggle.active span {
   background-color: transparent;
   padding: 0;
@@ -83,7 +84,6 @@ body {font-family: 'Quicksand', sans-serif;}
   transform: translateY(-10px) rotate(-45deg);
   top: 10px;
 }
-
     .clear {clear:both;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
