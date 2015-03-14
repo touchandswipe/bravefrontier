@@ -16,7 +16,7 @@
 
 <style type="text/css">
 body {font-family: 'Quicksand', sans-serif;}
-.overlayC {
+#overlayC {
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -28,20 +28,20 @@ body {font-family: 'Quicksand', sans-serif;}
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
 	transition: opacity 0.5s, visibility 0s 0.5s;
 }
-.overlayC.open {
+#overlayC .open {
 	opacity: 1;
 	visibility: visible;
 	-webkit-transition: opacity 0.5s;
 	transition: opacity 0.5s;
 }
-.overlayC nav ul {
+#overlayC nav ul {
 	opacity: 0.4;
 	-webkit-transform: translateY(-25%) rotateX(35deg);
 	transform: translateY(-25%) rotateX(35deg);
 	-webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
 	transition: transform 0.5s, opacity 0.5s;
 }
-.overlayC.open nav ul {
+#overlayC.open nav ul {
 	opacity: 1;
 	-webkit-transform: rotateX(0deg);
 	transform: rotateX(0deg);
@@ -169,7 +169,7 @@ body {font-family: 'Quicksand', sans-serif;}
     </div>
 
 <!--overlay-->    
-<div class="overlayC">
+<div id="overlayC">
 	<button type="button" class="overlay-close">Close</button>
 	<div class="">
 		<ul>
@@ -712,10 +712,10 @@ $(document).ready( function(e) {
 <script>
 document.querySelector('#nav-toggle').addEventListener('click', function () {
     this.classList.toggle('active');
-    if ($('overlayC').hasClass('open'))
+    if ($('#overlayC').hasClass('open'))
     	alert("close")
     else
-    	$('overlayC').addClass('open')
+    	$('#overlayC').addClass('open')
 });
 </script>
 <!-- Google Analytics -->
