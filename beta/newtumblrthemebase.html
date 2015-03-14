@@ -23,6 +23,9 @@ body {font-family: 'Quicksand', sans-serif;}
 	top: 0;
 	left: 0;
 	background: rgba(153,204,51,0.9);
+	z-index:999;
+}
+#overlayC .close {
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
@@ -712,10 +715,14 @@ $(document).ready( function(e) {
 <script>
 document.querySelector('#nav-toggle').addEventListener('click', function () {
     this.classList.toggle('active');
-    if ($('#overlayC').hasClass('open'))
-    	alert("close")
-    else
-    	$('#overlayC').addClass('open')
+    if ($('#overlayC').hasClass('close')) {
+    	$('#overlayC').removeClass('close');
+    	$('#overlayC').addClass('open');
+    }
+    else {
+	$('#overlayC').removeClass('open');
+    	$('#overlayC').addClass('close');
+    }
 });
 </script>
 <!-- Google Analytics -->
