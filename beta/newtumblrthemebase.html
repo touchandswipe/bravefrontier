@@ -37,7 +37,15 @@ body {font-family: 'Quicksand', sans-serif;}
 	font-weight: 600;
 	color: #444;
 }
-#nav-toggle { position: absolute; right:15px;}
+.menuC {
+	background: 0;
+	float: right;
+	padding: 0;
+	font-size: 14pt;
+	color: #666;
+	font-weight: 500;
+	height: initial;
+}
 #nav-toggle { cursor: pointer; padding: 10px 35px 16px 0px; }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
   cursor: pointer;
@@ -60,6 +68,9 @@ body {font-family: 'Quicksand', sans-serif;}
 }
 #nav-toggle.active span {
   background-color: transparent;
+  padding: 0;
+  top: 23px;
+  right: 20px;
 }
 #nav-toggle.active span:before, #nav-toggle.active span:after {
   top: 0;
@@ -116,7 +127,7 @@ body {font-family: 'Quicksand', sans-serif;}
         <div class="pull-left">
           <a class="headerC" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle logo"/> Brave Frontier PROs</a>
         </div>
-        <div class="pull-right"><a id="nav-toggle" href="#"><div class="navC">MENU</div><span></span></a></div>
+        <div class="pull-right menuC"><a id="nav-toggle" href="#"><div class="navC">MENU</div><span></span></a></div>
       </div>
     </div>
 
