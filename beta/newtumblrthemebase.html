@@ -17,7 +17,17 @@
 <style type="text/css">
 body {font-family: 'Quicksand', sans-serif; height:100%;}
 
-#mainnews {margin: 70px auto 10px auto;}
+#mainnews {
+	margin: 70px auto 10px auto;
+	min-height:300px;
+}
+
+#footer {
+	margin:20px auto;
+	background:#999;
+	color:#fff;
+	min-height:100px;
+}
 
 /*salvattore*/
 #grid[data-columns]::before {
@@ -249,6 +259,20 @@ body {font-family: 'Quicksand', sans-serif; height:100%;}
 		<div class="griditem">Item #10</div>
 		<div class="griditem">Item #11</div>
 		<div class="griditem">Item #12</div>
+	</div>
+</div>
+
+<div id="footer" class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 1</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 2</h3>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<h3>Footer 3</h3>
+		</div>
 	</div>
 </div>
 
