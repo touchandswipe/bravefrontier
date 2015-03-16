@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Raid Companion - A community effort by Brave Frontier PROs" />
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Raid Companion - by Brave Frontier PROs</title>
-    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <title>{Title}{block:SearchPage} - {lang:Search results for SearchQuery}{/block:SearchPage}{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>
+    <meta name="text:Disqus Shortname" content="" />
+    <link rel="shortcut icon" href="{Favicon}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,9 +18,178 @@
 
 <style type="text/css">
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-size:14px;
     height:100%;
-    background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/congruent_pentagon.png');
+    /*background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/congruent_pentagon.png');*/
+}
+{block:Permalink}
+    #bignews {
+        margin: 70px auto 10px auto;
+        max-width:700px;
+    }
+
+    #disqus_thread {
+        padding: 20px 8px;
+    }
+    
+    ol.notes {
+        padding: 0px;
+        margin: 0px 0px;
+        list-style-type: none;
+    }
+    
+    ol.notes li.note {
+        padding: 5px;
+    }
+    
+    ol.notes li.note img.avatar {
+        margin-right: 10px;
+        width: 25px;
+        height: 25px;
+        border-radius:50%;
+    }
+    
+    ol.notes li.note span.action {
+        font-weight: bold;
+    }
+    
+    ol.notes li.note .answer_content {
+        font-weight: normal;
+    }
+    
+    ol.notes li.note blockquote {
+        border-color: #FE0;
+        padding: 4px 5px;
+        margin: 10px 0px 0px 20px;
+    }
+    
+    ol.notes li.note blockquote a {
+        text-decoration: none;
+    }
+{/block:Permalink}
+
+.socialbtns {
+    color:#EEE;
+    display:inline-block;
+    text-decoration:none;
+    width:35px;
+    height:35px;
+}
+
+.socialbtns:hover {
+    color:#FE0;
+}
+
+.author {
+    margin:5px 0 5px -12px;
+    font-size:12px;
+    color:#999;
+}
+
+.authorlink, .authorlink:hover {
+    font-size: 14px;
+    font-family:'Quicksand', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    padding: 3px 2px;
+    position: relative;
+    color: rgba(220,0,255,1);
+    text-decoration:none;
+}
+
+.author img {
+    border-radius: 100%;
+    border: 1px solid #FFF;
+    width:25px;
+    height:25px;
+    box-shadow: 1px 1px 5px #666;
+}
+
+.gridheader, .gridheader a {
+    display:block;
+    padding: 25px 15px;
+    background: rgba(204, 153, 255,1);
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.tags {
+    color: #888;
+    font-size: 12px;
+    padding: 8px 10px;
+    text-transform: lowercase;
+    border-top:1px dotted #CCC;
+    margin-top: 8px;
+}
+
+
+.tags a {
+    border:0;
+    margin: 0 2px;
+    color: #888;
+}
+
+.tags a:hover {
+    text-decoration:underline;
+}
+
+.aboutdiv {
+    display: block;
+    padding: 8px;
+    height: 34px;
+    background: #FFF;
+    border-radius: 8px;
+    border: 1px solid #DDD;
+    box-shadow:1px 2px 8px #DDD inset;
+}
+
+.liketextdiv a  {
+    display:inline-block;
+    margin: -4px 2px 0px 5px;
+    float:left;
+    color:#CCC;
+    font-size:16px;
+    font-family:"Quicksand";
+    text-decoration:none;
+}
+
+.datediv {
+    display:inline-block;
+    margin: -2px 3px 0px 0px;
+    float:right;
+    color:#CCC;
+    font-size:14px;
+}
+
+.commentdiv a {
+    display:inline-block;
+    margin:-4px 5px 0px 3px;
+    float:left;
+    color:#CCC;
+    font-family:"Quicksand";
+    font-size:16px;
+    text-decoration:none;
+}
+
+.opendiv {
+    display:inline-block;
+    margin: -2px 3px 0px 3px;
+    float:right;
+    color:#CCC;
+    font-size:16px;
+}
+
+.likediv, .reblogdiv {
+    display:inline-block;
+    margin:0px 8px 0px 2px;
+    float:left;
 }
 
 #mainnews {
@@ -27,9 +199,14 @@ body {
 
 #footer {
 	margin:20px auto 0px auto;
-	background:#999;
+	padding:10px 10px 50px;
+	background:#AAA;
 	color:#fff;
 	min-height:100px;
+}
+
+#footer li a {
+    color:#FFF;
 }
 
 #footer .row {
@@ -43,9 +220,31 @@ body {
 }
 
 .griditem {
-	border:solid 1px #888;
-	background:#EEE;
-	margin: 0px 8px 16px 8px;
+    border:0;
+    border-radius: 0 0 8px 8px;
+	background:#FFF;
+	margin: 0px 12px 24px 12px;
+	box-shadow: 0px 1px 4px #666;
+}
+
+.griditem .griditem-text {
+    padding:3px 8px 10px;
+    font-size:13px;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(70%,rgba(255,255,255,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+
+.griditem blockquote {
+    font-size:13px;
+    padding: 0px 10px;
+    margin:5px 10px 10px;
+    border-left: 4px solid #FEB;
 }
 
 @media screen and (max-width: 480px){
@@ -132,19 +331,20 @@ body {
 	margin-right: 10px;
 }
 .headerC, .headerC:hover {
-	font-size: 13pt;
+	font-size: 17px;
 	font-weight: 600;
 	color: #444;
 	text-decoration:none;
+	font-family: 'Quicksand', sans-serif;
 }
 .menuC {
   background: 0;
   padding: 0;
-  font-size: 12pt;
-  color: #666;
+  font-size: 15px;
+  color: #000;
   font-weight: 600;
   height: initial;
-  top: 13px;
+  top: 14px;
   right: 55px;
   position: absolute;
   text-transform: uppercase;
@@ -186,65 +386,10 @@ body {
   transform: translateY(-10px) rotate(-45deg);
   top: 10px;
 }
-    .clear {clear:both;}
-    .itemicon {width:25px;vertical-align:bottom;}
-    .bd {
-        font-weight:bold;
-        background:#EEEEEE;
-        text-transform:uppercase;
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .bi {
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .btnSpace { margin-left:3px; margin-right:3px; }
-    .rowSpace { margin:3px; }
-    .upper {
-        text-transform:uppercase;
-    }
-    .dropslist {
-    	padding-left: 30px;
-	padding-top: 10px;
-    }
-    .equal, .equal > div[class*='col-'] {  
-    display: -webkit-flex;
-    display: flex;
-    flex:1 1 auto;
-    }
+.clear {clear:both;}
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://static.tumblr.com/ij0lvcr/Ooqnfq4tc/jquery.photoset-grid.min.js"></script>
-
-{block:IndexPage}
-<script>
-    $(document).ready(function() {
-        $('.photoset-grid-lightbox').photosetGrid({
-          highresLinks: true,
-          rel: $('.photoset-grid-lightbox').attr('data-id'),
-          gutter: '1px',
-        
-          onComplete: function(){
-            $('.photoset-grid-lightbox').attr('style', '');
-            $('.photoset-grid-lightbox a').colorbox({
-                rel: $('.photoset-grid-lightbox').attr('data-id'),
-                photo: true,
-                scalePhotos: true,
-                scrolling: false,
-                innerHeight:'100%',
-                maxHeight:'95%',
-                maxWidth:'100%'
-            });
-          }
-        })
-    })
-</script>
-{/block:IndexPage}
-
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -253,9 +398,9 @@ body {
     <div class="navC">
       <div class="container-fluid">
         <div class="pull-left">
-          <a class="headerC" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle logo"/>Brave Frontier PROs</a>
+          <a class="headerC" href="{BlogURL}"><img src="{PortraitURL-128}" class="img-circle logo"/>{Title}</a>
         </div>
-        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">MENU</div><span></span></a></div>
+        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">Menu</div><span></span></a></div>
       </div>
     </div>
 
@@ -270,63 +415,79 @@ body {
 	</div>
 </div>
 
+<!--Main News from Tumblr-->
+{block:IndexPage}
 <div id="mainnews" class="container-fluid">
 	<div id="grid" data-columns>
-		
+{/block:IndexPage}
+
+{block:PermalinkPage}
+<div id="bignews" class="container">
+{/block:PermalinkPage}
+
 {block:Posts}
 <div class="griditem" id="{PostID}">
                     {block:Text}
                         <div class="post-content">
-                            <div class="post-content--padded">
-                                {block:Title}<a href="{Permalink}"><h2>{Title}</h2></a>{/block:Title}
+                        {block:Title}<div class="gridheader"><a href="{Permalink}">{Title}</a></div>{/block:Title}
+                        <div class="author">
+                            <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                        </div>
+                            <div class="griditem-text">
                                 {Body}
                     {/block:Text}
                     {block:Photo}
                         <div class="post-content">
                         {block:IndexPage}<a href="{Permalink}"><img src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="img-responsive"></a>{/block:IndexPage}
                         {block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">{LinkCloseTag}{/block:PermalinkPage}
-                            <div class="post-content--padded">
-                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
+                                {block:Caption}{Caption}{/block:Caption}
                     {/block:Photo}  
                     {block:Photoset}
                         <div class="post-content">
-                            <div class="photoset-grid-lightbox" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
-                              {block:Photos}
-                                <div class="photo-data">
-                                  <a rel="post-{PostID}" href="{PhotoURL-HighRes}" {block:Caption}title="{Caption}"{/block:Caption}>
-                                  <div class="pxu-photo">
-                                    <img alt="{PhotoAlt}" src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-HighRes}" class="img-responsive" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}">
-                                  </div>
-                                  </a>
-                                </div>
-                              {/block:Photos}
+                            {Photoset}
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                             </div>
-                            <div class="post-content--padded">
-                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                            <div class="griditem-text">
+                                {block:Caption}{Caption}{/block:Caption}
                     {/block:Photoset}
                     {block:Panorama}
                         <div class="post-content">
                         {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
-                            <div class="post-content--padded">
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 {block:Caption}{Caption}{/block:Caption}
                     {/block:Panorama}
                     {block:Quote}
                         <div class="post-content">
-                            <div class="post-content--padded">
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 <blockquote>"{Quote}"</blockquote>
                                 {block:Source}<cite>- {Source}</cite>{/block:Source}
                     {/block:Quote}
                     {block:Link}
                         <div class="post-content">
-                            <a href="{URL}" target="_blank" class="link">
-                                <h2><i aria-hidden="true" data-icon="&#x2b04;"></i>{Name}</h2>
-                            </a>
-                            <div class="post-content--padded">
+                            <div class="gridheader"><a href="{URL}"><i class="fa fa-external-link fa-2x"></i><br/>{Name}</a></div>
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 {block:Description}{Description}{/block:Description}
                     {/block:Link}
                     {block:Chat}
                         <div class="post-content">
-                            <div class="post-content--padded">
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 {block:Title}<a href="{Permalink}"><h2>{Title}</h2></a>{/block:Title}
                                 {Body}
                                 <div class="chat">
@@ -337,23 +498,32 @@ body {
                     {/block:Chat}
                     {block:Audio}
                         <div class="post-content">
-                            <div class="post-content--padded">
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 {block:TrackName}<a href="{Permalink}"><h2>{TrackName}</h2></a>{/block:TrackName}
                             </div>
                                 {block:AlbumArt}<img src="{AlbumArtURL}"/>{/block:AlbumArt}
                                 {AudioEmbed-400}
-                            <div class="post-content--padded">
-                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                            <div class="griditem-text">
+                                {block:Caption}{Caption}{/block:Caption}
                     {/block:Audio}
                     {block:Video}
                         <div class="post-content">
                             <div class="embed-responsive embed-responsive-4by3">{Video-500}</div>
-                            <div class="post-content--padded">
-                                {block:Caption}<p>{Caption}</p>{/block:Caption}
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
+                                {block:Caption}{Caption}{/block:Caption}
                      {/block:Video}
                     {block:Answer}
                         <div class="post-content">
-                            <div class="post-content--padded">
+                            <div class="author">
+                                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                            </div>
+                            <div class="griditem-text">
                                 <div class="question">
                                     <div class="inside">
                                         <div class="gw">
@@ -378,55 +548,102 @@ body {
                                 </div>
                      {/block:Answer}
                                 {block:HasTags}             
-                                <span class="tags">
-                                    <p>
+                                <div class="tags">
+                                    <i class="fa fa-tags"></i>
                                     {block:Tags}
-                                        <a href="{TagURL}">{Tag}</a>
+                                        <a href="{TagURL}">#{Tag}</a>
                                     {/block:Tags}
-                                    </p>
-                                </span>
+                                </div>
                                 {/block:HasTags}
-                                <div class="actions">
-                                    <hr>
-                                    <a href="{ReblogURL}" target="_blank" class="reblog_button" aria-hidden="true" data-icon="&#x292e;"></a>
-                                    <div class="like-wrap">
-                                        <i class="icon-love" aria-hidden="true" data-icon="&#x2665;"></i>
-                                        {LikeButton color="black" size="14"}
+                                <div class="aboutdiv">
+                                    <div class="commentdiv">
+                                        <a href="{Permalink}"><span class="disqus-comment-count" data-disqus-url="{Permalink}">0</span> <i class="fa fa-comment"></i></a>
                                     </div>
-                                    <div class="share-wrap">
+                                    <div class="liketextdiv">
+                                        {block:NoteCount}<a href="{Permalink}">{NoteCount}</a> {/block:NoteCount}
+                                    </div>
+                                    <div class="likediv">
+                                        {LikeButton color="grey" size="16"}
+                                    </div>
+                                    <div class="reblogdiv">
+                                        {ReblogButton color="grey" size="16"}
+                                    </div>
+                                    {block:IndexPage}
+                                    <div class="opendiv">
+                                        <a href="{Permalink}" title="Expand View"><i class="fa fa-arrows-alt"></i></a>
+                                    </div>
+                                    {/block:IndexPage}
+                                    <div class="opendiv">
+                                        <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    </div>
+                                    <div class="opendiv">
+                                        <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    </div>
+                                    <div class="opendiv">
+                                        <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+<!--                                    <div class="datediv">
+                                        {block:Date}
+                                        <a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}</a>
+                                        {/block:Date}
+                                    </div>-->
+                                    
+                                    <!--<div class="share-wrap">
                                         <a href="#" class="share_button icon-share js-share action" aria-hidden="true"></a>
                                         <a href="#" class="share_button icon-close js-share action" aria-hidden="true"></a>
                                         <div class="share">
                                             <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank" class="icon-twitter" aria-hidden="true" data-icon="&#x54;"></a>
                                             <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank" class="icon-facebook" aria-hidden="true" data-icon="&#x46;"></a>
                                             <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus" aria-hidden="true" data-icon="&#x47;"></a>
-                                        </div>
-                                    </div>
-                                    <div class="date">
-                                        {block:Date}
-                                        <a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}, {Year}</a>
-                                        {/block:Date}
-                                    </div>
-                                </div>
-                                {PostNotes-16}
+                                        </div>-->
+                                </div> <!-- aboutdiv -->
+                                
+{block:PermalinkPage}{block:IfDisqusShortname}
+<div id="disqus_thread"></div>
+    <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+    <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+{/block:IfDisqusShortname}
+{PostNotes-64}
+{/block:PermalinkPage}
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- end grid item -->
                 {/block:Posts}
-		
-	</div>
+{block:IndexPage}
+	</div> 
 </div>
+{/block:IndexPage}
+{block:PermalinkPage}
+</div>
+{/block:PermalinkPage}
 
 <div id="footer" class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<h3>Footer 1</h3>
+			<h3>Other communities</h3>
+			<ul>
+			    <li>...</li>
+			    <li>...</li>
+			    <li>...</li>
+			</ul>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<h3>Footer 2</h3>
+			<h3>Connect with me</h3>
+			<a class="socialbtns" href="http://www.facebook.com/bravefrontierpros"><i class="fa fa-facebook fa-2x"></i></a>
+			<a class="socialbtns" href="http://plus.google.com/b/109365694989406335924/+bravefrontierpros/posts"><i class="fa fa-google-plus fa-2x"></i></a>
+			<a class="socialbtns" href="http://twitter.com/SamGreenPuck"><i class="fa fa-twitter fa-2x"></i></a>
+            <a class="socialbtns" href="http://www.youtube.com/user/bravefrontierpros"><i class="fa fa-youtube fa-2x"></i></a>
+            <a class="socialbtns" href="http://github.com/touchandswipe"><i class="fa fa-github fa-2x"></i></a>            
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<h3>Footer 3</h3>
+			<h3>Site built with</h3>
+			<ul>
+			    <li><a href="http://jquery.com/">jQuery</a></li>
+			    <li><a href="http://www.datatables.net/">Datatables Plug-in</a></li>
+			    <li><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</li></a>
+			    <li><a href="http://getbootstrap.com/">BootStrap</a></li>
+			    <li><a href="http://salvattore.com/">Salvattore</a></li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -446,6 +663,17 @@ document.querySelector('#nav-toggle').addEventListener('click', function () {
     }
 });
 </script>
+<!-- disqus count -->
+{block:IfDisqusShortname}
+<script type="text/javascript">
+var disqus_shortname = '{text:Disqus Shortname}';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/' + disqus_shortname + '/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+{/block:IfDisqusShortname}
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
