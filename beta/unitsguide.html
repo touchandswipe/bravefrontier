@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="Brave Frontier - Units Guide (Rave R1) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>Brave Frontier - Units Guide (Rave RX) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -120,8 +120,17 @@
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.0/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js'></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon4.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
 <script type="text/javascript">
+if(navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i)) {
+    document.write('<meta name="viewport" content="width=640, user-scalable=yes" />');
+}
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
@@ -1993,8 +2002,7 @@ $(document).on("click", "#syncNewBtn", function(e){
 	/*Force sync*/
 	localStorage.removeItem("unitsguideadvance");
 	localStorage.removeItem("unitsguideadvanceCount");
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	location.replace(location.href);
 })
 
 /*Cancel sync*/
@@ -3271,7 +3279,6 @@ var delay = (function(){
 </div>
 
 <!--Chatroom-->
-<script id="sid0020000073204732184">(function() {function async_load(){s.id="cid0020000073204732184";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204732184'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
-</script>
+<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
 </body>
 </html>
