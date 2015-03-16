@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Units Guide Lite (Ultima R3) - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Units Guide Lite (Ultima R3) by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+    .loreBox {
+	bottom: 5px;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	position: absolute;
+	background: rgba(230,230,255,0.8);
+	padding: 8px 15px;
+	border: 1px solid #DDDDDD;
+	border-radius: 10px;
+    }
+    .hashbox {
+	border: 1px solid #CCCCCC;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0px 4px;
+	font-weight: bold;
+	margin-left: 5px;
+	font-size: 8pt;
+	color: #999999;
+    }
+    .bbtxt {color:#0099FF;}
+    .sbbtxt {color:#FFAA00;}
+    .ubbtxt {color:#DD0000;}
+    .imgShdw {
+	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
+	filter:         drop-shadow(0px 0px 5px #FF3300);
+    }
+    .evoShdw {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+    }
+    .evoCurrent {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter: drop-shadow(0px 0px 5px #AA00AA);
+    }
+    .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
+    .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
+    .rEvo {
+	position: absolute;
+	white-space: nowrap;
+	top: 25px;
+	left: 8px;
+    }
+    .vidContain {
+    	position: relative;
+    	padding-bottom: 56.25%;
+    	padding-top: 30px; height: 0; overflow: hidden;
+    }
+    .vidContain iframe,
+    .vidContain object,
+    .vidContain embed {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+    }
+    .pad { margin-bottom:10px; }
+    .va {vertical-align:middle;}
+    .kdb-r {
+    background:#FFCC00;
+    color:#000000;
+    padding:0 3px 0 3px;
+    }
+    .kdb-d {
+    background:#CC0000;
+    color:#FFFFFF;
+    font-size:10px;
+    padding:2px 3px 2px 3px;
+    }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:14px;
+    }
+    .release {
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    border-radius: 5px;
+    padding:2px 5px;
+    }
+    .purple {background:#FFDB4D;}
+    .sp2 {margin:2px;}
+    .clear {clear:both;}
+    </style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
+<script type="text/javascript">
+/*Search*/
+function searchNameRun(searchTxt) {
+var outputHTML="";
+var searchTxt=searchTxt.toLowerCase();
+var outputArray=[];
+	for (i in deserialdata) {
+		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
+			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity});
+		}
+	}
+	for (i in outputArray) {
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	}
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
+$('#searchOutput').html(outputHTML);
+/*Google analytics*/
+ga('send', 'pageview', {
+	'page': '/vurl/unitsguideliteSearch',
+ 	'title': 'Brave Frontier PROs - Units Guide Lite Search'
+});
+}
+
+/*Convert Google JSON REST*/
+function convertJSON( serialObj ) {
+    var s = serialObj || {};
+    if( !s.columns && !s.rows )
+    {
+	console.error("convertJSON() >>  was not passed a serialized obj");
+	return [];
+    }
+    /*Create returned object*/
+    var obj = [];
+    /*Loops through serialObj and matches the columns*/
+    for(var i=0; i < s.rows.length; i++)
+    {
+	var temp = {};
+	for(var j=0; j < s.columns.length; j++)
+	{ /*replace space with - and lowercase for all*/
+	    if (isNaN(s.rows[i][j])) {
+		    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
+	    }
+	     /*is blank*/
+	    else if (s.rows[i][j] == "") {
+		    temp[s.columns[j].toLowerCase()] = "None";
+	    } else { /*else number*/
+			temp[s.columns[j].toLowerCase()] = parseInt(s.rows[i][j]);
+		}
+	}
+	/*save the new row with column names*/
+	obj.push(temp);
+    }
+    /*Return the objects*/
+    return obj;
+}
+
+/*Initialise datapull from Google Tables*/
+function initializeDB() {
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var encodedQuery = encodeURIComponent(query);
+  /*Construct the URL*/
+  var url = [gURL];
+  url.push('?sql=' + encodedQuery);
+  url.push('&key=' + gKey);
+  url.push('&callback=?');
+
+    /*Send the JSONP request*/
+	$.ajax({
+	  url: url.join(''),
+	  dataType: 'jsonp',
+	  success: function (fusionData) {
+		deserialdata = convertJSON(fusionData);
+	      
+		var aheadNameRead = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			local: $.map(deserialdata, function(uName) { return { value: uName.name }; })
+		});
+		aheadNameRead.initialize();
+		$('#searchBox').typeahead({
+			hint: true,
+			highlight: true,
+			minLength: 1
+		},
+		{
+  			displayKey: 'value',
+  			source: aheadNameRead.ttAdapter()
+		});
+		
+		$('#progressModal').modal('hide');
+	      	/*check for card param for Unit*/
+		var idParam=urlParam('unit');
+		if (idParam != "") {
+		    openCard(idParam);
+		}
+	  }
+	})
+}/*End init fn*/
+
+/*Query unit and openCard*/
+function openCard(whatunit) {
+	/*Loader*/
+	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning Unit ID:'+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	/*Choose Main Card n Show Card Modal*/
+	$('#cardModal').modal('show');
+	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
+	/*update state*/
+	var state = { stateUnit: whatunit };
+	history.pushState(state, "unitcard state", "?unit="+whatunit );
+	/*Google analytics*/
+	var compileURL=location.host + location.pathname + "?unit="+whatunit;
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': 'Brave Frontier PROs Unit Card (Lite) - '+whatunit
+	});
+	
+	/*Resets Prev Stats*/
+	prevStatsMod=[0,0,0,0,0];
+	var qunitname = "'" + whatunit + "'";
+	/*Query*/
+	var query2 = "SELECT * FROM " + gTable + 
+	    " WHERE 'ID' = " + qunitname;
+	var encodedQuery2 = encodeURIComponent(query2);
+	
+	/*Construct URL*/
+	var url2 = [gURL];
+	url2.push('?sql=' + encodedQuery2);
+	url2.push('&key=' + gKey);
+	url2.push('&callback=?');
+
+	/*Send the JSONP request*/
+	$.ajax({
+	  url: url2.join(''),
+	  dataType: 'jsonp',
+	  success: function (data2) {
+	    ovdata2 = sconvertJSON(data2);
+	      var ovid = ovdata2[0]["id"];
+	      var ovname = ovdata2[0]["name"];
+	      var ovseries = ovdata2[0]["series"];
+	      var ovicon = ovdata2[0]["icon"];
+	      var ovimage = ovdata2[0]["image"];
+	      var ovelement = ovdata2[0]["element"];
+	      var ovcost = ovdata2[0]["cost"];
+	      var ovhits = ovdata2[0]["hits"];
+	      var ovbbhits = ovdata2[0]["bb hits"];
+	      var ovsbbhits = ovdata2[0]["sbb hits"];
+	      var ovubbhits = ovdata2[0]["ubb hits"];
+	      var ovbbfill = ovdata2[0]["bb fill"];
+	      var ovsbbfill = ovdata2[0]["sbb fill"];
+	      var ovubbfill = ovdata2[0]["ubb fill"];
+	      var ovbbtype = ovdata2[0]["bb type"];
+	      var ovsbbtype = ovdata2[0]["sbb type"];
+	      var ovubbtype = ovdata2[0]["ubb type"];
+	      var ovleaderskill = ovdata2[0]["leader skill"];
+	      var ovbbskill = ovdata2[0]["bb skill"];
+	      var ovsbbskill = ovdata2[0]["sbb skill"];
+	      var ovubbskill = ovdata2[0]["ubb skill"];
+	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
+	      var ovGlobal = ovdata2[0]["global release"];
+	      var ovJapan = ovdata2[0]["japan release"];
+	      var ovevo = [];
+	      // Query Evo
+	      for(var i=0; i < 5; i++) {
+		    /*find match*/
+		    ovevo.push( ovdata2[0]['evo '+(i+1)] );
+	      }
+	      var ovevozel = ovdata2[0]["evo zel"];
+	      var ovmaxlvl = ovdata2[0]["max lvl"];
+	      var ovacquire = ovdata2[0]["acquire"];
+	      var ovrarity = ovdata2[0]["rarity"];
+	      var ovweightedlord = Math.round(ovdata2[0]["weighted stats (lord)"]);
+	      var ovhplord = ovdata2[0]["hp lord"];
+	      var ovatklord = ovdata2[0]["atk lord"];
+	      var ovdeflord = ovdata2[0]["def lord"];
+	      var ovreclord = ovdata2[0]["rec lord"];
+	      var ovhpanima = ovdata2[0]["hp anima"];
+	      var ovatkanima = ovdata2[0]["atk anima"];
+	      var ovdefanima = ovdata2[0]["def anima"];
+	      var ovrecanima = ovdata2[0]["rec anima"];
+	      var ovhpbreaker = ovdata2[0]["hp breaker"];
+	      var ovatkbreaker = ovdata2[0]["atk breaker"];
+	      var ovdefbreaker = ovdata2[0]["def breaker"];
+	      var ovrecbreaker = ovdata2[0]["rec breaker"];
+	      var ovhpguardian = ovdata2[0]["hp guardian"];
+	      var ovatkguardian = ovdata2[0]["atk guardian"];
+	      var ovdefguardian = ovdata2[0]["def guardian"];
+	      var ovrecguardian = ovdata2[0]["rec guardian"];
+	      var ovhporacle = ovdata2[0]["hp oracle"];
+	      var ovatkoracle = ovdata2[0]["atk oracle"];
+	      var ovdeforacle = ovdata2[0]["def oracle"];
+	      var ovrecoracle = ovdata2[0]["rec oracle"];
+	      var ovhprange = (ovdata2[0]["hp range"]=="-") ? 0 : ovdata2[0]["hp range"];
+	      var ovstatsrange = (ovdata2[0]["stats range"]=="-") ? 0 : ovdata2[0]["stats range"];
+	      var ovvideo = ovdata2[0]["video"];
+	      var ovgender = ovdata2[0]["gender"];
+	      var ovtypepref = ovdata2[0]["type pref"];
+	      var ovshareURL='<span id="shareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
+	      /*Type preference string generation*/
+	      var ovtypeprefHTML="";
+	      if (ovtypepref.length!=0) {
+		  for (var i=0; i<ovtypepref.length;i++) {
+		      switch (ovtypepref.charAt(i).toUpperCase()) {
+		    case "L":
+			ovtypeprefHTML+="Lord";
+			break;
+		    case "A":
+			ovtypeprefHTML+="Anima";
+			break;
+		    case "B":
+			ovtypeprefHTML+="Breaker";
+			break;
+		    case "G":
+			ovtypeprefHTML+="Guardian";
+			break;
+		    case "O":
+			ovtypeprefHTML+="Oracle";
+			break;
+		}
+		if (i!=4) {
+		    ovtypeprefHTML+=' &nbsp;<i class="fa fa-angle-right text-muted"></i> &nbsp;';
+		}
+		  }
+	      }
+	      /*Sprite check*/
+	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
+	      $('#unitSpriteShow').attr('src',ovsprite);
+	      $('#unitSpriteShow').error(function() {
+			$(this).unbind();
+			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
+		})
+	    /*NaN Check*/
+	    if (isNaN(ovweightedlord)) { ovweightedlord = "-" }
+	    /*Evo trail variable*/
+	    var evotrail=[];
+	    for (var i=0; i < deserialdata.length; i++)  {
+		if (deserialdata[i]["series"] == ovseries) {
+		    evotrail.push({
+			'evo1':deserialdata[i]["evo 1"],
+			'evo2':deserialdata[i]["evo 2"],
+			'evo3':deserialdata[i]["evo 3"],
+			'evo4':deserialdata[i]["evo 4"],
+			'evo5':deserialdata[i]["evo 5"],
+			'rarity':deserialdata[i]["rarity"],
+			'name':deserialdata[i]["name"],
+			'id':deserialdata[i]["id"],
+			'icon':deserialdata[i]["icon"]
+			})
+		}
+	    }
+	    /*Object Array Sort*/
+	    evotrail=evotrail.sort(function(a,b) {
+		    return a.rarity-b.rarity;
+	    })
+	    /*Assembling HTML*/
+	    var evotrailHTML='';
+	    var evoUnitIdx=0;
+	    for(var i=0; i < evotrail.length; i++) {
+		if (evotrail[i].id==ovid) {
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evoUnitIdx=i;
+		} else
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		/*insert caret for all but last*/
+		if (i < evotrail.length-1) {
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
+		}
+	    }
+	    /*Card HTML output*/
+	      var ovHTML = 
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="60"/></td>'
+	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
+	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
+	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
+	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
+	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
+	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
+	      /*Release status*/
+	      if (ovGlobal.toLowerCase()!='false') {
+		  ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">Global</b></div>';
+	      } else {
+		  ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">Global</b></div>';
+	      }
+	  	if (ovJapan.toLowerCase()!='false') {
+		  ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
+	      } else {
+		  ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
+	      }
+	      if ( ovvideo != "" ) {
+		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
+	      }
+	      ovHTML+='</small></h4></td></tr>';
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b></td><td colspan="5">';
+	      ovHTML+='<span style="display:inline-block;"><b>'+ovbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['bb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+	      if (ovdata2[0]['bb atk%'] != "-")
+		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
+	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
+	      if (ovrarity > 5) {
+		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['sbb atk%'] != "-")
+		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
+		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
+	      }
+	      if (ovrarity > 6) {
+		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['ubb atk%'] != "-")
+		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
+		    ovHTML+=ovubbskill+' <span class="hashbox">'+ovubbtype+'</span></td></tr>';
+		    /*passive skill*/
+		    ovHTML+='<tr><td class="active ubbtxt"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
+	      }
+	      /*Raw data integration buttons*/
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
+	     	if (ovGlobal.toLowerCase()!="false")
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     	if (ovJapan.toLowerCase()!="false")	
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
+	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
+	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
+	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
+	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
+		ovHTML+='No prior evo / No known materials';
+	      } else {
+		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
+		for(var i=0; i < 5; i++) {
+		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
+			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+		 }
+	      }
+	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
+	      if (ovevo[0] != 'None') {
+		  for(var i=0; i < 5; i++) {
+		      if (ovevo[i] != 'None') {
+			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
+		  }
+		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
+	      } else {
+		  ovHTML+='No further evo / No known materials';
+	      }
+	      ovHTML+='</td></tr><tr><td class="btn-default"></td>'
+	      +'<td class="btn-default" width="17%"><strong>HP</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>REC</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>Wt Stats</strong></td></tr>'
+	      +'<tr><td class="active"><strong>Lord';
+	      if (ovbfpronotes.indexOf('#lordonly')>-1) { ovHTML+=' only' };
+	      ovHTML+='</strong></td><td class="hpMod">'+ovhplord+'</td>'
+	      +'<td class="atkMod">'+ovatklord+'</td>'
+	      +'<td class="defMod">'+ovdeflord+'</td>'
+	      +'<td class="recMod">'+ovreclord+'</td>'
+	      +'<td>'+ovweightedlord+'</td></tr>';
+	      /*Omit display for lord type only units*/
+	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
+	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovhprange+'</small></td>'
+	      +'<td class="atkMod">'+ovatkanima+'</td>'
+	      +'<td class="defMod">'+ovdefanima+'</td>'
+	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td>&nbsp;</td></tr>'
+	      +'<tr><td class="active"><strong>Breaker</strong></td><td class="hpMod">'+ovhpbreaker+'</td>'
+	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="recMod">'+ovrecbreaker+'</td>'
+	      +'<td>&nbsp;</td></tr>'
+	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
+		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="recMod">'+ovrecguardian+'</td>'
+	      +'<td>&nbsp;</td></tr>'
+	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="atkMod">'+ovatkoracle+'</td>'
+	      +'<td class="defMod">'+ovdeforacle+'</td>'
+		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td>&nbsp;</td></tr>';
+	      }
+	      /*IMP MAX Addition*/
+	      if (ovdata2[0]["hp pimp"]!="") {
+	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
+	      }
+	/*BossMarv PRO Tips!*/
+	if ((ovtypepref!="") && (ovtypepref.length==5)) {
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b>Type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	}
+	
+	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
+	+'<tr class="modRows collapse out"><td class="active"><b>Leader skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="lsHP" class="form-control lskill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Ally skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="asHP" class="form-control askill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>7* Sphere bonus</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
+	+'<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
+	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr><td class="active"><strong>Acquire</strong></td><td colspan="5">'+ovacquire+'</td></tr>'
+	+'<tr><td colspan="6" style="height:50px;"><i class="fa fa-quote-left"></i><strong> Notes: </strong>';
+	if (ovbfpronotes!='') {
+	    ovHTML+=ovbfpronotes;
+	} else {
+	    ovHTML+='<i>None at the moment.<i>'
+	}
+	ovHTML+='</td></tr></table>';
+	$('#unitCardHome').html(ovHTML);
+	/*Unit Art and Lore*/
+	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    if (ovdata2[0]['unit lore'] != "")
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse in">'+ovdata2[0]['unit lore']+'</div></div>';
+	    $('#unitimageacc').html(artLoreHTML);
+	    /*Evolutionary Generation*/
+	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
+	    /*Assault Spite*/
+	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
+	    for (i=0; i<evotrail.length;i++) {
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
+		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
+		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i]['id']+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
+	    }
+	    $('#evoTab').html(evoTabHTML+'</div>');
+	    /*Remove assault sprite on error*/
+	    $("#evolutionaryATK").error(function() {
+	    		$(this).unbind();
+	    		$("#evolutionaryATKHTML").remove();
+  		})
+	    /*loads non-matte on error*/
+	    $(".evolutionary").error(function() {
+	    		$(this).unbind();
+	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
+  		})
+	/*html call is synchronous*/
+	setTimeout(gooShorten(location.protocol + '//' + compileURL,$('#shareURL')),5000);
+	}
+	})
+} /*End openCard fn*/
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
+	  <a class="navbar-brand hidden-xs" href="http://bravefrontierpros.tumblr.com"><b>Brave Frontier PROs</b> - Units Guide Lite</a>
+	</div>
+
+	<!-- Collapse Nav-->
+	<div class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav">
+		    <li><a href="unitsguide"><i class="fa fa-database"></i> Units guide advance</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chatroom</a></li>
+	  </ul>
+    	</div><!--/.nav-collapse -->
+</div>
+</div>
+
+<!-- Mainbody -->
+<div class="container-fluid">
+<div style="height:60px;"></div>
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</div>
+
+<!--mainbody goes here-->
+<!--Search-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+<h4>A quick and lite Brave Frontier units guide, because you need it.</h4>
+	<div class="input-group input-group-lg" style="margin-bottom:5px;">
+	        <span class="input-group-btn">
+	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
+	        <input type="text" placeholder="e.g. elza or zellha" class="form-control input-lg" id="searchBox" autocomplete="off">
+	</div>
+</div></div>
+<!--Search Results-->
+<div class="row" id="searchOutput" style="margin-bottom:25px;"></div>
+
+<!-- ACTIVATION SCRIPTS -->
+<script type="text/javascript">
+$(document).ready( function(e) {
+    /*Init loader*/
+    $('#progressModal').modal({
+      	keyboard:false,
+      	backdrop:'static',
+      	toggle:true
+    })
+	/*initialise initial data load*/
+	initializeDB();
+
+/*BootStrap Stuff*/
+$('.nav-tt').tooltip({placement:'bottom'});
+
+/*Update URL based on search filters*/
+$(document).on("click", '#searchBtn', function(e){
+	searchNameRun($('#searchBox').val())
+})
+
+/*Binds Enter KEY to BOX*/
+$( "#searchBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchNameRun($('#searchBox').val())
+  }
+})
+
+/*VideoModal*/
+$(document).on("click", ".videoBtn", function(e){
+	    e.preventDefault();
+	    var vLink=$(this).attr('src');
+	    $('.modal').each( function() {
+		    $(this).modal('hide');
+	    })
+	    $('#vidEmbed').attr( 'src', vLink );
+	    $('#videoModal').modal('show');
+})
+	
+/*VideoModal Close Remove Video*/
+$('#videoModal').on('hide.bs.modal', function (e) {
+    $('#vidEmbed').attr( 'src', '' );
+})
+
+/*Reset Pimp button onclose*/
+$('#cardModal').on('hidden.bs.modal', function (e) {
+    $("#pimpBtn").val("false");
+})
+
+/*Binding unitcard*/
+$(document).on("click", ".unitID", function(e){
+    openCard($(this).attr('value'));
+    e.preventDefault();
+})
+    
+/*POP state*/
+$(window).on('popstate', function(e) {
+	var state = e.originalEvent.state;
+	/*card state*/
+	if (state.stateUnit) {
+		openCard(state.stateUnit);
+	}
+})
+
+/*Modification fields*/
+$(document).on("change", "#sphereA,#sphereB,.askill,.lskill,.7skill", function(){
+	totalStatsMod();
+})
+
+/*PimpMod*/
+$(document).on("click", "#pimpBtn", function(){
+	var cToAdd=($(this).hasClass("btn-success")) ? "btn-danger" : "btn-success";
+	var cToRem=(cToAdd=="btn-danger") ? "btn-success" : "btn-danger";
+	var vToCng=($(this).val()=="true") ? "false" : "true";
+	var tToCng=($(this).text()=="Pimp it!") ? "UNPimp it!" : "Pimp it!";
+	$(this).removeClass(cToRem);
+	$(this).addClass(cToAdd);
+	$(this).text(tToCng);
+	$(this).val(vToCng);
+	totalStatsMod();
+})
+})
+</script>
+
+<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:0 auto;">
+<!-- Google Manual labnol.org responsive ads-->
+<div id="google-ads-2"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-2');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!--Chatroom-->
+<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
+
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
+    <script type="text/javascript">
+	var disqus_shortname = 'bravefrontierpros';
+	(function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> <!-- /container -->
+
+<!-- Video Modal-->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myvideoModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+<div class="vidContain">
+<iframe id="vidEmbed" src="" frameborder="0" width="100%"></iframe>
+</div>
+<div class="pull-right small">Courtesy of <a href="https://www.youtube.com/user/Ushitarius" target="_blank">Ushi Gaming Channel</a></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Progress-->
+<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Summoning units</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Card-->
+<div class="modal fade" id="cardModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
+	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Lore / Art</a></li>
+	      <li class="hidden-xs"><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
+	</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+	<div class="tab-pane fade in active" id="unitCardHome"></div>
+	<div class="tab-pane fade" id="unitCardArt">
+	    	<div class="row"><div class="col-xs-12 col-md-12">
+			<div id="unitimageacc" style="position:inherit;"></div>
+		</div></div>
+	</div>
+	<!--Evolutionary-->
+  	<div class="tab-pane fade" id="evolutionary"><div id="evoTab" class="row"></div></div>
+</div><!--End Tab Content-->
+
+      </div>
+    </div>
+  </div>
+</div> <!-- End Card Modal -->
+
+<!-- Alert Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog" aria-labelledby="alertmodal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Seria SCREAMS!</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
