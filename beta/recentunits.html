@@ -163,7 +163,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '#mar2015jp'" + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -176,6 +176,7 @@ function initializeDB() {
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
+	  	alert(JSON.stringify(fusionData));
 		deserialdata = convertJSON(fusionData);
 	      
 		var aheadNameRead = new Bloodhound({
