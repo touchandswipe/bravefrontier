@@ -57,11 +57,10 @@
 <script type="text/javascript">
 
 /*Initialise datapull from Google Tables*/
-function initializeDB() {
+function getRecentUnits("serverShortName") {
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var d = new Date();
-var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear();
-alert(recentMonthStr);
+var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+serverShortName;
   var query = "SELECT ID,Name,Rarity FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '"+recentMonthStr+"'" + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
@@ -75,7 +74,6 @@ alert(recentMonthStr);
 	  url: url.join(''),
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
-	  	alert(JSON.stringify(fusionData));
 	      	var outputHTML="";
 		var outputArray=[];
 		for (i in fusionData.rows) {
@@ -89,7 +87,6 @@ alert(recentMonthStr);
 	  }
 	})
 }/*End init fn*/
-
 </script>
 </head>
 
@@ -180,7 +177,7 @@ alert(recentMonthStr);
 <script type="text/javascript">
 $(document).ready( function(e) {
 	/*initialise initial data load*/
-	initializeDB();
+	getRecentUnits("jp");
 })
 </script>
 
