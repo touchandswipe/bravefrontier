@@ -120,15 +120,14 @@
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
 <script type="text/javascript">
-if(navigator.userAgent.match(/Android/i)
+if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
   || navigator.userAgent.match(/iPhone/i)
   || navigator.userAgent.match(/iPad/i)
   || navigator.userAgent.match(/iPod/i)
   || navigator.userAgent.match(/BlackBerry/i)
-  || navigator.userAgent.match(/Windows Phone/i)) {
-    document.write('<meta name="viewport" content="width=640, user-scalable=yes" />');
-}
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=640, user-scalable=yes" />');
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
