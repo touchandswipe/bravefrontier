@@ -23,11 +23,18 @@ body {
     height:100%;
     /*background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/congruent_pentagon.png');*/
 }
+
+#spacer { height:51px; }
+
 {block:Permalink}
     #bignews {
-        margin: 70px auto 10px auto;
+        margin: 10px auto 10px auto;
+    }
+    
+    .bignewsmax {
         max-width:700px;
     }
+
 
     #disqus_thread {
         padding: 20px 8px;
@@ -68,6 +75,87 @@ body {
         text-decoration: none;
     }
 {/block:Permalink}
+{block:IndexPage}
+    #mainnews {
+    	margin: 10px auto 10px auto;
+    	min-height:300px;
+    }
+    /*styles for recent units*/
+    .imgShdw {
+        width:40px;
+        height:40px;
+    	-webkit-filter: drop-shadow(0px 0px 3px #F5E);
+    	filter:         drop-shadow(0px 0px 3px #F5E);
+    }
+    .kdb-r {
+    background:#FFCC00;
+    color:#000000;
+    padding:0 3px 0 3px;
+    }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-10px;
+    	left:9px;
+    }
+    #pagenav {
+        width:100%;
+        margin:5px auto 5px auto;
+        font-size:20px;
+        font-family:"Quicksand",sans-serif;
+        text-align:center;
+        vertical-align:middle;
+    }
+    #pagenav .navBtns {
+        display:inline-block;
+        height:60px;
+        padding: 14px;
+        margin: 0px 5px;
+    }
+    #pagenav .jump_page {
+        display:inline-block;
+        width:60px;
+        height:60px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FFF;
+        padding: 14px;
+        margin: 0px 5px;
+    }
+    #pagenav .current_page {
+        display:inline-block;
+        width:60px;
+        height:60px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FE0;
+        padding: 14px;
+        margin: 0px 5px;
+    }
+    #recentUnitsTop {
+        box-shadow: 1px 1px 3px #999;
+        border-radius: 0 0 10px 10px;
+        margin: 0px 24px;
+        background: rgb(254,255,232); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(254,255,232,0.5) 0%, rgba(214,219,191,0.5) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,255,232,0.5)), color-stop(100%,rgba(214,219,191,0.5))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(254,255,232,0.5) 0%,rgba(214,219,191,0.5) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(254,255,232,0.5) 0%,rgba(214,219,191,0.5) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(254,255,232,0.5) 0%,rgba(214,219,191,0.5) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(254,255,232,0.5) 0%,rgba(214,219,191,0.5) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
+    }
+    #recentUnits {
+    	margin: 0px;
+    }
+    .partners {
+        margin-bottom:5px;
+    }
+{/block:IndexPage}
+
+.adbox {
+    margin:10px 0px;
+}
 
 .socialbtns {
     color:#EEE;
@@ -184,6 +272,7 @@ body {
     float:right;
     color:#CCC;
     font-size:16px;
+    padding: 0px 2px;
 }
 
 .likediv, .reblogdiv {
@@ -192,17 +281,12 @@ body {
     float:left;
 }
 
-#mainnews {
-	margin: 70px auto 10px auto;
-	min-height:300px;
-}
-
 #footer {
-	margin:20px auto 0px auto;
-	padding:10px 10px 50px;
-	background:#AAA;
-	color:#fff;
-	min-height:100px;
+	margin:10px auto 0px auto;
+	padding:10px 10px 75px;
+	background:#BBB;
+	color:#FFF;
+    box-shadow: 5px 5px 15px #999 inset;
 }
 
 #footer li a {
@@ -294,6 +378,7 @@ body {
 	background: rgba(255,195,145,0.95);
 	z-index:999;
 	padding:15px;
+	overflow:auto;
 }
 .close {
 	opacity: 0;
@@ -390,6 +475,51 @@ body {
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{block:IndexPage}
+<script type="text/javascript">
+function getRecentUnits(serverShortName) {
+var gURL = 'https://www.googleapis.com/fusiontables/v2/query';
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+var gTable = '1mt1vs-NCjdnl__v2Ik8Z2yNdidm2ayQlVobJatcf';
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var d = new Date();
+var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+serverShortName;
+  var query = "SELECT ID,Name,Rarity FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '"+recentMonthStr+"'" + " ORDER BY 'ID' ASC";
+  var encodedQuery = encodeURIComponent(query);
+  /*Construct the URL*/
+  var url = [gURL];
+  url.push('?sql=' + encodedQuery);
+  url.push('&key=' + gKey);
+  url.push('&callback=?');
+    /*Send the JSONP request*/
+	$.ajax({
+	  url: url.join(''),
+	  dataType: 'jsonp',
+	  success: function (fusionData) {
+        var outputHTML="";
+		var outputArray=[];
+		for (i in fusionData.rows) {
+			outputArray.push({"id":fusionData.rows[i][fusionData.columns.indexOf('ID')],"rarity":fusionData.rows[i][fusionData.columns.indexOf('Rarity')],"name":fusionData.rows[i][fusionData.columns.indexOf('Name')]});
+		}
+		for (i in outputArray) {
+			outputHTML+='<div class="col-xs-3 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguide?unitid='+outputArray[i].id+'" title="'+outputArray[i].name+'"><img class="imgShdw" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		}
+		if (serverShortName=="jp")
+		    var longName="Japan"
+        else
+            var longName="Global";
+        if (outputArray.length==0)
+            outputHTML=""
+        else {
+		    outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-search"></i> '+outputArray.length+' '+longName+' new unit(s) in '+monthNames[d.getMonth()]+' '+d.getFullYear()+'</h5></div>'+outputHTML;
+		$('#recentUnits'+serverShortName).html(outputHTML);
+        }
+	  }
+	})
+}/*End init fn*/
+</script>
+{/block:IndexPage}
+
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -407,6 +537,18 @@ body {
 <!--Overlay Menu-->    
 <div id="overlayC" class="close">
 	<div class="container">
+	    <div class="row">
+	        <div class="col-xs-12 col-sm-12">
+    	        <!--Search-->
+    	        <form id="newsearch" action="/search" method="get">
+                <div class="input-group" style="margin-bottom:10px;">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Search</button></span>
+                        <input type="text" name="q" placeholder="e.g. maxwell" class="form-control">
+                </div>
+                </form>
+            </div>
+	    </div>
 		<div class="row">
 			{block:HasPages}{block:Pages}
 			<div class="col-xs-12 col-sm-4 col-md-3"><a href="{URL}" class="btn btn-default btn-block btn-menu">{Label}</a></div>
@@ -414,8 +556,74 @@ body {
 		</div>
 	</div>
 </div>
+<div id="spacer"></div>
 
 <!--Main News from Tumblr-->
+{block:IndexPage}
+<!--Recent Units-->
+<div class="container-fluid" id="recentUnitsTop">
+    <div class="row" id="recentUnits">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="row" id="recentUnitsjp"></div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="row" id="recentUnitsgl"></div>
+        </div>
+    </div>
+</div>
+{/block:IndexPage}
+
+<!--Top Ad-->
+<div class="text-center adbox">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 {block:IndexPage}
 <div id="mainnews" class="container-fluid">
 	<div id="grid" data-columns>
@@ -423,12 +631,20 @@ body {
 
 {block:PermalinkPage}
 <div id="bignews" class="container">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bignewsmax">
 {/block:PermalinkPage}
+
+<!--Twitter combined-->
+{block:IndexPage}
+<div class="griditem" style="box-shadow: none;">
+<a style="color:#FFF" class="twitter-timeline" width="100%" height="400" data-tweet-limit="5" data-chrome="nofooter" href="https://twitter.com/search?q=-%40LeonZai%20from%3Abravefrontiergl%20OR%20from%3Abrave_pr" data-widget-id="577641675972984832">Tweets about -@LeonZai from:bravefrontiergl OR from:brave_pr</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+{/block:IndexPage}
 
 {block:Posts}
 <div class="griditem" id="{PostID}">
                     {block:Text}
-                        <div class="post-content">
                         {block:Title}<div class="gridheader"><a href="{Permalink}">{Title}</a></div>{/block:Title}
                         <div class="author">
                             <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
@@ -437,7 +653,6 @@ body {
                                 {Body}
                     {/block:Text}
                     {block:Photo}
-                        <div class="post-content">
                         {block:IndexPage}<a href="{Permalink}"><img src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="img-responsive"></a>{/block:IndexPage}
                         {block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">{LinkCloseTag}{/block:PermalinkPage}
                             <div class="author">
@@ -447,7 +662,6 @@ body {
                                 {block:Caption}{Caption}{/block:Caption}
                     {/block:Photo}  
                     {block:Photoset}
-                        <div class="post-content">
                             {Photoset}
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
@@ -456,7 +670,6 @@ body {
                                 {block:Caption}{Caption}{/block:Caption}
                     {/block:Photoset}
                     {block:Panorama}
-                        <div class="post-content">
                         {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
@@ -465,7 +678,6 @@ body {
                                 {block:Caption}{Caption}{/block:Caption}
                     {/block:Panorama}
                     {block:Quote}
-                        <div class="post-content">
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                             </div>
@@ -474,7 +686,6 @@ body {
                                 {block:Source}<cite>- {Source}</cite>{/block:Source}
                     {/block:Quote}
                     {block:Link}
-                        <div class="post-content">
                             <div class="gridheader"><a href="{URL}"><i class="fa fa-external-link fa-2x"></i><br/>{Name}</a></div>
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
@@ -483,7 +694,6 @@ body {
                                 {block:Description}{Description}{/block:Description}
                     {/block:Link}
                     {block:Chat}
-                        <div class="post-content">
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                             </div>
@@ -497,7 +707,6 @@ body {
                                 </div>
                     {/block:Chat}
                     {block:Audio}
-                        <div class="post-content">
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                             </div>
@@ -510,7 +719,6 @@ body {
                                 {block:Caption}{Caption}{/block:Caption}
                     {/block:Audio}
                     {block:Video}
-                        <div class="post-content">
                             <div class="embed-responsive embed-responsive-4by3">{Video-500}</div>
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
@@ -519,7 +727,6 @@ body {
                                 {block:Caption}{Caption}{/block:Caption}
                      {/block:Video}
                     {block:Answer}
-                        <div class="post-content">
                             <div class="author">
                                 <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                             </div>
@@ -582,20 +789,6 @@ body {
                                     <div class="opendiv">
                                         <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus"><i class="fa fa-google-plus"></i></a>
                                     </div>
-<!--                                    <div class="datediv">
-                                        {block:Date}
-                                        <a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}</a>
-                                        {/block:Date}
-                                    </div>-->
-                                    
-                                    <!--<div class="share-wrap">
-                                        <a href="#" class="share_button icon-share js-share action" aria-hidden="true"></a>
-                                        <a href="#" class="share_button icon-close js-share action" aria-hidden="true"></a>
-                                        <div class="share">
-                                            <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank" class="icon-twitter" aria-hidden="true" data-icon="&#x54;"></a>
-                                            <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank" class="icon-facebook" aria-hidden="true" data-icon="&#x46;"></a>
-                                            <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus" aria-hidden="true" data-icon="&#x47;"></a>
-                                        </div>-->
                                 </div> <!-- aboutdiv -->
                                 
 {block:PermalinkPage}{block:IfDisqusShortname}
@@ -606,26 +799,111 @@ body {
 {PostNotes-64}
 {/block:PermalinkPage}
                             </div>
-                        </div>
                     </div> <!-- end grid item -->
                 {/block:Posts}
+
+<!--closures for news-->
 {block:IndexPage}
 	</div> 
 </div>
 {/block:IndexPage}
 {block:PermalinkPage}
+    </div>
+    <div class="col-md-4 col-lg-4 visible-md visible-lg">
+        <!-- Permalink ad shows only for large screen -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:600px"
+             data-ad-client="ca-pub-2145833818900192"
+             data-ad-slot="9186412466"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div><!-- bignews row closure -->
 </div>
 {/block:PermalinkPage}
+
+<!--Bottom Ad-->
+<div class="text-center adbox">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+
+{block:IndexPage}
+<div id="pagenav" class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            {block:Pagination}
+                {block:PreviousPage}
+                    <a class="navBtns" href="{PreviousPage}">Previous</a>
+                {/block:PreviousPage}
+                {block:JumpPagination length="5"}
+                    {block:CurrentPage}
+                        <div class="current_page">{PageNumber}</div>
+                    {/block:CurrentPage}
+                    {block:JumpPage}
+                        <a class="jump_page" href="{URL}">{PageNumber}</a>
+                    {/block:JumpPage}
+                {/block:JumpPagination}
+                {block:NextPage}
+                    <a class="navBtns" href="{NextPage}">Next</a>
+                {/block:NextPage}
+            {/block:Pagination}
+        </div>
+    </div>
+</div>
+{/block:IndexPage}
 
 <div id="footer" class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-4">
-			<h3>Other communities</h3>
-			<ul>
-			    <li>...</li>
-			    <li>...</li>
-			    <li>...</li>
-			</ul>
+		    <h3>Other communities</h3>
+		    <a href="http://gumi.sg/games/brave-frontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialgumibf.jpg" class="img-responsive partners" title="Official gumi asia"></a>
+		    <a href="http://forums.gumi.sg/forum/brave-frontier" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialforums.jpg" class="img-responsive partners" title="Official Brave Frontier Forums by gumi"></a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
 			<h3>Connect with me</h3>
@@ -662,6 +940,12 @@ document.querySelector('#nav-toggle').addEventListener('click', function () {
     	$('#overlayC').addClass('close');
     }
 });
+{block:IndexPage}
+$(document).ready( function(e) {
+	getRecentUnits("jp");
+	getRecentUnits("gl");
+})
+{/block:IndexPage}
 </script>
 <!-- disqus count -->
 {block:IfDisqusShortname}
@@ -687,6 +971,8 @@ var disqus_shortname = '{text:Disqus Shortname}';
 <!--Chatroom-->
 <script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
 </script>
+{block:IndexPage}
 <script src="//touchandswipe.github.io/bravefrontier/js/salvattore.min.js"></script>
+{/block:IndexPage}
 </body>
 </html>
