@@ -128,6 +128,10 @@ if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/BlackBerry/i)
   || navigator.userAgent.match(/Windows Phone/i))
 	document.write('<meta name="viewport" content="width=640, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash && window.location.hash == '#_=_') {
+	window.location.hash = '';
+}
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
