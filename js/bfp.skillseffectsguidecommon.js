@@ -43,7 +43,7 @@ function buildDB(unit) {
 countVar=0; /*reset count*/
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	/*Stats Bits*/
         if (valObj.stats) {
             statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RAW Stats / Types and Variation</b></h5></div></div>';
