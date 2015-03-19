@@ -143,7 +143,13 @@ $.getJSON( serverSelect, function( unit ) {
         }
         
         if (idFound) {
-          exportSTR='<tr><td>'+unitKey+'</td>';
+        if (serverSelect.search('/eu/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
+          else if (serverSelect.search('/kr/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
+          else
+            exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+            
           if (valObj.mats)
             for (i in valObj.mats)
               exportSTR+='<td>'+valObj.mats[i]['name']+'</td>'
