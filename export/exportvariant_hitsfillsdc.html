@@ -141,9 +141,9 @@ $.getJSON( serverSelect, function( unit ) {
             var idFound=false;
         }
         if (idFound) {
-          if (serverSelect.search('/eu/'))
+          if (serverSelect.search('/eu/')!=-1)
             exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
-          else if (serverSelect.search('/kr/'))
+          else if (serverSelect.search('/kr/')!=-1)
             exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
           else
             exportSTR='<tr><td>'+valObj.guide_id+'</td>';
