@@ -142,7 +142,13 @@ $.getJSON( serverSelect, function( unit ) {
         }
         if (idFound) {
         nameSTR='<tr><td colspan="12" class="bg-primary upper"><h4><b>'+unitKey+'</b></h4></td></tr>';
-        exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+        if (serverSelect.search('/eu/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
+          else if (serverSelect.search('/kr/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
+          else
+            exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+            
         exportSTR+='<td></td>';
         //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
         //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
