@@ -158,6 +158,10 @@ $.getJSON( serverSelect, function( unit ) {
           else
               exportSTR+='<td></td><td></td>'
           
+          if (valObj.rarity) {
+              exportSTR+='<td>'+valObj.rarity+'</td>'
+          } else { exportSTR+='<td></td>' }
+          
           if (valObj.cost) {
               exportSTR+='<td>'+valObj.cost+'</td>'
           } else { exportSTR+='<td></td>' }
