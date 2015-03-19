@@ -153,6 +153,11 @@ $.getJSON( serverSelect, function( unit ) {
               exportSTR+='<td>'+valObj.name+'</td>'
           } else { exportSTR+='<td></td>' }
           
+          if (valObj.element)
+              exportSTR+='<td></td><td>'+valObj.element+'</td>'
+          else
+              exportSTR+='<td></td><td></td>'
+          
           if (valObj.cost) {
               exportSTR+='<td>'+valObj.cost+'</td>'
           } else { exportSTR+='<td></td>' }
