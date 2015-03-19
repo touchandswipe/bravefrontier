@@ -234,7 +234,12 @@ $.getJSON( serverSelect, function( unit ) {
         }
         /*Parsing code here*/
         if (idFound) {
-          exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+          if (serverSelect.search('/eu/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
+          else if (serverSelect.search('/kr/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
+          else
+            exportSTR='<tr><td>'+valObj.guide_id+'</td>';
           
           /*Parsing LS Skills*/
           var lsSkillFound=0;
