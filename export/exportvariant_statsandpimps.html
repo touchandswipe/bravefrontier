@@ -185,10 +185,12 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
         
         /*imp data*/
-        exportSTR+='<td>'+valObj.imp["max hp"]+'</td>';
-        exportSTR+='<td>'+valObj.imp["max atk"]+'</td>';
-        exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
-        exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
+        if (valObj.imp) {
+          exportSTR+='<td>'+valObj.imp["max hp"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max atk"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
+        }
         
         /*spacing for weighted*/
         exportSTR+='<td></td>';
