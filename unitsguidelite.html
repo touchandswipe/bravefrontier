@@ -106,6 +106,14 @@
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
 <script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
