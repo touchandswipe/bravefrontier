@@ -223,6 +223,7 @@ var evoQuery = [
 ['Thunder Tone','icon8140.png'],
 ['Light Tone','icon8141.png'],
 ['Dark Tone','icon8142.png'],
+['Northmen Idol','icon726.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
