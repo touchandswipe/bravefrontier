@@ -227,6 +227,8 @@ $.getJSON( serverSelect, function( unit ) {
     var lsWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
     var skillConnect=' / ';
     var bbArray=["bb","sbb","ubb"];
+    var lsSplit=' - ';
+    
     $.each( unit, function( unitKey, valObj ) {
         var exportSTR="";
         if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
@@ -253,6 +255,7 @@ $.getJSON( serverSelect, function( unit ) {
                 /*looking each effect array*/
                 for (j in valObj["leader skill"]["effects"]) {
                     /*resets var for each effect*/
+                    var lsPassiveID=valObj["leader skill"]["effects"][j]['passive id'];
                     var groupSTR="";
                     var effectFound=false;
                     
@@ -260,7 +263,7 @@ $.getJSON( serverSelect, function( unit ) {
                     if (skillSeek=="stats buff") {
                       for (ix in lsstatsBuffArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsstatsBuffArray[ix]["skillid"]) {
+                            if (effectKey==lsstatsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
@@ -270,6 +273,8 @@ $.getJSON( serverSelect, function( unit ) {
                       $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
                         if (effectKey=="unique elements required")
                           groupSTR+=" ("+effectVal+" elements required)";
+                        if (effectKey=="bb gauge above % buff requirement")
+                          groupSTR+=" (BB above "+effectVal+"%)";
                       })
                     } /*End Grouping check*/
 
