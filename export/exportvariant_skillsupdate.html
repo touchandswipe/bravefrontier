@@ -330,7 +330,6 @@ $.getJSON( serverSelect, function( unit ) {
                       for (ix in lsWeakElementArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==lsWeakElementArray[ix]["skillid"]) {
-                                alert(effectKey);
                                 if (elementCount>0)
                                   groupSTR+=",";
                                 elementCount+=1;
