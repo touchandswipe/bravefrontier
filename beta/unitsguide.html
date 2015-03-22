@@ -810,7 +810,7 @@ function initialize(fusionData) {
 	prevStatsMod=[0,0,0,0,0];
 	
 	/*Req by Name*/
-	if (typeof reqType === 'undefined') {
+	if (typeof reqType == 'undefined') {
 		/*update state*/
 		var state = { stateUnit: whatunit };
 		history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
