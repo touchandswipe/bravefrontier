@@ -55,31 +55,31 @@ countVar=0; /*reset count*/
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
             	/*HP*/
             	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
-            	if (valObj.stats['hp max'])
-			statsSTR+=valObj.stats['hp min']+' - '+valObj.stats['hp max'];
+            	if (stVal['hp max'])
+			statsSTR+=stVal['hp min']+' - '+stVal['hp max'];
 		else
-			statsSTR+=valObj.stats.hp;
+			statsSTR+=stVal.hp;
 		statsSTR+='</div>';
 		/*ATK*/
             	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
-            	if (valObj.stats['atk max'])
-			statsSTR+=valObj.stats['atk min']+' - '+valObj.stats['atk max'];
+            	if (stVal['atk max'])
+			statsSTR+=stVal['atk min']+' - '+stVal['atk max'];
 		else
-			statsSTR+=valObj.stats.atk;
+			statsSTR+=stVal.atk;
 		statsSTR+='</div>';
 		/*DEF*/
             	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
-            	if (valObj.stats['def max'])
-			statsSTR+=valObj.stats['def min']+' - '+valObj.stats['def max'];
+            	if (stVal['def max'])
+			statsSTR+=stVal['def min']+' - '+stVal['def max'];
 		else
-			statsSTR+=valObj.stats.def;
+			statsSTR+=stVal.def;
 		statsSTR+='</div>';
 		/*REC*/
             	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
-            	if (valObj.stats['rec max'])
-			statsSTR+=valObj.stats['rec min']+' - '+valObj.stats['rec max'];
+            	if (stVal['rec max'])
+			statsSTR+=stVal['rec min']+' - '+stVal['rec max'];
 		else
-			statsSTR+=valObj.stats.rec;
+			statsSTR+=stVal.rec;
 		statsSTR+='</div>';
 		/*Closure*/
             	statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
