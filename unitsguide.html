@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Rave R1) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Rave RX2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <title>Brave Frontier - Units Guide (Rave RX) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Rave RX2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -361,15 +361,10 @@ function initialize(fusionData) {
 			bossDataLoad();
 			/*hide loader*/
 			$('#progressModal').modal('hide');
-	    /*check for card param for UnitID*/
+	    		/*check for card param for UnitID*/
 			var idParam=urlParam('unitid');
-			if (idParam != "") {
-			    for (i in deserialdata) {
-				if (deserialdata[i].id==idParam)
-				    var idParamName=$(deserialdata[i].name).text();
-			    }
-			    openCard(idParamName);
-			}
+			if (idParam != "")
+			    openCard(idParam,"unitid");
 			/*check for card param*/
 			var cardParam=urlParam('unit');
 			if (cardParam != "") {
@@ -804,32 +799,44 @@ function initialize(fusionData) {
     }
     
 /*Query unit and openCard*/
-      function openCard(whatunit) {
+      function openCard(whatunit,reqType) {
 	/*Loader*/
 	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	/*Choose Main Card n Show Card Modal*/
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
-	/*update state*/
-	    var state = { stateUnit: whatunit };
-	    history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
-	/*Google analytics*/
-	var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+
+	/*Resets Prev Stats*/
+	prevStatsMod=[0,0,0,0,0];
+	
+	/*Req by Name*/
+	if (typeof reqType === 'undefined') {
+		/*update state*/
+		var state = { stateUnit: whatunit };
+		history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+		/*Google analytics*/
+		var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+		/*Fix Apostrophe*/
+		var whatunit = whatunit.replace("'","\\'");
+		var qunitname = "'" + whatunit + "'";
+		/*Query*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
+		var encodedQuery2 = encodeURIComponent(query2);
+	} else {
+		/*update state*/
+		var state = { stateUnit: whatunit };
+		history.pushState(state, "test state", "?unitid="+encodeURIComponent(whatunit) );
+		/*Google analytics*/
+		var compileURL=location.host + location.pathname + "?unitid=" + encodeURIComponent(whatunit);
+		/*Request by ID*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'ID' = " + whatunit;
+		var encodedQuery2 = encodeURIComponent(query2);
+	}
+	/*analytics*/
 	ga('send', 'pageview', {
   		'page': compileURL,
   		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
 	});
-	
-	/*Resets Prev Stats*/
-	prevStatsMod=[0,0,0,0,0];
-	/*Fix Apostrophe*/
-	var whatunit = whatunit.replace("'","\\'");
-	var qunitname = "'" + whatunit + "'";
-	/*Query*/
-	var query2 = "SELECT * FROM " + gTable + 
-	    " WHERE 'Name' = " + qunitname;
-	var encodedQuery2 = encodeURIComponent(query2);
-	
 	/*Construct URL*/
 	var url2 = [gURL];
 	url2.push('?sql=' + encodedQuery2);
@@ -2450,7 +2457,10 @@ var delay = (function(){
 	/*card state*/
 	if (state.stateUnit) {
 	    $('#compareModal').modal('hide');
-	    openCard( state.stateUnit );
+	    if (isNaN(state.stateUnit))
+	    	openCard( state.stateUnit )
+	    else
+	    	openCard( state.stateUnit,"ID")
 	}
 	/*comp state*/
 	if (state.stateCompare) {
