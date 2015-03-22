@@ -216,6 +216,7 @@ var evoQuery = [
 ['Turbo Hydraloid','icon8118.png'],
 ['Turbo Netherhound','icon8133.png'],
 ['Turbo Euryalis','icon8151.png'],
+['Turbo Grievesnare','icon8157.png'],
 ['Blighted Fei','icon8146.png'],
 ['Fire Tone','icon8137.png'],
 ['Water Tone','icon8138.png'],
