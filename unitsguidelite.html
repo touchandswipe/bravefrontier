@@ -159,7 +159,7 @@ function convertJSON( serialObj ) {
 	    else if (s.rows[i][j] == "") {
 		    temp[s.columns[j].toLowerCase()] = "None";
 	    } else { /*else number*/
-			temp[s.columns[j].toLowerCase()] = parseInt(s.rows[i][j]);
+			temp[s.columns[j].toLowerCase()] = parseFloat(s.rows[i][j]);
 		}
 	}
 	/*save the new row with column names*/
