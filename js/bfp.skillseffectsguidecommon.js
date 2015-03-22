@@ -43,7 +43,7 @@ function buildDB(unit) {
 countVar=0; /*reset count*/
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i> <span class="visible-md">['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+valObj.name+' '+valObj.rarity+'<i class="fa fa-star"></i><span class="hidden-sm hidden-xs"> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         nameSTR+='<div class="row"><div class="col-xs-12 col-sm-12"><img src="'+imgPrePath+'unit/img/unit_ills_full_'+valObj.id+'.png" width="300"></div></div>';
 	/*Stats Bits*/
         if (valObj.stats) {
