@@ -810,7 +810,7 @@ function initialize(fusionData) {
 	prevStatsMod=[0,0,0,0,0];
 	
 	/*Req by Name*/
-	if (typeof reqType == 'undefined') {
+	if (typeof reqType === 'undefined') {
 		/*update state*/
 		var state = { stateUnit: whatunit };
 		history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
@@ -819,9 +819,9 @@ function initialize(fusionData) {
 		/*Fix Apostrophe*/
 		var whatunit = whatunit.replace("'","\\'");
 		var qunitname = "'" + whatunit + "'";
-		var encodedQuery2 = encodeURIComponent(query2);
 		/*Query*/
 		var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
+		var encodedQuery2 = encodeURIComponent(query2);
 	} else {
 		/*update state*/
 		var state = { stateUnit: whatunit };
