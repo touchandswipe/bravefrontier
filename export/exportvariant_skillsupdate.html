@@ -298,7 +298,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="ails") {
                       for (ix in lsailsArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsailsArray[ix]["skillid"]+lsSplit+lsPassiveID) {
+                            if (effectKey==lsailsArray[ix]["skillid"]) {
                               groupSTR+=effectVal+lsailsArray[ix]["suffix"];
                               effectFound=true;
                             }
