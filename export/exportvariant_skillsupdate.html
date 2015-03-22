@@ -286,7 +286,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="crystals buff") {
                       for (ix in lsCrystalsBuffArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]) {
+                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
                               groupSTR+=effectVal+lsCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
@@ -324,7 +324,7 @@ $.getJSON( serverSelect, function( unit ) {
                           groupSTR+=resistRate+"% Resist ails"
                     } /*End Grouping check*/
                     
-                    /*Check elemental weakness check*/
+                    /*Elemental weakness check*/
                     else if (skillSeek=="element weakness") {
                       var elementCount=0;
                       for (ix in lsWeakElementArray) {
