@@ -812,6 +812,7 @@ function initialize(fusionData) {
 	/*Req by Name*/
 	if (typeof reqType === 'undefined') {
 		/*update state*/
+		alert("request by name");
 		var state = { stateUnit: whatunit };
 		history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
 		/*Google analytics*/
@@ -823,6 +824,7 @@ function initialize(fusionData) {
 		var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
 		var encodedQuery2 = encodeURIComponent(query2);
 	} else {
+		alert("request by ID");
 		/*update state*/
 		var state = { stateUnit: whatunit };
 		history.pushState(state, "test state", "?unitid="+encodeURIComponent(whatunit) );
@@ -2457,7 +2459,10 @@ var delay = (function(){
 	/*card state*/
 	if (state.stateUnit) {
 	    $('#compareModal').modal('hide');
-	    openCard( state.stateUnit );
+	    if (isNaN(state.stateUnit))
+	    	openCard( state.stateUnit )
+	    else
+	    	openCard( state.stateUnit,"ID")
 	}
 	/*comp state*/
 	if (state.stateCompare) {
