@@ -48,13 +48,40 @@ countVar=0; /*reset count*/
 	/*Stats Bits*/
         if (valObj.stats) {
             statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RAW Stats / Types and Variation</b></h5></div></div>';
+            statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>Type</b></div>';
+            statsSTR+='<div class="col-xs-2 col-sm-2 bd"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd"><b>REC</b></div>';
             $.each(valObj.stats, function(stKey,stVal) {
-            	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bi"><b>'+stKey+'</b></div>';
-            	statsSTR+='<div class="col-xs-10 col-sm-10 bi">';
-            	$.each(valObj.stats[stKey], function(stKey2,stVal2) {
-            		statsSTR+='<button type="button" class="btn btn-default btn-sm disabled"><b>'+stKey2+': </b>'+stVal2+'</button>&nbsp;';
-            	})
-            	statsSTR+='</div></div>';
+            	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
+            	/*HP*/
+            	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
+            	if (valObj.stats['hp max'])
+			statsSTR+=valObj.stats['hp min']+' - '+valObj.stats['hp max'];
+		else
+			statsSTR+=valObj.stats.hp;
+		statsSTR+='</div>';
+		/*ATK*/
+            	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
+            	if (valObj.stats['atk max'])
+			statsSTR+=valObj.stats['atk min']+' - '+valObj.stats['atk max'];
+		else
+			statsSTR+=valObj.stats.atk;
+		statsSTR+='</div>';
+		/*DEF*/
+            	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
+            	if (valObj.stats['def max'])
+			statsSTR+=valObj.stats['def min']+' - '+valObj.stats['def max'];
+		else
+			statsSTR+=valObj.stats.def;
+		statsSTR+='</div>';
+		/*REC*/
+            	statsSTR+='<div class="col-xs-2 col-sm-2 bi">';
+            	if (valObj.stats['rec max'])
+			statsSTR+=valObj.stats['rec min']+' - '+valObj.stats['rec max'];
+		else
+			statsSTR+=valObj.stats.rec;
+		statsSTR+='</div>';
+		/*Closure*/
+            	statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
             })
         } else statsSTR='';
         /*Normal DMG % Distribution*/
