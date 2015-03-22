@@ -361,7 +361,7 @@ function initialize(fusionData) {
 			bossDataLoad();
 			/*hide loader*/
 			$('#progressModal').modal('hide');
-	    /*check for card param for UnitID*/
+	    		/*check for card param for UnitID*/
 			var idParam=urlParam('unitid');
 			if (idParam != "") {
 			    for (i in deserialdata) {
@@ -804,7 +804,7 @@ function initialize(fusionData) {
     }
     
 /*Query unit and openCard*/
-      function openCard(whatunit) {
+      function openCard(whatunit,reqType) {
 	/*Loader*/
 	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	/*Choose Main Card n Show Card Modal*/
@@ -819,17 +819,23 @@ function initialize(fusionData) {
   		'page': compileURL,
   		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
 	});
-	
+
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
-	/*Fix Apostrophe*/
-	var whatunit = whatunit.replace("'","\\'");
-	var qunitname = "'" + whatunit + "'";
-	/*Query*/
-	var query2 = "SELECT * FROM " + gTable + 
-	    " WHERE 'Name' = " + qunitname;
-	var encodedQuery2 = encodeURIComponent(query2);
 	
+	/*Req by Name*/
+	if (typeof reqType === 'undefined') {
+		/*Fix Apostrophe*/
+		var whatunit = whatunit.replace("'","\\'");
+		var qunitname = "'" + whatunit + "'";
+		var encodedQuery2 = encodeURIComponent(query2);
+		/*Query*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
+	} else {
+		/*Request by ID*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'ID' = " + whatunit;
+		var encodedQuery2 = encodeURIComponent(query2);
+	}
 	/*Construct URL*/
 	var url2 = [gURL];
 	url2.push('?sql=' + encodedQuery2);
