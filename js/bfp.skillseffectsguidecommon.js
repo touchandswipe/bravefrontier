@@ -49,7 +49,8 @@ countVar=0; /*reset count*/
         if (valObj.stats) {
             statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RAW Stats / Types and Variation</b></h5></div></div>';
             statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>Type</b></div>';
-            statsSTR+='<div class="col-xs-2 col-sm-2 bd"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd"><b>REC</b></div>';
+            statsSTR+='<div class="col-xs-2 col-sm-2 bd"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd"><b>REC</b></div><div class="col-xs-2 col-sm-2 bd"></div>';
+            statsSTR+='</div>';
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
             	/*HP*/
