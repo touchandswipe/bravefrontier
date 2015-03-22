@@ -276,6 +276,8 @@ $.getJSON( serverSelect, function( unit ) {
                           groupSTR+=" ("+effectVal+" elements required)";
                         if (effectKey=="bb gauge above % buff requirement")
                           groupSTR+=" (BB above "+effectVal+"%)";
+                        if (effectKey=="hp below % buff requirement")
+                          groupSTR+=" (HP < "+effectVal+"%)";
                         if (effectKey=="gender required") {
                           genderTemp=effectVal.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                           groupSTR+=" ("+genderTemp+")";
