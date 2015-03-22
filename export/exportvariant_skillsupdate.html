@@ -247,6 +247,7 @@ $.getJSON( serverSelect, function( unit ) {
           
           /*Parsing LS Skills*/
           var lsSkillFound=0;
+          var genderTemp="";
           exportSTR+="<td>";
           if (valObj["leader skill"])
             if (valObj["leader skill"]["effects"]) {
@@ -276,7 +277,7 @@ $.getJSON( serverSelect, function( unit ) {
                         if (effectKey=="bb gauge above % buff requirement")
                           groupSTR+=" (BB above "+effectVal+"%)";
                         if (effectKey=="gender required") {
-                          var genderTemp=effectVal.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                          genderTemp=effectVal.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                           groupSTR+=" ("+genderTemp+")";
                         }
                       })
@@ -433,7 +434,7 @@ $.getJSON( serverSelect, function( unit ) {
                         eleString=eleString.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                         exportSTR+=eleString;
                       }
-                      else if (skillSeek!="element weakness")
+                      else if (skillSeek!="element weakness" && genderTemp=="")
                         exportSTR+=' (ALL)';
                   } /*End Output String Build*/
                 }
