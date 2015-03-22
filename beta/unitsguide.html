@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="Brave Frontier - Units Guide (Rave R1) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>Brave Frontier - Units Guide (Rave RX) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -13,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.0/css/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <style type="text/css">
     .loreBox {
@@ -122,14 +120,19 @@
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
 <script type="text/javascript">
-if(navigator.userAgent.match(/Android/i)
+if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
   || navigator.userAgent.match(/iPhone/i)
   || navigator.userAgent.match(/iPad/i)
   || navigator.userAgent.match(/iPod/i)
   || navigator.userAgent.match(/BlackBerry/i)
-  || navigator.userAgent.match(/Windows Phone/i)) {
-    document.write('<meta name="viewport" content="width=640, user-scalable=yes" />');
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
 }
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
@@ -935,8 +938,6 @@ function initialize(fusionData) {
 			$(this).unbind();
 			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
 		})
-	      var ovnext = "";
-	      var ovprevious = "";
 	    /*NaN Check*/
 	    if (isNaN(ovweightedlord)) { ovweightedlord = "-" }
 	    /*Evo trail variable*/
@@ -1090,7 +1091,7 @@ function initialize(fusionData) {
 	      +'<td>&nbsp;</td></tr>';
 	      }
 	      /*IMP MAX Addition*/
-	      if (ovdata2[0]["hp pimp"]!="") {
+	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-") {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
@@ -1138,18 +1139,6 @@ function initialize(fusionData) {
 	    ovHTML+='<i>None at the moment.<i>'
 	}
 	ovHTML+='</td></tr></table>'
-	    /*Next & Previous links*/
-	    +'<div class="row">';
-	    if (ovid > 1) {
-		var ovprevious = deserialdata[findidloc(deserialdata,ovid)-1]["name"];
-		ovHTML+='<div class="col-md-6 text-primary pull-left"><h4 id="previousUnit"><i class="fa fa-arrow-left"></i>  '+ovprevious+'</h4></div>';
-	    }
-	    var ovnext = findidloc(deserialdata,ovid);
-	    if (ovnext < deserialdata.length-1) {
-		ovnext = deserialdata[findidloc(deserialdata,ovid)+1]["name"];
-		ovHTML+='<div class="col-md-6 text-primary pull-right"><h4 class="text-right" id="nextUnit">'+ovnext+' <i class="fa fa-arrow-right"></i></h4> </div>';
-	    }
-	    ovHTML+='</div>';
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
 	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:100px;"/>';
@@ -3107,6 +3096,13 @@ var delay = (function(){
 	<h5><b>by Skill Effects</b></h5>
 	
 	<div class="btn-group" data-toggle="buttons">
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="(TGT)">Single TGT
+	  </label>
+	  
 	  <label class="btn btn-primary">
 	    <input type="checkbox" class="filSkills" value="CRIT+">CRIT Rate 
 	  </label>
