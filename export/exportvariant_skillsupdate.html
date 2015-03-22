@@ -275,6 +275,10 @@ $.getJSON( serverSelect, function( unit ) {
                           groupSTR+=" ("+effectVal+" elements required)";
                         if (effectKey=="bb gauge above % buff requirement")
                           groupSTR+=" (BB above "+effectVal+"%)";
+                        if (effectKey=="gender required") {
+                          var genderTemp=effectVal.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                          groupSTR+=" ("+genderTemp+")";
+                        }
                       })
                     } /*End Grouping check*/
 
@@ -294,7 +298,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="ails") {
                       for (ix in lsailsArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsailsArray[ix]["skillid"]) {
+                            if (effectKey==lsailsArray[ix]["skillid"]+lsSplit+lsPassiveID) {
                               groupSTR+=effectVal+lsailsArray[ix]["suffix"];
                               effectFound=true;
                             }
@@ -326,6 +330,7 @@ $.getJSON( serverSelect, function( unit ) {
                       for (ix in lsWeakElementArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==lsWeakElementArray[ix]["skillid"]) {
+                                alert(effectKey);
                                 if (elementCount>0)
                                   groupSTR+=",";
                                 elementCount+=1;
