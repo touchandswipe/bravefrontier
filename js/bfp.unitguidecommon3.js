@@ -212,6 +212,7 @@ var evoQuery = [
 ['Light Soul Crystal','iconitem11040.png'],
 ['Dark Soul Crystal','iconitem11050.png'],
 ['Miracle Sphere','iconitem111000.png'],
+['Legend Stone','iconitem111000.png'],
 ['Turbo Cyclaw','icon8106.png'],
 ['Turbo Hydraloid','icon8118.png'],
 ['Turbo Netherhound','icon8133.png'],
