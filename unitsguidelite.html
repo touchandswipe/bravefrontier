@@ -38,8 +38,32 @@
     .sbbtxt {color:#FFAA00;}
     .ubbtxt {color:#DD0000;}
     .imgShdw {
-	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
-	filter:         drop-shadow(0px 0px 5px #FF3300);
+        width:35px;
+        height:35px;
+    }
+    .imgFire {
+        -webkit-filter: drop-shadow(0px 0px 5px #F00);
+    	filter: drop-shadow(0px 0px 5px #F00);
+    }
+    .imgWater {
+        -webkit-filter: drop-shadow(0px 0px 5px #00F);
+    	filter: drop-shadow(0px 0px 5px #00F);
+    }
+    .imgEarth {
+        -webkit-filter: drop-shadow(0px 0px 5px #0F0);
+    	filter: drop-shadow(0px 0px 5px #0F0);
+    }
+    .imgThunder {
+        -webkit-filter: drop-shadow(0px 0px 5px #F90);
+    	filter: drop-shadow(0px 0px 5px #F90);
+    }
+    .imgLight {
+        -webkit-filter: drop-shadow(0px 0px 5px #FFF);
+    	filter: drop-shadow(0px 0px 5px #FFF);
+    }
+    .imgDark {
+        -webkit-filter: drop-shadow(0px 0px 5px #C09);
+    	filter: drop-shadow(0px 0px 5px #C09);
     }
     .evoShdw {
 	-webkit-filter: grayscale(100%);
@@ -125,7 +149,7 @@ var outputArray=[];
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw '+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
@@ -171,7 +195,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon','Element' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
