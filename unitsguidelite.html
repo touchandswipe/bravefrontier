@@ -145,7 +145,7 @@ var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element}});
+			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
 		}
 	}
 	for (i in outputArray) {
