@@ -209,7 +209,6 @@ function initializeDB() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 		deserialdata = convertJSON(fusionData);
-	      
 		var aheadNameRead = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -230,7 +229,14 @@ function initializeDB() {
 	      	/*check for card param for Unit*/
 		var idParam=urlParam('unit');
 		if (idParam != "") {
-		    openCard(idParam);
+			/*prefill search with name*/
+			for (i in deserialdata)
+				if (deserialdata[i].id==idParam) {
+					$('#searchBox').val(deserialdata[i].name);
+					searchNameRun(deserialdata[i].name);
+					break;
+				}
+			openCard(idParam);
 		}
 	  }
 	})
