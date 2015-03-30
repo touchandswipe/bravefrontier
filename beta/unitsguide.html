@@ -118,7 +118,7 @@
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.1/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js'></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon4.js"></script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -239,7 +239,7 @@ function initialize(fusionData) {
 		"data":fusionData.rows,
 		"columns": [
 		{ "data": fusionData.columns.indexOf("ID") },
-		{ "data": fusionData.columns.indexOf("Icon") },
+		{ "data": fusionData.columns.indexOf("IconREF") },
 		{ "data": fusionData.columns.indexOf("Name") },
 		{ "data": fusionData.columns.indexOf("Series") },
 		{ "data": fusionData.columns.indexOf("Batch") },
@@ -415,8 +415,8 @@ function initialize(fusionData) {
 		{ "orderData": [ 4, 0 ], "targets": [ 4 ] },
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
-		"render": function (imgSource, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="'+imgSource+'" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+		"render": function (imgID, type, cRow, full )  {
+			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -854,7 +854,7 @@ function initialize(fusionData) {
 	      var ovname = ovdata2[0]["name"];
 	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
 	      var ovseries = ovdata2[0]["series"];
-	      var ovicon = ovdata2[0]["icon"];
+	      var ovicon = ovdata2[0]["iconref"];
 	      var ovimage = ovdata2[0]["image"];
 	      var ovelement = ovdata2[0]["element"];
 	      var ovcost = ovdata2[0]["cost"];
@@ -960,7 +960,7 @@ function initialize(fusionData) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["icon"]
+			'icon':deserialdata[i]["iconref"]
 			})
 		}
 	    }
@@ -973,10 +973,10 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -984,7 +984,7 @@ function initialize(fusionData) {
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="60"/></td>'
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+oviconref+'.png" width="60"/></td>'
 	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
@@ -1148,9 +1148,9 @@ function initialize(fusionData) {
 	ovHTML+='</td></tr></table>'
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovimage+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
