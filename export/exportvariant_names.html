@@ -149,22 +149,7 @@ $.getJSON( serverSelect, function( unit ) {
           else
             exportSTR='<tr><td>'+valObj.guide_id+'</td>';
             
-          if (valObj.name) {
-              exportSTR+='<td>'+valObj.name+'</td>'
-          } else { exportSTR+='<td></td>' }
-          
-          if (valObj.element)
-              exportSTR+='<td></td><td style="text-transform: capitalize;">'+valObj.element+'</td>'
-          else
-              exportSTR+='<td></td><td></td>'
-          
-          if (valObj.rarity) {
-              exportSTR+='<td>'+valObj.rarity+'</td>'
-          } else { exportSTR+='<td></td>' }
-          
-          if (valObj.cost) {
-              exportSTR+='<td>'+valObj.cost+'</td>'
-          } else { exportSTR+='<td></td>' }
+          exportSTR+='<td>'+unitKey+'</td>'
   
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
