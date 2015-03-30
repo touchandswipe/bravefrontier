@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Units Guide Lite (Ultima R3) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (Ultima R3) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite (Bonkers R1) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -14,14 +14,64 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
-    .hitsIcon { height:15px;vertical-align:top; }
+    .loreBox {
+	bottom: 5px;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	position: absolute;
+	background: rgba(230,230,255,0.8);
+	padding: 8px 15px;
+	border: 1px solid #DDDDDD;
+	border-radius: 10px;
+    }
+    .hashbox {
+	border: 1px solid #CCCCCC;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0px 4px;
+	font-weight: bold;
+	margin-left: 5px;
+	font-size: 8pt;
+	color: #999999;
+    }
+    .bbtxt {color:#0099FF;}
+    .sbbtxt {color:#FFAA00;}
+    .ubbtxt {color:#DD0000;}
     .imgShdw {
-	-webkit-filter: drop-shadow(0px 0px 5px #FF3300);
-	filter:         drop-shadow(0px 0px 5px #FF3300);
+        width:50px;
+        height:50px;
+    }
+    .imgFire {
+        -webkit-filter: drop-shadow(0px 0px 5px #F00);
+    	filter: drop-shadow(0px 0px 5px #F00);
+    }
+    .imgWater {
+        -webkit-filter: drop-shadow(0px 0px 5px #00F);
+    	filter: drop-shadow(0px 0px 5px #00F);
+    }
+    .imgEarth {
+        -webkit-filter: drop-shadow(0px 0px 5px #0F0);
+    	filter: drop-shadow(0px 0px 5px #0F0);
+    }
+    .imgThunder {
+        -webkit-filter: drop-shadow(0px 0px 5px #F90);
+    	filter: drop-shadow(0px 0px 5px #F90);
+    }
+    .imgLight {
+        -webkit-filter: drop-shadow(0px 0px 5px #FFF);
+    	filter: drop-shadow(0px 0px 5px #FFF);
+    }
+    .imgDark {
+        -webkit-filter: drop-shadow(0px 0px 5px #C09);
+    	filter: drop-shadow(0px 0px 5px #C09);
     }
     .evoShdw {
-	-webkit-filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
-	filter: grayscale(100%) drop-shadow(0px 0px 5px #AA00AA);
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+    }
+    .evoCurrent {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter: drop-shadow(0px 0px 5px #AA00AA);
     }
     .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
     .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
@@ -78,8 +128,16 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon2.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
 <script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
@@ -87,11 +145,11 @@ var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity});
+			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" width="50" height="50"/></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
@@ -125,7 +183,7 @@ function convertJSON( serialObj ) {
 	    else if (s.rows[i][j] == "") {
 		    temp[s.columns[j].toLowerCase()] = "None";
 	    } else { /*else number*/
-			temp[s.columns[j].toLowerCase()] = parseInt(s.rows[i][j]);
+			temp[s.columns[j].toLowerCase()] = parseFloat(s.rows[i][j]);
 		}
 	}
 	/*save the new row with column names*/
@@ -137,7 +195,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon','Element' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -151,7 +209,6 @@ function initializeDB() {
 	  dataType: 'jsonp',
 	  success: function (fusionData) {
 		deserialdata = convertJSON(fusionData);
-	      
 		var aheadNameRead = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -171,8 +228,15 @@ function initializeDB() {
 		$('#progressModal').modal('hide');
 	      	/*check for card param for Unit*/
 		var idParam=urlParam('unit');
-		if ( (idParam != "") && ( idParam != null) ) {
-		    openCard(idParam);
+		if (idParam != "") {
+			/*prefill search with name*/
+			for (i in deserialdata)
+				if (deserialdata[i].id==idParam) {
+					$('#searchBox').val(deserialdata[i].name);
+					searchNameRun(deserialdata[i].name);
+					break;
+				}
+			openCard(idParam);
 		}
 	  }
 	})
@@ -218,8 +282,7 @@ function openCard(whatunit) {
 	      var ovid = ovdata2[0]["id"];
 	      var ovname = ovdata2[0]["name"];
 	      var ovseries = ovdata2[0]["series"];
-	      var ovicon = ovdata2[0]["icon"];
-	      var ovimage = ovdata2[0]["image"];
+	      var ovicon = ovdata2[0]["icon ref"];
 	      var ovelement = ovdata2[0]["element"];
 	      var ovcost = ovdata2[0]["cost"];
 	      var ovhits = ovdata2[0]["hits"];
@@ -324,7 +387,7 @@ function openCard(whatunit) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["icon"]
+			'icon':deserialdata[i]["icon ref"]
 			})
 		}
 	    }
@@ -337,10 +400,10 @@ function openCard(whatunit) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if (evotrail[i].id==ovid) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -348,7 +411,7 @@ function openCard(whatunit) {
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="60"/></td>'
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" width="60"/></td>'
 	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
@@ -371,25 +434,28 @@ function openCard(whatunit) {
 	      }
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>'
-	      ovHTML+='<tr><td class="active"><b>Hits</b></td><td colspan="5"><span style="display:inline-block;"><b>Normal:</b> '+ovhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/></span><span style="border-bottom:3px solid #00CCFF;display:inline-block;"> &nbsp;&middot;&nbsp; <b>BB:</b> '+ovbbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+ovbbfill+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b></td><td colspan="5">';
+	      ovHTML+='<span style="display:inline-block;"><b>'+ovbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['bb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+	      if (ovdata2[0]['bb atk%'] != "-")
+		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
+	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
 	      if (ovrarity > 5) {
-		ovHTML+='<span style="border-bottom:3px solid #FFEE00;display:inline-block;"> &nbsp;&middot;&nbsp; <b>SBB:</b> '+ovsbbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+(parseInt(ovsbbfill)-parseInt(ovbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
+		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['sbb atk%'] != "-")
+		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
+		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
 	      }
 	      if (ovrarity > 6) {
-		ovHTML+='<span style="border-bottom:3px solid #FF0000;display:inline-block;"> &nbsp;&middot;&nbsp; <b>UBB:</b> '+ovubbhits+'<img class="hitsIcon" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_atk.gif"/> '+(parseInt(ovubbfill)-parseInt(ovsbbfill))+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
-		ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovubbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
-	      }
-	      if (ovrarity==6) {
-	      	ovHTML+='<span style="display:inline-block;"> &nbsp;&middot;&nbsp; <b>BC Total:</b> '+ovsbbfill+'<img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span>';
-	      }
-	      ovHTML+='</td></tr>';
-	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">LS</b><b class="hidden-xs">Leader skill</b></td><td colspan="5">'+ovleaderskill+'</td></tr>'
-	      +'<tr><td class="active"><b>BB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovbbtype+'</td></tr>';
-	      if (ovrarity > 5) {
-		    ovHTML+='<tr><td class="active"><b>SBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovsbbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovsbbtype+'</td></tr>'
-	      }
-	      if (ovrarity > 6) {
-		    ovHTML+='<tr><td class="active"><b>UBB</b><b class="hidden-xs"> skill</b></td><td colspan="5">'+ovubbskill+' &nbsp;&middot;&nbsp; <b>Type:</b> '+ovubbtype+'</td></tr>'
+		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['ubb atk%'] != "-")
+		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
+		    ovHTML+=ovubbskill+' <span class="hashbox">'+ovubbtype+'</span></td></tr>';
+		    /*passive skill*/
+		    ovHTML+='<tr><td class="active ubbtxt"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
@@ -459,17 +525,17 @@ function openCard(whatunit) {
 	      +'<td>&nbsp;</td></tr>';
 	      }
 	      /*IMP MAX Addition*/
-	      if (ovdata2[0]["hp pimp"]!="") {
+	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-" ) {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <i class="fa fa-plus"></i><span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
-	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b><a href="https://www.facebook.com/markrvhie.luceropimentel" target="_blank">BossMarv</a>\'s type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b>Type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
 	}
 	
 	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
@@ -486,7 +552,15 @@ function openCard(whatunit) {
 	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>'
-	    +'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>7* Sphere bonus</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
 	+'<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
 	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
 	+'</div></td></tr>'
@@ -500,8 +574,11 @@ function openCard(whatunit) {
 	}
 	ovHTML+='</td></tr></table>';
 	$('#unitCardHome').html(ovHTML);
-	/*image accordion*/
-	$('#unitimageacc').html('<img src="'+ovimage+'" class="img-responsive" />');
+	/*Unit Art and Lore*/
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    if (ovdata2[0]['unit lore'] != "")
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    /*Assault Spite*/
@@ -699,7 +776,7 @@ $(window).on('popstate', function(e) {
 })
 
 /*Modification fields*/
-$(document).on("change", "#sphereA,#sphereB,.askill,.lskill", function(){
+$(document).on("change", "#sphereA,#sphereB,.askill,.lskill,.7skill", function(){
 	totalStatsMod();
 })
 
@@ -769,10 +846,14 @@ $(document).on("click", "#pimpBtn", function(){
 </script>
 </div>
 
+<!--Chatroom-->
+<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
+
 <!-- disqus discussion -->
 <div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
     <script type="text/javascript">
 	var disqus_shortname = 'bravefrontierpros';
+	var disqus_url = location.protocol + '//' + location.host + location.pathname;
 	(function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -820,24 +901,20 @@ $(document).on("click", "#pimpBtn", function(){
     <div class="modal-content">
       <div class="modal-body">
 	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
-    <!-- BFPROsLinkUnits DB Overlay -->
-    <ins class="adsbygoogle"
-	 style="display:inline-block;width:468px;height:15px"
-	 data-ad-client="ca-pub-2145833818900192"
-	 data-ad-slot="7885767265"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
 	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
-	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Unit Art</a></li>
+	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Lore / Art</a></li>
 	      <li class="hidden-xs"><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
 	</ul>
 <!-- Tab panes -->
 <div class="tab-content">
 	<div class="tab-pane fade in active" id="unitCardHome"></div>
-	<div class="tab-pane fade" id="unitCardArt"><div id="unitimageacc"></div></div>
+	<div class="tab-pane fade" id="unitCardArt">
+	    	<div class="row"><div class="col-xs-12 col-md-12">
+			<div id="unitimageacc" style="position:inherit;"></div>
+		</div></div>
+	</div>
 	<!--Evolutionary-->
   	<div class="tab-pane fade" id="evolutionary"><div id="evoTab" class="row"></div></div>
 </div><!--End Tab Content-->
@@ -858,8 +935,5 @@ $(document).on("click", "#pimpBtn", function(){
     </div>
   </div>
 </div>
-
-<!--Chatroom-->
-<script id="sid0020000073204835322">(function() {function async_load(){s.id="cid0020000073204835322";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204835322'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
 </html>
