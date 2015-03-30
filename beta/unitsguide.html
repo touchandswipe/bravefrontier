@@ -855,7 +855,6 @@ function initialize(fusionData) {
 	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
 	      var ovseries = ovdata2[0]["series"];
 	      var ovicon = ovdata2[0]["iconref"];
-	      var ovimage = ovdata2[0]["image"];
 	      var ovelement = ovdata2[0]["element"];
 	      var ovcost = ovdata2[0]["cost"];
 	      var ovhits = ovdata2[0]["hits"];
@@ -1148,7 +1147,7 @@ function initialize(fusionData) {
 	ovHTML+='</td></tr></table>'
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovimage+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
