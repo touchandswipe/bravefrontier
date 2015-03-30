@@ -238,12 +238,28 @@ $.getJSON( serverSelect, function( unit ) {
         }
         /*Parsing code here*/
         if (idFound) {
+          /*ID*/
           if (serverSelect.search('/eu/')!=-1)
             exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
           else if (serverSelect.search('/kr/')!=-1)
             exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
           else
             exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+          
+          /*NAME*/
+          if (valObj.name)
+              exportSTR+='<td>'+valObj.name+'</td>'
+          else exportSTR+='<td></td>';
+          
+          /*SERIES spacing and Element*/
+          if (valObj.element)
+              exportSTR+='<td></td><td style="text-transform: capitalize;">'+valObj.element+'</td>'
+          else exportSTR+='<td></td><td></td>';
+          
+          /*Rarity*/
+          if (valObj.rarity) {
+              exportSTR+='<td>'+valObj.rarity+'</td>'
+          } else exportSTR+='<td></td>';
           
           /*Parsing LS Skills*/
           var lsSkillFound=0;
@@ -603,6 +619,236 @@ $.getJSON( serverSelect, function( unit ) {
             exportSTR+="</td>";
           } /*End of Effects Loop*/
         } /*BB Types Loop*/
+        
+        /*Passive Skill,	Passive Condition,	BB Type,	SBB Type,	UBB Type spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*Cost and max lvl spacing*/
+        if (valObj.cost) {
+              exportSTR+='<td>'+valObj.cost+'</td><td></td>'
+          } else exportSTR+='<td></td><td></td>';
+          
+        /*normal hits*/
+        if (valObj.hits)
+          exportSTR+='<td>'+valObj.hits+'</td>'
+        else exportSTR+='<td></td>';
+        
+        /*bb hits*/  
+        if (valObj.bb)
+          if (valObj.bb.hits)
+            exportSTR+='<td>'+valObj.bb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*sbb hits*/
+        if (valObj.sbb)
+          if (valObj.sbb.hits)
+            exportSTR+='<td>'+valObj.sbb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*ubb hits*/
+        if (valObj.ubb)
+          if (valObj.ubb.hits)
+            exportSTR+='<td>'+valObj.ubb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else 
+          exportSTR+='<td></td>';
+              
+        /*bb fill*/
+        if (valObj.bb)
+          if (valObj.bb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*sbb fill*/
+        if (valObj.sbb)
+          if (valObj.sbb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*ubb fill*/    
+        if (valObj.ubb)
+          if (valObj.ubb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+            
+        /*Normal DC*/
+        if (valObj["max bc generated"])
+          exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*BB DC*/  
+        if (valObj.bb)
+          if (valObj["bb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+  
+        /*SBB DC*/  
+        if (valObj.sbb)
+          if (valObj["sbb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*UBB DC*/  
+        if (valObj.ubb)
+          if (valObj["ubb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*spacing for evo zel and gender*/
+        exportSTR+='<td></td><td></td>';
+        
+        /*gender*/
+        if (valObj.gender)
+            if (valObj.gender=="male")
+              exportSTR+='<td>Male</td>';
+            if (valObj.gender=="female")
+              exportSTR+='<td>Female</td>';
+            if (valObj.gender=="other")
+              exportSTR+='<td>Genderless</td>';
+          else
+            exportSTR+='<td></td>';
+            
+        /*notes, batch, type, global, japan spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*evo spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*stats*/
+        exportSTR+='<td></td>';
+        //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.def+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.rec+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.hp+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.def+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.rec+'</td>';
+        
+        exportSTR+='<td>'+Math.floor((valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.anima.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats.anima.def+'</td>';
+        exportSTR+='<td>'+((valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+valObj.stats.breaker.hp+'</td>';
+        exportSTR+='<td>'+((valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.breaker.rec+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["atk max"]-(valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["def max"]-(valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+valObj.stats.guardian.hp+'</td>';
+        exportSTR+='<td>'+((valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.guardian.rec+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.oracle.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats.oracle.def+'</td>';
+        exportSTR+='<td>'+((valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["hp max"]-(valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["rec max"]-(valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        
+        /*imp data*/
+        if (valObj.imp) {
+          exportSTR+='<td>'+valObj.imp["max hp"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max atk"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
+        } else {
+          exportSTR+='<td></td><td></td><td></td><td></td>';
+        }
+        
+        /*spacing for weighted*/
+        exportSTR+='<td></td>';
+        
+        /*bb atk%*/
+        bbFound=false;
+        if (valObj.bb) {
+            for (i in valObj.bb.levels[9].effects) {
+              $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
+                  if (bbKey=="bb atk%" && !bbFound) {
+                    exportSTR+='<td>'+bbVal+'</td>';
+                    bbFound=true;
+                  }
+              })
+            }
+        }
+        if (!bbFound)
+          exportSTR+='<td></td>';
+          
+        /*sbb atk%*/
+        sbbFound=false;
+        if (valObj.sbb) {
+            for (i in valObj.sbb.levels[9].effects) {
+              $.each(valObj.sbb.levels[9].effects[i], function(sbbKey,sbbVal) {
+                  if (sbbKey=="bb atk%" && !sbbFound) {
+                    exportSTR+='<td>'+sbbVal+'</td>';
+                    sbbFound=true;
+                  }
+              })
+            }
+        }
+        if (!sbbFound)
+          exportSTR+='<td></td>';
+          
+        /*ubb atk%*/
+        ubbFound=false;
+        if (valObj.ubb) {
+            for (i in valObj.ubb.levels[9].effects) {
+              $.each(valObj.ubb.levels[9].effects[i], function(ubbKey,ubbVal) {
+                  if (ubbKey=="bb atk%" && !ubbFound) {
+                    exportSTR+='<td>'+ubbVal+'</td>';
+                    ubbFound=true;
+                  }
+              })
+            }
+        }
+        if (!ubbFound)
+          exportSTR+='<td></td>';
+          
+        /*spacing for video, iconREF ID*/
+        if (serverSelect.search('/eu/')!=-1)
+          exportSTR+='<td></td><td>'+valObj.guide_id+'.1</td>';
+        else if (serverSelect.search('/kr/')!=-1)
+          exportSTR+='<td></td><td>'+valObj.guide_id+'.2</td>';
+        else
+          exportSTR+='<td></td><td>'+valObj.guide_id+'</td>';
+        
+        /*SystemID*/
+        exportSTR+='<td>'+unitKey+'</td>';
         
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
