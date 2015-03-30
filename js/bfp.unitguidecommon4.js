@@ -4,7 +4,7 @@ var deserialdata = {};
 var ovdata2 = {};
 var gURL = 'https://www.googleapis.com/fusiontables/v2/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
-var gTable = '1mt1vs-NCjdnl__v2Ik8Z2yNdidm2ayQlVobJatcf';
+var gTable = '1oPbzBF3Ru1fLmINUkI4LjrYTroqFRzP61FM6GkiJ';
 var prevStatsMod=[0,0,0,0,0];
 var sphereHTML='<option value="0,0.3,0.3,0.3">Alter Blade</option><option value="0,0.75,0,0">Angelic Foil</option><option value="0,0.3,0.3,0">Batootha</option><option value="0,0.15,0,0">Beast Blade</option><option value="0.1,0.1,0.1,0.1">Brave Crest</option><option value="0.35,0.35,0.35,0.35">Buffer Jewel</option><option value="0.1,0.1,0.1,0.1">Burny\'s Soul Stone</option><option value="0,0.1,0.1,0">Cordelicite</option><option value="0.3,0.3,0,0">Dandelga</option><option value="0,0.5,0.5,0.5">Divine Stone</option><option value="0.3,0,0.3,0">Drevas</option><option value="0,0,0.75,0">Exyl Shield</option><option value="0.1,0,0.1,0">Flesh Armor</option><option value="0,0,0.5,0.5">Gilded Pearl</option><option value="0.1,0,0.1,0">Goddess Seal</option><option value="0,0,0,0.15">Holy Cane</option><option value="0.15,0,0,0">Holy Robe</option><option value="0.1,0.05,0.1,0.05">Ihsir\'s Guise</option><option value="0.25,0.25,0.25,0.25">Legwand</option><option value="0.3,0,0.3,0">Leomurg</option><option value="0.3,0,0,0.3">Lexida</option><option value="0.1,0,0.1,0.1">Limbo Stone</option><option value="0.15,0.15,0.15,0.15">Magic Device</option><option value="0.3,0.3,0.3,0.3">Malice Jewel</option><option value="0,0.75,0.75,0">Masamune</option><option value="0.05,0.05,0.05,0.05">Mech Sword</option><option value="0.2,0.2,0.2,0.2">Medulla Gem</option><option value="0,0.5,0,0">Muramasa</option><option value="0.2,0.25,0.2,0.2">Providence Ring</option><option value="0,0,0.5,0">Royal Shield</option><option value="0.15,0.15,0.15,0.15">Sacred Jewel</option><option value="0,0.3,0.3,0">Yurias</option><option value="0,1,1,1">Wicked Blade</option>';
 var hpModHTML='<option value="0.1">10%</option><option value="0.2">20%</option><option value="0.25">25%</option><option value="0.3">30%</option><option value="0.35">35%</option><option value="0.4">40%</option>';
@@ -205,6 +205,12 @@ var evoQuery = [
 ['Thunder Machina Totem','icon810.png'],
 ['Light Machina Totem','icon811.png'],
 ['Dark Machina Totem','icon812.png'],
+['Fire Mecha God','icon807.png'],
+['Water Mecha God','icon808.png'],
+['Earth Mecha God','icon809.png'],
+['Thunder Mecha God','icon810.png'],
+['Light Mecha God','icon811.png'],
+['Dark Mecha God','icon812.png'],
 ['Fire Soul Crystal','iconitem11000.png'],
 ['Water Soul Crystal','iconitem11010.png'],
 ['Earth Soul Crystal','iconitem11020.png'],
@@ -212,10 +218,12 @@ var evoQuery = [
 ['Light Soul Crystal','iconitem11040.png'],
 ['Dark Soul Crystal','iconitem11050.png'],
 ['Miracle Sphere','iconitem111000.png'],
+['Legend Stone','iconitem111000.png'],
 ['Turbo Cyclaw','icon8106.png'],
 ['Turbo Hydraloid','icon8118.png'],
 ['Turbo Netherhound','icon8133.png'],
 ['Turbo Euryalis','icon8151.png'],
+['Turbo Grievesnare','icon8157.png'],
 ['Blighted Fei','icon8146.png'],
 ['Fire Tone','icon8137.png'],
 ['Water Tone','icon8138.png'],
@@ -223,6 +231,7 @@ var evoQuery = [
 ['Thunder Tone','icon8140.png'],
 ['Light Tone','icon8141.png'],
 ['Dark Tone','icon8142.png'],
+['Northmen Idol','icon726.1.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
