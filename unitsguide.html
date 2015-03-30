@@ -749,7 +749,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="'+drawObj[i]["icon"]+'" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -780,7 +780,7 @@ function initialize(fusionData) {
 				'rarity':deserialdata[i]["rarity"],
 				'element':deserialdata[i]["element"],
 				'name':deserialdata[i]["name"],
-				'icon':deserialdata[i]["icon"]
+				'icon':deserialdata[i]["iconref"]
 		    });
 		    break;
 		}
