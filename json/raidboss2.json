@@ -574,7 +574,7 @@
         "黒邪瞳晶": {"Eng":"Magical Beast Heart","icon":"item_thum_1105.png"}
       },
     "missions": [
-      "RC5M2"
+      "RC5M2,RC5M7"
     ]
   },
   "Medanche": {
@@ -618,7 +618,7 @@
         "炎麟の羽": {"Eng":"Bright Flame Leaf","icon":"item_thum_200.png"}
       },
     "missions": [
-      "RC5M5"
+      "RC5M5,RC5M7"
     ]
   },
   "Queen Pula": {
@@ -640,7 +640,71 @@
         "吸命の花心": {"Eng":"Absorption Heart","icon":"item_thum_100.png"}
       },
     "missions": [
-      "RC5M6"
+      "RC5M6,RC5M10"
+    ]
+  },
+"Estreit": {
+    "id": "24",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Head",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Wing",
+        "element": "light",
+        "weakails": "curse"
+      }
+    ],
+    "drops": {
+        "蒼龍の光鱗": {"Eng":"Dragon's Light Scale","icon":"item_thum_801.png"},
+        "如幻蒼玉": {"Eng":"Illusionary Jade","icon":"item_thum_1101.png"}
+      },
+    "missions": [
+      "RC5M8,RC5M10"
+    ]
+  },
+"Alkemu": {
+    "id": "25",
+    "bodyparts": [
+      {
+        "partname": "Fire",
+        "element": "fire",
+        "weakails": ""
+      },
+      {
+        "partname": "Water",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Earth",
+        "element": "earth",
+        "weakails": ""
+      },
+      {
+        "partname": "Thunder",
+        "element": "thunder",
+        "weakails": ""
+      },
+      {
+        "partname": "Dark",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "狂神の赤晶石": {"Eng":"Mad God Red Crystal","icon":"item_thum_1100.png"},
+        "暗禍の神核": {"Eng":"Curse Core","icon":"item_thum_1105.png"}
+      },
+    "missions": [
+      "RC5M9,RC5M10"
     ]
   }
 }
