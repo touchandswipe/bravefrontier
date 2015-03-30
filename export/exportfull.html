@@ -724,15 +724,15 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td><td></td>';
         
         /*gender*/
-        if (valObj.gender)
+        if (valObj.gender) {
             if (valObj.gender=="male")
               exportSTR+='<td>Male</td>';
             if (valObj.gender=="female")
               exportSTR+='<td>Female</td>';
             if (valObj.gender=="other")
               exportSTR+='<td>Genderless</td>';
-          else
-            exportSTR+='<td></td>';
+        } else
+          exportSTR+='<td></td>';
             
         /*notes, batch, type, global, japan spacings*/
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
