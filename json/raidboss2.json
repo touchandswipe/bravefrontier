@@ -198,7 +198,7 @@
       {
         "partname": "Lower Wing",
         "element": "dark",
-        "weakails": "curse"
+        "weakails": "curse,poison"
       }
     ],
     "drops": {
@@ -235,7 +235,7 @@
       {
         "partname": "Wing",
         "element": "thunder",
-        "weakails": "weak"
+        "weakails": "weak,poison"
       }
     ],
     "drops": {
