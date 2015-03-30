@@ -574,7 +574,8 @@
         "黒邪瞳晶": {"Eng":"Magical Beast Heart","icon":"item_thum_1105.png"}
       },
     "missions": [
-      "RC5M2,RC5M7"
+      "RC5M2",
+      "RC5M7"
     ]
   },
   "Medanche": {
@@ -618,7 +619,8 @@
         "炎麟の羽": {"Eng":"Bright Flame Leaf","icon":"item_thum_200.png"}
       },
     "missions": [
-      "RC5M5,RC5M7"
+      "RC5M5",
+      "RC5M7"
     ]
   },
   "Queen Pula": {
@@ -640,7 +642,8 @@
         "吸命の花心": {"Eng":"Absorption Heart","icon":"item_thum_100.png"}
       },
     "missions": [
-      "RC5M6,RC5M10"
+      "RC5M6",
+      "RC5M10"
     ]
   },
 "Estreit": {
@@ -667,7 +670,8 @@
         "如幻蒼玉": {"Eng":"Illusionary Jade","icon":"item_thum_1101.png"}
       },
     "missions": [
-      "RC5M8,RC5M10"
+      "RC5M8",
+      "RC5M10"
     ]
   },
 "Alkemu": {
@@ -704,7 +708,8 @@
         "暗禍の神核": {"Eng":"Curse Core","icon":"item_thum_1105.png"}
       },
     "missions": [
-      "RC5M9,RC5M10"
+      "RC5M9",
+      "RC5M10"
     ]
   }
 }
