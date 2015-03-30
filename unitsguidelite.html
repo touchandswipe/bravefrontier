@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (Ultima R3) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide Lite (Bonkers R1) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (Ultima R3) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite (Bonkers R1) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
@@ -125,10 +125,10 @@
     .clear {clear:both;}
     </style>
 <!-- START JSON Code-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon3.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon4.js"></script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -195,7 +195,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Icon','Element' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','IconREF','Element' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -282,8 +282,7 @@ function openCard(whatunit) {
 	      var ovid = ovdata2[0]["id"];
 	      var ovname = ovdata2[0]["name"];
 	      var ovseries = ovdata2[0]["series"];
-	      var ovicon = ovdata2[0]["icon"];
-	      var ovimage = ovdata2[0]["image"];
+	      var ovicon = ovdata2[0]["iconref"];
 	      var ovelement = ovdata2[0]["element"];
 	      var ovcost = ovdata2[0]["cost"];
 	      var ovhits = ovdata2[0]["hits"];
@@ -388,7 +387,7 @@ function openCard(whatunit) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["icon"]
+			'icon':deserialdata[i]["iconref"]
 			})
 		}
 	    }
@@ -401,10 +400,10 @@ function openCard(whatunit) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if (evotrail[i].id==ovid) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+evotrail[i]["icon"]+'" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -412,7 +411,7 @@ function openCard(whatunit) {
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovicon+'" width="60"/></td>'
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" width="60"/></td>'
 	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
@@ -576,9 +575,9 @@ function openCard(whatunit) {
 	ovHTML+='</td></tr></table>';
 	$('#unitCardHome').html(ovHTML);
 	/*Unit Art and Lore*/
-	    var artLoreHTML='<img src="'+ovimage+'" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovicon+'" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
@@ -851,7 +850,7 @@ $(document).on("click", "#pimpBtn", function(){
 <script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
 
 <!-- disqus discussion -->
-<div id="disqus_thread" style="width:100%;margin:0px 10px;"></div>
+<div id="disqus_thread" style="width:100%;margin:0;"></div>
     <script type="text/javascript">
 	var disqus_shortname = 'bravefrontierpros';
 	var disqus_url = location.protocol + '//' + location.host + location.pathname;
