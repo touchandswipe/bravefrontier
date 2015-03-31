@@ -213,6 +213,13 @@ ul {
     	min-height:300px;
     }
     /*styles for recent units*/
+    .unitBox {
+        opacity:0;
+        -moz-transition: opacity 2s ease-in;
+        -webkit-transition: opacity 2s ease-in;
+        -o-transition: opacity 2s ease-in;
+        transition: opacity 2s ease-in;
+    }
     .imgShdw {
         width:70%;
         min-width:38px;
@@ -220,28 +227,28 @@ ul {
         padding: 3px 0px 10px;
     }
     .imgFire {
-        -webkit-filter: drop-shadow(0px 0px 5px #F00);
-    	filter: drop-shadow(0px 0px 5px #F00);
+        -webkit-filter: drop-shadow(0px 0px 3px #F00);
+    	filter: drop-shadow(0px 0px 3px #F00);
     }
     .imgWater {
-        -webkit-filter: drop-shadow(0px 0px 5px #00F);
-    	filter: drop-shadow(0px 0px 5px #00F);
+        -webkit-filter: drop-shadow(0px 0px 3px #00F);
+    	filter: drop-shadow(0px 0px 3px #00F);
     }
     .imgEarth {
-        -webkit-filter: drop-shadow(0px 0px 5px #0F0);
-    	filter: drop-shadow(0px 0px 5px #0F0);
+        -webkit-filter: drop-shadow(0px 0px 3px #0F0);
+    	filter: drop-shadow(0px 0px 3px #0F0);
     }
     .imgThunder {
-        -webkit-filter: drop-shadow(0px 0px 5px #F90);
-    	filter: drop-shadow(0px 0px 5px #F90);
+        -webkit-filter: drop-shadow(0px 0px 3px #F90);
+    	filter: drop-shadow(0px 0px 3px #F90);
     }
     .imgLight {
-        -webkit-filter: drop-shadow(0px 0px 6px #FFF);
-    	filter: drop-shadow(0px 0px 6px #FFF);
+        -webkit-filter: drop-shadow(0px 0px 3px #FFF);
+    	filter: drop-shadow(0px 0px 3px #FFF);
     }
     .imgDark {
-        -webkit-filter: drop-shadow(0px 0px 5px #C09);
-    	filter: drop-shadow(0px 0px 5px #C09);
+        -webkit-filter: drop-shadow(0px 0px 3px #C09);
+    	filter: drop-shadow(0px 0px 3px #C09);
     }
     .kdb-r {
         background:rgba(255,225,0,0.8);
@@ -328,7 +335,9 @@ ul {
     	margin-bottom:5px;
     }
     .partners {
-        margin-bottom:5px;
+        margin-bottom: 8px;
+        -webkit-filter: drop-shadow(0px 0px 2px #FFF);
+        filter: drop-shadow(0px 0px 2px #FFF);
     }
     .author {
         margin:5px 0 5px -12px;
@@ -665,7 +674,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 			outputArray.push({"id":fusionData.rows[i][fusionData.columns.indexOf('ID')],"rarity":fusionData.rows[i][fusionData.columns.indexOf('Rarity')],"name":fusionData.rows[i][fusionData.columns.indexOf('Name')],"element":fusionData.rows[i][fusionData.columns.indexOf('Element')]});
 		}
 		for (i in outputArray) {
-			outputHTML+='<div class="col-xs-2 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguidelite?unit='+outputArray[i].id+'" title="'+outputArray[i].name+'" target="unitsguide"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png"/><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></a></div>';
+			outputHTML+='<div class="unitBox col-xs-2 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguidelite?unit='+outputArray[i].id+'" title="'+outputArray[i].name+'" target="unitsguide"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png"/><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></a></div>';
 		}
 		if (serverShortName=="jp")
 		    var longName="Japan"
@@ -675,10 +684,18 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
             outputHTML=""
         else {
 		    outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-search"></i> '+outputArray.length+' '+longName+' new unit(s) in '+monthNames[d.getMonth()]+' '+d.getFullYear()+'</h5></div>'+outputHTML;
-		$('#recentUnits'+serverShortName).html(outputHTML);
+		    $('#recentUnits'+serverShortName).html(outputHTML);
+		    /*trigger event*/
+        	$(".imgShdw").on("load",function() {
+                $(this).css("opacity",1)
+                $(this).parents('.unitBox').css("opacity",1)
+            }).each(function() {
+                if(this.complete)
+                    $(this).load()
+            });
         }
 	  }
-	})
+	});
 }
 </script>
 {/block:IndexPage}
@@ -1100,10 +1117,11 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
             <h3>Partner YouTubers</h3>
-            <a href="http://www.youtube.com/user/protoscope7" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_protoscope.jpg" class="img-responsive partners" title="Protoscope YouTube Gaming Channel"></a>
+            <a href="http://www.youtube.com/user/protoscope7" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_protoscope.jpg" class="img-responsive partners" title="Protoscope Gaming Channel"></a>
+            <a href="http://www.youtube.com/user/MilkoLicious" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_milko.jpg" class="img-responsive partners" title="Milko Gaming Videos"></a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
-            <h3>Connect with me</h3>
+            <h3>Follow me</h3>
             			<a class="socialbtns" href="http://www.facebook.com/bravefrontierpros"><i class="fa fa-facebook fa-2x"></i></a>
             			<a class="socialbtns" href="http://plus.google.com/b/109365694989406335924/+bravefrontierpros/posts"><i class="fa fa-google-plus fa-2x"></i></a>
             			<a class="socialbtns" href="http://twitter.com/SamGreenPuck"><i class="fa fa-twitter fa-2x"></i></a>
@@ -1126,21 +1144,21 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 </div> <!-- /container -->
 <script src="//touchandswipe.github.io/bravefrontier/js/pxuPhotoset.min.js"></script>
 <script type="text/javascript">
-document.querySelector('#nav-toggle').addEventListener('click', function () {
-    this.classList.toggle('active');
-    if ($('#overlayC').hasClass('close')) {
-    	$('#overlayC').removeClass('close');
-    	$('#overlayC').addClass('open');
-    }
-    else {
-	$('#overlayC').removeClass('open');
-    	$('#overlayC').addClass('close');
-    }
-})
+    $('#nav-toggle').on('click', function () {
+        this.classList.toggle('active');
+        if ($('#overlayC').hasClass('close')) {
+        	$('#overlayC').removeClass('close');
+        	$('#overlayC').addClass('open');
+        }
+        else {
+    	    $('#overlayC').removeClass('open');
+        	$('#overlayC').addClass('close');
+        }
+    })
 
     $(document).ready(function() {
         $('.photo-slideshow').pxuPhotoset({
-            'ligthbox' : true,
+            'lightbox' : true,
             'gutter' : '2px',
             'rounded' : 'false',
             'photoset'  : '.photo-slideshow'
@@ -1148,10 +1166,10 @@ document.querySelector('#nav-toggle').addEventListener('click', function () {
             $(this).animate({opacity:1});
         });
         {block:IndexPage}
-        	getRecentUnits("jp");
-        	getRecentUnits("gl");
+        getRecentUnits("jp");
+        getRecentUnits("gl");
     	{/block:IndexPage}
-});
+    })
 </script>
 {block:IndexPage}
     <script src="//touchandswipe.github.io/bravefrontier/js/salvattore.min.js"></script>
