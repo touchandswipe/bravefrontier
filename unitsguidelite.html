@@ -440,14 +440,14 @@ function openCard(whatunit) {
 	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
-	      if (ovrarity > 5) {
+	      if (ovsbbskill != "") {
 		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
 		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
 	      }
-	      if (ovrarity > 6) {
+	      if (ovubbskill != "") {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
 		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['ubb atk%'] != "-")
