@@ -1231,23 +1231,23 @@ function initialize(fusionData) {
 	      for (i in units) {
 			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
-		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
-		cHTML+='<tr><td class="active"><b>Unit</b></td>';
+		cHTML+='<tr><td class="btn-warning" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
+		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
 	      for (i in units) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
 		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
 		  else {var ovgender = ' <i class="fa fa-question text-muted"></i> '}
 		  cHTML+='<td><kbd>'+cData[i]['id']+'</kbd>'+ovgender+cData[i]['name']+'</td>' }
-	      cHTML+='</tr><tr><td class="active"><i class="fa fa-star"></i><b> / Cost</b></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><i class="fa fa-star"></i><b> / Cost</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['rarity']+'<i class="fa fa-star"></i> / '+cData[i]['cost']+'</td>' }
 	      /*Compare skills*/
-	      cHTML+='</tr><tr data-toggle="collapse" data-target=".compSkillsRows"><td class="text-center" colspan="'+(units.length+1)+'"><i class="fa fa-caret-down"></i> Compare Skills <i class="fa fa-caret-down"></i></td></tr>';
-	      cHTML+='<tr class="compSkillsRows"><td class="active"><b>Leader</b></td>';
+	      cHTML+='</tr><tr data-toggle="collapse" data-target=".compSkillsRows"><td class="text-center btn-info" colspan="'+(units.length+1)+'"><i class="fa fa-caret-down"></i> Compare Skills <i class="fa fa-caret-down"></i></td></tr>';
+	      cHTML+='<tr class="compSkillsRows collapse"><td class="btn-default"><b>Leader</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['leader skill']+'</td>' }
-	      cHTML+='</tr><tr class="compSkillsRows"><td class="active"><b>BB</b></td>';
+	      cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>BB</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['bb skill']+'</td>' }
 		/*sbb*/
@@ -1257,7 +1257,7 @@ function initialize(fusionData) {
 	      	else
 	      		var sbbCompare=true;
 	      if (sbbCompare) {
-	      	cHTML+='</tr><tr class="compSkillsRows"><td class="active"><b>SBB</b></td>';
+	      	cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>SBB</b></td>';
 	      	for (i in units)
 		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>';
 	      }
@@ -1268,38 +1268,38 @@ function initialize(fusionData) {
 	      	else
 	      		var ubbCompare=true;
 	      if (ubbCompare) {
-	      	cHTML+='</tr><tr class="compSkillsRows"><td class="active"><b>UBB</b></td>';
+	      	cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>UBB</b></td>';
 	      	for (i in units)
 		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>';
 	      }
-	      cHTML+='</tr><tr><td class="active"><b>Hits (N/BB/SBB/UBB)</b></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><b>Hits (N/BB/SBB/UBB)</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['hits']+' / '+cData[i]['bb hits']+' / '+cData[i]['sbb hits']+' / '+cData[i]['ubb hits']+'</td>' }
-	      cHTML+='</tr><tr><td class="active"><b>Fill (BB/SBB/UBB)</b></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><b>Fill (BB/SBB/UBB)</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['bb fill']+' / '+cData[i]['sbb fill']+' / '+cData[i]['ubb fill']+'</td>' }
-	      cHTML+='</tr><tr><td class="active"><div class="statsInfo" data-toggle="tooltip" title="Weighted Stats based on Lord type. 1/3 HP, 100% HP ATK DEF, 75% REC"><i class="fa fa-info-circle"></i> <b>Wt stats</b></div></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" title="Weighted Stats based on Lord type. 1/3 HP, 100% HP ATK DEF, 75% REC"><i class="fa fa-info-circle"></i> <b>Wt stats</b></div></td>';
 	      for (i in units) {
 		  if ( isNaN(cData[i]['weighted stats (lord)']) ) {
 		      cData[i]['weighted stats (lord)']='-';
 		  } else { cData[i]['weighted stats (lord)']=Math.round(cData[i]['weighted stats (lord)']); }
 		  cHTML+='<td>'+cData[i]['weighted stats (lord)']+'</td>' }
-	      cHTML+='</tr><tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Oracle) to (Lord) to High (Anima) HP"><i class="fa fa-info-circle"></i> <b>HP range</b></div></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Oracle) to (Lord) to High (Anima) HP"><i class="fa fa-info-circle"></i> <b>HP range</b></div></td>';
 	      for (i in units) {
 		  cHTML+='<td><span class="hpMod text-danger">'+cData[i]['hp oracle']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-info">'+cData[i]['hp lord']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-success">'+cData[i]['hp anima']+'</span></td>' }
-	      cHTML+='</tr><tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Guardian) to (Lord) to High (Breaker) ATK"><i class="fa fa-info-circle"></i> <b>ATK range</b></div></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Guardian) to (Lord) to High (Breaker) ATK"><i class="fa fa-info-circle"></i> <b>ATK range</b></div></td>';
 	      for (i in units) {
 		  cHTML+='<td><span class="atkMod text-danger">'+cData[i]['atk guardian']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-info">'+cData[i]['atk lord']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-success">'+cData[i]['atk breaker']+'</span></td>' }
-	      cHTML+='</tr><tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Breaker) to (Lord) to High (Guardian) DEF"><i class="fa fa-info-circle"></i> <b>DEF range</b></div></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Breaker) to (Lord) to High (Guardian) DEF"><i class="fa fa-info-circle"></i> <b>DEF range</b></div></td>';
 	      for (i in units) {
 		  cHTML+='<td><span class="defMod text-danger">'+cData[i]['def breaker']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-info">'+cData[i]['def lord']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-success">'+cData[i]['def guardian']+'</span></td>' }
-	      cHTML+='</tr><tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Anima) to (Lord) to High (Oracle) REC"><i class="fa fa-info-circle"></i> <b>REC range</b></div></td>';
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Anima) to (Lord) to High (Oracle) REC"><i class="fa fa-info-circle"></i> <b>REC range</b></div></td>';
 	      for (i in units) {
 		  cHTML+='<td><span class="recMod text-danger">'+cData[i]['rec anima']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-info">'+cData[i]['rec lord']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-success">'+cData[i]['rec oracle']+'</span></td>' }
 
 /*Modifications*/
 cHTML+='</tr><tr data-toggle="collapse" data-target=".compRows"><td colspan="'+(units.length+1)+'" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>';
-cHTML+='<tr class="compRows collapse out"><td><b>Leader skill</b></td>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Leader skill</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select id="lsHP" class="form-control lskill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
 	+'<select class="form-control lskill input-sm sp2" id="lsATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
@@ -1307,7 +1307,7 @@ cHTML+='<div class="form-inline"><select id="lsHP" class="form-control lskill in
 	+'<select class="form-control lskill input-sm sp2" id="lsREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
 	
-cHTML+='<tr class="compRows collapse out"><td><b>Ally skill</b></td>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Ally skill</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select id="asHP" class="form-control askill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
@@ -1315,7 +1315,7 @@ cHTML+='<div class="form-inline"><select id="asHP" class="form-control askill in
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
 
-cHTML+='<tr class="compRows collapse out"><td><b>Extra skill</b></td>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Extra skill</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
 	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
@@ -1323,7 +1323,7 @@ cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill in
 	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
 
-cHTML+='<tr class="compRows collapse out"><td><b>Spheres</b></td>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Spheres</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
 	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
