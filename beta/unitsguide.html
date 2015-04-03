@@ -1201,7 +1201,7 @@ function initialize(fusionData) {
   		'title': "Brave Frontier PROs Compare "+units
 	});
 	
-	for (var i=0; i < units.length; i++) {
+	for (i in units) {
 	    qunitname += "'"+units[i].replace("'","\\'")+"'";
 	    if ( i != units.length-1 ) { 
 		qunitname += ",";
@@ -1228,55 +1228,60 @@ function initialize(fusionData) {
 	      cHTML = '<tbody><tr><td>&nbsp;</td>';
 	      
 	      /*Construct comparison*/
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
 		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<td class="active"><b>Unit</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
 		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
 		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
 		  else {var ovgender = ' <i class="fa fa-question text-muted"></i> '}
 		  cHTML+='<td><kbd>'+cData[i]['id']+'</kbd>'+ovgender+cData[i]['name']+'</td>' }
 	      cHTML+='</tr><td class="active"><i class="fa fa-star"></i><b> / Cost</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['rarity']+'<i class="fa fa-star"></i> / '+cData[i]['cost']+'</td>' }
 	      cHTML+='</tr><td class="active"><b>Leader</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['leader skill']+'</td>' }
 	      cHTML+='</tr><td class="active"><b>BB</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['bb skill']+'</td>' }
 	      cHTML+='</tr><td class="active"><b>SBB</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>' }
-	      cHTML+='</tr><td class="active"><b>UBB</b></td>';
-	      for (var i=0; i < units.length; i++) {
-		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>' }
+	      for (i in units)
+	      	if (cData[i]['ubb skill']=="")
+	      		var ubbCompare=false;
+	      if (!ubbCompare) {
+	      	cHTML+='</tr><td class="active"><b>UBB</b></td>';
+	      	for (var i=0; i < units.length; i++)
+		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>';
+	      }
 	      cHTML+='</tr><td class="active"><b>Hits (N/BB/SBB/UBB)</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['hits']+' / '+cData[i]['bb hits']+' / '+cData[i]['sbb hits']+' / '+cData[i]['ubb hits']+'</td>' }
 	      cHTML+='</tr><td class="active"><b>Fill (BB/SBB/UBB)</b></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['bb fill']+' / '+cData[i]['sbb fill']+' / '+cData[i]['ubb fill']+'</td>' }
 	      cHTML+='</tr><td class="active"><div class="statsInfo" data-toggle="tooltip" title="Weighted Stats based on Lord type. 1/3 HP, 100% HP ATK DEF, 75% REC"><i class="fa fa-info-circle"></i> <b>Wt stats</b></div></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  if ( isNaN(cData[i]['weighted stats (lord)']) ) {
 		      cData[i]['weighted stats (lord)']='-';
 		  } else { cData[i]['weighted stats (lord)']=Math.round(cData[i]['weighted stats (lord)']); }
 		  cHTML+='<td>'+cData[i]['weighted stats (lord)']+'</td>' }
 	      cHTML+='</tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Oracle) to (Lord) to High (Anima) HP"><i class="fa fa-info-circle"></i> <b>HP range</b></div></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td><span class="hpMod text-danger">'+cData[i]['hp oracle']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-info">'+cData[i]['hp lord']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-success">'+cData[i]['hp anima']+'</span></td>' }
 	      cHTML+='</tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Guardian) to (Lord) to High (Breaker) ATK"><i class="fa fa-info-circle"></i> <b>ATK range</b></div></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td><span class="atkMod text-danger">'+cData[i]['atk guardian']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-info">'+cData[i]['atk lord']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-success">'+cData[i]['atk breaker']+'</span></td>' }
 	      cHTML+='</tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Breaker) to (Lord) to High (Guardian) DEF"><i class="fa fa-info-circle"></i> <b>DEF range</b></div></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td><span class="defMod text-danger">'+cData[i]['def breaker']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-info">'+cData[i]['def lord']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-success">'+cData[i]['def guardian']+'</span></td>' }
 	      cHTML+='</tr><td class="active"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Anima) to (Lord) to High (Oracle) REC"><i class="fa fa-info-circle"></i> <b>REC range</b></div></td>';
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  cHTML+='<td><span class="recMod text-danger">'+cData[i]['rec anima']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-info">'+cData[i]['rec lord']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-success">'+cData[i]['rec oracle']+'</span></td>' }
 
 /*Modifications*/
@@ -1315,7 +1320,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	      $('#compareTable').html(cHTML);
 	      /*Sprite check Own*/
 	      $('#squadChange').html(''); /*Clear Buttons*/
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
 		  $('#squadChange').append('<button type="button" class="btn btn-default btn-sm squadALL" style="margin:3px;" value="'+i+'">'+cData[i]['name']+'</button>');
 		  var squadEle='#squadUnit'+(i+1);
@@ -1327,7 +1332,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		    })
 	      }
 	      /*Sprite check OPPONENTS*/
-	      for (var i=0; i < units.length; i++) {
+	      for (i in units) {
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
 		  var squadOppEle='#squadOpp'+(i+1);
 		  oppSquad[i]=ovsprite;
