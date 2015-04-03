@@ -724,34 +724,41 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on itemtype filters*/
+/*itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
-	itemRun($(this).text());
+    itemRun($(this).text());
 })
 
-/*Update URL based on spheretype filters*/
+/*matstype filters*/
+$(document).on("click", '.matsType', function(e){
+    e.preventDefault();
+    alert($(this).attr("data-value"));
+    matsRun($(this).attr("data-value"));
+})
+
+/*spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
-	sphereRun($(this).text());
+    sphereRun($(this).text());
 })
 
-/*Update URL based on Effect*/
+/*Effect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
-	skillRun($(this).text());
+    skillRun($(this).text());
 })
 
-/*Update URL based on search filters*/
+/* search filters*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
-	searchNameRun()
+    searchNameRun()
 })
 
-/*Update URL based on search filters*/
+/*ingrediants search filters*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
-	searchIngredientRun()
+    searchIngredientRun()
 })
 
 $(document).ready( function(e) {
