@@ -1231,7 +1231,7 @@ function initialize(fusionData) {
 	      for (i in units) {
 			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
-		cHTML+='<tr><td class="btn-warning" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
+		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
 	      for (i in units) {
 		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
@@ -1243,7 +1243,7 @@ function initialize(fusionData) {
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['rarity']+'<i class="fa fa-star"></i> / '+cData[i]['cost']+'</td>' }
 	      /*Compare skills*/
-	      cHTML+='</tr><tr data-toggle="collapse" data-target=".compSkillsRows"><td class="text-center btn-info" colspan="'+(units.length+1)+'"><i class="fa fa-caret-down"></i> Compare Skills <i class="fa fa-caret-down"></i></td></tr>';
+	      cHTML+='</tr><tr data-toggle="collapse" data-target=".compSkillsRows"><td class="text-center btn-info" colspan="'+(units.length+1)+'"><i class="fa fa-caret-down"></i> Compare skills <i class="fa fa-caret-down"></i></td></tr>';
 	      cHTML+='<tr class="compSkillsRows collapse"><td class="btn-default"><b>Leader</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['leader skill']+'</td>' }
