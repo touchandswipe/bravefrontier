@@ -1248,15 +1248,26 @@ function initialize(fusionData) {
 	      cHTML+='</tr><td class="active"><b>BB</b></td>';
 	      for (i in units) {
 		  cHTML+='<td>'+cData[i]['bb skill']+'</td>' }
-	      cHTML+='</tr><td class="active"><b>SBB</b></td>';
-	      for (i in units) {
-		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>' }
+		/*sbb*/
+	      for (i in units)
+	      	if (cData[i]['sbb skill']=="")
+	      		var sbbCompare=false;
+	      	else
+	      		var sbbCompare=true;
+	      if (sbbCompare) {
+	      	cHTML+='</tr><td class="active"><b>SBB</b></td>';
+	      	for (i in units)
+		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>';
+	      }
+	      /*ubb*/
 	      for (i in units)
 	      	if (cData[i]['ubb skill']=="")
 	      		var ubbCompare=false;
-	      if (!ubbCompare) {
+	      	else
+	      		var ubbCompare=true;
+	      if (ubbCompare) {
 	      	cHTML+='</tr><td class="active"><b>UBB</b></td>';
-	      	for (var i=0; i < units.length; i++)
+	      	for (i in units)
 		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>';
 	      }
 	      cHTML+='</tr><td class="active"><b>Hits (N/BB/SBB/UBB)</b></td>';
