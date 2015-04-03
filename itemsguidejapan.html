@@ -93,6 +93,81 @@ if (window.location.hash == '#_=_') {
 <i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
 </div>
 
+<h3 style="margin-top:0px;">Brave Frontier Items Guide - <span class="text-danger">Japan</span></h3>
+<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+
+<!-- items type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Items by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
+</div>
+<!-- New type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="matsTypeList">
+  	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_20\d\.png">Feather</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_30\d\.png">Nut</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_40\d\.png">Drop</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_50\d\.png">Claw</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_60\d\.png">Fang</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_70\d\.png">Eyes</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_80\d\.png">Pelt</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_90\d\.png">Bone</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_100\d\.png">Bugs</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
+  </ul>
+</div>
+<!-- sphere type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
+</div>
+<!-- Item Effects -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by effects <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  <li><a href="#" class="skillEffect">hp% buff</a></li>
+    <li><a href="#" class="skillEffect">atk% buff</a></li>
+    <li><a href="#" class="skillEffect">def% buff</a></li>
+    <li><a href="#" class="skillEffect">rec% buff</a></li>
+    <li><a href="#" class="skillEffect">crit% buff</a></li>
+    <li><a href="#" class="skillEffect">first x turns atk%</a></li>
+    <li><a href="#" class="skillEffect">first x turns def%</a></li>
+    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
+    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
+    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
+    <li><a href="#" class="skillEffect">damage% for spark</a></li>
+    <li><a href="#" class="skillEffect">turn heal</a></li>
+    <li><a href="#" class="skillEffect">ignore def%</a></li>
+    <li><a href="#" class="skillEffect">gender required</a></li>
+    <li><a href="#" class="skillEffect">unique elements required</a></li>
+  </ul>
+</div>
+
+<!--Search item-->
+<div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
+        <input type="search" placeholder="e.g. 殲神剣エクセベルグ" class="form-control" id="searchNameBox">
+</div>
+
+<!--Search by ingredient-->
+<div class="input-group" style="margin-top:8px;margin-bottom:8px;">
+        <span class="input-group-btn">
+        <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
+        <input type="search" placeholder="e.g. 絆の皮" class="form-control" id="searchIngredientBox">
+</div>
+
 <!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
 <div id="google-ads-1"></div>
@@ -138,68 +213,10 @@ if (window.location.hash == '#_=_') {
       + google_ad_client + '" data-ad-slot="' 
       + google_ad_slot + '"></ins>'
     );
-  
     (adsbygoogle = window.adsbygoogle || []).push({});
  </script>
 </div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h2>Brave Frontier Items Guide - <span class="text-danger">Japan</span></h2>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
-
-<!-- items type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
-</div>
-<!-- sphere type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
-</div>
-<!-- Item Effects -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-  <li><a href="#" class="skillEffect">hp% buff</a></li>
-    <li><a href="#" class="skillEffect">atk% buff</a></li>
-    <li><a href="#" class="skillEffect">def% buff</a></li>
-    <li><a href="#" class="skillEffect">rec% buff</a></li>
-    <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">first x turns atk%</a></li>
-    <li><a href="#" class="skillEffect">first x turns def%</a></li>
-    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
-    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
-    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="skillEffect">damage% for spark</a></li>
-    <li><a href="#" class="skillEffect">turn heal</a></li>
-    <li><a href="#" class="skillEffect">ignore def%</a></li>
-    <li><a href="#" class="skillEffect">gender required</a></li>
-    <li><a href="#" class="skillEffect">unique elements required</a></li>
-  </ul>
-</div>
-
-
-<!--Search item-->
-<div class="input-group">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Find Item</button></span>
-        <input type="search" placeholder="e.g. 殲神剣エクセベルグ" class="form-control" id="searchNameBox">
-</div>
-
-<!--Search by ingredient-->
-<div class="input-group" style="margin-top:10px;">
-        <span class="input-group-btn">
-        <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. 絆の皮" class="form-control" id="searchIngredientBox">
-</div>
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
@@ -494,6 +511,38 @@ function itemRun(select) {
 	});
 }
 
+/*matstype Filter Search*/
+function matsRun(select) {
+    var sVal=new RegExp(select);
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for matching item type*/
+	    if ( rawParseObj[i].thumb.search(sVal)!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideJP_MatsTypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide JP Mats Type Filter'
+	});
+}
+
 /*spheretype Filter Search*/
 function sphereRun(select) {
     var sVal=select;
@@ -657,34 +706,40 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on itemtype filters*/
+/*itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
-	itemRun($(this).text());
+    itemRun($(this).text());
 })
 
-/*Update URL based on spheretype filters*/
+/*matstype filters*/
+$(document).on("click", '.matsType', function(e){
+    e.preventDefault();
+    matsRun($(this).attr("data-value"));
+})
+
+/*spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
-	sphereRun($(this).text());
+    sphereRun($(this).text());
 })
 
-/*Update URL based on Effect*/
+/*filterbased on Effect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
-	skillRun($(this).text());
+    skillRun($(this).text());
 })
 
-/*Update URL based on search filters*/
+/*name search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
-	searchNameRun()
+    searchNameRun()
 })
 
-/*Update URL based on search filters*/
+/*ingrdients search */
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
-	searchIngredientRun()
+    searchIngredientRun()
 })
 
 $(document).ready( function(e) {
