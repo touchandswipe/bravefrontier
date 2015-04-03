@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/typeaheadjs.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -40,7 +40,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="js/typeahead.bundle.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -148,19 +148,37 @@ if (window.location.hash == '#_=_') {
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- items type button -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Items by type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
+<!-- New type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Materials by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="matsTypeList">
+  	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_20\d\.png">Feather</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_30\d\.png">Nut</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_40\d\.png\.png">Claw</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_50\d\.png">Claw</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_60\d\.png">Fang</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_70\d\.png">Eyes</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_80\d\.png">Pelt</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_90\d\.png">Bone</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_100\d\.png">Bugs</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
+  </ul>
+</div>
 <!-- sphere type button -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by effect <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -425,7 +443,7 @@ function buildDB(unit) {
         /*Append each HTML*/
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -508,6 +526,38 @@ function itemRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideGL_TypeFilter',
   		'title': 'Brave Frontier PROs - Items Guide GL Type Filter'
+	});
+}
+
+/*matstype Filter Search*/
+function matsRun(select) {
+    var sVal=new RegExp(select);
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for matching item type*/
+	    if ( rawParseObj[i].thumb.search(sVal)!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideGL_MatsTypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide GL Mats Type Filter'
 	});
 }
 
