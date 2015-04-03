@@ -1422,7 +1422,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    evoCHTML+='<table id="compareTable" class="table table-hover table-striped table-bordered table-responsive table-condensed small"><thead><tr><th>Unit</th><th>Qty</th><th colspan="5">Evolution materials</th></tr></thead>';
 	    for (i=0;i<cData.length;i++){	    
 	    evoCHTML+='<tr>';
-	    evoCHTML+='<td><img src="'+cData[i]['icon']+'" width="40"/> <i class="fa fa-chevron-right text-muted"></i></td>';
+	    evoCHTML+='<td><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="40"/> <i class="fa fa-chevron-right text-muted"></i></td>';
 	    /*Check for blank and none*/
 	    if ( (cData[i]['evo 1']!="") && (cData[i]['evo 1']!="None") ) {
 		evoCHTML+='<td style="vertical-align:middle;"><div><select id="sEvoUnit'+i+'" class="form-control input-sm evoMatSelect">'+'><option value="0">0</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td>';
