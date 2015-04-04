@@ -99,6 +99,24 @@ if (window.location.hash == '#_=_') {
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
+<!-- New type button -->
+<div class="btn-group" style="margin-bottom:10px;">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="matsTypeList">
+  	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_20\d\.png">Feather</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_30\d\.png">Nut</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_40\d\.png">Drop</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_50\d\.png">Claw</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_60\d\.png">Fang</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_70\d\.png">Eyes</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_80\d\.png">Pelt</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_90\d\.png">Bone</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_100\d\.png">Bugs</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
+  </ul>
+</div>
 <!-- sphere type button -->
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
@@ -521,28 +539,10 @@ function buildDB(unit,server) {
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
-/* does not seem to work with Japanese 
-	var aheadNameRead = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		local: $.map(rawParseObj, function(uName) { return { value: uName.name }; })
-	});
-	aheadNameRead.initialize();
-	$('#searchNameBox').typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 1
-	},
-	{
-		displayKey: 'value',
-		source: aheadNameRead.ttAdapter()
-	});
-*/
-
     $("#unitCount").html(countVar);
     
     /*build item type*/
@@ -608,6 +608,38 @@ function itemRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_TypeFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified Type Filter'
+	});
+}
+
+/*matstype Filter Search*/
+function matsRun(select) {
+    var sVal=new RegExp(select);
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for matching item type*/
+	    if ( rawParseObj[i].thumb.search(sVal)!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_MatsTypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Mats Type Filter'
 	});
 }
 
@@ -774,31 +806,37 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on itemtype filters*/
+/*itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
     itemRun($(this).text());
 })
 
-/*Update URL based on spheretype filters*/
+/*matstype filters*/
+$(document).on("click", '.matsType', function(e){
+    e.preventDefault();
+    matsRun($(this).attr("data-value"));
+})
+
+/*spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
     sphereRun($(this).text());
 })
 
-/*Update URL based on Effect*/
+/*sphereEffect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
     skillRun($(this).text());
 })
 
-/*Update URL based on search filters*/
+/*search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
 	searchNameRun()
 })
 
-/*Update URL based on search filters*/
+/*ingredients search*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
     searchIngredientRun()
