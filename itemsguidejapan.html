@@ -443,7 +443,7 @@ function buildDB(unit) {
         /*Append each HTML*/
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
