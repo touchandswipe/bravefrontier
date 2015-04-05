@@ -376,7 +376,7 @@ function buildDB(unit) {
         nameSTR+='<b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Checks Effects*/
         if (valObj.effect) {
-        	effectSTR='<div class="row'><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div>';
+        	effectSTR='<div class="row"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div>';
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
             /*effects Heading*/
             effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
