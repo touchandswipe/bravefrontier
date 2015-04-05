@@ -15,6 +15,7 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .btnPad {margin-bottom:10px;}
     .bd {
         font-weight:bold;
         background:#EEEEEE;
@@ -277,7 +278,7 @@ if (window.location.hash == '#_=_') {
 
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
+<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. Recipes are unfortunately only available and kept up-to-date for English items. 
 </div>
 
 <!-- disqus discussion -->
@@ -454,6 +455,9 @@ function buildDB(unit,server) {
 	else
 		nameSTR+=valObj.name;
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        /*Recipes button for English named items only*/
+        if (dataGL[unitKey])
+        	nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+dataGL[unitKey]["name"]+'"><i class="fa fa-search"></i> Recipes using '+dataGL[unitKey]["name"]+'</button></div></div>';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -774,7 +778,7 @@ function searchIngredientRun() {
         outputHTML.push(outputObj[i].collapseCode);
         
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' recipes(s) using '+sVal+' found. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
@@ -846,6 +850,13 @@ $(document).on("click", '#searchIngredientBtn', function(e){
 $(document).on("click", '#viewRecipe', function(e){
     e.preventDefault();
     $('#searchIngredientBox').val($('#searchNameBox').val());
+    searchIngredientRun()
+})
+
+/*Recipe search btn*/
+$(document).on("click", '.recipeSearchBtn', function(e){
+    e.preventDefault();
+    $('#searchIngredientBox').val($(this).attr("data-value"));
     searchIngredientRun()
 })
 
