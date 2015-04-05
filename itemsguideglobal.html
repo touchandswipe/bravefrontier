@@ -28,6 +28,7 @@
         padding:3px;
         word-wrap: break-word;
     }
+    .btnPad {margin-bottom:10px;}
     .upper {
         text-transform:uppercase;
     }
@@ -374,6 +375,8 @@ function buildDB(unit) {
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
         nameSTR+='<b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        /*search for recipe*/
+        nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div></div>';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -661,6 +664,7 @@ function searchNameRun() {
   		'page': '/vurl/itemsguideGL_Search',
   		'title': 'Brave Frontier PROs - Items Guide GL Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Search by Ingredient*/
@@ -690,7 +694,7 @@ function searchIngredientRun() {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' recipes(s) using '+sVal+' found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
@@ -700,6 +704,7 @@ function searchIngredientRun() {
   		'page': '/vurl/itemsguideGL_Ingredients',
   		'title': 'Brave Frontier PROs - Items Guide GL Ingredients Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Binds Enter KEY to BOX*/
@@ -756,6 +761,13 @@ $(document).on("click", '#searchNameBtn', function(e){
 /*ingrediants search filters*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
+    searchIngredientRun()
+})
+
+/*Recipe search btn*/
+$(document).on("click", '.recipeSearchBtn', function(e){
+    e.preventDefault();
+    $('#searchIngredientBox').val($(this).attr("data-value"));
     searchIngredientRun()
 })
 
