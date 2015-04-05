@@ -15,6 +15,7 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .btnPad {margin-bottom:10px;}
     .bd {
         font-weight:bold;
         background:#EEEEEE;
@@ -777,7 +778,7 @@ function searchIngredientRun() {
         outputHTML.push(outputObj[i].collapseCode);
         
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' recipes(s) using '+sVal+' found. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
     	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
@@ -849,6 +850,13 @@ $(document).on("click", '#searchIngredientBtn', function(e){
 $(document).on("click", '#viewRecipe', function(e){
     e.preventDefault();
     $('#searchIngredientBox').val($('#searchNameBox').val());
+    searchIngredientRun()
+})
+
+/*Recipe search btn*/
+$(document).on("click", '.recipeSearchBtn', function(e){
+    e.preventDefault();
+    $('#searchIngredientBox').val($(this).attr("data-value"));
     searchIngredientRun()
 })
 
