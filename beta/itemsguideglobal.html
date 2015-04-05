@@ -28,6 +28,7 @@
         padding:3px;
         word-wrap: break-word;
     }
+    .btnPad {margin-botton:10px;}
     .upper {
         text-transform:uppercase;
     }
@@ -375,7 +376,7 @@ function buildDB(unit) {
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> ';
         nameSTR+='<b>'+valObj.name+'</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*search for recipe*/
-        nameSTR+='<div class="row"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div></div>';
+        nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div></div>';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -663,6 +664,7 @@ function searchNameRun() {
   		'page': '/vurl/itemsguideGL_Search',
   		'title': 'Brave Frontier PROs - Items Guide GL Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Search by Ingredient*/
@@ -702,6 +704,7 @@ function searchIngredientRun() {
   		'page': '/vurl/itemsguideGL_Ingredients',
   		'title': 'Brave Frontier PROs - Items Guide GL Ingredients Search'
 	});
+	window.scrollTo(0,0);
 }
 
 /*Binds Enter KEY to BOX*/
