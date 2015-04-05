@@ -42,6 +42,22 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script> -->
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -76,22 +92,40 @@
 <h3 style="margin-top:0px;">Brave Frontier Items Guide<span class="hidden-xs"> - Unified Global & Japan</span></h3>
 <div class="row"><div class="col-xs-12"><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></div></div>
 <h6 class="hidden-xs hidden-sm"><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd></h6>
-<div class="row"><div class="col-xs-12">
+<div class="row"><div class="col-xs-12" style="margin:5px 0;">
 <!-- items type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show items by type <span class="caret"></span>
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Items by type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
+<!-- New type button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients by type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="matsTypeList">
+  	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_20\d\.png">Feather</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_30\d\.png">Nut</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_40\d\.png">Drop</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_50\d\.png">Claw</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_60\d\.png">Fang</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_70\d\.png">Eyes</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_80\d\.png">Pelt</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_90\d\.png">Bone</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_100\d\.png">Bugs</a></li>
+  	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
+  </ul>
+</div>
 <!-- sphere type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Show spheres by official type <span class="caret"></span>
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Effects <span class="caret"></span>
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -250,7 +284,7 @@
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
         var disqus_shortname = 'bravefrontierpros';
-        var disqus_url = 'http://touchandswipe.github.io/bravefrontier/itemsguideunified';
+        var disqus_url = location.protocol + '//' + location.host + location.pathname;
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -340,8 +374,8 @@ function resetLocalData(serverStr, corrupted) {
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	//history.pushState(null, null, location.pathname);
+	location.replace(location.href);
 }
 
 /*JQ Param handling*/
@@ -366,8 +400,8 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguidejapan');
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
+	//history.pushState(null, null, location.pathname);
+	location.replace(location.href);
 })
 
 /*Grab item name and image*/
@@ -411,7 +445,7 @@ function buildDB(unit,server) {
             	sphereTypeArray.push(valObj['sphere type text']);
             	sphereArray.push(valObj['sphere type']);
         }
-        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40"/> ';
+        nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40" title="('+valObj.thumbnail+')"/> ';
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
@@ -420,6 +454,9 @@ function buildDB(unit,server) {
 	else
 		nameSTR+=valObj.name;
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        /*Recipes button for English named items only*/
+        if (dataGL[unitKey])
+        	nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+dataGL[unitKey]["name"]+'"><i class="fa fa-search"></i> Recipes using '+dataGL[unitKey]["name"]+'</button></div></div>';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -505,28 +542,10 @@ function buildDB(unit,server) {
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
-/* does not seem to work with Japanese 
-	var aheadNameRead = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		local: $.map(rawParseObj, function(uName) { return { value: uName.name }; })
-	});
-	aheadNameRead.initialize();
-	$('#searchNameBox').typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 1
-	},
-	{
-		displayKey: 'value',
-		source: aheadNameRead.ttAdapter()
-	});
-*/
-
     $("#unitCount").html(countVar);
     
     /*build item type*/
@@ -592,6 +611,38 @@ function itemRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_TypeFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified Type Filter'
+	});
+}
+
+/*matstype Filter Search*/
+function matsRun(select) {
+    var sVal=new RegExp(select);
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for matching item type*/
+	    if ( rawParseObj[i].thumb.search(sVal)!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.thumb < b.thumb)
+            return -1;
+        if (a.thumb > b.thumb)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_MatsTypeFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Mats Type Filter'
 	});
 }
 
@@ -758,31 +809,37 @@ $(document).on("click", '.ingredient', function(e){
 	searchNameRun()
 })
 
-/*Update URL based on itemtype filters*/
+/*itemtype filters*/
 $(document).on("click", '.itemType', function(e){
     e.preventDefault();
     itemRun($(this).text());
 })
 
-/*Update URL based on spheretype filters*/
+/*matstype filters*/
+$(document).on("click", '.matsType', function(e){
+    e.preventDefault();
+    matsRun($(this).attr("data-value"));
+})
+
+/*spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
     sphereRun($(this).text());
 })
 
-/*Update URL based on Effect*/
+/*sphereEffect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
     skillRun($(this).text());
 })
 
-/*Update URL based on search filters*/
+/*search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
 	searchNameRun()
 })
 
-/*Update URL based on search filters*/
+/*ingredients search*/
 $(document).on("click", '#searchIngredientBtn', function(e){
     e.preventDefault();
     searchIngredientRun()
@@ -938,6 +995,6 @@ $(window).on('popstate', function(ev) {
   ga('send', 'pageview');
 </script>
 <!--Chatroom-->
-<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
 </html>
