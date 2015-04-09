@@ -181,8 +181,9 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
         {"skillid":"random attack", "skillref":["!Random Hits"]},
         {"skillid":"hp drain% high", "skillref":["!Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP (SELF)"]},
-        {"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
-        {"skillid":"bb hc%", "skillref":["bb hc%", "!% HC+ (SELF)"]},
+        /*{"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
+        {"skillid":"bb hc%", "skillref":["bb hc%", "!% HC+ (SELF)"]},*/
+        {"skillid":"bbSelfBuff", "skillref":["@", "! (SELF)"]},
         {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill 1Turn"]},
         {"skillid":"increase bb gauge gradual", "skillref":["increase bb gauge gradual","!BC Fill ","increase bb gauge gradual turns (37)", "!Turns"]},
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
@@ -217,7 +218,8 @@ $.getJSON( serverSelect, function( unit ) {
       ];
     var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
-    var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}];
+    var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}];
+    var bbSelfBuffArray=[{"skillid":"bb bc%", "suffix":"% BC+ "}, {"skillid":"bb hc%", "suffix":"% HC+ "}];
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     /*LS group definition*/
@@ -508,6 +510,18 @@ $.getJSON( serverSelect, function( unit ) {
                       }
                     } /*End Grouping check*/
                     
+                    /*Check BB Self buff*/
+                    else if (skillSeek=="bbSelfBuff") {
+                      for (ix in bbSelfBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==bbSelfBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+bbSelfBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
                     /*Check collective group crystals buff*/
                     else if (skillSeek=="crystals buff") {
                       for (ix in bbCrystalsBuffArray) {
@@ -519,6 +533,7 @@ $.getJSON( serverSelect, function( unit ) {
                           })
                       }
                     } /*End Grouping check*/
+                    
                     /*Check collective ails rate*/
                     else if (skillSeek=="ails") {
                       for (ix in ailsArray) {
