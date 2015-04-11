@@ -347,10 +347,10 @@ function buildTable(unit) {
 	                ubbFound=false;
 	                for (j in valObj.ubb.levels[9].effects) {
 				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
-		                    	if (ubbKey.toLowerCase().match(pattern)) {
+		                    	if (ubbKey.toLowerCase().match(pattern) && !ubbFound) {
 			                        tArray3.push({"value":ubbVal,"target":valObj.ubb.levels[9].effects[j]['target type']});
 			                        ubbFound=true;
-			                    }
+					}
 		                })
 	                }
 	                if (!ubbFound) {
