@@ -261,7 +261,7 @@ if (window.location.hash == '#_=_') {
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.comparecommon.js"></script>
 <script type="text/javascript">
 function buildTable(unit) {
-    var fKeys=['hp% buff','atk% buff','def% buff','rec% buff','first x turns atk% (1)','first x turns def% (3)','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacking high','bc fill when attacked high','reduced bb bc use% high','reduced bb bc cost%','bc drop% for spark','bb gauge fill rate%','bb fill per turn','hc drop% for spark','hc production%','hc effectiveness%'];
+    var fKeys=['hp% buff','atk% buff','def% buff','rec% buff','first x turns atk% (1)','first x turns def% (3)','damage% for spark','dmg% for crits','dmg% for elemental weakness','bc fill when attacking high','bc fill when attacked high','reduced bb bc use% high','reduced bb bc cost%','bc drop% for spark','bb gauge fill rate%','bc fill per turn','bc drop rate% buff,'hc drop% for spark','hc drop rate% buff','hc effectiveness%','ignore def%'];
     var tData=[];
     
     /*Build Header*/
@@ -283,7 +283,7 @@ function buildTable(unit) {
             lsFound=false;
             for (j in valObj["leader skill"].effects) {
 		$.each(valObj["leader skill"].effects[j], function(lsKey,lsVal) {
-	                if (lsKey==fKeys[i]) {
+	                if (lsKey.search(fKeys[i])!=-1) {
 	                        tArray.push(lsVal);
 	                        lsFound=true;
 	                        return false; /*breaks loop*/
