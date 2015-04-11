@@ -317,6 +317,9 @@ function buildTable(unit) {
 		            return '<a href="unitsguide.html?unitid='+unitguide+'" target="_showUnit">'+unitguide+'</a>';
 		       }
 		},
+            	{ "targets":[ 1 ],
+            		"sortable":false
+		},
 		{ "targets": [ 2 ],
 			"render": function (unitname, type, row, full )  {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
