@@ -304,7 +304,7 @@ function buildTable(unit) {
 	tData.push(tArray);
 
         /*SBB Check*/
-        if (valObj.rarity==6) {
+        if (valObj.rarity>=6) {
 	    var tArray2=[];
 	    tArray2.push(valObj.guide_id);
 	    tArray2.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
@@ -334,7 +334,7 @@ function buildTable(unit) {
         } /*End SBB*/
         
 	/*UBB Check*/
-        if (valObj.rarity==7) {
+        if (valObj.rarity>6) {
 	    var tArray3=[];
 	    tArray3.push(valObj.guide_id);
 	    tArray3.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
