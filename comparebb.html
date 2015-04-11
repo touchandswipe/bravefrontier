@@ -287,7 +287,7 @@ function buildTable(unit) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
 	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
-	                	var pattern="/^"+fKeys[i]+"/";
+	                	var pattern = new RegExp("^" + fKeys[i]);
 	                    if (bbKey.toLowerCase().match(pattern)) {
 	                        tArray.push({"value":bbVal,"target":valObj.bb.levels[9].effects[j]['target type']});
 	                        bbFound=true;
