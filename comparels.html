@@ -84,10 +84,10 @@ if (window.location.hash == '#_=_') {
 <div style="min-height:55px;"></div>
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
-<h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
+<h5 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h5>
 </div>
-<h2>Leader skill effects comparison / rank</h2>
+<h3>Leader skill effects comparison / rank</h3>
 <div class="row">
 	<div class="col-xs-12">
 		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
@@ -302,8 +302,8 @@ function buildTable(unit) {
     })
     $('#rawTable').dataTable({
         "data": tData,
-        "pageLength": 25,
-        "lengthMenu": [ 25, 50, 100, 200 ],
+        "pageLength": 10,
+        "lengthMenu": [ 10,25, 50, 100, 200 ],
         "deferRender": true,
         "scrollX": true,
         "dom": '<"clear"<"pull-left"l><"pull-right"fp>>rtip',
