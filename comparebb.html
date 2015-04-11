@@ -263,7 +263,7 @@ if (window.location.hash == '#_=_') {
 <script type="text/javascript">
 /*contruct table*/
 function buildTable(unit) {
-    var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
+    var fKeys=['bb atk%','atk% buff','bb atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
     var tData=[];
     
     /*Build Header*/
@@ -283,11 +283,11 @@ function buildTable(unit) {
 	tArray.push("BB");
     	/*Check values*/
     	for (i in fKeys) {
+    		var pattern = new RegExp("^" + fKeys[i]);
             if (valObj.bb) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
 	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
-	                	var pattern = new RegExp("^" + fKeys[i]);
 	                    if (bbKey.toLowerCase().match(pattern)) {
 	                        tArray.push({"value":bbVal,"target":valObj.bb.levels[9].effects[j]['target type']});
 	                        bbFound=true;
@@ -312,15 +312,15 @@ function buildTable(unit) {
 	    tArray2.push(valObj.rarity);
 	    tArray2.push("SBB");
 	    for (i in fKeys) {
+		var pattern = new RegExp("^" + fKeys[i]);
 	            if (valObj.sbb) {
 	                sbbFound=false;
 	                for (j in valObj.sbb.levels[9].effects) {
 				$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
-	                	var pattern = new RegExp("^" + fKeys[i]);
-	                    	if (sbbKey.toLowerCase().match(pattern)) {
-		                        tArray2.push({"value":sbbVal,"target":valObj.sbb.levels[9].effects[j]['target type']});
-		                        sbbFound=true;
-		                    }
+		                    	if (sbbKey.toLowerCase().match(pattern)) {
+			                        tArray2.push({"value":sbbVal,"target":valObj.sbb.levels[9].effects[j]['target type']});
+			                        sbbFound=true;
+					}
 		                })
 	                }
 	                if (!sbbFound) {
@@ -342,15 +342,15 @@ function buildTable(unit) {
 	    tArray3.push(valObj.rarity);
 	    tArray3.push("UBB");
 	    for (i in fKeys) {
+	    	var pattern = new RegExp("^" + fKeys[i]);
 	            if (valObj.ubb) {
 	                ubbFound=false;
 	                for (j in valObj.ubb.levels[9].effects) {
 				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
-	                	var pattern = new RegExp("^" + fKeys[i]);
-	                    	if (ubbKey.toLowerCase().match(pattern)) {
-		                        tArray3.push({"value":ubbVal,"target":valObj.ubb.levels[9].effects[j]['target type']});
-		                        ubbFound=true;
-		                    }
+		                    	if (ubbKey.toLowerCase().match(pattern)) {
+			                        tArray3.push({"value":ubbVal,"target":valObj.ubb.levels[9].effects[j]['target type']});
+			                        ubbFound=true;
+			                    }
 		                })
 	                }
 	                if (!ubbFound) {
