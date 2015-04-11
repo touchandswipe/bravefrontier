@@ -283,7 +283,8 @@ function buildTable(unit) {
             lsFound=false;
             for (j in valObj["leader skill"].effects) {
 		$.each(valObj["leader skill"].effects[j], function(lsKey,lsVal) {
-	                if (lsKey.search(fKeys[i])!=-1) {
+	                var pattern = new RegExp("^" + fKeys[i]);
+	                if (lsKey.match(pattern)) {
 	                        tArray.push(lsVal);
 	                        lsFound=true;
 	                        return false; /*breaks loop*/
