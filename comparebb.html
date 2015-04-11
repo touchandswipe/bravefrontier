@@ -84,11 +84,11 @@ if (window.location.hash == '#_=_') {
 <div style="min-height:55px;"></div>
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
-<h4 class="text-success"><b>Tip</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h4>
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
+<h5 class="text-success"><b>Tip</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h5>
 <h4><b>Note</b> <i class="fa fa-user text-danger"></i>: Skill effects target SELF only.</h4>
 </div>
-<h2>BB / SBB (Lv10) skill effects comparison / rank</h2>
+<h3>BB / SBB (Lv10) skill effects comparison / rank</h3>
 <div class="row">
 	<div class="col-xs-12">
 		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
@@ -263,7 +263,7 @@ if (window.location.hash == '#_=_') {
 <script type="text/javascript">
 /*contruct table*/
 function buildTable(unit) {
-    var fKeys=['bb atk%','atk% buff','bb atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','increase bb gauge','increase bb gauge gradual','bb bc%','bc drop rate% buff','hc drop rate% buff'];
+    var fKeys=['bb atk%','atk% buff','def% buff','rec% buff','crit% buff','spark dmg% buff','bb atk% buff','dot atk%','dmg% reduction','increase bb gauge','increase bb gauge gradual','bb bc%','bc fill when attacked%','bc drop rate% buff','hc drop rate% buff','hit increase/hit','heal high','gradual heal high','hp drain% high','max hp% increase'];
     var tData=[];
     
     /*Build Header*/
@@ -288,7 +288,7 @@ function buildTable(unit) {
                 bbFound=false;
                 for (j in valObj.bb.levels[9].effects) {
 	                $.each(valObj.bb.levels[9].effects[j], function(bbKey,bbVal) {
-	                    if (bbKey.toLowerCase().match(pattern)) {
+	                    if (bbKey.toLowerCase().match(pattern) && !bbFound) {
 	                        tArray.push({"value":bbVal,"target":valObj.bb.levels[9].effects[j]['target type']});
 	                        bbFound=true;
 	                    }
@@ -317,7 +317,7 @@ function buildTable(unit) {
 	                sbbFound=false;
 	                for (j in valObj.sbb.levels[9].effects) {
 				$.each(valObj.sbb.levels[9].effects[j], function(sbbKey,sbbVal) {
-		                    	if (sbbKey.toLowerCase().match(pattern)) {
+		                    	if (sbbKey.toLowerCase().match(pattern) && !sbbFound) {
 			                        tArray2.push({"value":sbbVal,"target":valObj.sbb.levels[9].effects[j]['target type']});
 			                        sbbFound=true;
 					}
