@@ -2122,9 +2122,10 @@ $(document).on("click", "#deleteFav", function(e){
 		.columns( 4 )
 		.search( $(this).text()?'^'+$(this).text()+'$':$(this).text(), true, false);
 	    } else {
+	    	alert("ALL");
 	    	bfPROsTable
 		.columns( 4 )
-		.search('');
+		.search('',false,true);
 	    }
 	/*sort and consolidated draw*/
 	    bfPROsTable
