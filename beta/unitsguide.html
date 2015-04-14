@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Bonkers R1) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Bonkers R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <title>Brave Frontier - Units Guide (Bonkers R1) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Bonkers R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -2112,7 +2112,7 @@ $(document).on("click", "#deleteFav", function(e){
 	var bfPROsTable = $('#mytable').DataTable();
     	var state = { stateBatch: $(this).text() };
     	history.pushState(state, "batch state", "?batch="+encodeURIComponent($(this).text()) );
-	/*e.preventDefault();*/
+	e.preventDefault();
 	    /*clear search query field*/
 	    bfPROsTable
 	    .search('');
@@ -2122,7 +2122,6 @@ $(document).on("click", "#deleteFav", function(e){
 		.columns( 4 )
 		.search( $(this).text()?'^'+$(this).text()+'$':$(this).text(), true, false);
 	    } else {
-	    	alert($(this).text());
 	    	bfPROsTable
 		.columns( 4 )
 		.search('',false,true);
