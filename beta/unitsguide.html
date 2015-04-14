@@ -347,7 +347,7 @@ function initialize(fusionData) {
 		    /*Custom Header Search for batch*/
 		    $("#mytable thead th").each( function () {
 			if ($.text([this])=='Batch') {
-			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" class="batchlink">ALL</a></li></ul></div>')
+			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" class="batchlink"><b>ALL BATCHES</b></a></li></ul></div>')
 				.appendTo( $(this).empty() );
 			
 			    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
@@ -2112,17 +2112,17 @@ $(document).on("click", "#deleteFav", function(e){
 	var bfPROsTable = $('#mytable').DataTable();
     	var state = { stateBatch: $(this).text() };
     	history.pushState(state, "batch state", "?batch="+encodeURIComponent($(this).text()) );
-	e.preventDefault();
+	/*e.preventDefault();*/
 	    /*clear search query field*/
 	    bfPROsTable
 	    .search('');
 	    /*search only batch column*/
-	    if ($(this).text != "ALL") {
+	    if ($(this).text() != "ALL BATCHES") {
 	    	bfPROsTable
 		.columns( 4 )
 		.search( $(this).text()?'^'+$(this).text()+'$':$(this).text(), true, false);
 	    } else {
-	    	alert("ALL");
+	    	alert($(this.text());
 	    	bfPROsTable
 		.columns( 4 )
 		.search('',false,true);
