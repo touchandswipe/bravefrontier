@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide (Bonkers R1) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Units Guide (Bonkers R2) - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <title>Brave Frontier - Units Guide (Bonkers R1) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide (Bonkers R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
@@ -344,12 +344,12 @@ function initialize(fusionData) {
 			$('.statsInfo').tooltip(); },
 		  "initComplete": function( settings, json ) {
 		    var DTapi = this.api();
-		    /*Custom Header Search*/
+		    /*Custom Header Search for batch*/
 		    $("#mytable thead th").each( function () {
 			if ($.text([this])=='Batch') {
-			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu" role="menu"></ul></div>')
+			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" class="batchlink"><b>ALL BATCHES</b></a></li></ul></div>')
 				.appendTo( $(this).empty() );
-				
+			
 			    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
 				select.children('ul').append( '<li><a href="#" class="batchlink">'+d+'</a></li>' )
 			    });
@@ -2108,19 +2108,25 @@ $(document).on("click", "#deleteFav", function(e){
 	window.scrollTo(0,0);
     })
 /*Batch Query*/
-    $(document).on("click", ".batchlink", function(e) {
+ $(document).on("click", ".batchlink", function(e) {
 	var bfPROsTable = $('#mytable').DataTable();
-    var state = { stateBatch: $(this).text() };
-    history.pushState(state, "batch state", "?batch="+encodeURIComponent($(this).text()) );
+    	var state = { stateBatch: $(this).text() };
+    	history.pushState(state, "batch state", "?batch="+encodeURIComponent($(this).text()) );
 	e.preventDefault();
 	    /*clear search query field*/
 	    bfPROsTable
 	    .search('');
 	    /*search only batch column*/
-	    bfPROsTable
+	    if ($(this).text() != "ALL BATCHES") {
+	    	bfPROsTable
 		.columns( 4 )
 		.search( $(this).text()?'^'+$(this).text()+'$':$(this).text(), true, false);
-		/*sort and consolidated draw*/
+	    } else {
+	    	bfPROsTable
+		.columns( 4 )
+		.search('',false,true);
+	    }
+	/*sort and consolidated draw*/
 	    bfPROsTable
 		.column( 3 )
 		.order( 'asc' )
@@ -2401,9 +2407,9 @@ $(document).on("click", "#execFilter", function(e){
 	    /*change search field*/
 	    $('.dataTables_filter input').val('');
 	    setTimeout( function() {
-	    $('#alertmodal').modal('hide');
-	    window.scrollTo(0,0);
-	    },2000);
+		    $('#alertmodal').modal('hide');
+		    window.scrollTo(0,0);
+	    },500);
 	})
 /*Binding Hashtags*/
     $(document).on("click", ".hashSelect", function(e){
