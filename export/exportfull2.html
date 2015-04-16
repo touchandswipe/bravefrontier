@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Extract / Export Only - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Extract / Export Only - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+<style type="text/css">
+    .clear {clear:both;}
+    .bd {
+        font-weight:bold;
+        background:#EEEEEE;
+        text-transform:uppercase;
+    }
+    .upper {
+        text-transform:uppercase;
+    }
+</style>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
+        </div>
+        <!-- Collapse Nav-->
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+                    <li><a href="//bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
+                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
+                    <li><a href="//bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<!-- Main Body Space-->
+<div class="container-fluid" style="margin:0px;padding:5px;">
+<div style="min-height:55px;"></div>
+<i class="fa fa-heart-o fa-lg"></i> This is a presented data based on what was extracted and <a href="http://www.reddit.com/r/bravefrontier/comments/2elwkq/additional_information_in_new_unit_analyses/">shared on Reddit by BFLMP</a>. Credit to <a href="http://www.reddit.com/u/bahblah">bahblah</a> for opening sharing the data. Thanks to <a href="https://www.facebook.com/frayformana?fref=ufi">Patrick Tan Ebio</a> from <a href="https://www.facebook.com/groups/444458765689597/">Brave Frontier Elite Group</a> for bringing this to my attention. *Note* Buff % indicated are incremental.
+
+<h5 class="text-danger"><b>*WARNING*</b> This page takes a long time to load (~1mb of data pull). Let the script run and do not stop it till it's done.</h5>
+<!-- Google Manual labnol.org responsive ads-->
+<div class="text-center" style="margin-bottom:5px;">
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+        adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+</div>
+ 
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
+From <input type="text" id="rangeFrom" class="form-control" placeholder="Range From">
+To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
+<button type="button" id="exportBtn" class="btn btn-default">Export</button>
+<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/jp/info.json" class="btn btn-danger">JP</button>
+<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/info.json" class="btn btn-success">GL</button>
+<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/eu/info.json" class="btn btn-success">EU</button>
+<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/kr/info.json" class="btn btn-success">KR</button>
+<!--TABLE-->
+<table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
+
+<script type="text/javascript">
+var serverSelect="//touchandswipe.github.io/bravefrontier_data/info.json";
+$(document).on("click",".serverBtn", function(e) {
+  serverSelect=$(this).val();
+})
+$(document).on("click","#exportBtn", function(e) {
+$.getJSON( serverSelect, function( unit ) {
+    /*Process for Each Unit*/
+    var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
+    /*parsing definition for LS*/
+    var lsParseObj=[
+        {"skillid":"fire resist%", "skillref":["fire resist%", "!% Fire Resist"]},
+        {"skillid":"water resist%", "skillref":["water resist%", "!% Water Resist"]},
+        {"skillid":"earth resist%", "skillref":["earth resist%", "!% Earth Resist"]},
+        {"skillid":"thunder resist%", "skillref":["thunder resist%", "!% Thunder Resist"]},
+        {"skillid":"light resist%", "skillref":["light resist%", "!% Light Resist"]},
+        {"skillid":"dark resist%", "skillref":["dark resist%", "!% Dark Resist"]},
+        {"skillid":"hp drain chance%", "skillref":["hp drain chance%", "!% Chance Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP"]},
+        {"skillid":"bc fill per turn", "skillref":["bc fill per turn","!BC Fill Each Turn"]},
+        {"skillid":"bc fill when attacking%", "skillref":["bc fill when attacking%","!% Chance ", "bc fill when attacking low", "!-", "bc fill when attacking low", "!BC Fill on ATK"]},
+        {"skillid":"ignore def%", "skillref":["ignore def%","!% Chance Ignore DEF"]},
+        {"skillid":"reduced bb bc cost%", "skillref":["!Reduce ","reduced bb bc cost%","!% BB Cost"]},
+        {"skillid":"reduced bb bc use chance%", "skillref":["reduced bb bc use chance%","!% Chance Reduce ", "reduced bb bc use% low", "!-", "reduced bb bc use% high", "!% BB Gauge Used"]},
+        {"skillid":"dmg reduction chance%", "skillref":["dmg reduction chance%", "!% Chance Reduce DMG (", "dmg reduction%", "!%)"]},
+        {"skillid":"take 1 dmg%", "skillref":["take 1 dmg%", "!% Chance Reduce DMG to 1"]},
+        {"skillid":"dmg% mitigation", "skillref":["!Reduce DMG (", "dmg% mitigation","!%)"]},
+        {"skillid":"bb gauge fill rate%", "skillref":["bb gauge fill rate%", "!% BC Fill+"]},
+        {"skillid":"hc effectiveness%", "skillref":["hc effectiveness%", "!% HC Fill+"]},
+        {"skillid":"bc drop% for spark", "skillref":["bc drop% for spark", "!% Spark BC+"]},
+        {"skillid":"hc drop% for spark", "skillref":["hc drop% for spark", "!% Spark HC+"]},
+        {"skillid":"karma drop% for spark", "skillref":["karma drop% for spark", "!% Spark Karma+"]},
+        {"skillid":"zel drop% for spark", "skillref":["zel drop% for spark", "!% Spark Zel+"]},
+        {"skillid":"bc fill on spark%", "skillref":["bc fill on spark%", "!% Chance ", "bc fill on spark low", "!-", "bc fill on spark high", "!BC Fill on Spark"]},
+        {"skillid":"bc fill on crit%", "skillref":["bc fill on crit min", "!-", "bc fill on crit max", "!BC Fill on CRIT"]},
+        {"skillid":"bc fill on enemy defeat%", "skillref":["bc fill on enemy defeat%", "!% Chance ", "bc fill on enemy defeat low", "!-", "bc fill on enemy defeat high", "!BC Fill on Enemy Kill"]},
+        {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked%", "!% Chance ", "bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed"]},
+        {"skillid":"dmg% to hp% when attacked chance%", "skillref":["dmg% to hp% when attacked chance%", "!% Chance Heal ", "dmg% to hp% when attacked low", "!-", "dmg% to hp% when attacked high", "!% DMG when ATKed"]},
+        {"skillid":"turn heal high", "skillref":["!Heal Each Turn"]},
+        {"skillid":"defense% ignore", "skillref":["!Ignore DEF ", "target type", "! ","defense% ignore turns (39)", "!Turns"]},
+        {"skillid":"damage% for spark", "skillref":["damage% for spark", "!% Spark DMG+"]},
+        {"skillid":"crit multiplier%", "skillref":["crit multiplier%", "!% CRIT DMG+"]},
+        {"skillid":"atk% extra buff based on hp", "skillref":["atk% base buff", "!-", "atk% extra buff based on hp", "!% ATK+ Based on HP ", "buff proportional to hp"]},
+        {"skillid":"def% extra buff based on hp", "skillref":["def% base buff", "!-", "def% extra buff based on hp", "!% DEF+ Based on HP ", "buff proportional to hp"]},
+        {"skillid":"dmg% reflect chance%", "skillref":["dmg% reflect chance%", "!% Chance Reflect ", "dmg% reflect low", "!-", "dmg% reflect high", "!% DMG"]},
+        {"skillid":"base crit% resist", "skillref":["!Nulls CRIT"]},
+        {"skillid":"element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ","@"]},
+        {"skillid":"crystals buff", "skillref":["@"]},
+        {"skillid":"stats buff", "skillref":["@"]},
+        {"skillid":"xturns buff", "skillref":["@", "first x turns", "!Turns"]},
+        {"skillid":"ails", "skillref":["@"]},
+        {"skillid":"ails resist", "skillref":["@"]}
+      ];
+    /*parsing definiton for BB*/
+    var skillParseObj=[
+        {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
+        {"skillid":"random attack", "skillref":["!Random Hits"]},
+        {"skillid":"hp drain% high", "skillref":["!Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP (SELF)"]},
+        /*{"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
+        {"skillid":"bb hc%", "skillref":["bb hc%", "!% HC+ (SELF)"]},*/
+        {"skillid":"bbSelfBuff", "skillref":["@", "! (SELF)"]},
+        {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill 1Turn"]},
+        {"skillid":"increase bb gauge gradual", "skillref":["increase bb gauge gradual","!BC Fill ","increase bb gauge gradual turns (37)", "!Turns"]},
+        {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
+        {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
+        {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
+        {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
+        {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
+        {"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
+        {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
+        {"skillid":"ailments cured", "skillref":["!Cure Ails"]},
+        {"skillid":"remove all status ailments", "skillref":["!Cure Ails"]},
+        {"skillid":"resist status ails turns", "skillref":["!Null Ails ", "resist status ails turns", "!Turns"]},
+        {"skillid":"elements added", "skillref":["!Add ", "elements added", "! to ATK ", "target type", "! ", "elements added turns", "!Turns"]},
+        {"skillid":"atk% buff (13)", "skillref":["atk% buff (13)", "!% ATK+ to ", "element buffed", "! ", "buff turns","!Turns"]},
+        {"skillid":"def% buff (4)", "skillref":["def% buff (4)", "!% DEF ", "target type", "! ", "buff turns","!Turns"]},
+        {"skillid":"defense% ignore", "skillref":["!Ignore DEF ", "target type", "! ","defense% ignore turns (39)", "!Turns"]},
+        {"skillid":"crit% buff (7)", "skillref":["crit% buff (7)", "!% CRIT+ ", "target type", "! ", "buff turns","!Turns"]},
+        {"skillid":"max hp% increase", "skillref":["max hp% increase", "!% Max HP+ till Death/Battle End"]},
+        {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "target type", "! ", "buff turns","!Turns"]},
+        {"skillid":"hit increase/hit", "skillref":["!Normal HitCount +", "hit increase/hit", "!00% (", "dmg% buff on extra hits", "!% DMG) ", "hit increase buff turns (50)", "!Turns"]},
+        {"skillid":"taunt turns (10000)", "skillref":["!Taunt (", "def% buff", "!% DEF+) ", "target type", "! ", "taunt turns (10000)", "!Turns"]},
+        {"skillid":"shield turns (10002)", "skillref":["!Shield (", "shield element", "!, ", "shield hp", "!HP ", "shield def", "!DEF) ", "target type", "! ", "shield turns (10002)", "!Turns"]},
+        {"skillid":"stealth turns (10001)", "skillref":["!Stealth (", "atk% buff", "!% ATK+ ", "crit% buff", "!% CRIT+) ", "target type", "! ", "stealth turns (10001)", "!Turns"]},
+        {"skillid":"stats buff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
+        {"skillid":"dot atk%", "skillref":["dot atk%", "!% DMG Each Turn ", "dot turns (71)", "!Turns"]},
+        {"skillid":"bb atk% buff", "skillref":["bb atk% buff", "!% BB ATK%+ ", "target type", "! ", "buff turns (72)", "!Turns"]},
+        {"skillid":"crystals buff", "skillref":["@", "target type", "! ", "drop rate buff turns", "!Turns"]},
+        {"skillid":"atk% buff (46)", "skillref":["!Convert ", "atk% buff (46)", "!% ","converted attribute", "! to ATK ", "target type", "! ", "% converted turns", "!Turns"]},
+        {"skillid":"debuff skills", "skillref":["@"]},
+        {"skillid":"ails", "skillref":["@"]},
+        {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
+      ];
+    var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
+    var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}];
+    var bbSelfBuffArray=[{"skillid":"bb bc%", "suffix":"% BC+ "}, {"skillid":"bb hc%", "suffix":"% HC+ "}];
+    var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
+    var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
+    /*LS group definition*/
+    var lsstatsBuffArray=[{"skillid":"hp% buff", "suffix":"% HP "}, {"skillid":"atk% buff", "suffix":"% ATK "}, {"skillid":"def% buff", "suffix":"% DEF "}, {"skillid":"rec% buff", "suffix":"% REC "}, {"skillid":"crit% buff", "suffix":"% CRIT "}];
+    var lsCrystalsBuffArray=[{"skillid":"bc drop rate% buff", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}, {"skillid":"zel drop rate% buff", "suffix":"% Zel+ "}];
+    var lsXTurnsArray=[{"skillid":"first x turns atk% (1)", "suffix":"% ATK "}, {"skillid":"first x turns def% (3)", "suffix":"% DEF "}, {"skillid":"first x turns rec% (5)", "suffix":"% REC "}];
+    var lsailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
+    var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
+    var lsWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
+    var skillConnect=' / ';
+    var bbArray=["bb","sbb","ubb"];
+    var lsSplit=' - ';
+    
+    $.each( unit, function( unitKey, valObj ) {
+        var exportSTR="";
+        if ((valObj.guide_id >=rangeID[0]) && (valObj.guide_id<=rangeID[1])) {
+            var idFound=true;
+        } else {
+            var idFound=false;
+        }
+        /*Parsing code here*/
+        if (idFound) {
+          /*ID*/
+          if (serverSelect.search('/eu/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.1</td>';
+          else if (serverSelect.search('/kr/')!=-1)
+            exportSTR='<tr><td>'+valObj.guide_id+'.2</td>';
+          else
+            exportSTR='<tr><td>'+valObj.guide_id+'</td>';
+          
+          /*NAME*/
+          if (valObj.name)
+              exportSTR+='<td>'+valObj.name+'</td>'
+          else exportSTR+='<td></td>';
+          
+          /*SERIES spacing and Element*/
+          if (valObj.element)
+              exportSTR+='<td></td><td style="text-transform: capitalize;">'+valObj.element+'</td>'
+          else exportSTR+='<td></td><td></td>';
+          
+          /*Rarity*/
+          if (valObj.rarity) {
+              exportSTR+='<td>'+valObj.rarity+'</td>'
+          } else exportSTR+='<td></td>';
+          
+          /*Parsing LS Skills*/
+          var lsSkillFound=0;
+          var genderTemp="";
+          exportSTR+="<td>";
+          if (valObj["leader skill"])
+            if (valObj["leader skill"]["effects"]) {
+              for (i=0;i<lsParseObj.length;i++) {
+                var skillSeek=lsParseObj[i]["skillid"];
+                /*looking each effect array*/
+                for (j in valObj["leader skill"]["effects"]) {
+                    /*resets var for each effect*/
+                    var lsPassiveID=valObj["leader skill"]["effects"][j]['passive id'];
+                    var groupSTR="";
+                    var effectFound=false;
+                    
+                    /*Check collective group buff*/
+                    if (skillSeek=="stats buff") {
+                      for (ix in lsstatsBuffArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsstatsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
+                              groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                      /*checks unique elements requirements*/
+                      $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                        if (effectKey=="unique elements required")
+                          groupSTR+=" ("+effectVal+" elements required)";
+                        if (effectKey=="bb gauge above % buff requirement")
+                          groupSTR+=" (BB >= "+effectVal+"%)";
+                        if (effectKey=="hp below % buff requirement")
+                          groupSTR+=" (HP < "+effectVal+"%)";
+                        if (effectKey=="gender required") {
+                          genderTemp=effectVal.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                          groupSTR+=" ("+genderTemp+")";
+                        }
+                      })
+                    } /*End Grouping check*/
+                    /*Check collective group crystals buff*/
+                    else if (skillSeek=="crystals buff") {
+                      for (ix in lsCrystalsBuffArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
+                              groupSTR+=effectVal+lsCrystalsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    /*Check collective ails buff*/
+                    else if (skillSeek=="ails") {
+                      for (ix in lsailsArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsailsArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+lsailsArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective ails resist buff*/
+                    else if (skillSeek=="ails resist") {
+                      var resistRate="";
+                      for (ix in lsailsResistArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsailsResistArray[ix]["skillid"]) {
+                                resistRate=effectVal;
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (resistRate==100)
+                          groupSTR+="Null Ails"
+                        else
+                          groupSTR+=resistRate+"% Resist ails"
+                    } /*End Grouping check*/
+                    
+                    /*Elemental weakness check*/
+                    else if (skillSeek=="element weakness") {
+                      var elementCount=0;
+                      for (ix in lsWeakElementArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsWeakElementArray[ix]["skillid"]) {
+                                if (elementCount>0)
+                                  groupSTR+=",";
+                                elementCount+=1;
+                                if (elementCount==1)
+                                  groupSTR+="("
+                                groupSTR+=lsWeakElementArray[ix]["suffix"];
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (elementCount==6)
+                          groupSTR="(ALL)"
+                        else
+                          groupSTR+=")"
+                    } /*End Grouping check*/
+                    
+                    /*Check collective xturns buff*/
+                    else if (skillSeek=="xturns buff") {
+                      for (ix in lsXTurnsArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsXTurnsArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+lsXTurnsArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    else
+                  /*looping non grouping buff*/
+                  $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                    if (effectKey==skillSeek) {
+                      effectFound=true;
+                    }
+                  }) /*End non-grouping*/
+                  
+                  /*Build output string*/
+                  if (effectFound) {
+                  /*add connector if not first skill found*/
+                      if (lsSkillFound != 0)
+                        exportSTR+=skillConnect;
+                      lsSkillFound+=1;
+                      for (k in lsParseObj[i]["skillref"]) {
+                        if (lsParseObj[i]["skillref"][k].charAt(0) == "@") {
+                          exportSTR+=groupSTR;
+                        } else if (lsParseObj[i]["skillref"][k].charAt(0) == "?") {
+                          /*handling special obj values*/
+                          var specialKey=lsParseObj[i]["skillref"][k].slice(1);
+                          exportSTR+=specialValue;
+                        } else if (lsParseObj[i]["skillref"][k].charAt(0) == "!") {
+                          /*handling str additions*/
+                          exportSTR+=lsParseObj[i]["skillref"][k].slice(1);
+                        } else {
+                          /*handling identified obj value*/
+                          var callObjName=lsParseObj[i]["skillref"][k];
+                          if (valObj["leader skill"]["effects"][j][callObjName]) {
+                              var exportValue=valObj["leader skill"]["effects"][j][callObjName];
+                              if (callObjName=="element buffed")
+                                exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                              /*value replacement and formatting*/
+                              switch (exportValue) {
+                                case "aoe":
+                                  exportValue="(AOE)";
+                                  break;
+                                case "single":
+                                  exportValue="(TGT)";
+                                  break;
+                                case "party":
+                                  exportValue="(ALL)";
+                                  break;
+                                case "self":
+                                  exportValue="(SELF)";
+                                  break;
+                                case "recovery":
+                                  exportValue="REC";
+                                  break;
+                                case "defense":
+                                  exportValue="DEF";
+                                  break;
+                                case "hp":
+                                  exportValue="HP";
+                                  break;
+                                case "remaining":
+                                  exportValue="LEFT";
+                                  break;
+                                case "lost":
+                                  exportValue="LOST";
+                                  break;
+                              }
+                              exportSTR+=exportValue;
+                          }
+                          else if (valObj["leader skill"]["effects"][j][callObjName]==0)
+                            exportSTR+=valObj["leader skill"]["effects"][j][callObjName];
+                          else
+                            exportSTR+='<span style="color:#FF0000;">Unknown</span>';
+                        }
+                      } /*End loop for REF*/
+                      if (valObj["leader skill"]["effects"][j]["elements buffed"]) {
+                        eleString=' ('+valObj["leader skill"]["effects"][j]["elements buffed"]+')';
+                        eleString=eleString.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                        exportSTR+=eleString;
+                      }
+                      else if (skillSeek!="element weakness" && genderTemp=="")
+                        exportSTR+=' (ALL)';
+                  } /*End Output String Build*/
+                }
+              }
+            /*check for missing skill effects*/
+            if (lsSkillFound < valObj["leader skill"]["effects"].length)
+              exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
+            exportSTR+="</td>";
+          } /*End of LS Effects Loop*/
+          
+          /*Parsing all BB Skills*/
+          for (ibb in bbArray) {
+          var bbSkillFound=0;
+          exportSTR+="<td>";
+          if (valObj[bbArray[ibb]])
+            if (valObj[bbArray[ibb]].levels[9]["effects"]) {
+              for (i=0;i<skillParseObj.length;i++) {
+                var skillSeek=skillParseObj[i]["skillid"];
+                /*looking each effect array*/
+                for (j in valObj[bbArray[ibb]].levels[9]["effects"]) {
+                    /*resets var for each effect*/
+                    var groupSTR="";
+                    var effectFound=false;
+                    
+                    /*Check collective group buff*/
+                    if (skillSeek=="stats buff") {
+                      for (ix in statsBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==statsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective group debuff*/
+                    else if (skillSeek=="debuff skills") {
+                      for (ix in debuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==debuffArray[ix]["skillid"]) {
+                              effectFound=true;
+                              /*separator for multiple buffs*/
+                              if (ix != 0)
+                                groupSTR+=skillConnect;
+                              groupSTR+=effectVal['proc chance%']+'% Chance ';
+                              if (effectVal['atk% buff (2)'])
+                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                              if (effectVal['def% buff (4)'])
+                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check BB Self buff*/
+                    else if (skillSeek=="bbSelfBuff") {
+                      for (ix in bbSelfBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==bbSelfBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+bbSelfBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective group crystals buff*/
+                    else if (skillSeek=="crystals buff") {
+                      for (ix in bbCrystalsBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==bbCrystalsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+bbCrystalsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check collective ails rate*/
+                    else if (skillSeek=="ails") {
+                      for (ix in ailsArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==ailsArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+ailsArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    /*Check collective ails buff*/
+                    else if (skillSeek=="ails buff") {
+                      for (ix in ailsBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==ailsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+ailsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    else
+                  /*looping non grouping buff*/
+                  $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                    if (effectKey==skillSeek) {
+                      effectFound=true;
+                    }
+                  }) /*End non-grouping*/
+                  
+                  /*Build output string*/
+                  if (effectFound) {
+                  /*add connector if not first skill found*/
+                      if (bbSkillFound != 0)
+                        exportSTR+=skillConnect;
+                      bbSkillFound+=1;
+                      for (k in skillParseObj[i]["skillref"]) {
+                        if (skillParseObj[i]["skillref"][k].charAt(0) == "@") {
+                          exportSTR+=groupSTR;
+                        } else if (skillParseObj[i]["skillref"][k].charAt(0) == "?") {
+                          /*handling special obj values*/
+                          var specialKey=skillParseObj[i]["skillref"][k].slice(1);
+                          var specialValue=valObj[specialKey];
+                          specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
+                          /*Extra BB Elements*/
+                          if (skillSeek="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"]) {
+                            specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"];
+                            specialValue=specialValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                          }
+                          exportSTR+=specialValue;
+                        } else if (skillParseObj[i]["skillref"][k].charAt(0) == "!") {
+                          /*handling str additions*/
+                          exportSTR+=skillParseObj[i]["skillref"][k].slice(1);
+                        } else {
+                          /*handling identified obj value*/
+                          var callObjName=skillParseObj[i]["skillref"][k];
+                          if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]) {
+                              var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                              if (callObjName=="elements added" || callObjName=="element buffed")
+                                exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                              /*value replacement and formatting*/
+                              switch (exportValue) {
+                                case "aoe":
+                                  exportValue="(AOE)";
+                                  break;
+                                case "single":
+                                  exportValue="(TGT)";
+                                  break;
+                                case "party":
+                                  exportValue="(ALL)";
+                                  break;
+                                case "self":
+                                  exportValue="(SELF)";
+                                  break;
+                                case "recovery":
+                                  exportValue="REC";
+                                  break;
+                                case "defense":
+                                  exportValue="DEF";
+                                  break;
+                                case "hp":
+                                  exportValue="HP";
+                                  break;
+                              }
+                              exportSTR+=exportValue;
+                          }
+                          else if (valObj["leader skill"]["effects"][j][callObjName]==0)
+                            exportSTR+=valObj["leader skill"]["effects"][j][callObjName];
+                          else
+                            exportSTR+='<span style="color:#FF0000;">Unknown</span>';
+                        }
+                      }
+                  } /*End Output String Build*/
+                }
+              }
+            /*check for missing skill effects*/
+            if (bbSkillFound < valObj[bbArray[ibb]].levels[9]["effects"].length)
+              exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
+            exportSTR+="</td>";
+          } /*End of Effects Loop*/
+        } /*BB Types Loop*/
+        
+        /*Passive Skill,	Passive Condition,	BB Type,	SBB Type,	UBB Type spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*Cost and max lvl spacing*/
+        if (valObj.cost) {
+              exportSTR+='<td>'+valObj.cost+'</td><td></td>'
+          } else exportSTR+='<td></td><td></td>';
+          
+        /*normal hits*/
+        if (valObj.hits)
+          exportSTR+='<td>'+valObj.hits+'</td>'
+        else exportSTR+='<td></td>';
+        
+        /*bb hits*/  
+        if (valObj.bb)
+          if (valObj.bb.hits)
+            exportSTR+='<td>'+valObj.bb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*sbb hits*/
+        if (valObj.sbb)
+          if (valObj.sbb.hits)
+            exportSTR+='<td>'+valObj.sbb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*ubb hits*/
+        if (valObj.ubb)
+          if (valObj.ubb.hits)
+            exportSTR+='<td>'+valObj.ubb.hits+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else 
+          exportSTR+='<td></td>';
+              
+        /*bb fill*/
+        if (valObj.bb)
+          if (valObj.bb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*sbb fill*/
+        if (valObj.sbb)
+          if (valObj.sbb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*ubb fill*/    
+        if (valObj.ubb)
+          if (valObj.ubb.levels[9]["bc cost"])
+            exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+            
+        /*Normal DC*/
+        if (valObj["max bc generated"])
+          exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
+        else
+          exportSTR+='<td></td>';
+          
+        /*BB DC*/  
+        if (valObj.bb)
+          if (valObj["bb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+  
+        /*SBB DC*/  
+        if (valObj.sbb)
+          if (valObj["sbb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*UBB DC*/  
+        if (valObj.ubb)
+          if (valObj["ubb"]["max bc generated"])
+            exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
+          else
+            exportSTR+='<td></td>'
+        else
+          exportSTR+='<td></td>';
+        
+        /*spacing for evo zel and gender*/
+        exportSTR+='<td></td><td></td>';
+        
+        /*gender*/
+        if (valObj.gender) {
+            if (valObj.gender=="male")
+              exportSTR+='<td>Male</td>';
+            if (valObj.gender=="female")
+              exportSTR+='<td>Female</td>';
+            if (valObj.gender=="other")
+              exportSTR+='<td>Genderless</td>';
+        } else
+          exportSTR+='<td></td>';
+            
+        /*notes, batch, type, global, japan spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*evo spacings*/
+        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        
+        /*stats*/
+        exportSTR+='<td></td>';
+        //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.def+'</td>';
+        //exportSTR+='<td>'+valObj.stats._base.rec+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.hp+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.def+'</td>';
+        exportSTR+='<td>'+valObj.stats._lord.rec+'</td>';
+        
+        exportSTR+='<td>'+Math.floor((valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.anima.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats.anima.def+'</td>';
+        exportSTR+='<td>'+((valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+valObj.stats.breaker.hp+'</td>';
+        exportSTR+='<td>'+((valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.breaker.rec+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["atk max"]-(valObj.stats.breaker["atk max"]+valObj.stats.breaker["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.breaker["def max"]-(valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+valObj.stats.guardian.hp+'</td>';
+        exportSTR+='<td>'+((valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.guardian.rec+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.oracle.atk+'</td>';
+        exportSTR+='<td>'+valObj.stats.oracle.def+'</td>';
+        exportSTR+='<td>'+((valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["hp max"]-(valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        //exportSTR+='<td>'+(valObj.stats.oracle["rec max"]-(valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
+        
+        exportSTR+='<td>'+Math.floor(valObj.stats.anima["hp max"]-(valObj.stats.anima["hp max"]+valObj.stats.anima["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+(valObj.stats.anima["rec max"]-(valObj.stats.anima["rec max"]+valObj.stats.anima["rec min"])/2)+'</td>';
+        
+        /*imp data*/
+        if (valObj.imp) {
+          exportSTR+='<td>'+valObj.imp["max hp"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max atk"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max def"]+'</td>';
+          exportSTR+='<td>'+valObj.imp["max rec"]+'</td>';
+        } else {
+          exportSTR+='<td></td><td></td><td></td><td></td>';
+        }
+        
+        /*spacing for weighted*/
+        exportSTR+='<td></td>';
+        
+        /*bb atk%*/
+        bbFound=false;
+        if (valObj.bb) {
+            for (i in valObj.bb.levels[9].effects) {
+              $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
+                  if (bbKey=="bb atk%" && !bbFound) {
+                    exportSTR+='<td>'+bbVal+'</td>';
+                    bbFound=true;
+                  }
+              })
+            }
+        }
+        if (!bbFound)
+          exportSTR+='<td></td>';
+          
+        /*sbb atk%*/
+        sbbFound=false;
+        if (valObj.sbb) {
+            for (i in valObj.sbb.levels[9].effects) {
+              $.each(valObj.sbb.levels[9].effects[i], function(sbbKey,sbbVal) {
+                  if (sbbKey=="bb atk%" && !sbbFound) {
+                    exportSTR+='<td>'+sbbVal+'</td>';
+                    sbbFound=true;
+                  }
+              })
+            }
+        }
+        if (!sbbFound)
+          exportSTR+='<td></td>';
+          
+        /*ubb atk%*/
+        ubbFound=false;
+        if (valObj.ubb) {
+            for (i in valObj.ubb.levels[9].effects) {
+              $.each(valObj.ubb.levels[9].effects[i], function(ubbKey,ubbVal) {
+                  if (ubbKey=="bb atk%" && !ubbFound) {
+                    exportSTR+='<td>'+ubbVal+'</td>';
+                    ubbFound=true;
+                  }
+              })
+            }
+        }
+        if (!ubbFound)
+          exportSTR+='<td></td>';
+          
+        /*spacing for video, iconREF ID*/
+        if (serverSelect.search('/eu/')!=-1)
+          exportSTR+='<td></td><td>'+valObj.guide_id+'.1</td>';
+        else if (serverSelect.search('/kr/')!=-1)
+          exportSTR+='<td></td><td>'+valObj.guide_id+'.2</td>';
+        else
+          exportSTR+='<td></td><td>'+valObj.guide_id+'</td>';
+        
+        /*SystemID*/
+        exportSTR+='<td>'+unitKey+'</td>';
+        
+          $("#rawTable").append(exportSTR+'<tr>');
+        } /*End range check*/
+    })
+})
+})
+</script>
+
+</div> <!-- /container -->
+
+<!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-48617906-1', 'tumblr.com');
+      ga('send', 'pageview');
+    </script>
+<!--Chatroom-->
+<script id="sid0020000056109341636">(function() {function async_load(){s.id="cid0020000056109341636";s.src='http://st.chatango.com/js/gz/emb.js';s.style.cssText="width:400px;height:500px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc33cc","b":51,"c":"ffffff","d":"ffffff","e":"ffffff","g":"202020","k":"cc33cc","l":"77eecc","m":"cc66cc","q":"cc33cc","r":51,"t":0,"pos":"bl","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10pt","cvfntw":"bold","cvbg":"cc66cc","cvw":75,"cvh":40,"sbc":"66ddbb","surl":0,"cnrs":"0.35"}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000056109341636'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+</body>
+</html>
