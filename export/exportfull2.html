@@ -284,7 +284,7 @@ $.getJSON( serverSelect, function( unit ) {
                     if (skillSeek=="stats buff") {
                       for (ix in lsstatsBuffArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsstatsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
+                            if (effectKey==lsstatsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+lsstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
