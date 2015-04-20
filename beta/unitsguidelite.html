@@ -231,18 +231,6 @@ function initializeDB() {
 		});
 		
 		$('#progressModal').modal('hide');
-	      	/*check for card param for Unit*/
-		var idParam=urlParam('unit');
-		if (idParam != "") {
-			/*prefill search with name*/
-			for (i in deserialdata)
-				if (deserialdata[i].id==idParam) {
-					$('#searchBox').val(deserialdata[i].name);
-					searchNameRun(deserialdata[i].name);
-					break;
-				}
-			openCard(idParam);
-		}
 	  }
 	})
 }/*End init fn*/
@@ -698,7 +686,6 @@ function openCard(whatunit) {
       + google_ad_client + '" data-ad-slot="' 
       + google_ad_slot + '"></ins>'
     );
-  
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -797,7 +784,22 @@ $(document).on("click", "#pimpBtn", function(){
 	$(this).val(vToCng);
 	totalStatsMod();
 })
-})
+});
+
+$(window).load(function() {
+/*check for card param for Unit*/
+	var idParam=urlParam('unit');
+	if (idParam != "") {
+		/*prefill search with name*/
+		for (i in deserialdata)
+			if (deserialdata[i].id==idParam) {
+				$('#searchBox').val(deserialdata[i].name);
+				searchNameRun(deserialdata[i].name);
+				break;
+			}
+		openCard(idParam);
+	}
+});
 </script>
 
 <!-- Google Responsive Ad -->
