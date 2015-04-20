@@ -145,11 +145,11 @@ var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push({"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
@@ -440,14 +440,14 @@ function openCard(whatunit) {
 	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
-	      if (ovrarity > 5) {
+	      if (ovsbbskill != "") {
 		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
 		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
 	      }
-	      if (ovrarity > 6) {
+	      if (ovubbskill != "") {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
 		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['ubb atk%'] != "-")
@@ -467,7 +467,7 @@ function openCard(whatunit) {
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
-	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
+	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
 	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
 		ovHTML+='No prior evo / No known materials';
