@@ -358,7 +358,7 @@ function initialize(fusionData) {
 			/*Unbind Search*/
 			$('.dataTables_filter input').off();
 			/*custom replace search field*/
-			$('.dataTables_filter').html('<div class="input-group input-group-sm pull-left" style="width:95%;"><span class="input-group-addon" style="width:15px;"><i class="fa fa-search"></i></span><input type="search" class="form-control" placeholder="e.g. Name, Series, ID. ENTER to update browser URL."></div>');
+			$('.dataTables_filter').html('<div class="input-group input-group-sm pull-left" style="width:95%;"><span class="input-group-addon" style="width:15px;"><i class="fa fa-search"></i></span><input type="search" class="form-control" style="margin-left:0;" placeholder="e.g. Name, Series, ID. ENTER to update browser URL."></div>');
 			$('.searchAffix').affix({
 			  offset: { top: 180 }
 			});
@@ -367,41 +367,24 @@ function initialize(fusionData) {
 			bossDataLoad();
 			/*hide loader*/
 			$('#progressModal').modal('hide');
-	    		/*check for card param for UnitID*/
-			var idParam=urlParam('unitid');
-			if (idParam != "")
-			    openCard(idParam,"unitid");
-			/*check for card param*/
-			var cardParam=urlParam('unit');
-			if (cardParam != "") {
-			    openCard(cardParam);
-			    /*needed as show is not included in function*/
-			    $('#cardModal').modal('show');
-			}
-			/*check for compare param*/
-			var compareParam=urlParam('compare');
-			if (compareParam != "") {
-			    var tempArray = compareParam.split(',');
-			    openCompare(tempArray);
-			}
 			/*check for Batch Parameter*/
 			var batchParam=urlParam('batch');
 			if (batchParam != "") {
-		    DTapi
-			.columns( 4 )
-			.search( batchParam );
-		    DTapi
-			.column( 3 )
-			.order( 'asc' )
-			.draw();
-		e.preventDefault();
-		    window.scrollTo(0,0);
+			    DTapi
+				.columns( 4 )
+				.search( batchParam );
+			    DTapi
+				.column( 3 )
+				.order( 'asc' )
+				.draw();
+			e.preventDefault();
+			window.scrollTo(0,0);
 			}
 			/*Open Favs via URL*/
 			var favParam=urlParam('favUnits');
 			if (favParam != "") {
-			    sharedFavSelect=favParam.split(',');
-		openFav(sharedFavSelect,"Shared units by other players",true);
+			    	sharedFavSelect=favParam.split(',');
+				openFav(sharedFavSelect,"Shared units by other players",true);
 			}
 		  },
 		  "pageLength": pLength,
@@ -1045,7 +1028,7 @@ function initialize(fusionData) {
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
-	+'<tr><td colspan="6">'+evotrailHTML+'</td></tr>';
+	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
 	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
 		ovHTML+='No prior evo / No known materials';
@@ -2599,7 +2582,27 @@ var delay = (function(){
 	    }
 	    $('#totalEvoMats').html(evoCHTML);
     })
-})
+});
+
+$(window).load(function() {
+	/*check for card param for UnitID*/
+	var idParam=urlParam('unitid');
+	if (idParam != "")
+	    openCard(idParam,"unitid");
+	/*check for card param*/
+	var cardParam=urlParam('unit');
+	if (cardParam != "") {
+	    openCard(cardParam);
+	    /*needed as show is not included in function*/
+	    $('#cardModal').modal('show');
+	}
+	/*check for compare param*/
+	var compareParam=urlParam('compare');
+	if (compareParam != "") {
+	    var tempArray = compareParam.split(',');
+	    openCompare(tempArray);
+	}
+});
 </script>
 
 <!-- Google Responsive Ad -->
