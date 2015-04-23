@@ -405,7 +405,7 @@ function initialize(fusionData) {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgID, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			return '<a href="#" class="favIconLink" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -734,7 +734,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]['id']+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -1911,7 +1911,7 @@ $(document).on("click", ".compareUnit", function(e) {
 /*fav Icon Link to OpenCard*/
 $(document).on("click", ".favIconLink", function(e) {
 	e.preventDefault();
-	openCard($(this).attr("value"));
+	openCard($(this).attr("data-value"));
 })
 
 /*Add Favourites*/
