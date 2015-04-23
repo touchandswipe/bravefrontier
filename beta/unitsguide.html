@@ -1910,8 +1910,8 @@ $(document).on("click", ".compareUnit", function(e) {
     
 /*fav Icon Link to OpenCard*/
 $(document).on("click", ".favIconLink", function(e) {
+	openCard($(this).attr("data-value"),"unitid");
 	e.preventDefault();
-	openCard($(this).attr("data-value"));
 })
 
 /*Add Favourites*/
