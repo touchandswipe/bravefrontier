@@ -636,9 +636,13 @@ function initialize(fusionData) {
 		{ "targets":[ 2 ],
 		"type": "string",
 		"render": function(name, type, cRow, full) {
-		    retString = '<a href="#" class="unitName notranslate" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+name+'</a>';
-		    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
-		    return retString;
+			    if (type ==='display') {
+				    retString = '<a href="#" class="unitName notranslate" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+name+'</a>';
+				    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
+				    return retString;
+			    } else if (type === 'sort') {
+				return name;
+			    }
 		    }
 		},
 		/*Global Japan Release*/
