@@ -7,8 +7,8 @@
     <meta name="author" content="Sam GreenPuck" />
     <title>Brave Frontier - Units Guide (Bonkers R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.1/css/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -119,7 +119,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.1/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js'></script>
@@ -405,7 +405,7 @@ function initialize(fusionData) {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgID, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" value="'+cRow[fusionData.columns.indexOf("Name")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			return '<a href="#" class="favIconLink" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
@@ -636,9 +636,11 @@ function initialize(fusionData) {
 		{ "targets":[ 2 ],
 		"type": "string",
 		"render": function(name, type, cRow, full) {
-		    retString = '<a href="#" class="unitName notranslate">'+name+'</a>';
-		    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
-		    return retString;
+			    if (type === 'display') {
+				    retString = '<a href="#" class="unitName notranslate" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+name+'</a>';
+				    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
+				    return retString;
+			    } else return name;
 		    }
 		},
 		/*Global Japan Release*/
@@ -732,7 +734,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" value="'+$(drawObj[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]['id']+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -782,7 +784,7 @@ function initialize(fusionData) {
 	favUnitObj=unitObj;
 	favDraw(unitObj);
 	/*Generate Share URL*/
-	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
+	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing / Import URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
 	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
 	} /*End Else when fav unit exists*/
     }
@@ -790,7 +792,7 @@ function initialize(fusionData) {
 /*Query unit and openCard*/
       function openCard(whatunit,reqType) {
 	/*Loader*/
-	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning unit '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	/*Choose Main Card n Show Card Modal*/
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
@@ -1146,8 +1148,8 @@ function initialize(fusionData) {
 	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
-		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
-		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
+		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif" height="140"/>';
+		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName" data-value="'+evotrail[i].id+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i].id+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    /*Remove assault sprite on error*/
@@ -1908,8 +1910,8 @@ $(document).on("click", ".compareUnit", function(e) {
     
 /*fav Icon Link to OpenCard*/
 $(document).on("click", ".favIconLink", function(e) {
+	openCard($(this).attr("data-value"),"unitid");
 	e.preventDefault();
-	openCard($(this).attr("value"));
 })
 
 /*Add Favourites*/
@@ -1983,14 +1985,25 @@ $(document).on("click", "#importUnitsBtnGO", function(e){
 	favSelect=sharedFavSelect;
 	/*Import new data to local storage*/
 	    localStorage.setItem("favourites",favSelect);
-	/*loader*/
+	/*loader
 	    var bfPROsTable = $('#mytable').DataTable();
-	/*Simply Redraw*/
-	    bfPROsTable.draw();
+	/*Simply Redraw
+	    bfPROsTable.draw();*/
 	setTimeout( function() {
-	    bfpAlert("Import completion",'Import is now completed and the database is refreshed to reflect the new favourties.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
+	    bfpAlert("Import completion",'Import is now completed. Reload to see changes. <div class="text-right"><button type="button" class="btn btn-success" id="reloadBtn">Reload</button></div>');
 	    window.scrollTo(0,0);
-	    },2000);
+	    },500);
+})
+
+/*FAV Import Reload*/
+$(document).on('click', '#reloadBtn', function(e) {
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/importFavDoneUnitGuideAdvance',
+  		'title': 'Brave Frontier PROs Unit Guide Advance Import Done'
+	});
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
 })
 
 /*New units detect*/
@@ -2422,7 +2435,7 @@ $(document).on("click", "#execFilter", function(e){
 	})
 /*Binding unitcard*/
     $(document).on("click", ".unitName", function(e){
-	    openCard($(this).text());
+	    openCard($(this).attr("data-value"),"unitid");
 	    e.preventDefault();
 	})
 /*Swip gestures on UnitCard
