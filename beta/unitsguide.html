@@ -7,8 +7,8 @@
     <meta name="author" content="Sam GreenPuck" />
     <title>Brave Frontier - Units Guide (Bonkers R2) by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.1/css/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -119,7 +119,7 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.1/js/dataTables.colVis.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js'></script>
@@ -636,7 +636,7 @@ function initialize(fusionData) {
 		{ "targets":[ 2 ],
 		"type": "string",
 		"render": function(name, type, cRow, full) {
-		    retString = '<a href="#" class="unitName notranslate">'+name+'</a>';
+		    retString = '<a href="#" class="unitName notranslate" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+name+'</a>';
 		    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
 		    return retString;
 		    }
@@ -2422,7 +2422,7 @@ $(document).on("click", "#execFilter", function(e){
 	})
 /*Binding unitcard*/
     $(document).on("click", ".unitName", function(e){
-	    openCard($(this).text());
+	    openCard($(this).attr("data-value"),"unitid");
 	    e.preventDefault();
 	})
 /*Swip gestures on UnitCard
