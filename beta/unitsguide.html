@@ -1868,17 +1868,6 @@ $('#resetBtn').click( function(e) {
 	location.reload(true);
 })
 
-/*FAV Import Reload*/
-$('#reloadBtn').on('click', function(e) {
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/importFavDoneUnitGuideAdvance',
-  		'title': 'Brave Frontier PROs Unit Guide Advance Import Done'
-	});
-	history.pushState(null, null, location.pathname);
-	location.reload(true);
-})
-
 /*Compare*/
 window.compareSelect=[];
 window.compareSelectURL="";
@@ -2004,6 +1993,17 @@ $(document).on("click", "#importUnitsBtnGO", function(e){
 	    bfpAlert("Import completion",'Import is now completed. Reload to see changes. <div class="text-right"><button type="button" class="btn btn-default" id="reloadBtn">Reload</button></div>');
 	    window.scrollTo(0,0);
 	    },500);
+})
+
+/*FAV Import Reload*/
+$(document).on('click', '#reloadBtn', function(e) {
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/importFavDoneUnitGuideAdvance',
+  		'title': 'Brave Frontier PROs Unit Guide Advance Import Done'
+	});
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
 })
 
 /*New units detect*/
