@@ -784,7 +784,7 @@ function initialize(fusionData) {
 	favUnitObj=unitObj;
 	favDraw(unitObj);
 	/*Generate Share URL*/
-	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
+	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing / Import URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
 	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
 	} /*End Else when fav unit exists*/
     }
