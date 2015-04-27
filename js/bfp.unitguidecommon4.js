@@ -28,7 +28,7 @@ function totalStatsMod() {
     	var pMod=[0,0,0,0];
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
-    var totalMod=[];
+    var totalMod=[];leg
     /*Combines Modifiers*/
     for (i=0;i<4;i++) {
 	tmp=parseFloat(lsMod[i])+parseFloat(asMod[i])+parseFloat(SsMod[i])+parseFloat(sphereA[i])+parseFloat(sphereB[i]);
@@ -231,6 +231,10 @@ var evoQuery = [
 ['Thunder Tone','icon8140.png'],
 ['Light Tone','icon8141.png'],
 ['Dark Tone','icon8142.png'],
+['Ruby Relic','iconitem880001.png'],
+['Sanguine Relic','iconitem880011.png'],
+['Emerald Relic','iconitem880003.png'],
+['Verdant Relic','iconitem880013.png'],
 ['Northmen Idol','icon726.1.png'],
 ['None','iconblank.gif']];
 
