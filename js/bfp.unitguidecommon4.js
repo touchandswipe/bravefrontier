@@ -28,7 +28,7 @@ function totalStatsMod() {
     	var pMod=[0,0,0,0];
     var sphereA=$("#sphereA").val().split(",");
     var sphereB=$("#sphereB").val().split(",");
-    var totalMod=[];leg
+    var totalMod=[];
     /*Combines Modifiers*/
     for (i=0;i<4;i++) {
 	tmp=parseFloat(lsMod[i])+parseFloat(asMod[i])+parseFloat(SsMod[i])+parseFloat(sphereA[i])+parseFloat(sphereB[i]);
