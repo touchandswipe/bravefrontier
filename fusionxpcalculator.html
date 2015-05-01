@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.css">
 
     <!-- Custom styles for this template -->
@@ -344,7 +344,7 @@ $(document).on('click','#calGo',function(e) {
     
      /*Normal Success*/
     xpALTHTML+='<tbody><tr><td><i class="fa fa-star-o"></i> <b>Normal</b></td>'
-    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[3])+' <small>('+Math.ceil(xpNeeded/normalXP[3])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[3])+' <small class="text-warning">('+Math.ceil(xpNeeded/normalXP[3])+')</small></h4></td>';
     xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[2])+' <small>('+Math.ceil(xpNeeded/normalXP[2])+')</small></h4></td>';
     xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[1])+' <small>('+Math.ceil(xpNeeded/normalXP[1])+')</small></h4></td>';
     xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[0])+' <small>('+Math.ceil(xpNeeded/normalXP[0])+')</small></h4></td></tr>';
@@ -365,7 +365,7 @@ $(document).on('click','#calGo',function(e) {
     
     xpALTHTML+='</tbody></table>';
     
-    xpALTHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Reference:</b> Same <small>(Different)</small> element</i></h5></div>';
+    xpALTHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Reference:</b> Same <small class="text-warning">(Different)</small> element</i></h5></div>';
 
     $('#opEXP').html(xpHTML);
     $('#opBonus').html(xpOpHTML);
