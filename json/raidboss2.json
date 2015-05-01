@@ -611,7 +611,7 @@
       {
         "partname": "Flower (Lower)",
         "element": "dark",
-        "weakails": ""
+        "weakails": "injury"
       }
     ],
     "drops": {
@@ -634,7 +634,7 @@
       {
         "partname": "Flower",
         "element": "earth",
-        "weakails": ""
+        "weakails": "poison"
       }
     ],
     "drops": {
@@ -662,7 +662,7 @@
       {
         "partname": "Wing",
         "element": "light",
-        "weakails": "curse"
+        "weakails": "curse,para"
       }
     ],
     "drops": {
@@ -680,31 +680,31 @@
       {
         "partname": "Fire",
         "element": "fire",
-        "weakails": ""
+        "weakails": "sick"
       },
       {
         "partname": "Water",
         "element": "water",
-        "weakails": ""
+        "weakails": "weak,poison"
       },
       {
         "partname": "Earth",
         "element": "earth",
-        "weakails": ""
+        "weakails": "sick"
       },
       {
         "partname": "Thunder",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "poison"
       },
       {
         "partname": "Dark",
         "element": "dark",
-        "weakails": ""
+        "weakails": "weak,para"
       }
     ],
     "drops": {
-        "狂神の赤晶石": {"Eng":"Mad God Red Crystal","icon":"item_thum_1100.png"},
+        "狂神の赤晶": {"Eng":"Mad God Crystal","icon":"item_thum_1100.png"},
         "暗禍の神核": {"Eng":"Curse Core","icon":"item_thum_1105.png"}
       },
     "missions": [
