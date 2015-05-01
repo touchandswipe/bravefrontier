@@ -300,7 +300,7 @@
       {
         "partname": "Lower Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "injury"
       }
     ],
     "drops": {
@@ -308,8 +308,8 @@
         "真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png"},
         "災厄の瞳": {"Eng":"Disaster Eye","icon":"item_thum_702.png"},
         "大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png"},
-        "災禍煉環": {"Eng":"Calamity Ring","icon":"item_thum_1105.png"},
-        "断獄の拳": {"Eng":"Prison Claw","icon":"item_thum_505.png"}
+        "災禍煉環": {"Eng":"Doom Ring","icon":"item_thum_1105.png"},
+        "断獄の拳": {"Eng":"Ruling Fist","icon":"item_thum_505.png"}
       },
     "missions": [
       "RC3M8",
