@@ -344,28 +344,28 @@ $(document).on('click','#calGo',function(e) {
     
      /*Normal Success*/
     xpALTHTML+='<tbody><tr><td><i class="fa fa-star-o"></i> <b>Normal</b></td>'
-    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[3])+' <small class="text-warning">('+Math.ceil(xpNeeded/normalXP[3])+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[2])+' <small>('+Math.ceil(xpNeeded/normalXP[2])+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[1])+' <small>('+Math.ceil(xpNeeded/normalXP[1])+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[0])+' <small>('+Math.ceil(xpNeeded/normalXP[0])+')</small></h4></td></tr>';
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[3])+' <small class="text-danger">('+Math.ceil(xpNeeded/normalXP[3])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[2])+' <small class="text-danger">('+Math.ceil(xpNeeded/normalXP[2])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[1])+' <small class="text-danger">('+Math.ceil(xpNeeded/normalXP[1])+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/bonusXP[0])+' <small class="text-danger">('+Math.ceil(xpNeeded/normalXP[0])+')</small></h4></td></tr>';
     
     /*Great success*/
     xpALTHTML+='<tr><td><i class="fa fa-star-half-o"></i> <b>Great</b></td>'
-    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[3]*1.5))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[2]*1.5))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[1]*1.5))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*1.5))+' <small>('+Math.ceil(xpNeeded/(normalXP[0]*1.5))+')</small></h4></td></tr>';
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*1.5))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[3]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*1.5))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[2]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*1.5))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[1]*1.5))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*1.5))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[0]*1.5))+')</small></h4></td></tr>';
     
     /*Super success*/
     xpALTHTML+='<tr><td><i class="fa fa-star"></i> <b>Super</b></td>'
-    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[3]*2))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[2]*2))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[1]*2))+')</small></h4></td>';
-    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*2))+' <small>('+Math.ceil(xpNeeded/(normalXP[0]*2))+')</small></h4></td></tr>';
+    xpALTHTML+='<td class="bg-success"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[3]*2))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[3]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-info"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[2]*2))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[2]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-warning"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[1]*2))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[1]*2))+')</small></h4></td>';
+    xpALTHTML+='<td class="bg-danger"><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+Math.ceil(xpNeeded/(bonusXP[0]*2))+' <small class="text-danger">('+Math.ceil(xpNeeded/(normalXP[0]*2))+')</small></h4></td></tr>';
     
     xpALTHTML+='</tbody></table>';
     
-    xpALTHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Reference:</b> Same <small class="text-warning">(Different)</small> element</i></h5></div>';
+    xpALTHTML+='<div class="clear">&nbsp;</div><div class="col-xs-12 col-sm-12 col-md-12"><h5><i><b>Reference: Same </b><small class="text-danger">(Different)</small> element</i></h5></div>';
 
     $('#opEXP').html(xpHTML);
     $('#opBonus').html(xpOpHTML);
