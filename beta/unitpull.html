@@ -153,6 +153,7 @@
   <img src="" id="imgGacha"/>
   <img src="" id="imgMonster" class="reduceIMG"/>
   <img src="" id="imgMap" class="reduceIMG"/>
+  <img src="" id="imgEvent" class="reduceIMG"/>
   <p><a href="" id="linkAnimate"></a></p>
   <p><a href="" id="linkCGG"></a></p>
 </div>
@@ -242,7 +243,7 @@
 
 <script type="text/javascript">
 bfserver={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/","eu":"//static.bravefrontier.gumi-europe.net/content/"};
-fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","cgg":"unit/cgg/unit_cgg_","monster":"monster/img/monster_anime_","map":"raid/raid_map/raid_map"};
+fPrefix={"full":"unit/img/unit_ills_full_","thumb":"unit/img/unit_ills_thum_","sprite":"unit/img/unit_anime_","vortex":"dungeon/sp_quest_banner_","gacha":"gacha/gacha_rare_bg_img_","animate":"unit/cgs/unit_atk_cgs_","cgg":"unit/cgg/unit_cgg_","monster":"monster/img/monster_anime_","map":"raid/raid_map/raid_map","event":"event/"};
 fSuffix=".png";
 coreDat={};
 serverGuide="";
@@ -295,6 +296,7 @@ function grabIMG2() {
   var urlGacha=bfserver[$("#serverSelect").val()]+fPrefix.gacha+imgID+fSuffix;
   var urlMonster=bfserver[$("#serverSelect").val()]+fPrefix.monster+imgID+fSuffix;
   var urlMap=bfserver[$("#serverSelect").val()]+fPrefix.map+imgID+".jpg";
+  var urlEvent=bfserver[$("#serverSelect").val()]+fPrefix.event+imgID+".png";
   var urlAnimate=bfserver[$("#serverSelect").val()]+fPrefix.animate+imgID+".csv";
   var urlCGG=bfserver[$("#serverSelect").val()]+fPrefix.cgg+imgID+".csv";
   $("#imgThumb").attr("src",urlThumb);
@@ -304,6 +306,7 @@ function grabIMG2() {
   $("#imgGacha").attr("src",urlGacha);
   $("#imgMonster").attr("src",urlMonster);
   $("#imgMap").attr("src",urlMap);
+  $("#imgEvent").attr("src",urlEvent);
   $("#linkAnimate").attr("href",urlAnimate);
   $("#linkAnimate").html("Download ATK Spritesheet (CSV)");
   $("#linkCGG").attr("href",urlAnimate);
