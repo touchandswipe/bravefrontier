@@ -69,9 +69,9 @@ if (navigator.userAgent.match(/Android/i)
 <!--Calc Code here -->
 <div class="row">
 <div class="col-sm-12 col-md-12"><h4>Fusion XP Calculator</h4>
-<h6><i class="fa fa-info-circle"></i> Tier 1 (T1) are for Starter Units.</h6>
-<h6><i class="fa fa-info-circle"></i> Tier 2 (T2) are for units that have Max 5* evolution. More details to be provided.</h6>
-<h6><i class="fa fa-info-circle"></i> Tier 3 (T3) are all other rare summon units that have up to 6* Evolution. More details to be provided.</h6>
+<h6><i class="fa fa-info-circle"></i> Tier 1 (T1) are for Starter Units and units that requires 10 XP to level from Lv 1 to 2.</h6>
+<h6><i class="fa fa-info-circle"></i> Tier 2 (T2) are for Sibyl Sisters and units that requires 15 XP to level from Lv 1 to 2./h6>
+<h6><i class="fa fa-info-circle"></i> Tier 3 (T3) are most rare summons that requires 21 XP to level from Lv1 to 2.</h6>
 </div></div><!-- End of Row-->
 
 <div class="row">
@@ -127,7 +127,7 @@ if (navigator.userAgent.match(/Android/i)
             <h4><i class="fa fa-thumb-tack"></i> <b>Optimal Fusion XP Units</b></h4>
             <div id="opBonus" class="row"></div>
             <div class="clear">&nbsp;</div>
-            <h4><i class="fa fa-thumb-tack"></i> <b>Per Fusion Type ONLY</b></h4>
+            <h4><i class="fa fa-thumb-tack"></i> <b>Using ONLY Crystals, Gods, Kings or Ghosts</b></h4>
             <div id="opALT" class="row"></div>
         </div>
       </div>
@@ -315,22 +315,22 @@ $(document).on('click','#calGo',function(e) {
     xpOpHTML+='<thead><tr><td width="20%">&nbsp;</td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon434.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon200.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon199.png" width="50"/></td><td width="20%"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon198.png" width="50"/></td></tr></thead>';
     /*Normal Success*/
     xpOpHTML+='<tbody><tr><td><i class="fa fa-star-o"></i> <b>Normal</b></td>'
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Crystal']+' <small>('+xpBrokenNorm['Crystal']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['God']+' <small>('+xpBrokenNorm['God']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['King']+' <small>('+xpBrokenNorm['King']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Ghost']+' <small>('+xpBrokenNorm['Ghost']+')</small></h4></td></tr>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Crystal']+' <small class="text-danger">('+xpBrokenNorm['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['God']+' <small class="text-danger">('+xpBrokenNorm['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['King']+' <small class="text-danger">('+xpBrokenNorm['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpBroken['Ghost']+' <small class="text-danger">('+xpBrokenNorm['Ghost']+')</small></h4></td></tr>';
     /*Great Success*/
     xpOpHTML+='<tr><td><i class="fa fa-star-half-o"></i> <b>Great</b></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Crystal']+' <small>('+xpGreatDiff['Crystal']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['God']+' <small>('+xpGreatDiff['God']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['King']+' <small>('+xpGreatDiff['King']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Ghost']+' <small>('+xpGreatDiff['Ghost']+')</small></h4></td></tr>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Crystal']+' <small class="text-danger">('+xpGreatDiff['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['God']+' <small class="text-danger">('+xpGreatDiff['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['King']+' <small class="text-danger">('+xpGreatDiff['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpGreatSame['Ghost']+' <small class="text-danger">('+xpGreatDiff['Ghost']+')</small></h4></td></tr>';
     /*Super Success*/
     xpOpHTML+='<tr><td><i class="fa fa-star"></i> <b>Super</b></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Crystal']+' <small>('+xpSuperDiff['Crystal']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['God']+' <small>('+xpSuperDiff['God']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['King']+' <small>('+xpSuperDiff['King']+')</small></h4></td>';
-    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Ghost']+' <small>('+xpSuperDiff['Ghost']+')</small></h4></td></tr>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Crystal']+' <small class="text-danger">('+xpSuperDiff['Crystal']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['God']+' <small class="text-danger">('+xpSuperDiff['God']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['King']+' <small class="text-danger">('+xpSuperDiff['King']+')</small></h4></td>';
+    xpOpHTML+='<td><h4 style="margin-top:2px;"><i class="fa fa-times"></i>'+xpSuperSame['Ghost']+' <small class="text-danger">('+xpSuperDiff['Ghost']+')</small></h4></td></tr>';
 
     xpOpHTML+='</tbody></table>';
     if ($('#inCrystals').val()==0) {
