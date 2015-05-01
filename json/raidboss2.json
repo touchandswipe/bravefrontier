@@ -409,10 +409,10 @@
       }
     ],
     "drops": {
-        "剛雷豪皮": {"Eng":"Stiff Skin","icon":"item_thum_802.png"},
-        "剛雷強爪": {"Eng":"Stiff Claw","icon":"item_thum_501.png"},
-        "雷脈の心臓": {"Eng":"Thunder Heart","icon":"item_thum_1100.png"},
-        "雷の剛晶": {"Eng":"Thunder Crystal","icon":"item_thum_1103.png"}
+        "剛雷豪皮": {"Eng":"Shock Pelt","icon":"item_thum_802.png"},
+        "剛雷強爪": {"Eng":"Shock Claw","icon":"item_thum_501.png"},
+        "雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_1100.png"},
+        "雷の剛晶": {"Eng":"Evil Fang","icon":"item_thum_1103.png"}
       },
     "missions": [
       "RC4M1",
@@ -434,10 +434,10 @@
       }
     ],
     "drops": {
-        "業焔の翼": {"Eng":"Gohomura Wings","icon":"item_thum_200.png"},
-        "禍水の雫": {"Eng":"Misfortune Tear","icon":"item_thum_401.png"},
-        "大瀑布結晶": {"Eng":"Waterfall Crystal","icon":"item_thum_1101.png"},
-        "凝固した炎": {"Eng":"Solidified Flame","icon":"item_thum_200.png"}
+        "業焔の翼": {"Eng":"Fire Feather","icon":"item_thum_200.png"},
+        "禍水の雫": {"Eng":"Tragedy Drop","icon":"item_thum_401.png"},
+        "大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png"},
+        "凝固した炎": {"Eng":"Solid Flame","icon":"item_thum_200.png"}
       },
     "missions": [
       "RC4M2"
@@ -499,9 +499,9 @@
       }
     ],
     "drops": {
-        "裁きの牙": {"Eng":"Judgement Fang","icon":"item_thum_600.png"},
-        "裁雷の鬣": {"Eng":"Judgement Skin","icon":"item_thum_804.png"},
-        "裁火豪珠": {"Eng":"Judgement Pearl","icon":"item_thum_700.png"}
+        "裁きの牙": {"Eng":"Ruling Fang","icon":"item_thum_600.png"},
+        "裁雷の鬣": {"Eng":"Shock Mane","icon":"item_thum_804.png"},
+        "裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png"}
       },
     "missions": [
       "RC4M5",
@@ -534,10 +534,10 @@
       }
     ],
     "drops": {
-        "魔獣剛爪": {"Eng":"Magical Beast Claw","icon":"item_thum_505.png"},
-        "魔獣緋毛": {"Eng":"Magical Beast Hair","icon":"item_thum_800.png"},
-        "魔獣心珠": {"Eng":"Magical Beast Heart","icon":"item_thum_705.png"},
-        "大業焔珠": {"Eng":"Flame Pearl","icon":"item_thum_705.png"}
+        "魔獣剛爪": {"Eng":"Fiend Claw","icon":"item_thum_505.png"},
+        "魔獣緋毛": {"Eng":"Fiend Pelt","icon":"item_thum_800.png"},
+        "魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png"},
+        "大業焔珠": {"Eng":"Feat Jewel","icon":"item_thum_705.png"}
     },
     "missions": [
       "RC4M7",
@@ -569,9 +569,9 @@
       }
     ],
     "drops": {
-        "黒邪豪角": {"Eng":"Magical Beast Claw","icon":"item_thum_905.png"},
-        "黒邪豪鱗": {"Eng":"Magical Beast Hair","icon":"item_thum_805.png"},
-        "黒邪瞳晶": {"Eng":"Magical Beast Heart","icon":"item_thum_1105.png"}
+        "黒邪豪角": {"Eng":"Evil Horn","icon":"item_thum_905.png"},
+        "黒邪豪鱗": {"Eng":"Evil Scale","icon":"item_thum_805.png"},
+        "黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png"}
       },
     "missions": [
       "RC5M2",
