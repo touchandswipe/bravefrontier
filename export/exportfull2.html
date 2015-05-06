@@ -313,7 +313,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="crystals buff") {
                       for (ix in lsCrystalsBuffArray) {
                           $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]+lsSplit+lsPassiveID) {
+                            if (effectKey==lsCrystalsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+lsCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
