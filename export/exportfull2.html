@@ -170,7 +170,8 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"atk% extra buff based on hp", "skillref":["atk% base buff", "!-", "atk% extra buff based on hp", "!% ATK+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"def% extra buff based on hp", "skillref":["def% base buff", "!-", "def% extra buff based on hp", "!% DEF+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"dmg% reflect chance%", "skillref":["dmg% reflect chance%", "!% Chance Reflect ", "dmg% reflect low", "!-", "dmg% reflect high", "!% DMG"]},
-        {"skillid":"base crit% resist", "skillref":["!Nulls CRIT"]},
+        {"skillid":"crit chance base resist%", "skillref":["!Nulls CRIT"]},
+        {"skillid":"strong base element damage resist%", "skillref":["!Nulls Elemental Weakness"]},
         {"skillid":"element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ","@"]},
         {"skillid":"crystals buff", "skillref":["@"]},
         {"skillid":"stats buff", "skillref":["@"]},
@@ -194,7 +195,6 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"bb gauge fill rate% buff", "skillref":["bb gauge fill rate% buff", "!% BC Fill+ ", "target type", "! ", "buff turns (77)", "!Turns"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
         {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
-        {"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
         {"skillid":"ailments cured", "skillref":["!Cure Ails"]},
         {"skillid":"remove all status ailments", "skillref":["!Cure Ails"]},
@@ -219,12 +219,15 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"def% buff (47)", "skillref":["!Convert ", "def% buff (47)", "!% ","converted attribute", "! to DEF ", "target type", "! ", "% converted turns", "!Turns"]},
         {"skillid":"debuff skills", "skillref":["@"]},
         {"skillid":"ails", "skillref":["@"]},
+        //{"skillid":"gradual heal high", "skillref":["!Gradual Heal ", "gradual heal turns (8)", "!Turns"]},
+        {"skillid":"gradualhealbuff", "skillref":["@", "target type", "! ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
     var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
     var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}];
     var bbSelfBuffArray=[{"skillid":"bb bc%", "suffix":"% BC+ "}, {"skillid":"bb hc%", "suffix":"% HC+ "}];
+    var gradualhealbuffArray=[{"skillid":"gradual heal high", "suffix":"Gradual Heal "}];
     var ailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var ailsBuffArray=[{"skillid":"injury% buff", "suffix":"% Injury "}, {"skillid":"weaken% buff", "suffix":"% Weak "}, {"skillid":"sick% buff", "suffix":"% Sick "}, {"skillid":"poison% buff", "suffix":"% Poison "}, {"skillid":"paralysis% buff", "suffix":"% Para "}, {"skillid":"curse% buff", "suffix":"% Curse "}];
     /*LS group definition*/
@@ -521,6 +524,20 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbSelfBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbSelfBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Gradual heal*/
+                    else if (skillSeek=="gradualhealbuff") {
+                      for (ix in gradualhealbuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==gradualhealbuffArray[ix]["skillid"]) {
+                              groupSTR+=gradualhealbuffArray[ix]["suffix"];
+                              if (effectVal==99999)
+                                groupSTR+="FULL"
                               effectFound=true;
                             }
                           })
