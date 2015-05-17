@@ -305,8 +305,13 @@ countVar=0; /*reset count*/
             	if (exKey=="effects") {
             		for (j in valObj["extra skill"].effects) {
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
-            				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
-                			exSTR+='<div class="col-xs-7 col-md-7 bi">'+exVal2+'</div></div>';
+                			if (exKey2=="triggered effect") {
+                				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="col-xs-7 col-md-7 bi">'+JSON.stringify(exVal2)+'</div></div>';
+                			} else {
+                				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="col-xs-7 col-md-7 bi">'+exVal2+'</div></div>';
+                			}
             			})
             		}
             	}
