@@ -783,20 +783,20 @@ function calc_DMG() {
 	$("#weak_totalmod").html(weakmod+"x");
 	$("#crit_totalmod").html(critmod+"x");
 	/*calculate bb*/
-	if (selectUnitObj.bbMaxATK!=0) {
-		var base_multiplier=(selectUnitObj.bbMaxATK/100)+bbmod+basemod;
+	if (unitbasebb!=0) {
+		var base_multiplier=(unitbasebb/100)+bbmod+basemod;
 		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var bb_MaxDMG=0;
 	/*calculate sbb*/
-	if (selectUnitObj.sbbMaxATK!=0) {
-		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+bbmod+basemod;
+	if (unitbasesbb!=0) {
+		var sbase_multiplier=(unitbasesbb/100)+bbmod+basemod;
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var sbb_MaxDMG=0;
 	/*calculate ubb*/
-	if (selectUnitObj.ubbMaxATK!=0) {
-		var ubase_multiplier=(selectUnitObj.ubbMaxATK/100)+bbmod+basemod;
+	if (unitbaseubb!=0) {
+		var ubase_multiplier=(unitbaseubb/100)+bbmod+basemod;
 		var ubb_MaxDMG=((unitbaseatk*ubase_multiplier)+selectUnitObj.ubbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var ubb_MaxDMG=0;
