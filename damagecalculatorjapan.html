@@ -153,6 +153,18 @@ if (window.location.hash == '#_=_') {
 		<span class="input-group-addon">Unit ATK</span>
 	 	<input type="text" id="unit_ATK" class="form-control" placeholder="Select a unit above">
 	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Unit BB %</span>
+	 	<input type="text" id="unit_bb" class="form-control" placeholder="Select a unit above">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Unit SBB %</span>
+	 	<input type="text" id="unit_sbb" class="form-control" placeholder="Select a unit above">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Unit UBB %</span>
+	 	<input type="text" id="unit_ubb" class="form-control" placeholder="Select a unit above">
+	</div>
 	<h5 class="text-muted" id="unit_Misc"></h5>
 </div></div>
 </div></div> <!--End Unit Panel-->
@@ -259,6 +271,44 @@ if (window.location.hash == '#_=_') {
 	</div>
 </div></div><!--END Base -->
 
+<!--BB/SBB/UBB-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<h4>BraveBurst Damage % Modifiers <span id="bb_totalmod"></span></h4>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Buff</span>
+			<select class="form-control" id="bb_buff">
+				<option value="5">500% Lava/Medina UBB</option>
+				<option value="2">200% Lava SBB</option>
+				<option value="1">100% Loch</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Extra Skill</span>
+			<select class="form-control" id="bb_es">
+				<option value="1">100% Oulu</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Sphere</span>
+			<select class="form-control" id="bb_sphere">
+				<option value="2">200%</option>
+				<option value="1.5">150%</option>
+				<option value="1">100%</option>
+				<option value="0.5">50%</option>
+				<option value="0.25">25%/option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+</div></div><!--END BB/SBB/UBB -->
+
 <!--Spark-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
 	<h4>SPARK Damage Modifiers <span id="spark_totalmod"></span></h4>
@@ -275,6 +325,7 @@ if (window.location.hash == '#_=_') {
 		<div class="input-group">
 			<span class="input-group-addon">Leader</span>
 			<select class="form-control" id="spark_ls">
+				<option value="1">100% Raga</option>
 				<option value="0.75">75% Hogar</option>
 				<option value="0.5">50% Leorone</option>
 				<option value="0.3">30% Others</option>
@@ -286,6 +337,7 @@ if (window.location.hash == '#_=_') {
 		<div class="input-group">
 			<span class="input-group-addon">Ally</span>
 			<select class="form-control" id="spark_as">
+				<option value="1">100% Raga</option>
 				<option value="0.75">75% Hogar</option>
 				<option value="0.5">50% Leorone</option>
 				<option value="0.3">30% Others</option>
@@ -297,7 +349,11 @@ if (window.location.hash == '#_=_') {
 		<div class="input-group">
 			<span class="input-group-addon">Buff</span>
 			<select class="form-control" id="spark_buff">
-				<option value="1.2" selected="selected">120% Eze</option>
+				<option value="3">300% Loch UBB</option>
+				<option value="2">200%</option>
+				<option value="1.5" selected="selected">150% Dion UBB</option>
+				<option value="1.2">120% Tazer UBB</option>
+				<option value="0.9">90% Raga/Afla</option>
 				<option value="0.8">80% Rosetta</option>
 				<option value="0.7">70% Elza</option>
 				<option value="0.5">50% Luther</option>
@@ -310,10 +366,23 @@ if (window.location.hash == '#_=_') {
 		<div class="input-group">
 			<span class="input-group-addon">Sphere</span>
 			<select class="form-control" id="spark_sphere">
+				<option value="2">200% Dual Sphere</option>
 				<option value="1.5">150% Dual Sphere</option>
 				<option value="1">100% Heavenly.B</option>
 				<option value="0.5">50% Steeple</option>
 				<option value="0.25">25% Royal.B</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Extra Skill</span>
+			<select class="form-control" id="spark_es">
+				<option value="1">100%</option>
+				<option value="0.75">75%</option>
+				<option value="0.7">70%</option>
+				<option value="0.5">50% Loch</option>
 				<option value="0" selected="selected">None</option>
 			</select>
 		</div>
@@ -646,10 +715,17 @@ function searchIdRun() {
 		/*display retrieved stats*/
 		$("#unit_ATK").val(selectUnitObj.attack);
 		$("#unit_Misc").html("<b>BB ATK%:</b> "+selectUnitObj.bbMaxATK+" | <b>BB Flat ATK:</b> "+selectUnitObj.bbFlatATK);
-		if (selectUnitObj.rarity > 5)
+		$("#unit_bb").val(selectUnitObj.bbMaxATK);
+		if (selectUnitObj.rarity > 5) {
 			$("#unit_Misc").append(" | <b>SBB ATK%:</b> "+selectUnitObj.sbbMaxATK+" | <b>SBB Flat ATK:</b> "+selectUnitObj.sbbFlatATK);
-		if (selectUnitObj.rarity > 6)
+			$("#unit_sbb").val(selectUnitObj.sbbMaxATK);
+		} else
+			$("#unit_sbb").val(0);
+		if (selectUnitObj.rarity > 6) {
 			$("#unit_Misc").append(" | <b>UBB ATK%:</b> "+selectUnitObj.ubbMaxATK+" | <b>UBB Flat ATK:</b> "+selectUnitObj.ubbFlatATK);
+			$("#unit_ubb").val(selectUnitObj.ubbMaxATK);
+		} else
+			$("#unit_ubb").val(0);
 		$('.rawTable').each( function() {
 			$(this).html('<h4><img src="http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="40"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)</h4>');
 		});
@@ -676,33 +752,39 @@ function searchIdRun() {
 function calc_DMG() {
 	/*total modifier*/
 	var basemod=1+parseFloat($("#base_pot option:selected").val())+parseFloat($("#base_ore option:selected").val())+parseFloat($("#base_ls option:selected").val())+parseFloat($("#base_as option:selected").val())+parseFloat($("#base_buff option:selected").val())+parseFloat($("#base_elebuff option:selected").val())+parseFloat($("#base_sphere option:selected").val());
-	var sparkmod=parseFloat($("#spark_base option:selected").val())+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val());
+	var sparkmod=parseFloat($("#spark_base option:selected").val())+parseFloat($("#spark_ls option:selected").val())+parseFloat($("#spark_as option:selected").val())+parseFloat($("#spark_buff option:selected").val())+parseFloat($("#spark_sphere option:selected").val())+parseFloat($("#spark_es option:selected").val());
+	var bbmod=parseFloat($("#bb_buff option:selected").val())+parseFloat($("#bb_sphere option:selected").val())+parseFloat($("#bb_es option:selected").val());
 	var weakmod=parseFloat($("#weak_base option:selected").val())+parseFloat($("#weak_ls option:selected").val())+parseFloat($("#weak_as option:selected").val());
 	var critmod=parseFloat($("#crit_base option:selected").val())+parseFloat($("#crit_ls option:selected").val())+parseFloat($("#crit_as option:selected").val())+parseFloat($("#crit_sphere option:selected").val());
 	var unitbaseatk=$("#unit_ATK").val();
+	var unitbasebb=$("#unit_bb").val();
+	var unitbasesbb=$("#unit_sbb").val();
+	var unitbaseubb=$("#unit_ubb").val();
 	/*update mods*/
 	$("#base_totalmod").html(basemod+"x");
 	$("#spark_totalmod").html(sparkmod+"x");
+	$("#bb_totalmod").html((bbmod*100)+"%");
 	$("#weak_totalmod").html(weakmod+"x");
 	$("#crit_totalmod").html(critmod+"x");
 	/*calculate bb*/
 	if (selectUnitObj.bbMaxATK!=0) {
-		var base_multiplier=(selectUnitObj.bbMaxATK/100)+basemod;
+		var base_multiplier=(selectUnitObj.bbMaxATK/100)+bbmod+basemod;
 		var bb_MaxDMG=((unitbaseatk*base_multiplier)+selectUnitObj.bbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var bb_MaxDMG=0;
 	/*calculate sbb*/
 	if (selectUnitObj.sbbMaxATK!=0) {
-		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+basemod;
+		var sbase_multiplier=(selectUnitObj.sbbMaxATK/100)+bbmod+basemod;
 		var sbb_MaxDMG=((unitbaseatk*sbase_multiplier)+selectUnitObj.sbbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var sbb_MaxDMG=0;
 	/*calculate ubb*/
 	if (selectUnitObj.ubbMaxATK!=0) {
-		var ubase_multiplier=(selectUnitObj.ubbMaxATK/100)+basemod;
+		var ubase_multiplier=(selectUnitObj.ubbMaxATK/100)+bbmod+basemod;
 		var ubb_MaxDMG=((unitbaseatk*ubase_multiplier)+selectUnitObj.ubbFlatATK)*sparkmod*weakmod*critmod;
 	} else
 		var ubb_MaxDMG=0;
+	/*display*/
 	$("#unit_Display").html('<img src="http://v2.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_'+selectUnitObj.img_id+'.png" width="50"/> '+selectUnitObj.name+' ('+selectUnitObj.rarity+'<i class="fa fa-star"></i>)');
 	$("#maxBB_Display").html(parseInt(bb_MaxDMG));
 	$("#maxSBB_Display").html(parseInt(sbb_MaxDMG));
