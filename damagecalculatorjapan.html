@@ -177,7 +177,7 @@ if (window.location.hash == '#_=_') {
   <div class="panel-body">
 <!-- Content in Panel starting w/ base mods -->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h4>Base DMG Modifiers <span id="base_totalmod"></span></h4>
+	<h4>Base DMG Modifiers <span id="base_totalmod" class="text-danger"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">Potion</span>
@@ -273,7 +273,7 @@ if (window.location.hash == '#_=_') {
 
 <!--BB/SBB/UBB-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h4>BraveBurst Damage % Modifiers <span id="bb_totalmod"></span></h4>
+	<h4>BraveBurst Damage % Modifiers <span id="bb_totalmod" class="text-danger"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">Buff</span>
@@ -281,15 +281,6 @@ if (window.location.hash == '#_=_') {
 				<option value="5">500% Lava/Medina UBB</option>
 				<option value="2">200% Lava SBB</option>
 				<option value="1">100% Loch</option>
-				<option value="0" selected="selected">None</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-4">
-		<div class="input-group">
-			<span class="input-group-addon">Extra Skill</span>
-			<select class="form-control" id="bb_es">
-				<option value="1">100% Oulu</option>
 				<option value="0" selected="selected">None</option>
 			</select>
 		</div>
@@ -307,11 +298,20 @@ if (window.location.hash == '#_=_') {
 			</select>
 		</div>
 	</div>
+	<div class="col-xs-6 col-sm-6 col-md-4">
+		<div class="input-group">
+			<span class="input-group-addon">Extra Skill</span>
+			<select class="form-control" id="bb_es">
+				<option value="1">100% Oulu</option>
+				<option value="0" selected="selected">None</option>
+			</select>
+		</div>
+	</div>
 </div></div><!--END BB/SBB/UBB -->
 
 <!--Spark-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h4>SPARK Damage Modifiers <span id="spark_totalmod"></span></h4>
+	<h4>SPARK Damage Modifiers <span id="spark_totalmod" class="text-danger"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">Sparks?</span>
@@ -391,7 +391,7 @@ if (window.location.hash == '#_=_') {
 
 <!--Elemental-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h4>Elemental Weakness Damage Modifiers <span id="weak_totalmod"></span></h4>
+	<h4>Elemental Weakness Damage Modifiers <span id="weak_totalmod" class="text-danger"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">Counter Element?</span>
@@ -429,7 +429,7 @@ if (window.location.hash == '#_=_') {
 
 <!--CRIT-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<h4>CRIT Damage Modifiers <span id="crit_totalmod"></span></h4>
+	<h4>CRIT Damage Modifiers <span id="crit_totalmod" class="text-danger"></span></h4>
 	<div class="col-xs-6 col-sm-6 col-md-4">
 		<div class="input-group">
 			<span class="input-group-addon">CRITs?</span>
