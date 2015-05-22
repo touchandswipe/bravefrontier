@@ -79,12 +79,12 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <div style="min-height:55px;"></div>
-<h2 style="margin-top:5px;">Brave Frontier - Raid Companion (BETA)</h2>
+<h3 style="margin-top:5px;">Brave Frontier - Raid Companion</h3>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
-<button type="button" id="btnBoss" class="btn btn-info btnSpace"><i class="fa fa-list"></i> ALL Bosses</button>
+<button type="button" id="btnBoss" class="btn btn-info btnSpace"><i class="fa fa-list"></i> Bosses</button>
 <!-- Show by missions-->
-<button type="button" id="btnMission" class="btn btn-info btnSpace"><i class="fa fa-list"></i> ALL Missions</button>
+<button type="button" id="btnMission" class="btn btn-info btnSpace"><i class="fa fa-list"></i> Missions</button>
 <!-- items type button -->
 <div class="btn-group btnSpace">
   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">by Raid Class <span class="caret"></span>
@@ -154,8 +154,8 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <!--Containing Div-->
-<div class="container-fluid" id="rawMod">
-    <div class="panel-group" id="rawTable" style="padding:10px;"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Select a view or search.</h3></div>
+<div class="container-fluid" id="rawMod" style="padding-left:10px;padding-right:10px;">
+    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Select a view or search.</h3></div>
 </div>
 
 <!-- Google Manual labnol.org responsive ads-->
@@ -206,6 +206,11 @@
   
     (adsbygoogle = window.adsbygoogle || []).push({});
  </script>
+</div>
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<i class="fa fa-heart-o fa-lg"></i> Some of the boss / items naming in Japanese are reference from <a href="http://appinvasion.com/threads/raid-battle-guide.91999/" target="_blank">Steverion's guide on AI</a>.
 </div>
 
 <!-- disqus discussion -->
@@ -263,11 +268,11 @@ missionsObj={
 	"RC2M6":"RC2 Mission 6 (魔物の共生関係の調査)",
 	"RC2M7":"RC2 Mission 7 (8年前の屈辱)",
 	"RC2M8":"RC2 Mission 8 (異質な魔神の出現)",
-	"RC2M7":"RC2 Mission 9 (誘う魔神)",
-	"RC2M8":"RC2 Mission 10 (復讐要請)",
-	"RC2M7":"RC2 Mission 11 (手柄はくれてやる)",
-	"RC2M8":"RC2 Mission 12 Final (人を憎む妃神の猛威)",
-	"RC2M7":"RC2 Mission 13 Optional / Special (秘密の場所を教えるぜ)",
+	"RC2M9":"RC2 Mission 9 (誘う魔神)",
+	"RC2M10":"RC2 Mission 10 (復讐要請)",
+	"RC2M11":"RC2 Mission 11 (手柄はくれてやる)",
+	"RC2M12":"RC2 Mission 12 Final (人を憎む妃神の猛威)",
+	"RC2M13":"RC2 Mission 13 Optional / Special (秘密の場所を教えるぜ)",
 	"RC3M1":"RC3 Mission 1 (もっと燃え盛る舌)",
 	"RC3M2":"RC3 Mission 2 (特別公開授業)",
 	"RC3M3":"RC3 Mission 3 (彼を救ってください！)",
@@ -275,8 +280,8 @@ missionsObj={
 	"RC3M5":"RC3 Mission 5 (火口の死闘)",
 	"RC3M6":"RC3 Mission 6 (儂の息子を返せ！)",
 	"RC3M7":"RC3 Mission 7 (魔神の罠)",
-	"RC3M8":"RC3 Mission 8 (湿地を焦がす吐息)",
-	"RC3M9":"RC3 Mission 9 (煉獄への誘い)",
+	"RC3M8":"RC3 Mission 8 (煉獄への誘い)",
+	"RC3M9":"RC3 Mission 9 (湿地を焦がす吐息)",
 	"RC3M10":"RC3 Mission 10 (絶体絶命、魔神二柱)",
 	"RC3M11":"RC3 Mission 11 (煉獄ここに極まる)",
 	"RC3M12":"RC3 Mission 12 Final (破壊の神と呼ばれる者)",
@@ -295,6 +300,10 @@ missionsObj={
 	"RC5M4":"RC5 Mission 4 (プロのけじめ)",
 	"RC5M5":"RC5 Mission 5 (汚名返上)",
 	"RC5M6":"RC5 Mission 6 (湿地の謎を追え)",
+	"RC5M7":"RC5 Mission 7 (運命を変える戦い)",
+	"RC5M8":"RC5 Mission 8 (雪原への出撃準備)",
+	"RC5M9":"RC5 Mission 9 Final (魔神迎撃作戦)",
+	"RC5M10":"RC5 Mission 10 Optional / Special (悪夢再び)",
 	"RC1MR1":"RC1 Medal Rush (メダルラッシュLv1)",
 	"RC2MR2":"RC2 Medal Rush (メダルラッシュLv2)",
 	"RC3MR3":"RC3 Medal Rush (メダルラッシュLv3)",
