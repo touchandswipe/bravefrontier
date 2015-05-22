@@ -228,8 +228,6 @@ function initializeDB() {
   			displayKey: 'value',
   			source: aheadNameRead.ttAdapter()
 		});
-		
-		$('#progressModal').modal('hide');
 	  }
 	})
 }/*End init fn*/
@@ -786,7 +784,8 @@ $(document).on("click", "#pimpBtn", function(){
 });
 
 $(window).load(function() {
-/*check for card param for Unit*/
+	$('#progressModal').modal('hide');
+	/*check for card param for Unit*/
 	var idParam=urlParam('unit');
 	if (idParam != "") {
 		/*prefill search with name*/
