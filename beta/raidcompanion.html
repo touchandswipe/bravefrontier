@@ -383,7 +383,7 @@ function buildDB(boss) {
 	$.each( missionsObj, function( miKey, miVal ) {
     		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'">'+miVal.name+'</a></h4></div>'
 		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
-		miSTR+='<h3>'+miVal.info+'</h3>';
+		miSTR+='<div class="text-primary">'+miVal.info+'</div>';
     			for (i in bossParseObj) {
     				for (j in bossParseObj[i].missions) {
     					if (bossParseObj[i].missions[j]==miKey)
