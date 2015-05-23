@@ -15,6 +15,10 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .missioninfo {
+    	padding: 10px;
+  	font-size: 12pt;
+    }
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -383,7 +387,7 @@ function buildDB(boss) {
 	$.each( missionsObj, function( miKey, miVal ) {
     		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'">'+miVal.name+'</a></h4></div>'
 		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
-		miSTR+='<div class="text-primary">'+miVal.info+'</div>';
+		miSTR+='<div class="missioninfo text-primary"><b>Mission Insights: </b>'+miVal.info+'</div>';
     			for (i in bossParseObj) {
     				for (j in bossParseObj[i].missions) {
     					if (bossParseObj[i].missions[j]==miKey)
