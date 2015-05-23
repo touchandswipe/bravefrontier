@@ -5,18 +5,20 @@
       {
         "partname":"Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak"
       }
     ],
     "drops": {
-        "不燃の皮": "Solid Pelt",
-        "炎喰の牙": "Blaze Fang"
+        "不燃の皮": {"Eng":"Solid Pelt","icon":"item_thum_800.png"},
+        "炎喰の牙": {"Eng":"Blaze Fang","icon":"item_thum_604.png"}
       },
     "missions": [
       "RC1M1",
       "RC1M5",
       "RC2M5",
-      "RC3M2"
+      "RC3M2",
+      "RC1X1M1",
+      "RC2X1M2"
     ]
   },
   "Dalmogia": {
@@ -34,13 +36,14 @@
       }
     ],
     "drops": {
-        "氷堅の皮": "Frozen Pelt",
-        "氷堅の爪": "Frozen Claw"
+        "氷堅の皮": {"Eng":"Frozen Pelt","icon":"item_thum_806.png"},
+        "氷堅の爪": {"Eng":"Frozen Claw","icon":"item_thum_505.png"}
       },
     "missions": [
       "RC1M2",
       "RC1M6",
       "RC2M6",
+      "RC1X1M2",
       "RC3M2"
     ]
   },
@@ -64,9 +67,9 @@
       }
     ],
     "drops": {
-        "メルの実": "Meru Nut",
-        "大妖樹果": "Fairy Fruit",
-        "悠久の樹皮": "Eternal Tree"
+        "メルの実": {"Eng":"Meru Nut","icon":"item_thum_302.png"},
+        "大妖樹果": {"Eng":"Fairy Fruit","icon":"item_thum_305.png"},
+        "悠久の樹皮": {"Eng":"Eternal Tree","icon":"item_thum_806.png"}
       },
     "missions": [
       "RC1M3",
@@ -74,7 +77,8 @@
       "RC2M6",
       "RC2M13",
       "RC3M2",
-      "RC5M1"
+      "RC5M1",
+      "RC3X1M2"
     ]
   },
 "Bruzebia": {
@@ -97,13 +101,14 @@
       }
     ],
     "drops": {
-        "崩雷棘管": "Thunder Bone"
+        "崩雷棘管": {"Eng":"Thunder Bone","icon":"item_thum_903.png"}
       },
     "missions": [
       "RC2M2",
       "RC2M5",
       "RC2M9",
-      "RC3M2"
+      "RC3M2",
+      "RC2X1M2"
     ]
   },
 "Granomos": {
@@ -116,14 +121,15 @@
       }
     ],
     "drops": {
-        "翠殻の皮": "Verdant Pelt",
-        "翠旋の牙": "Verdant Fang"
+        "翠殻の皮": {"Eng":"Verdant Pelt","icon":"item_thum_802.png"},
+        "翠旋の牙": {"Eng":"Verdant Fang","icon":"item_thum_602.png"}
       },
     "missions": [
       "RC1M4",
       "RC2M4",
       "RC3M3",
-      "RC4M4"
+      "RC4M4",
+      "RC2X1M2"
     ]
   },
   "Medronomus": {
@@ -132,16 +138,18 @@
       {
         "partname": "Body",
         "element": "water",
-        "weakails": ""
+        "weakails": "curse"
       }
     ],
     "drops": {
-        "碧殻の皮": "Cobalt Pelt"
+        "碧殻の皮": {"Eng":"Cobalt Pelt","icon":"item_thum_801.png"}
       },
     "missions": [
       "RC2M1",
       "RC2M4",
-      "RC3M3"
+      "RC3M3",
+      "RC3X1M2",
+      "RC4X1M3"
     ]
   },
   "Reduhark": {
@@ -155,7 +163,7 @@
       {
         "partname": "Upper Wing",
         "element": "dark",
-        "weakails": ""
+        "weakails": "weak"
       },
       {
         "partname": "Lower Wing",
@@ -164,17 +172,18 @@
       }
     ],
     "drops": {
-        "闇夜の爪": "Dark Claw",
-        "闇の欠片": "Dark Stone",
-        "闇の皮膜": "Dark Pelt",
-        "闇天宝珠": "Dark Jewel",
-        "闇天翼骨": "Dark Bone"
+        "闇夜の爪": {"Eng":"Dark Claw","icon":"item_thum_500.png"},
+        "闇の欠片": {"Eng":"Dark Stone","icon":"item_thum_1105.png"},
+        "闇の皮膜": {"Eng":"Dark Pelt","icon":"item_thum_805.png"},
+        "闇天宝珠": {"Eng":"Dark Jewel","icon":"item_thum_705.png"},
+        "闇天翼骨": {"Eng":"Dark Bone","icon":"item_thum_905.png"}
       },
     "missions": [
       "RC1M8",
       "RC2M11",
       "RC3M6",
-      "RC3M10"
+      "RC3M10",
+      "RC4X1M1"
     ]
   },
   "Laguna Rex": {
@@ -193,19 +202,19 @@
       {
         "partname": "Upper Wing",
         "element": "earth",
-        "weakails": ""
+        "weakails": "para"
       },
       {
         "partname": "Lower Wing",
         "element": "dark",
-        "weakails": ""
+        "weakails": "curse,poison"
       }
     ],
     "drops": {
-        "背樹の実": "Timber Nut",
-        "輝鱗の皮": "Scaly Pelt",
-        "輝暴の実": "Shiny Nut",
-        "輝煌閃珠": "Shiny Jewel"
+        "背樹の実": {"Eng":"Timber Nut","icon":"item_thum_300.png"},
+        "輝鱗の皮": {"Eng":"Scaly Pelt","icon":"item_thum_801.png"},
+        "輝暴の実": {"Eng":"Shiny Nut","icon":"item_thum_301.png"},
+        "輝煌閃珠": {"Eng":"Shiny Jewel","icon":"item_thum_704.png"}
       },
     "missions": [
       "RC2M3",
@@ -220,43 +229,44 @@
       {
         "partname": "Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak"
       },
       {
         "partname": "Right Arm",
         "element": "light",
-        "weakails": ""
+        "weakails": "curse"
       },
       {
         "partname": "Left Arm",
         "element": "light",
-        "weakails": ""
+        "weakails": "para"
       },
       {
         "partname": "Wing",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "weak,poison"
       }
     ],
     "drops": {
-        "炎纏の皮": "Blaze Pelt",
-        "炎纏宝珠": "Flame Jewel",
-        "炎纏極鱗": "Flame Scale"
+        "炎纏の皮": {"Eng":"Blaze Pelt","icon":"item_thum_800.png"},
+        "炎纏宝珠": {"Eng":"Flame Jewel","icon":"item_thum_700.png"},
+        "炎纏極鱗": {"Eng":"Flame Scale","icon":"item_thum_800.png"}
       },
     "missions": [
       "RC3M1",
       "RC3M9",
       "RC3M11",
-      "RC5M3"
+      "RC5M3",
+      "RC3X1M2"
     ]
   },
-  "Marian": {
+  "Melion": {
     "id": "10",
     "bodyparts": [
       {
         "partname": "Body",
         "element": "dark",
-        "weakails": ""
+        "weakails": "weak"
       },
       {
         "partname": "Arm",
@@ -266,17 +276,18 @@
       {
         "partname": "Top",
         "element": "thunder",
-        "weakails": "curse"
+        "weakails": "curse,para"
       }
     ],
     "drops": {
-        "覇妃霊珠": "Queen Jewel",
-        "覇霊の瞳": "Spirit Eye"
+        "覇妃霊珠": {"Eng":"Queen Jewel","icon":"item_thum_704.png"},
+        "覇霊の瞳": {"Eng":"Spirit Eye","icon":"item_thum_703.png"}
       },
     "missions": [
       "RC2M12",
       "RC3M7",
-      "RC3M10"
+      "RC3M10",
+      "RC4X1M1"
     ]
   },
   "Nalda Delia": {
@@ -285,12 +296,12 @@
       {
         "partname": "Body",
         "element": "earth",
-        "weakails": ""
+        "weakails": "sick"
       },
       {
         "partname": "Arm",
         "element": "light",
-        "weakails": ""
+        "weakails": "injury"
       },
       {
         "partname": "Top",
@@ -300,21 +311,22 @@
       {
         "partname": "Lower Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak,injury"
       }
     ],
     "drops": {
-        "禍恨の瞳": "Ominous Eye",
-        "真禍の瞳": "Calamity Eye",
-        "災厄の瞳": "Disaster Eye",
-        "大災厄珠": "Doom Jewel",
-        "災禍煉環": "Calamity Ring",
-        "断獄の拳": "Prison Claw"
+        "禍恨の瞳": {"Eng":"Ominous Eye","icon":"item_thum_706.png"},
+        "真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png"},
+        "災厄の瞳": {"Eng":"Disaster Eye","icon":"item_thum_702.png"},
+        "大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png"},
+        "災禍煉環": {"Eng":"Doom Ring","icon":"item_thum_1105.png"},
+        "断獄の拳": {"Eng":"Ruling Fist","icon":"item_thum_505.png"}
       },
     "missions": [
       "RC3M8",
       "RC3M11",
-      "RC4M6"
+      "RC4M6",
+      "RC4X1M2"
     ]
   },
   "Van Lucy": {
@@ -327,17 +339,18 @@
       }
     ],
     "drops": {
-        "堕落の瞳": "Fallen Eye",
-        "堕落の涙": "Ruin Tear",
-        "堕落の腕": "Fallen Hand",
-        "神の歯車": "Holy Gear",
-        "堕落の螺子": "Fallen Screw",
-        "神の炉心": "Holy Core"
+        "堕落の瞳": {"Eng":"Fallen Eye","icon":"item_thum_700.png"},
+        "堕落の涙": {"Eng":"Ruin Tear","icon":"item_thum_400.png"},
+        "堕落の腕": {"Eng":"Fallen Hand","icon":"item_thum_503.png"},
+        "神の歯車": {"Eng":"Holy Gear","icon":"item_thum_1104.png"},
+        "堕落の螺子": {"Eng":"Fallen Screw","icon":"item_thum_904.png"},
+        "神の炉心": {"Eng":"Holy Core","icon":"item_thum_1104.png"}
       },
     "missions": [
       "RC2M7",
       "RC3M4",
-      "RC4M3"
+      "RC4M3",
+      "RC2X1M1"
     ]
   },
   "Van Nader": {
@@ -350,12 +363,12 @@
       }
     ],
     "drops": {
-        "悪意の瞳": "Wicked Eye",
-        "悪意の涙": "Wicked Tear",
-        "悪意の腕": "Wicked Hand",
-        "神の回路": "Holy Circuit",
-        "悪意の螺子": "Wicked Screw",
-        "神の信管": "Holy Fuse"
+        "悪意の瞳": {"Eng":"Wicked Eye","icon":"item_thum_701.png"},
+        "悪意の涙": {"Eng":"Wicked Tear","icon":"item_thum_401.png"},
+        "悪意の腕": {"Eng":"Wicked Hand","icon":"item_thum_505.png"},
+        "神の回路": {"Eng":"Holy Circuit","icon":"item_thum_1105.png"},
+        "悪意の螺子": {"Eng":"Wicked Screw","icon":"item_thum_905.png"},
+        "神の信管": {"Eng":"Holy Fuse","icon":"item_thum_1105.png"}
       },
     "missions": [
       "RC2M8",
@@ -388,18 +401,19 @@
       }
     ],
     "drops": {
-        "幻惑の爪": "Daze Claw",
-        "迷亡の爪": "Lost Claw",
-        "幻朧の瞳": "Phantom Eye",
-        "迷妄幻珠": "Ghost Jewel",
-        "欺瞞結晶": "Deception Crystal"
+        "幻惑の爪": {"Eng":"Daze Claw","icon":"item_thum_505.png"},
+        "迷亡の爪": {"Eng":"Lost Claw","icon":"item_thum_500.png"},
+        "幻朧の瞳": {"Eng":"Phantom Eye","icon":"item_thum_705.png"},
+        "迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png"},
+        "欺瞞結晶": {"Eng":"Deception Crystal","icon":"item_thum_1104.png"}
       },
     "missions": [
       "RC3M12",
-      "RC4M8"
+      "RC4M8",
+      "RC3X1M2"
     ]
   },
-  "Goruvogu": {
+  "Golvorg": {
     "id": "15",
     "bodyparts": [
       {
@@ -409,17 +423,17 @@
       }
     ],
     "drops": {
-        "剛雷豪皮": "Stiff Skin",
-        "剛雷強爪": "Stiff Claw",
-        "雷脈の心臓": "Thunder Heart",
-        "雷の剛晶": "Thunder Crystal"
+        "剛雷豪皮": {"Eng":"Shock Pelt","icon":"item_thum_802.png"},
+        "剛雷強爪": {"Eng":"Shock Claw","icon":"item_thum_501.png"},
+        "雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_1100.png"},
+        "雷の剛晶": {"Eng":"Evil Fang","icon":"item_thum_1103.png"}
       },
     "missions": [
       "RC4M1",
       "RC5M3"
     ]
   },
-  "Yugureia": {
+  "Yugreia": {
     "id": "16",
     "bodyparts": [
       {
@@ -434,16 +448,16 @@
       }
     ],
     "drops": {
-        "業焔の翼": "Gohomura Wings",
-        "禍水の雫": "Misfortune Tear",
-        "大瀑布結晶": "Waterfall Crystal",
-        "凝固した炎": "Solidified Flame"
+        "業焔の翼": {"Eng":"Fire Feather","icon":"item_thum_200.png"},
+        "禍水の雫": {"Eng":"Tragedy Drop","icon":"item_thum_401.png"},
+        "大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png"},
+        "凝固した炎": {"Eng":"Solid Flame","icon":"item_thum_200.png"}
       },
     "missions": [
       "RC4M2"
     ]
   },
-  "Awakened Yugureia": {
+  "Awakened Yugreia": {
     "id": "17",
     "bodyparts": [
       {
@@ -463,17 +477,18 @@
       }
     ],
     "drops": {
-        "業焔の翼": "Gohomura Wings",
-        "禍水の雫": "Misfortune Tear",
-        "大瀑布結晶": "Waterfall Crystal",
-        "凝固した炎": "Solidified Flame"
+        "業焔の翼": {"Eng":"Fire Feather","icon":"item_thum_200.png"},
+        "禍水の雫": {"Eng":"Tragedy Drop","icon":"item_thum_401.png"},
+        "大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png"},
+        "凝固した炎": {"Eng":"Solid Flame","icon":"item_thum_200.png"},
+        "大業焔珠": {"Eng":"Feat Jewel","icon":"item_thum_705.png"}
       },
     "missions": [
       "RC4M9",
       "RC5M5"
     ]
   },
-  "Bal Media": {
+  "Balmedia": {
     "id": "18",
     "bodyparts": [
       {
@@ -498,16 +513,17 @@
       }
     ],
     "drops": {
-        "裁きの牙": "Judgement Fang",
-        "裁雷の鬣": "Judgement Skin",
-        "裁火豪珠": "Judgement Pearl"
+        "裁きの牙": {"Eng":"Ruling Fang","icon":"item_thum_600.png"},
+        "裁雷の鬣": {"Eng":"Shock Mane","icon":"item_thum_804.png"},
+        "裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png"}
       },
     "missions": [
       "RC4M5",
-      "RC4M8"
+      "RC4M8",
+      "RC5M4"
     ]
   },
-  "Guldoga": {
+  "Grudkia": {
     "id": "19",
     "bodyparts": [
       {
@@ -532,17 +548,17 @@
       }
     ],
     "drops": {
-        "魔獣剛爪": "Magical Beast Claw",
-        "魔獣緋毛": "Magical Beast Hair",
-        "魔獣心珠": "Magical Beast Heart",
-        "大業焔珠": "Flame Pearl"
+        "魔獣剛爪": {"Eng":"Fiend Claw","icon":"item_thum_505.png"},
+        "魔獣緋毛": {"Eng":"Fiend Pelt","icon":"item_thum_800.png"},
+        "魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png"},
+        "大業焔珠": {"Eng":"Feat Jewel","icon":"item_thum_705.png"}
     },
     "missions": [
       "RC4M7",
       "RC5M4"
     ]
   },
-  "Black Dragon Jiraiya": {
+  "Black Dragon Jirayen": {
     "id": "20",
     "bodyparts": [
       {
@@ -567,12 +583,13 @@
       }
     ],
     "drops": {
-        "黒邪豪角": "Magical Beast Claw",
-        "黒邪豪鱗": "Magical Beast Hair",
-        "黒邪瞳晶": "Magical Beast Heart"
+        "黒邪豪角": {"Eng":"Evil Horn","icon":"item_thum_905.png"},
+        "黒邪豪鱗": {"Eng":"Evil Scale","icon":"item_thum_805.png"},
+        "黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png"}
       },
     "missions": [
-      "RC5M2"
+      "RC5M2",
+      "RC5M7"
     ]
   },
   "Medanche": {
@@ -608,15 +625,16 @@
       {
         "partname": "Flower (Lower)",
         "element": "dark",
-        "weakails": ""
+        "weakails": "injury"
       }
     ],
     "drops": {
-        "桜養の葉": "Sakura Leaf",
-        "炎麟の羽": "Bright Flame Leaf"
+        "桜養の葉": {"Eng":"Sakura Leaf","icon":"item_thum_107.png"},
+        "炎麟の羽": {"Eng":"Bright Flame Leaf","icon":"item_thum_200.png"}
       },
     "missions": [
-      "RC5M5"
+      "RC5M5",
+      "RC5M7"
     ]
   },
   "Queen Pula": {
@@ -630,15 +648,116 @@
       {
         "partname": "Flower",
         "element": "earth",
-        "weakails": ""
+        "weakails": "poison"
       }
     ],
     "drops": {
-        "剛搦の茎": "Rough Stem",
-        "吸命の花心": "Absorption Heart"
+        "剛搦の茎": {"Eng":"Rough Stem","icon":"item_thum_802.png"},
+        "吸命の花心": {"Eng":"Absorption Heart","icon":"item_thum_100.png"}
       },
     "missions": [
-      "RC5M6"
+      "RC5M6",
+      "RC5M10"
+    ]
+  },
+"Estreit": {
+    "id": "24",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Head",
+        "element": "water",
+        "weakails": ""
+      },
+      {
+        "partname": "Wing",
+        "element": "light",
+        "weakails": "curse,para"
+      }
+    ],
+    "drops": {
+        "蒼龍の光鱗": {"Eng":"Dragon's Light Scale","icon":"item_thum_801.png"},
+        "如幻蒼玉": {"Eng":"Illusionary Jade","icon":"item_thum_1101.png"}
+      },
+    "missions": [
+      "RC5M8",
+      "RC5M10"
+    ]
+  },
+"Alkemu": {
+    "id": "25",
+    "bodyparts": [
+      {
+        "partname": "Fire",
+        "element": "fire",
+        "weakails": "sick"
+      },
+      {
+        "partname": "Water",
+        "element": "water",
+        "weakails": "weak,poison"
+      },
+      {
+        "partname": "Earth",
+        "element": "earth",
+        "weakails": "sick"
+      },
+      {
+        "partname": "Thunder",
+        "element": "thunder",
+        "weakails": "poison"
+      },
+      {
+        "partname": "Dark",
+        "element": "dark",
+        "weakails": "weak,para"
+      }
+    ],
+    "drops": {
+        "狂神の赤晶": {"Eng":"Mad God Crystal","icon":"item_thum_1100.png"},
+        "暗禍の神核": {"Eng":"Curse Core","icon":"item_thum_1105.png"}
+      },
+    "missions": [
+      "RC5M9",
+      "RC5M10"
+    ]
+  },
+"Draegar": {
+    "id": "26",
+    "bodyparts": [
+      {
+        "partname": "Head",
+        "element": "light",
+        "weakails": "poison,injury"
+      },
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": "para"
+      },
+      {
+        "partname": "Left Arm",
+        "element": "thunder",
+        "weakails": "sick,weak"
+      },
+      {
+        "partname": "Right Arm",
+        "element": "thunder",
+        "weakails": "sick,weak"
+      }
+    ],
+    "drops": {
+        "凝固した炎": {"Eng":"Solid Flame","icon":"item_thum_200.png"},
+        "禍水の雫": {"Eng":"Tragedy Drop","icon":"item_thum_401.png"},
+        "大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png"}
+      },
+    "missions": [
+      "RC3X1M1",
+      "RC4X1M2"
     ]
   }
 }
