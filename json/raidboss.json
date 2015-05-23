@@ -254,7 +254,7 @@
       },
     "missions": [
       "RC3M1",
-      "RC3M9",
+      "RC3M8",
       "RC3M11",
       "RC5M3",
       "RC3X1M2"
@@ -323,7 +323,7 @@
         "断獄の拳": {"Eng":"Ruling Fist","icon":"item_thum_505.png"}
       },
     "missions": [
-      "RC3M8",
+      "RC3M9",
       "RC3M11",
       "RC4M6",
       "RC4X1M2"
