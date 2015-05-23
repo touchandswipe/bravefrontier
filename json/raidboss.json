@@ -285,7 +285,7 @@
       },
     "missions": [
       "RC2M12",
-      "RC3M7",
+      "RC3M6",
       "RC3M10",
       "RC4X1M1"
     ]
@@ -348,7 +348,7 @@
       },
     "missions": [
       "RC2M7",
-      "RC3M4",
+      "RC3M7"
       "RC4M3",
       "RC2X1M1"
     ]
@@ -372,7 +372,7 @@
       },
     "missions": [
       "RC2M8",
-      "RC3M4",
+      "RC3M7",
       "RC4M3"
     ]
   },
