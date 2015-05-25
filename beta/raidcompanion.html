@@ -19,8 +19,8 @@
     	padding: 10px;
   	font-size: 10pt;
     }
-    .itemText {font-size:15pt;}
-    .itemicon-lg {width:30px;vertical-align:bottom;}
+    .itemText {font-size:14pt;}
+    .itemicon-lg {width:25px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -297,6 +297,20 @@ recipesObj={
 		"地霊の命盾ジャルバー": {"Eng":"Life Shield","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
 		"輝暴の実": {"Eng":"Shiny Nut","icon":"item_thum_301.png","qty":3,"subrecipe":false},
 		"闇の皮膜": {"Eng":"Dark Pelt","icon":"item_thum_805.png","qty":3,"subrecipe":false},
+	},
+	"神滅天剣ヴァルシデル": {
+		"異鎧ペルド・インティス": {"Eng":"Odd Armor","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"殲神剣エクセベルグ": {"Eng":"Carnage Edge","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":false},
+		"大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png","qty":2,"subrecipe":false},
+		"雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_1100.png","qty":2,"subrecipe":false},
+		"桜養の葉": {"Eng":"","icon":"item_thum_107.png","qty":15,"subrecipe":false},
+	},
+	"天将盾エゼネレート": {
+		"界統盾オルデセクト": {"Eng":"Ruler Shield","icon":"sphere_thum_2_7.png","qty":1,"subrecipe":false},
+		"宿杖ラクネシス": {"Eng":"Nature Staff","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png","qty":2,"subrecipe":false},
+		"魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png","qty":2,"subrecipe":false},
+		"桜養の葉": {"Eng":"","icon":"item_thum_107.png","qty":15,"subrecipe":false},
 	}
 };
 missionsObj={
@@ -827,12 +841,14 @@ function itemsByBoss(recipeName) {
     	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	if (itemObj.subrecipe) {
-		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a></b>';
+		outputHTML+='View recipe for <a href="#" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a>';
 	} else {
 	    	/*searches for boss that drops items*/
 	    	for (i in bossParseObj)
 			if (bossParseObj[i].panelCode.search(itemKey)!=-1)
 				outputHTML+=bossParseObj[i].panelCode;
+			else
+				outputHTML+='<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
 	}
 	outputHTML+='</div></div></div></div>'; /*close panel*/
 	itemID+=1;
