@@ -513,7 +513,7 @@ function buildDB(unit,server) {
 							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
 						else
 							ingEnglish='';
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a>"+ingEnglish+"</div>";
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25" title="'+ingArray[1]+'"> <a href="#" class="ingredient">'+ingArray[0]+"</a>"+ingEnglish+"</div>";
 					}
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
 				}
