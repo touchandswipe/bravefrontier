@@ -887,10 +887,10 @@ function itemsByBoss(recipeName) {
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
+    		outputHTML='<h3><b>Recipe by Boss Drops for '+recipeKey+'</b></h3>';
     		return false; /*breaks each loop*/
     	}
     });
-    outputHTML='<h3><b>Recipe by Boss Drops for '+recipeName+'</b></h3>';
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
     	/*open new panel per recipe item*/
