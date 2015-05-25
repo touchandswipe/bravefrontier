@@ -19,6 +19,7 @@
     	padding: 10px;
   	font-size: 10pt;
     }
+    .itemicon-lg {width:40px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -792,7 +793,7 @@ function itemsByBoss(recipeName) {
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
     	/*large heading*/
-    	outputHTML+='<h2><img src="'+imgPrefix+itemObj.icon+'"> '+itemObj.Eng+' ('+itemKey+')</h2>';
+    	outputHTML+='<h3>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg"> '+itemObj.Eng+' ('+itemKey+')</h3>';
     	/*searches for boss that drops items*/
     	for (i in bossParseObj)
 		if (bossParseObj[i].panelCode.search(itemKey)!=-1)
