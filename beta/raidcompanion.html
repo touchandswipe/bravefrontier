@@ -106,7 +106,7 @@
 <div class="btn-group btnSpace">
   <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">by Recipe <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" id="itemTypeList">
+  <ul class="dropdown-menu" role="menu" id="recipeList">
 	<li><a href="#" class="raidRecipe">Malice Jewel 秘宝『グラン・セシウス』</a></li>
   </ul>
 </div>
@@ -808,7 +808,7 @@ function itemsByBoss(recipeName) {
     	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	if (itemObj.subrecipe) {
-		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemKey+'</a></b>';
+		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a></b>';
 	} else {
 	    	/*searches for boss that drops items*/
 	    	for (i in bossParseObj)
@@ -885,7 +885,10 @@ $(document).ready( function(e) {
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
-    		buildDB(data);
+	    	    $.each( recipesObj, function( recipeKey, recipeObj ) {
+			$("recipeList").append('<li><a href="#" class="raidRecipe">'+recipeKey+'</a></li>');
+		    });
+		    buildDB(data);
  	}
     })
 })
