@@ -19,8 +19,8 @@
     	padding: 10px;
   	font-size: 10pt;
     }
-    .itemText {font-size:15pt;}
-    .itemicon-lg {width:30px;vertical-align:bottom;}
+    .itemText {font-size:14pt;}
+    .itemicon-lg {width:25px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -88,12 +88,12 @@
 <h3 style="margin-top:5px;">Brave Frontier - Raid Companion</h3>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
-<button type="button" id="btnBoss" class="btn btn-lg btn-info btnSpace"><i class="fa fa-list"></i> Bosses</button>
+<button type="button" id="btnBoss" class="btn btn-lg btn-info btnSpace">ALL Bosses</button>
 <!-- Show by missions-->
-<button type="button" id="btnMission" class="btn btn-lg btn-info btnSpace"><i class="fa fa-list"></i> Missions</button>
+<button type="button" id="btnMission" class="btn btn-lg btn-info btnSpace">ALL Missions</button>
 <!-- items type button -->
 <div class="btn-group btnSpace">
-  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">by Raid Class <span class="caret"></span>
+  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">Raid Class <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList">
 	<li><a href="#" class="raidClass">RC1</a></li>
@@ -104,7 +104,7 @@
   </ul>
 </div>
 <div class="btn-group btnSpace">
-  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">by Recipe <span class="caret"></span>
+  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">Popular Recipes <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="recipeList"></ul>
 </div>
@@ -268,35 +268,91 @@ recipesObj={
 		"神滅天剣ヴァルシデル": {"Eng":"","icon":"sphere_thum_1_4.png","qty":1,"subrecipe":true},
 		"天将盾エゼネレート": {"Eng":"","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
 		"暗禍の神核": {"Eng":"","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
-		"黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
+		"黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png","qty":2,"subrecipe":false}
 	},
 	"Buffer Jewel 秘宝『ケレス・グレイン』": {
 		"秘宝『グラン・セシウス』": {"Eng":"Malice Jewel","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"神斬剣ミスラテス": {"Eng":"Hallow Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
 		"魔将盾シルヴェラト": {"Eng":"Devil Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"災禍煉環": {"Eng":"Doom Ring","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
-		"裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png","qty":2,"subrecipe":false},
+		"裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png","qty":2,"subrecipe":false}
 	},
 	"Malice Jewel 秘宝『グラン・セシウス』": {
 		"秘宝『オルト=リグオン』": {"Eng":"Legwand Gem","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
 		"封神剣アルトレイブ": {"Eng":"Seal Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
 		"魔盾ダグナス=シーラ": {"Eng":"Demon Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"幻朧の瞳": {"Eng":"Phantom Eye","icon":"item_thum_705.png","qty":3,"subrecipe":false},
-		"迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+		"迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false}
 	},
 	"Legwand Gem 秘宝『オルト=リグオン』": {
 		"秘宝『レブ・マデュラ』": {"Eng":"Medulla Gem","icon":"sphere_thum_5_5.png","qty":1,"subrecipe":true},
 		"大天使の剣『セリエル』": {"Eng":"Angel Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
 		"創盾エデル=フォリオン": {"Eng":"Alpha Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png","qty":2,"subrecipe":false},
-		"大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png","qty":1,"subrecipe":false},
+		"大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png","qty":1,"subrecipe":false}
 	},
 	"Medulla Gem 秘宝『レブ・マデュラ』": {
 		"秘宝『マルキュロディン』": {"Eng":"Sacred Jewel","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
 		"蒼竜剣ブレイブ・テラー": {"Eng":"Blue Dragon","icon":"sphere_thum_1_6.png","qty":1,"subrecipe":true},
 		"地霊の命盾ジャルバー": {"Eng":"Life Shield","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
 		"輝暴の実": {"Eng":"Shiny Nut","icon":"item_thum_301.png","qty":3,"subrecipe":false},
-		"闇の皮膜": {"Eng":"Dark Pelt","icon":"item_thum_805.png","qty":3,"subrecipe":false},
+		"闇の皮膜": {"Eng":"Dark Pelt","icon":"item_thum_805.png","qty":3,"subrecipe":false}
+	},
+	"神滅天剣ヴァルシデル": {
+		"異鎧ペルド・インティス": {"Eng":"Odd Armor","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"殲神剣エクセベルグ": {"Eng":"Carnage Edge","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":false},
+		"大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png","qty":2,"subrecipe":false},
+		"雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_1100.png","qty":2,"subrecipe":false},
+		"桜養の葉": {"Eng":"","icon":"item_thum_107.png","qty":15,"subrecipe":false}
+	},
+	"天将盾エゼネレート": {
+		"界統盾オルデセクト": {"Eng":"Ruler Shield","icon":"sphere_thum_2_7.png","qty":1,"subrecipe":false},
+		"宿杖ラクネシス": {"Eng":"Nature Staff","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"大瀑布結晶": {"Eng":"Cataract Ore","icon":"item_thum_1101.png","qty":2,"subrecipe":false},
+		"魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png","qty":2,"subrecipe":false},
+		"桜養の葉": {"Eng":"","icon":"item_thum_107.png","qty":15,"subrecipe":false}
+	},
+	"Hallow Sword 神斬剣ミスラテス": {
+		"冥鎧クリプトデリア": {"Eng":"Dark Armor","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"神祇剣クランベルド": {"Eng":"Chosen Blade","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":false},
+		"裁きの牙": {"Eng":"Ruling Fang","icon":"item_thum_600.png","qty":15,"subrecipe":false},
+		"裁雷の鬣": {"Eng":"Shock Mane","icon":"item_thum_804.png","qty":4,"subrecipe":false},
+		"翠旋の牙": {"Eng":"Burrow Fang","icon":"item_thum_602.png","qty":10,"subrecipe":false}
+	},
+	"Devil Shield 魔将盾シルヴェラ": {
+		"覇究盾アルトダイン": {"Eng":"Grand Shield","icon":"sphere_thum_2_7.png","qty":1,"subrecipe":false},
+		"祀杖カンビュセス": {"Eng":"Worship Cane","icon":"sphere_thum_3_7.png","qty":1,"subrecipe":false},
+		"断獄の拳": {"Eng":"Ruling Fist","icon":"item_thum_505.png","qty":15,"subrecipe":false},
+		"大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png","qty":4,"subrecipe":false},
+		"翠旋の牙": {"Eng":"Burrow Fang","icon":"item_thum_602.png","qty":10,"subrecipe":false}
+	},
+	"Seal Sword 封神剣アルトレイブ": {
+		"煉鎧ルナ・ラビュア": {"Eng":"Ember Armor","icon":"sphere_thum_3_6.png","qty":1,"subrecipe":false},
+		"神帝剣マグナレイブ": {"Eng":"God Sword","icon":"sphere_thum_1_6.png","qty":1,"subrecipe":false},
+		"幻惑の爪": {"Eng":"Daze Claw","icon":"item_thum_505.png","qty":15,"subrecipe":false},
+		"炎纏宝珠": {"Eng":"Flame Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+		"覇妃霊珠": {"Eng":"Queen Jewel","icon":"item_thum_704.png","qty":1,"subrecipe":false}
+	},
+	"Demon Shield 魔盾ダグナス=シーラ": {
+		"断罪の盾『黒騎』": {"Eng":"Dogma Shield","icon":"sphere_thum_2_6.png","qty":1,"subrecipe":false},
+		"戒杖ラクシュミ": {"Eng":"Order Staff","icon":"sphere_thum_3_6.png","qty":1,"subrecipe":false},
+		"迷亡の爪": {"Eng":"Lost Claw","icon":"item_thum_500.png","qty":15,"subrecipe":false},
+		"輝煌閃珠": {"Eng":"Shiny Jewel","icon":"item_thum_704.png","qty":1,"subrecipe":false},
+		"闇天宝珠": {"Eng":"Dark Jewel","icon":"item_thum_705.png","qty":1,"subrecipe":false}
+	},
+	"Blue Dragon 蒼竜剣ブレイブ・テラー": {
+		"輝鎧ルディバ・マクス": {"Eng":"Shiny Armor","icon":"sphere_thum_3_4.png","qty":1,"subrecipe":false},
+		"竜が鍛えし剣『マガ』": {"Eng":"Dragon Blade","icon":"sphere_thum_1_4.png","qty":1,"subrecipe":false},
+		"炎喰の牙": {"Eng":"Blaze Fang","icon":"item_thum_604.png","qty":10,"subrecipe":false},
+		"崩雷棘管": {"Eng":"Thunder Bone","icon":"item_thum_903.png","qty":10,"subrecipe":false},
+		"闇の欠片": {"Eng":"Dark Stone","icon":"item_thum_705.png","qty":8,"subrecipe":false}
+	},
+	"Life Shield 地霊の命盾ジャルバー": {
+		"太陽と月の盾マリス": {"Eng":"Star Shield","icon":"sphere_thum_2_4.png","qty":1,"subrecipe":false},
+		"天杖ロベル・アダン": {"Eng":"Sky Staff","icon":"sphere_thum_3_4.png","qty":1,"subrecipe":false},
+		"氷堅の爪": {"Eng":"Frozen Claw","icon":"item_thum_505.png","qty":10,"subrecipe":false},
+		"大妖樹果": {"Eng":"Fairy Fruit","icon":"item_thum_305.png","qty":10,"subrecipe":false},
+		"背樹の実": {"Eng":"Timber Nut","icon":"item_thum_300.png","qty":8,"subrecipe":false}
 	}
 };
 missionsObj={
@@ -827,12 +883,17 @@ function itemsByBoss(recipeName) {
     	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	if (itemObj.subrecipe) {
-		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a></b>';
+		outputHTML+='View recipe for '+itemObj.Eng+' <a href="#" class="raidRecipe">'+itemKey+'</a>';
 	} else {
 	    	/*searches for boss that drops items*/
+	    	itemFound=false;
 	    	for (i in bossParseObj)
-			if (bossParseObj[i].panelCode.search(itemKey)!=-1)
+			if (bossParseObj[i].panelCode.search(itemKey)!=-1) {
 				outputHTML+=bossParseObj[i].panelCode;
+				itemFound=true;
+			}
+		if (!itemFound)
+			outputHTML+='Not a raid recipe. <a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
 	}
 	outputHTML+='</div></div></div></div>'; /*close panel*/
 	itemID+=1;
