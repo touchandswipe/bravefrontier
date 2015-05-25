@@ -567,12 +567,12 @@
         "weakails": "weak,para"
       },
       {
-        "partname": "Top (Drops 黒邪瞳晶 Evil Fang)",
+        "partname": "Top",
         "element": "thunder",
         "weakails": "injury,poison"
       },
       {
-        "partname": "Wing",
+        "partname": "Wing (Drops 黒邪瞳晶 Evil Fang)",
         "element": "fire",
         "weakails": "injury,poison"
       },
