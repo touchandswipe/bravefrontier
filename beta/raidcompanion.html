@@ -106,9 +106,7 @@
 <div class="btn-group btnSpace">
   <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">by Recipe <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" id="recipeList">
-	<li><a href="#" class="raidRecipe">Malice Jewel 秘宝『グラン・セシウス』</a></li>
-  </ul>
+  <ul class="dropdown-menu" role="menu" id="recipeList"></ul>
 </div>
 <!--Search boss drops -->
 <div class="input-group" style="margin-top:5px;">
@@ -886,7 +884,7 @@ $(document).ready( function(e) {
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
 	    	    $.each( recipesObj, function( recipeKey, recipeObj ) {
-			$("recipeList").append('<li><a href="#" class="raidRecipe">'+recipeKey+'</a></li>');
+			$("#recipeList").append('<li><a href="#" class="raidRecipe">'+recipeKey+'</a></li>');
 		    });
 		    buildDB(data);
  	}
