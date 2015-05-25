@@ -841,7 +841,7 @@ function itemsByBoss(recipeName) {
     	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	if (itemObj.subrecipe) {
-		outputHTML+='View recipe for <a href="#" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a>';
+		outputHTML+='View recipe for '+itemObj.Eng+' <a href="#" class="raidRecipe">'+itemKey+'</a>';
 	} else {
 	    	/*searches for boss that drops items*/
 	    	itemFound=false;
