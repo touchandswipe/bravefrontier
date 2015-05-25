@@ -19,6 +19,7 @@
     	padding: 10px;
   	font-size: 10pt;
     }
+    .itemText {font-size:15pt;}
     .itemicon-lg {width:30px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
@@ -804,7 +805,7 @@ function itemsByBoss(recipeName) {
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
     	/*open new panel per recipe item*/
-    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><b>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</b></a></h4></div>'
+    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	if (itemObj.subrecipe) {
 		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemKey+'</a></b>';
