@@ -265,8 +265,18 @@ bossParseObj=[]; /*boss panels*/
 missionsParseObj=[]; /*collapsible mission panels*/
 recipesObj={
 	"Malice Jewel 秘宝『グラン・セシウス』": {
-		"幻朧の瞳": {"Eng":"Phantom Eye","icon":"item_thum_705.png","qty":3},
-		"迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png","qty":1},
+		"秘宝『オルト=リグオン』": {"Eng":"Legwand Gem","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
+		"封神剣アルトレイブ": {"Eng":"Seal Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
+		"魔盾ダグナス=シーラ": {"Eng":"Demon Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"幻朧の瞳": {"Eng":"Phantom Eye","icon":"item_thum_705.png","qty":3,"subrecipe":false},
+		"迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+	},
+	"Legwand Gem 秘宝『オルト=リグオン』": {
+		"秘宝『レブ・マデュラ』": {"Eng":"Medulla Gem","icon":"sphere_thum_5_5.png","qty":1,"subrecipe":true},
+		"大天使の剣『セリエル』": {"Eng":"Angel Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
+		"創盾エデル=フォリオン": {"Eng":"Alpha Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png","qty":2,"subrecipe":false},
+		"大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png","qty":1,"subrecipe":false},
 	}
 };
 missionsObj={
@@ -781,28 +791,32 @@ function searchDrops() {
 /*Items by Boss*/
 function itemsByBoss(recipeName) {
     var outputHTML="";
-    var sVal=recipeName;
     var recipeFound={};
     var itemID=1;
     /*Find recipe*/
     $.each( recipesObj, function( recipeKey, recipeObj ) {
-    	if (recipeName==recipeKey) {
+    	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
     		return false; /*breaks each loop*/
     	}
     });
+    outputHTML='<h2><b>Recipe by Boss Drops for '+recipeName+'</b></h2>';
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
     	/*open new panel per recipe item*/
-    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><h3>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</h3></a></h4></div>'
+    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><b>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</b></a></h4></div>'
 	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
-    	/*searches for boss that drops items*/
-    	for (i in bossParseObj)
-		if (bossParseObj[i].panelCode.search(itemKey)!=-1)
-			outputHTML+=bossParseObj[i].panelCode;
+	if (itemObj.subrecipe) {
+		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemKey+'</a></b>';
+	} else {
+	    	/*searches for boss that drops items*/
+	    	for (i in bossParseObj)
+			if (bossParseObj[i].panelCode.search(itemKey)!=-1)
+				outputHTML+=bossParseObj[i].panelCode;
+	}
 	outputHTML+='</div></div></div></div>'; /*close panel*/
-	});
 	itemID+=1;
+});
     /*Joins array and replace HTML*/
     $('#rawTable').html(outputHTML);
 	/*Google analytics*/
