@@ -19,7 +19,7 @@
     	padding: 10px;
   	font-size: 10pt;
     }
-    .itemicon-lg {width:40px;vertical-align:bottom;}
+    .itemicon-lg {width:30px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -783,6 +783,7 @@ function itemsByBoss(recipeName) {
     var outputHTML="";
     var sVal=recipeName;
     var recipeFound={};
+    var itemID=1;
     /*Find recipe*/
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeName==recipeKey) {
@@ -792,13 +793,16 @@ function itemsByBoss(recipeName) {
     });
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
-    	/*large heading*/
-    	outputHTML+='<h3>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg"> '+itemObj.Eng+' ('+itemKey+')</h3>';
+    	/*open new panel per recipe item*/
+    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><h3>'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</h3></a></h4></div>'
+	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
     	/*searches for boss that drops items*/
     	for (i in bossParseObj)
 		if (bossParseObj[i].panelCode.search(itemKey)!=-1)
 			outputHTML+=bossParseObj[i].panelCode;
+	outputHTML+='</div></div></div></div>'; /*close panel*/
 	});
+	itemID+=1;
     /*Joins array and replace HTML*/
     $('#rawTable').html(outputHTML);
 	/*Google analytics*/
