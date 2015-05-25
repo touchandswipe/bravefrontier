@@ -299,7 +299,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Arm",
+        "partname": "Arm (Drops 災禍煉環 Doom Ring)",
         "element": "light",
         "weakails": "injury"
       },
@@ -390,7 +390,7 @@
         "weakails": "poison"
       },
       {
-        "partname": "Torso",
+        "partname": "Torso (Drops 迷妄幻珠 Ghost Jewel)",
         "element": "earth",
         "weakails": "para"
       },
@@ -502,7 +502,7 @@
         "weakails": ""
       },
       {
-        "partname": "Tail",
+        "partname": "Tail (Drops 裁火豪珠 Blaze Pearl)",
         "element": "fire",
         "weakails": "weak"
       },
@@ -567,7 +567,7 @@
         "weakails": "weak,para"
       },
       {
-        "partname": "Top",
+        "partname": "Top (Drops 黒邪瞳晶 Evil Fang)",
         "element": "thunder",
         "weakails": "injury,poison"
       },
@@ -707,7 +707,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Thunder",
+        "partname": "Thunder (Drops 暗禍の神核 Curse Core)",
         "element": "thunder",
         "weakails": "poison"
       },
