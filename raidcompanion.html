@@ -19,6 +19,8 @@
     	padding: 10px;
   	font-size: 10pt;
     }
+    .itemText {font-size:15pt;}
+    .itemicon-lg {width:30px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
         font-weight:bold;
@@ -100,6 +102,11 @@
 	<li><a href="#" class="raidClass">RC4</a></li>
 	<li><a href="#" class="raidClass">RC5</a></li>
   </ul>
+</div>
+<div class="btn-group btnSpace">
+  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">by Recipe <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="recipeList"></ul>
 </div>
 <!--Search boss drops -->
 <div class="input-group" style="margin-top:5px;">
@@ -255,6 +262,43 @@ collapseID=1;
 imgPrefix="http://v2.cdn.android.brave.a-lim.jp/item/";
 bossParseObj=[]; /*boss panels*/
 missionsParseObj=[]; /*collapsible mission panels*/
+recipesObj={
+	"Secret Gem 秘宝『マルク・アビネス』": {
+		"秘宝『ケレス・グレイン』": {"Eng":"Buffer Jewel","icon":"sphere_thum_5_1.png","qty":1,"subrecipe":true},
+		"神滅天剣ヴァルシデル": {"Eng":"","icon":"sphere_thum_1_4.png","qty":1,"subrecipe":true},
+		"天将盾エゼネレート": {"Eng":"","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
+		"暗禍の神核": {"Eng":"","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
+		"黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
+	},
+	"Buffer Jewel 秘宝『ケレス・グレイン』": {
+		"秘宝『グラン・セシウス』": {"Eng":"Malice Jewel","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"神斬剣ミスラテス": {"Eng":"Hallow Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
+		"魔将盾シルヴェラト": {"Eng":"Devil Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"災禍煉環": {"Eng":"Doom Ring","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
+		"裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png","qty":2,"subrecipe":false},
+	},
+	"Malice Jewel 秘宝『グラン・セシウス』": {
+		"秘宝『オルト=リグオン』": {"Eng":"Legwand Gem","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
+		"封神剣アルトレイブ": {"Eng":"Seal Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
+		"魔盾ダグナス=シーラ": {"Eng":"Demon Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"幻朧の瞳": {"Eng":"Phantom Eye","icon":"item_thum_705.png","qty":3,"subrecipe":false},
+		"迷妄幻珠": {"Eng":"Ghost Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+	},
+	"Legwand Gem 秘宝『オルト=リグオン』": {
+		"秘宝『レブ・マデュラ』": {"Eng":"Medulla Gem","icon":"sphere_thum_5_5.png","qty":1,"subrecipe":true},
+		"大天使の剣『セリエル』": {"Eng":"Angel Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
+		"創盾エデル=フォリオン": {"Eng":"Alpha Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png","qty":2,"subrecipe":false},
+		"大災厄珠": {"Eng":"Doom Jewel","icon":"item_thum_705.png","qty":1,"subrecipe":false},
+	},
+	"Medulla Gem 秘宝『レブ・マデュラ』": {
+		"秘宝『マルキュロディン』": {"Eng":"Sacred Jewel","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
+		"蒼竜剣ブレイブ・テラー": {"Eng":"Blue Dragon","icon":"sphere_thum_1_6.png","qty":1,"subrecipe":true},
+		"地霊の命盾ジャルバー": {"Eng":"Life Shield","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
+		"輝暴の実": {"Eng":"Shiny Nut","icon":"item_thum_301.png","qty":3,"subrecipe":false},
+		"闇の皮膜": {"Eng":"Dark Pelt","icon":"item_thum_805.png","qty":3,"subrecipe":false},
+	}
+};
 missionsObj={
     "RC1M1": {
         "name": "RC1 Mission 1: Fire Eater (炎を喰らう者)",
@@ -764,6 +808,44 @@ function searchDrops() {
 	});
 }
 
+/*Items by Boss*/
+function itemsByBoss(recipeName) {
+    var outputHTML="";
+    var recipeFound={};
+    var itemID=1;
+    /*Find recipe*/
+    $.each( recipesObj, function( recipeKey, recipeObj ) {
+    	if (recipeKey.search(recipeName)!=-1) {
+    		recipeFound=recipeObj;
+    		return false; /*breaks each loop*/
+    	}
+    });
+    outputHTML='<h3><b>Recipe by Boss Drops for '+recipeName+'</b></h3>';
+    /*Loop each item*/
+    $.each( recipeFound, function( itemKey, itemObj ) {
+    	/*open new panel per recipe item*/
+    	outputHTML+='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#item'+itemID+'"><span class="itemText">'+itemObj.qty+'x <img src="'+imgPrefix+itemObj.icon+'" class="itemicon-lg">'+itemObj.Eng+' ('+itemKey+')</span></a></h4></div>'
+	+'<div id="item'+itemID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	if (itemObj.subrecipe) {
+		outputHTML+='<b>View recipe for <a href="" class="raidRecipe">'+itemObj.Eng+' '+itemKey+'</a></b>';
+	} else {
+	    	/*searches for boss that drops items*/
+	    	for (i in bossParseObj)
+			if (bossParseObj[i].panelCode.search(itemKey)!=-1)
+				outputHTML+=bossParseObj[i].panelCode;
+	}
+	outputHTML+='</div></div></div></div>'; /*close panel*/
+	itemID+=1;
+});
+    /*Joins array and replace HTML*/
+    $('#rawTable').html(outputHTML);
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raidCompanion_viewRecipe',
+  		'title': 'Brave Frontier PROs - Raid Companion View Recipe'
+	});
+}
+
 /*Binds Enter KEY to BOX*/
 $( "#searchDropsBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
@@ -795,6 +877,12 @@ $(document).on("click", '.raidClass', function(e){
     showRC($(this).text());
 })
 
+/*by Recipes*/
+$(document).on("click", '.raidRecipe', function(e){
+    e.preventDefault();
+    itemsByBoss($(this).text());
+})
+
 /*Update URL based on search filters*/
 $(document).on("click", '#searchDropsBtn', function(e){
     e.preventDefault();
@@ -816,7 +904,10 @@ $(document).ready( function(e) {
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		$(lastModDate).text(lastModified);
-    		buildDB(data);
+	    	    $.each( recipesObj, function( recipeKey, recipeObj ) {
+			$("#recipeList").append('<li><a href="#" class="raidRecipe">'+recipeKey+'</a></li>');
+		    });
+		    buildDB(data);
  	}
     })
 })
