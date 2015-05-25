@@ -788,7 +788,7 @@ function itemsByBoss(recipeName) {
     		recipeFound=recipeObj;
     		return false; /*breaks each loop*/
     	}
-    };
+    });
     /*Loop each item*/
     $.each( recipeFound, function( itemKey, itemObj ) {
     	/*large heading*/
@@ -797,7 +797,7 @@ function itemsByBoss(recipeName) {
     	for (i in bossParseObj)
 		if (bossParseObj[i].panelCode.search(itemKey)!=-1)
 			outputHTML+=bossParseObj[i].panelCode;
-	}
+	});
     /*Joins array and replace HTML*/
     $('#rawTable').html(outputHTML);
 	/*Google analytics*/
