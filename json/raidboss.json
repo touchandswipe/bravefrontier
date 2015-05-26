@@ -299,7 +299,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Arm (Drops 災禍煉環 Doom Ring)",
+        "partname": "Arm <span class='text-danger'>(Drops 災禍煉環 Doom Ring)</span>",
         "element": "light",
         "weakails": "injury"
       },
