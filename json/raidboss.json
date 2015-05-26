@@ -390,12 +390,12 @@
         "weakails": "poison"
       },
       {
-        "partname": "Torso (Drops 迷妄幻珠 Ghost Jewel)",
+        "partname": "Torso",
         "element": "earth",
         "weakails": "para"
       },
       {
-        "partname": "Bottom",
+        "partname": "Bottom (Drops 迷妄幻珠 Ghost Jewel)",
         "element": "light",
         "weakails": "weak,curse"
       }
@@ -442,7 +442,7 @@
         "weakails": ""
       },
       {
-        "partname": "Wing",
+        "partname": "Wing (Drops 大瀑布結晶 Cataract Ore)",
         "element": "fire",
         "weakails": ""
       }
@@ -466,7 +466,7 @@
         "weakails": "weak,injury"
       },
       {
-        "partname": "Wing",
+        "partname": "Wing (Drops 大瀑布結晶 Cataract Ore)",
         "element": "fire",
         "weakails": "para,curse"
       },
@@ -532,7 +532,7 @@
         "weakails": "weak"
       },
       {
-        "partname": "Arm",
+        "partname": "Arm (Drops 魔獣心珠 Fiend Jewel)",
         "element": "earth",
         "weakails": "para,poison"
       },
