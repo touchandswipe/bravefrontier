@@ -299,7 +299,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Arm <span class='text-danger'>(Drops 災禍煉環 Doom Ring)</span>",
+        "partname": "Arm <span class='txt-rare'>(Drops 災禍煉環 Doom Ring)</span>",
         "element": "light",
         "weakails": "injury"
       },
@@ -396,7 +396,7 @@
         "weakails": "para"
       },
       {
-        "partname": "Bottom (Drops 迷妄幻珠 Ghost Jewel)",
+        "partname": "Bottom <span class='txt-rare'>(Drops 迷妄幻珠 Ghost Jewel)</span>",
         "element": "light",
         "weakails": "weak,curse"
       }
@@ -442,7 +442,7 @@
         "weakails": ""
       },
       {
-        "partname": "Wing (Drops 大瀑布結晶 Cataract Ore)",
+        "partname": "Wing <span class='txt-rare'>(Drops 大瀑布結晶 Cataract Ore)</span>",
         "element": "fire",
         "weakails": ""
       }
@@ -466,7 +466,7 @@
         "weakails": "weak,injury"
       },
       {
-        "partname": "Wing (Drops 大瀑布結晶 Cataract Ore)",
+        "partname": "Wing <span class='txt-rare'>(Drops 大瀑布結晶 Cataract Ore)</span>",
         "element": "fire",
         "weakails": "para,curse"
       },
@@ -502,7 +502,7 @@
         "weakails": ""
       },
       {
-        "partname": "Tail (Drops 裁火豪珠 Blaze Pearl)",
+        "partname": "Tail <span class='txt-rare'>(Drops 裁火豪珠 Blaze Pearl)</span>",
         "element": "fire",
         "weakails": "weak"
       },
@@ -532,7 +532,7 @@
         "weakails": "weak"
       },
       {
-        "partname": "Arm (Drops 魔獣心珠 Fiend Jewel)",
+        "partname": "Arm <span class='txt-rare'>(Drops 魔獣心珠 Fiend Jewel)</span>",
         "element": "earth",
         "weakails": "para,poison"
       },
@@ -572,7 +572,7 @@
         "weakails": "injury,poison"
       },
       {
-        "partname": "Wing (Drops 黒邪瞳晶 Evil Fang)",
+        "partname": "Wing <span class='txt-rare'>(Drops 黒邪瞳晶 Evil Fang)</span>",
         "element": "fire",
         "weakails": "injury,poison"
       },
@@ -707,7 +707,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Thunder (Drops 暗禍の神核 Curse Core)",
+        "partname": "Thunder <span class='txt-rare'>(Drops 暗禍の神核 Curse Core)</span>",
         "element": "thunder",
         "weakails": "poison"
       },
