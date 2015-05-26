@@ -373,7 +373,8 @@
     "missions": [
       "RC2M8",
       "RC3M7",
-      "RC4M3"
+      "RC4M3",
+      "RC3X1M2"
     ]
   },
   "Mistzug": {
@@ -409,8 +410,7 @@
       },
     "missions": [
       "RC3M12",
-      "RC4M8",
-      "RC3X1M2"
+      "RC4M8"
     ]
   },
   "Golvorg": {
