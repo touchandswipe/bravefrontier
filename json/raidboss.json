@@ -250,7 +250,7 @@
     "drops": {
         "炎纏の皮": {"Eng":"Blaze Pelt","icon":"item_thum_800.png"},
         "炎纏宝珠": {"Eng":"Flame Jewel","icon":"item_thum_700.png"},
-        "炎纏極鱗": {"Eng":"Flame Scale","icon":"item_thum_800.png"}
+        "炎纏極鱗": {"Eng":"Blaze Scale","icon":"item_thum_800.png"}
       },
     "missions": [
       "RC3M1",
