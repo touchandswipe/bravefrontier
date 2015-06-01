@@ -300,17 +300,17 @@ countVar=0; /*reset count*/
         if (valObj["extra skill"]) {
             exSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Extra/Passive Skill: </b>['+valObj["extra skill"]["name"]+'] '+valObj["extra skill"]["desc"]+'</h5></div></div>';
             /*xtra Heading*/
-            exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bd">Tech Bits</div><div class="col-xs-7 col-md-7 bd">Value</div></div>';
+            exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd">Value</div></div>';
             $.each(valObj["extra skill"], function(exKey,exVal) {
             	if (exKey=="effects") {
             		for (j in valObj["extra skill"].effects) {
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
                 			if (exKey2=="triggered effect") {
-                				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
-                				exSTR+='<div class="col-xs-7 col-md-7 bi">'+JSON.stringify(exVal2)+'</div></div>';
+                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="col-xs-10 col-md-10 bi">'+JSON.stringify(exVal2)+'</div></div>';
                 			} else {
-                				exSTR+='<div class="row equal"><div class="col-xs-5 col-md-5 bi"><span class="ex">'+exKey2+"</span></div>";
-                				exSTR+='<div class="col-xs-7 col-md-7 bi">'+exVal2+'</div></div>';
+                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="col-xs-10 col-md-10 bi">'+exVal2+'</div></div>';
                 			}
             			})
             		}
