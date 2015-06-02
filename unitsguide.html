@@ -226,9 +226,9 @@ function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
   if ( $( document ).width() >= 1800 ) {
     var xtraDefCol=[]; var pLength=100;
-  } else if ( ( $( document ).width() < 1800 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16,17,18,19,20,21,22]; var pLength=100; 
-  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,15,16,17,18,19,20,21,22]; var pLength=100;
-  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=100;
+  } else if ( ( $( document ).width() < 1800 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16,17,18,19,20,21,22]; var pLength=50; 
+  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,15,16,17,18,19,20,21,22]; var pLength=50;
+  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=50;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=50; }
   
 	/*Check for latest ver of Data with UBB*/
@@ -1535,8 +1535,8 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
    <form class="navbar-form navbar-right" role="search" style="padding:0 20px 0 5px;">
 	  <div class="form-group">
 		<select id="unitsPerPage" class="form-control">
-		    <option value="50">50 / pg</option>
-		    <option value="100" selected="selected">100 / pg</option>
+		    <option value="50" selected="selected">50 / pg</option>
+		    <option value="100">100 / pg</option>
 		    <option value="200">200 / pg</option>
 		    <option value="300">300 / pg</option>
 		</select>
