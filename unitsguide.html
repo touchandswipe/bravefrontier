@@ -138,7 +138,6 @@ if (navigator.userAgent.match(/Android/i)
 if (window.location.hash == '#_=_') {
     window.location.hash = '';
     history.pushState('', document.title, window.location.pathname);
-    e.preventDefault();
 }
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
