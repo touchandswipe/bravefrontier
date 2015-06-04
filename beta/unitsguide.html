@@ -1319,7 +1319,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	      for (i in units) {
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
 		  $('#squadChange').append('<button type="button" class="btn btn-default btn-sm squadALL" style="margin:3px;" value="'+i+'">'+cData[i]['name']+'</button>');
-		  var squadEle="#squadUnit"+(i+1);
+		  var squadEle="#squadUnit"+(parseInt(i+1));
 		  alert("squadEle is" + squadEle);
 		  ownSquad[i]=ovsprite;
 		  $(squadEle.toString()).attr('src',ovsprite);
@@ -1332,7 +1332,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	      /*Sprite check OPPONENTS*/
 	      for (i in units) {
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
-		  var squadOppEle='#squadOpp'+(i+1);
+		  var squadOppEle='#squadOpp'+(parseInt(i+1));
 		  oppSquad[i]=ovsprite;
 		  $(squadOppEle).attr('src',ovsprite);
 		  $(squadOppEle).error( function() {
