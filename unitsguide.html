@@ -2378,7 +2378,7 @@ $(document).on("click", "#execFilter", function(e){
 		.search( '' );
 		bfPROsTable
 		.columns().search( '' );
-	    bfPROsTable.page.len($('#unitsPerPage').val());
+	    //bfPROsTable.page.len(-1);
 	    bfPROsTable
 		.column( 0 )
 		.order( 'asc' )
@@ -2394,7 +2394,7 @@ $(document).on("click", "#execFilter", function(e){
 	    /*reset compare array*/
 	    compareSelect=[];
 	    /*reset page length*/
-	    bfPROsTable.page.len(100).draw();
+	    bfPROsTable.page.len($('#unitsPerPage').val()).draw();
 	    /*reset pushstate*/
 	    history.pushState(null, null, location.pathname);
 	    /*change search field*/
