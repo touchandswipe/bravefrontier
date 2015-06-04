@@ -172,25 +172,21 @@ if (navigator.userAgent.match(/Android/i)
 
 <script type="text/javascript">
 $(document).ready( function(e) {
-barWidth=$('#markerBar').css('width');
- $('#markerBar').show();
- $('#markerBarTall').show();
-  $('.markerBtn').on('click', function() {
-    var btnVal=$(this).val();
-    var newWidth=Math.ceil(btnVal*parseInt(barWidth)).toString()+'px';
-    $('#markerBar').css('width',newWidth);
-    $('#markerBarTall').css('width',newWidth);
-  	/*Google analytics*/
-  	ga('send', 'pageview', {
-    		'page': '/vurl/HP_Marker_Change',
-    		'title': 'Brave Frontier PROs - HP Marker Change HP'
-  	});
-  })
-}) /*End DocReady*/
-$(window).load(function() {
- //$('#markerBar').show();
- //$('#markerBarTall').show();
-});
+	barWidth=$('#markerBar').css('width');
+	 $('#markerBar').show();
+	 $('#markerBarTall').show();
+	  $('.markerBtn').on('click', function() {
+	    var btnVal=$(this).val();
+	    var newWidth=Math.ceil(btnVal*parseInt(barWidth)).toString()+'px';
+	    $('#markerBar').css('width',newWidth);
+	    $('#markerBarTall').css('width',newWidth);
+	  	/*Google analytics*/
+	  	ga('send', 'pageview', {
+	    		'page': '/vurl/HP_Marker_Change',
+	    		'title': 'Brave Frontier PROs - HP Marker Change HP'
+	  	});
+	  })
+})
 </script>
 
 <!-- Google Analytics -->
