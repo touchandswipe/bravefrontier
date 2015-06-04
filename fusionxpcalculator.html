@@ -264,8 +264,8 @@ $(document).on('click','#calGo',function(e) {
     else if ( (!$.isNumeric(selFrom)) || (!$.isNumeric(selTo)) ) {
         alert("Numeric values only")
     }
-    else if ( ( selTier==2 ) && (( parseInt(selTo) > 80 ) || ( parseInt(selFrom) > 80 )) ) {
-        alert('Max level for Tier 2 is 80')
+    else if ( ( selTier==2 ) && (( parseInt(selTo) > 100 ) || ( parseInt(selFrom) > 100 )) ) {
+        alert('Max level for Tier 2 is 100')
     }
     else {
 
