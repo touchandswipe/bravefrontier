@@ -173,6 +173,8 @@ if (navigator.userAgent.match(/Android/i)
 <script type="text/javascript">
 $(document).ready( function(e) {
 barWidth=$('#markerBar').css('width');
+ $('#markerBar').show();
+ $('#markerBarTall').show();
   $('.markerBtn').on('click', function() {
     var btnVal=$(this).val();
     var newWidth=Math.ceil(btnVal*parseInt(barWidth)).toString()+'px';
@@ -186,8 +188,8 @@ barWidth=$('#markerBar').css('width');
   })
 }) /*End DocReady*/
 $(window).load(function() {
- $('#markerBar').show();
- $('#markerBarTall').show();
+ //$('#markerBar').show();
+ //$('#markerBarTall').show();
 });
 </script>
 
