@@ -64,6 +64,7 @@
   position: absolute;
   text-transform: uppercase;
 }
+#spacer { height:50px; }
 #nav-toggle { cursor: pointer; padding: 10px 30px 16px 0px; }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
   cursor: pointer;
