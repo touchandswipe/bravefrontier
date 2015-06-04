@@ -81,7 +81,7 @@ if (navigator.userAgent.match(/Android/i)
 <div class="col-xs-6 col-sm-3 col-md-3">
     <div class="input-group" style="margin:3px;">
       <span class="input-group-addon"><b>To</b></span>
-      <input id="calTo" type="text" value="100" class="form-control numF" placeholder="Future Lv">
+      <input id="calTo" type="text" value="120" class="form-control numF" placeholder="Future Lv">
     </div>
 </div>
 
@@ -246,8 +246,8 @@ $(document).on('keyup','.numF',function(e) {
     if ( ( !$.isNumeric( $(this).val()) ) && ($(this).val() != '') ) {
         alert('Only numerical values are allowed');
         if ( $(this).attr('id') == 'calTo' ) {
-            if ( $('#calTier').val() == 2 ) { $(this).val(80) }
-                else { $(this).val(100) }
+            if ( $('#calTier').val() == 2 ) { $(this).val(100) }
+                else { $(this).val(120) }
         } else { $(this).val(1) }
     }
 });
