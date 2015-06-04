@@ -1,4 +1,5 @@
 $('#nav-toggle').on('click', function () {
+    e.preventDefault();
     this.classList.toggle('active');
     if ($('#overlayC').hasClass('close')) {
     	$('#overlayC').removeClass('close');
