@@ -1332,7 +1332,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	      /*Sprite check OPPONENTS*/
 	      for (i in units) {
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
-		  var squadOppEle='#squadOpp'+(parseInt(i+1));
+		  var squadOppEle='#squadOpp'+(parseInt(i)+1);
 		  oppSquad[i]=ovsprite;
 		  $(squadOppEle).attr('src',ovsprite);
 		  $(squadOppEle).error( function() {
