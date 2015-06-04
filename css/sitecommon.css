@@ -7,7 +7,7 @@
 	background: rgba(255,195,145,0.95);
 	font-family: 'Quicksand', sans-serif;
 	z-index:199;
-	padding:65px 15px 15px 15px;
+	padding:65px 15px 50px 15px;
 	overflow:auto;
 }
 .close {
