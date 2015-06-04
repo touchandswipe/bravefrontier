@@ -138,7 +138,6 @@ if (navigator.userAgent.match(/Android/i)
 if (window.location.hash == '#_=_') {
     window.location.hash = '';
     history.pushState('', document.title, window.location.pathname);
-    e.preventDefault();
 }
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
@@ -226,9 +225,9 @@ function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
   if ( $( document ).width() >= 1800 ) {
     var xtraDefCol=[]; var pLength=100;
-  } else if ( ( $( document ).width() < 1800 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16,17,18,19,20,21,22]; var pLength=100; 
-  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,15,16,17,18,19,20,21,22]; var pLength=100;
-  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=100;
+  } else if ( ( $( document ).width() < 1800 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,12,16,17,18,19,20,21,22]; var pLength=50; 
+  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,15,16,17,18,19,20,21,22]; var pLength=50;
+  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=50;
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]; var pLength=50; }
   
 	/*Check for latest ver of Data with UBB*/
@@ -963,10 +962,10 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" value="'+$(evotrail[i]['name']).text()+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -1323,6 +1322,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  var squadEle='#squadUnit'+(i+1);
 		  ownSquad[i]=ovsprite;
 		  $(squadEle).attr('src',ovsprite);
+		  alert($(squadEle).attr('src')+" sprite var is "+ovsprite);
 		  $(squadEle).error( function() {
 		  	$(this).unbind();
 			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
@@ -1535,8 +1535,8 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
    <form class="navbar-form navbar-right" role="search" style="padding:0 20px 0 5px;">
 	  <div class="form-group">
 		<select id="unitsPerPage" class="form-control">
-		    <option value="50">50 / pg</option>
-		    <option value="100" selected="selected">100 / pg</option>
+		    <option value="50" selected="selected">50 / pg</option>
+		    <option value="100">100 / pg</option>
 		    <option value="200">200 / pg</option>
 		    <option value="300">300 / pg</option>
 		</select>
@@ -1550,11 +1550,10 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 <!-- Mainbody -->
 <div class="container-fluid">
 <div style="height:60px;"></div>
-<!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <div id="google-ads-1"></div>
 <script type="text/javascript"> 
- 
     /* Calculate the width of available ad space */
     ad = document.getElementById('google-ads-1');
  
@@ -1598,7 +1597,6 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
   
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </div>
 <!--mainbody / Search box Custom-->
 <table id="mytable" class="table-bordered table-responsive table-hover table-striped table-condensed" style="display:none;clear:both;width:100%;">
@@ -2619,54 +2617,26 @@ $(window).load(function() {
 </script>
 
 <!-- Google Responsive Ad -->
-<div class="text-center clear" style="width:100%;margin:0 auto;">
-<!-- Google Manual labnol.org responsive ads-->
-<div id="google-ads-2"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-2');
- 
-    if (ad.getBoundingClientRect().width) {
-	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-	adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- 
+<div class="text-center clear" style="width:100%;margin:1px auto;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="text-center clear" style="width:100%;margin:1px auto;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
 
