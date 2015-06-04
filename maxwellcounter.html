@@ -10,7 +10,9 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
 <!-- Custom CSS -->
 <style type="text/css">
     .clear {clear:both;}
@@ -45,34 +47,9 @@ if (navigator.userAgent.match(/Android/i)
 
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
-        </div>
-        <!-- Collapse Nav-->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
-                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
+<div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid">
-<div style="min-height:55px;"></div>
 <div class="text-center" style="margin-bottom:5px;">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- NEWResponsiveBlog -->
@@ -246,6 +223,8 @@ function updateGuide() {
 }
 
 $(document).ready( function(e) {
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 /*Init*/
 genSteps();
 $( ".turnCount" ).eq(currentStep).removeClass("panel-default");
