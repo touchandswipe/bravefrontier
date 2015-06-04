@@ -1,4 +1,4 @@
-$('#nav-toggle').on('click', function () {
+$('#nav-toggle').on('click', function (e) {
     e.preventDefault();
     this.classList.toggle('active');
     if ($('#overlayC').hasClass('close')) {
