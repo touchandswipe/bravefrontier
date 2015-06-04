@@ -100,3 +100,18 @@
   transform: translateY(-10px) rotate(-45deg);
   top: 10px;
 }
+.btn-menu {
+  border: solid 1px rgba(235,175,125,1);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.65);
+  color: #555555;
+  font-weight: bold;
+  padding: 8px 5px;
+  margin-bottom:5px;
+}
+.btn-menu i {
+  left: 30px;
+  position: absolute;
+  top: 9px;
+  font-size: 20px;
+}
