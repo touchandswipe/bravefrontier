@@ -10,7 +10,9 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
 <!-- Custom CSS -->
 <style type="text/css">
     .clear {clear:both;}
@@ -49,18 +51,9 @@ if (navigator.userAgent.match(/Android/i)
 
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs - Japan Server PlayAid</a>
-        </div>
-      </div>
-    </div>
-
+<div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid">
-<div style="min-height:55px;"></div>
 <div class="row"><div class="col-xs-12 pull-left">
 <!-- Google Manual labnol.org responsive ads-->
 <div id="google-ads-1"></div>
@@ -578,6 +571,8 @@ function buildBtns(buildObjItem,stateUpdate) {
 }
 }
 $(document).ready( function(e) {
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
   /*checks for URL Parameter*/
   var stepParam=urlParam('aidStep');
 	if (stepParam != '')
