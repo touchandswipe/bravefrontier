@@ -1320,10 +1320,8 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
 		  $('#squadChange').append('<button type="button" class="btn btn-default btn-sm squadALL" style="margin:3px;" value="'+i+'">'+cData[i]['name']+'</button>');
 		  var squadEle="#squadUnit"+(parseInt(i)+1);
-		  alert("squadEle is" + squadEle);
 		  ownSquad[i]=ovsprite;
 		  $(squadEle.toString()).attr('src',ovsprite);
-		  alert($(squadEle.toString()).attr('src')+" sprite var is "+ovsprite);
 		  $(squadEle).error( function() {
 		  	$(this).unbind();
 			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
