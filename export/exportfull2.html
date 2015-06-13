@@ -221,6 +221,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"def% buff (47)", "skillref":["!Convert ", "def% buff (47)", "!% ","converted attribute", "! to DEF ", "target type", "! ", "% converted turns", "!Turns"]},
         {"skillid":"debuff skills", "skillref":["@"]},
         {"skillid":"ails", "skillref":["@"]},
+        {"skillid":"bb element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ", "@", "! ", "target type", "! ", "elemental weakness buff turns", "!Turns"]},
         {"skillid":"gradualhealbuff", "skillref":["@", "! ", "target type", "! ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
       ];
@@ -238,6 +239,7 @@ $.getJSON( serverSelect, function( unit ) {
     var lsailsArray=[{"skillid":"injury%", "suffix":"% Injury "}, {"skillid":"weaken%", "suffix":"% Weak "}, {"skillid":"sick%", "suffix":"% Sick "}, {"skillid":"poison%", "suffix":"% Poison "}, {"skillid":"paralysis%", "suffix":"% Para "}, {"skillid":"curse%", "suffix":"% Curse "}];
     var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
     var lsWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
+    var bbWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
     var skillConnect=' / ';
     var bbArray=["bb","sbb","ubb"];
     var lsSplit=' - ';
@@ -578,6 +580,29 @@ $.getJSON( serverSelect, function( unit ) {
                             }
                           })
                       }
+                    } /*End Grouping check*/
+                    
+                    /*Elemental weakness check*/
+                    else if (skillSeek=="bb element weakness") {
+                      var elementCount=0;
+                      for (ix in bbWeakElementArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==bbWeakElementArray[ix]["skillid"]) {
+                                if (elementCount>0)
+                                  groupSTR+=",";
+                                elementCount+=1;
+                                if (elementCount==1)
+                                  groupSTR+="("
+                                groupSTR+=bbWeakElementArray[ix]["suffix"];
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (elementCount==6)
+                          groupSTR="(ALL)"
+                        else
+                          groupSTR+=")"
                     } /*End Grouping check*/
                     
                     else
