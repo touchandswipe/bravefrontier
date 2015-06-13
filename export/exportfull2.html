@@ -586,7 +586,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb element weakness") {
                       var elementCount=0;
                       for (ix in bbWeakElementArray) {
-                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbWeakElementArray[ix]["skillid"]) {
                                 if (elementCount>0)
                                   groupSTR+=",";
