@@ -808,11 +808,7 @@ function showMissions() {
     var outputHTML=[];
     /*Sort array*/
     missionsParseObj=missionsParseObj.sort(function(a,b) {
-        if (a.sortx < b.sortx)
-            return -1;
-        if (a.sortx > b.sortx)
-            return 1;
-        return 0;
+        return a.sortx - b.sortx;
     });
     /*Build HTML Array*/
     for (i in missionsParseObj)
@@ -838,11 +834,7 @@ function showRC(select) {
 		outputObj.push(missionsParseObj[i]);
     /*Sort*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.sortx < b.sortx)
-            return -1;
-        if (a.sortx > b.sortx)
-            return 1;
-        return 0;
+        return a.sortx - b.sortx;
     });
     /*Build HTML Array*/
     for (i in outputObj)
