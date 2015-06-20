@@ -242,7 +242,7 @@
         "weakails": "para"
       },
       {
-        "partname": "Wing",
+        "partname": "Wing <span class='txt-rare'>(Drops 炎纏極鱗 Blaze Scale)</span>",
         "element": "thunder",
         "weakails": "weak,poison"
       }
@@ -299,7 +299,7 @@
         "weakails": "sick"
       },
       {
-        "partname": "Arm <span class='txt-rare'>(Drops 災禍煉環 Doom Ring)</span>",
+        "partname": "Arm",
         "element": "light",
         "weakails": "injury"
       },
@@ -309,7 +309,7 @@
         "weakails": ""
       },
       {
-        "partname": "Lower Body",
+        "partname": "Lower Body <span class='txt-rare'>(Drops 災禍煉環 Doom Ring)</span>",
         "element": "fire",
         "weakails": "weak,injury"
       }
@@ -532,12 +532,12 @@
         "weakails": "weak"
       },
       {
-        "partname": "Arm <span class='txt-rare'>(Drops 魔獣心珠 Fiend Jewel)</span>",
+        "partname": "Arm",
         "element": "earth",
         "weakails": "para,poison"
       },
       {
-        "partname": "Bottom",
+        "partname": "Bottom <span class='txt-rare'>(Drops 魔獣心珠 Fiend Jewel)</span>",
         "element": "thunder",
         "weakails": "weak,injury"
       },
@@ -572,12 +572,12 @@
         "weakails": "injury,poison"
       },
       {
-        "partname": "Wing <span class='txt-rare'>(Drops 黒邪瞳晶 Evil Fang)</span>",
+        "partname": "Wing",
         "element": "fire",
         "weakails": "injury,poison"
       },
       {
-        "partname": "Claw",
+        "partname": "Claw <span class='txt-rare'>(Drops 黒邪瞳晶 Evil Fang)</span>",
         "element": "dark",
         "weakails": "weak,injury"
       }
@@ -646,7 +646,7 @@
         "weakails": "weak,curse"
       },
       {
-        "partname": "Flower",
+        "partname": "Flower <span class='txt-rare'>(Drops 吸命の花心 Absorption Heart)</span>",
         "element": "earth",
         "weakails": "poison"
       }
@@ -674,7 +674,7 @@
         "weakails": ""
       },
       {
-        "partname": "Wing",
+        "partname": "Wing <span class='txt-rare'>(Drops 如幻蒼玉 Illusionary Jade)</span>",
         "element": "light",
         "weakails": "curse,para"
       }
@@ -712,7 +712,7 @@
         "weakails": "poison"
       },
       {
-        "partname": "Dark",
+        "partname": "Dark <span class='txt-rare'>(Drops 暗禍の神核 Curse Core)</span>",
         "element": "dark",
         "weakails": "weak,para"
       }
