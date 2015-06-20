@@ -752,7 +752,7 @@ function buildDB(boss) {
     			}
     		}
     		miSTR+='</div></div></div></div>'; /*close panel*/
-    		missionsParseObj.push({"mission":miKey, "missiondesc":miVal, "panelCode": miSTR});
+    		missionsParseObj.push({"mission":miKey, "missiondesc":miVal, "panelCode": miSTR, "sortx":miVal.sortx});
     		collapseID+=1;
     		showBoss();
     	});
