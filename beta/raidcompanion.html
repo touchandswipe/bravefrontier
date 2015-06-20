@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet"> -->
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -19,6 +20,7 @@
     	padding: 10px;
   	font-size: 10pt;
     }
+    .txt-rare {color:#F80;}
     .itemText {font-size:14pt;}
     .itemicon-lg {width:25px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
@@ -58,33 +60,9 @@
 
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
-        </div>
-        <!-- Collapse Nav-->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units Guide Advance</a></li>
-                    <li><a href="itemsguideunified.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Items Guide (Unified)</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
+<div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
-<div style="min-height:55px;"></div>
 <h3 style="margin-top:5px;">Brave Frontier - Raid Companion</h3>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
@@ -114,116 +92,52 @@
         <button class="btn btn-primary" type="button" id="searchDropsBtn">Search Boss drops</button></span>
         <input type="search" placeholder="e.g. 迷妄幻珠 or Ghost Jewel" class="form-control" id="searchDropsBox">
 </div>
-<!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin:5px;">
-<div id="google-ads-1"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-1');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
-</div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod" style="padding-left:10px;padding-right:10px;">
     <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Select a view or search.</h3></div>
 </div>
 
-<!-- Google Manual labnol.org responsive ads-->
-<div class="text-center" style="margin-bottom:5px;">
-<div id="google-ads-2"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-2');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
-</div>
-
 <div class="alert alert-warning alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> Some of the boss / items naming in Japanese are referenced from <a href="http://appinvasion.com/threads/raid-battle-guide.91999/" target="_blank">Steverion's guide on AI</a>.
+<i class="fa fa-heart-o fa-lg"></i> Some of the boss / items naming in Japanese are referenced from <a href="http://appinvasion.com/threads/raid-battle-guide.91999/" target="_blank">Steverion's guide on AI</a>.<br/>
+Updated rare drops by boss parts with latest information from Official Brave Frontier JP Guide.
 </div>
 
+<div class="text-center" style="margin-bottom:2px;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="text-center" style="margin-bottom:2px;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 <!-- disqus discussion -->
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
@@ -368,6 +282,34 @@ recipesObj={
 		"大妖樹果": {"Eng":"Fairy Fruit","icon":"item_thum_305.png","qty":10,"subrecipe":false},
 		"背樹の実": {"Eng":"Timber Nut","icon":"item_thum_300.png","qty":8,"subrecipe":false}
 	},
+	"Magic Coronet 魔鳳冠ヴァーミリオン": {
+		"焔珠『不死鳥』": {"Eng":"Phoenix Orb","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
+		"魔石の荊冠": {"Eng":"Thorn Crown","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":false},
+		"如幻蒼玉": {"Eng":"","icon":"item_thum_1101.png","qty":2,"subrecipe":false},
+		"蒼龍の光鱗": {"Eng":"","icon":"item_thum_801.png","qty":15,"subrecipe":false},
+		"狂神の赤晶": {"Eng":"","icon":"item_thum_1100.png","qty":15,"subrecipe":false}
+	},
+	"Phoenix Orb 焔珠『不死鳥』": {
+		"フェニックスの輝翼": {"Eng":"Phoenix Wing","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
+		"堕落の螺子": {"Eng":"Fallen Screw","icon":"item_thum_904.png","qty":10,"subrecipe":false},
+		"神の炉心": {"Eng":"Divine Core","icon":"item_thum_1104.png","qty":1,"subrecipe":false},
+		"神の歯車": {"Eng":"Holy Gear","icon":"item_thum_1104.png","qty":4,"subrecipe":false},
+		"業焔の翼": {"Eng":"Fire Feather","icon":"item_thum_200.png","qty":3,"subrecipe":false}
+	},
+	"Phoenix Wing フェニックスの輝翼": {
+		"女神の旗印": {"Eng":"Goddess Flag","icon":"sphere_thum_3_3.png","qty":1,"subrecipe":true},
+		"堕落の腕": {"Eng":"Fallen Hand","icon":"item_thum_503.png","qty":15,"subrecipe":false},
+		"神の歯車": {"Eng":"Holy Gear","icon":"item_thum_1104.png","qty":1,"subrecipe":false},
+		"災厄の瞳": {"Eng":"Disaster Eye","icon":"item_thum_702.png","qty":10,"subrecipe":false},
+		"真禍の瞳": {"Eng":"Calamity Eye","icon":"item_thum_700.png","qty":3,"subrecipe":false}
+	},
+	"Goddess Flag 女神の旗印": {
+		"聖皇后の旗幟": {"Eng":"Royal Crest","icon":"sphere_thum_3_4.png","qty":1,"subrecipe":false},
+		"銀のバングル": {"Eng":"White Bangle","icon":"sphere_thum_5_2.png","qty":1,"subrecipe":false},
+		"堕落の瞳": {"Eng":"Fallen Eye","icon":"item_thum_700.png","qty":10,"subrecipe":false},
+		"堕落の涙": {"Eng":"Ruin Tear","icon":"item_thum_400.png","qty":2,"subrecipe":false},
+		"背樹の実": {"Eng":"Timber Nut","icon":"item_thum_300.png","qty":8,"subrecipe":false}
+	},
 	"Thorn Crown 魔石の荊冠": {
 		"魔晶帝冠リリー・レイズ": {"Eng":"Demon Crown","icon":"sphere_thum_5_6.png","qty":1,"subrecipe":true},
 		"悪意の螺子": {"Eng":"Evil Screw","icon":"item_thum_905.png","qty":10,"subrecipe":false},
@@ -393,267 +335,346 @@ recipesObj={
 		"技宝バトルブースター": {"Eng":"Skill Bracer","icon":"sphere_thum_4_5.png","qty":2,"subrecipe":false},
 		"不燃の皮": {"Eng":"Solid Pelt","icon":"item_thum_800.png","qty":5,"subrecipe":false},
 		"翠殻の皮": {"Eng":"Verdant Pelt","icon":"item_thum_802.png","qty":10,"subrecipe":false}
+	},
+	"Illusion Brace シ・オプス幻影機構": {
+		"ラ・ミラ変換機構": {"Eng":"Guard Brace","icon":"sphere_thum_4_3.png","qty":1,"subrecipe":true},
+		"魔石の結晶": {"Eng":"Mock Crystal","icon":"sphere_thum_5_5.png","qty":1,"subrecipe":false},
+		"蒼龍の光鱗": {"Eng":"","icon":"item_thum_801.png","qty":15,"subrecipe":false},
+		"吸命の花心": {"Eng":"","icon":"item_thum_100.png","qty":2,"subrecipe":false},
+		"炎纏極鱗": {"Eng":"Blaze Scale","icon":"item_thum_800.png","qty":2,"subrecipe":false}
+	},
+	"Guard Brace ラ・ミラ変換機構": {
+		"妖精の虹布": {"Eng":"Fairy Robe","icon":"sphere_thum_4_3.png","qty":1,"subrecipe":false},
+		"魔石の結晶": {"Eng":"Mock Crystal","icon":"sphere_thum_5_5.png","qty":1,"subrecipe":false},
+		"剛雷豪皮": {"Eng":"Shock Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false},
+		"剛雷強爪": {"Eng":"Shock Claw","icon":"item_thum_100.png","qty":10,"subrecipe":false},
+		"雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_800.png","qty":4,"subrecipe":false}
 	}
 };
 missionsObj={
     "RC1M1": {
         "name": "RC1 Mission 1: Fire Eater (炎を喰らう者)",
+        "sort": 1,
         "info": ""
     },
     "RC1M2": {
         "name": "RC1 Mission 2: Two Decades of Rancor (20年越しの仇討ち)",
+        "sort": 2,
         "info": ""
     },
     "RC1M3": {
         "name": "RC1 Mission 3: Snarling Woods Survey (牙を剥く森の調査)",
+        "sort": 3,
         "info": ""
     },
     "RC1M4": {
         "name": "RC1 Mission 4: Underground Loiterer (地中の徘徊者)",
+        "sort": 4,
         "info": "Kill 5 Granomus as a team, random location."
     },
     "RC1M5": {
         "name": "RC1 Mission 5: Blazing Tongue (燃え盛る舌)",
+        "sort": 5,
         "info": ""
     },
     "RC1M6": {
         "name": "RC1 Mission 6: Solidifying Ice (堅牢なる氷殻)",
+        "sort": 6,
         "info": ""
     },
     "RC1M7": {
         "name": "RC1 Mission 7: Twelve Years Before (12年前の仇討ち)",
+        "sort": 7,
         "info": ""
     },
     "RC1M8": {
         "name": "RC1 Mission 8 Final: Ruler of Twilight (宵闇の支配者)",
+        "sort": 8,
         "info": "3 Gems, 1 Sphere Frog on first clear."
     },
     "RC1X1M1": {
         "name": "RC1 Raid X1 Extra Mission 1: Kingdom on Fire",
+        "sort": 9,
         "info": "<b>Location:</b> Castle. <b>Evo materials:</b> Ruby Relic, Emerald Relic."
     },
     "RC1X1M2": {
         "name": "RC1 Raid X1 Extra Mission 2: Trial by Combat",
+        "sort": 10,
         "info": "<b>Location:</b> Hinderlands East. <b>Evo materials:</b> Ruby Relic, Emerald Relic. 3x Burst Frogs on first clear."
     },
     "RC2M1": {
         "name": "RC2 Mission 1: Subzero Vagrant (雪下の放浪者)",
+        "sort": 11,
         "info": "Kill 5 Medronomus as a team, random location."
     },
     "RC2M2": {
         "name": "RC2 Mission 2: Broken Request (政争の駒にされた依頼)",
+        "sort": 12,
         "info": "<b>Location:</b>「穏やかな川岸」. <b>Escape Location:</b> Luminous Forest「光射す森」."
     },
     "RC2M3": {
         "name": "RC2 Mission 3: The Cornered Dragon (一角の暴れ龍)",
+        "sort": 13,
         "info": "<b>Location:</b>「山麓草原」. <b>Escape Location:</b> Miasma Spring「瘴気の泉」,「入り組んだ湿地」."
     },
     "RC2M4": {
         "name": "RC2 Mission 4 Optional: (挟撃！地中からの急襲)",
+        "sort": 14,
         "info": "Optional to clear RC2. Kill 5 Granomus and 5 Medronomus as a team. Random location."
     },
     "RC2M5": {
         "name": "RC2 Mission 5: Hiding Behind Shadows (駆け抜ける巨大な影)",
+        "sort": 15,
         "info": "Bruzebia shows up after Edelma is defeated. <b>Location:</b>「穏やかな川岸」(Edelma), Sunlit Woods「木漏れ日の林」(Bruzebia). <b>Escape Location:</b>「魔街の入り口」(Edelma)."
     },
     "RC2M6": {
         "name": "RC2 Mission 6: Demon Fusion Survey (魔物の共生関係の調査)",
+        "sort": 16,
         "info": "Meru shows up after Dalmogia is defeated. <b>Location:</b>「碧き離島」(Dalmogia),「入り組んだ湿地」(Meru). <b>Escape Location:</b>「離島への浜辺」(Dalmogia)."
     },
     "RC2M7": {
         "name": "RC2 Mission 7: Eight Years Before (8年前の屈辱)",
+        "sort": 17,
         "info": "<b>Location:</b> Cracked Soil「割れた大地」. <b>Escape Location:</b> Hot Spring「熱き泉」."
     },
     "RC2M8": {
         "name": "RC2 Mission 8: Inviting a Demon (異質な魔神の出現)",
+        "sort": 18,
         "info": "<b>Location:</b>「山麓草原」. <b>Escape Location:</b>「離島への浜辺」, Tower Dark Clouds「暗雲の塔」."
     },
     "RC2M9": {
         "name": "RC2 Mission 9: Demonic Appearance (誘う魔神)",
+        "sort": 19,
         "info": "<b>Location:</b> Hot Spring「熱き泉」. <b>Escape Location:</b>「沼地の桟橋」."
     },
     "RC2M10": {
         "name": "RC2 Mission 10: Demanding Vengeance (復讐要請)",
+        "sort": 20,
         "info": "<b>Location:</b> Luminous Forest「光射す森」. <b>Escape Location:</b> Windy Grassland「風抜ける草原」."
     },
     "RC2M11": {
         "name": "RC2 Mission 11: Accomplishing Goals (手柄はくれてやる)",
+        "sort": 21,
         "info": "<b>Location:</b> Frosted Forest「凍れる森」. <b>Escape Location:</b>「神殿跡地」."
     },
     "RC2M12": {
         "name": "RC2 Mission 12 Final: The Empress' Fury (人を憎む妃神の猛威)",
+        "sort": 22,
         "info": "<b>Location:</b> Cavern Tower「岩窟の塔」. <b>Escape Location:</b> Cracked Soil「割れた大地」, Ever-burning Mountain「燃え続ける山」. 5 Gems, 1 Sphere Frog on first clear."
     },
     "RC2M13": {
         "name": "RC2 Mission 13 Optional / Extra: (秘密の場所を教えるぜ)",
+        "sort": 23,
         "info": "Totally optional and gives no extra rewards."
     },
     "RC2X1M1": {
         "name": "RC2 Raid X1 Extra Mission 1: God, Demon, or Machine?",
+        "sort": 24,
         "info": "<b>Location:</b> Plains. <b>Evo materials:</b> Ruby Relic, Emerald Relic."
     },
     "RC2X1M2": {
         "name": "RC2 Raid X1 Extra Mission 2: Sweet Doppelganger",
+        "sort": 25,
         "info": "<b>Location:</b> Hinderlands West, Dense Forest, Plains. <b>Evo materials:</b> Ruby Relic, Emerald Relic. 1 Gem, 1 Power Imp, 1 Guard Imp on first clear."
     },
     "RC3M1": {
         "name": "RC3 Mission 1: Scorching Tongue (もっと燃え盛る舌)",
+        "sort": 26,
         "info": "<b>Location:</b> Scorching Volcano「灼熱の火山」. <b>Escape Location:</b> Ever-burning Mountain「燃え続ける山」,「火山への道」."
     },
     "RC3M2": {
         "name": "RC3 Mission 2: A Special Lecture (特別公開授業)",
+        "sort": 27,
         "info": "<b>Location:</b> Sunlit Woods「木漏れ日の林」(Edelma), Tower in Ruins「廃街の入り口」(Bruzebia), Great Tree of Life「生命の大樹」(Meru), Coastal Front「海岸戦線」(Dalmogia)."
     },
     "RC3M3": {
         "name": "RC3 Mission 3: Please Save Him! (彼を救ってください！)",
+        "sort": 28,
         "info": "Kill 5 Granomous, 5 Medronomous as a team. Random locations."
     },
     "RC3M4": {
         "name": "RC3 Mission 4: Five Years From Then (あの日から5年)",
+        "sort": 29,
         "info": "<b>Location:</b> Frozen Mountain「凍てつく氷山」. <b>Escape Location:</b>「雪の洞窟」."
     },
     "RC3M5": {
         "name": "RC3 Mission 5: Crater Death Match (火口の死闘)",
+        "sort": 30,
         "info": "<b>Location:</b> Marsh Wharf「沼地の桟橋」. <b>Escape Location:</b> Hot Spring「熱き泉」."
     },
     "RC3M6": {
         "name": "RC3 Mission 6: Give Me Back My Son! (儂の息子を返せ！)",
+        "sort": 31,
         "info": "<b>Location:</b> Avalanche Zone「流氷地帯」. <b>Escape Location:</b>「天空へ続く山」."
     },
     "RC3M7": {
         "name": "RC3 Mission 7: Devil's Snare (魔神の罠)",
+        "sort": 32,
         "info": "<b>Location:</b> Luminous Forest「光射す森」(Lucy), Clock Tower「時計台」(Nader). <b>Escape Location:</b> Temple of Light「光の神殿」(Lucy)."
     },
     "RC3M8": {
         "name": "RC3 Mission 8: Deadly Fire Breath (湿地を焦がす吐息)",
+        "sort": 33,
         "info": "<b>Location:</b> Grassy Basin「山麓草原」. <b>Escape Location:</b> Tower of Dark Clouds「暗雲の塔」,「離島への浜辺」."
     },
     "RC3M9": {
         "name": "RC3 Mission 9: Invitation to Hades (煉獄への誘い)",
+        "sort": 34,
         "info": "<b>Location:</b>「神殿跡地」. <b>Escape Location:</b>「天空へ続く山」, Frozen Mountain「凍てつく氷山」,Frosted Forest「凍れる森」."
     },
     "RC3M10": {
         "name": "RC3 Mission 10: Desperate Measures (絶体絶命、魔神二柱)",
+        "sort": 35,
         "info": "Melion appears after Reduhark is defeated. <b>Location:</b> Luminous Forest「光射す森」(Reduhark), Windy Grassland「風抜ける草原」(Melion). <b>Escape Location:</b> Temple of Light「光の神殿」, Clock Tower「時計台」(Reduhark)."
     },
     "RC3M11": {
         "name": "RC3 Mission 11: The End of Hades (煉獄ここに極まる)",
+        "sort": 36,
         "info": "<b>Location:</b> Lightless Canyon「光届かぬ谷」(Claudalus), Gentle Coast「穏やかな海岸」(Laguna), Rainbow Bridge「七色橋」(Nalda). <b>Escape Location:</b> Miasma Spring「瘴気の泉」(Claudalus), Deserted Island (Laguna), Tower Dark Clouds「暗雲の塔」(Nalda)."
     },
     "RC3M12": {
         "name": "RC3 Mission 12 Final: The God of Ruin (破壊の神と呼ばれる者)",
+        "sort": 37,
         "info": "Body part changes element every 2 turns. <b>Location:</b> Remote Volcano「最果ての火山」. <b>Escape Location:</b> Ever-burning Mountain「燃え続ける山」, Cracked Soil「割れた大地」, Lava Waterfalls「溶岩の滝」. Unit Noah 5* on first clear."
     },
     "RC3X1M1": {
         "name": "RC3 Raid X1 Extra Mission 1: The Armored Pursuer",
+        "sort": 38,
         "info": "<b>Location:</b> Plains. <b>Evo materials:</b> Ruby Relic, Sanguine Relic, Emerald Relic, Verdant Relic."
     },
     "RC3X1M2": {
         "name": "RC3 Raid X1 Extra Mission 2: Unleash the Horde",
+        "sort": 39,
         "info": "<b>Location:</b> Hinderland West, Hinderlands East, Waterfall Cave, Dense Forest. <b>Evo materials:</b> Ruby Relic, Sanguine Relic, Emerald Relic, Verdant Relic. 1 Gem, 1 Healing Imp, 1 Vigor Imp on first clear."
     },
     "RC4M1": {
         "name": "RC4 Mission 1: Roaring Thunder (猛き雷の果てに)",
+        "sort": 40,
         "info": "<b>Location:</b>「山間集落」. <b>Escape Location:</b>「山麓草原」."
     },
     "RC4M2": {
         "name": "RC4 Mission 2: An Aquatic Fire God? (現れた瀑焔神！)",
+        "sort": 41,
         "info": "<b>Location:</b> Great Tree of Life「生命の大樹」. <b>Escape Location:</b> Windy Grassland「風抜ける草原」."
     },
     "RC4M3": {
         "name": "RC4 Mission 3: Two Beast Tango (挟撃！迎撃！魔神二柱)",
+        "sort": 42,
         "info": "<b>Location:</b> Cavern Tower「岩窟の塔」(Lucy), Ever-burning Mountain「燃え続ける山」(Nader). <b>Escape Location:</b> Hot Spring「熱き泉」,「最果ての火山」(Lucy).「火山への道」,「灼熱の火山」(Nader)."
     },
     "RC4M4": {
         "name": "RC4 Mission 4: Granomus Party (グラノモスパーティー)",
+        "sort": 43,
         "info": "Kill 5 Granomus as a team. Random location, southwest preferred."
     },
     "RC4M5": {
         "name": "RC4 Mission 5: Echoing Howl (雪峰に響き渡る咆哮)",
+        "sort": 44,
         "info": "<b>Location:</b> Frozen Mountain「凍てつく氷山」. <b>Escape Location:</b>「氷刻の泉」,「神殿跡地」."
     },
     "RC4M6": {
         "name": "RC4 Mission 6: Underworld Messenger (煉獄よりの使者)",
+        "sort": 45,
         "info": "<b>Location:</b> Tower Dark Clouds「暗雲の塔」. <b>Escape Location:</b> Lightless Canyon「光届かぬ谷」, Miasma Spring「瘴気の泉」."
     },
     "RC4M7": {
         "name": "RC4 Mission 7: (実在する悪夢)",
+        "sort": 46,
         "info": "<b>Location:</b> Hot Spring「熱き泉」. <b>Escape Location:</b>「沼地の桟橋」,「乾いた荒地」."
     },
     "RC4M8": {
         "name": "RC4 Mission 8: (死地からの手紙)",
+        "sort": 47,
         "info": "<b>Location:</b> Frozen Mountain「凍てつく氷山」(Balmedia),「流氷地帯」(Mistzug). <b>Escape Location:</b>「氷刻の泉」,「森深き雪道」(Balmedia).「天空へ続く山」(Mistzug)."
     },
     "RC4M9": {
         "name": "RC4 Mission 9 Final: (本体を叩け！)",
+        "sort": 48,
         "info": "1 Sphere Frog, 1 Alton Imp, 1 Burst Emperor on first clear. <b>Location:</b> Clock Tower「時計台」. <b>Escape Location:</b>「穏やかな川岸」."
     },
     "RC4X1M1": {
         "name": "RC4 Raid X1 Extra Mission 1: Dark Wings, Dark Work",
+        "sort": 49,
         "info": "<b>Location:</b> Dense Forest, Waterfall Cave. <b>Evo materials:</b> Ruby Relic, Sanguine Relic, Emerald Relic, Verdant Relic."
     },
     "RC4X1M2": {
         "name": "RC4 Raid X1 Extra Mission 2: Draegar the Demi-God",
+        "sort": 50,
         "info": "<b>Location:</b> Hinderland West, Plains. <b>Evo materials:</b> Ruby Relic, Sanguine Relic, Emerald Relic, Verdant Relic. 3 Gems, 1 Sphere Frog on first clear."
     },
     "RC4X1M3": {
         "name": "RC4 Raid X1 Extra Mission 3 Optional: Remnants of Hope",
+        "sort": 51,
         "info": "Optional mission. <b>Location:</b> Kill 5 Medronomous as a team. Random location."
     },
     "RC5M1": {
         "name": "RC5 Mission 1: (沼が森になった話)",
+        "sort": 52,
         "info": "<b>Location:</b> Lightless Canyon「光届かぬ谷」. <b>Escape Location:</b> Miasma Spring「瘴気の泉」, Rainbow Bridge「七色橋」,「碧き離島」."
     },
     "RC5M2": {
         "name": "RC5 Mission 2: (暁に浮かぶ竜の影)",
+        "sort": 53,
         "info": "<b>Location:</b>「最果ての火山. <b>Escape Location:</b>「灼熱の火山."
     },
     "RC5M3": {
         "name": "RC5 Mission 3: (増し続ける脅威)",
+        "sort": 54,
         "info": "<b>Location:</b> Clock Tower「時計台」 (Golvorg), Great Tree of Life「生命の大樹」 (Claudalus). <b>Escape Location:</b> Tower in Ruins「廃街の入り口」 (Golvorg), Coastal Front「海岸戦線」 (Claudalus)."
     },
     "RC5M4": {
         "name": "RC5 Mission 4: (プロのけじめ)",
+        "sort": 55,
         "info": "<b>Location:</b>「神殿跡地」(Balmedia), Frosted Forest「凍れる森」(Grudkia). <b>Escape Location:</b>「天空へ続く山」(Balmedia)."
     },
     "RC5M5": {
         "name": "RC5 Mission 5: (汚名返上)",
+        "sort": 56,
         "info": "Alushtar shows up after Yugreia is defeated. <b>Location:</b>「炎爆の険山」(Yugreia),「影明の神殿」(Alushtar). <b>Escape Location:</b>「荒雨の廃都 (Yugreia)."
     },
     "RC5M6": {
         "name": "RC5 Mission 6: (湿地の謎を追え)",
+        "sort": 57,
         "info": "<b>Location:</b> Rainbow Bridge「七色橋」. <b>Escape Location:</b>「離島への浜辺」."
     },
     "RC5M7": {
         "name": "RC5 Mission 7: (運命を変える戦い)",
+        "sort": 58,
         "info": "<b>Location:</b> Clock Tower「時計台」(Jirayen), Great Tree of Life「生命の大樹」(Alushtar). <b>Escape Location:</b> Tower in Ruins「廃街の入り口」(Jirayen)."
     },
     "RC5M8": {
         "name": "RC5 Mission 8: (雪原への出撃準備)",
+        "sort": 59,
         "info": "<b>Location:</b>「氷刻の泉」. <b>Escape Location:</b> Frosted Forest「凍れる森」, Frozen Mountain「凍てつく氷山」."
     },
     "RC5M9": {
         "name": "RC5 Mission 9 Final: (魔神迎撃作戦)",
+        "sort": 60,
         "info": "<b>Location:</b>「焦熱の森」. Unit Owen 6* on first clear."
     },
     "RC5M10": {
         "name": "RC5 Mission 10 Optional / Special: (悪夢再び)",
+        "sort": 61,
         "info": "<b>Location:</b>「焦熱の森」(Pula),「熾争宮殿」(Estreit),「闇溜まりの山」(Alkemu). Clear all main RC missions from RC1 to RC5 to unlock mission. Divine Vessel Sphere (10 BC/Turn) on first clear."
     },
     "RC1MR1": {
         "name": "RC1 Medal Rush: (メダルラッシュLv1)",
+        "sort": 1001,
         "info": ""
     },
     "RC2MR2": {
         "name": "RC2 Medal Rush: (メダルラッシュLv2)",
+        "sort": 1002,
         "info": ""
     },
     "RC3MR3": {
         "name": "RC3 Medal Rush: (メダルラッシュLv3)",
+        "sort": 1003,
         "info": ""
     },
     "RC4MR4": {
         "name": "RC4 Medal Rush: (メダルラッシュLv4)",
+        "sort": 1004,
         "info": "Up to 44 Medals each run."
     }
 };
@@ -787,9 +808,9 @@ function showMissions() {
     var outputHTML=[];
     /*Sort array*/
     missionsParseObj=missionsParseObj.sort(function(a,b) {
-        if (a.mission < b.mission)
+        if (a.sort < b.sort)
             return -1;
-        if (a.mission > b.mission)
+        if (a.sort > b.sort)
             return 1;
         return 0;
     });
@@ -991,6 +1012,8 @@ $(document).on("click", '#searchDropsBtn', function(e){
 })
 
 $(document).ready( function(e) {
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
