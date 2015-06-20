@@ -838,9 +838,9 @@ function showRC(select) {
 		outputObj.push(missionsParseObj[i]);
     /*Sort*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.mission < b.mission)
+        if (a.sort < b.sort)
             return -1;
-        if (a.mission > b.mission)
+        if (a.sort > b.sort)
             return 1;
         return 0;
     });
