@@ -21,7 +21,7 @@
   	font-size: 10pt;
     }
     .txt-rare {color:#F80;}
-    .itemText {font-size:14pt;}
+    .itemText {font-size:12pt;}
     .itemicon-lg {width:25px;vertical-align:bottom;}
     .itemicon {width:25px;vertical-align:bottom;}
     .bd {
@@ -66,12 +66,12 @@
 <h3 style="margin-top:5px;">Brave Frontier - Raid Companion</h3>
 <h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
-<button type="button" id="btnBoss" class="btn btn-lg btn-info btnSpace">ALL Bosses</button>
+<button type="button" id="btnBoss" class="btn btn-info btnSpace">ALL Bosses</button>
 <!-- Show by missions-->
-<button type="button" id="btnMission" class="btn btn-lg btn-info btnSpace">ALL Missions</button>
+<button type="button" id="btnMission" class="btn btn-info btnSpace">ALL Missions</button>
 <!-- items type button -->
 <div class="btn-group btnSpace">
-  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">Raid Class <span class="caret"></span>
+  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Raid Class <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList">
 	<li><a href="#" class="raidClass">RC1</a></li>
@@ -82,7 +82,7 @@
   </ul>
 </div>
 <div class="btn-group btnSpace">
-  <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-toggle="dropdown">Popular Recipes <span class="caret"></span>
+  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Popular Recipes <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="recipeList"></ul>
 </div>
@@ -151,9 +151,8 @@ Updated rare drops by boss parts with latest information from Official Brave Fro
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
 </div> <!-- /container -->
-
+<div id="bfp_foot"></div>
 <!-- Modal for Progress-->
 <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -172,6 +171,7 @@ Updated rare drops by boss parts with latest information from Official Brave Fro
 
 <script type="text/javascript">
 countVar=0;
+prevRecipe="";
 collapseID=1;
 imgPrefix="http://v2.cdn.android.brave.a-lim.jp/item/";
 bossParseObj=[]; /*boss panels*/
@@ -706,7 +706,7 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossObj.missions+'"><i class="fa fa-filter"></i> Show missions with '+bossKey+'</button> </h3></div>';
+    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-filter"></i> Missions with '+bossKey+'</button> </h3></div>';
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12 rowSpace">';
     						/*elements*/
@@ -852,7 +852,7 @@ function showRC(select) {
 function missionsByBoss(select) {
     var outputHTML=[];
     var outputObj=[];
-    var sVal=select.split(',');
+    var sVal=bossObj.select.missions.split(',');
     /*search*/
     for (i in sVal)
 	/*searches for matching mission key*/
@@ -861,17 +861,13 @@ function missionsByBoss(select) {
 			outputObj.push(missionsParseObj[j]);
     /*Sort*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.mission < b.mission)
-            return -1;
-        if (a.mission > b.mission)
-            return 1;
-        return 0;
+	return a.sortx - b.sortx;
     });
     /*Build HTML Array*/
     for (i in outputObj)
         outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
-    $('#rawTable').html(outputHTML.join(' '));
+    $('#rawTable').html('<h4>Showing missions with '+select+' boss.</h4>'+outputHTML.join(' '));
     window.scrollTo(0,0);
     /*Google analytics*/
     ga('send', 'pageview', {
@@ -926,7 +922,10 @@ function itemsByBoss(recipeName) {
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
-    		outputHTML='<h3><b>Recipe by Boss Drops for '+recipeKey+'</b></h3>';
+    		outputHTML='<h4><b>Recipe by Boss Drops for '+recipeKey+'</b></h4>';
+    		if (prevRecipe!="")
+    			outputHTML+='<h5><i class="fa fa-level-up"></i> Previously viewed recipe - <a href="#" class="raidRecipe">'+prevRecipe+'</a></h5>';
+    		prevRecipe=recipeKey;
     		return false; /*breaks each loop*/
     	}
     });
@@ -1006,6 +1005,7 @@ $(document).on("click", '#searchDropsBtn', function(e){
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
