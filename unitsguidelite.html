@@ -230,6 +230,7 @@ function initializeDB() {
   			displayKey: 'value',
   			source: aheadNameRead.ttAdapter()
 		});
+		$('#progressModal').modal('hide');
 	  }
 	})
 }/*End init fn*/
@@ -726,7 +727,7 @@ $(document).on("click", "#pimpBtn", function(){
 })
 });
 
-$('#progressModal').on('hidden.bs.modal', function (e) {
+$(window).load(function() {
 	/*check for card param for Unit*/
 	var idParam=urlParam('unit');
 	if (idParam != "") {
@@ -739,10 +740,6 @@ $('#progressModal').on('hidden.bs.modal', function (e) {
 			}
 		openCard(idParam);
 	}
-})
-
-$(window).load(function() {
-	$('#progressModal').modal('hide');
 });
 </script>
 
