@@ -926,7 +926,7 @@ function itemsByBoss(recipeName) {
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
-    		outputHTML='<h3><b>Recipe by Boss Drops for '+recipeKey+'</b></h3>';
+    		outputHTML='<h3><b>Recipe by Boss Drops for <a href="#" class="raidRecipe"><i class="fa fa-level-up"></i> '+recipeKey+'</a></b></h3>';
     		return false; /*breaks each loop*/
     	}
     });
