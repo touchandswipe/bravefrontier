@@ -929,7 +929,7 @@ function itemsByBoss(recipeName) {
     		recipeFound=recipeObj;
     		outputHTML='<h3><b>Recipe by Boss Drops for '+recipeKey+'</b></h3>';
     		if (prevRecipe!="")
-    			outputHTML+='<h4>Previously viewed recipe - <i class="fa fa-level-up"></i> <a href="#" class="raidRecipe">'+prevRecipe+'</a></h4>';
+    			outputHTML+='<h4><i class="fa fa-level-up"></i> Previously viewed recipe - <a href="#" class="raidRecipe">'+prevRecipe+'</a></h4>';
     		prevRecipe=recipeKey;
     		return false; /*breaks each loop*/
     	}
