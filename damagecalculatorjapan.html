@@ -478,8 +478,9 @@ if (window.location.hash == '#_=_') {
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
 </div> <!-- /container -->
+
+<div id="bfp_foot"></div>
 
 <!-- Modal for Progress-->
 <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
@@ -737,6 +738,7 @@ $(document).on("click", '.calcBtn', function(e){
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
