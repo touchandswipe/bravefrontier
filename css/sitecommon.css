@@ -1,3 +1,17 @@
+#footer {
+    margin: 10px auto 0px auto;
+    padding: 10px 10px 75px;
+    background: rgba(180,150,20,0.55);
+    color: #FFF;
+    box-shadow: 0px 10px 10px -8px #AAA inset;
+}
+#footer li a {
+    color:#FFF;
+}
+#footer .row {
+	margin:0px auto;
+	width:85%;
+}
 #overlayC {
 	position: fixed;
 	width: 100%;
