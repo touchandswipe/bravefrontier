@@ -12,6 +12,17 @@
 	margin:0px auto;
 	width:85%;
 }
+.socialbtns {
+    color:#FFF;
+    display:inline-block;
+    text-decoration:none;
+    width:35px;
+    height:35px;
+}
+.socialbtns:hover {
+    color:#FE0;
+    text-shadow:1px 1px 1px #000;
+}
 #overlayC {
 	position: fixed;
 	width: 100%;
