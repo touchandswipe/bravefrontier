@@ -2,12 +2,11 @@ body {
     font-family: 'Raleway', sans-serif;
     font-size:14px;
     height:100%;
-    background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/skulls3.png');
 }
 #footer {
     margin: 10px auto 0px auto;
     padding: 10px 10px 75px;
-    background: rgba(180,150,20,0.55);
+    background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/skulls3.png');
     color: #FFF;
     box-shadow: 0px 10px 10px -8px #AAA inset;
 }
