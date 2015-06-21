@@ -172,6 +172,7 @@ Updated rare drops by boss parts with latest information from Official Brave Fro
 
 <script type="text/javascript">
 countVar=0;
+prevRecipe="";
 collapseID=1;
 imgPrefix="http://v2.cdn.android.brave.a-lim.jp/item/";
 bossParseObj=[]; /*boss panels*/
@@ -926,7 +927,10 @@ function itemsByBoss(recipeName) {
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
-    		outputHTML='<h3><b>Recipe by Boss Drops for <i class="fa fa-level-up"></i> <a href="#" class="raidRecipe">'+recipeKey+'</a></b></h3>';
+    		outputHTML='<h3><b>Recipe by Boss Drops for '+recipeKey+'</b></h3>';
+    		if (prevRecipe!="")
+    			outputHTML='<h4>Previously viewed recipe - <i class="fa fa-level-up"></i> <a href="#" class="raidRecipe">'+prevRecipe+'</a></h4>';
+    		prevRecipe=recipeKey;
     		return false; /*breaks each loop*/
     	}
     });
