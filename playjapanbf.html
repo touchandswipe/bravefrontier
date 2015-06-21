@@ -244,7 +244,7 @@ Do swing around to support & thank them.
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 </div> <!-- /container -->
-
+<div id="bfp_foot"></div>
 <script type="text/javascript">
 var canvasObj={
 "raid1": [{"x":"175px","y":"230px","h":"64px","w":"153px","txt":"Server 1","link":"raid1-1"},
@@ -573,6 +573,7 @@ function buildBtns(buildObjItem,stateUpdate) {
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
   /*checks for URL Parameter*/
   var stepParam=urlParam('aidStep');
 	if (stepParam != '')
