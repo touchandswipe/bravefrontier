@@ -871,7 +871,7 @@ function missionsByBoss(select) {
     for (i in outputObj)
         outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
-    $('#rawTable').html(outputHTML.join(' '));
+    $('#rawTable').html('<h4>Showing missions with '+select+' boss.</h4>'+outputHTML.join(' '));
     window.scrollTo(0,0);
     /*Google analytics*/
     ga('send', 'pageview', {
