@@ -646,6 +646,7 @@ function openCard(whatunit) {
 $(document).ready( function(e) {
 	/*load masthead shared*/
 	$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+	$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
     /*Init loader*/
     $('#progressModal').modal({
       	keyboard:false,
@@ -725,8 +726,7 @@ $(document).on("click", "#pimpBtn", function(){
 })
 });
 
-$(window).load(function() {
-	$('#progressModal').modal('hide');
+$('#progressModal').on('hidden.bs.modal', function (e) {
 	/*check for card param for Unit*/
 	var idParam=urlParam('unit');
 	if (idParam != "") {
@@ -739,6 +739,10 @@ $(window).load(function() {
 			}
 		openCard(idParam);
 	}
+})
+
+$(window).load(function() {
+	$('#progressModal').modal('hide');
 });
 </script>
 
@@ -783,6 +787,8 @@ $(window).load(function() {
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div> <!-- /container -->
+
+<div id="bfp_foot"></div>
 
 <!-- Video Modal-->
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myvideoModal" aria-hidden="true">
