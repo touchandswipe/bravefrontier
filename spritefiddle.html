@@ -237,7 +237,7 @@ if (navigator.userAgent.match(/Android/i)
 		</div>
 	</div>
 </div>
-
+<div id="bfp_foot"></div>
 <!--Template hidden-->
 <div class="panel panel-default" id="spriteLayerTemplate">
   <div class="panel-heading">
@@ -555,6 +555,7 @@ function resetsPlays() {
 $(document).ready( function(e) {
 	/*load masthead shared*/
 	$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+	$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
 	/*load default 1st layer*/
 	$('<div/>', {'class' : 'spriteLayers panel panel-default', html: grabTemplate() }).removeAttr('id').appendTo('#spriteConfigHolder');
 	/*Speed Control and event*/
