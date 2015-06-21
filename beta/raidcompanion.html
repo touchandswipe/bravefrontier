@@ -852,7 +852,12 @@ function showRC(select) {
 function missionsByBoss(select) {
     var outputHTML=[];
     var outputObj=[];
-    var sVal=bossObj.select.missions.split(',');
+    /*Find boss*/
+    for (i in bossParseObj)
+    	if (bossParseObj[i].name==select) {
+    		var sVal=bossParseObj[i].missions.split(',');
+    		break;
+    	}
     /*search*/
     for (i in sVal)
 	/*searches for matching mission key*/
