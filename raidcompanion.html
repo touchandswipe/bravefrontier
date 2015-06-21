@@ -706,7 +706,7 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossObj.missions+'"><i class="fa fa-filter"></i> Missions with '+bossKey+'</button> </h3></div>';
+    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-filter"></i> Missions with '+bossKey+'</button> </h3></div>';
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12 rowSpace">';
     						/*elements*/
@@ -852,7 +852,12 @@ function showRC(select) {
 function missionsByBoss(select) {
     var outputHTML=[];
     var outputObj=[];
-    var sVal=select.split(',');
+    /*Find boss*/
+    for (i in bossParseObj)
+    	if (bossParseObj[i].name==select) {
+    		var sVal=bossParseObj[i].missions;
+    		break;
+    	}
     /*search*/
     for (i in sVal)
 	/*searches for matching mission key*/
@@ -867,7 +872,7 @@ function missionsByBoss(select) {
     for (i in outputObj)
         outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
-    $('#rawTable').html('<h4>Showing missions with '+select+' boss.</h4>'+outputHTML.join(' '));
+    $('#rawTable').html('<h4>Showing missions with <b>'+select+'</b> boss.</h4>'+outputHTML.join(' '));
     window.scrollTo(0,0);
     /*Google analytics*/
     ga('send', 'pageview', {
