@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .pBodyBoss {padding: 0 0 15px 0;}
     .missioninfo {
     	padding: 10px;
   	font-size: 10pt;
@@ -714,7 +715,7 @@ function isArray(obj) {
 function buildDB(boss) {
 	/*Process Boss Segments*/
 	$.each( boss, function( bossKey, bossObj ) {
-    		bossSTR='<div class="panel panel-default"><div class="panel-body">'
+    		bossSTR='<div class="panel panel-default"><div class="panel-body pBodyBoss">'
     		+'<div class="row">'
     			+'<div class="col-xs-12 col-sm-3 col-lg-2">'
     				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="125" width="auto" />'
