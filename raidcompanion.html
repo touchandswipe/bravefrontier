@@ -715,7 +715,7 @@ function isArray(obj) {
 function buildDB(boss) {
 	/*Process Boss Segments*/
 	$.each( boss, function( bossKey, bossObj ) {
-    		bossSTR='<div class="panel panel-default"><div class="panel-body pBodyBoss">'
+    		bossSTR='<div class="panel panel-default"><div class="panel-body">'
     		+'<div class="row">'
     			+'<div class="col-xs-12 col-sm-3 col-lg-2">'
     				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" height="125" width="auto" />'
@@ -758,7 +758,7 @@ function buildDB(boss) {
 	/*Process Mission Collapsibles*/
 	$.each( missionsObj, function( miKey, miVal ) {
     		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'">'+miVal.name+'</a></h4></div>'
-		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body pBodyBoss"><div class="container-fluid">';
 		if (miVal.info!="")
 			miSTR+='<div class="missioninfo"><b>Mission Insights: </b>'+miVal.info+'</div>';
     		for (i in bossParseObj) {
