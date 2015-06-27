@@ -365,6 +365,27 @@ recipesObj={
 		"剛雷豪皮": {"Eng":"Shock Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false},
 		"剛雷強爪": {"Eng":"Shock Claw","icon":"item_thum_100.png","qty":10,"subrecipe":false},
 		"雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_800.png","qty":4,"subrecipe":false}
+	},
+	"Evil Halberd 凶戟ゲヘナベルム": {
+		"界双鉾マリッドフワル": {"Eng":"World Lance","icon":"sphere_thum_4_4.png","qty":1,"subrecipe":false},
+		"冥槍スリーメニアン": {"Eng":"Dark Lance","icon":"sphere_thum_4_4.png","qty":1,"subrecipe":false},
+		"覇霊の瞳": {"Eng":"Spirit Eye","icon":"item_thum_703.png","qty":10,"subrecipe":false},
+		"闇天翼骨": {"Eng":"Dark Bone","icon":"item_thum_905.png","qty":10,"subrecipe":false},
+		"碧殻の皮": {"Eng":"Cobalt Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false}
+	},
+	"Demon Bow 魔弓エクスぺリオン": {
+		"凶戟ゲヘナベルム": {"Eng":"Evil Halberd","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":true},
+		"炎纏の皮": {"Eng":"Blaze Pelt","icon":"item_thum_800.png","qty":15,"subrecipe":false},
+		"輝鱗の皮皮": {"Eng":"Scaly Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false},
+		"炎纏宝珠": {"Eng":"Flame Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+		"輝煌閃珠": {"Eng":"Shiny Jewel","icon":"item_thum_704.png","qty":1,"subrecipe":false}
+	},
+	"Dark Demon Bow 魔怨弓ガルザペリオン": {
+		"魔弓エクスぺリオン": {"Eng":"Demon Bow","icon":"sphere_thum_4_8.png","qty":1,"subrecipe":true},
+		"異禍鉾ゲイズオーマ": {"Eng":"Blaze Pelt","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":false},
+		"冥破槍バスティマ": {"Eng":"Scaly Pelt","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":false},
+		"魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png","qty":3,"subrecipe":false},
+		"悠久の樹皮": {"Eng":"Eternal Bark","icon":"item_thum_806.png","qty":20,"subrecipe":false}
 	}
 };
 missionsObj={
@@ -966,7 +987,7 @@ function itemsByBoss(recipeName) {
 				itemFound=true;
 			}
 		if (!itemFound)
-			outputHTML+='Not a raid recipe. <a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
+			outputHTML+='Not a raid / popular recipe. <a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
 	}
 	outputHTML+='</div></div></div></div>'; /*close panel*/
 	itemID+=1;
