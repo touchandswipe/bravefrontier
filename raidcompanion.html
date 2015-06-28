@@ -49,6 +49,11 @@
   	border-top: 1px dashed #CCC;
   	float: left;
     }
+    .dropItem {
+    	border:1px dotted #CCC;
+    	border-radius:5px;
+    	display:inline-block;
+    }
     .equal, .equal > div[class*='col-'] {  
     display: -webkit-flex;
     display: flex;
@@ -767,7 +772,7 @@ function buildDB(boss) {
     					bossSTR+='<div class="dropslist"><b>Drops</b> ';
     					if (!$.isEmptyObject(bossObj.drops))
 	    					$.each( bossObj.drops, function( dropKey, dropVal ) {
-	    						bossSTR+='<img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>) &nbsp;&nbsp;';
+	    						bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)</div>';
 	    					});
     					else
     						bossSTR+='none';
