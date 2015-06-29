@@ -14,6 +14,15 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .evoDisp {
+	display: table-cell;
+	vertical-align: bottom;
+	float: none;
+    }
+    .evoDispRow {
+	display: table;
+	table-layout: fixed;
+    }
     table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting:after {
 	opacity:0.2;
 	font-size:14px;
@@ -1142,14 +1151,16 @@ function initialize(fusionData) {
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
+	    var evoATKTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    /*Assault Spite*/
-	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
+	    evoATKTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
-		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center evoDisp">';
 		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName" data-value="'+evotrail[i].id+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i].id+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
+	    $('#evoATKTab').html(evoATKTabHTML+'</div>');
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    /*Remove assault sprite on error*/
 	    $("#evolutionaryATK").error(function() {
@@ -2883,7 +2894,8 @@ $(window).load(function() {
     </div>
 <!--Evolutionary-->
   <div class="tab-pane fade" id="evolutionary">
-    <div id="evoTab" class="row"></div>
+    <div id="evoATKTab" class="row"></div>
+    <div id="evoTab" class="row evoDispRow"></div>
   </div>
 
   <div class="tab-pane fade" id="unitCardSprite">
