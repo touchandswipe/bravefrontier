@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (Bonkers R1) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier Units Guide Lite - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Units Guide Lite (Bonkers R2) by Brave Frontier PROs</title>
@@ -16,6 +16,8 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .evolutionary {vertical-align:bottom;}
+    .evoDisp {line-height:150px;}
     #disqus_thread {
     	width:100%;
     	margin:0;
@@ -578,7 +580,7 @@ function openCard(whatunit) {
 	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
-		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif"/>';
+		evoTabHTML+='<div class="evoDisp"><img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif"/></div>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i]['id']+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
