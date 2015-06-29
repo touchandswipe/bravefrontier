@@ -14,15 +14,6 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
-    .evoDisp {
-	display: table-cell;
-	vertical-align: bottom;
-	float: none;
-    }
-    .evoDispRow {
-	display: table;
-	table-layout: fixed;
-    }
     table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting:after {
 	opacity:0.2;
 	font-size:14px;
@@ -152,7 +143,6 @@ var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
 var favUnitObj=[];
-
 /*Get Boss Data*/
 function bossDataLoad() {
 	var query = "SELECT * FROM " + '1CNQc8zBKPB2fnnLTWO4PXj3wiGAcahkFRVuyLgFB'
@@ -164,7 +154,6 @@ function bossDataLoad() {
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
 	url.push('&callback=?');
-
 	/*Send the JSONP request*/
 	$.ajax({
 	  url: url.join(''),
@@ -174,7 +163,6 @@ function bossDataLoad() {
 	    }
     })
 }
-
 /*Reset Squad*/
 function clearSquad() {
     for (var i=0;i<6;i++) {
@@ -185,7 +173,6 @@ function clearSquad() {
     }
     $('#bossIMG').children('img').attr('src','');
 }
-
 /*Convert Google JSON REST*/
 function convertJSON( serialObj ) {
     var s = serialObj || {};
@@ -228,7 +215,6 @@ function convertJSON( serialObj ) {
     /*Return the objects*/
     return obj;
 }
-
 /*Initialise datapull from Google Tables*/
 function initialize(fusionData) {
   /*Xtra Columns to hide by resolution*/
@@ -706,7 +692,6 @@ function initialize(fusionData) {
 		    return '<a href="#" class="batchlink">'+batchname+'</a>';}
 		}]
 	}) /*End Datatables Init*/
-
 	/*Custom filter for ID Range*/
 	$.fn.dataTable.ext.search.push (
 	    function( settings, data, dataIndex ) {
@@ -736,7 +721,6 @@ function initialize(fusionData) {
 	})
 	} /*End checking for right 7* dataset*/
 }/*End init fn*/
-
 /*Fav Modal Units Draw function*/
     function favDraw(drawObj) {
 	var favHTML="";
@@ -746,7 +730,6 @@ function initialize(fusionData) {
 	}
 	$('#favIconDisplay').html(favHTML);
     }
-
 /*Open Fav Modal function*/
     function openFav(unitIdArray,titleText,importUnits) {
 	var favSortHTML="";
@@ -804,7 +787,6 @@ function initialize(fusionData) {
 	/*Choose Main Card n Show Card Modal*/
 	$('#cardModal').modal('show');
 	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
-
 	/*Resets Prev Stats*/
 	prevStatsMod=[0,0,0,0,0];
 	
@@ -841,7 +823,6 @@ function initialize(fusionData) {
 	url2.push('?sql=' + encodedQuery2);
 	url2.push('&key=' + gKey);
 	url2.push('&callback=?');
-
 	/*Send the JSONP request*/
 	$.ajax({
 	  url: url2.join(''),
@@ -1151,16 +1132,14 @@ function initialize(fusionData) {
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
-	    var evoATKTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    /*Assault Spite*/
-	    evoATKTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
+	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
-		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center evoDisp">';
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
 		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName" data-value="'+evotrail[i].id+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i].id+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
-	    $('#evoATKTab').html(evoATKTabHTML+'</div>');
 	    $('#evoTab').html(evoTabHTML+'</div>');
 	    /*Remove assault sprite on error*/
 	    $("#evolutionaryATK").error(function() {
@@ -1177,7 +1156,6 @@ function initialize(fusionData) {
 	  }
 	})
 } /*End openCard fn*/
-
 /*Compare function*/
     function openCompare(units, tabSwitch) {
     	tabSwitch = tabSwitch || "#unitCompareHome";
@@ -1212,7 +1190,6 @@ function initialize(fusionData) {
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
 	url.push('&callback=?');
-
 	/*Send the JSONP request*/
 	$.ajax({
 	  url: url.join(''),
@@ -1291,7 +1268,6 @@ function initialize(fusionData) {
 	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Anima) to (Lord) to High (Oracle) REC"><i class="fa fa-info-circle"></i> <b>REC range</b></div></td>';
 	      for (i in units) {
 		  cHTML+='<td><span class="recMod text-danger">'+cData[i]['rec anima']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-info">'+cData[i]['rec lord']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-success">'+cData[i]['rec oracle']+'</span></td>' }
-
 /*Modifications*/
 cHTML+='</tr><tr data-toggle="collapse" data-target=".compRows"><td colspan="'+(units.length+1)+'" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>';
 cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Leader skill</b></td>';
@@ -1309,7 +1285,6 @@ cHTML+='<div class="form-inline"><select id="asHP" class="form-control askill in
 	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
 	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
-
 cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Extra skill</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
@@ -1317,7 +1292,6 @@ cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill in
 	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
 	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
 	+'</div></td></tr>';
-
 cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Spheres</b></td>';
 cHTML+='<td colspan="'+units.length+'">';
 cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
@@ -1456,7 +1430,6 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
@@ -1757,7 +1730,6 @@ $(document).ready( function(e) {
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
 	url.push('&callback=?');
-
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
@@ -1806,7 +1778,6 @@ $(document).ready( function(e) {
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
 	url.push('&callback=?');
-
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
@@ -1829,13 +1800,11 @@ $(document).ready( function(e) {
 	  	}
 	})
 } /*End Else*/
-
 /*BootStrap Stuff*/
 $('.bfQn').popover();
 $('.nav-tt').tooltip({placement:'bottom'});
 $('#showFavBtn').tooltip({container:'body',placement:'bottom'});
 $('body').tooltip({selector: '[class="statsInfo"]'});
-
 /*VideoModal*/
     $(document).on("click", ".videoBtn", function(e){
 	    e.preventDefault();
@@ -1850,18 +1819,15 @@ $('body').tooltip({selector: '[class="statsInfo"]'});
 $('#videoModal').on('hide.bs.modal', function (e) {
     $('#vidEmbed').attr( 'src', '' );
 })
-
 /*compareModal Close Clear Squads and splice evounits variables*/
 $('#compareModal').on('hidden.bs.modal', function (e) {
     clearSquad();
     gEvoUnits.splice(0,gEvoUnits.length);
 })
-
 /*Reset Pimp button onclose*/
 $('#cardModal').on('hidden.bs.modal', function (e) {
     $("#pimpBtn").val("false");
 })
-
 /*RESET*/
 $('#resetBtn').click( function(e) {
 	/*Google analytics*/
@@ -1875,11 +1841,9 @@ $('#resetBtn').click( function(e) {
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
 })
-
 /*Compare*/
 window.compareSelect=[];
 window.compareSelectURL="";
-
 $(document).on("click", ".compareUnit", function(e) {
 	var compareMax=100;
 	e.preventDefault();
@@ -1921,7 +1885,6 @@ $(document).on("click", ".favIconLink", function(e) {
 	openCard($(this).attr("data-value"),"unitid");
 	e.preventDefault();
 })
-
 /*Add Favourites*/
 $(document).on("click", ".addFav", function(e) {
 	e.preventDefault();
@@ -1943,7 +1906,6 @@ $(document).on("click", ".addFav", function(e) {
 	/*Save in local storage*/
 	localStorage.setItem("favourites",favSelect);
 })
-
 /*Fav button*/
     $(document).on("click", "#showFavBtn", function(e) {
 	    e.preventDefault();
@@ -1984,7 +1946,6 @@ $(document).on("click", ".addFav", function(e) {
 $(document).on("click", "#importUnitsBtn", function(e){    
     bfpAlert("Import confirmation",'Importing this shared list will TOTALLY replace your current favourites on your system / browser. Please confirm if you wish to proceed.<div class="text-right"><button type="button" class="btn btn-danger" id="importUnitsBtnGO">Import</button> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
 })
-
 /*Import Favourites*/
 $(document).on("click", "#importUnitsBtnGO", function(e){
 	$('#favModal').modal('hide');
@@ -2002,7 +1963,6 @@ $(document).on("click", "#importUnitsBtnGO", function(e){
 	    window.scrollTo(0,0);
 	    },500);
 })
-
 /*FAV Import Reload*/
 $(document).on('click', '#reloadBtn', function(e) {
 	/*Google analytics*/
@@ -2013,12 +1973,10 @@ $(document).on('click', '#reloadBtn', function(e) {
 	history.pushState(null, null, location.pathname);
 	location.reload(true);
 })
-
 /*New units detect*/
 $(document).on("click", "#syncDetectBtn", function(e){    
     bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i>Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
 })
-
 /*New units sync*/
 $(document).on("click", "#syncNewBtn", function(e){    
 	/*Force sync*/
@@ -2026,7 +1984,6 @@ $(document).on("click", "#syncNewBtn", function(e){
 	localStorage.removeItem("unitsguideadvanceCount");
 	location.replace(location.href);
 })
-
 /*Cancel sync*/
 $(document).on("click", "#syncCancel", function(e){    
 	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
@@ -2042,7 +1999,6 @@ $(document).on("click", "#syncCancel", function(e){
 		location.reload(true);
 	}
 })
-
 /*Filter Favourites*/
 $(document).on("click", "#filterFav", function(e){
 	    var bfPROsTable = $('#mytable').DataTable();
@@ -2059,7 +2015,6 @@ $(document).on("click", "#filterFav", function(e){
 	    $("#filterFav").html('<i class="fa fa-filter text-success"></i> Filter ALL <i class="fa fa-star-o"></i>');
 	    }
 })
-
 /*Delete ALL Favourites*/
 $(document).on("click", "#deleteFav", function(e){
 	/*loader*/
@@ -2097,7 +2052,6 @@ $(document).on("click", "#deleteFav", function(e){
 	    window.scrollTo(0,0);
 	    },2000);
 })
-
 /*Series Query*/
     $(document).on("click", ".serieslink", function(e) {
 	var bfPROsTable = $('#mytable').DataTable();
@@ -2142,12 +2096,10 @@ $(document).on("click", "#deleteFav", function(e){
 	    var bfPROsTable = $('#mytable').DataTable();
 	    bfPROsTable.page.len( $(this).val() ).draw()
 	})
-
 /*Page change scroll to top*/
 $('#mytable').on( 'page.dt', function (e) {
     window.scrollTo(0,0);
 })
-
 /*Rare Summon*/
 $(document).on("click", "#rareSummon", function(e){
     var typeArr=['Lord','Anima','Breaker','Guardian','Oracle'];
@@ -2185,13 +2137,11 @@ $(document).on("click", "#rareSummon", function(e){
     /*SummonCircle Activate*/
     $("#summonIMG").attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/summon-circle.gif");
 })
-
 /*Sprite BG*/
     $(document).on("click", ".thumbnail", function(e){
 	e.preventDefault();
 	$('#bgSpriteShow').attr('src',$(this).children('img').attr('src'));
     })
-
 /*Squad Change Button*/
 $(document).on("click", ".squadALL", function(e){
     var linkVal=$(this).val();
@@ -2203,7 +2153,6 @@ $(document).on("click", ".squadALL", function(e){
 	})
     }
 })
-
 /*Squad Customise by Select*/
 $(document).on("change", ".cFSquad", function(e){
     var deltaField=parseInt( $(this).attr('id').slice(-1) );
@@ -2218,7 +2167,6 @@ $(document).on("change", ".cFSquad", function(e){
 	$('#squadUnit'+(deltaField+1)).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
     }
 })
-
 /*Squad Random*/
 $(document).on("click", "#randomOwn,#randomOpp", function(e){
     /*Randomise code for opp / own units*/
@@ -2239,7 +2187,6 @@ $(document).on("click", "#randomOwn,#randomOpp", function(e){
 	})
     }
 })
-
 /*Squad Random*/
 $(document).on("change", "#bossSelect", function(e){
     var noIMG='https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif';
@@ -2266,7 +2213,6 @@ $(document).on("change", "#bossSelect", function(e){
 	$('#bossIMG').children('img').attr('src',noIMG);
     }
 })
-
 /*RS Simulator*/
 $(document).on("click", "#rareSummonBtn", function(e){
 	    e.preventDefault();
@@ -2277,7 +2223,6 @@ $(document).on("click", "#rareSummonBtn", function(e){
   		'title': 'Brave Frontier PROs Rare Summon Feature'
 	});
 })
-
 /*Filter Button*/
 $(document).on("click", "#filterBtn", function(e){
 	    e.preventDefault();
@@ -2288,7 +2233,6 @@ $(document).on("click", "#filterBtn", function(e){
   			'title': 'Brave Frontier PROs Filter Feature'
 		});
 })
-
 /*Sel ALL / None*/
 $(document).on("click", ".selEleFilter, .selRareFilter", function(e){
 	var selAction=$(this).text();
@@ -2308,7 +2252,6 @@ $(document).on("click", ".selEleFilter, .selRareFilter", function(e){
 		}
 	})
 })
-
 /*Execute Filter*/
 $(document).on("click", "#execFilter", function(e){
 	    e.preventDefault();
@@ -2368,7 +2311,6 @@ $(document).on("click", "#execFilter", function(e){
 	    $('#filterModal').modal('hide');
 	    window.scrollTo(0,0);
 })
-
 /*Bind REFRESH*/
     $(document).on("click", "#refreshBtn", function(e){
 	    e.preventDefault();
@@ -2467,7 +2409,6 @@ var delay = (function(){
     timer = setTimeout(callback, ms);
   }
 })();
-
 /*Update URL based on search filters*/
     $(document).on("keyup", '.dataTables_filter input', function(e){
 	delay(function(){
@@ -2604,7 +2545,6 @@ var delay = (function(){
 	    $('#totalEvoMats').html(evoCHTML);
     })
 });
-
 $(window).load(function() {
 	/*check for card param for UnitID*/
 	var idParam=urlParam('unitid');
@@ -2656,7 +2596,6 @@ $(window).load(function() {
     <script type="text/javascript">
 	var disqus_shortname = 'bravefrontierpros';
 	var disqus_url = 'http://bravefrontierpros.tumblr.com/unitsdatabase';
-
 	(function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -2894,8 +2833,7 @@ $(window).load(function() {
     </div>
 <!--Evolutionary-->
   <div class="tab-pane fade" id="evolutionary">
-    <div id="evoATKTab" class="row"></div>
-    <div id="evoTab" class="row evoDispRow"></div>
+    <div id="evoTab" class="row"></div>
   </div>
 
   <div class="tab-pane fade" id="unitCardSprite">
