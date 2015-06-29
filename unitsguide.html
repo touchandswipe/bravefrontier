@@ -1147,7 +1147,7 @@ function initialize(fusionData) {
 	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
-		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif" height="140"/>';
+		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif"/>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName" data-value="'+evotrail[i].id+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i].id+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
