@@ -1770,7 +1770,6 @@ $(document).ready( function(e) {
 		backdrop:'static',
 		toggle:true
 	})
-    
     	/*Query Fusion Tables 1st Time*/
     	var query = "SELECT * FROM " +
   	gTable + " ORDER BY 'ID' ASC";
@@ -1785,6 +1784,7 @@ $(document).ready( function(e) {
 		url: url.join(''),
 		dataType: 'jsonp',
 		success: function (fusionData) {
+			alert(JSON.stringify(fusionData));
 			/*Total JP Global Release Count*/
 			var serverUnitsCount=0;
 			var gl_idx=fusionData.columns.indexOf("Global Release");
