@@ -45,7 +45,7 @@ body {
 	padding:65px 15px 50px 15px;
 	overflow:auto;
 }
-.close {
+.closeX {
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
