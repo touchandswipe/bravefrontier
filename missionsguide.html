@@ -171,7 +171,7 @@ function buildTable(unit) {
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>Land</th><th>Area</th><th>Dungeon</th><th>Energy Use</th><th>XP</th><th>Zel</th></tr>';
+    var exportSTR='<tr><th>Land</th><th>Area</th><th>Dungeon</th><th>Energy Use</th><th>XP</th><th>XP/Energy</th><th>Zel</th></tr>';
     $("#rawTable thead").append(exportSTR);
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
@@ -182,6 +182,7 @@ function buildTable(unit) {
 	    tArray.push(valObj.energy_use);
 	    tArray.push(valObj.xp);
 	    tArray.push(valObj.zel);
+	    tArray.push(parseInt(valObj.xp/valObj.energy_use));
 	    tData.push(tArray);
     })
     $('#rawTable').dataTable({
