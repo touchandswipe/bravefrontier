@@ -171,14 +171,14 @@ function buildTable(unit) {
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>Land</th><th>Area</th><th>Dungeon</th><th>Energy</th><th>XP</th><th>XP/Energy</th><th>Zel</th></tr>';
+    var exportSTR='<tr><th>Land</th><th>Area</th><th>Name</th><th>Energy</th><th>XP</th><th>XP/Energy</th><th>Zel</th></tr>';
     $("#rawTable thead").append(exportSTR);
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
 	    var tArray=[];
 	    tArray.push(valObj.land);
 	    tArray.push(valObj.area);
-	    tArray.push(valObj.dungeon);
+	    tArray.push(valObj.name);
 	    tArray.push(valObj.energy_use);
 	    tArray.push(valObj.xp);
 	    if (valObj.energy_use!=0)
