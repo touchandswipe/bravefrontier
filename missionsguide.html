@@ -181,7 +181,10 @@ function buildTable(unit) {
 	    tArray.push(valObj.dungeon);
 	    tArray.push(valObj.energy_use);
 	    tArray.push(valObj.xp);
-	    tArray.push(parseInt(valObj.xp/valObj.energy_use));
+	    if (valObj.energy_use!=0)
+	    	tArray.push(parseInt(valObj.xp/valObj.energy_use));
+	    else
+	    	tArray.push(0);
 	    tArray.push(valObj.zel);
 	    tData.push(tArray);
     })
