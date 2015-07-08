@@ -181,8 +181,8 @@ function buildTable(unit) {
 	    tArray.push(valObj.dungeon);
 	    tArray.push(valObj.energy_use);
 	    tArray.push(valObj.xp);
-	    tArray.push(valObj.zel);
 	    tArray.push(parseInt(valObj.xp/valObj.energy_use));
+	    tArray.push(valObj.zel);
 	    tData.push(tArray);
     })
     $('#rawTable').dataTable({
