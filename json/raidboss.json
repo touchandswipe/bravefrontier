@@ -87,7 +87,7 @@
       {
         "partname": "Body",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "curse"
       },
       {
         "partname": "Front leg",
@@ -97,7 +97,7 @@
       {
         "partname": "Tail",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "sick"
       }
     ],
     "drops": {
