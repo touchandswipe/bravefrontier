@@ -754,7 +754,7 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-search"></i> Missions with '+bossKey+'</button> </h3>';
+    					+'<h3 style="margin-top:0px;"><b>'+bossKey+'</b><small> - '+bossObj.bodyparts.length+' Part(s)</small> <button type="button" class="btn btn-sm btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-search"></i> Show Missions</button> </h3>';
     					if (bossObj["boss notes"])
     						bossSTR+='<h6><b>Notes: </b>'+bossObj["boss notes"]+'</h6>';
     					for (i in bossObj.bodyparts) {
