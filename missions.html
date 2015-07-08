@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Drop Check Comparison (Ultima R3) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Missions Guide - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Drop Check Comparison (Ultima R3) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Missions Guide - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -58,12 +58,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid">
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<h4><i class="fa fa-heart-o fa-lg"></i> This is a presented comparative view on select effects based on what was extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h4>
-<h3 class="text-success"><b>TIP</b>: Click on heading to sort. Shift-Key and Click for 2nd / 3rd level sorting.</h3>
-</div>
-<h2>Drop Check (DC) Comparison for Normal / BB / SBB / UBB Hits</h2>
+<h3>Brave Frontier Missions Guide</h3>
 <div class="row">
 	<div class="col-xs-12">
 		<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Server Choice: </b><span class="text-danger" id="serverText">TBD</span> | <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span>
@@ -169,89 +164,37 @@ if (window.location.hash == '#_=_') {
 </div>
 </div> <!-- /container -->
 <div id="bfp_foot"></div>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.comparecommon.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/missionscommon.js"></script>
 <script type="text/javascript">
 function buildTable(unit) {
     var fkeys=['max bc generated','hits'];
     var tData=[];
     
     /*Build Header*/
-    var exportSTR='<tr><th>ID</th><th>Icon</th><th>Name</th><th>Element</th><th><i class="fa fa-star"></i></th>';
-    exportSTR+='<th style="background-color:#EEEEEE;">Normal Hits DC</th>';
-    exportSTR+='<th style="background-color:#EEEEEE;">DC / Normal Hit</th>';
-    exportSTR+='<th style="background-color:#88DDFF;">BB Hits DC</th>';
-    exportSTR+='<th style="background-color:#88DDFF;">DC / BB Hit</th>';
-    exportSTR+='<th style="background-color:#FFFF33;">SBB Hits DC</th>';
-    exportSTR+='<th style="background-color:#FFFF33;">DC / SBB Hit</th>';
-    exportSTR+='<th style="background-color:#FFDDCC;">UBB Hits DC</th>';
-    exportSTR+='<th style="background-color:#FFDDCC;">DC / UBB Hit</th>';
-    $("#rawTable thead").append(exportSTR+'</tr>');
+    var exportSTR='<tr><th>Land</th><th>Area</th><th>Dungeon</th><th>Energy Use</th><th>XP</th><th>Zel</th></tr>';
+    $("#rawTable thead").append(exportSTR);
     /*Build row Data into array*/
     $.each( unit, function( unitKey, valObj ) {
-    var tArray=[];
-    tArray.push(valObj.guide_id);
-    tArray.push('<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+valObj.guide_id+'.png" width="30" height="30">');
-    tArray.push(valObj.name);
-    tArray.push(valObj.element);
-    tArray.push(valObj.rarity);
-    /*Normal hits*/
-    if (valObj[fkeys[0]]) {
-        tArray.push(valObj[fkeys[0]]);
-        tArray.push(parseInt(valObj[fkeys[0]])/parseInt(valObj.hits));
-    } else {
-        tArray.push(0,0);
-    }
-    
-    /*BB hits*/
-    if (valObj.bb) {
-        if (valObj.bb[fkeys[0]]) {
-            tArray.push(valObj.bb[fkeys[0]]);
-            tArray.push(parseInt(valObj.bb[fkeys[0]])/parseInt(valObj.bb.hits));
-        } else {
-            tArray.push(0,0);
-        }
-    } else {
-        tArray.push(0,0);
-    }
-    
-    /*SBB hits*/
-    if (valObj.sbb) {
-        if (valObj.sbb[fkeys[0]]) {
-            tArray.push(valObj.sbb[fkeys[0]]);
-            tArray.push(parseInt(valObj.sbb[fkeys[0]])/parseInt(valObj.sbb.hits));
-        } else {
-            tArray.push(0,0);
-        }
-    } else {
-        tArray.push(0,0);
-    }
-    
-    /*UBB hits*/
-    if (valObj.ubb) {
-        if (valObj.ubb[fkeys[0]]) {
-            tArray.push(valObj.ubb[fkeys[0]]);
-            tArray.push(parseInt(valObj.ubb[fkeys[0]])/parseInt(valObj.ubb.hits));
-        } else {
-            tArray.push(0,0);
-        }
-    } else {
-        tArray.push(0,0);
-    }
-
-    //$("#rawTable tbody").append(exportSTR+'<tr>');
-    tData.push(tArray);
+	    var tArray=[];
+	    tArray.push(valObj.land);
+	    tArray.push(valObj.area);
+	    tArray.push(valObj.dungeon);
+	    tArray.push(valObj.energy_use);
+	    tArray.push(valObj.xp);
+	    tArray.push(valObj.zel);
+	    tData.push(tArray);
     })
     $('#rawTable').dataTable({
         "data": tData,
         "pageLength": 25,
         "lengthMenu": [ 25, 50, 100, 200 ],
         "deferRender": true,
-        "scrollX": true,
+        "scrollX": false,
         "dom": '<"clear"<"pull-left"l><"pull-right"fp>>rtip',
         "initComplete": function(settings, json) {
             $('#progressModal').modal("hide");
-        },
-        "columnDefs":[
+        }
+        /*"columnDefs":[
             	{ "targets":[ 0 ],
 		       "render": function(unitguide, type, row, full) {
 		            return '<a href="unitsguide.html?unitid='+unitguide+'" target="_showUnit">'+unitguide+'</a>';
@@ -262,7 +205,7 @@ function buildTable(unit) {
 				return '<a href="unitsguide.html?unitid='+row[0]+'" target="_showUnit">'+unitname+'</a>';
 		    	}
 		}
-	]
+	]*/
     })
 }
 
