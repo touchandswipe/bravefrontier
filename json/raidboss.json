@@ -577,7 +577,7 @@
         "weakails": "injury,poison"
       },
       {
-        "partname": "Claw <span class='txt-rare'>(Drops 黒邪瞳晶 Evil Fang)</span>",
+        "partname": "Claw <span class='txt-rare'>(Drops 黒邪瞳晶 Evil Eye)</span>",
         "element": "dark",
         "weakails": "weak,injury"
       }
@@ -585,7 +585,7 @@
     "drops": {
         "黒邪豪角": {"Eng":"Evil Horn","icon":"item_thum_905.png"},
         "黒邪豪鱗": {"Eng":"Evil Scale","icon":"item_thum_805.png"},
-        "黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png"}
+        "黒邪瞳晶": {"Eng":"Evil Eye","icon":"item_thum_1105.png"}
       },
     "missions": [
       "RC5M2",
