@@ -16,14 +16,15 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .pBodyBoss {padding: 0 0 15px 0;}
     .missioninfo {
     	padding: 10px;
   	font-size: 10pt;
     }
-    .txt-rare {color:#F80;}
+    .txt-rare {color:#F80;font-weight:normal;}
     .itemText {font-size:12pt;}
     .itemicon-lg {width:25px;vertical-align:bottom;}
-    .itemicon {width:25px;vertical-align:bottom;}
+    .itemicon {width:25px;}
     .bd {
         font-weight:bold;
         background:#EEEEEE;
@@ -37,14 +38,25 @@
         padding:3px;
         word-wrap: break-word;
     }
-    .btnSpace { margin:4px 2px; }
+    .btnSpace { margin:2px 0px; }
     .rowSpace { margin:3px; }
     .upper {
         text-transform:uppercase;
     }
     .dropslist {
-    	padding-left: 30px;
 	padding-top: 10px;
+  	margin-top: 10px;
+  	border-top: 1px dashed #CCC;
+  	float: left;
+    }
+    .dropItem {
+	  border: 1px dotted #CCC;
+	  border-radius: 20px;
+	  display: inline-block;
+	  font-size: 12px;
+	  padding: 3px 6px 3px 3px;
+	  margin: 3px 3px;
+	  vertical-align: middle;
     }
     .equal, .equal > div[class*='col-'] {  
     display: -webkit-flex;
@@ -55,7 +67,22 @@
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script> -->
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -64,7 +91,7 @@
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
 <h3 style="margin-top:5px;">Brave Frontier - Raid Companion</h3>
-<h5><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Bosses:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <!-- Show Bosses -->
 <button type="button" id="btnBoss" class="btn btn-info btnSpace">ALL Bosses</button>
 <!-- Show by missions-->
@@ -182,12 +209,12 @@ recipesObj={
 		"神滅天剣ヴァルシデル": {"Eng":"","icon":"sphere_thum_1_4.png","qty":1,"subrecipe":true},
 		"天将盾エゼネレート": {"Eng":"","icon":"sphere_thum_5_4.png","qty":1,"subrecipe":true},
 		"暗禍の神核": {"Eng":"","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
-		"黒邪瞳晶": {"Eng":"Evil Fang","icon":"item_thum_1105.png","qty":2,"subrecipe":false}
+		"黒邪瞳晶": {"Eng":"Evil Eye","icon":"item_thum_1105.png","qty":2,"subrecipe":false}
 	},
 	"Buffer Jewel 秘宝『ケレス・グレイン』": {
 		"秘宝『グラン・セシウス』": {"Eng":"Malice Jewel","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"神斬剣ミスラテス": {"Eng":"Hallow Sword","icon":"sphere_thum_1_7.png","qty":1,"subrecipe":true},
-		"魔将盾シルヴェラト": {"Eng":"Devil Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
+		"魔将盾シルヴェラ": {"Eng":"Devil Shield","icon":"sphere_thum_5_7.png","qty":1,"subrecipe":true},
 		"災禍煉環": {"Eng":"Doom Ring","icon":"item_thum_1105.png","qty":2,"subrecipe":false},
 		"裁火豪珠": {"Eng":"Blaze Pearl","icon":"item_thum_700.png","qty":2,"subrecipe":false}
 	},
@@ -349,6 +376,27 @@ recipesObj={
 		"剛雷豪皮": {"Eng":"Shock Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false},
 		"剛雷強爪": {"Eng":"Shock Claw","icon":"item_thum_100.png","qty":10,"subrecipe":false},
 		"雷脈の心臓": {"Eng":"Shock Heart","icon":"item_thum_800.png","qty":4,"subrecipe":false}
+	},
+	"Evil Halberd 凶戟ゲヘナベルム": {
+		"界双鉾マリッドフワル": {"Eng":"World Lance","icon":"sphere_thum_4_4.png","qty":1,"subrecipe":false},
+		"冥槍スリーメニアン": {"Eng":"Dark Lance","icon":"sphere_thum_4_4.png","qty":1,"subrecipe":false},
+		"覇霊の瞳": {"Eng":"Spirit Eye","icon":"item_thum_703.png","qty":10,"subrecipe":false},
+		"闇天翼骨": {"Eng":"Dark Bone","icon":"item_thum_905.png","qty":10,"subrecipe":false},
+		"碧殻の皮": {"Eng":"Cobalt Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false}
+	},
+	"Demon Bow 魔弓エクスぺリオン": {
+		"凶戟ゲヘナベルム": {"Eng":"Evil Halberd","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":true},
+		"炎纏の皮": {"Eng":"Blaze Pelt","icon":"item_thum_800.png","qty":15,"subrecipe":false},
+		"輝鱗の皮皮": {"Eng":"Scaly Pelt","icon":"item_thum_801.png","qty":15,"subrecipe":false},
+		"炎纏宝珠": {"Eng":"Flame Jewel","icon":"item_thum_700.png","qty":1,"subrecipe":false},
+		"輝煌閃珠": {"Eng":"Shiny Jewel","icon":"item_thum_704.png","qty":1,"subrecipe":false}
+	},
+	"Dark Demon Bow 魔怨弓ガルザペリオン": {
+		"魔弓エクスぺリオン": {"Eng":"Demon Bow","icon":"sphere_thum_4_8.png","qty":1,"subrecipe":true},
+		"異禍鉾ゲイズオーマ": {"Eng":"Blaze Pelt","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":false},
+		"冥破槍バスティマ": {"Eng":"Scaly Pelt","icon":"sphere_thum_4_5.png","qty":1,"subrecipe":false},
+		"魔獣心珠": {"Eng":"Fiend Jewel","icon":"item_thum_705.png","qty":3,"subrecipe":false},
+		"悠久の樹皮": {"Eng":"Eternal Bark","icon":"item_thum_806.png","qty":20,"subrecipe":false}
 	}
 };
 missionsObj={
@@ -706,7 +754,9 @@ function buildDB(boss) {
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
     				+'<div class="row">'
-    					+'<div class="col-xs-12 col-sm-12"><h3 style="margin-top:0px;"><b>'+bossKey+'</b> - '+bossObj.bodyparts.length+' Part(s) <button type="button" class="btn btn-xs btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-filter"></i> Missions with '+bossKey+'</button> </h3></div>';
+    					+'<h3 style="margin-top:0px;"><b>'+bossKey+'</b><small> - '+bossObj.bodyparts.length+' Part(s)</small> <button type="button" class="btn btn-sm btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-search"></i> Show Missions</button> </h3>';
+    					if (bossObj["boss notes"])
+    						bossSTR+='<h6><b>Notes: </b>'+bossObj["boss notes"]+'</h6>';
     					for (i in bossObj.bodyparts) {
     						bossSTR+='<div class="col-xs-12 col-sm-12 rowSpace">';
     						/*elements*/
@@ -723,14 +773,14 @@ function buildDB(boss) {
     							bossSTR+='no ailments';
     						bossSTR+='</div>';
     					};
-    					bossSTR+='<div class="row"><div class="col-xs-12 col-sm-12 dropslist"><b>Drops</b> ';
+    					bossSTR+='<div class="dropslist"><b>Drops</b> ';
     					if (!$.isEmptyObject(bossObj.drops))
 	    					$.each( bossObj.drops, function( dropKey, dropVal ) {
-	    						bossSTR+='<img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>) &nbsp;|&nbsp; ';
+	    						bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)</div>';
 	    					});
     					else
     						bossSTR+='none';
-    					bossSTR+='</div></div>';
+    					bossSTR+='</div>';
     				bossSTR+='</div>'
     			+'</div>'
     		+'</div>'; /*end row*/
@@ -742,7 +792,7 @@ function buildDB(boss) {
 	/*Process Mission Collapsibles*/
 	$.each( missionsObj, function( miKey, miVal ) {
     		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'">'+miVal.name+'</a></h4></div>'
-		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body pBodyBoss"><div class="container-fluid">';
 		if (miVal.info!="")
 			miSTR+='<div class="missioninfo"><b>Mission Insights: </b>'+miVal.info+'</div>';
     		for (i in bossParseObj) {
@@ -872,7 +922,7 @@ function missionsByBoss(select) {
     for (i in outputObj)
         outputHTML.push(outputObj[i].panelCode)
     /*Joins array and replace HTML*/
-    $('#rawTable').html('<h4>Showing missions with '+select+' boss.</h4>'+outputHTML.join(' '));
+    $('#rawTable').html('<h4>Showing missions with <b>'+select+'</b> boss.</h4>'+outputHTML.join(' '));
     window.scrollTo(0,0);
     /*Google analytics*/
     ga('send', 'pageview', {
@@ -927,7 +977,7 @@ function itemsByBoss(recipeName) {
     $.each( recipesObj, function( recipeKey, recipeObj ) {
     	if (recipeKey.search(recipeName)!=-1) {
     		recipeFound=recipeObj;
-    		outputHTML='<h4><b>Recipe by Boss Drops for '+recipeKey+'</b></h4>';
+    		outputHTML='<h4><b>Recipe for '+recipeKey+'</b></h4>';
     		if (prevRecipe!="")
     			outputHTML+='<h5><i class="fa fa-level-up"></i> Previously viewed recipe - <a href="#" class="raidRecipe">'+prevRecipe+'</a></h5>';
     		prevRecipe=recipeKey;
@@ -950,7 +1000,7 @@ function itemsByBoss(recipeName) {
 				itemFound=true;
 			}
 		if (!itemFound)
-			outputHTML+='Not a raid recipe. <a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
+			outputHTML+='Not a raid / popular recipe. <a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+itemKey+'" target="_blank">Check items guide for '+itemKey+'\'s recipe(s).</a>';
 	}
 	outputHTML+='</div></div></div></div>'; /*close panel*/
 	itemID+=1;
