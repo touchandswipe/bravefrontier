@@ -16,7 +16,14 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
-    .shdw_Icon {width:40px;height:40px;border-radius:5px;margin-right: 5px;}
+    .shdw_Icon {
+	border-radius:5px;
+	margin-right:5px;
+	width:35px;
+	height:35px;
+    	-webkit-transition:.4s all;
+    	-moz-transition:.4s all;
+    }
     .pBodyBoss {padding: 0 0 15px 0;}
     .missioninfo {
     	padding: 10px;
@@ -447,6 +454,7 @@ missionsObj={
         "name": "RC1 Final: Ruler of Twilight (宵闇の支配者)",
         "sortx": 8,
         "icon":"06",
+        "alert":"danger",
         "info": "3 Gems, 1 Sphere Frog on first clear."
     },
     "RC1X1M1": {
@@ -531,6 +539,7 @@ missionsObj={
         "name": "RC2 Final: The Empress' Fury (人を憎む妃神の猛威)",
         "sortx": 22,
         "icon":"02",
+        "alert":"danger",
         "info": "<b>Location:</b> Cavern Tower「岩窟の塔」. <b>Escape Location:</b> Cracked Soil「割れた大地」, Ever-burning Mountain「燃え続ける山」. 5 Gems, 1 Sphere Frog on first clear."
     },
     "RC2M13": {
@@ -621,6 +630,7 @@ missionsObj={
         "name": "RC3 Final: The God of Ruin (破壊の神と呼ばれる者)",
         "sortx": 37,
         "icon":"10",
+        "alert":"danger",
         "info": "Body part changes element every 2 turns. <b>Location:</b> Remote Volcano「最果ての火山」. <b>Escape Location:</b> Ever-burning Mountain「燃え続ける山」, Cracked Soil「割れた大地」, Lava Waterfalls「溶岩の滝」. Unit Noah 5* on first clear."
     },
     "RC3X1M1": {
@@ -672,21 +682,22 @@ missionsObj={
         "info": "<b>Location:</b> Tower Dark Clouds「暗雲の塔」. <b>Escape Location:</b> Lightless Canyon「光届かぬ谷」, Miasma Spring「瘴気の泉」."
     },
     "RC4M7": {
-        "name": "RC4: (実在する悪夢)",
+        "name": "RC4: Real-Life Nightmare (実在する悪夢)",
         "sortx": 46,
         "icon":"20",
         "info": "<b>Location:</b> Hot Spring「熱き泉」. <b>Escape Location:</b>「沼地の桟橋」,「乾いた荒地」."
     },
     "RC4M8": {
-        "name": "RC4: (死地からの手紙)",
+        "name": "RC4: Letter from Deadlands (死地からの手紙)",
         "sortx": 47,
         "icon":"10",
-        "info": "<b>Location:</b> Frozen Mountain「凍てつく氷山」(Balmedia),「流氷地帯」(Mistzug). <b>Escape Location:</b>「氷刻の泉」,「森深き雪道」(Balmedia).「天空へ続く山」(Mistzug)."
+        "info": "<b>Location:</b> Frozen Mountain「凍てつく氷山」(Balmedia), Avalanche Zone「流氷地帯」(Mistzug). <b>Escape Location:</b>「氷刻の泉」,「森深き雪道」(Balmedia).「天空へ続く山」(Mistzug)."
     },
     "RC4M9": {
-        "name": "RC4 Final: (本体を叩け！)",
+        "name": "RC4 Final: Bash the Real One! (本体を叩け！)",
         "sortx": 48,
         "icon":"17",
+        "alert":"danger",
         "info": "1 Sphere Frog, 1 Alton Imp, 1 Burst Emperor on first clear. <b>Location:</b> Clock Tower「時計台」. <b>Escape Location:</b>「穏やかな川岸」."
     },
     "RC4X1M1": {
@@ -759,6 +770,7 @@ missionsObj={
         "name": "RC5 Final: (魔神迎撃作戦)",
         "sortx": 60,
         "icon":"24",
+        "alert":"danger",
         "info": "<b>Location:</b>「焦熱の森」. Unit Owen 6* on first clear."
     },
     "RC5M10": {
@@ -857,7 +869,13 @@ function buildDB(boss) {
 
 	/*Process Mission Collapsibles*/
 	$.each( missionsObj, function( miKey, miVal ) {
-    		miSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/raid_room_shadow_boss_'+miVal.icon+'.png" class="shdw_Icon"/> '+miVal.name+'</a></h4></div>'
+    		miSTR='<div class="panel panel-';
+    		/*color panel*/
+    		if (miVal.alert)
+    			miSTR+=miVal.alert;
+    		else
+    			miSTR+="default";
+    		miSTR+='"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#mission'+collapseID+'"><img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/raid_room_shadow_boss_'+miVal.icon+'.png" class="shdw_Icon"/> '+miVal.name+'</a></h4></div>'
 		+'<div id="mission'+collapseID+'" class="panel-collapse collapse"><div class="panel-body pBodyBoss"><div class="container-fluid">';
 		if (miVal.info!="")
 			miSTR+='<div class="missioninfo"><b>Mission Insights: </b>'+miVal.info+'</div>';
@@ -1133,6 +1151,12 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     	backdrop:'static',
     	toggle:true
     })
+    /*IMG Zoom*/
+    $('.shdw_Icon').hover(function(){
+	    $(this).css({width:"100%",height:"100%"});
+	}, function(){
+	    $(this).css({width:"50%",height:"50%"});
+	});
     /*AJAX Call shorthand*/
     $.ajax({
         dataType: "json",
