@@ -544,7 +544,7 @@
       {
         "partname": "Tail",
         "element": "water",
-        "weakails": "para"
+        "weakails": "para,sick"
       }
     ],
     "drops": {
