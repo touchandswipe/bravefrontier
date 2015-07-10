@@ -1098,6 +1098,13 @@ function itemsByBoss(recipeName) {
 	});
 }
 
+/*IMG Zoom*/
+$(document).on("hover", '.shdw_Icon', function(){
+    $(this).css({width:"100%",height:"100%"});
+}, function(){
+    $(this).css({width:"50%",height:"50%"});
+})
+
 /*Binds Enter KEY to BOX*/
 $( "#searchDropsBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
@@ -1151,12 +1158,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     	backdrop:'static',
     	toggle:true
     })
-    /*IMG Zoom*/
-    $('.shdw_Icon').on("hover", function(){
-	    $(this).css({width:"100%",height:"100%"});
-	}, function(){
-	    $(this).css({width:"50%",height:"50%"});
-	});
     /*AJAX Call shorthand*/
     $.ajax({
         dataType: "json",
