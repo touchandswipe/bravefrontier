@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="if:Show Recent Units" content="0"/>
+    <meta name="if:Show Ally Hook Up" content="0"/>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="soHOueVFa6Fdfrzl63wozlgkt57G23kq_i5PdonwJXc" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+    <title>{Title}{block:SearchPage} - {lang:Search results for SearchQuery}{/block:SearchPage}{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>
+    <meta name="text:Disqus Shortname" content="" />
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+<style type="text/css">
+*[id^='twitter-widget-'] {width:100% !important;}
+#tumblr_controls {display:none;}
+.tumblr_audio_player {width:1px !important;min-width:100%;height:auto;};
+.clearit:before, .clearit:after { content: ""; display: table; }
+.clearit:after { clear: both; }
+.clearit { *zoom: 1; }
+.photo-slideshow {
+  visibility: hidden;
+}
+.photo-slideshow.processed {
+  visibility: visible;
+}
+.photo-slideshow .row {
+  clear: both;
+  margin-left:0px;
+  margin-right:0px;
+  width: 100%;
+}
+.photo-slideshow .pxu-photo {
+  display: block;
+  float: left;
+  margin-bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.photo-slideshow .pxu-photo img {
+  display: block;
+}
+.photo-slideshow.processed .pxu-photo img {
+  width: 100%;
+  height: auto;
+}
+.photo-slideshow .pxu-photo:first-child img {
+  margin-left: 0;
+}
+.photo-slideshow .count-1 {
+  width: 100%;
+}
+.photo-slideshow .count-2 {
+  width: 50%;
+}
+.photo-slideshow .count-3 {
+  width: 33.33%;
+}
+.photo-slideshow .count-4 {
+  width: 25%;
+}
+.photo-slideshow .count-5 {
+  width: 20%;
+}
+.photo-slideshow .info {
+  display: none;
+}
+.photo-data {
+  position: relative;
+  float: left;
+}
+.btn-grey {
+    color:#FFF;
+    background:#666;
+}
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size:14px;
+    height:100%;
+    background-image: url('https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/skulls3.png');
+}
+li {
+    margin-bottom:7px;
+}
+ul,ol {
+    padding-left:25px;
+}
+#spacer { height:50px; }
+{block:Permalink}
+    h2 {
+        font-size:18pt;
+        margin-top:10px;
+    }
+    #bignews {
+        margin: 10px auto 10px auto;
+    }
+    .bignewsmax {
+        max-width:700px;
+    }
+    #disqus_thread {
+        padding: 20px 8px;
+    }
+    ol.notes {
+        padding: 0px;
+        margin: 0px 0px;
+        list-style-type: none;
+    }
+    ol.notes li.note {
+        padding: 5px;
+        margin-bottom: 0px;
+    }
+    ol.notes li.note img.avatar {
+        margin-right: 10px;
+        width: 25px;
+        height: 25px;
+        border-radius:50%;
+    }
+    ol.notes li.note span.action {
+        font-weight: bold;
+    }
+    ol.notes li.note .answer_content {
+        font-weight: normal;
+    }
+    ol.notes li.note blockquote {
+        border-color: #FE0;
+        padding: 4px 5px;
+        margin: 10px 0px 0px 20px;
+    }
+    ol.notes li.note blockquote a {
+        text-decoration: none;
+    }
+    .author {
+        margin:15px 0 5px -15px;
+        font-size:12pt;
+        color:#999;
+        clear:both;
+    }
+    .authorlink, .authorlink:hover {
+        font-family:'Quicksand', sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 3px 5px;
+        position: relative;
+        color: rgba(220,0,255,1);
+        text-decoration:none;
+    }
+    .author img {
+        border-radius: 100%;
+        border: 1px solid #FFF;
+        width:40px;
+        height:40px;
+        box-shadow: 1px 1px 5px #666;
+    }
+{/block:Permalink}
+{block:IndexPage}
+    h2 {
+        font-size:14pt;
+        margin-top:5px;
+    }
+    .gamenews {
+        position: relative;
+        padding-bottom: 140%;
+        padding-top: 0px;
+        height: 0;
+        border:5px solid #333;
+        background:#000;
+        overflow: hidden;
+        margin-bottom:24px;
+        border-radius:8px;
+        box-shadow: 0px 1px 4px #666;
+    }
+    .gamenews h5 {
+        display: block;
+        clear: both;
+        color: #FFF;
+        text-shadow:2px 2px 8px #F0F;
+        text-align: center;
+        background: #333;
+        padding: 10px;
+        margin-top: 0px;
+    }
+    .gamenews iframe {
+        display:block;
+        position: absolute;
+        width: 125%;
+        height: 125%;
+        overflow:hidden;
+        border:0;
+        -webkit-transform: scale(0.8,0.8);
+        -webkit-transform-origin: 0 0;
+        -moz-transform: scale(0.8,0.8);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.8,0.8);
+        -o-transform-origin: 0 0;
+    }
+    .readmore {
+        text-align: center;
+        padding: 5px 10px;
+        margin: 15px;
+        border: 1px solid #CCC;
+        background:#FFF;
+        border-radius: 10px;
+        font-weight:bold;
+        display:block;
+    }
+    .readmore:hover {
+        background:#FE0;
+    }
+    #mainnews {
+    	margin: 10px auto 10px auto;
+    	min-height:300px;
+    }
+    #pagenav {
+        width:100%;
+        margin:5px auto 5px auto;
+        font-size:20px;
+        font-family:"Quicksand",sans-serif;
+        text-align:center;
+        vertical-align:middle;
+    }
+    #pagenav .navBtns {
+        display:inline-block;
+        height:50px;
+        padding: 10px;
+        margin: 0px 5px;
+        font-weight:bold;
+    }
+    #pagenav .jump_page {
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FFF;
+        padding: 10px;
+        margin: 0px 5px;
+    }
+    #pagenav .current_page {
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FE0;
+        padding: 10px;
+        margin: 0px 5px;
+    }
+{block:IfShowAllyHookUp}
+    #allyhookup {
+        margin: 0px 6px;
+        text-align:center;
+        box-shadow: 0px 1px 2px #444;
+    }
+    #allyhookupJP {
+        background: rgba(255,0,80,0.6);
+    }
+    #allyhookupEU {
+        background: rgba(60,220,30,0.6);
+    }
+    #allyhookupGL {
+        background: rgba(0,125,255,0.6);
+    }
+    #allyhookup a {
+        color:#FFF;
+        line-height: 34pt;
+        display:block;
+        font-size:11pt;
+        text-shadow: 1px 1px #888;
+    }
+    #allyhookup a:hover {
+        text-decoration:none;
+    }
+{/block:IfShowAllyHookUp}
+{block:IfShowRecentUnits}
+/*styles for recent units*/
+    .unitBox {
+        opacity:0;
+        -moz-transition: opacity 1s ease-in;
+        -webkit-transition: opacity 1s ease-in;
+        -o-transition: opacity 1s ease-in;
+        transition: opacity 1s ease-in;
+    }
+    .imgShdw {
+        width:70%;
+        min-width:38px;
+        height:auto;
+        padding: 3px 0px 10px;
+    }
+    .imgFire {
+        -webkit-filter: drop-shadow(0px 0px 3px #F00);
+    	filter: drop-shadow(0px 0px 3px #F00);
+    }
+    .imgWater {
+        -webkit-filter: drop-shadow(0px 0px 3px #00F);
+    	filter: drop-shadow(0px 0px 3px #00F);
+    }
+    .imgEarth {
+        -webkit-filter: drop-shadow(0px 0px 3px #0F0);
+    	filter: drop-shadow(0px 0px 3px #0F0);
+    }
+    .imgThunder {
+        -webkit-filter: drop-shadow(0px 0px 3px #F90);
+    	filter: drop-shadow(0px 0px 3px #F90);
+    }
+    .imgLight {
+        -webkit-filter: drop-shadow(0px 0px 3px #FFF);
+    	filter: drop-shadow(0px 0px 3px #FFF);
+    }
+    .imgDark {
+        -webkit-filter: drop-shadow(0px 0px 3px #C09);
+    	filter: drop-shadow(0px 0px 3px #C09);
+    }
+    .kdb-r {
+        background:rgba(255,225,0,0.8);
+        color:#000;
+        padding:0 2px;
+        font-size:9pt;
+    }
+    .rShow {
+    	position:absolute;
+    	white-space:nowrap;
+    	bottom:5px;
+    	left:16px;
+    }
+    #recentUnitsjp {
+        padding-right:5px;
+        background: rgba(255,0,136,0.1);
+        background: -moz-linear-gradient(top, rgba(255,0,136,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,0,136,0.1)), color-stop(100%, rgba(255,255,255,0.1)));
+        background: -webkit-linear-gradient(top, rgba(255,0,136,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -o-linear-gradient(top, rgba(255,0,136,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -ms-linear-gradient(top, rgba(255,0,136,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: linear-gradient(to bottom, rgba(255,0,136,0.1) 0%, rgba(255,255,255,0.1) 100%);
+    }
+    #recentUnitsgl {
+        padding-right:5px;
+        background: rgba(0,125,255,0.1);
+        background: -moz-linear-gradient(top, rgba(0,125,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,125,255,0.1)), color-stop(100%, rgba(255,255,255,0.1)));
+        background: -webkit-linear-gradient(top, rgba(0,125,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -o-linear-gradient(top, rgba(0,125,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: -ms-linear-gradient(top, rgba(0,125,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+        background: linear-gradient(to bottom, rgba(0,125,255,0.1) 0%, rgba(255,255,255,0.1) 100%);
+    }
+    #recentUnitsTop {
+        padding: 0;
+        box-shadow: 0px 1px 12px -3px #000;
+        border-radius: 0 0 10px 10px;
+        margin: 0px 6px;
+        background: rgba(255,255,255,0.5);
+    }
+    #recentUnitsTop .col-xs-* {
+        padding-left:8px;
+        padding-right:8px;
+    }
+    #recentUnits {
+    	margin: 0 0 10px;
+    }
+    #recentUnits h5 {
+    	margin-bottom:5px;
+    }
+{/block:IfShowRecentUnits}
+    .author {
+        margin:5px 0 5px -12px;
+        font-size:12px;
+        color:#999;
+        clear:both;
+    }
+    .authorlink, .authorlink:hover {
+        font-size: 14px;
+        font-family:'Quicksand', sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 3px 2px;
+        position: relative;
+        color: rgba(220,0,255,1);
+        text-decoration:none;
+    }
+    .author img {
+        border-radius: 100%;
+        border: 1px solid #FFF;
+        width:25px;
+        height:25px;
+        box-shadow: 1px 1px 5px #666;
+    }
+{/block:IndexPage}
+.partners {
+    margin-bottom: 8px;
+    -webkit-filter: drop-shadow(0px 0px 2px #FFF);
+    filter: drop-shadow(0px 0px 2px #FFF);
+}
+.adbox {
+    margin:10px 0px;
+}
+.socialbtns {
+    color:#FFF;
+    display:inline-block;
+    text-decoration:none;
+    width:35px;
+    height:35px;
+}
+.socialbtns:hover {
+    color:#FE0;
+    text-shadow:1px 1px 1px #000;
+}
+.gridheader, .gridheader a {
+    display:block;
+    padding: 25px 15px;
+    background: rgba(204, 153, 255,1);
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+}
+.tags {
+    color: #888;
+    font-size: 12px;
+    padding: 8px 10px;
+    text-transform: lowercase;
+    border-top:1px dotted #CCC;
+    margin-top: 8px;
+    line-height: 13px;
+}
+.tags a {
+    border:0;
+    margin: 0 2px;
+    color: #888;
+}
+.tags a:hover {
+    text-decoration:underline;
+}
+.aboutdiv {
+    display: block;
+    padding: 8px;
+    height: 34px;
+    background: #FFF;
+    border-radius: 8px;
+    border: 1px solid #DDD;
+    box-shadow:1px 2px 8px #DDD inset;
+}
+.liketextdiv a  {
+    display:inline-block;
+    margin: -4px 2px 0px 5px;
+    float:left;
+    color:#CCC;
+    font-size:16px;
+    font-family:"Quicksand";
+    text-decoration:none;
+}
+.datediv {
+    display:inline-block;
+    margin: -2px 3px 0px 0px;
+    float:right;
+    color:#CCC;
+    font-size:14px;
+}
+.commentdiv a {
+    display:inline-block;
+    margin:-4px 5px 0px 3px;
+    float:left;
+    color:#CCC;
+    font-family:"Quicksand";
+    font-size:16px;
+    text-decoration:none;
+}
+.opendiv {
+    display:inline-block;
+    margin: -2px 3px 0px 3px;
+    float:right;
+    color:#CCC;
+    font-size:16px;
+    padding: 0px 1px;
+}
+.likediv, .reblogdiv {
+    display:inline-block;
+    margin:0px 8px 0px 2px;
+    float:left;
+}
+#footer {
+    margin: 10px auto 0px auto;
+    padding: 10px 10px 75px;
+    background: rgba(180,150,20,0.55);
+    color: #FFF;
+    box-shadow: 0px 10px 10px -8px #AAA inset;
+}
+#footer li a {
+    color:#FFF;
+}
+#footer .row {
+	margin:0px auto;
+	width:85%;
+}
+/*salvattore*/
+#grid[data-columns]::before {
+	content: '3 .column.size-1of3';
+}
+.griditem {
+    border:0;
+    border-radius: 0 0 8px 8px;
+	background:#FFF;
+	margin: 0px 10px 20px 10px;
+	box-shadow: 0px 0px 8px -1px #666;
+	overflow:visible;
+}
+.griditem .griditem-text {
+    padding:3px 8px 10px;
+    border-radius: 0 0 8px 8px;
+    font-size:13px;
+    clear:both;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(70%,rgba(255,255,255,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,1) 70%,rgba(237,237,237,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+.griditem blockquote {
+    font-size:13px;
+    padding: 0px 10px;
+    margin:5px 10px 10px;
+    border-left: 4px solid #FEB;
+}
+@media screen and (max-width: 480px){
+	#grid[data-columns]::before {
+		content: '1 .column.size-1of1';
+	}
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	#grid[data-columns]::before {
+		content: '2 .column.size-1of2';
+	}
+}
+@media screen and (min-width: 769px) and (max-width: 1280px) {
+	#grid[data-columns]::before {
+		content: '3 .column.size-1of3';
+	}
+}
+@media screen and (min-width: 1281px) {
+	#grid[data-columns]::before {
+		content: '4 .column.size-1of4';
+	}
+	#mainnews {
+	    max-width:90%;
+	}
+}
+.column { float: left; }
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.333%; }
+.size-1of4 { width: 25%; }
+
+.btn-menu {
+  border: solid 1px rgba(235,175,125,1);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.65);
+  color: #555555;
+  font-weight: bold;
+  padding: 8px 5px;
+  margin-bottom:5px;
+}
+.btn-menu i {
+  left: 30px;
+  position: absolute;
+  top: 9px;
+  font-size: 20px;
+}
+#overlayC {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(255,195,145,0.95);
+	z-index:199;
+	padding:65px 15px 50px 15px;
+	overflow:auto;
+}
+.close {
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+	transition: opacity 0.5s, visibility 0s 0.5s;
+}
+.open {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+.navC {
+	top:0;
+	left:0;
+	height: 50px;
+	padding: 5px;
+	position: fixed;
+	width: 100%;
+	z-index: 995;
+	box-shadow: 0px 1px 5px #AAA;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(241,241,241,1) 90%, rgba(235,235,235,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(90%,rgba(241,241,241,1)), color-stop(100%,rgba(235,235,235,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 90%,rgba(235,235,235,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
+}
+.logo {
+	width: 40px;
+	box-shadow: 1px 1px 6px #999;
+	margin-right: 10px;
+}
+.headerC, .headerC:hover {
+	font-size: 18px;
+	font-weight: 600;
+	color: #444;
+	text-decoration:none;
+	font-family: 'Quicksand', sans-serif;
+}
+.menuC {
+  background: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+  height: initial;
+  top: 14px;
+  right: 55px;
+  position: absolute;
+  text-transform: uppercase;
+}
+#nav-toggle { cursor: pointer; padding: 10px 30px 16px 0px; }
+#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  width: 30px;
+  background: black;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 500ms ease-in-out;
+}
+#nav-toggle span {
+  top: 23px;
+  right: 20px;
+}
+#nav-toggle span:before {
+  top: -10px; 
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+  padding: 0;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: translateY(-10px) rotate(-45deg);
+  top: 10px;
+}
+.clear {clear:both;}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{block:IfShowRecentUnits}{block:IndexPage}
+<script type="text/javascript">
+function getRecentUnits(serverShortName,prevMth) {
+var gURL = 'https://www.googleapis.com/fusiontables/v2/query';
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+var gTable = '1oPbzBF3Ru1fLmINUkI4LjrYTroqFRzP61FM6GkiJ';
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var d = new Date();
+if (prevMth)
+    if (d.getMonth()!=0)
+        var loadMth=d.getMonth()-1;
+    else
+        var loadMth=11;
+else
+    var loadMth=d.getMonth();
+var recentMonthStr="#"+ monthNames[loadMth].toLowerCase()+d.getFullYear()+serverShortName;
+var query = "SELECT ID,Name,Rarity,Element FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '"+recentMonthStr+"'" + " ORDER BY 'ID' ASC";
+var encodedQuery = encodeURIComponent(query);
+  /*Construct the URL*/
+  var url = [gURL];
+  url.push('?sql=' + encodedQuery);
+  url.push('&key=' + gKey);
+  url.push('&callback=?');
+    /*Send the JSONP request*/
+	$.ajax({
+	  url: url.join(''),
+	  dataType: 'jsonp',
+	  success: function (fusionData) {
+        var outputHTML="";
+		var outputArray=[];
+		for (i in fusionData.rows) {
+			outputArray.push({"id":fusionData.rows[i][fusionData.columns.indexOf('ID')],"rarity":fusionData.rows[i][fusionData.columns.indexOf('Rarity')],"name":fusionData.rows[i][fusionData.columns.indexOf('Name')],"element":fusionData.rows[i][fusionData.columns.indexOf('Element')]});
+		}
+		for (i in outputArray) {
+			outputHTML+='<div class="unitBox col-xs-2 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguidelite?unit='+outputArray[i].id+'" title="'+outputArray[i].name+'" target="unitsguide"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png"/><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></a></div>';
+		}
+		if (serverShortName=="jp")
+		    var longName="Japan"
+        else
+            var longName="Global";
+        if (outputArray.length==0) {
+            outputHTML='<div class="col-xs-12 col-sm-12 col-md-12 text-center"><h5><i class="fa fa-info-circle"></i> No '+longName+' units in '+monthNames[loadMth]+'. <a href="#" class="loadPrev" data-server="'+serverShortName+'">Load previous month.</a></h5></div>';
+            $('#recentUnits'+serverShortName).html(outputHTML);
+	    }
+        else {
+		    outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-search"></i> '+outputArray.length+' '+longName+' new unit(s) in '+monthNames[loadMth]+' '+d.getFullYear()+'</h5></div>'+outputHTML;
+		    $('#recentUnits'+serverShortName).html(outputHTML);
+	    	$('.imgShdw').on('load', function(e) {
+        	    e.preventDefault();
+                $(this).css("opacity",1);
+                $(this).parents('.unitBox').css("opacity",1)
+            }).each(function() {
+                if(this.complete)
+                    $(this).load()
+            });
+        }
+	  }
+	});
+}
+</script>
+{/block:IndexPage}{/block:IfShowRecentUnits}
+</head>
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navC">
+      <div class="container-fluid">
+        <div class="pull-left">
+          <a class="headerC" href="{BlogURL}"><img src="{PortraitURL-128}" class="img-circle logo"/>{Title}</a>
+        </div>
+        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">More Guides</div><span></span></a></div>
+      </div>
+    </div>
+
+<!--Overlay Menu-->
+<div id="overlayC" class="close">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-xs-12 col-sm-12">
+    	        <!--Search-->
+    	        <form id="newsearch" action="/search" method="get">
+                    <div class="input-group input-group-lg" style="margin-bottom:10px;">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button></span>
+                            <input type="text" name="q" placeholder="e.g. maxwell or grahdens" class="form-control">
+                    </div>
+                </form>
+            </div>
+	    </div>
+		<div class="row">
+			{block:HasPages}{block:Pages}
+			<div class="col-xs-12 col-sm-4 col-md-3"><a href="{URL}" class="btn btn-default btn-block btn-menu">{Label}</a></div>
+			{/block:Pages}{/block:HasPages}
+		</div>
+	</div>
+</div>
+<div id="spacer"></div>
+<!--Key segments-->
+<div class="container-fluid hidden-lg hidden-md">
+<div class="row">
+    <div class="btn-group btn-group-justified" role="group">
+        <a href="http://bravefrontierpros.tumblr.com/unitsguide" class="btn btn-grey" role="button">Units</a>
+        <a href="http://bravefrontierpros.tumblr.com/skillsguideglobal" class="btn btn-grey" role="button">Skills</a>
+        <a href="http://bravefrontierpros.tumblr.com/itemsguideunified" class="btn btn-grey" role="button">Items</a>
+        <a href="http://bravefrontierpros.tumblr.com/raidcompanion" class="btn btn-grey" role="button">Raid</a>
+    </div>
+</div>
+</div>
+<!--Main News from Tumblr-->
+{block:IfShowAllyHookUp}{block:IndexPage}
+<!--Allies-->
+<div class="container-fluid" id="allyhookup">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupJP"><a href="http://bravefrontierpros.tumblr.com/findalliesJP"><i class="fa fa-user-plus"></i> Find allies - Japan (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesJP">0</span>)</a></div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupEU"><a href="http://bravefrontierpros.tumblr.com/findalliesEU"><i class="fa fa-user-plus"></i> Find allies - Europe (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesEU">0</span>)</a></div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupGL"><a href="http://bravefrontierpros.tumblr.com/findalliesGL"><i class="fa fa-user-plus"></i> Find allies - Global (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesGL">0</span>)</a></div>
+        </div>
+    </div>
+</div>
+{/block:IndexPage}{/block:IfShowAllyHookUp}
+{block:IfShowRecentUnits}{block:IndexPage}
+<!--Recent Units-->
+<div class="container-fluid" id="recentUnitsTop">
+    <div class="row" id="recentUnits">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="row" id="recentUnitsjp"></div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="row" id="recentUnitsgl"></div>
+        </div>
+    </div>
+</div>
+{/block:IndexPage}{/block:IfShowRecentUnits}
+<!--Top Ad-->
+<div class="text-center adbox">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+ 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+{block:IndexPage}
+<div id="mainnews" class="container-fluid">
+	<div id="grid" data-columns>
+{/block:IndexPage}
+
+{block:PermalinkPage}
+<div id="bignews" class="container">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bignewsmax">
+{/block:PermalinkPage}
+
+<!--Twitter combined-->
+{block:IndexPage}
+<!--<div class="griditem" style="box-shadow:none;background:none;">
+<a class="twitter-timeline" href="https://twitter.com/search?q=-%40LeonZai%20from%3Abravefrontiergl" data-chrome="nofooter" data-theme="dark" data-tweet-limit="3" data-widget-id="584887335843532803">Tweets about -@LeonZai from:bravefrontiergl</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+</div>-->
+<div class="griditem" style="box-shadow:none;background:none;">
+<a class="twitter-timeline" data-theme="dark" data-tweet-limit="3" data-chrome="nofooter" href="https://twitter.com/brave_pr" data-widget-id="518192974920835072">Tweets by @brave_pr</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+</div>
+<div class="griditem" style="box-shadow:none;background:none;margin-bottom:20px;">
+    <div class="gamenews">
+        <h5>GLOBAL IN-GAME NEWS</h5>
+        <iframe src="http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php" sandbox="allow-scripts"></iframe>
+    </div>
+</div>
+{/block:IndexPage}
+
+{block:Posts}
+<div class="griditem" id="{PostID}">
+        {block:Text}
+            {block:Title}<div class="gridheader"><a href="{Permalink}">{Title}</a></div>{/block:Title}
+            <div class="author">
+                <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+            </div>
+            <div class="griditem-text">
+                {Body}
+        {/block:Text}
+        {block:Photo}
+            {block:IndexPage}<a href="{Permalink}"><img src="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="img-responsive" width="100%"></a>{/block:IndexPage}
+            {block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" width="100%" alt="{PhotoAlt}">{LinkCloseTag}{/block:PermalinkPage}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Caption}{Caption}{/block:Caption}
+        {/block:Photo}  
+        {block:Photoset}
+                
+<div class="photo-slideshow" id="photoset_{PostID}" data-layout="{PhotosetLayout}">
+  {block:Photos}
+  <a class="tumblr-box" rel="post-{PostID}" href="{PhotoURL-HighRes}">
+    <div class="photo-data">
+      <div class="pxu-photo">
+        <img alt="{PhotoAlt}" src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" data-highres="{PhotoURL-HighRes}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}">
+      </div>
+    </div>
+    </a>
+  {/block:Photos}
+</div><!-- close SLIDESHOW -->
+                
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Caption}{Caption}{/block:Caption}
+        {/block:Photoset}
+        {block:Panorama}
+            {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Caption}{Caption}{/block:Caption}
+        {/block:Panorama}
+        {block:Quote}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    <blockquote>"{Quote}"</blockquote>
+                    {block:Source}<cite>- {Source}</cite>{/block:Source}
+        {/block:Quote}
+        {block:Link}
+                <div class="gridheader"><a href="{URL}"><i class="fa fa-external-link fa-2x"></i><br/>{Name}</a></div>
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-48}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Description}{Description}{/block:Description}
+        {/block:Link}
+        {block:Chat}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Title}<a href="{Permalink}"><h2>{Title}</h2></a>{/block:Title}
+                    {Body}
+                    <div class="chat">
+                        {block:Lines}
+                            {block:Label}<p><span>{Label} </span>{/block:Label} {Line}</p>
+                        {/block:Lines}
+                    </div>
+        {/block:Chat}
+        {block:Audio}
+                    {AudioEmbed}
+                    {block:PlayCount}<div class="griditem-text" style="text-align:right;"><i class="fa fa-music"></i> Played <b>{PlayCount}</b>x</div>{/block:PlayCount}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Caption}{Caption}{/block:Caption}
+        {/block:Audio}
+        {block:Video}
+                <div class="embed-responsive embed-responsive-4by3">{Video-500}</div>
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    {block:Caption}{Caption}{/block:Caption}
+         {/block:Video}
+        {block:Answer}
+                <div class="author">
+                    <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
+                </div>
+                <div class="griditem-text">
+                    <div class="question">
+                        <div class="inside">
+                            <div class="gw">
+                                <div class="g one-fifth">
+                                    <img src="{AskerPortraitURL-96}">
+                                </div>
+                                <div class="g four-fifths">
+                                    <p class="title">{lang:Asker asked}:</p>
+                                    <p class="content">{Question}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gw">
+                            <div class="g one-fifth">
+                                <img src="{PortraitURL-128}">
+                            </div>
+                            <div class="g four-fifths">
+                                <p class="title">{Title} {lang:Answer}:</p>
+                                <p class="content">{Answer}</p>
+                            </div>
+                        </div>
+                    </div>
+         {/block:Answer}
+            {block:More}
+                <a class="readmore" href="{Permalink}"><i class="fa fa-book"></i> keep reading</a>
+            {/block:More}
+         
+            {block:HasTags}             
+                <div class="tags">
+                    <i class="fa fa-tags"></i>
+                    {block:Tags}
+                        <a href="{TagURL}">#{Tag}</a>
+                    {/block:Tags}
+                </div>
+            {/block:HasTags}
+                <div class="aboutdiv">
+                    {block:IndexPage}
+                    <div class="commentdiv">
+                        <a href="{Permalink}"><span class="disqus-comment-count" data-disqus-url="{Permalink}">0</span> <i class="fa fa-comment"></i></a>
+                    </div>
+                    {/block:IndexPage}
+                    <div class="liketextdiv">
+                        {block:NoteCount}<a href="{Permalink}">{NoteCount}</a> {/block:NoteCount}
+                    </div>
+                    <div class="likediv">
+                        {LikeButton color="grey" size="16"}
+                    </div>
+                    <div class="reblogdiv">
+                        {ReblogButton color="grey" size="16"}
+                    </div>
+                    {block:IndexPage}
+                    <div class="opendiv">
+                        <a href="{Permalink}" title="Expand View"><i class="fa fa-arrows-alt"></i></a>
+                    </div>
+                    {/block:IndexPage}
+                    <div class="opendiv">
+                        <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank"><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <div class="opendiv">
+                        <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank"><i class="fa fa-facebook"></i></a>
+                    </div>
+                    <div class="opendiv">
+                        <a href="https://plus.google.com/share?url={URLEncodedPermalink}" target="_blank" class="icon-googleplus"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div> <!-- aboutdiv -->
+
+{block:PermalinkPage}
+{block:IfDisqusShortname}
+<div id="disqus_thread"></div>
+    <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+    <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+{/block:IfDisqusShortname}
+    {PostNotes-64}
+{/block:PermalinkPage}
+        </div>
+</div> <!-- end grid item -->
+
+{block:Post5}
+<!-- ads -->
+<div class="griditem" style="box-shadow:none;background:none;">
+    <div style="text-align:center;">
+    <!-- BFP 300w Ad -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:250px"
+         data-ad-client="ca-pub-2145833818900192"
+         data-ad-slot="6579320068"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </div>
+</div>
+{/block:Post5}
+{/block:Posts}
+
+{block:IndexPage}
+<!--closures for news-->
+	</div> 
+</div>
+{/block:IndexPage}
+
+
+{block:PermalinkPage}
+    </div>
+    <div class="col-md-4 col-lg-4 visible-md visible-lg">
+        <!-- Permalink ad shows only for large screen -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:600px"
+             data-ad-client="ca-pub-2145833818900192"
+             data-ad-slot="9186412466"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div><!-- bignews row closure -->
+</div>
+{/block:PermalinkPage}
+<!--Bottom Ad-->
+<div class="text-center adbox">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+{block:IndexPage}
+<div id="pagenav" class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            {block:Pagination}
+                {block:PreviousPage}
+                    <a class="navBtns" href="{PreviousPage}">Previous</a>
+                {/block:PreviousPage}
+                {block:JumpPagination length="3"}
+                    {block:CurrentPage}
+                        <div class="current_page">{PageNumber}</div>
+                    {/block:CurrentPage}
+                    {block:JumpPage}
+                        <a class="jump_page" href="{URL}">{PageNumber}</a>
+                    {/block:JumpPage}
+                {/block:JumpPagination}
+                {block:NextPage}
+                    <a class="navBtns" href="{NextPage}">Next</a>
+                {/block:NextPage}
+            {/block:Pagination}
+        </div>
+    </div>
+</div>
+{/block:IndexPage}
+
+<div id="footer" class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+		    <h3>Partner communities</h3>
+		    <a href="http://gumi.sg/games/brave-frontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialgumibf.jpg" class="img-responsive partners" title="Official gumi asia"></a>
+		    <a href="http://forums.gumi.sg/forum/brave-frontier" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialforums.jpg" class="img-responsive partners" title="Official Brave Frontier Forums by gumi"></a>
+		    <a href="http://appinvasion.com/forums/Brave-Frontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_ai.png" class="img-responsive partners" title="App Invasion - Brave Frontier"></a>
+		    <a href="http://www.reddit.com/r/bravefrontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_subreddit.gif" class="img-responsive partners" title="Subreddit - Brave Frontier"></a>
+		    <a href="http://www.bravefrontierforum.net/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_bff.png" class="img-responsive partners" title="Brave Frontier Forum - Unofficial"></a>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+            <h3>Partner YouTubers</h3>
+            <a href="http://www.youtube.com/user/protoscope7" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_protoscope.jpg" class="img-responsive partners" title="Protoscope Gaming Channel"></a>
+            <a href="http://www.youtube.com/user/MilkoLicious" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_milko.jpg" class="img-responsive partners" title="Milko Gaming Videos"></a>
+            <a href="https://www.youtube.com/user/ClamSoupify" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_supermetaparade.png" class="img-responsive partners" title="Brave Frontier - Super Meta Parade (Clam)"></a>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+            <h3>Follow me</h3>
+            			<a class="socialbtns" href="http://www.facebook.com/bravefrontierpros"><i class="fa fa-facebook fa-2x"></i></a>
+            			<a class="socialbtns" href="http://plus.google.com/b/109365694989406335924/+bravefrontierpros/posts"><i class="fa fa-google-plus fa-2x"></i></a>
+            			<a class="socialbtns" href="http://twitter.com/SamGreenPuck"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a class="socialbtns" href="http://www.youtube.com/user/bravefrontierpros"><i class="fa fa-youtube fa-2x"></i></a>
+                        <a class="socialbtns" href="http://github.com/touchandswipe"><i class="fa fa-github fa-2x"></i></a>
+			<h3>Site built with</h3>
+			<ul>
+			    <li><a href="http://jquery.com/">jQuery</a></li>
+			    <li><a href="http://www.datatables.net/">Datatables Plug-in</a></li>
+			    <li><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</li></a>
+			    <li><a href="http://getbootstrap.com/">BootStrap</a></li>
+			    <li><a href="http://salvattore.com/">Salvattore</a></li>
+			    <li><a href="https://github.com/PixelUnion/Extended-Tumblr-Photoset">Pixel Union Tumblr Photoset</a></li>
+			    
+			</ul>
+		</div>
+	</div>
+</div>
+
+</div> <!-- /container -->
+<script src="//touchandswipe.github.io/bravefrontier/js/pxuPhotoset.min.js"></script>
+<script type="text/javascript">
+    $('#nav-toggle').on('click', function () {
+        this.classList.toggle('active');
+        if ($('#overlayC').hasClass('close')) {
+        	$('#overlayC').removeClass('close');
+        	$('#overlayC').addClass('open');
+        }
+        else {
+    	    $('#overlayC').removeClass('open');
+        	$('#overlayC').addClass('close');
+        }
+    });
+    
+    $('#recentUnitsTop').on('click', '.loadPrev', function(e) {
+        e.preventDefault();
+        var dServer=$(this).attr('data-server');
+        getRecentUnits(dServer,true)
+    })
+
+    $(document).ready(function() {
+        $('.photo-slideshow').pxuPhotoset({
+            'lightbox' : true,
+            'gutter' : '2px',
+            'rounded' : 'false',
+            'photoset'  : '.photo-slideshow'
+        }, function() {
+            $(this).animate({opacity:1});
+        });
+        {block:IfShowRecentUnits}{block:IndexPage}
+        getRecentUnits("jp",false);
+        getRecentUnits("gl",false);
+    	{/block:IndexPage}{/block:IfShowRecentUnits}
+    })
+</script>
+{block:IndexPage}
+    <script src="//touchandswipe.github.io/bravefrontier/js/salvattore.min.js"></script>
+    <!-- disqus count -->
+    {block:IfDisqusShortname}
+    <script type="text/javascript">
+    var disqus_shortname = '{text:Disqus Shortname}';
+    (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'http://disqus.com/forums/' + disqus_shortname + '/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    {/block:IfDisqusShortname}
+{/block:IndexPage}
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--Chatroom-->
+<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
+</script>
+</body>
+</html>
