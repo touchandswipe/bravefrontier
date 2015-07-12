@@ -983,6 +983,8 @@ function initialize(fusionData) {
 			ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
 		if (ovbfpronotes.search("#europe")!=-1)
 			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
+		if (ovbfpronotes.search("#korea")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
 		if ( ovvideo != "" )
 			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
@@ -1011,7 +1013,7 @@ function initialize(fusionData) {
 		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1))
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
@@ -1019,7 +1021,9 @@ function initialize(fusionData) {
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
 	     	if (ovbfpronotes.search("#europe")!=-1)
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1))
+		if (ovbfpronotes.search("#korea")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unit='+encodeURIComponent(ovid.floor().toString())+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
