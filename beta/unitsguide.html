@@ -972,20 +972,19 @@ function initialize(fusionData) {
 	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
 	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
-	      /*Release status*/
-	      if (ovGlobal.toLowerCase()!='false') {
-		  ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">Global</b></div>';
-	      } else {
-		  ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">Global</b></div>';
-	      }
-	  	if (ovJapan.toLowerCase()!='false') {
-		  ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
-	      } else {
-		  ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
-	      }
-	      if ( ovvideo != "" ) {
-		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
-	      }
+		/*Release status*/
+		if (ovGlobal.toLowerCase()!='false')
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">GL</b></div>';
+		else
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">GL</b></div>';
+		if (ovJapan.toLowerCase()!='false')
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
+		else
+			ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
+		if (ovbfpronotes.search("#europe")!=-1)
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
+		if ( ovvideo != "" )
+			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
@@ -1012,13 +1011,15 @@ function initialize(fusionData) {
 		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
+	     	if (ovbfpronotes.search("#europe")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1))
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
@@ -2700,7 +2701,8 @@ $(window).load(function() {
 	    <h3 class="text-primary"><b>Summoning units</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
-	    <h5>(Note: Images will continue to load progressively after.)</h5>
+	    <h4 class="text-default">Try the <a href="unitsguidelite">LITE guide</a>, for mobile or if this fails.</h4>
+	    <h5>(Note: Images will load progressively.)</h5>
 	</div>
       </div>
     </div>
@@ -2915,7 +2917,7 @@ $(window).load(function() {
       <div class="modal-body">
 	<h5><b>by Server</b></h5>
 
-	<div class="btn-group" data-toggle="buttons">
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="radio" name="filServer" value="All" checked><b>All</b>
@@ -2933,7 +2935,7 @@ $(window).load(function() {
 	
 	<h5><b>by Unit ID Range</b></h5>
 	
-	<div class="btn-group" data-toggle="buttons">
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="radio" name="filUnitId" value="0" checked><b>All Units</b>
@@ -2975,21 +2977,21 @@ $(window).load(function() {
 	    <input type="radio" name="filUnitId" value="900">801-900 
 	  </label>
 	  
-	  <label class="btn btn-default">
+	  <label class="btn btn-default btn-sm">
 	    <input type="radio" name="filUnitId" value="1000">901-1000 
 	  </label>
 	  
-	  <label class="btn btn-default"><input type="radio" name="filUnitId" value="1000">1001-1100</label>
-	  <label class="btn btn-default"><input type="radio" name="filUnitId" value="1000">1101-1200</label>
-	  <label class="btn btn-default"><input type="radio" name="filUnitId" value="1000">1201-1300</label>
-	  <label class="btn btn-default"><input type="radio" name="filUnitId" value="1000">1301-1400</label>
-	  <label class="btn btn-default"><input type="radio" name="filUnitId" value="1000">1401-1500</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1001-1100</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1101-1200</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1201-1300</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1301-1400</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1401-1500</label>
 	  
-	  <label class="btn btn-default">
+	  <label class="btn btn-default btn-sm">
 	    <input type="radio" name="filUnitId" value="8099">8000-8100 
 	  </label>
 	  
-	  <label class="btn btn-default">
+	  <label class="btn btn-default btn-sm">
 	    <input type="radio" name="filUnitId" value="8199">8100-8200
 	  </label>
 	</div>
@@ -2998,12 +3000,12 @@ $(window).load(function() {
 	
 	<h5><b>by Elements</b></h5>
 	
-	<div class="btn-group">
+	<div class="btn-group btn-group-sm">
 	  <button type="button" class="btn btn-primary selEleFilter">ALL</button>
 	  <button type="button" class="btn btn-info selEleFilter">None</button>
 	</div>
 	
-	<div class="btn-group" data-toggle="buttons">
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="checkbox" class="filElement" value="Fire" checked>
@@ -3039,12 +3041,12 @@ $(window).load(function() {
 	
 	<h5><b>by Rarity</b></h5>
 	
-	<div class="btn-group">
+	<div class="btn-group btn-group-sm">
 	  <button type="button" class="btn btn-primary selRareFilter">ALL</button>
 	  <button type="button" class="btn btn-info selRareFilter">None</button>
 	</div>
 	
-	<div class="btn-group" data-toggle="buttons">
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default active">
 	    <input type="checkbox" class="filRarity" value="1" checked>1<i class="fa fa-star"></i>
 	  </label>
@@ -3076,7 +3078,7 @@ $(window).load(function() {
 	
 	<h5><b>by Skill Effects</b></h5>
 	
-	<div class="btn-group" data-toggle="buttons">
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
 	  </label>
