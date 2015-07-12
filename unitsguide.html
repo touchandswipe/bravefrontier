@@ -8,7 +8,7 @@
     <title>Brave Frontier - Units Guide by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" hrref="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.2/css/dataTables.colVis.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -972,20 +972,21 @@ function initialize(fusionData) {
 	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
 	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
 	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
-	      /*Release status*/
-	      if (ovGlobal.toLowerCase()!='false') {
-		  ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">Global</b></div>';
-	      } else {
-		  ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">Global</b></div>';
-	      }
-	  	if (ovJapan.toLowerCase()!='false') {
-		  ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
-	      } else {
-		  ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
-	      }
-	      if ( ovvideo != "" ) {
-		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
-	      }
+		/*Release status*/
+		if (ovGlobal.toLowerCase()!='false')
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">GL</b></div>';
+		else
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">GL</b></div>';
+		if (ovJapan.toLowerCase()!='false')
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
+		else
+			ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
+		if (ovbfpronotes.search("#europe")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
+		if (ovbfpronotes.search("#korea")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
+		if ( ovvideo != "" )
+			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
 	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
@@ -1012,13 +1013,17 @@ function initialize(fusionData) {
 		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
+	     	if (ovbfpronotes.search("#europe")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+		if (ovbfpronotes.search("#korea")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unitid='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> 한국</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
