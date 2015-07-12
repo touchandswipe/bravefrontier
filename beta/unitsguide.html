@@ -1022,7 +1022,7 @@ function initialize(fusionData) {
 	     	if (ovbfpronotes.search("#europe")!=-1)
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
 		if (ovbfpronotes.search("#korea")!=-1)
-	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unit='+encodeURIComponent(ovid.floor().toString())+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unit='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
