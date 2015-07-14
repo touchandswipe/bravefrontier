@@ -924,8 +924,7 @@ function initialize(fusionData) {
 	      $('#unitSpriteShow').attr('src',ovsprite);
 	      $('#unitSpriteShow').error(function() {
 	      		$(this).unbind();
-	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
-	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+ovid+".gif");
 			//$(this).unbind();
 			//$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
 		})
@@ -1161,8 +1160,8 @@ function initialize(fusionData) {
 	    /*loads non-matte on error*/
 	    $(".evolutionary").error(function() {
 	    		$(this).unbind();
-	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
-	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
+	    		//tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+ovid+".gif")
   		})
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 5000);
 	  }
