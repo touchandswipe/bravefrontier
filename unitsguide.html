@@ -923,8 +923,11 @@ function initialize(fusionData) {
 	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
 	      $('#unitSpriteShow').attr('src',ovsprite);
 	      $('#unitSpriteShow').error(function() {
-			$(this).unbind();
-			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
+	      		$(this).unbind();
+	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile)
+			//$(this).unbind();
+			//$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteNone.gif");
 		})
 	    /*NaN Check*/
 	    if (isNaN(ovweightedlord)) { ovweightedlord = "-" }
