@@ -22,6 +22,16 @@
 	right:2px;
 	top:2px;
     }
+    #artwork {padding-bottom:100px;}
+    .altArt {
+	top:0px;
+	margin: 0 auto 0 auto;
+	position: absolute;
+	background: rgba(230,230,255,0.8);
+	padding: 8px 15px;
+	border: 1px solid #DDDDDD;
+	border-radius: 10px;
+    }
     .loreBox {
 	bottom: 5px;
 	width: 100%;
@@ -1136,7 +1146,9 @@ function initialize(fusionData) {
 	ovHTML+='</td></tr></table>'
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" id="artwork"/>';
+	    if (ovdata2[0]['alt art']=="true")
+	    	var artLoreHTML+='<div class="altArt"><button class="btn btn-default" type="button" id="altArtBtn" data-value="unit'+ovicon+'_2.png"><i class="fa fa-retweet"></i> Alternate artwork</div>';
 	    if (ovdata2[0]['unit lore'] != "")
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
@@ -1815,15 +1827,22 @@ $('.nav-tt').tooltip({placement:'bottom'});
 $('#showFavBtn').tooltip({container:'body',placement:'bottom'});
 $('body').tooltip({selector: '[class="statsInfo"]'});
 /*VideoModal*/
-    $(document).on("click", ".videoBtn", function(e){
-	    e.preventDefault();
-	    var vLink=$(this).attr('src');
-	    $('.modal').each( function() {
-		    $(this).modal('hide');
-	    })
-	    $('#vidEmbed').attr( 'src', vLink );
-	    $('#videoModal').modal('show');
-	})
+$(document).on("click", ".videoBtn", function(e){
+    e.preventDefault();
+    var vLink=$(this).attr('src');
+    $('.modal').each( function() {
+	    $(this).modal('hide');
+    })
+    $('#vidEmbed').attr( 'src', vLink );
+    $('#videoModal').modal('show');
+})
+/*Alt Art*/
+$(document).on("click","#altArtBtn", function() {
+	var prefix='//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/';
+	var oldRef=$('#artwork').attr("src");
+	$('#artwork').attr("src",prefix+$('#altArtBtn').attr("data-value"));
+	$('#altArtBtn').attr("data-value",oldRef);
+})
 /*VideoModal Close Remove Video*/
 $('#videoModal').on('hide.bs.modal', function (e) {
     $('#vidEmbed').attr( 'src', '' );
