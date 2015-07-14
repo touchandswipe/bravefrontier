@@ -457,7 +457,7 @@ function openCard(whatunit) {
 		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
@@ -467,7 +467,7 @@ function openCard(whatunit) {
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
 		if (ovbfpronotes.search("#korea")!=-1)
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unitid='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> 한국</a>';
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Server specific stats / effects.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
