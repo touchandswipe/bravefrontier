@@ -920,6 +920,9 @@ $.getJSON( serverSelect, function( unit ) {
         if (!ubbFound)
           exportSTR+='<td></td>';
           
+        /*spacing for alt art*/
+        exportSTR+='<td></td>';
+          
         /*spacing for video, iconREF ID*/
         if (serverSelect.search('/eu/')!=-1)
           exportSTR+='<td></td><td>'+valObj.guide_id+'.1</td>';
