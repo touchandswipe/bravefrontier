@@ -1024,7 +1024,7 @@ function initialize(fusionData) {
 		if (ovbfpronotes.search("#korea")!=-1)
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unitid='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> 한국</a>';
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
-			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Server specific stats / effects.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
@@ -1047,7 +1047,7 @@ function initialize(fusionData) {
 	      } else {
 		  ovHTML+='No further evo / No known materials';
 	      }
-	      ovHTML+='</td></tr><tr><td class="btn-default"></td>'
+	      ovHTML+='</td></tr><tr><td class="btn-default"><kbd>Based on JP</kbd></td>'
 	      +'<td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
