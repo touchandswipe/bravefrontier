@@ -1147,6 +1147,7 @@ function initialize(fusionData) {
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
 	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" id="artwork"/>';
+	    alert(ovdata2[0]['alt art']);
 	    if (ovdata2[0]['alt art']=="true")
 	    	artLoreHTML+='<div class="altArt"><button class="btn btn-default" type="button" id="altArtBtn" data-value="unit'+ovicon+'_2.png"><i class="fa fa-retweet"></i> Alternate artwork</div>';
 	    if (ovdata2[0]['unit lore'] != "")
