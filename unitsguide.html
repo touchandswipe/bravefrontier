@@ -1160,8 +1160,8 @@ function initialize(fusionData) {
 	    /*loads non-matte on error*/
 	    $(".evolutionary").error(function() {
 	    		$(this).unbind();
-	    		//tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
-	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif")
+	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile);
   		})
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 5000);
 	  }
