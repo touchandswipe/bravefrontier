@@ -1047,8 +1047,10 @@ function initialize(fusionData) {
 	      } else {
 		  ovHTML+='No further evo / No known materials';
 	      }
-	      ovHTML+='</td></tr><tr><td class="btn-default"><kbd>JP stats</kbd></td>'
-	      +'<td class="btn-default" width="17%"><strong>HP</strong></td>'
+	      ovHTML+='</td></tr><tr><td class="btn-default">';
+	      if (ovJapan.toLowerCase()!='false')
+		ovHTML+='<kbd>JP stats</kbd>';
+	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>REC</strong></td>'
