@@ -1080,17 +1080,31 @@ function initialize(fusionData) {
 	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
+	      if (ovJapan.toLowerCase()!='false') {
+	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="recMod">'+ovrecguardian+'</td>'
-	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="atkMod">'+ovatkoracle+'</td>'
-	      +'<td class="defMod">'+ovdeforacle+'</td>'
-		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td>&nbsp;</td></tr>';
+		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+	      	ovHTML+='<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
+	      ovHTML+='<td>&nbsp;</td></tr>';
+	      +'<tr><td class="active"><strong>Oracle</strong></td>'
+	      if (ovJapan.toLowerCase()!='false') {
+		      ovHTML+'<td class="hpMod">'+ovhporacle+'</td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+		      ovHTML+='<td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="defMod">'+ovdeforacle+'</td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      }
+      	      ovHTML+='<td>&nbsp;</td></tr>';
+	      } /*End NOT LordOnly*/
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-") {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
