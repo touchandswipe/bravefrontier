@@ -847,14 +847,15 @@ $.getJSON( serverSelect, function( unit ) {
         //exportSTR+='<td>'+(valObj.stats.breaker["def max"]-(valObj.stats.breaker["def max"]+valObj.stats.breaker["def min"])/2)+'</td>';
         
         exportSTR+='<td>'+valObj.stats.guardian.hp+'</td>';
-        exportSTR+='<td>'+((valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.guardian.atk+'</td>';
         exportSTR+='<td>'+((valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        exportSTR+='<td>'+((valObj.stats.guardian["rec max"]+valObj.stats.guardian["rec min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.guardian.rec+'</td>';
         //exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
         //exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
-        exportSTR+='<td>'+((valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
+        exportSTR+='<td>'+valObj.stats.oracle.jp+'</td>';
         exportSTR+='<td>'+valObj.stats.oracle.atk+'</td>';
-        exportSTR+='<td>'+valObj.stats.oracle.def+'</td>';
+        exportSTR+='<td>'+((valObj.stats.oracle["def max"]+valObj.stats.oracle["def min"])/2)+'</td>';
         exportSTR+='<td>'+((valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
         //exportSTR+='<td>'+(valObj.stats.oracle["hp max"]-(valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
         //exportSTR+='<td>'+(valObj.stats.oracle["rec max"]-(valObj.stats.oracle["rec max"]+valObj.stats.oracle["rec min"])/2)+'</td>';
