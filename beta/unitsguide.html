@@ -199,7 +199,7 @@ function convertJSON( serialObj ) {
 	{ /*replace space with - and lowercase for all*/
 	    if (isNaN(s.rows[i][j])) {
 		/*check for blanks in hits and fill fields and lord*/
-		if ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("lord") != -1)) {
+		if ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("DC") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("lord") != -1)) {
 		    temp[s.columns[j].toLowerCase()] = 0;
 		/*Call Unit Card*/
 		} else if (s.columns[j].toLowerCase().search("name") != -1) {
