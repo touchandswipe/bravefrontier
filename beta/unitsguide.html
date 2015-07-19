@@ -516,6 +516,66 @@ function initialize(fusionData) {
 		    }
 		}
 		},
+		{ "targets":[ 18 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div>'+'-'+'</div>';
+			} else { return '<div>'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 19 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="bbtxt">'+'-'+'</div>';
+			} else { return '<div class="bbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 20 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="bbtxt">'+'-'+'</div>';
+			} else { return '<div class="sbbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 21 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="bbtxt">'+'-'+'</div>';
+			} else { return '<div class="ubbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
 		{ "targets":[ 22 ],
 		"type": "num",
 		/*NaN check*/
@@ -1643,7 +1703,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th class="sbbtxt">SBB Hits</th>
 		<th class="ubbtxt">UBB Hits</th>
 		<th class="bbtxt">Normal DC</th>
-		<th class="bbtxt">BB DC</th>
+		<th>BB DC</th>
 		<th class="sbbtxt">SBB DC</th>
 		<th class="ubbtxt">UBB DC</th>
 		<th class="bbtxt">BB Fill</th>
@@ -1707,7 +1767,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th class="bbtxt">BB Hits</th>
 		<th class="sbbtxt">SBB Hits</th>
 		<th class="ubbtxt">UBB Hits</th>
-		<th class="bbtxt">Normal DC</th>
+		<th>Normal DC</th>
 		<th class="bbtxt">BB DC</th>
 		<th class="sbbtxt">SBB DC</th>
 		<th class="ubbtxt">UBB DC</th>
