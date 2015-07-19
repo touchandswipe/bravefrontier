@@ -22,7 +22,7 @@
 	right:2px;
 	top:2px;
     }
-    #artwork {padding-bottom:100px;}
+    #artwork {padding-bottom:70px;}
     .altArt {
 	top:10px;
 	position: absolute;
@@ -259,10 +259,15 @@ function initialize(fusionData) {
 	    { "data": fusionData.columns.indexOf("BB Skill") },
 	    { "data": fusionData.columns.indexOf("SBB Skill") },
 	    { "data": fusionData.columns.indexOf("UBB Skill") },
+	    { "data": fusionData.columns.indexOf("Passive Skill") },
 	    { "data": fusionData.columns.indexOf("Hits") },
 	    { "data": fusionData.columns.indexOf("BB Hits") },
 	    { "data": fusionData.columns.indexOf("SBB Hits") },
 	    { "data": fusionData.columns.indexOf("UBB Hits") },
+	    { "data": fusionData.columns.indexOf("Normal DC") },
+	    { "data": fusionData.columns.indexOf("BB DC") },
+	    { "data": fusionData.columns.indexOf("SBB DC") },
+	    { "data": fusionData.columns.indexOf("UBB DC") },
 	    { "data": fusionData.columns.indexOf("BB Fill") },
 	    { "data": fusionData.columns.indexOf("SBB Fill") },
 	    { "data": fusionData.columns.indexOf("UBB Fill") },
@@ -317,26 +322,30 @@ function initialize(fusionData) {
 				columns: [ 9,10 ] },
 			    {   title: "SBB / UBB Skills",
 				columns: [ 11,12 ] },
+			    {   title: "Extra Skill",
+				columns: [ 13 ] },
 			    {   title: "All Hits",
-				columns: [ 13,14,15,16] },
+				columns: [ 14,15,16,17 ] },
+			    {   title: "All DropChecks",
+				columns: [ 18,19,20,21 ] },
 			    {   title: "All BC Fills",
-				columns: [ 17,18,19 ] },
+				columns: [ 22,23,24 ] },
 			    {   title: "All BB ATK%",
-				columns: [ 20,21,22 ] },
+				columns: [ 25,26,27 ] },
 			    {   title: "Evo Materials",
-				columns: [ 54 ] },
+				columns: [ 59 ] },
 			    {   title: "Wt Pimped Stats",
-				columns: [ 24 ] },
+				columns: [ 29 ] },
 			    {   title: "(L)ord Stats",
-				columns: [ 25,26,27,28 ] },
+				columns: [ 30,31,32,33 ] },
 			    {   title: "(A)nima Stats",
-				columns: [ 29,30,31,32 ] },
+				columns: [ 34,35,36,37 ] },
 			    {   title: "(B)reaker Stats",
-				columns: [ 33,34,35,36 ] },
+				columns: [ 38,39,40,41 ] },
 			    {   title: "(G)uardian Stats",
-				columns: [ 37,38,39,40 ] },
+				columns: [ 42,43,44,45 ] },
 			    {   title: "(O)racle Stats",
-				columns: [ 41,42,43,44 ] 
+				columns: [ 46,47,48,49 ]
 			    }]
 		  },
 		  "autoWidth": false,
@@ -398,8 +407,8 @@ function initialize(fusionData) {
 		  /*Parsing Fields via Datatables*/
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
-		{ "visible": false, "targets": [ 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,53,54,55 ] },
+		{ "visible": false, "targets": [ 13,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58 ].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,50,51,52,53,54,57,58,59,60 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -447,7 +456,7 @@ function initialize(fusionData) {
 				return cString;
 		}
 		},
-		{ "targets":[ 13 ],
+		{ "targets":[ 14 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -462,7 +471,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 14 ],
+		{ "targets":[ 15 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -477,7 +486,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 15 ],
+		{ "targets":[ 16 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -492,7 +501,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 16 ],
+		{ "targets":[ 17 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -507,7 +516,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 17 ],
+		{ "targets":[ 22 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -522,7 +531,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 18 ],
+		{ "targets":[ 13 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -537,7 +546,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 19 ],
+		{ "targets":[ 24 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -552,7 +561,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 20 ],
+		{ "targets":[ 25 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -567,7 +576,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 21 ],
+		{ "targets":[ 26 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -582,7 +591,7 @@ function initialize(fusionData) {
 		    }
 		}
 		},
-		{ "targets":[ 22 ],
+		{ "targets":[ 27 ],
 		"type": "num",
 		/*NaN check*/
 		"render": function(nanCol, type, row, full) {
@@ -601,7 +610,7 @@ function initialize(fusionData) {
 		{ "targets":[ 0 ], "type": "num", "width": "20"
 		},
 		/*Wt Stats*/
-		{ "targets":[ 23 ],
+		{ "targets":[ 28 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -618,7 +627,7 @@ function initialize(fusionData) {
 		    }
 		},
 		/*Wt Pimped Stats*/
-		{ "targets":[ 24 ],
+		{ "targets":[ 29 ],
 		"type": "num",
 		"width": "50",
 		/*NaN check n rounding*/
@@ -646,7 +655,7 @@ function initialize(fusionData) {
 		    }
 		},
 		/*Global Japan Release*/
-		{ "targets": [51,52],
+		{ "targets": [56,57],
 		"orderable": false,
 		"render": function(relVal, type, cRow, full) {
 	    if (relVal=="" || relVal=="TRUE") {
@@ -657,7 +666,7 @@ function initialize(fusionData) {
 		}
 		},
 		/*Aggregated Evolution Materials*/
-		{ "targets": [54],
+		{ "targets": [59],
 		"orderable": false,
 		"render": function(evoVal, type, cRow, full) {
 		    var evoString='<div style="white-space:nowrap;">';
@@ -668,7 +677,7 @@ function initialize(fusionData) {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [55],
+		{ "targets": [60],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
@@ -1080,17 +1089,30 @@ function initialize(fusionData) {
 	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
+	      if (ovJapan.toLowerCase()!='false') {
+	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="recMod">'+ovrecguardian+'</td>'
-	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="atkMod">'+ovatkoracle+'</td>'
-	      +'<td class="defMod">'+ovdeforacle+'</td>'
-		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td>&nbsp;</td></tr>';
+		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+	      	ovHTML+='<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
+	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
+	      if (ovJapan.toLowerCase()!='false') {
+		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+		      ovHTML+='<td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="defMod">'+ovdeforacle+'</td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      }
+      	      ovHTML+='<td>&nbsp;</td></tr>';
+	      } /*End NOT LordOnly*/
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-") {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
@@ -1615,10 +1637,15 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th style="white-space:nowrap;">BB Skill</th>
 		<th style="white-space:nowrap;">SBB Skill</th>
 		<th style="white-space:nowrap;">UBB Skill</th>
+		<th style="white-space:nowrap;">Extra Skill</th>
 		<th>Hits</th>
 		<th class="bbtxt">BB Hits</th>
 		<th class="sbbtxt">SBB Hits</th>
 		<th class="ubbtxt">UBB Hits</th>
+		<th class="bbtxt">Normal DC</th>
+		<th class="bbtxt">BB DC</th>
+		<th class="sbbtxt">SBB DC</th>
+		<th class="ubbtxt">UBB DC</th>
 		<th class="bbtxt">BB Fill</th>
 		<th class="sbbtxt">SBB Fill</th>
 		<th class="ubbtxt">UBB Fill</th>
@@ -1675,10 +1702,15 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th style="white-space:nowrap;">BB Skill</th>
 		<th style="white-space:nowrap;">SBB Skill</th>
 		<th style="white-space:nowrap;">UBB Skill</th>
+		<th style="white-space:nowrap;">Extra Skill</th>
 		<th>Hits</th>
 		<th class="bbtxt">BB Hits</th>
 		<th class="sbbtxt">SBB Hits</th>
 		<th class="ubbtxt">UBB Hits</th>
+		<th class="bbtxt">Normal DC</th>
+		<th class="bbtxt">BB DC</th>
+		<th class="sbbtxt">SBB DC</th>
+		<th class="ubbtxt">UBB DC</th>
 		<th class="bbtxt">BB Fill</th>
 		<th class="sbbtxt">SBB Fill</th>
 		<th class="ubbtxt">UBB Fill</th>
@@ -2317,16 +2349,16 @@ $(document).on("click", "#execFilter", function(e){
 	/*Server filter*/
 	switch ($('input:radio[name="filServer"]:checked').val()) {
 		case "All":
-		bfPROsTable.column( 52 ).search("");
-		bfPROsTable.column( 51 ).search("");
+		bfPROsTable.column( 57 ).search("");
+		bfPROsTable.column( 56 ).search("");
 		    break;
 		case "Japan":
-		bfPROsTable.column( 51 ).search("");
-		bfPROsTable.column( 52 ).search("TRUE");
+		bfPROsTable.column( 56 ).search("");
+		bfPROsTable.column( 57 ).search("TRUE");
 		    break;
 		case "Global":
-		bfPROsTable.column( 52 ).search("");
-		bfPROsTable.column( 51 ).search("TRUE");
+		bfPROsTable.column( 57 ).search("");
+		bfPROsTable.column( 56 ).search("TRUE");
 		    break;
 	}
 	/*Draw after all filters are made*/
