@@ -451,7 +451,7 @@ function buildDB(unit,server) {
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
 	/*Grab English name if available*/
 	if (server=='JP' && dataGL[unitKey])
-		OBJSearchName=dataGL[unitKey]["name"]+" "+valObj.name;
+		OBJSearchName=valObj.name+" ("+dataGL[unitKey]["name"]+")";
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
