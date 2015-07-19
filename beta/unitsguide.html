@@ -552,7 +552,7 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="bbtxt">'+'-'+'</div>';
+			    return '<div class="sbbtxt">'+'-'+'</div>';
 			} else { return '<div class="sbbtxt">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
@@ -567,7 +567,7 @@ function initialize(fusionData) {
 		"render": function(nanCol, type, row, full) {
 		    if (type ==='display') {
 			if ((isNaN(nanCol)) || (nanCol==0)) {
-			    return '<div class="bbtxt">'+'-'+'</div>';
+			    return '<div class="ubbtxt">'+'-'+'</div>';
 			} else { return '<div class="ubbtxt">'+nanCol+'</div>'; }
 		    } else if (type === 'sort') {
 			if (isNaN(nanCol)) {
