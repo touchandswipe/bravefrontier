@@ -418,14 +418,15 @@ function initialize(fusionData) {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgID, type, cRow, full )  {
-			if (cRow[fusionData.columns.indexOf("Japan Release")]=="TRUE")
-				var cServer=bfServer.jp;
-			else if (cRow[fusionData.columns.indexOf("Global Release")]=="TRUE")
-				var cServer=bfServer.gl;
+			var cServer="";
+			if (cRow[fusionData.columns.indexOf("Japan Release")]!="FALSE")
+				cServer=bfServer.jp;
+			else if (cRow[fusionData.columns.indexOf("Global Release")]!="FALSE")
+				cServer=bfServer.gl;
 			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("europe")!=-1)
-				var cServer=bfServer.eu;
+				cServer=bfServer.eu;
 			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("korea")!=-1)
-				var cServer=bfServer.kr;
+				cServer=bfServer.kr;
 			return '<a href="#" class="favIconLink" data-value="'+imgID+'">'+'<img src="'+cServer+bfPrefix.icon+cRow[fusionData.columns.indexOf("SystemID")]+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
