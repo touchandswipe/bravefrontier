@@ -150,6 +150,8 @@ if (window.location.hash == '#_=_') {
 var gEvoUnits = []; /*global variable to selected units evoMats*/
 var ownSquad = ['','','','','',''];
 var oppSquad = ['','','','','',''];
+var bfServer={"gl":"//2.cdn.bravefrontier.gumi.sg/content/","jp":"//v2.cdn.android.brave.a-lim.jp/","kr":"//gumikorea.cdngc.net/bf/1.1.3/","eu":"//static.bravefrontier.gumi-europe.net/content/"};
+var bfPrefix={"art":"unit/img/unit_ills_full_","icon":"unit/img/unit_ills_thum_"};
 var favUnitObj=[];
 /*Get Boss Data*/
 function bossDataLoad() {
@@ -416,7 +418,15 @@ function initialize(fusionData) {
 		/*using data instead of render to set DATA for cache */
 		{ "targets": [ 1 ],"orderable": false, "width":"40",
 		"render": function (imgID, type, cRow, full )  {
-			return '<a href="#" class="favIconLink" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+'<img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+imgID+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			if (cRow[fusionData.columns.indexOf("Japan Release")]=="TRUE")
+				var cServer=bfServer.jp;
+			else if (cRow[fusionData.columns.indexOf("Global Release")]=="TRUE")
+				var cServer=bfServer.gl;
+			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("europe")!=-1)
+				var cServer=bfServer.eu;
+			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("korea")!=-1)
+				var cServer=bfServer.kr;
+			return '<a href="#" class="favIconLink" data-value="'+imgID+'">'+'<img src="'+cServer+bfPrefix.icon+cRow[fusionData.columns.indexOf("SystemID")]+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
