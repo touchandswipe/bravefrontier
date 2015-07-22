@@ -1053,7 +1053,7 @@ else if (ovbfpronotes.search("korea")!=-1)
 		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+cServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+cServer+bfPrefix.icon+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+cServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -1321,7 +1321,17 @@ else if (ovbfpronotes.search("korea")!=-1)
 	      
 	      /*Construct comparison*/
 	      for (i in units) {
-			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
+			/*Server determination for art*/
+			var cServer="";
+			if (ovJapan!="FALSE")
+				cServer=bfServer.jp;
+			else if (ovGlobal!="FALSE")
+				cServer=bfServer.gl;
+			else if (ovbfpronotes.search("europe")!=-1)
+				cServer=bfServer.eu;
+			else if (ovbfpronotes.search("korea")!=-1)
+				cServer=bfServer.kr;
+			cHTML+='<td width="'+tWidth+'%"><img src="'+cServer+bfPrefix+cData[i]['systemid']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
 		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
