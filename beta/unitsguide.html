@@ -1702,8 +1702,8 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th class="bbtxt">BB Hits</th>
 		<th class="sbbtxt">SBB Hits</th>
 		<th class="ubbtxt">UBB Hits</th>
-		<th class="bbtxt">Normal DC</th>
-		<th>BB DC</th>
+		<th>Normal DC</th>
+		<th class="bbtxt">BB DC</th>
 		<th class="sbbtxt">SBB DC</th>
 		<th class="ubbtxt">UBB DC</th>
 		<th class="bbtxt">BB Fill</th>
@@ -2132,6 +2132,7 @@ $(document).on("click", "#filterFav", function(e){
 })
 /*Delete ALL Favourites*/
 $(document).on("click", "#deleteFav", function(e){
+	e.preventDefault();
 	/*loader*/
 	    bfpAlert("Delete ALL favourites",'Deleting all favourites from local storage.<div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
 	    var bfPROsTable = $('#mytable').DataTable();
