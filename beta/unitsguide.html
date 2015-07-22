@@ -1331,7 +1331,7 @@ else if (ovbfpronotes.search("korea")!=-1)
 				cServer=bfServer.eu;
 			else if (cData[i]["bfpro notes"].search("korea")!=-1)
 				cServer=bfServer.kr;
-			cHTML+='<td width="'+tWidth+'%"><img src="'+cServer+bfPrefix+cData[i]['systemid']+'.png" width="60" /></td>' }
+			cHTML+='<td width="'+tWidth+'%"><img src="'+cServer+bfPrefix.icon+cData[i]['systemid']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
 		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
