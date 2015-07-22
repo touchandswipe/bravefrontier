@@ -916,11 +916,10 @@ function initialize(fusionData) {
 	  url: url2.join(''),
 	  dataType: 'jsonp',
 	  success: function (data2) {
-	    /*alert(JSON.stringify(data2));*/
 	    ovdata2 = sconvertJSON(data2);
 	      var ovid = ovdata2[0]["id"];
+	      var ovsystemid=ovdata2[0]["systemid"];
 	      var ovname = ovdata2[0]["name"];
-	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
 	      var ovseries = ovdata2[0]["series"];
 	      var ovicon = ovdata2[0]["iconref"];
 	      var ovelement = ovdata2[0]["element"];
@@ -942,12 +941,24 @@ function initialize(fusionData) {
 	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
 	      var ovGlobal = ovdata2[0]["global release"];
 	      var ovJapan = ovdata2[0]["japan release"];
+/*Server determination for art*/
+var cServer="";
+if (ovJapan!="FALSE")
+	cServer=bfServer.jp;
+else if (ovGlobal!="FALSE")
+	cServer=bfServer.gl;
+else if (ovbfpronotes.search("europe")!=-1)
+	cServer=bfServer.eu;
+else if (ovbfpronotes.search("korea")!=-1)
+	cServer=bfServer.kr;
+
 	      var ovevo = [];
 	      // Query Evo
 	      for(var i=0; i < 5; i++) {
 		    /*find match*/
 		    ovevo.push( ovdata2[0]['evo '+(i+1)] );
 	      }
+	      
 	      var ovevozel = ovdata2[0]["evo zel"];
 	      var ovmaxlvl = ovdata2[0]["max lvl"];
 	      var ovacquire = ovdata2[0]["acquire"];
@@ -1000,10 +1011,9 @@ function initialize(fusionData) {
 			ovtypeprefHTML+="Oracle";
 			break;
 		}
-		if (i!=4) {
+		if (i!=4)
 		    ovtypeprefHTML+=' &nbsp;<i class="fa fa-angle-right text-muted"></i> &nbsp;';
 		}
-		  }
 	      }
 	      /*Sprite check*/
 	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
@@ -1027,7 +1037,7 @@ function initialize(fusionData) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["iconref"]
+			'systemid':deserialdata[i]["systemid"]
 			})
 		}
 	    }
@@ -1040,10 +1050,10 @@ function initialize(fusionData) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if ($(evotrail[i]['name']).text()==ovname) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+cServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+cServer+bfPrefix.icon+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -1051,7 +1061,7 @@ function initialize(fusionData) {
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" width="60"/></td>'
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+cServer+bfPrefix.icon+ovsystemid+'.png" width="60"/></td>'
 	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
@@ -1193,7 +1203,7 @@ function initialize(fusionData) {
 	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
-	/*BossMarv PRO Tips!*/
+	/*Tips!*/
 	if ((ovtypepref!="") && (ovtypepref.length==5)) {
 	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b>Type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
 	}
@@ -1235,16 +1245,16 @@ function initialize(fusionData) {
 	ovHTML+='</td></tr></table>'
 	    $('#unitCardHome').html(ovHTML);
 	    /*Unit Art and Lore*/
-	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" id="artwork"/>';
+	    var artLoreHTML='<img src="'+cServer+bfPrefix.art+ovsystemid+'.png" class="img-responsive center-block" id="artwork"/>';
 	    if (ovdata2[0]['alt art']=="TRUE")
-	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
+	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="'+cServer+bfPrefix.art+ovsystemid+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+cServer+bfPrefix.icon+ovsystemid+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
 	    /*Assault Spite*/
-	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
+	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="//googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
 		evoTabHTML+='<div class="evoDisp"><img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif"/></div>';
