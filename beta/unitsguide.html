@@ -1323,13 +1323,13 @@ else if (ovbfpronotes.search("korea")!=-1)
 	      for (i in units) {
 			/*Server determination for art*/
 			var cServer="";
-			if (ovJapan!="FALSE")
+			if (cData[i]["japan release"]!="FALSE")
 				cServer=bfServer.jp;
-			else if (ovGlobal!="FALSE")
+			else if (cData[i]["global release"]!="FALSE")
 				cServer=bfServer.gl;
-			else if (ovbfpronotes.search("europe")!=-1)
+			else if (cData[i]["bfpro notes"].search("europe")!=-1)
 				cServer=bfServer.eu;
-			else if (ovbfpronotes.search("korea")!=-1)
+			else if (cData[i]["bfpro notes"].search("korea")!=-1)
 				cServer=bfServer.kr;
 			cHTML+='<td width="'+tWidth+'%"><img src="'+cServer+bfPrefix+cData[i]['systemid']+'.png" width="60" /></td>' }
 		cHTML+='</tr>';
