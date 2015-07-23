@@ -686,8 +686,8 @@ $.getJSON( serverSelect, function( unit ) {
                               }
                               exportSTR+=exportValue;
                           }
-                          else if (valObj["leader skill"]["effects"][j][callObjName]==0)
-                            exportSTR+=valObj["leader skill"]["effects"][j][callObjName];
+                          else if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]==0)
+                            exportSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
                           else
                             exportSTR+='<span style="color:#FF0000;">Unknown</span>';
                         }
