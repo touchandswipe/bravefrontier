@@ -289,7 +289,7 @@ $.getJSON( serverSelect, function( unit ) {
               for (i=0;i<lsParseObj.length;i++) {
                 var skillSeek=lsParseObj[i]["skillid"];
                 /*looking each effect array*/
-                for (j in valObj["leader skill"]["effects"]) {
+                for (j=0;j<valObj["leader skill"]["effects"].length;j++) {
                     /*resets var for each effect*/
                     var lsPassiveID=valObj["leader skill"]["effects"][j]['passive id'];
                     var groupSTR="";
