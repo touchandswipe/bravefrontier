@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<!--    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet"> -->
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -63,46 +64,22 @@ if (window.location.hash == '#_=_') {
 
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
-        </div>
-        <!-- Collapse Nav-->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units guide advance</a></li>
-                    <li><a href="raidcompanion.html"><i class="fa fa-cogs"></i> Raid companion</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
+<div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
-<div class="container-fluid" style="margin:0px;padding:5px;">
-<div style="min-height:55px;"></div>
+<div class="container-fluid" style="padding-top:5px;">
 <h3 style="margin-top:0px;">Brave Frontier Items Guide<span class="hidden-xs"> - Unified Global & Japan</span></h3>
 <div class="row"><div class="col-xs-12"><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></div></div>
 <h6 class="hidden-xs hidden-sm"><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd></h6>
 <div class="row"><div class="col-xs-12" style="margin:5px 0;">
 <!-- items type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Items by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Item type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
 <!-- New type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="matsTypeList">
   	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
@@ -120,20 +97,24 @@ if (window.location.hash == '#_=_') {
 </div>
 <!-- sphere type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by Effects <span class="caret"></span>
-  </button>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres effects <span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
+  <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
   <li><a href="#" class="skillEffect">hp% buff</a></li>
     <li><a href="#" class="skillEffect">atk% buff</a></li>
     <li><a href="#" class="skillEffect">def% buff</a></li>
     <li><a href="#" class="skillEffect">rec% buff</a></li>
     <li><a href="#" class="skillEffect">crit% buff</a></li>
+    <li><a href="#" class="skillEffect">elemental weakness multiplier%</a></li>
+    <li><a href="#" class="skillEffect">crit multiplier%</a></li>
+    <li><a href="#" class="skillEffect">bb atk% buff</a></li>
+    <li><a href="#" class="skillEffect">damage% for spark</a></li>
     <li><a href="#" class="skillEffect">first x turns atk%</a></li>
     <li><a href="#" class="skillEffect">first x turns def%</a></li>
     <li><a href="#" class="skillEffect">bc fill per turn</a></li>
@@ -144,14 +125,16 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
     <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="skillEffect">damage% for spark</a></li>
     <li><a href="#" class="skillEffect">turn heal</a></li>
+    <li><a href="#" class="skillEffect">dmg% to hp%</a></li>
     <li><a href="#" class="skillEffect">ignore def%</a></li>
     <li><a href="#" class="skillEffect">gender required</a></li>
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
 </div></div>
+
+<button type="button" id="jpOnly" class="btn btn-danger">JP-Only</button>
 
 <div class="row"><div class="col-xs-12">
 <!--Search item-->
@@ -167,120 +150,49 @@ if (window.location.hash == '#_=_') {
 <div class="input-group" style="margin-top:8px;margin-bottom:8px;">
         <span class="input-group-btn">
         <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
-        <input type="search" placeholder="e.g. ghost jewel (only works for Global Server English-Named items)" class="form-control" id="searchIngredientBox">
+        <input type="search" placeholder="e.g. ghost jewel (works for both English and JP items now)" class="form-control" id="searchIngredientBox">
 </div>
 </div></div>
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-<!-- Google Manual labnol.org responsive ads-->
 <div class="text-center" style="margin-bottom:5px;">
-<div id="google-ads-1"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-1');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
-</div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
     <div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the item / sphere name you wish to view.</h4></div>
 </div>
 
-<!-- Google Manual labnol.org responsive ads-->
-<div class="text-center" style="margin-bottom:5px;">
-<div id="google-ads-2"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-2');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
+<div class="text-center" style="margin-bottom:2px;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
-
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a COMBINED Global and Japan view with Paired English Names based on extraction by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>. 
+<div class="text-center">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
-
 <!-- disqus discussion -->
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
@@ -295,8 +207,9 @@ if (window.location.hash == '#_=_') {
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
 </div> <!-- /container -->
+
+<div id="bfp_foot"></div>
 
 <!-- Modal for Progress-->
 <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
@@ -332,10 +245,10 @@ if (window.location.hash == '#_=_') {
 <script type="text/javascript">
 countVar=0;
 collapseID=1;
-imgprefixGL="http://3.cdn.bravefrontier.gumi.sg/content/item/";
+imgprefixGL="http://2.cdn.bravefrontier.gumi.sg/content/item/";
 imgprefixJP="http://v2.cdn.android.brave.a-lim.jp/item/";
 jsonGL="//touchandswipe.github.io/bravefrontier_data/items.json";
-jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items_light.json";
+jsonJP="//touchandswipe.github.io/bravefrontier_data/jp/items.json";
 dataGL=[];
 dataJP=[];
 rawParseObj=[]; /*holder variable in array*/
@@ -438,9 +351,10 @@ var findIndex=function(key,arr) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit,server) {
-	var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
+var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+    	var globalexist=false;
     	/*fill dropdown for sphere type*/
     	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
             	sphereTypeArray.push(valObj['sphere type text']);
@@ -450,14 +364,16 @@ function buildDB(unit,server) {
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
-	if (server=='JP' && dataGL[unitKey])
-		nameSTR+=dataGL[unitKey]["name"]+' ('+valObj.name+')';
+	if (server=='JP' && dataGL[unitKey]) {
+		nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
+		globalexist=true;
+	}
 	else
 		nameSTR+=valObj.name;
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Recipes button for English named items only*/
-        if (dataGL[unitKey])
-        	nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+dataGL[unitKey]["name"]+'"><i class="fa fa-search"></i> Recipes using '+dataGL[unitKey]["name"]+'</button></div></div>';
+        //if (dataGL[unitKey])
+        	nameSTR+='<div class="row btnPad"><div class="col-xs-12 col-sm-12"><button type="button" class="btn btn-success recipeSearchBtn" data-value="'+valObj.name+'"><i class="fa fa-search"></i> Recipes using '+valObj.name+'</button></div></div>';
         /*Checks Effects*/
         if (valObj.effect) {
             effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -491,7 +407,7 @@ function buildDB(unit,server) {
         } else effectSTR="";
         /*Recipe if exists*/
         if (valObj.recipe) {
-        	recipeSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RECIPE (This item can be made in town)</b></h5></div></div>';
+        	recipeSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RECIPE (This item can be crafted.)</b></h5></div></div>';
         	/*effects Heading*/
             	recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Items Needed</div><div class="col-xs-8 col-md-8 bd">Quantity</div></div>';
             	
@@ -502,18 +418,18 @@ function buildDB(unit,server) {
 					if (!ingArray) {
 						/*Grab English name if available*/
 						if (server=='JP' && dataGL[valObj.recipe.materials[i].id])
-							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
+							ingEnglish='('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
 						else
 							ingEnglish='';
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name+"</span>"+ingEnglish+"</div>";
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="ingredient">'+valObj.recipe.materials[i].name+"</span> "+ingEnglish+"</div>";
 					}
 					else {
 						/*Grab English name if available*/
 						if (server=='JP' && dataGL[valObj.recipe.materials[i].id])
-							ingEnglish=' ('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
+							ingEnglish='('+dataGL[valObj.recipe.materials[i].id]["name"]+')';
 						else
 							ingEnglish='';
-						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25"> <a href="#" class="ingredient">'+ingArray[0]+"</a>"+ingEnglish+"</div>";
+						recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><img src="'+ingArray[1]+'" width="25" height="25" title="'+ingArray[1]+'"> <a href="#" class="ingredient">'+ingArray[0]+"</a> "+ingEnglish+"</div>";
 					}
 					recipeSTR+='<div class="col-xs-8 col-md-8 bi">'+valObj.recipe.materials[i].count+'</div></div>';
 				}
@@ -539,14 +455,15 @@ function buildDB(unit,server) {
         var appendSTR=nameSTR+effectSTR+recipeSTR+itemSTR+'</div></div></div></div>';
 	/*Grab English name if available*/
 	if (server=='JP' && dataGL[unitKey])
-		OBJSearchName=dataGL[unitKey]["name"]+" "+valObj.name;
+		OBJSearchName=valObj.name+" ("+dataGL[unitKey]["name"]+")";
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
+    
     $("#unitCount").html(countVar);
     
     /*build item type*/
@@ -676,6 +593,36 @@ function sphereRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_SphereFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified Sphere Filter'
+	});
+}
+
+/*JO Only spheres*/
+function jpOnlyRun() {
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    if ( !rawParseObj[i]['global'] )
+	        outputObj.push(rawParseObj[i]);
+	}
+	
+/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_JPOnlyFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified JP Only Filter'
 	});
 }
 
@@ -834,6 +781,12 @@ $(document).on("click", '.skillEffect', function(e){
     skillRun($(this).text());
 })
 
+/*JP Release only*/
+$(document).on("click", '#jpOnly', function(e){
+    e.preventDefault();
+    jpOnlyRun();
+})
+
 /*search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
@@ -906,7 +859,10 @@ $(document).on("click", '#refreshData', function(e){
 })
     
 $(document).ready( function(e) {
-    /*checks GL local data*/
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+/*checks GL local data*/
     if (localStorage.itemsguideglobal) {
 	dataTemp=LZString.decompressFromUTF16(localStorage.itemsguideglobal);
 	if (isValidJSON(dataTemp)) {
