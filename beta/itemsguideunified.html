@@ -132,9 +132,8 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
-</div></div>
-
 <button type="button" id="jpOnly" class="btn btn-danger">JP-Only</button>
+</div></div>
 
 <div class="row"><div class="col-xs-12">
 <!--Search item-->
@@ -370,6 +369,8 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	}
 	else
 		nameSTR+=valObj.name;
+	if (server=='GL')
+		globalexist=true;
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Recipes button for English named items only*/
         //if (dataGL[unitKey])
