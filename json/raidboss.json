@@ -647,14 +647,14 @@
         "weakails": "weak,curse"
       },
       {
-        "partname": "Flower <span class='txt-rare'>(Drops 吸命の花心 Absorption Heart)</span>",
+        "partname": "Flower <span class='txt-rare'>(Drops 吸命の花心 Flower Core)</span>",
         "element": "earth",
         "weakails": "poison"
       }
     ],
     "drops": {
-        "剛搦の茎": {"Eng":"Rough Stem","icon":"item_thum_802.png"},
-        "吸命の花心": {"Eng":"Absorption Heart","icon":"item_thum_100.png"}
+        "剛搦の茎": {"Eng":"Green Vine","icon":"item_thum_802.png"},
+        "吸命の花心": {"Eng":"Flower Core","icon":"item_thum_100.png"}
       },
     "missions": [
       "RC5M6",
