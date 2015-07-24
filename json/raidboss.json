@@ -631,7 +631,7 @@
     ],
     "drops": {
         "桜養の葉": {"Eng":"Sakura Leaf","icon":"item_thum_107.png"},
-        "炎麟の羽": {"Eng":"Bright Flame Leaf","icon":"item_thum_200.png"}
+        "炎麟の羽": {"Eng":"Red Feather","icon":"item_thum_200.png"}
       },
     "missions": [
       "RC5M5",
@@ -681,8 +681,8 @@
       }
     ],
     "drops": {
-        "蒼龍の光鱗": {"Eng":"Dragon's Light Scale","icon":"item_thum_801.png"},
-        "如幻蒼玉": {"Eng":"Illusionary Jade","icon":"item_thum_1101.png"}
+        "蒼龍の光鱗": {"Eng":"Light Scale","icon":"item_thum_801.png"},
+        "如幻蒼玉": {"Eng":"Azure Sphere","icon":"item_thum_1101.png"}
       },
     "missions": [
       "RC5M8",
@@ -708,19 +708,19 @@
         "weakails": "sick"
       },
       {
-        "partname": "Thunder <span class='txt-rare'>(Drops 暗禍の神核 Curse Core)</span>",
+        "partname": "Thunder <span class='txt-rare'>(Drops 暗禍の神核 Calamity Core)</span>",
         "element": "thunder",
         "weakails": "poison"
       },
       {
-        "partname": "Dark <span class='txt-rare'>(Drops 暗禍の神核 Curse Core)</span>",
+        "partname": "Dark <span class='txt-rare'>(Drops 暗禍の神核 Calamity Core)</span>",
         "element": "dark",
         "weakails": "weak,para"
       }
     ],
     "drops": {
-        "狂神の赤晶": {"Eng":"Mad God Crystal","icon":"item_thum_1100.png"},
-        "暗禍の神核": {"Eng":"Curse Core","icon":"item_thum_1105.png"}
+        "狂神の赤晶": {"Eng":"Red Crystal","icon":"item_thum_1100.png"},
+        "暗禍の神核": {"Eng":"Calamity Core","icon":"item_thum_1105.png"}
       },
     "missions": [
       "RC5M9",
