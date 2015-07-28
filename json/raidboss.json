@@ -621,7 +621,7 @@
       {
         "partname": "Wing",
         "element": "fire",
-        "weakails": "poison"
+        "weakails": "poison,curse"
       },
       {
         "partname": "Flower (Lower)",
