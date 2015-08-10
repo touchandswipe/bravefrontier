@@ -1356,7 +1356,7 @@ function initialize(fusionData) {
 		cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>ES</b></td>';
 	      	for (i in units)
 		      	if (cData[i]['passive skill']!="")
-			  cHTML+='<td>Condition: '+cData[i]['passive condition']+'. Effects: '+cData[i]['passive skill']+'</td>';
+			  cHTML+='<td><b>Condition:</b> '+cData[i]['passive condition']+'. <b>Effects:</b> '+cData[i]['passive skill']+'</td>';
 			else
 			  cHTML+='<td></td>'
 	      }
