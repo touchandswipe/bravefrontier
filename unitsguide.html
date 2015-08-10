@@ -1353,6 +1353,12 @@ function initialize(fusionData) {
 	      	cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>UBB</b></td>';
 	      	for (i in units)
 		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>';
+		cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>ES</b></td>';
+	      	for (i in units)
+		      	if (cData[i]['passive skill']!="")
+			  cHTML+='<td><b>Condition:</b> '+cData[i]['passive condition']+'. <b>Effects:</b> '+cData[i]['passive skill']+'</td>';
+			else
+			  cHTML+='<td></td>'
 	      }
 	      cHTML+='</tr><tr><td class="btn-default"><b>Hits (N/BB/SBB/UBB)</b></td>';
 	      for (i in units) {
