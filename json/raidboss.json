@@ -768,17 +768,17 @@
       {
         "partname": "Body",
         "element": "fire",
-        "weakails": ""
+        "weakails": "injury,weak"
       },
       {
         "partname": "Fire Sword",
         "element": "fire",
-        "weakails": ""
+        "weakails": "weak,para"
       },
       {
         "partname": "Thunder Sword",
         "element": "thunder",
-        "weakails": ""
+        "weakails": "weal,sick,curse"
       }
     ],
     "drops": {
