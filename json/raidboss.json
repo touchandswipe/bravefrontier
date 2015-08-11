@@ -873,6 +873,21 @@
     "missions": [
       "RC2X2M1"
     ],
-    "boss notes":"Global Exclusive Raid Boss Only. Details TBD."
+    "boss notes":"Global Exclusive Raid Boss Only."
+  },
+"Miracle Bulb": {
+    "id": "803",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": {},
+    "missions": [
+      "RC4X2M3"
+    ],
+    "boss notes":"Global Exclusive Raid Boss Only."
   }
 }
