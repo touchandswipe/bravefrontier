@@ -761,5 +761,33 @@
       "RC3X1M1",
       "RC4X1M2"
     ]
+  },
+"Shusui": {
+    "id": "27",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "fire",
+        "weakails": ""
+      },
+      {
+        "partname": "Fire Sword",
+        "element": "fire",
+        "weakails": ""
+      },
+      {
+        "partname": "Thunder Sword",
+        "element": "thunder",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "武神の剛石": {"Eng":"Fujin Ore","icon":"item_thum_1100.png"},
+        "武神の闘髪": {"Eng":"Fujin Hair","icon":"item_thum_800.png"}
+      },
+    "missions": [
+      "RC6M1",
+      "RC5M11"
+    ]
   }
 }
