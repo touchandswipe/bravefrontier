@@ -760,7 +760,8 @@
     "missions": [
       "RC3X1M1",
       "RC4X1M2"
-    ]
+    ],
+    "boss notes":"Global Exclusive Raid Boss Only."
   },
 "Shusui": {
     "id": "27",
@@ -789,5 +790,61 @@
       "RC6M1",
       "RC5M11"
     ]
+  },
+"Centurion": {
+    "id": "28",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      },
+      {
+        "partname": "Right Arm",
+        "element": "fire",
+        "weakails": ""
+      },
+      {
+        "partname": "Left Arm",
+        "element": "earth",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "Void Chunk": {"Eng":"","icon":"item_thum_880102.png"}
+      },
+    "missions": [
+      "RC4X2M2",
+      "RC4X2M4"
+    ],
+    "boss notes":"Global Exclusive Raid Boss Only."
+  },
+"Phaeton": {
+    "id": "29",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "light",
+        "weakails": ""
+      },
+      {
+        "partname": "Part 1",
+        "element": "earth",
+        "weakails": ""
+      },
+      {
+        "partname": "Part 2",
+        "element": "earth",
+        "weakails": ""
+      }
+    ],
+    "drops": {
+        "Void Chunk": {"Eng":"","icon":"item_thum_1100.png"}
+      },
+    "missions": [
+      "RC1X2M2",
+      "RC3X2M2"
+    ],
+    "boss notes":"Global Exclusive Raid Boss Only."
   }
 }
