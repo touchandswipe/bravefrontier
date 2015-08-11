@@ -807,7 +807,7 @@
     ]
   },
 "Centurion": {
-    "id": "28",
+    "id": "804",
     "bodyparts": [
       {
         "partname": "Body",
@@ -835,7 +835,7 @@
     "boss notes":"Global Exclusive Raid Boss Only."
   },
 "Phaeton": {
-    "id": "29",
+    "id": "802",
     "bodyparts": [
       {
         "partname": "Body",
@@ -861,7 +861,7 @@
     "boss notes":"Global Exclusive Raid Boss Only."
   },
 "Zenia": {
-    "id": "30",
+    "id": "803",
     "bodyparts": [
       {
         "partname": "Body",
