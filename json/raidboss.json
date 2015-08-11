@@ -44,7 +44,8 @@
       "RC1M6",
       "RC2M6",
       "RC1X1M2",
-      "RC3M2"
+      "RC3M2",
+      "RC1X2M1"
     ]
   },
   "Meru-Meru": {
@@ -78,7 +79,8 @@
       "RC2M13",
       "RC3M2",
       "RC5M1",
-      "RC3X1M2"
+      "RC3X1M2",
+      "RC1X2M1"
     ]
   },
 "Bruzebia": {
@@ -108,7 +110,8 @@
       "RC2M5",
       "RC2M9",
       "RC3M2",
-      "RC2X1M2"
+      "RC2X1M2",
+      "RC3X2M1"
     ]
   },
 "Granomos": {
@@ -149,7 +152,8 @@
       "RC2M4",
       "RC3M3",
       "RC3X1M2",
-      "RC4X1M3"
+      "RC4X1M3",
+      "RC1X2M3"
     ]
   },
   "Reduhark": {
@@ -183,7 +187,8 @@
       "RC2M11",
       "RC3M5",
       "RC3M10",
-      "RC4X1M1"
+      "RC4X1M1",
+      "RC2X2M1"
     ]
   },
   "Laguna Rex": {
@@ -220,7 +225,8 @@
       "RC2M3",
       "RC2M10",
       "RC3M4",
-      "RC3M11"
+      "RC3M11",
+      "RC2X2M2"
     ]
   },
   "Claudalus": {
@@ -257,7 +263,8 @@
       "RC3M8",
       "RC3M11",
       "RC5M3",
-      "RC3X1M2"
+      "RC3X1M2",
+      "RC3X2M2"
     ]
   },
   "Melion": {
@@ -287,7 +294,8 @@
       "RC2M12",
       "RC3M6",
       "RC3M10",
-      "RC4X1M1"
+      "RC4X1M1",
+      "RC3X2M2"
     ]
   },
   "Nalda Delia": {
@@ -326,7 +334,8 @@
       "RC3M9",
       "RC3M11",
       "RC4M6",
-      "RC4X1M2"
+      "RC4X1M2",
+      "RC3X2M1"
     ]
   },
   "Van Lucy": {
@@ -350,7 +359,8 @@
       "RC2M7",
       "RC3M7",
       "RC4M3",
-      "RC2X1M1"
+      "RC2X1M1",
+      "RC1X2M2"
     ]
   },
   "Van Nader": {
@@ -374,7 +384,8 @@
       "RC2M8",
       "RC3M7",
       "RC4M3",
-      "RC3X1M2"
+      "RC3X1M2",
+      "RC1X2M2"
     ]
   },
   "Mistzug": {
@@ -410,7 +421,8 @@
       },
     "missions": [
       "RC3M12",
-      "RC4M8"
+      "RC4M8",
+      "RC4X2M4"
     ]
   },
   "Golvorg": {
@@ -430,7 +442,8 @@
       },
     "missions": [
       "RC4M1",
-      "RC5M3"
+      "RC5M3",
+      "RC4X2M1"
     ]
   },
   "Yugreia": {
@@ -520,7 +533,8 @@
     "missions": [
       "RC4M5",
       "RC4M8",
-      "RC5M4"
+      "RC5M4",
+      "RC4X2M1"
     ],
     "boss notes":"Tail has high resistance to CRIT and CRIT DMG. Avoid CRIT leaders if possible. Single-Target BB is useful, and go Spark / Elemental Weakness DMG."
   },
@@ -556,7 +570,8 @@
     },
     "missions": [
       "RC4M7",
-      "RC5M4"
+      "RC5M4",
+      "RC4X2M1"
     ]
   },
   "Black Dragon Jirayen": {
@@ -838,13 +853,26 @@
         "weakails": ""
       }
     ],
-    "drops": {
-        "Void Chunk": {"Eng":"","icon":"item_thum_1100.png"}
-      },
+    "drops": {},
     "missions": [
       "RC1X2M2",
       "RC3X2M2"
     ],
     "boss notes":"Global Exclusive Raid Boss Only."
+  },
+"Zenia": {
+    "id": "30",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "dark",
+        "weakails": ""
+      }
+    ],
+    "drops": {},
+    "missions": [
+      "RC2X2M1"
+    ],
+    "boss notes":"Global Exclusive Raid Boss Only. Details TBD."
   }
 }
