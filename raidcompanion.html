@@ -197,6 +197,7 @@ countVar=0;
 prevRecipe="";
 collapseID=1;
 imgPrefix="http://v2.cdn.android.brave.a-lim.jp/item/";
+imgPrefix_GL="http://2.cdn.bravefrontier.gumi.sg/content/item/";
 bossParseObj=[]; /*boss panels*/
 missionsParseObj=[]; /*collapsible mission panels*/
 recipesObj={
@@ -920,7 +921,11 @@ function buildDB(boss) {
     					bossSTR+='<div class="dropslist"><b>Drops</b> ';
     					if (!$.isEmptyObject(bossObj.drops))
 	    					$.each( bossObj.drops, function( dropKey, dropVal ) {
-	    						bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)</div>';
+	    						/*Global item only*/
+	    						if (dropVal["global link"])
+	    							bossSTR+='<div class="dropItem"><img src="'+imgPrefix_GL+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a></div>';
+	    						else
+	    							bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)</div>';
 	    					});
     					else
     						bossSTR+='none';
