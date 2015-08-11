@@ -826,7 +826,7 @@
       }
     ],
     "drops": {
-        "Void Chunk": {"Eng":"","icon":"item_thum_880102.png"}
+        "Void Chunk": {"Eng":"","icon":"item_thum_880102.png","global link":true}
       },
     "missions": [
       "RC4X2M2",
