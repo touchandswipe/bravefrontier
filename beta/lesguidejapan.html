@@ -67,15 +67,9 @@ if (window.location.hash == '#_=_') {
 <h3 style="margin-top:0px;">Learned Extra Skills Guide - <span class="text-danger">Japan</span></h3>
 <h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total Items:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
-<!-- items type button -->
-<div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Items by type <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
-</div>
 <!-- New type button -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients by type <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Stars <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="starRatingList">
   	<li><a href="#" class="starRating" data-value="1">1<i class="fa fa-star"></i></a></li>
@@ -89,7 +83,7 @@ if (window.location.hash == '#_=_') {
 </div>
 <!-- Item Effects -->
 <div class="btn-group" style="margin-bottom:10px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres by effects <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Effects <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -97,8 +91,6 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">def% buff</a></li>
     <li><a href="#" class="skillEffect">rec% buff</a></li>
     <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">first x turns atk%</a></li>
-    <li><a href="#" class="skillEffect">first x turns def%</a></li>
     <li><a href="#" class="skillEffect">bc fill per turn</a></li>
     <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
     <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
@@ -322,35 +314,34 @@ function buildDB(skill) {
     
 }
 
-/*itemtype Filter Search*/
-function itemRun(select) {
+/*star rating Filter*/
+function starRun(select) {
     var sVal=select;
     var outputObj=[];
 	var outputHTML=[];
 	for (i in rawParseObj) {
 	    /*searches for matching item type*/
-	    if ( rawParseObj[i].type==sVal) {
+	    if ( rawParseObj[i].rating==sVal) {
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
 	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
+	outputObj=outputObj.sort(function(a,b) {
+		if (a.rating > b.rating)
+	            return -1;
+	        if (a.rating < b.rating)
+	            return 1;
+	        return 0;
+	    });
+	/*Build HTML Array*/
+	for (i=0;i<outputObj.length;i++)
+		outputHTML.push(outputObj[i].collapseCode)
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/lesguideJP_TypeFilter',
-  		'title': 'Brave Frontier PROs - LES Guide JP Type Filter'
+  		'page': '/vurl/lesguideJP_StarRatingFilter',
+  		'title': 'Brave Frontier PROs - LES Guide JP Star Rating Filter'
 	});
 }
 
@@ -367,9 +358,9 @@ function skillRun(selectSkill) {
 	}
 /*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
+        if (a.rating > b.rating)
             return -1;
-        if (a.name > b.name)
+        if (a.rating < b.rating)
             return 1;
         return 0;
     });
@@ -402,9 +393,9 @@ function searchNameRun() {
 		}
 		/*Sort array*/
 	    	outputObj=outputObj.sort(function(a,b) {
-		        if (a.name < b.name)
+		        if (a.rating > b.rating)
 		            return -1;
-		        if (a.name > b.name)
+		        if (a.rating < b.rating)
 		            return 1;
 		        return 0;
     		});
