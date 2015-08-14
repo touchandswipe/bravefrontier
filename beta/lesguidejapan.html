@@ -278,7 +278,7 @@ function buildDB(skill) {
     /*Process for Each Unit*/
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
-      var keyLength=skillKey.length();
+      var keyLength=skillKey.length;
       if (keyLength=7) {
 	      var keyRating=parseInt(skillKey.charAt(6))+1;
 	      /*accordion heading*/
