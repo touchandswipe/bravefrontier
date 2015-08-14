@@ -279,7 +279,7 @@ function buildDB(skill) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
 	            /*effects Heading*/
 	            effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
-	            if (isArray(valObj.effect)) {
+	            //if (isArray(valObj.effect)) {
 		            for (i in valObj.effect) {
 		            	/*separator for each array*/
 		            	if (i!=0)
@@ -292,7 +292,7 @@ function buildDB(skill) {
 					}
 				})
 		            }
-	            }
+	            //}
 	        } else effectSTR="";
 	        /*Append each HTML and close accordion*/
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
