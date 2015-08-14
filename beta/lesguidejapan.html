@@ -273,26 +273,26 @@ function buildDB(skill) {
 	      var keyRating=parseInt(skillKey.charAt(6))+1;
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
-	      nameSTR+='<b>'+keyRating+'<i class="fa fa-star"></i> '+valObj.name+": "+valObj.desc+'</b></a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	      nameSTR+='<b>'+keyRating+'<i class="fa fa-star"></i> '+valObj.name+":</b> "+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
-	        if (valObj.effect) {
+	        if (valObj.effects) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
 	            /*effects Heading*/
 	            effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Tech Bits</div><div class="col-xs-8 col-md-8 bd">Value</div></div>';
-	            //if (isArray(valObj.effect)) {
-		            for (i in valObj.effect) {
+	            if (isArray(valObj.effects)) {
+		            for (i in valObj.effects) {
 		            	/*separator for each array*/
 		            	if (i!=0)
 		            		effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
 		            	/*Loop thru effects obj*/
-				$.each(valObj.effect[i], function(esKey,esVal) {
+				$.each(valObj.effects[i], function(esKey,esVal) {
 					if (esKey!="conditions") {
 				                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+esKey+"</span></div>";
 				                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+esVal+'</div></div>';
 					}
 				})
 		            }
-	            //}
+	            }
 	        } else effectSTR="";
 	        /*Append each HTML and close accordion*/
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
