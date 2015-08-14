@@ -344,6 +344,7 @@ function starRun(select) {
 		outputHTML.push(outputObj[i].collapseCode)
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity.</h4>'+outputHTML.join(' '));
+	window.scrollTo(0,0);
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/lesguideJP_StarRatingFilter',
@@ -376,6 +377,7 @@ function skillRun(selectSkill) {
     }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity.</h4>'+outputHTML.join(' '));
+	window.scrollTo(0,0);
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/lesguideJP_EffectsFilter',
