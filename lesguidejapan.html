@@ -328,7 +328,7 @@ function starRun(select) {
 	for (i=0;i<outputObj.length;i++)
 		outputHTML.push(outputObj[i].collapseCode)
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity.</h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/lesguideJP_StarRatingFilter',
@@ -360,7 +360,7 @@ function skillRun(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity.</h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity.</h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/lesguideJP_EffectsFilter',
@@ -394,7 +394,7 @@ function searchNameRun() {
 		for (i=0;i<outputObj.length;i++)
 			outputHTML.push(outputObj[i].collapseCode)
 		/*Joins array and replace HTML*/
-		$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+		$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <kbd>Copy</kbd> URL to share results.</h4>'+outputHTML.join(' '));
 		/*pushstate update*/
 		var state = { stateNameFilter: sVal };
 	    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
@@ -411,26 +411,6 @@ $( "#searchNameBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchNameRun()
   }
-})
-
-/*Binds Enter KEY to BOX*/
-$( "#searchIngredientBox" ).keypress( function( event ) {
-  if ( event.which == 13 ) {
-     searchIngredientRun()
-  }
-})
-
-/*click on recipe to show item*/
-$(document).on("click", '.ingredient', function(e){
-    	e.preventDefault();
-    	$("#searchNameBox").val($(this).text());
-	searchNameRun()
-})
-
-/*itemtype filters*/
-$(document).on("click", '.itemType', function(e){
-    e.preventDefault();
-    itemRun($(this).text());
 })
 
 /*starRating filter*/
