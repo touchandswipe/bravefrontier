@@ -768,18 +768,21 @@ $(document).on("click", '.itemType', function(e){
 $(document).on("click", '.matsType', function(e){
     e.preventDefault();
     matsRun($(this).attr("data-value"));
+    window.scrollTo(0,0);
 })
 
 /*spheretype filters*/
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
     sphereRun($(this).text());
+    window.scrollTo(0,0);
 })
 
 /*sphereEffect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
     skillRun($(this).text());
+    window.scrollTo(0,0);
 })
 
 /*JP Release only*/
