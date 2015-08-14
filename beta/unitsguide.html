@@ -1070,9 +1070,9 @@ function initialize(fusionData) {
 		/*fav button*/
 		if (favSelect.length!=0)
 			if (favSelect.indexOf(ovid.toString())!=-1)
-				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin: 0px 3px;" title="Add/Remove Favourites"><div class="btn btn-warning btn-xs"><i class="fa fa-star text-fav"></i></div></a>';
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-warning btn-xs"><i class="fa fa-star text-fav"></i></div></a>';
 			else
-				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin: 0px 3px;" title="Add/Remove Favourites"><div class="btn btn-default btn-xs"><i class="fa fa-star text-muted"></i></div></a>';
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-default btn-xs"><i class="fa fa-star text-muted"></i></div></a>';
 		/*video*/
 		if ( ovvideo != "" )
 			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
