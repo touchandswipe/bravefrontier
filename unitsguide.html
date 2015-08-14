@@ -105,8 +105,9 @@
     .release {
     border: 1px solid #CCCCCC;
     display: inline-block;
-    border-radius: 5px;
-    padding:2px 5px;
+    border-radius: 3px;
+    padding:3px 5px;
+    vertical-align: middle;
     }
     .purple {background:#FFDB4D;}
     .sp2 {margin:2px;}
@@ -753,19 +754,14 @@ function initialize(fusionData) {
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
 		    if (favSelect.length!=0) {
-			for (var i=0;i<favSelect.length;i++) {
-			    if (cRow[fusionData.columns.indexOf("ID")] == Number(favSelect[i])) {
-				rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav"><div class="btn btn-warning btn-sm"><i class="fa fa-star text-fav"></i></div></div>';
-				break;
-			    }
-			}
-			if (i==favSelect.length) {
-		    rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></div>';
-			}
-		  } else {
-	    rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></div>'; 
-		  }
-		  return rtnString;
+			if (favSelect.indexOf(cRow[0].toString())!=-1)
+				rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-warning btn-sm"><i class="fa fa-star text-fav"></i></div></a>';
+			else
+		    		rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></a>';
+		    } else
+			rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></a>';
+		rtnString+='</div>';
+		return rtnString;
 		}
 		},
 		/*Series*/
@@ -1071,6 +1067,13 @@ function initialize(fusionData) {
 			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
 		if (ovbfpronotes.search("#korea")!=-1)
 			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
+		/*fav button*/
+		if (favSelect.length!=0)
+			if (favSelect.indexOf(ovid.toString())!=-1)
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-warning btn-xs"><i class="fa fa-star text-fav"></i></div></a>';
+			else
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-default btn-xs"><i class="fa fa-star text-muted"></i></div></a>';
+		/*video*/
 		if ( ovvideo != "" )
 			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
