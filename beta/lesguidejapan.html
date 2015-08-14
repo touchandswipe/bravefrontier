@@ -283,7 +283,7 @@ function buildDB(skill) {
 	      var keyRating=parseInt(skillKey.charAt(6))+1;
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
-	      nameSTR+='<b>'+keyRating+'<i class="fa fa-star"></i> '+valObj.desc+'</b></a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	      nameSTR+='<b>'+keyRating+'<i class="fa fa-star"></i> '+valObj.name+": "+valObj.desc+'</b></a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effect) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -307,7 +307,7 @@ function buildDB(skill) {
 	        /*Append each HTML and close accordion*/
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
 	        /*Parse into MEMORY DB*/
-	        rawParseObj.push({"name":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
+	        rawParseObj.push({"name":valObj.name,"desc":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
 	        countVar+=1;
 	        collapseID+=1;
       } /*End KeyLength Check*/
@@ -476,7 +476,7 @@ function searchNameRun() {
     	else {
 		for (i=0;i<rawParseObj.length;i++) {
 		    /*compares lowercase string*/
-		    if ( rawParseObj[i]['desc'].toLowerCase().search(sVal.toLowerCase())!=-1) {
+		    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
 		        outputObj.push(rawParseObj[i]);
 		    }
 		}
