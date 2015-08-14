@@ -1069,6 +1069,17 @@ function initialize(fusionData) {
 			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
 		if (ovbfpronotes.search("#korea")!=-1)
 			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
+		/*fav button*/
+		if (favSelect.length!=0)
+			if (favSelect.indexOf(ovid.toString())!=-1)
+				var favED=true;
+			else
+				var favED=false;
+		if (favED)
+			ovHTML+='<a href="#" value="'+ovid+'" class="addFav"><div class="btn btn-warning btn-xs"><i class="fa fa-star text-fav"></i></div></a>';
+		else
+			ovHTML+='<a href="#" value="'+ovid+'" class="addFav"><div class="btn btn-default btn-xs"><i class="fa fa-star text-muted"></i></div></a>';
+		/*video*/
 		if ( ovvideo != "" )
 			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
