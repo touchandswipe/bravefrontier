@@ -71,6 +71,7 @@ if (window.location.hash == '#_=_') {
 <div class="btn-group" style="margin-bottom:5px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Stars <span class="caret"></span>
   </button>
+  <!--
   <ul class="dropdown-menu" role="menu" id="starRatingList">
   	<li><a href="#" class="starRating" data-value="1">1<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="2">2<i class="fa fa-star"></i></a></li>
@@ -83,8 +84,8 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="starRating" data-value="9">9<i class="fa fa-star"> TBD</i></a></li>
   	<li><a href="#" class="starRating" data-value="10">10<i class="fa fa-star"> TBD</i></a></li>
   </ul>
-</div>
-<!-- Item Effects -->
+</div>-->
+<!-- Effects -->
 <div class="btn-group" style="margin-bottom:5px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Effects <span class="caret"></span>
   </button>
@@ -271,10 +272,11 @@ function buildDB(skill) {
       /*Extract Learned ES only*/
       var keyLength=skillKey.length;
       if (keyLength==7) {
-	      var keyRating=parseInt(skillKey.charAt(6))+3;
+	      var keyRating=parseInt(skillKey.charAt(6))+1;
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
-	      nameSTR+='<b><span class="text-primary">'+keyRating+'<i class="fa fa-star"></i></span> '+valObj.name+":</b> "+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	      /*temporary removal of ratings <span class="text-primary">'+keyRating+'<i class="fa fa-star"></i></span>*/
+	      nameSTR+='<b>'+valObj.name+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effects) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
