@@ -179,7 +179,7 @@ $(document).ready( function(e) {
 	    $('#markerBarTall'+btnVal).toggle();
 	    /*compile visible layers*/
 	    for (i in markerMaster)
-	    	if ($('#markerBarTall'+i+').is(':visible'))
+	    	if ($('#markerBarTall'+i).is(':visible'))
 	    		visibleBars.push(i);
 	    /*pushstate update*/
 	    var visibleBarsSTR=visibleBars.join();
