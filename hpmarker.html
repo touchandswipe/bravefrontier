@@ -76,7 +76,7 @@ if (navigator.userAgent.match(/Android/i)
 <!-- Other Tips -->
 <div class="alert alert-info alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  This marker tool is to assist you with identifying various triggers that happens when enemy HP falls below defined marker.
+  This marker tool is to assist you with identifying triggers that happens when enemy HP threshold is met. You can now SHARE the thresholds by sharing the URL.
 </div>
 <div class="row" style="margin:10px auto 10px auto">
   <div class="col-xs-12 col-sm-12 col-md-6">
@@ -134,13 +134,23 @@ if (navigator.userAgent.match(/Android/i)
 <script type="text/javascript">
 /*Global variable*/
 var markerMaster=[0,0.05,0.1,0.15,0.2,0.25,0.3,0.32,0.3333,0.35,0.38,0.4,0.45,0.5,0.55,0.6,0.65,0.667,0.7,0.75,0.77,0.8,0.85,0.9,0.95,1];
+/*Param handling*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return decodeURIComponent(results[1]) || '';
+    }
+}
 function buildLayers() { /*build buttons and layers*/
 	var buildMarkerHTML="";
 	var buildBtnHTML="";
 	var barWidth=$('#markerBar').css('width');
 	for (i in markerMaster) {
-		buildMarkerHTML+='<div id="markerBarTall'+i+'" class="markerCommon" style="width:'+Math.ceil(markerMaster[i]*parseInt(barWidth))+'px;"><div class="markerText">'+parseFloat(markerMaster[i]*100)+'%</div></div>';
-		buildBtnHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><button type="button" class="btn btn-default btn-lg markerBtn" value="'+i+'">'+parseFloat(markerMaster[i]*100).toFixed(2)+'%</button></div>';
+		buildMarkerHTML+='<div id="markerBarTall'+i+'" class="markerCommon" style="width:'+Math.ceil(markerMaster[i]*parseInt(barWidth))+'px;"><div class="markerText">'+parseInt(markerMaster[i]*100)+'%</div></div>';
+		buildBtnHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><button type="button" class="btn btn-default btn-lg markerBtn" value="'+i+'">'+parseInt(markerMaster[i]*100)+'%</button></div>';
 	}
 	$(buildMarkerHTML).appendTo('#markerMom');
 	$(buildBtnHTML).appendTo('#btnMom');
@@ -150,21 +160,49 @@ $(document).ready( function(e) {
 	$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 	$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
 	buildLayers();
+	/*check param*/
+	var showBarParam=urlParam('showbars');
+    	if (showBarParam != "") {
+		var showBarArray=showBarParam.split(',');
+		for (i in showBarArray)
+			$('#markerBarTall'+i).show();
+    	}
 	/*hide all*/
 	$('#btnHideALL').on('click', function() {
 		for (i in markerMaster)
 	    		$('#markerBarTall'+i).hide();
+	    	var state = { stateShowBars: "" };
+	    	history.pushState(state, "BarState", "" );
 	});
 	/*btn trigger*/
 	$('.markerBtn').on('click', function() {
 	    var btnVal=$(this).val();
-	    $('#markerBarTall'+btnVal).toggle();
+	    var visibleBars=[];
+	    $('#markerBarTall'+btnVal).fadeToggle();
+	    /*compile visible layers*/
+	    for (i in markerMaster)
+	    	if ($('#markerBarTall'+i).is(':visible'))
+	    		visibleBars.push(i);
+	    /*pushstate update*/
+	    var visibleBarsSTR=visibleBars.join();
+	    var state = { stateShowBars: visibleBarsSTR };
+	    history.pushState(state, "BarState", "?showbars="+encodeURIComponent(visibleBarsSTR) );
 	    /*Google analytics*/
 		ga('send', 'pageview', {
 	    		'page': '/vurl/HP_Marker_Change',
 	    		'title': 'Brave Frontier PROs - HP Marker Change HP'
 	  	});
 	  })
+})
+/*POP state*/
+$(window).on('popstate', function(ev) {
+	var state = ev.originalEvent.state;
+	/*Search query state*/
+	if (state.stateShowBars) {
+		var showBarArray=state.stateShowBars.split(',');
+		for (i in showBarArray)
+			$('#markerBarTall'+i).show();
+	}
 })
 </script>
 
