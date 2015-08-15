@@ -165,7 +165,7 @@ $(document).ready( function(e) {
     	if (showBarParam != "") {
 		var showBarArray=showBarParam.split(',');
 		for (i in showBarArray)
-			$('#markerBarTall'+i).show();
+			$('#markerBarTall'+showBarArray[i]).show();
     	}
 	/*hide all*/
 	$('#btnHideALL').on('click', function() {
@@ -201,7 +201,7 @@ $(window).on('popstate', function(ev) {
 	if (state.stateShowBars) {
 		var showBarArray=state.stateShowBars.split(',');
 		for (i in showBarArray)
-			$('#markerBarTall'+i).show();
+			$('#markerBarTall'+showBarArray[i]).show();
 	}
 })
 </script>
