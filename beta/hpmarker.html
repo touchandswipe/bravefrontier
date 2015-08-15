@@ -87,6 +87,7 @@ if (navigator.userAgent.match(/Android/i)
   <div class="col-xs-12 col-sm-12 col-md-6">
     <div id="btnMom" class="row">
     	<div class="col-xs-12 col-sm-12 col-md-12"><h4>Select % of HP to show</h4></div>
+    	<div class="col-xs-3 col-sm-3 col-md-3"><button type="button" id="btnHideALL" class="btn btn-danger btn-lg">Hide ALL</button></div>
     </div>
   </div>
 </div><!--top row-->
@@ -137,8 +138,8 @@ function buildLayers() { /*build buttons and layers*/
 	var buildBtnHTML="";
 	var barWidth=$('#markerBar').css('width');
 	for (i in markerMaster) {
-		buildMarkerHTML+='<div id="markerBarTall'+i+'" class="markerCommon" style="width:'+Math.ceil(markerMaster[i]*parseInt(barWidth))+'px;"><div class="markerText">'+parseInt(markerMaster[i]*100)+'%</div></div>';
-		buildBtnHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><button type="button" class="btn btn-default btn-lg markerBtn" value="'+i+'">'+parseInt(markerMaster[i]*100)+'%</button></div>';
+		buildMarkerHTML+='<div id="markerBarTall'+i+'" class="markerCommon" style="width:'+Math.ceil(markerMaster[i]*parseInt(barWidth))+'px;"><div class="markerText">'+parseFloat(markerMaster[i]*100)+'%</div></div>';
+		buildBtnHTML+='<div class="col-xs-3 col-sm-3 col-md-3"><button type="button" class="btn btn-default btn-lg markerBtn" value="'+i+'">'+parseFloat(markerMaster[i]*100)+'%</button></div>';
 	}
 	$(buildMarkerHTML).appendTo('#markerMom');
 	$(buildBtnHTML).appendTo('#btnMom');
@@ -148,6 +149,11 @@ $(document).ready( function(e) {
 	$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 	$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
 	buildLayers();
+	/*hide all*/
+	$('#btnHideALL').on('click', function() {
+		for (i in markerMaster)
+	    		$('#markerBarTall'+i).hide();
+	});
 	/*btn trigger*/
 	$('.markerBtn').on('click', function() {
 	    var btnVal=$(this).val();
