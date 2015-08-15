@@ -17,6 +17,17 @@
 <style type="text/css">
     .clear {clear:both;}
     .btn {margin-bottom:10px;}
+    .markerCommon {
+    	position:absolute;
+    	border-right:1px solid #FFFFFF;
+    }
+    .markerText {
+    	color:#FFF;
+    	font-size:8pt;
+    	-ms-transform: rotate(-90deg); /* IE 9 */
+    	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    	transform: rotate(-90deg);
+    }
 </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -62,8 +73,8 @@ if (navigator.userAgent.match(/Android/i)
   <div style="height:230px;">
       <img style="margin-top:10px;width:500px;position:absolute;" src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/hpmarker.png"/>
       <div id="markerBar" style="display:none;position:absolute;background:#CC0000;width:467px;height:12px;left:32px;top:90px;"></div>
-      <div id="markerBarTall" style="display:none;position:absolute;border-right:1px solid #FFFFFF;width:467px;height:210px;left:32px;top:0px;"></div>
-      <div id="markerBarTall2" style="display:none;position:absolute;border-right:1px solid #FFFFFF;width:467px;height:210px;left:32px;top:0px;"></div>
+      <div id="markerBarTall" class="markerCommon" style="display:none;width:467px;height:210px;left:32px;top:0px;"><div class="markerText">xx%</div></div>
+      <div id="markerBarTall2" class="markerCommon" style="width:467px;height:210px;left:32px;top:0px;"><div class="markerText">100%</div></div>
     </div>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-6">
