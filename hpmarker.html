@@ -178,7 +178,7 @@ $(document).ready( function(e) {
 	$('.markerBtn').on('click', function() {
 	    var btnVal=$(this).val();
 	    var visibleBars=[];
-	    $('#markerBarTall'+btnVal).fadeToggle();
+	    $('#markerBarTall'+btnVal).toggle();
 	    /*compile visible layers*/
 	    for (i in markerMaster)
 	    	if ($('#markerBarTall'+i).is(':visible'))
