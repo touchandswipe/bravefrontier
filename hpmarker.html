@@ -172,7 +172,7 @@ $(document).ready( function(e) {
 		for (i in markerMaster)
 	    		$('#markerBarTall'+i).hide();
 	    	var state = { stateShowBars: "" };
-	    	history.pushState(state, "BarState", "" );
+	    	history.pushState(state, "BarState", "?showbars=" );
 	});
 	/*btn trigger*/
 	$('.markerBtn').on('click', function() {
