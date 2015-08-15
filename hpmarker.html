@@ -171,8 +171,10 @@ $(document).ready( function(e) {
     	}
 	/*hide all*/
 	$('#btnHideALL').on('click', function() {
-		for (i in markerMaster)
+		for (i in markerMaster) {
 	    		$('#markerBarTall'+i).hide();
+	    		$('#markerBtn'+i).removeClass("active");
+		}
 	    	var state = { stateShowBars: "" };
 	    	history.pushState(state, "BarState", "?showbars=" );
 	});
