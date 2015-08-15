@@ -182,7 +182,8 @@ $(document).ready( function(e) {
 	    	if ($('#markerBarTall'+i+':visible'))
 	    		visibleBars.push(i);
 	    /*pushstate update*/
-	    var visibleBarsSTR=visibleBars.join;
+	    var visibleBarsSTR=visibleBars.join();
+	    alert(visibleBarsSTR);
 	    var state = { stateShowBars: visibleBarsSTR };
 	    history.pushState(state, "BarState", "?showbars="+encodeURIComponent(visibleBarsSTR) );
 	    /*Google analytics*/
