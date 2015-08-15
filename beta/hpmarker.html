@@ -81,8 +81,7 @@ if (navigator.userAgent.match(/Android/i)
   <div class="col-xs-12 col-sm-12 col-md-6">
   <div id="markerMom" style="height:230px;">
       <img style="margin-top:10px;width:500px;position:absolute;" src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/hpmarker.png"/>
-      <div id="markerBar" style="display:none;position:absolute;background:#CC0000;width:467px;height:12px;left:32px;top:90px;"></div>
-      <div id="markerBarTall" class="markerCommon" style="display:none;width:467px;height:210px;left:32px;top:0px;"><div class="markerText">50%</div></div>
+      <div id="markerBar" style="position:absolute;background:#CC0000;width:467px;height:12px;left:32px;top:90px;"></div>
     </div>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-6">
@@ -148,8 +147,6 @@ $(document).ready( function(e) {
 	/*load masthead shared*/
 	$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 	$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
-	$('#markerBar').show();
-	$('#markerBarTall').show();
 	buildLayers();
 	/*btn trigger*/
 	$('.markerBtn').on('click', function() {
