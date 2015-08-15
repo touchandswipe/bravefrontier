@@ -79,7 +79,9 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="starRating" data-value="5">5<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="6">6<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="7">7<i class="fa fa-star"></i></a></li>
-  	<li><a href="#" class="starRating" data-value="8">8<i class="fa fa-star"></i></a></li>
+  	<li><a href="#" class="starRating" data-value="8">8<i class="fa fa-star"> TBD</i></a></li>
+  	<li><a href="#" class="starRating" data-value="9">9<i class="fa fa-star"> TBD</i></a></li>
+  	<li><a href="#" class="starRating" data-value="10">10<i class="fa fa-star"> TBD</i></a></li>
   </ul>
 </div>
 <!-- Item Effects -->
@@ -269,7 +271,7 @@ function buildDB(skill) {
       /*Extract Learned ES only*/
       var keyLength=skillKey.length;
       if (keyLength==7) {
-	      var keyRating=parseInt(skillKey.charAt(6))+1;
+	      var keyRating=parseInt(skillKey.charAt(6))+3;
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<b><span class="text-primary">'+keyRating+'<i class="fa fa-star"></i></span> '+valObj.name+":</b> "+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
