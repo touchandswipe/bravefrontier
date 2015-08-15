@@ -182,8 +182,9 @@ $(document).ready( function(e) {
 	    	if ($('#markerBarTall'+i+':visible'))
 	    		visibleBars.push(i);
 	    /*pushstate update*/
-	    var state = { stateShowBars: visibleBars.join };
-	    history.pushState(state, "BarState", "?showbars="+encodeURIComponent(visibleBars.join) );
+	    var visibleBarsSTR=visibleBars.join;
+	    var state = { stateShowBars: visibleBarsSTR };
+	    history.pushState(state, "BarState", "?showbars="+encodeURIComponent(visibleBarsSTR) );
 	    /*Google analytics*/
 		ga('send', 'pageview', {
 	    		'page': '/vurl/HP_Marker_Change',
