@@ -73,13 +73,13 @@ if (window.location.hash == '#_=_') {
 <div class="row"><div class="col-xs-12" style="margin:5px 0;">
 <!-- items type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Item type <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Item type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="itemTypeList"></ul>
 </div>
 <!-- New type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ingredients <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Ingredients <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="matsTypeList">
   	<li><a href="#" class="matsType" data-value="item_thum_10\d\.png">Grass</a></li>
@@ -97,13 +97,13 @@ if (window.location.hash == '#_=_') {
 </div>
 <!-- sphere type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres type <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Spheres effects <span class="caret"></span></button>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres effects <span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -132,7 +132,8 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
-<button type="button" id="jpOnly" class="btn btn-danger">JP Only</button>
+<button type="button" id="craftableOnly" class="btn btn-sm btn-info">Craftable</button>
+<button type="button" id="jpOnly" class="btn btn-sm btn-danger">JP Only</button>
 </div></div>
 
 <div class="row"><div class="col-xs-12">
@@ -407,7 +408,9 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
             }
         } else effectSTR="";
         /*Recipe if exists*/
+        var craftable=false;
         if (valObj.recipe) {
+        	craftable=true;
         	recipeSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RECIPE (This item can be crafted.)</b></h5></div></div>';
         	/*effects Heading*/
             	recipeSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bd">Items Needed</div><div class="col-xs-8 col-md-8 bd">Quantity</div></div>';
@@ -460,7 +463,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -627,6 +630,36 @@ function jpOnlyRun() {
 	});
 }
 
+/*craftable spheres*/
+function craftableRun() {
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    if ( rawParseObj[i]['craftable'] )
+	        outputObj.push(rawParseObj[i]);
+	}
+	
+/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.type < b.type)
+            return -1;
+        if (a.type > b.type)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_craftableFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified craftable Filter'
+	});
+}
+
 /*Item effect Search*/
 function skillRun(selectSkill) {
     var sVal=selectSkill;
@@ -789,6 +822,12 @@ $(document).on("click", '.skillEffect', function(e){
 $(document).on("click", '#jpOnly', function(e){
     e.preventDefault();
     jpOnlyRun();
+})
+
+/*Craftable only*/
+$(document).on("click", '#craftableOnly', function(e){
+    e.preventDefault();
+    craftableRun();
 })
 
 /*search*/
