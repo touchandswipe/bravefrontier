@@ -641,7 +641,8 @@ function jpOnlyRun() {
 function craftableRun(raidCheck) {
     var outputObj=[];
 	var outputHTML=[];
-	if (raidCheck=="Raid")
+	alert(raidCheck);
+	if (raidCheck.toLowerCase()=="raid")
 		for (i=0;i<rawParseObj.length;i++)
 		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].craftRaid )
 		        outputObj.push(rawParseObj[i]);
