@@ -641,14 +641,16 @@ function jpOnlyRun() {
 function craftableRun(raidCheck) {
     var outputObj=[];
 	var outputHTML=[];
-	if (raidCheck.toLowerCase()=="raid")
+	if (raidCheck.toLowerCase()=="raid") {
 		for (i=0;i<rawParseObj.length;i++)
 		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==true )
 		        outputObj.push(rawParseObj[i])
-	else
+	}
+	else {
 		for (i=0;i<rawParseObj.length;i++)
 		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==false )
-		        outputObj.push(rawParseObj[i])	
+		        outputObj.push(rawParseObj[i])
+	}
 	
 /*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
