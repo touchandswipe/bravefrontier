@@ -643,11 +643,11 @@ function craftableRun(raidCheck) {
 	var outputHTML=[];
 	if (raidCheck=="Raid")
 		for (i=0;i<rawParseObj.length;i++)
-		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].raid==true )
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].craftRaid==true )
 		        outputObj.push(rawParseObj[i]);
 	else
 		for (i=0;i<rawParseObj.length;i++)
-		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].raid==false )
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].craftRaid==false )
 		        outputObj.push(rawParseObj[i]);	
 	
 /*Sort array*/
