@@ -132,7 +132,14 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
-<button type="button" id="craftableOnly" class="btn btn-sm btn-info">Craftable</button>
+<!-- Craftable Raid nonRaid -->
+<div class="btn-group">
+	<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">Craftable <span class="caret"></span></button>
+  		<ul class="dropdown-menu" role="menu">
+  			<li><a href="#" class="craftableOnly">Raid</a></li>
+  			<li><a href="#" class="craftableOnly">Non-Raid</a></li>
+  		</ul>
+</div>
 <button type="button" id="jpOnly" class="btn btn-sm btn-danger">JP Only</button>
 </div></div>
 
@@ -463,7 +470,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable,"craftRaid":valObj.raid});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -631,13 +638,17 @@ function jpOnlyRun() {
 }
 
 /*craftable spheres*/
-function craftableRun() {
+function craftableRun(raidCheck) {
     var outputObj=[];
 	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    if ( rawParseObj[i]['craftable'] )
-	        outputObj.push(rawParseObj[i]);
-	}
+	if (raidCheck=="Raid")
+		for (i=0;i<rawParseObj.length;i++)
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].raid==true )
+		        outputObj.push(rawParseObj[i]);
+	else
+		for (i=0;i<rawParseObj.length;i++)
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].raid==false )
+		        outputObj.push(rawParseObj[i]);	
 	
 /*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
@@ -825,9 +836,10 @@ $(document).on("click", '#jpOnly', function(e){
 })
 
 /*Craftable only*/
-$(document).on("click", '#craftableOnly', function(e){
+$(document).on("click", '.craftableOnly', function(e){
     e.preventDefault();
-    craftableRun();
+    alert($(this).text());
+    craftableRun($(this).text());
 })
 
 /*search*/
