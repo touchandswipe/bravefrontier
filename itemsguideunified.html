@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .btn {margin-bottom:5px;}
     .btnPad {margin-bottom:10px;}
     .bd {
         font-weight:bold;
@@ -70,7 +71,7 @@ if (window.location.hash == '#_=_') {
 <h3 style="margin-top:0px;">Brave Frontier Items Guide<span class="hidden-xs"> - Unified Global & Japan</span></h3>
 <div class="row"><div class="col-xs-12"><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Items:</b> <kbd id="unitCount">Pulling data ...</kbd></div></div>
 <h6 class="hidden-xs hidden-sm"><kbd id="lastModDateGL">TBD</kbd> <kbd id="lastModDateJP">TBD</kbd></h6>
-<div class="row"><div class="col-xs-12" style="margin:5px 0;">
+<div class="row"><div class="col-xs-12">
 <!-- items type button -->
 <div class="btn-group">
   <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Item type <span class="caret"></span>
@@ -132,7 +133,14 @@ if (window.location.hash == '#_=_') {
     <li><a href="#" class="skillEffect">unique elements required</a></li>
   </ul>
 </div>
-<button type="button" id="craftableOnly" class="btn btn-sm btn-info">Craftable</button>
+<!-- Craftable Raid nonRaid -->
+<div class="btn-group">
+	<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">Craftable <span class="caret"></span></button>
+  		<ul class="dropdown-menu" role="menu">
+  			<li><a href="#" class="craftableOnly">Raid</a></li>
+  			<li><a href="#" class="craftableOnly">Non-Raid</a></li>
+  		</ul>
+</div>
 <button type="button" id="jpOnly" class="btn btn-sm btn-danger">JP Only</button>
 </div></div>
 
@@ -147,7 +155,7 @@ if (window.location.hash == '#_=_') {
 
 <div class="row"><div class="col-xs-12">
 <!--Search by ingredient-->
-<div class="input-group" style="margin-top:8px;margin-bottom:8px;">
+<div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-success" type="button" id="searchIngredientBtn">Find Recipes by Ingredient</button></span>
         <input type="search" placeholder="e.g. ghost jewel (works for both English and JP items now)" class="form-control" id="searchIngredientBox">
@@ -463,7 +471,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable,"craftRaid":valObj.raid});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -631,19 +639,25 @@ function jpOnlyRun() {
 }
 
 /*craftable spheres*/
-function craftableRun() {
+function craftableRun(raidCheck) {
     var outputObj=[];
 	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    if ( rawParseObj[i]['craftable'] )
-	        outputObj.push(rawParseObj[i]);
+	if (raidCheck.toLowerCase()=="raid") {
+		for (i=0;i<rawParseObj.length;i++)
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==true )
+		        outputObj.push(rawParseObj[i])
+	}
+	else {
+		for (i=0;i<rawParseObj.length;i++)
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==false )
+		        outputObj.push(rawParseObj[i])
 	}
 	
 /*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.type < b.type)
-            return -1;
         if (a.type > b.type)
+            return -1;
+        if (a.type < b.type)
             return 1;
         return 0;
     });
@@ -825,9 +839,9 @@ $(document).on("click", '#jpOnly', function(e){
 })
 
 /*Craftable only*/
-$(document).on("click", '#craftableOnly', function(e){
+$(document).on("click", '.craftableOnly', function(e){
     e.preventDefault();
-    craftableRun();
+    craftableRun($(this).text());
 })
 
 /*search*/
