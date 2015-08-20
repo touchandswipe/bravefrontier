@@ -645,13 +645,13 @@ function craftableRun(raidCheck) {
 	if (raidCheck.toLowerCase()=="raid") {
 		alert("running raid check")
 		for (i=0;i<rawParseObj.length;i++)
-		    if ( rawParseObj[i]['craftable'] && rawParseObj[i].craftRaid=="true" )
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==true )
 		        outputObj.push(rawParseObj[i]);
 	}
 	else {
 		alert("running NON raid check")
 		for (i=0;i<rawParseObj.length;i++)
-		    if ( rawParseObj[i]['craftable'] && !rawParseObj[i].craftRaid=="false" )
+		    if ( rawParseObj[i]['craftable'] && rawParseObj[i]['craftRaid']==false )
 		        outputObj.push(rawParseObj[i]);	
 	}
 	
