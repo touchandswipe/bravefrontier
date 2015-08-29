@@ -180,6 +180,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"xturns buff", "skillref":["@", "first x turns", "!Turns"]},
         {"skillid":"ails", "skillref":["@"]},
         {"skillid":"ails resist", "skillref":["@"]}
+        {"skillid":"elemental reduction", "skillref":["!Reduce DMG (", "dmg% mitigation for elemental attacks", "!) from (", "@", "!) Enemy"]}
       ];
     /*parsing definiton for BB*/
     var skillParseObj=[
@@ -245,6 +246,7 @@ $.getJSON( serverSelect, function( unit ) {
     var lsailsResistArray=[{"skillid":"injury resist%", "suffix":"% Injury Resist "}, {"skillid":"weaken resist%", "suffix":"% Weak Resist "}, {"skillid":"sick resist%", "suffix":"% Sick Resist "}, {"skillid":"poison resist%", "suffix":"% Poison Resist "}, {"skillid":"paralysis resist%", "suffix":"% Para Resist "}, {"skillid":"curse resist%", "suffix":"% Curse Resist "}];
     var lsWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
     var bbWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
+    var lsElementalReductionArray=[{"skillid":"mitigate fire attacks", "suffix":"fire"}, {"skillid":"mitigate water attacks", "suffix":"water"}, {"skillid":"mitigate earth attacks", "suffix":"earth"}, {"skillid":"mitigate thunder attacks", "suffix":"thunder"}, {"skillid":"mitigate light attacks", "suffix":"light"}, {"skillid":"mitigate dark attacks", "suffix":"dark"}];
     var skillConnect=' / ';
     var bbArray=["bb","sbb","ubb"];
     var lsSplit=' - ';
@@ -382,6 +384,30 @@ $.getJSON( serverSelect, function( unit ) {
                           groupSTR="(ALL)"
                         else
                           groupSTR+=")"
+                    } /*End Grouping check*/
+                    
+                    /*Elemental Reduction check*/
+                    else if (skillSeek=="elemental reduction") {
+                      var elementCount=0;
+                      for (ix in lsElementalReductionArray) {
+                          $.each( valObj["leader skill"]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==lsElementalReductionArray[ix]["skillid"]) {
+                                if (elementCount>0)
+                                  groupSTR+=",";
+                                elementCount+=1;
+                                if (elementCount==1)
+                                  groupSTR+="("
+                                groupSTR+=lsElementalReductionArray[ix]["suffix"];
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (elementCount==6)
+                          groupSTR="(ALL)"
+                        else
+                          groupSTR+=")"
+                      groupSTR=groupSTR.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                     } /*End Grouping check*/
                     
                     /*Check collective xturns buff*/
