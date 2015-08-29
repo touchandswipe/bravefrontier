@@ -313,7 +313,7 @@ countVar=0; /*reset count*/
             		for (j in valObj["extra skill"].effects) {
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
             				if (exVal2 !== null && typeof exVal2 === 'object') {
-            					$.each(lsVal2, function(lowKey,lowVal) {
+            					$.each(exVal2, function(lowKey,lowVal) {
             						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
                 					exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
             					})
