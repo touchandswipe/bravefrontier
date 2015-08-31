@@ -151,7 +151,27 @@ if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/iPod/i)
   || navigator.userAgent.match(/BlackBerry/i)
   || navigator.userAgent.match(/Windows Phone/i))
-	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*ID Search*/
+function searchIDRun(searchID) {
+var outputHTML="";
+var outputArray=[];
+	for (i in deserialdata) {
+		if (parseFloat(deserialdata[i].id)==parseFloat(searchID)) {
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
+			break;
+		}
+	}
+	for (i in outputArray)
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Unit(s) with ID: <b>'+searchID+'</b></h4></div>'+outputHTML;
+$('#searchOutput').html(outputHTML);
+/*Google analytics*/
+ga('send', 'pageview', {
+	'page': '/vurl/unitsguideliteIDSearch',
+ 	'title': 'Brave Frontier PROs - Units Guide Lite ID Search'
+});
+}
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
@@ -640,6 +660,14 @@ function openCard(whatunit) {
 <!-- Mainbody -->
 <div class="container-fluid">
 <!--mainbody goes here-->
+<!--Search by id-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<div class="input-group input-group-lg" style="margin:10px auto 5px auto;">
+	        <span class="input-group-btn">
+	        <button class="btn btn-primary" type="button" id="searchIDBtn">By Unit ID</button></span>
+	        <input type="text" placeholder="e.g. 1100 or 500" class="form-control input-lg" id="searchIDBox" autocomplete="off">
+	</div>
+</div></div>
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
 	<div class="input-group input-group-lg" style="margin:5px auto;">
@@ -678,6 +706,18 @@ $(document).on("click", '#searchBtn', function(e){
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchNameRun($('#searchBox').val())
+  }
+})
+
+/*Update URL based on search view by ID*/
+$(document).on("click", '#searchIDBtn', function(e){
+	searchIDRun($('#searchIDBox').val())
+})
+
+/*Binds Enter KEY to ID BOX*/
+$( "#searchIDBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchIDRun($('#searchIDBox').val())
   }
 })
 
