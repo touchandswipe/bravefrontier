@@ -157,15 +157,14 @@ function searchIDRun(searchID) {
 var outputHTML="";
 var outputArray=[];
 	for (i in deserialdata) {
-		if (deserialdata[i].id=searchID) {
+		if (parseFloat(deserialdata[i].id)==parseFloat(searchID)) {
 			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
 			break;
 		}
 	}
-	for (i in outputArray) {
+	for (i in outputArray)
 		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
-	}
-outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Unit(s) with ID: '+searchID+' <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Unit(s) with ID: <b>'+searchID+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
 /*Google analytics*/
 ga('send', 'pageview', {
@@ -716,7 +715,7 @@ $(document).on("click", '#searchIDBtn', function(e){
 })
 
 /*Binds Enter KEY to ID BOX*/
-$( "#searchBox" ).keypress( function( event ) {
+$( "#searchIDBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
      searchIDRun($('#searchIDBox').val())
   }
