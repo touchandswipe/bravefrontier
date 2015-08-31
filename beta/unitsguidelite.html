@@ -3,22 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Units Guide Lite (Bonkers R1) - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier Units Guide Lite - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Units Guide Lite (Bonkers R2) by Brave Frontier PROs</title>
+    <title>Brave Frontier - Units Guide Lite by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .evolutionary {vertical-align:bottom;}
+    .evoDisp {line-height:140px;}
     #disqus_thread {
     	width:100%;
     	margin:0;
+    }
+    #artwork {padding-bottom:70px;}
+    .altArt {
+	top:10px;
+	position: absolute;
+	padding:5px 0px;
     }
     .loreBox {
 	bottom: 5px;
@@ -44,8 +52,8 @@
     .sbbtxt {color:#FFAA00;}
     .ubbtxt {color:#DD0000;}
     .imgShdw {
-        width:50px;
-        height:50px;
+        width:60px;
+        height:60px;
     }
     .imgFire {
         -webkit-filter: drop-shadow(0px 0px 5px #F00);
@@ -132,7 +140,7 @@
     </style>
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon4.js"></script>
 <script type="text/javascript">
@@ -143,7 +151,28 @@ if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/iPod/i)
   || navigator.userAgent.match(/BlackBerry/i)
   || navigator.userAgent.match(/Windows Phone/i))
-	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*ID Search*/
+function searchIDRun(searchID) {
+var outputHTML="";
+var outputArray=[];
+	for (i in deserialdata) {
+		if (deserialdata[i].id=searchID) {
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
+			break;
+		}
+	}
+	for (i in outputArray) {
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	}
+outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Unit(s) with ID: '+searchID+' <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
+$('#searchOutput').html(outputHTML);
+/*Google analytics*/
+ga('send', 'pageview', {
+	'page': '/vurl/unitsguideliteIDSearch',
+ 	'title': 'Brave Frontier PROs - Units Guide Lite ID Search'
+});
+}
 /*Search*/
 function searchNameRun(searchTxt) {
 var outputHTML="";
@@ -230,6 +259,7 @@ function initializeDB() {
   			displayKey: 'value',
   			source: aheadNameRead.ttAdapter()
 		});
+		$('#progressModal').modal('hide');
 	  }
 	})
 }/*End init fn*/
@@ -421,6 +451,10 @@ function openCard(whatunit) {
 	      } else {
 		  ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
 	      }
+		if (ovbfpronotes.search("#europe")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
+		if (ovbfpronotes.search("#korea")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
 	      if ( ovvideo != "" ) {
 		  ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      }
@@ -450,14 +484,18 @@ function openCard(whatunit) {
 		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
 	      }
 	      /*Raw data integration buttons*/
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
-		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") )
-			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Technical skills data.</span></td></tr>';
+		if (ovbfpronotes.search("#europe")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+		if (ovbfpronotes.search("#korea")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unitid='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> 한국</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Server specific stats / effects.</span></td></tr>';
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
@@ -480,8 +518,10 @@ function openCard(whatunit) {
 	      } else {
 		  ovHTML+='No further evo / No known materials';
 	      }
-	      ovHTML+='</td></tr><tr><td class="btn-default"></td>'
-	      +'<td class="btn-default" width="17%"><strong>HP</strong></td>'
+	      ovHTML+='</td></tr><tr><td class="btn-default">';
+	      if (ovJapan.toLowerCase()!='false')
+		ovHTML+='<kbd>JP stats</kbd>';
+	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>REC</strong></td>'
@@ -505,17 +545,30 @@ function openCard(whatunit) {
 	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>'
-		+'<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
+	      if (ovJapan.toLowerCase()!='false') {
+	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="recMod">'+ovrecguardian+'</td>'
-	      +'<td>&nbsp;</td></tr>'
-	      +'<tr><td class="active"><strong>Oracle</strong></td><td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td class="atkMod">'+ovatkoracle+'</td>'
-	      +'<td class="defMod">'+ovdeforacle+'</td>'
-		+'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
-	      +'<td>&nbsp;</td></tr>';
+		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+	      	ovHTML+='<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
+	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
+	      if (ovJapan.toLowerCase()!='false') {
+		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+		      ovHTML+='<td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="defMod">'+ovdeforacle+'</td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      }
+      	      ovHTML+='<td>&nbsp;</td></tr>';
+	      } /*End NOT LordOnly*/
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-" ) {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
@@ -567,7 +620,9 @@ function openCard(whatunit) {
 	ovHTML+='</td></tr></table>';
 	$('#unitCardHome').html(ovHTML);
 	/*Unit Art and Lore*/
-	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" style="padding-bottom:100px;"/>';
+	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" id="artwork"/>';
+	    if (ovdata2[0]['alt art']=="TRUE")
+	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
 	    if (ovdata2[0]['unit lore'] != "")
 	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
@@ -577,7 +632,7 @@ function openCard(whatunit) {
 	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
 	    for (i=0; i<evotrail.length;i++) {
 		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
-		evoTabHTML+='<img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif" height="140"/>';
+		evoTabHTML+='<div class="evoDisp"><img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i]['id']+'.gif"/></div>';
 		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitID" value="'+evotrail[i]['id']+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i]['id']+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
 	    }
 	    $('#evoTab').html(evoTabHTML+'</div>');
@@ -598,17 +653,6 @@ function openCard(whatunit) {
 	})
 } /*End openCard fn*/
 </script>
-
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48617906-1', 'auto');
-  ga('send', 'pageview');
-</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
@@ -616,23 +660,18 @@ function openCard(whatunit) {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Mainbody -->
 <div class="container-fluid">
-<div class="text-center" style="margin-bottom:5px;">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- NEWResponsiveBlog -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="1729026867"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-
 <!--mainbody goes here-->
+<!--Search by id-->
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
+	<div class="input-group input-group-lg" style="margin:5px auto;">
+	        <span class="input-group-btn">
+	        <button class="btn btn-primary" type="button" id="searchIDBtn">By Unit ID</button></span>
+	        <input type="text" placeholder="e.g. 1100 or 500" class="form-control input-lg" id="searchIDBox" autocomplete="off">
+	</div>
+</div></div>
 <!--Search-->
 <div class="row"><div class="col-xs-12 col-sm-12 col-md-12">
-	<div class="input-group input-group-lg" style="margin-bottom:5px;">
+	<div class="input-group input-group-lg" style="margin:5px auto;">
 	        <span class="input-group-btn">
 	        <button class="btn btn-primary" type="button" id="searchBtn">Search Unit</button></span>
 	        <input type="text" placeholder="e.g. elza or zellha" class="form-control input-lg" id="searchBox" autocomplete="off">
@@ -671,6 +710,18 @@ $( "#searchBox" ).keypress( function( event ) {
   }
 })
 
+/*Update URL based on search view by ID*/
+$(document).on("click", '#searchIDBtn', function(e){
+	searchIDRun($('#searchIDBox').val())
+})
+
+/*Binds Enter KEY to ID BOX*/
+$( "#searchBox" ).keypress( function( event ) {
+  if ( event.which == 13 ) {
+     searchIDRun($('#searchIDBox').val())
+  }
+})
+
 /*VideoModal*/
 $(document).on("click", ".videoBtn", function(e){
 	    e.preventDefault();
@@ -681,7 +732,12 @@ $(document).on("click", ".videoBtn", function(e){
 	    $('#vidEmbed').attr( 'src', vLink );
 	    $('#videoModal').modal('show');
 })
-	
+/*Alt Art*/
+$(document).on("click","#altArtBtn", function() {
+	var oldRef=$('#artwork').attr("src");
+	$('#artwork').attr("src",$('#altArtBtn').attr("data-value"));
+	$('#altArtBtn').attr("data-value",oldRef);
+})
 /*VideoModal Close Remove Video*/
 $('#videoModal').on('hide.bs.modal', function (e) {
     $('#vidEmbed').attr( 'src', '' );
@@ -727,7 +783,6 @@ $(document).on("click", "#pimpBtn", function(){
 });
 
 $(window).load(function() {
-	$('#progressModal').modal('hide');
 	/*check for card param for Unit*/
 	var idParam=urlParam('unit');
 	if (idParam != "") {
@@ -743,19 +798,21 @@ $(window).load(function() {
 });
 </script>
 
+<div class="text-center clear" style="width:100%;margin:3px auto;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
 <!-- Google Responsive Ad -->
-<div class="text-center clear" style="width:100%;margin:1px auto;">
-<!-- NEWResponsiveBlog -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="1729026867"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-<div class="text-center clear" style="width:100%;margin:1px auto;">
+<div class="text-center clear" style="width:100%;margin:3px auto;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -767,22 +824,18 @@ $(window).load(function() {
 </script>
 </div>
 
-<!--Chatroom-->
-<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
+<div class="text-center clear" style="width:100%;margin:3px auto;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 
-<!-- disqus discussion -->
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-	var disqus_shortname = 'bravefrontierpros';
-	var disqus_url = location.protocol + '//' + location.host + location.pathname;
-	(function() {
-	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div> <!-- /container -->
 
 <div id="bfp_foot"></div>
@@ -828,7 +881,7 @@ $(window).load(function() {
 	<ul class="nav nav-tabs" role="tablist">
 	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
 	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Lore / Art</a></li>
-	      <li class="hidden-xs"><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
+	      <li><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
 	</ul>
 <!-- Tab panes -->
 <div class="tab-content">
@@ -858,5 +911,17 @@ $(window).load(function() {
     </div>
   </div>
 </div>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--Chatroom-->
+<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
 </body>
 </html>
