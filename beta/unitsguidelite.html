@@ -161,12 +161,24 @@ var outputHTML="";
 var outputArray=[];
 	for (i in deserialdata) {
 		if (parseFloat(deserialdata[i].id)==parseFloat(searchID)) {
-			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element,"systemid":deserialdata[i].systemid});
+			/*ServerIMGREF*/
+			var ovServer="";
+			if (deserialdata[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (deserialdata[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (deserialdata[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (deserialdata[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element,"systemid":deserialdata[i].systemid,"ovServer":ovServer});
 			break;
 		}
 	}
 	for (i in outputArray)
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="'+outputArray[i].ovServer+bfPrefix.icon+outputArray[i].systemid+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Unit(s) with ID: <b>'+searchID+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
 /*Google analytics*/
