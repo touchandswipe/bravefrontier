@@ -404,7 +404,10 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 				for (i in valObj.effect.effect) {
 					$.each(valObj.effect.effect[i], function(lsKey2,lsVal2) {
 						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey2+"</span></div>";
-						effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal2+'</div></div>';
+						if (lsVal2 !== null && typeof lsVal2 === 'object')
+							effectSTR+='<div class="col-xs-8 col-md-8 bi">'+JSON.stringify(lsVal2)+'</div></div>';
+						else
+							effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal2+'</div></div>';
 					})
 					effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
 				}
