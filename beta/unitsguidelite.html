@@ -152,13 +152,16 @@ if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/BlackBerry/i)
   || navigator.userAgent.match(/Windows Phone/i))
 document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*Global Vars*/
+var bfServer={"gl":"http://2.cdn.bravefrontier.gumi.sg/content/","jp":"http://cdn.ios.brave.a-lim.jp/","kr":"http://d1dwwuvait5r4t.cloudfront.net/bf/v1.3.0/","eu":"http://static.bravefrontier.gumi-europe.net/content/"};
+var bfPrefix={"art":"unit/img/unit_ills_full_","icon":"unit/img/unit_ills_thum_"};
 /*ID Search*/
 function searchIDRun(searchID) {
 var outputHTML="";
 var outputArray=[];
 	for (i in deserialdata) {
 		if (parseFloat(deserialdata[i].id)==parseFloat(searchID)) {
-			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element,"systemid":deserialdata[i].systemid});
 			break;
 		}
 	}
@@ -179,11 +182,23 @@ var searchTxt=searchTxt.toLowerCase();
 var outputArray=[];
 	for (i in deserialdata) {
 		if (deserialdata[i].name.toLowerCase().search(searchTxt)!=-1) {
-			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element});
+			/*ServerIMGREF*/
+			var ovServer="";
+			if (deserialdata[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (deserialdata[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (deserialdata[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (deserialdata[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+			outputArray.push({"name":deserialdata[i].name,"id":deserialdata[i].id,"rarity":deserialdata[i].rarity,"element":deserialdata[i].element,"systemid":deserialdata[i].systemid,"ovServer":ovServer});
 		}
 	}
 	for (i in outputArray) {
-		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		outputHTML+='<div class="col-xs-2 col-sm-2 col-md-1 pad"><a href="#" class="unitID" value="'+outputArray[i].id+'"><img class="imgShdw img'+outputArray[i].element+'" title="'+outputArray[i].name+'" src="'+outputArray[i].ovServer+bfPrefix.icon+outputArray[i].systemid+'.png" /></a><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h4 class="text-success"><i class="fa fa-search"></i> Units matching search criteria: <b>'+outputArray.length+'</b></h4></div>'+outputHTML;
 $('#searchOutput').html(outputHTML);
@@ -229,7 +244,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','IconREF','Element' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Element','SystemID','BFPRO Notes','Japan Release','Global Release' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -386,6 +401,17 @@ function openCard(whatunit) {
 		}
 		  }
 	      }
+	      /*ServerIMGREF*/
+		if (ovJapan.toLowerCase()!='false')
+			ovServer=bfServer.jp;
+		else if (ovGlobal.toLowerCase()!='false')
+			ovServer=bfServer.gl;
+		else if (ovbfpronotes.search("#europe")!=-1)
+			ovServer=bfServer.eu;
+		else if (ovbfpronotes.search("#korea")!=-1)
+			ovServer=bfServer.kr;
+		else
+			ovServer=bfServer.jp;
 	      /*Sprite check*/
 	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
 	      $('#unitSpriteShow').attr('src',ovsprite);
@@ -408,7 +434,7 @@ function openCard(whatunit) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["iconref"]
+			'icon':deserialdata[i]["systemid"]
 			})
 		}
 	    }
@@ -421,10 +447,10 @@ function openCard(whatunit) {
 	    var evoUnitIdx=0;
 	    for(var i=0; i < evotrail.length; i++) {
 		if (evotrail[i].id==ovid) {
-		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+ovServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		    evoUnitIdx=i;
 		} else
-			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+evotrail[i]["icon"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="unitID" value="'+evotrail[i].id+'"><img src="'+ovServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 		/*insert caret for all but last*/
 		if (i < evotrail.length-1) {
 		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
@@ -432,7 +458,7 @@ function openCard(whatunit) {
 	    }
 	    /*Card HTML output*/
 	      var ovHTML = 
-	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" width="60"/></td>'
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovServer+bfPrefix.icon+ovdata2[0].systemid+'.png" width="60"/></td>'
 	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
 	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
 	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
@@ -619,11 +645,11 @@ function openCard(whatunit) {
 	ovHTML+='</td></tr></table>';
 	$('#unitCardHome').html(ovHTML);
 	/*Unit Art and Lore*/
-	    var artLoreHTML='<img src="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'.png" class="img-responsive center-block" id="artwork"/>';
+	    var artLoreHTML='<img src="'+ovServer+bfPrefix.art+ovdata2[0].systemid+'.png" class="img-responsive center-block" id="artwork"/>';
 	    if (ovdata2[0]['alt art']=="TRUE")
-	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="//googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit'+ovicon+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
+	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="'+ovServer+bfPrefix.art+ovdata2[0].systemid+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
 	    if (ovdata2[0]['unit lore'] != "")
-	    	artLoreHTML+='<div class="loreBox"><h4><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+ovicon+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovServer+bfPrefix.icon+ovdata2[0].systemid+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
 	    $('#unitimageacc').html(artLoreHTML);
 	    /*Evolutionary Generation*/
 	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
