@@ -1004,10 +1004,10 @@ function initialize(fusionData) {
 		  }
 	      }
 	      /*ServerIMGREF*/
-		if (ovGlobal.toLowerCase()!='false')
-			ovServer=bfServer.gl;
-		else if (ovJapan.toLowerCase()!='false')
+		if (ovJapan.toLowerCase()!='false')
 			ovServer=bfServer.jp;
+		else if (ovGlobal.toLowerCase()!='false')
+			ovServer=bfServer.gl;
 		else if (ovbfpronotes.search("#europe")!=-1)
 			ovServer=bfServer.eu;
 		else if (ovbfpronotes.search("#korea")!=-1)
