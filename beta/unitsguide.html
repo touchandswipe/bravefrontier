@@ -14,6 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .listIcon {width:40px;height:40px;}
     .evolutionary {vertical-align:bottom;}
     .evoDisp {line-height:140px;}
     table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting:after {
@@ -22,6 +23,7 @@
 	right:2px;
 	top:2px;
     }
+    table.dataTable td {font-size:9pt;}
     #artwork {padding-bottom:70px;}
     .altArt {
 	top:10px;
@@ -428,7 +430,7 @@ function initialize(fusionData) {
 				cServer=bfServer.eu;
 			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("korea")!=-1)
 				cServer=bfServer.kr;
-			return '<a href="#" class="favIconLink" data-value="'+imgID+'">'+'<img src="'+cServer+bfPrefix.icon+cRow[fusionData.columns.indexOf("SystemID")]+'.png" width="35" height="35" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+			return '<a href="#" class="favIconLink" data-value="'+imgID+'">'+'<img src="'+cServer+bfPrefix.icon+cRow[fusionData.columns.indexOf("SystemID")]+'.png" class="listIcon" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
 		    }
 		},
 		/*Rarity*/
