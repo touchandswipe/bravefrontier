@@ -812,7 +812,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]['id']+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]["id"]+'"><img src="'+bfServer[drawObj[i]["server"]]+bfPrefix.icon+drawObj[i]["systemid"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -837,12 +837,24 @@ function initialize(fusionData) {
 	for (var i=0;i < deserialdata.length;i++) {
 	    for (var j=0;j < unitIdArray.length;j++) {
 		if (deserialdata[i]['id']==unitIdArray[j]) {
+			var ovServer="";
+			if (deserialdata[i]['japan release'].toLowerCase()!='false')
+				ovServer="jp";
+			else if (deserialdata[i]['global release'].toLowerCase()!='false')
+				ovServer="gl";
+			else if (deserialdata[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer="eu";
+			else if (deserialdata[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer="kr";
+			else
+				ovServer="jp";
 		    unitObj.push({
 				'id':deserialdata[i]["id"],
 				'rarity':deserialdata[i]["rarity"],
 				'element':deserialdata[i]["element"],
 				'name':deserialdata[i]["name"],
-				'icon':deserialdata[i]["iconref"]
+				'systemid':deserialdata[i]["systemid"],
+				'server':ovServer
 		    });
 		    break;
 		}
