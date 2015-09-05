@@ -812,7 +812,7 @@ function initialize(fusionData) {
 	var favHTML="";
 	/*Push HTML via OBJ of favourites*/
 	for (var i=0;i<drawObj.length;i++) {
-	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]['id']+'"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+drawObj[i]["icon"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]["id"]+'"><img src="'+bfServer[drawObj[i]["server"]]+bfPrefix.icon+drawObj[i]["systemid"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
 	}
 	$('#favIconDisplay').html(favHTML);
     }
@@ -837,12 +837,24 @@ function initialize(fusionData) {
 	for (var i=0;i < deserialdata.length;i++) {
 	    for (var j=0;j < unitIdArray.length;j++) {
 		if (deserialdata[i]['id']==unitIdArray[j]) {
+			var ovServer="";
+			if (deserialdata[i]['japan release'].toLowerCase()!='false')
+				ovServer="jp";
+			else if (deserialdata[i]['global release'].toLowerCase()!='false')
+				ovServer="gl";
+			else if (deserialdata[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer="eu";
+			else if (deserialdata[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer="kr";
+			else
+				ovServer="jp";
 		    unitObj.push({
 				'id':deserialdata[i]["id"],
 				'rarity':deserialdata[i]["rarity"],
 				'element':deserialdata[i]["element"],
 				'name':deserialdata[i]["name"],
-				'icon':deserialdata[i]["iconref"]
+				'systemid':deserialdata[i]["systemid"],
+				'server':ovServer
 		    });
 		    break;
 		}
@@ -3418,8 +3430,6 @@ $(window).load(function() {
     </div>
   </div>
 </div>
-
-<!--Chatroom-->
-<script id="cid0020000086379742651" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}</script>
+<script id="cid0020000102423981299" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 500px;height: 500px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":500,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
