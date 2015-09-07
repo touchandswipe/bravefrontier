@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="if:Show Recent Units" content="0"/>
+    <meta name="if:Show Ally Hook Up" content="0"/>
     <meta charset="utf-8">
     <meta name="google-site-verification" content="soHOueVFa6Fdfrzl63wozlgkt57G23kq_i5PdonwJXc" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -18,7 +20,10 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
 <style type="text/css">
-#tumblr_controls {display:none;}
+*[id^='twitter-widget-'] {width:100% !important;}
+/*#tumblr_controls {width:160px;}*/
+.tumblr_controls.sticky {top: 48px;}
+.tumblr_audio_player {width:1px !important;min-width:100%;height:auto;};
 .clearit:before, .clearit:after { content: ""; display: table; }
 .clearit:after { clear: both; }
 .clearit { *zoom: 1; }
@@ -82,8 +87,8 @@ body {
 li {
     margin-bottom:7px;
 }
-ul {
-    padding-left:20px;
+ul,ol {
+    padding-left:25px;
 }
 #spacer { height:50px; }
 {block:Permalink}
@@ -131,7 +136,7 @@ ul {
     }
     .author {
         margin:15px 0 5px -15px;
-        font-size:14pt;
+        font-size:12pt;
         color:#999;
         clear:both;
     }
@@ -157,35 +162,54 @@ ul {
     h2 {
         font-size:14pt;
         margin-top:5px;
+        text-align:center;
+        font-weight: bold;
+        color: #3DA;
     }
     .gamenews {
         position: relative;
         padding-bottom: 140%;
         padding-top: 0px;
         height: 0;
-        border:5px solid #FFF;
+        border:5px solid #333;
         background:#000;
         overflow: hidden;
         margin-bottom:24px;
         border-radius:8px;
         box-shadow: 0px 1px 4px #666;
+        text-align:center;
+    }
+    .gamenews a {
+        width: 45%;
+        display: inline-block;
+        text-align: center;
+        padding: 5px;
+        background: #888;
+        margin:10px 5px;
+        text-decoration:none;
+        border-radius: 5px;
+        font-weight:bold;
+        color:#FFF;
+    }
+    .gamenews a:hover {
+        background:#4BA;
+        text-decoration:none;
     }
     .gamenews h5 {
         display: block;
         clear: both;
-        color: #90C;
-        text-shadow:1px 1px 5px #C9F;
+        color: #FFF;
+        text-shadow:2px 2px 8px #F0F;
         text-align: center;
-        background: #FFF;
-        padding: 10px;
-        margin-top: 0px;
-        font-weight: bold;
+        background: #333;
+        padding: 8px;
+        margin:0px;
     }
     .gamenews iframe {
         display:block;
         position: absolute;
         width: 125%;
-        height: 125%;
+        height: 100%;
         overflow:hidden;
         border:0;
         -webkit-transform: scale(0.8,0.8);
@@ -195,12 +219,12 @@ ul {
         -o-transform: scale(0.8,0.8);
         -o-transform-origin: 0 0;
     }
-    .readmore {
+    .readmore, .read_more {
         text-align: center;
         padding: 5px 10px;
         margin: 15px;
         border: 1px solid #CCC;
-        background:#FFF;
+        background:#FFD;
         border-radius: 10px;
         font-weight:bold;
         display:block;
@@ -212,17 +236,79 @@ ul {
     	margin: 10px auto 10px auto;
     	min-height:300px;
     }
-    /*styles for recent units*/
+    #pagenav {
+        width:100%;
+        margin:5px auto 5px auto;
+        font-size:20px;
+        font-family:"Quicksand",sans-serif;
+        text-align:center;
+        vertical-align:middle;
+    }
+    #pagenav .navBtns {
+        display:inline-block;
+        height:50px;
+        padding: 10px;
+        margin: 0px 5px;
+        font-weight:bold;
+    }
+    #pagenav .jump_page {
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FFF;
+        padding: 10px;
+        margin: 0px 5px;
+    }
+    #pagenav .current_page {
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border:1px solid #CCC;
+        font-weight:bold;
+        background:#FE0;
+        padding: 10px;
+        margin: 0px 5px;
+    }
+{block:IfShowAllyHookUp}
+    #allyhookup {
+        margin: 0px 6px;
+        text-align:center;
+        box-shadow: 0px 1px 2px #444;
+    }
+    #allyhookupJP {
+        background: rgba(255,0,80,0.6);
+    }
+    #allyhookupEU {
+        background: rgba(60,220,30,0.6);
+    }
+    #allyhookupGL {
+        background: rgba(0,125,255,0.6);
+    }
+    #allyhookup a {
+        color:#FFF;
+        line-height: 26pt;
+        display:block;
+        font-size:11pt;
+        text-shadow: 1px 1px #888;
+    }
+    #allyhookup a:hover {
+        text-decoration:none;
+    }
+{/block:IfShowAllyHookUp}
+{block:IfShowRecentUnits}
+/*styles for recent units*/
     .unitBox {
         opacity:0;
-        -moz-transition: opacity 2s ease-in;
-        -webkit-transition: opacity 2s ease-in;
-        -o-transition: opacity 2s ease-in;
-        transition: opacity 2s ease-in;
+        -moz-transition: opacity 1s ease-in;
+        -webkit-transition: opacity 1s ease-in;
+        -o-transition: opacity 1s ease-in;
+        transition: opacity 1s ease-in;
     }
     .imgShdw {
         width:70%;
-        min-width:38px;
+        min-width:44px;
         height:auto;
         padding: 3px 0px 10px;
     }
@@ -262,41 +348,6 @@ ul {
     	bottom:5px;
     	left:16px;
     }
-    #pagenav {
-        width:100%;
-        margin:5px auto 5px auto;
-        font-size:20px;
-        font-family:"Quicksand",sans-serif;
-        text-align:center;
-        vertical-align:middle;
-    }
-    #pagenav .navBtns {
-        display:inline-block;
-        height:50px;
-        padding: 10px;
-        margin: 0px 5px;
-        font-weight:bold;
-    }
-    #pagenav .jump_page {
-        display:inline-block;
-        width:50px;
-        height:50px;
-        border:1px solid #CCC;
-        font-weight:bold;
-        background:#FFF;
-        padding: 10px;
-        margin: 0px 5px;
-    }
-    #pagenav .current_page {
-        display:inline-block;
-        width:50px;
-        height:50px;
-        border:1px solid #CCC;
-        font-weight:bold;
-        background:#FE0;
-        padding: 10px;
-        margin: 0px 5px;
-    }
     #recentUnitsjp {
         padding-right:5px;
         background: rgba(255,0,136,0.1);
@@ -334,11 +385,7 @@ ul {
     #recentUnits h5 {
     	margin-bottom:5px;
     }
-    .partners {
-        margin-bottom: 8px;
-        -webkit-filter: drop-shadow(0px 0px 2px #FFF);
-        filter: drop-shadow(0px 0px 2px #FFF);
-    }
+{/block:IfShowRecentUnits}
     .author {
         margin:5px 0 5px -12px;
         font-size:12px;
@@ -364,6 +411,11 @@ ul {
         box-shadow: 1px 1px 5px #666;
     }
 {/block:IndexPage}
+.partners {
+    margin-bottom: 8px;
+    -webkit-filter: drop-shadow(0px 0px 2px #FFF);
+    filter: drop-shadow(0px 0px 2px #FFF);
+}
 .adbox {
     margin:10px 0px;
 }
@@ -397,6 +449,7 @@ ul {
     text-transform: lowercase;
     border-top:1px dotted #CCC;
     margin-top: 8px;
+    line-height: 13px;
 }
 .tags a {
     border:0;
@@ -475,12 +528,13 @@ ul {
     border:0;
     border-radius: 0 0 8px 8px;
 	background:#FFF;
-	margin: 0px 15px 25px 15px;
-	box-shadow: 0px 1px 4px #666;
+	margin: 0px 10px 20px 10px;
+	box-shadow: 0px 0px 8px -1px #666;
 	overflow:visible;
 }
 .griditem .griditem-text {
     padding:3px 8px 10px;
+    border-radius: 0 0 8px 8px;
     font-size:13px;
     clear:both;
     background: rgb(255,255,255); /* Old browsers */
@@ -498,17 +552,17 @@ ul {
     margin:5px 10px 10px;
     border-left: 4px solid #FEB;
 }
-@media screen and (max-width: 630px){
+@media screen and (max-width: 480px){
 	#grid[data-columns]::before {
 		content: '1 .column.size-1of1';
 	}
 }
-@media screen and (min-width: 631px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
 	#grid[data-columns]::before {
 		content: '2 .column.size-1of2';
 	}
 }
-@media screen and (min-width: 901px) and (max-width: 1280px) {
+@media screen and (min-width: 769px) and (max-width: 1280px) {
 	#grid[data-columns]::before {
 		content: '3 .column.size-1of3';
 	}
@@ -546,11 +600,11 @@ ul {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	top: 50px;
+	top: 0;
 	left: 0;
 	background: rgba(255,195,145,0.95);
 	z-index:199;
-	padding:15px;
+	padding:65px 15px 50px 15px;
 	overflow:auto;
 }
 .close {
@@ -647,17 +701,26 @@ ul {
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-{block:IndexPage}
+{block:IfShowRecentUnits}{block:IndexPage}
 <script type="text/javascript">
-function getRecentUnits(serverShortName) {
+function getRecentUnits(serverShortName,prevMth) {
+var bfServer={"gl":"http://2.cdn.bravefrontier.gumi.sg/content/","jp":"http://cdn.ios.brave.a-lim.jp/"};
+var bfPrefix="unit/img/unit_ills_thum_";
 var gURL = 'https://www.googleapis.com/fusiontables/v2/query';
 var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
-var gTable = '1mt1vs-NCjdnl__v2Ik8Z2yNdidm2ayQlVobJatcf';
+var gTable = '1oPbzBF3Ru1fLmINUkI4LjrYTroqFRzP61FM6GkiJ';
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var d = new Date();
-var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+serverShortName;
-  var query = "SELECT ID,Name,Rarity,Element FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '"+recentMonthStr+"'" + " ORDER BY 'ID' ASC";
-  var encodedQuery = encodeURIComponent(query);
+if (prevMth)
+    if (d.getMonth()!=0)
+        var loadMth=d.getMonth()-1;
+    else
+        var loadMth=11;
+else
+    var loadMth=d.getMonth();
+var recentMonthStr="#"+ monthNames[loadMth].toLowerCase()+d.getFullYear()+serverShortName;
+var query = "SELECT 'ID','Name','Rarity','Element','SystemID' FROM " + gTable + " WHERE 'BFPRO Notes' CONTAINS '"+recentMonthStr+"'" + " ORDER BY 'ID' ASC";
+var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
   url.push('?sql=' + encodedQuery);
@@ -671,23 +734,25 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
         var outputHTML="";
 		var outputArray=[];
 		for (i in fusionData.rows) {
-			outputArray.push({"id":fusionData.rows[i][fusionData.columns.indexOf('ID')],"rarity":fusionData.rows[i][fusionData.columns.indexOf('Rarity')],"name":fusionData.rows[i][fusionData.columns.indexOf('Name')],"element":fusionData.rows[i][fusionData.columns.indexOf('Element')]});
+			outputArray.push({"id":fusionData.rows[i][fusionData.columns.indexOf('ID')],"rarity":fusionData.rows[i][fusionData.columns.indexOf('Rarity')],"name":fusionData.rows[i][fusionData.columns.indexOf('Name')],"element":fusionData.rows[i][fusionData.columns.indexOf('Element')],"systemid":fusionData.rows[i][fusionData.columns.indexOf('SystemID')]});
 		}
 		for (i in outputArray) {
-			outputHTML+='<div class="unitBox col-xs-2 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguidelite?unit='+outputArray[i].id+'" title="'+outputArray[i].name+'" target="unitsguide"><img class="imgShdw img'+outputArray[i].element+'" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+outputArray[i].id+'.png"/><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></a></div>';
+			outputHTML+='<div class="unitBox col-xs-2 col-sm-2 col-md-2 col-lg-1"><a href="http://touchandswipe.github.io/bravefrontier/unitsguidelite?unit='+outputArray[i].id+'" title="'+outputArray[i].name+'" target="unitsguide"><img class="imgShdw img'+outputArray[i].element+'" src="'+bfServer[serverShortName]+bfPrefix+outputArray[i].systemid+'.png"/><div class="rShow"><kbd class="kdb-r"><b>'+outputArray[i].rarity+'</b><i class="fa fa-star small"></i></kbd></div></a></div>';
 		}
 		if (serverShortName=="jp")
 		    var longName="Japan"
         else
             var longName="Global";
-        if (outputArray.length==0)
-            outputHTML=""
+        if (outputArray.length==0) {
+            outputHTML='<div class="col-xs-12 col-sm-12 col-md-12 text-center"><h5><i class="fa fa-info-circle"></i> No '+longName+' units in '+monthNames[loadMth]+'. <a href="#" class="loadPrev" data-server="'+serverShortName+'">Load previous month.</a></h5></div>';
+            $('#recentUnits'+serverShortName).html(outputHTML);
+	    }
         else {
-		    outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-search"></i> '+outputArray.length+' '+longName+' new unit(s) in '+monthNames[d.getMonth()]+' '+d.getFullYear()+'</h5></div>'+outputHTML;
+		    outputHTML='<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-search"></i> '+outputArray.length+' '+longName+' new unit(s) in '+monthNames[loadMth]+' '+d.getFullYear()+'</h5></div>'+outputHTML;
 		    $('#recentUnits'+serverShortName).html(outputHTML);
-		    /*trigger event*/
-        	$(".imgShdw").on("load",function() {
-                $(this).css("opacity",1)
+	    	$('.imgShdw').on('load', function(e) {
+        	    e.preventDefault();
+                $(this).css("opacity",1);
                 $(this).parents('.unitBox').css("opacity",1)
             }).each(function() {
                 if(this.complete)
@@ -698,7 +763,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 	});
 }
 </script>
-{/block:IndexPage}
+{/block:IndexPage}{/block:IfShowRecentUnits}
 </head>
 <!-- MAIN BODY CONTENT -->
 <body>
@@ -708,7 +773,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
         <div class="pull-left">
           <a class="headerC" href="{BlogURL}"><img src="{PortraitURL-128}" class="img-circle logo"/>{Title}</a>
         </div>
-        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">Menu</div><span></span></a></div>
+        <div class="pull-right"><a id="nav-toggle" href="#"><div class="menuC hidden-xs">More Guides</div><span></span></a></div>
       </div>
     </div>
 
@@ -719,7 +784,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 	        <div class="col-xs-12 col-sm-12">
     	        <!--Search-->
     	        <form id="newsearch" action="/search" method="get">
-                    <div class="input-group" style="margin-bottom:10px;">
+                    <div class="input-group input-group-lg" style="margin-bottom:10px;">
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">Search</button></span>
                             <input type="text" name="q" placeholder="e.g. maxwell or grahdens" class="form-control">
@@ -736,7 +801,23 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 </div>
 <div id="spacer"></div>
 <!--Main News from Tumblr-->
-{block:IndexPage}
+{block:IfShowAllyHookUp}{block:IndexPage}
+<!--Allies-->
+<div class="container-fluid" id="allyhookup">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupJP"><a href="http://bravefrontierpros.tumblr.com/findalliesJP"><i class="fa fa-user-plus"></i> Find allies - Japan (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesJP">0</span>)</a></div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupEU"><a href="http://bravefrontierpros.tumblr.com/findalliesEU"><i class="fa fa-user-plus"></i> Find allies - Europe (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesEU">0</span>)</a></div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row" id="allyhookupGL"><a href="http://bravefrontierpros.tumblr.com/findalliesGL"><i class="fa fa-user-plus"></i> Find allies - Global (<span class="disqus-comment-count" data-disqus-url="http://bravefrontierpros.tumblr.com/findalliesGL">0</span>)</a></div>
+        </div>
+    </div>
+</div>
+{/block:IndexPage}{/block:IfShowAllyHookUp}
+{block:IfShowRecentUnits}{block:IndexPage}
 <!--Recent Units-->
 <div class="container-fluid" id="recentUnitsTop">
     <div class="row" id="recentUnits">
@@ -748,18 +829,22 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
         </div>
     </div>
 </div>
-{/block:IndexPage}
+{/block:IndexPage}{/block:IfShowRecentUnits}
 <!--Top Ad-->
 <div class="text-center adbox">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <div id="google-ads-1"></div>
-<script type="text/javascript">
+<script type="text/javascript"> 
+ 
     /* Calculate the width of available ad space */
     ad = document.getElementById('google-ads-1');
+ 
     if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
     } else {
-        adWidth = ad.offsetWidth; // for old IE 
+	adWidth = ad.offsetWidth; // for old IE 
     }
+ 
     /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
     google_ad_client = "ca-pub-2145833818900192";
  
@@ -783,6 +868,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
       google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
     else
       google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
     document.write (
      '<ins class="adsbygoogle" style="display:inline-block;width:' 
       + google_ad_size[0] + 'px;height:' 
@@ -790,10 +876,10 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
       + google_ad_client + '" data-ad-slot="' 
       + google_ad_slot + '"></ins>'
     );
+  
     (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
+</script>
 </div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 {block:IndexPage}
 <div id="mainnews" class="container-fluid">
@@ -808,14 +894,18 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 
 <!--Twitter combined-->
 {block:IndexPage}
+<!--<div class="griditem" style="box-shadow:none;background:none;">
+<a class="twitter-timeline" href="https://twitter.com/search?q=-%40LeonZai%20from%3Abravefrontiergl" data-chrome="nofooter" data-theme="dark" data-tweet-limit="3" data-widget-id="584887335843532803">Tweets about -@LeonZai from:bravefrontiergl</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+</div>-->
 <div class="griditem" style="box-shadow:none;background:none;">
-<a class="twitter-timeline" width="100%" data-theme="dark" data-tweet-limit="3" data-chrome="nofooter" data-show-replies="false" href="https://twitter.com/bravefrontiergl" data-widget-id="518020127548137473">Tweets by @bravefrontiergl</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<a class="twitter-timeline" width="100%" data-theme="dark" data-tweet-limit="3" data-chrome="nofooter" href="https://twitter.com/brave_pr" data-widget-id="518192974920835072">Tweets by @brave_pr</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+<a class="twitter-timeline" data-theme="dark" data-tweet-limit="3" data-chrome="nofooter" href="https://twitter.com/brave_pr" data-widget-id="518192974920835072">Tweets by @brave_pr</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
 </div>
 <div class="griditem" style="box-shadow:none;background:none;margin-bottom:20px;">
     <div class="gamenews">
-        <h5>GLOBAL IN-GAME NEWS</h5>
-        <iframe src="http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php" sandbox="allow-scripts"></iframe>
+        <h5>IN-GAME NEWS</h5>
+        <a href="#" class="loadIG">Global</a>
+        <a href="#" class="loadIG">Japan</a>
+        <iframe id="igNews" src="http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php" sandbox="allow-scripts"></iframe>
     </div>
 </div>
 {/block:IndexPage}
@@ -897,14 +987,11 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
                     </div>
         {/block:Chat}
         {block:Audio}
+                    {AudioEmbed}
+                    {block:PlayCount}<div class="griditem-text" style="text-align:right;"><i class="fa fa-music"></i> Played <b>{PlayCount}</b>x</div>{/block:PlayCount}
                 <div class="author">
                     <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-30}"/></a> <a class="authorlink" href="{PostAuthorURL}">{PostAuthorName}</a> on {DayOfMonth}{DayOfMonthSuffix} {ShortMonth}'{ShortYear}
                 </div>
-                <div class="griditem-text">
-                    {block:TrackName}<a href="{Permalink}"><h2>{TrackName}</h2></a>{/block:TrackName}
-                </div>
-                    {block:AlbumArt}<img src="{AlbumArtURL}"/>{/block:AlbumArt}
-                    {AudioEmbed-400}
                 <div class="griditem-text">
                     {block:Caption}{Caption}{/block:Caption}
         {/block:Audio}
@@ -959,7 +1046,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
                 <div class="aboutdiv">
                     {block:IndexPage}
                     <div class="commentdiv">
-                        <a href="{Permalink}"><span class="disqus-comment-count" data-disqus-url="{Permalink}">0</span> <i class="fa fa-comment"></i></a>
+                        <a href="{Permalink}"><span class="disqus-comment-count" data-disqus-url="{Permalink}"></span> <i class="fa fa-comment"></i></a>
                     </div>
                     {/block:IndexPage}
                     <div class="liketextdiv">
@@ -997,9 +1084,9 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 {/block:PermalinkPage}
         </div>
 </div> <!-- end grid item -->
-{/block:Posts}
 
-{block:IndexPage}
+{block:Post5}
+<!-- ads -->
 <div class="griditem" style="box-shadow:none;background:none;">
     <div style="text-align:center;">
     <!-- BFP 300w Ad -->
@@ -1012,11 +1099,14 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
     </script>
     </div>
 </div>
+{/block:Post5}
+{/block:Posts}
+
+{block:IndexPage}
 <!--closures for news-->
 	</div> 
 </div>
 {/block:IndexPage}
-
 
 
 {block:PermalinkPage}
@@ -1036,48 +1126,15 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 {/block:PermalinkPage}
 <!--Bottom Ad-->
 <div class="text-center adbox">
-<div id="google-ads-1"></div>
-<script type="text/javascript"> 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-1');
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
 
 {block:IndexPage}
@@ -1112,13 +1169,14 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 		    <a href="http://gumi.sg/games/brave-frontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialgumibf.jpg" class="img-responsive partners" title="Official gumi asia"></a>
 		    <a href="http://forums.gumi.sg/forum/brave-frontier" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_officialforums.jpg" class="img-responsive partners" title="Official Brave Frontier Forums by gumi"></a>
 		    <a href="http://appinvasion.com/forums/Brave-Frontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_ai.png" class="img-responsive partners" title="App Invasion - Brave Frontier"></a>
-		    <a href="http://www.reddit.com/r/bravefrontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_subreddit.gif" class="img-responsive partners" title="Subreddit - Brave Frontier"></a>
+		    <!--<a href="http://www.reddit.com/r/bravefrontier/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_subreddit.gif" class="img-responsive partners" title="Subreddit - Brave Frontier"></a>-->
 		    <a href="http://www.bravefrontierforum.net/" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_bff.png" class="img-responsive partners" title="Brave Frontier Forum - Unofficial"></a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
             <h3>Partner YouTubers</h3>
             <a href="http://www.youtube.com/user/protoscope7" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_protoscope.jpg" class="img-responsive partners" title="Protoscope Gaming Channel"></a>
-            <a href="http://www.youtube.com/user/MilkoLicious" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_milko.jpg" class="img-responsive partners" title="Milko Gaming Videos"></a>
+            <!--<a href="http://www.youtube.com/user/MilkoLicious" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_milko.jpg" class="img-responsive partners" title="Milko Gaming Videos"></a>-->
+            <a href="https://www.youtube.com/user/ClamSoupify" target="_blank"><img src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/banner_supermetaparade.png" class="img-responsive partners" title="Brave Frontier - Super Meta Parade (Clam)"></a>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-4">
             <h3>Follow me</h3>
@@ -1154,6 +1212,20 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
     	    $('#overlayC').removeClass('open');
         	$('#overlayC').addClass('close');
         }
+    });
+    
+    $('#recentUnitsTop').on('click', '.loadPrev', function(e) {
+        e.preventDefault();
+        var dServer=$(this).attr('data-server');
+        getRecentUnits(dServer,true)
+    })
+    
+    $('.gamenews').on('click', '.loadIG', function(e) {
+        e.preventDefault();
+        if ($(this).text()=="Global")
+            $('#igNews').attr('src',"http://android.bravefrontier.gumi.sg/bf/web/notice/indexCtrl.php");
+        else
+            $('#igNews').attr('src',"http://notice.ios.brave.a-lim.jp/php/web/notice/indexCtrl.php");
     })
 
     $(document).ready(function() {
@@ -1165,10 +1237,10 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
         }, function() {
             $(this).animate({opacity:1});
         });
-        {block:IndexPage}
-        getRecentUnits("jp");
-        getRecentUnits("gl");
-    	{/block:IndexPage}
+        {block:IfShowRecentUnits}{block:IndexPage}
+        getRecentUnits("jp",false);
+        getRecentUnits("gl",false);
+    	{/block:IndexPage}{/block:IfShowRecentUnits}
     })
 </script>
 {block:IndexPage}
@@ -1185,6 +1257,7 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
     </script>
     {/block:IfDisqusShortname}
 {/block:IndexPage}
+<script id="cid0020000102424005230" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 500px;height: 500px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":500,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1194,9 +1267,6 @@ var recentMonthStr="#"+ monthNames[d.getMonth()].toLowerCase()+d.getFullYear()+s
 
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
-</script>
-<!--Chatroom-->
-<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();
 </script>
 </body>
 </html>
