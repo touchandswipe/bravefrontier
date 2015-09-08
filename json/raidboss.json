@@ -806,6 +806,28 @@
       "RC5M11"
     ]
   },
+"Beiorg": {
+    "id": "30",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "thunder",
+        "weakails": "injury,weak"
+      },
+      {
+        "partname": "Bottom",
+        "element": "thunder",
+        "weakails": "poison,para"
+      }
+    ],
+    "drops": {
+        "雷鎧の護甲": {"Eng":"Beiorg Armor","icon":"item_thum_1103.png"},
+        "雷鎧の煌核": {"Eng":"Beiorg Core","icon":"item_thum_703.png"}
+      },
+    "missions": [
+      "RC6M2"
+    ]
+  },
 "Centurion": {
     "id": "804",
     "bodyparts": [
