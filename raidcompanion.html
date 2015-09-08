@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .bossInfo {padding:0 10px;}
     .bossimages {height:150px;width:auto;}
     .shdw_Icon {width:40px;height:40px;border-radius:5px;margin-right: 5px;}
     .pBodyBoss {padding: 0 0 15px 0;}
@@ -930,7 +931,7 @@ function buildDB(boss) {
     				+'<img src="https://googledrive.com/host/0B4hJr8BXxvFZYWk3VkdtcGNvTjg/boss_'+bossObj.id+'.gif" class="bossimages" />'
     			+'</div>'
     			+'<div class="col-xs-12 col-sm-9 col-lg-10">'
-    				+'<div class="row">'
+    				+'<div class="row bossInfo">'
     					+'<h3 style="margin-top:0px;"><b>'+bossKey+'</b><small> - '+bossObj.bodyparts.length+' Part(s)</small> <button type="button" class="btn btn-sm btn-info btnSpace showBossMissions" value="'+bossKey+'"><i class="fa fa-search"></i> Show Missions</button> </h3>';
     					if (bossObj["boss notes"])
     						bossSTR+='<h6><b>Notes: </b>'+bossObj["boss notes"]+'</h6>';
