@@ -828,6 +828,26 @@
       "RC6M2"
     ]
   },
+"Barbatos": {
+    "id": "28",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "fire",
+        "weakails": "injury,weak,sick"
+      }
+    ],
+    "drops": {
+        "暴斧の欠刃": {"Eng":"","icon":"item_thum_1104.png"},
+        "狂戦士の思念": {"Eng":"","icon":"item_thum_705.png"}
+      },
+    "missions": [
+      "RC1TOL1",
+      "RC3TOL1",
+      "RC5TOL1"
+    ],
+    "boss notes":"DO NOT use raid buff items e.g. ATK/DEF items. Will instant wipe teams. Use Fire Resist leads like Zerafalgar, Signas together with Iris in team, DEF buff and ailments to survive."
+  },
 "Centurion": {
     "id": "804",
     "bodyparts": [
