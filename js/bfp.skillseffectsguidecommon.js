@@ -318,7 +318,12 @@ countVar=0; /*reset count*/
 	            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
 	                					exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
 	            					})
-                			} else if (exKey2=="conditions") {
+                			} else if (exVal2 !== null && typeof exVal2 === 'object') {
+            					$.each(exVal2, function(lowKey,lowVal) {
+            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
+							exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
+            					})
+            				} else if (exKey2=="conditions") {
                 				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+exKey2+"</span></div>";
                 				exSTR+='<div class="col-xs-10 col-md-10 bi">'+JSON.stringify(exVal2)+'</div></div>';
                 			} else {
