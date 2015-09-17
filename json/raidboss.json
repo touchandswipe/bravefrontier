@@ -798,8 +798,8 @@
       }
     ],
     "drops": {
-        "武神の剛石": {"Eng":"Fujin Ore","icon":"item_thum_1100.png"},
-        "武神の闘髪": {"Eng":"Fujin Hair","icon":"item_thum_800.png"}
+        "武神の剛石": {"Eng":"","icon":"item_thum_1100.png"},
+        "武神の闘髪": {"Eng":"","icon":"item_thum_800.png"}
       },
     "missions": [
       "RC6M1",
@@ -821,8 +821,8 @@
       }
     ],
     "drops": {
-        "雷鎧の護甲": {"Eng":"Beiorg Armor","icon":"item_thum_1103.png"},
-        "雷鎧の煌核": {"Eng":"Beiorg Core","icon":"item_thum_703.png"}
+        "雷鎧の護甲": {"Eng":"","icon":"item_thum_1103.png"},
+        "雷鎧の煌核": {"Eng":"","icon":"item_thum_703.png"}
       },
     "missions": [
       "RC6M2"
