@@ -1339,7 +1339,20 @@ function initialize(fusionData) {
 	      
 	      /*Construct comparison*/
 	      for (i in units) {
-			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
+		      /*ServerIMGREF*/
+			if (ovJapan.toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (ovGlobal.toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (ovbfpronotes.search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (ovbfpronotes.search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+			/*build IMG*/
+			cHTML+='<td width="'+tWidth+'%"><img src="'+ovServer+bfPrefix.icon+cData[i]['system id']+'.png" width="60" /></td>' 
+	      }
 		cHTML+='</tr>';
 		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
