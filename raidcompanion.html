@@ -975,8 +975,12 @@ function buildDB(boss) {
 	    						/*Global item only*/
 	    						if (dropVal["global link"])
 	    							bossSTR+='<div class="dropItem"><img src="'+imgPrefix_GL+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a></div>';
-	    						else
-	    							bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a> (<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)</div>';
+	    						else {
+	    							bossSTR+='<div class="dropItem"><img src="'+imgPrefix+dropVal.icon+'" class="itemicon" /><a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropKey+'" target="itemSearch">'+dropKey+'</a>';
+	    							if (dropVal.Eng!="")
+	    								bossSTR+='(<a href="http://touchandswipe.github.io/bravefrontier/itemsguideunified?query='+dropVal.Eng+'" target="itemSearch">'+dropVal.Eng+'</a>)';
+	    							bossSTR+='</div>';
+	    						}
 	    					});
     					else
     						bossSTR+='none';
