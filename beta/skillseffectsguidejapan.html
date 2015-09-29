@@ -491,11 +491,14 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		alert("date ok");
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguidejapandate",lastModified);
+			alert("compression ok");
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
+	    		alert("build data ok");
 	 	},
 	 	error: function(data, status, code){
 	 		alert(data+" | "+status+" | "+code)
