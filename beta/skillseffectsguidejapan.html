@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
@@ -46,103 +47,37 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
 </head>
 
 <!-- MAIN BODY CONTENT -->
 <body>
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com/"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="max-width:64px; margin-top: -7px;" width="32"/> Brave Frontier PROs</a>
-        </div>
-        <!-- Collapse Nav-->
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-                    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
-                    <li><a href="unitsguide.html"><i class="fa fa-female"></i><i class="fa fa-male"></i> Units DB</a></li>
-                    <li><a href="fusionxpcalculator.html"><i class="fa fa-cogs"></i> Fusion XP Calc</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted"><i class="fa fa-info"></i> Most wanted</a></li>
-                    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel"><i class="fa fa-youtube"></i> YouTube</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
+<div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin:0px;padding:5px;">
-<div style="min-height:55px;"></div>
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
-<i class="fa fa-exclamation-circle"></i> ALL types of Buff % indicated are incremental.<br/>
-<i class="fa fa-exclamation-circle"></i> CRIT has a hard cap at 70% and all units have 10% base CRIT. Credit to <a href="http://www.reddit.com/user/_nnng_" target="_blank">_nnng_</a> on <a href="http://www.reddit.com/r/bravefrontier/comments/2fbssl/about_base_crit_and_crit_spheres/" target="_blank">reddit</a>.<br/>
-</div>
-
-<!-- Google Manual labnol.org responsive ads-->
-<div class="text-center" style="margin-bottom:5px;">
-<div id="google-ads-1"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-1');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
-</div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<h1>Skills & Effects Guide - <span class="text-danger">日本 (Japan)</span> Server</h1>
-<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd>
+<h3 style="margin-top:0;">Skills & Effects Guide - <span class="text-danger">日本 (Japan)</span> Server</h3>
+<h6><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
 <!-- Buttons row -->
 <div style="margin-bottom:5px;">
 <!-- Leader Skills button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Leader Skill Effects <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
@@ -159,7 +94,7 @@
 </div>
 <!-- BB Skills button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by BB Skill Effects <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="#" class="skillEffect">atk% buff</a></li>
@@ -178,7 +113,7 @@
 </div>
 <!-- SBB Skills button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by SBB Skill Effects <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="#" class="skillEffect2">atk% buff</a></li>
@@ -197,7 +132,7 @@
 </div>
 <!-- Rarity Filter -->
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter by Rarity <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
@@ -225,63 +160,56 @@
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
+<div class="text-center" style="margin-bottom:5px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
     <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
 </div>
 
-<!-- Google Manual labnol.org responsive ads-->
-<div class="text-center" style="margin-bottom:5px;">
-<div id="google-ads-2"></div>
-<script type="text/javascript"> 
- 
-    /* Calculate the width of available ad space */
-    ad = document.getElementById('google-ads-2');
- 
-    if (ad.getBoundingClientRect().width) {
-        adWidth = ad.getBoundingClientRect().width; // for modern browsers 
-    } else {
-        adWidth = ad.offsetWidth; // for old IE 
-    }
- 
-    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
-    google_ad_client = "ca-pub-2145833818900192";
- 
-    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
-    google_ad_slot = "1402210464";
-  
-    /* Do not change anything after this line */
-    if ( adWidth >= 728 )
-      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
-    else if ( adWidth >= 468 )
-      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
-    else if ( adWidth >= 336 )
-      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
-    else if ( adWidth >= 300 )
-      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
-    else if ( adWidth >= 250 )
-      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
-    else if ( adWidth >= 200 )
-      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
-    else if ( adWidth >= 180 )
-      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
-    else
-      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
- 
-    document.write (
-     '<ins class="adsbygoogle" style="display:inline-block;width:' 
-      + google_ad_size[0] + 'px;height:' 
-      + google_ad_size[1] + 'px" data-ad-client="' 
-      + google_ad_client + '" data-ad-slot="' 
-      + google_ad_slot + '"></ins>'
-    );
-  
-    (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
+<i class="fa fa-exclamation-circle"></i> ALL types of Buff % indicated are incremental.<br/>
+<i class="fa fa-exclamation-circle"></i> CRIT has a hard cap at 70% and all units have 10% base CRIT. Credit to <a href="http://www.reddit.com/user/_nnng_" target="_blank">_nnng_</a> on <a href="http://www.reddit.com/r/bravefrontier/comments/2fbssl/about_base_crit_and_crit_spheres/" target="_blank">reddit</a>.<br/>
+</div>
+
+<div class="text-center" style="margin-bottom:2px;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="text-center">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
 
 <!-- disqus discussion -->
 <div id="disqus_thread" style="width:100%;margin:0 auto;">
     <script type="text/javascript">
         var disqus_shortname = 'bravefrontierpros';
+        var disqus_url = location.protocol + '//' + location.host + location.pathname;
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -291,9 +219,8 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
 </div> <!-- /container -->
-
+<div id="bfp_foot"></div>
 <!-- Modal for Progress-->
 <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -328,6 +255,7 @@
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommon.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
 
 /*Rarity Filter*/
 function rarityRun(select) {
@@ -537,7 +465,10 @@ $(document).on("click", '#refreshData', function(e){
 })
 
 $(document).ready( function(e) {
-    /*LocalStorage Retreival and storage*/
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+/*LocalStorage Retreival and storage*/
     if (localStorage.skillsguidejapan) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
 	if (isValidJSON(guideData)) {
@@ -565,7 +496,9 @@ $(document).ready( function(e) {
 			localStorage.setItem("skillsguidejapandate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
-	 	}
+	 	},
+	 	error: function(data, status, code){
+	 		alert(data+" | "+status+" | "+code)
 	    })
     }
 })
