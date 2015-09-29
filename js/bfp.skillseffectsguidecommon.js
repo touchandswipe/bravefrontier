@@ -139,6 +139,7 @@ countVar=0; /*reset count*/
                     bbSTR+='<div class="col-xs-1 col-md-1 bd">Lv '+(i+1)+'</div>';
                 }
             bbSTR+="</div>";
+            if (valObj.bb.levels[0]) {
             $.each(valObj.bb.levels[0], function(bbKey,bbVal) {
                 if (bbKey!="effects") {
                     bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
@@ -183,6 +184,7 @@ countVar=0; /*reset count*/
                 	}
                 }
             })
+            } // bblv10 check close
         } else bbSTR="";
         
         /*Checks SBB*/
@@ -200,6 +202,7 @@ countVar=0; /*reset count*/
                     sbbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
                 }
             sbbSTR+="</div>";
+            if (valObj.sbb.levels[0]) {
             $.each(valObj.sbb.levels[0], function(sbbKey,sbbVal) {
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey+'</span></div>';
@@ -242,6 +245,7 @@ countVar=0; /*reset count*/
                 	}
                 }
             })
+            } // sbblv10 closure
         } else sbbSTR="";
         
 	/*Checks UBB*/
@@ -259,6 +263,7 @@ countVar=0; /*reset count*/
                     ubbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
                 }
             ubbSTR+="</div>";
+            if (valObj.ubb.levels[0]) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
@@ -301,6 +306,7 @@ countVar=0; /*reset count*/
                 	}
                 }
             })
+            } // ubblv10 close
         } else ubbSTR="";
         
 	/*Checks Extra Skill*/
