@@ -386,7 +386,7 @@ countVar=0; /*reset count*/
 	});
     
     $("#unitCount").html(countVar);
-    setTimeout($('#progressModal').modal('hide'),4000);
+    $('#progressModal').modal('hide');
     
     /*check for card param*/
     var searchParam=urlParam('unitid');
