@@ -139,7 +139,7 @@ countVar=0; /*reset count*/
                     bbSTR+='<div class="col-xs-1 col-md-1 bd">Lv '+(i+1)+'</div>';
                 }
             bbSTR+="</div>";
-            if (valObj.bb.levels[0]) {
+            if (valObj.bb.levels) {
             $.each(valObj.bb.levels[0], function(bbKey,bbVal) {
                 if (bbKey!="effects") {
                     bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
@@ -202,7 +202,7 @@ countVar=0; /*reset count*/
                     sbbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
                 }
             sbbSTR+="</div>";
-            if (valObj.sbb.levels[0]) {
+            if (valObj.sbb.levels) {
             $.each(valObj.sbb.levels[0], function(sbbKey,sbbVal) {
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="sbb">'+sbbKey+'</span></div>';
@@ -263,7 +263,7 @@ countVar=0; /*reset count*/
                     ubbSTR+='<div class="bd col-xs-1 col-md-1">Lv '+(i+1)+'</div>';
                 }
             ubbSTR+="</div>";
-            if (valObj.ubb.levels[0]) {
+            if (valObj.ubb.levels) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
