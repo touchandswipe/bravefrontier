@@ -1162,8 +1162,6 @@ function initialize(fusionData) {
 		  ovHTML+='No further evo / No known materials';
 	      }
 	      ovHTML+='</td></tr><tr><td class="btn-default">';
-	      if (ovJapan.toLowerCase()!='false')
-		ovHTML+='<kbd>JP stats</kbd>';
 	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
@@ -1189,7 +1187,7 @@ function initialize(fusionData) {
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
@@ -1199,7 +1197,7 @@ function initialize(fusionData) {
 	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
 	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
 		      +'<td class="atkMod">'+ovatkoracle+'</td>'
 		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
