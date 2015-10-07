@@ -310,7 +310,8 @@ function initialize(fusionData) {
 	    { "data": fusionData.columns.indexOf("Global Release") },
 	    { "data": fusionData.columns.indexOf("Japan Release") },
 	    { "data": fusionData.columns.indexOf("Video") },
-	    { "data": fusionData.columns.indexOf("Acquire") }
+	    { "data": fusionData.columns.indexOf("Acquire") },
+	    { "data": fusionData.columns.indexOf("Alt ART") }
 		  ],
 		  "order": [[ 0, "asc" ]],
 		  "dom": '<"container-fluid searchAffix"<"row"<"col-md-11 col-xs-7 col-sm-9"<"#cSearchBox"f>><"col-md-1 col-xs-5 col-sm-3"C>>><"small pull-right"p>rt<"small pull-left"i><"small"p>',
@@ -412,8 +413,8 @@ function initialize(fusionData) {
 		  /*Parsing Fields via Datatables*/
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
-		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,60 ] },
+		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 ].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,60,61 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -751,7 +752,7 @@ function initialize(fusionData) {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [60],
+		{ "targets": [61],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
@@ -1048,7 +1049,7 @@ function initialize(fusionData) {
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
-			'icon':deserialdata[i]["systemid"]
+			'systemid':deserialdata[i]["systemid"]
 			})
 		}
 	    }
@@ -1162,8 +1163,6 @@ function initialize(fusionData) {
 		  ovHTML+='No further evo / No known materials';
 	      }
 	      ovHTML+='</td></tr><tr><td class="btn-default">';
-	      if (ovJapan.toLowerCase()!='false')
-		ovHTML+='<kbd>JP stats</kbd>';
 	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
@@ -1189,7 +1188,7 @@ function initialize(fusionData) {
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
@@ -1199,7 +1198,7 @@ function initialize(fusionData) {
 	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
 	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
 		      +'<td class="atkMod">'+ovatkoracle+'</td>'
 		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
@@ -1339,7 +1338,20 @@ function initialize(fusionData) {
 	      
 	      /*Construct comparison*/
 	      for (i in units) {
-			cHTML+='<td width="'+tWidth+'%"><img src="//googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="60" /></td>' }
+		      /*ServerIMGREF*/
+			if (cData[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (cData[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (cData[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (cData[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+			/*build IMG*/
+			cHTML+='<td width="'+tWidth+'%"><img src="'+ovServer+bfPrefix.icon+cData[i]['systemid']+'.png" width="60" /></td>' 
+	      }
 		cHTML+='</tr>';
 		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
 		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
@@ -2450,6 +2462,16 @@ $(document).on("click", "#execFilter", function(e){
 	} else {
 	    bfPROsTable.column( 5 ).search( '' );
 	}
+	/*Filter for alt-art units*/
+	regexArr=[];
+	$('.filAltArt:checked').each( function(){
+		regexArr.push($(this).val())
+	})
+	if (regexArr.length!=0) {
+		bfPROsTable.column( 60 ).search( "TRUE" );
+	} else {
+	    bfPROsTable.column( 60 ).search( '' );
+	}
 	/*Unit ID Range filter*/
 	$("#selectunithide").val($('input:radio[name="filUnitId"]:checked').val());
 	/*Server filter*/
@@ -2769,7 +2791,7 @@ $(window).load(function() {
 </div> <!-- /container -->
 
 <!-- Summon Modal-->
-<div class="modal fade" id="summonModal" tabindex="-1" role="dialog">
+<div class="modal" id="summonModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content" style="background:#000000;">
       <div class="modal-body">
@@ -2801,7 +2823,7 @@ $(window).load(function() {
 
 
 <!-- Video Modal-->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog">
+<div class="modal" id="videoModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -2817,7 +2839,7 @@ $(window).load(function() {
 </div>
 
 <!-- Modal for Favourites -->
-<div class="modal fade" id="favModal" tabindex="-1" role="dialog">
+<div class="modal" id="favModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
@@ -2851,7 +2873,7 @@ $(window).load(function() {
 </div>
 
 <!-- Modal for Progress-->
-<div class="modal fade" id="progressModal" tabindex="-1" role="dialog">
+<div class="modal" id="progressModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -2868,7 +2890,7 @@ $(window).load(function() {
 </div>
 
 <!-- Compare Modal -->
-<div class="modal fade" id="compareModal" tabindex="-1" role="dialog">
+<div class="modal" id="compareModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -2963,7 +2985,7 @@ $(window).load(function() {
 </div>
 
 <!-- Modal for Card-->
-<div class="modal fade" id="cardModal" tabindex="-1" role="dialog">
+<div class="modal" id="cardModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -3061,7 +3083,7 @@ $(window).load(function() {
 </div> <!-- End Card Modal -->
 
 <!-- Filter Modal-->
-<div class="modal fade" id="filterModal">
+<div class="modal" id="filterModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -3073,23 +3095,32 @@ $(window).load(function() {
       </div>
       
       <div class="modal-body">
-	<h5><b>by Server</b></h5>
-
-	<div class="btn-group btn-group-sm" data-toggle="buttons">
-	  
-	  <label class="btn btn-default active">
-	    <input type="radio" name="filServer" value="All" checked><b>All</b>
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="radio" name="filServer" value="Global">Global
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="radio" name="filServer" value="Japan">Japan
-	  </label>
-	  
-	</div>
+      	<div class="row">
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>by Server</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default active">
+		    <input type="radio" name="filServer" value="All" checked><b>All</b>
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Global">Global
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Japan">Japan
+		  </label>
+		</div>
+		</div>
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>Alternate ART</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+		  </label>
+		</div>
+		</div>
+	</div><!--EndRow-->
 	
 	<h5><b>by Unit ID Range</b></h5>
 	
@@ -3165,33 +3196,33 @@ $(window).load(function() {
 	
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Fire" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Fire">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/fireminiicon.png"/>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Water" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Water">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/waterminiicon.png"/>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Earth" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Earth">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/Earthminiicon.png"/>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Thunder" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Thunder">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/thunderminiicon.png"/>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Light" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Light">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/lightminiicon.png"/>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filElement" value="Dark" checked>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Dark">
 	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/darkminiicon.png"/>
 	  </label>
 
@@ -3205,32 +3236,32 @@ $(window).load(function() {
 	</div>
 	
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="1" checked>1<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="1">1<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="2" checked>2<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="2">2<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="3" checked>3<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="3">3<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="4" checked>4<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="4">4<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="5" checked>5<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="5">5<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="6" checked>6<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="6">6<i class="fa fa-star"></i>
 	  </label>
 	  
-	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filRarity" value="7" checked>7<i class="fa fa-star"></i>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="7">7<i class="fa fa-star"></i>
 	  </label>
 	</div>
 	
@@ -3404,6 +3435,14 @@ $(window).load(function() {
 	    <input type="checkbox" class="filSkills" value="% Chance -">Reduce Enemy ATK/DEF
 	  </label>
 	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="HitCount +">HitCount+
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="HP Barrier">HP Barrier
+	  </label>
+	  
 	</div>
 	
 	<div class="clear row"></div>
@@ -3420,7 +3459,7 @@ $(window).load(function() {
 </div>
 
 <!-- Alert Modal -->
-<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
