@@ -2465,8 +2465,8 @@ $(document).on("click", "#execFilter", function(e){
 	    bfPROsTable.column( 5 ).search( '' );
 	}
 	/*Filter for alt-art units*/
-	regexArr=[];
-	if ($("#filAltArt").prop("checked")) {
+	alert($("#filAltArt").prop('checked'));
+	if ($("#filAltArt").prop('checked')) {
 		alert("search x3 done");
 		bfPROsTable.column( 60 ).search( "TRUE" );
 	} else {
