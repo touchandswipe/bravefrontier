@@ -310,7 +310,8 @@ function initialize(fusionData) {
 	    { "data": fusionData.columns.indexOf("Global Release") },
 	    { "data": fusionData.columns.indexOf("Japan Release") },
 	    { "data": fusionData.columns.indexOf("Video") },
-	    { "data": fusionData.columns.indexOf("Acquire") }
+	    { "data": fusionData.columns.indexOf("Acquire") },
+	    { "data": fusionData.columns.indexOf("Alt ART") }
 		  ],
 		  "order": [[ 0, "asc" ]],
 		  "dom": '<"container-fluid searchAffix"<"row"<"col-md-11 col-xs-7 col-sm-9"<"#cSearchBox"f>><"col-md-1 col-xs-5 col-sm-3"C>>><"small pull-right"p>rt<"small pull-left"i><"small"p>',
@@ -412,8 +413,8 @@ function initialize(fusionData) {
 		  /*Parsing Fields via Datatables*/
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
-		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,60 ] },
+		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 ].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,61 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -751,7 +752,7 @@ function initialize(fusionData) {
 		    return evoString; }
 		},
 		/*Compare Column*/
-		{ "targets": [60],
+		{ "targets": [61],
 		"orderable": false,
 		"render": function(cBtn, type, cRow, full) {
 		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
@@ -1800,6 +1801,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
+		<th>Alt ART</th>
 		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </thead>
@@ -1865,6 +1867,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		<th>Japan</th>
 		<th>Video</th>
 		<th>Evolution</th>
+		<th>Alt ART</th>
 		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
 	    </tr>
 	  </tfoot>
@@ -2461,6 +2464,11 @@ $(document).on("click", "#execFilter", function(e){
 	} else {
 	    bfPROsTable.column( 5 ).search( '' );
 	}
+	/*Filter for alt-art units*/
+	if ($('input:checkbox[name="filAltArt"]').prop('checked'))
+		bfPROsTable.column( 60 ).search( "TRUE" );
+	else
+	    bfPROsTable.column( 60 ).search( '' );
 	/*Unit ID Range filter*/
 	$("#selectunithide").val($('input:radio[name="filUnitId"]:checked').val());
 	/*Server filter*/
@@ -3084,23 +3092,32 @@ $(window).load(function() {
       </div>
       
       <div class="modal-body">
-	<h5><b>by Server</b></h5>
-
-	<div class="btn-group btn-group-sm" data-toggle="buttons">
-	  
-	  <label class="btn btn-default active">
-	    <input type="radio" name="filServer" value="All" checked><b>All</b>
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="radio" name="filServer" value="Global">Global
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="radio" name="filServer" value="Japan">Japan
-	  </label>
-	  
-	</div>
+      	<div class="row">
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>by Server</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default active">
+		    <input type="radio" name="filServer" value="All" checked><b>All</b>
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Global">Global
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Japan">Japan
+		  </label>
+		</div>
+		</div>
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>Alternate ART</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+		  </label>
+		</div>
+		</div>
+	</div><!--EndRow-->
 	
 	<h5><b>by Unit ID Range</b></h5>
 	
