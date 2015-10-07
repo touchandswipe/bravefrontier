@@ -414,7 +414,7 @@ function initialize(fusionData) {
 		  "columnDefs":[
 		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
 		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 ].concat(xtraDefCol) },
-		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,60,61 ] },
+		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,52,53,54,55,58,59,61 ] },
 		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
 		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
 		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
@@ -2467,9 +2467,11 @@ $(document).on("click", "#execFilter", function(e){
 	/*Filter for alt-art units*/
 	regexArr=[];
 	$('.filAltArt:checked').each( function(){
+		alert("yes checked");
 		regexArr.push($(this).val())
 	})
 	if (regexArr.length!=0) {
+		alert("search done");
 		bfPROsTable.column( 60 ).search( "TRUE" );
 	} else {
 	    bfPROsTable.column( 60 ).search( '' );
