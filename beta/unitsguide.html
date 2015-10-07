@@ -2465,13 +2465,10 @@ $(document).on("click", "#execFilter", function(e){
 	    bfPROsTable.column( 5 ).search( '' );
 	}
 	/*Filter for alt-art units*/
-	alert($('input:checkbox[name="filAltArt"]').prop('checked'));
-	if ($('input:checkbox[name="filAltArt"]').prop('checked')) {
-		alert("search x3 done");
+	if ($('input:checkbox[name="filAltArt"]').prop('checked'))
 		bfPROsTable.column( 60 ).search( "TRUE" );
-	} else {
+	else
 	    bfPROsTable.column( 60 ).search( '' );
-	}
 	/*Unit ID Range filter*/
 	$("#selectunithide").val($('input:radio[name="filUnitId"]:checked').val());
 	/*Server filter*/
