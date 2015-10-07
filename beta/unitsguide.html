@@ -2466,11 +2466,7 @@ $(document).on("click", "#execFilter", function(e){
 	}
 	/*Filter for alt-art units*/
 	regexArr=[];
-	$('.filAltArt:checked').each( function(){
-		alert("yes checked");
-		regexArr.push($(this).val())
-	})
-	if (regexArr.length!=0) {
+	if ($('#filAltArt:checked')) {
 		alert("search done");
 		bfPROsTable.column( 60 ).search( "TRUE" );
 	} else {
@@ -3120,7 +3116,7 @@ $(window).load(function() {
 		<h5><b>Alternate ART</b></h5>
 		<div class="btn-group btn-group-sm" data-toggle="buttons">
 		  <label class="btn btn-default">
-		    <input type="checkbox" class="filAltArt" value="TRUE">Yes
+		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
 		  </label>
 		</div>
 		</div>
