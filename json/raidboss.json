@@ -828,6 +828,33 @@
       "RC6M2"
     ]
   },
+"Baryuon": {
+    "id": "28",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "fire",
+        "weakails": "sick"
+      },
+      {
+        "partname": "Wing",
+        "element": "dark",
+        "weakails": "poison"
+      },
+      {
+        "partname": "Tail",
+        "element": "dark",
+        "weakails": "curse"
+      }
+    ],
+    "drops": {
+        "竜覇の煌鱗": {"Eng":"","icon":"item_thum_805.png"},
+        "竜覇の翼片": {"Eng":"","icon":"item_thum_205.png"}
+      },
+    "missions": [
+      "RC6M3"
+    ]
+  },
 "Barbatos": {
     "id": "31",
     "bodyparts": [
