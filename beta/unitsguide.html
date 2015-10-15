@@ -2440,13 +2440,13 @@ $(document).on("click", "#execFilter", function(e){
 	$('.filSkills:checked').each( function(){
 		regexArr.push(escapeRegExp($(this).val()))
 	})
-	alert(skillsScope.toString());
 	if (regexArr.length!=0 && skillsScope.length!=0) {
+		bfPROsTable.columns([9,10,11,12]).search( '' );
+		alert(skillsScope.toString());
 		regexStr="^.*"+regexArr.join("\|^.*");
-		bfPROsTable.search( '' ); /*reset first*/
 		bfPROsTable.columns(skillsScope).search( regexStr,true,false );
 	} else {
-	    bfPROsTable.search( '' );
+	    bfPROsTable.columns([9,10,11,12]).search( '' );
 	}
 	/*Filter by element multi-value via REGEX*/
 	regexArr=[];
