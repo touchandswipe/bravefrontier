@@ -2443,7 +2443,7 @@ $(document).on("click", "#execFilter", function(e){
 	alert(skillsScope.toString());
 	if (regexArr.length!=0) {
 		regexStr="^.*"+regexArr.join("\|^.*");
-		bfPROsTable.columns(skillsScope).search( regexStr,true,false );
+		bfPROsTable.columns(skillsScope.toString()).search( regexStr,true,false );
 	} else {
 	    bfPROsTable.search( '' );
 	}
