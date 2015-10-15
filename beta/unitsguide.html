@@ -2441,8 +2441,7 @@ $(document).on("click", "#execFilter", function(e){
 		regexArr.push(escapeRegExp($(this).val()))
 	})
 	if (regexArr.length!=0 && skillsScope.length!=0) {
-		bfPROsTable.columns([9,10,11,12]).search( '' );
-		alert(skillsScope.toString());
+		bfPROsTable.columns([9,10,11,12]).search( '' ); /*reset b4 search*/
 		regexStr="^.*"+regexArr.join("\|^.*");
 		bfPROsTable.columns(skillsScope).search( regexStr,true,false );
 	} else {
@@ -3127,7 +3126,7 @@ $(window).load(function() {
 	
 	<h5><b>by Unit ID Range</b></h5>
 	
-	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="radio" name="filUnitId" value="0" checked><b>All Units</b>
@@ -3173,18 +3172,20 @@ $(window).load(function() {
 	    <input type="radio" name="filUnitId" value="1000">901-1000 
 	  </label>
 	  
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1001-1100</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1101-1200</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1201-1300</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1301-1400</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1401-1500</label>
-	  
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1100">1001-1100</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1200">1101-1200</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1300">1201-1300</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1400">1301-1400</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1500">1401-1500</label>
 	  <label class="btn btn-default btn-sm">
-	    <input type="radio" name="filUnitId" value="8099">8000-8100 
+	    <input type="radio" name="filUnitId" value="7100">7000-7100 
+	  </label>
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="8100">8000-8100 
 	  </label>
 	  
 	  <label class="btn btn-default btn-sm">
-	    <input type="radio" name="filUnitId" value="8199">8100-8200
+	    <input type="radio" name="filUnitId" value="8200">8100-8200
 	  </label>
 	</div>
 	
@@ -3285,7 +3286,7 @@ $(window).load(function() {
 	</div>
 	</h5>
 	
-	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
 	  </label>
