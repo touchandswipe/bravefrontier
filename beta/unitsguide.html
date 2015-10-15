@@ -2433,12 +2433,17 @@ $(document).on("click", "#execFilter", function(e){
 	    var bfPROsTable = $('#mytable').DataTable();
 	/*Unit Skills filter*/
 	regexArr=[];
+	skillsScope=[];
+	$('.filSkillsScope:checked').each( function(){
+		skillsScope.push(parseInt($(this).val()))
+	});
 	$('.filSkills:checked').each( function(){
 		regexArr.push(escapeRegExp($(this).val()))
 	})
+	alert(skillsScope.toString());
 	if (regexArr.length!=0) {
 		regexStr="^.*"+regexArr.join("\|^.*");
-		bfPROsTable.search( regexStr,true,false );
+		bfPROsTable.columns(skillsScope).search( regexStr,true,false );
 	} else {
 	    bfPROsTable.search( '' );
 	}
@@ -3263,6 +3268,22 @@ $(window).load(function() {
 	</div>
 	
 	<h5><b>by Skill Effects</b></h5>
+	
+	<b>Effects Filers Scope: </b>
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope active" value="9">LS
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope active" value="10">BB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope active" value="11">SBB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope active" value="12">UBB
+	  </label>
+	</div>
 	
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default">
