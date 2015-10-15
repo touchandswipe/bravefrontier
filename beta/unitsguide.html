@@ -2433,7 +2433,8 @@ $(document).on("click", "#execFilter", function(e){
 	    var bfPROsTable = $('#mytable').DataTable();
 	/*Unit Skills filter*/
 	regexArr=[];
-	skillsScope=[];
+	var skillsScope=[];
+	var skillColumns=[9,10,11,12,13];
 	$('.filSkillsScope:checked').each( function(){
 		skillsScope.push(parseInt($(this).val()))
 	});
@@ -2445,16 +2446,16 @@ $(document).on("click", "#execFilter", function(e){
 	else
 		var skillsAny=false;
 	if (regexArr.length!=0) {
-		bfPROsTable.columns([9,10,11,12]).search( '' ); /*reset b4 search*/
+		bfPROsTable.columns(skillColumns).search( '' ); /*reset b4 search*/
 		regexStr="^.*"+regexArr.join("\|^.*");
 		if (skillsAny)
 			bfPROsTable.search( regexStr,true,false );
 		else if (skillsScope.length!=0)
 			bfPROsTable.columns(skillsScope).search( regexStr,true,false );
 		else
-			bfPROsTable.columns([9,10,11,12]).search( '' );
+			bfPROsTable.columns(skillColumns).search( '' );
 	} else {
-	    bfPROsTable.columns([9,10,11,12]).search( '' );
+	    bfPROsTable.columns(skillColumns).search( '' );
 	}
 	/*Filter by element multi-value via REGEX*/
 	regexArr=[];
@@ -3300,7 +3301,7 @@ $(window).load(function() {
 	  </label>
 	</div>
 	</h5>
-	<h6><small class="text-danger">*Note* Any Skill selection takes precedence.</small></h6>
+	<span class="text-danger">*Note* Any Skill selection takes precedence.</span>
 	<div class="btn-group btn-group-xs" data-toggle="buttons">
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
