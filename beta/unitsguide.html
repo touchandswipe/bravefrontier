@@ -2441,8 +2441,9 @@ $(document).on("click", "#execFilter", function(e){
 		regexArr.push(escapeRegExp($(this).val()))
 	})
 	alert(skillsScope.toString());
-	if (regexArr.length!=0) {
+	if (regexArr.length!=0 && skillsScope.length!=0) {
 		regexStr="^.*"+regexArr.join("\|^.*");
+		bfPROsTable.search( '' ); /*reset first*/
 		bfPROsTable.columns(skillsScope).search( regexStr,true,false );
 	} else {
 	    bfPROsTable.search( '' );
@@ -3267,9 +3268,7 @@ $(window).load(function() {
 	  </label>
 	</div>
 	
-	<h5><b>by Skill Effects</b></h5>
-	
-	<b>Effects Filers Scope: </b>
+	<h5><b>by Skill Effects</b> / Scope: 
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default active">
 	    <input type="checkbox" class="filSkillsScope" checked value="9">LS
@@ -3284,6 +3283,7 @@ $(window).load(function() {
 	    <input type="checkbox" class="filSkillsScope" checked value="12">UBB
 	  </label>
 	</div>
+	</h5>
 	
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default">
