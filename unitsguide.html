@@ -2433,14 +2433,29 @@ $(document).on("click", "#execFilter", function(e){
 	    var bfPROsTable = $('#mytable').DataTable();
 	/*Unit Skills filter*/
 	regexArr=[];
+	var skillsScope=[];
+	var skillColumns=[9,10,11,12,13];
+	$('.filSkillsScope:checked').each( function(){
+		skillsScope.push(parseInt($(this).val()))
+	});
 	$('.filSkills:checked').each( function(){
 		regexArr.push(escapeRegExp($(this).val()))
 	})
+	if ($('input:checkbox[name="filSkillsAny"]').prop('checked'))
+		var skillsAny=true;
+	else
+		var skillsAny=false;
 	if (regexArr.length!=0) {
+		bfPROsTable.columns(skillColumns).search( '' ); /*reset b4 search*/
 		regexStr="^.*"+regexArr.join("\|^.*");
-		bfPROsTable.search( regexStr,true,false );
+		if (skillsAny)
+			bfPROsTable.search( regexStr,true,false );
+		else if (skillsScope.length!=0)
+			bfPROsTable.columns(skillsScope).search( regexStr,true,false );
+		else
+			bfPROsTable.columns(skillColumns).search( '' );
 	} else {
-	    bfPROsTable.search( '' );
+	    bfPROsTable.columns(skillColumns).search( '' );
 	}
 	/*Filter by element multi-value via REGEX*/
 	regexArr=[];
@@ -3121,7 +3136,7 @@ $(window).load(function() {
 	
 	<h5><b>by Unit ID Range</b></h5>
 	
-	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
 	  
 	  <label class="btn btn-default active">
 	    <input type="radio" name="filUnitId" value="0" checked><b>All Units</b>
@@ -3167,18 +3182,20 @@ $(window).load(function() {
 	    <input type="radio" name="filUnitId" value="1000">901-1000 
 	  </label>
 	  
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1001-1100</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1101-1200</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1201-1300</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1301-1400</label>
-	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1000">1401-1500</label>
-	  
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1100">1001-1100</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1200">1101-1200</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1300">1201-1300</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1400">1301-1400</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1500">1401-1500</label>
 	  <label class="btn btn-default btn-sm">
-	    <input type="radio" name="filUnitId" value="8099">8000-8100 
+	    <input type="radio" name="filUnitId" value="7100">7000-7100 
+	  </label>
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="8100">8000-8100 
 	  </label>
 	  
 	  <label class="btn btn-default btn-sm">
-	    <input type="radio" name="filUnitId" value="8199">8100-8200
+	    <input type="radio" name="filUnitId" value="8200">8100-8200
 	  </label>
 	</div>
 	
@@ -3262,9 +3279,30 @@ $(window).load(function() {
 	  </label>
 	</div>
 	
-	<h5><b>by Skill Effects</b></h5>
-	
+	<h5><b>by Skill Effects</b> / Scope: 
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	  <label class="btn btn-default active">
+	    <input type="checkbox" name="filSkillsAny" checked value="TRUE"><b>Any Skill</b>
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="9">LS
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="10">BB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="11">SBB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="12">UBB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="13">ES
+	  </label>
+	</div>
+	</h5>
+	<h6><small class="text-danger">*Note* &quot;Any Skill&quot; selection takes precedence.</small></h6>
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
 	  </label>
