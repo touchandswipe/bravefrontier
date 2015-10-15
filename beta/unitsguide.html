@@ -2450,8 +2450,10 @@ $(document).on("click", "#execFilter", function(e){
 		regexStr="^.*"+regexArr.join("\|^.*");
 		if (skillsAny)
 			bfPROsTable.search( regexStr,true,false );
-		else if (skillsScope.length!=0)
+		else if (!skillsAny && skillsScope.length!=0) {
+			alert("no skills any");
 			bfPROsTable.columns(skillsScope).search( regexStr,true,false );
+		}
 		else
 			bfPROsTable.columns(skillColumns).search( '' );
 	} else {
