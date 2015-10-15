@@ -2450,10 +2450,8 @@ $(document).on("click", "#execFilter", function(e){
 		regexStr="^.*"+regexArr.join("\|^.*");
 		if (skillsAny)
 			bfPROsTable.search( regexStr,true,false );
-		else if (!skillsAny && skillsScope.length!=0) {
-			alert("no skills any");
+		else if (skillsScope.length!=0)
 			bfPROsTable.columns(skillsScope).search( regexStr,true,false );
-		}
 		else
 			bfPROsTable.columns(skillColumns).search( '' );
 	} else {
@@ -3284,7 +3282,7 @@ $(window).load(function() {
 	<h5><b>by Skill Effects</b> / Scope: 
 	<div class="btn-group btn-group-sm" data-toggle="buttons">
 	  <label class="btn btn-default active">
-	    <input type="checkbox" class="filSkillsAny" checked value="TRUE"><b>Any Skill</b>
+	    <input type="checkbox" name="filSkillsAny" checked value="TRUE"><b>Any Skill</b>
 	  </label>
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkillsScope" value="9">LS
