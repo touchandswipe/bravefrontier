@@ -191,11 +191,12 @@ $.getJSON( serverSelect, function( unit ) {
         /*{"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
         {"skillid":"bb hc%", "skillref":["bb hc%", "!% HC+ (SELF)"]},*/
         {"skillid":"bbSelfBuff", "skillref":["@", "! (SELF)"]},
-        {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill 1Turn"]},
+        {"skillid":"increase bb gauge", "skillref":["increase bb gauge","!BC Fill ","target type" ,"! 1Turn"]},
         {"skillid":"increase bb gauge gradual", "skillref":["increase bb gauge gradual","!BC Fill ","increase bb gauge gradual turns (37)", "!Turns"]},
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
         {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
         {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
+        {"skillid":"increase od gauge%", "skillref":["increase od gauge%", "!% OverDrive Gauge Fill"]},
         {"skillid":"bb gauge fill rate% buff", "skillref":["bb gauge fill rate% buff", "!% BC Fill+ ", "target type", "! ", "buff turns (77)", "!Turns"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
         {"skillid":"bc fill on spark%", "skillref":["bc fill on spark%", "!% Chance ", "bc fill on spark low", "!-", "bc fill on spark high", "!BC Fill on Spark ", "target type", "! ", "bc fill on spark buff turns (111)", "!Turns"]},
@@ -232,7 +233,8 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"counter ails", "skillref":["!Inflict ", "@", "! on ATKed ", "target type", "! ","counter inflict ailment turns", "!Turns"]},
         {"skillid":"bb element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ", "@", "! ", "target type", "! ", "elemental weakness buff turns", "!Turns"]},
         {"skillid":"gradualhealbuff", "skillref":["@", "! ", "target type", "! ", "gradual heal turns (8)", "!Turns"]},
-        {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]}
+        {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]},
+        {"skillid":"bb elemental reduction", "skillref":["!Reduce DMG (", "dmg% mitigation for elemental attacks", "!%) from ", "@", "! Enemy"]}
       ];
     var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
@@ -251,6 +253,7 @@ $.getJSON( serverSelect, function( unit ) {
     var lsWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
     var bbWeakElementArray=[{"skillid":"fire units do extra elemental weakness dmg", "suffix":"fire"}, {"skillid":"water units do extra elemental weakness dmg", "suffix":"water"}, {"skillid":"earth units do extra elemental weakness dmg", "suffix":"earth"}, {"skillid":"thunder units do extra elemental weakness dmg", "suffix":"thunder"}, {"skillid":"light units do extra elemental weakness dmg", "suffix":"light"}, {"skillid":"dark units do extra elemental weakness dmg", "suffix":"dark"}];
     var lsElementalReductionArray=[{"skillid":"mitigate fire attacks", "suffix":"fire"}, {"skillid":"mitigate water attacks", "suffix":"water"}, {"skillid":"mitigate earth attacks", "suffix":"earth"}, {"skillid":"mitigate thunder attacks", "suffix":"thunder"}, {"skillid":"mitigate light attacks", "suffix":"light"}, {"skillid":"mitigate dark attacks", "suffix":"dark"}];
+    var bbElementalReductionArray=[{"skillid":"mitigate fire attacks", "suffix":"fire"}, {"skillid":"mitigate water attacks", "suffix":"water"}, {"skillid":"mitigate earth attacks", "suffix":"earth"}, {"skillid":"mitigate thunder attacks", "suffix":"thunder"}, {"skillid":"mitigate light attacks", "suffix":"light"}, {"skillid":"mitigate dark attacks", "suffix":"dark"}];
     var skillConnect=' / ';
     var bbArray=["bb","sbb","ubb"];
     var lsSplit=' - ';
@@ -654,6 +657,30 @@ $.getJSON( serverSelect, function( unit ) {
                           groupSTR="(ALL Elements)"
                         else
                           groupSTR+=")"
+                    } /*End Grouping check*/
+                    
+                    /*Elemental Reduction check*/
+                    else if (skillSeek=="bb elemental reduction") {
+                      var elementCount=0;
+                      for (ix in bbElementalReductionArray) {
+                          $.each( valObj[bbArray[ibb]]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey.search(bbElementalReductionArray[ix]["skillid"])!=-1) {
+                                if (elementCount>0)
+                                  groupSTR+=",";
+                                elementCount+=1;
+                                if (elementCount==1)
+                                  groupSTR+="("
+                                groupSTR+=bbElementalReductionArray[ix]["suffix"];
+                                effectFound=true;
+                            }
+                          })
+                      }
+                      if (effectFound)
+                        if (elementCount==6)
+                          groupSTR="(ALL)"
+                        else
+                          groupSTR+=")"
+                      groupSTR=groupSTR.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                     } /*End Grouping check*/
                     
                     else
