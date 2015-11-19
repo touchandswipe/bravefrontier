@@ -663,7 +663,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb elemental reduction") {
                       var elementCount=0;
                       for (ix in bbElementalReductionArray) {
-                          $.each( valObj[bbArray[ibb]]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey.search(bbElementalReductionArray[ix]["skillid"])!=-1) {
                                 if (elementCount>0)
                                   groupSTR+=",";
