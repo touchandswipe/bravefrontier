@@ -2439,7 +2439,7 @@ $(document).on("click", "#execFilter", function(e){
 		skillsScope.push(parseInt($(this).val()))
 	});
 	$('.filSkills:checked').each( function(){
-		if ($(this).val.charAt(0) != "!")
+		if ($(this).val().charAt(0) != "!")
 			regexArr.push(escapeRegExp($(this).val()))
 		else
 			regexArr.push($(this).val())
