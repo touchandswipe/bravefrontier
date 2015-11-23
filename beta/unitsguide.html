@@ -2439,7 +2439,10 @@ $(document).on("click", "#execFilter", function(e){
 		skillsScope.push(parseInt($(this).val()))
 	});
 	$('.filSkills:checked').each( function(){
-		regexArr.push(escapeRegExp($(this).val()))
+		if ($(this).val.charAt(0) != "!")
+			regexArr.push(escapeRegExp($(this).val()))
+		else
+			regexArr.push($(this).val())
 	})
 	if ($('input:checkbox[name="filSkillsAny"]').prop('checked'))
 		var skillsAny=true;
@@ -3322,7 +3325,7 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-primary">
-	    <input type="checkbox" class="filSkills" value="Enemy receives [0-9]*% Spark DMG+">Spark DMG Debuff 
+	    <input type="checkbox" class="filSkills" value="Enemy receives [0-9]*\% Spark DMG\+">Spark DMG Debuff 
 	  </label>
 	  
 	  <label class="btn btn-primary">
