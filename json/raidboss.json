@@ -855,6 +855,28 @@
       "RC6M3"
     ]
   },
+"Yunos": {
+    "id": "29",
+    "bodyparts": [
+      {
+        "partname": "Body",
+        "element": "light",
+        "weakails": "sick,injury"
+      },
+      {
+        "partname": "Weapon",
+        "element": "water",
+        "weakails": "sick"
+      }
+    ],
+    "drops": {
+        "転現粒晶": {"Eng":"","icon":"item_thum_1104.png"},
+        "刻環の歯車": {"Eng":"","icon":"item_thum_1101.png"}
+      },
+    "missions": [
+      "RC6M4"
+    ]
+  },
 "Barbatos": {
     "id": "31",
     "bodyparts": [
