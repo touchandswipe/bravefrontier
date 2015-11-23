@@ -2439,7 +2439,10 @@ $(document).on("click", "#execFilter", function(e){
 		skillsScope.push(parseInt($(this).val()))
 	});
 	$('.filSkills:checked').each( function(){
-		regexArr.push(escapeRegExp($(this).val()))
+		if ($(this).val().charAt(0) != "!")
+			regexArr.push(escapeRegExp($(this).val()))
+		else
+			regexArr.push($(this).val().slice(1))
 	})
 	if ($('input:checkbox[name="filSkillsAny"]').prop('checked'))
 		var skillsAny=true;
@@ -3322,6 +3325,10 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="!Enemy receives [0-9]*\% Spark DMG\+">Spark DMG Debuff 
+	  </label>
+	  
+	  <label class="btn btn-primary">
 	    <input type="checkbox" class="filSkills" value="Element Weakness DMG+">Weak Elements DMG 
 	  </label>
 	  
@@ -3478,6 +3485,10 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="!Inflict .* on ATKed">Counter-Ails
+	  </label>
+	  
+	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="Convert">Convert Stats
 	  </label>
 	  
@@ -3491,6 +3502,14 @@ $(window).load(function() {
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="HP Barrier">HP Barrier
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="OverDrive Fill+">OverDrive Fill Rate+
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="% OverDrive Gauge Fill">OverDrive Fill
 	  </label>
 	</div>
 	<h6><small class="text-danger">*Note* &quot;Any Skill&quot; selection takes precedence.</small></h6>
