@@ -217,6 +217,8 @@ var evoQuery = [
 ['Thunder Soul Crystal','iconitem11030.png'],
 ['Light Soul Crystal','iconitem11040.png'],
 ['Dark Soul Crystal','iconitem11050.png'],
+['Fire Hero Gem','iconitem110100.png'],
+['Water Hero Gem','iconitem110110.png'],
 ['Earth Hero Gem','iconitem110120.png'],
 ['Thunder Hero Gem','iconitem110130.png'],
 ['Miracle Sphere','iconitem111000.png'],
