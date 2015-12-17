@@ -23,6 +23,7 @@
       padding:15px;
       text-align: center;
       color:#888;
+      display:block;
     }
     .clear {clear:both;}
     .bd {
@@ -176,19 +177,19 @@ if (window.location.hash == '#_=_') {
     <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><a class="unitAdd" href="#"><i class="fa fa-plus fa-5x"></i></a></div>
+    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><a class="unitAdd" href="#"><i class="fa fa-plus fa-5x"></i></a></div>
+    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+	<a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
 </div>
 
@@ -475,7 +476,7 @@ $(document).on("click", '#syncNewBtn', function(e){
 })
 
 /*SearchModal Trigger*/
-$(document).on("click", '.unitAdd, .unitBox', function(e){
+$(document).on("click", '.unitBox', function(e){
 	$('#searchModal').modal('show')
 })
 
