@@ -173,13 +173,13 @@ if (window.location.hash == '#_=_') {
 
 <div class="row">
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+    <div class="unitBox"><a class="unitAdd" href="#"><i class="fa fa-plus fa-5x"></i></a></div>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+    <div class="unitBox"><a class="unitAdd" href="#"><i class="fa fa-plus fa-5x"></i></a></div>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
+    <div class="unitBox"><a class="unitAdd" href="#"><i class="fa fa-plus fa-5x"></i></a></div>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
     <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
@@ -472,6 +472,11 @@ function searchNameRun() {
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	resetLocalData("skillsguidejapan",false)
+})
+
+/*SearchModal Trigger*/
+$(document).on("click", '.unitAdd', function(e){
+	$('#searchModal').modal('show')
 })
 
 /*Refresh data*/
