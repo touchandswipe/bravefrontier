@@ -154,18 +154,6 @@ if (window.location.hash == '#_=_') {
 </div>
 </div> <!-- End button row -->
 
-<!--Search-->
-<div class="input-group" style="margin-bottom:5px;">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
-        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
-</div>
-<div class="input-group">
-        <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
-        <input type="search" placeholder="e.g. ラムナ" class="form-control" id="searchNameBox">
-</div>
-
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
 <div class="text-center" style="margin-bottom:5px;">
@@ -184,11 +172,6 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <div class="row">
-  <div class="col-xs-4 col-sm-4 col-md-2">
-    <div class="unitBox">
-      <i class="fa fa-plus fa-5x"></i>
-    </div>
-  </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
     <div class="unitBox"><i class="fa fa-plus fa-5x"></i></div>
   </div>
@@ -273,6 +256,30 @@ if (window.location.hash == '#_=_') {
 	<div id="alertSpace" class="alert">
 	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
 	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Unit Select Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h2 class="text-primary"><b>Add to Squad</b></h3>
+	    	<!--Search-->
+		<div class="input-group" style="margin-bottom:5px;">
+		        <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
+		        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+		</div>
+		<div class="input-group">
+		        <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
+		        <input type="search" placeholder="e.g. ラムナ" class="form-control" id="searchNameBox">
+		</div>
 	</div>
       </div>
     </div>
