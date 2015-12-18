@@ -45,7 +45,7 @@ countVar=0; /*reset count*/
     $.each( unit, function( unitKey, valObj ) {
     	/*Extract needed data*/
     	unitObj={};
-        unitObj.img=imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png";
+        unitObj.img=imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png';
         unitObj.name=valObj.name;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
