@@ -69,9 +69,7 @@ countVar=0; /*reset count*/
         	unitObj.es=valObj["extra skill"];
         else
         	unitObj.es="none";
-	/*Append each HTML*/
-        var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+ubbSTR+splitSTR+exSTR+'</div></div></div></div>';
-        /*Parse into MEMORY DB*/
+	/*Parse into MEMORY DB*/
         rawParseObj.push(unitObj);
         countVar+=1;
         collapseID+=1;
