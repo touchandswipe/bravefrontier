@@ -25,6 +25,12 @@
       color:#888;
       display:block;
     }
+    .unitFound, .unitSelected {
+    	width:80px;
+    	height:80px;
+    	padding:10px;
+    	cursor:pointer;
+    }
     .clear {clear:both;}
     .bd {
         font-weight:bold;
@@ -173,22 +179,22 @@ if (window.location.hash == '#_=_') {
 
 <div class="row">
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+    <a class="unitBox" id="unitA" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+    <a class="unitBox" id="unitB" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
   <div class="col-xs-4 col-sm-4 col-md-2">
-    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+    <a class="unitBox" id="unitC" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+    <a class="unitBox" id="unitD" ="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-    <a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+    <a class="unitBox" id="unitE" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
    <div class="col-xs-4 col-sm-4 col-md-2">
-	<a class="unitBox" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	<a class="unitBox" id="unitF" href="#"><i class="fa fa-plus fa-5x"></i></a>
   </div>
 </div>
 
@@ -266,7 +272,7 @@ if (window.location.hash == '#_=_') {
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body" style="height:300px;">
 	<div class="text-center">
 	    <h2 class="text-primary"><b>Add to Squad</b></h3>
 	    	<!--Search-->
@@ -291,6 +297,7 @@ if (window.location.hash == '#_=_') {
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
+unitProcessing="";
 
 /*Rarity Filter*/
 function rarityRun(select) {
@@ -418,7 +425,7 @@ function searchIdRun() {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['id']==sVal) {
-	        outputHTML.push('<img src="'+rawParseObj[i].img+'" width="40" height="auto"/>');
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" />');
 	        break;
 	    }
 	}
@@ -477,7 +484,15 @@ $(document).on("click", '#syncNewBtn', function(e){
 
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
+	unitProcessing=$(this).attr("id");
+	alert(unitProcessing);
 	$('#searchModal').modal('show')
+})
+
+/*update unitspace*/
+$(document).on("click", '.unitFound', function(e){
+	$('#searchModal').modal('hide');
+	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr(data-unitid)+'" class="unitSelected"/>')
 })
 
 /*Refresh data*/
