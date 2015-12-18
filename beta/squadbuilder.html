@@ -484,7 +484,7 @@ $(document).on("click", '#syncNewBtn', function(e){
 
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
-	unitProcessing=$(this).attr("id");
+	unitProcessing="#"+$(this).attr("id");
 	$('#searchModal').modal('show')
 })
 
