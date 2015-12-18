@@ -172,17 +172,3 @@ $( "#searchNameBox" ).keypress( function( event ) {
   }
 })
 
-/*POP state*/
-$(window).on('popstate', function(ev) {
-	var state = ev.originalEvent.state;
-	/*Search query state*/
-	if (state.stateIdFilter) {
-	        $('#searchIdBox').val(state.stateIdFilter);
-	        searchIdRun();
-	}
-	/*Search query state*/
-	if (state.stateNameFilter) {
-	        $('#searchNameBox').val(state.stateNameFilter);
-	        searchNameRun();
-	}
-})
