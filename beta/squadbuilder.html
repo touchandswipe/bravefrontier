@@ -485,14 +485,13 @@ $(document).on("click", '#syncNewBtn', function(e){
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
 	unitProcessing=$(this).attr("id");
-	alert(unitProcessing);
 	$('#searchModal').modal('show')
 })
 
 /*update unitspace*/
 $(document).on("click", '.unitFound', function(e){
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr(data-unitid)+'" class="unitSelected"/>')
+	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>')
 })
 
 /*Refresh data*/
