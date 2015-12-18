@@ -423,7 +423,7 @@ function searchIdRun() {
 	    }
 	}
 	/*Joins array and replace HTML*/
-	$(rawTable).html('outputHTML.join(' '));
+	$(rawTable).html(outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIdFilter: sVal };
     history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
