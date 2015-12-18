@@ -403,17 +403,20 @@ function searchNameRun() {
 
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
+	e.preventDefault();
 	resetLocalData("skillsguidejapan",false)
 })
 
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
+	e.preventDefault();
 	unitProcessing="#"+$(this).attr("id");
 	$('#searchModal').modal('show')
 })
 
 /*update unitspace*/
 $(document).on("click", '.unitFound', function(e){
+	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>')
 })
