@@ -485,9 +485,9 @@ function showSkills(e) {
 	}
 	/*Scan unit details*/
 	for (l in unitIDs) {
+		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h3>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</h3>';
 		for (i in scanScope) {
 			var selectUnit=unitIDs[l];
-			skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h3>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</h3>';
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
