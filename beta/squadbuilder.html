@@ -424,7 +424,8 @@ function scanSkills() {
 							$(".bbBtns").each( function() {
 								if ($(this).attr("data-skill")==bbMap[k].desc) {
 									$(this).removeAttr("disabled");
-									$(this).toggleClass("btn-default btn-success");
+									if ($(this).hasClass("btn-default"))
+										$(this).toggleClass("btn-default btn-success");
 								}
 							})
 						}
@@ -433,6 +434,14 @@ function scanSkills() {
 			}
 		}
 	});
+}
+
+function resetBtns() {
+	$(".bbBtns").each( function() {
+		$(this).Attr("disabled","disabled");
+		if ($(this).hasClass("btn-success"))
+			$(this).toggleClass("btn-default btn-success");
+	})
 }
 
 /*Sync New Button*/
