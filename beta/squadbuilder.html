@@ -421,7 +421,9 @@ function scanSkills() {
 					for (k in bbMap) {
 						/*match exist*/
 						if (scanArray[j][bbMap[k].impact]) {
+							alert("match found");
 							$(".bbBtns").each( function() {
+								alert($(this).attr("data-skill"));
 								if ($(this).attr("data-skill")==scanArray[j][bbMap[k].desc]) {
 									alert("match "+scanArray[j][bbMap[k].desc]);
 									$(this).addClass("btn-success");
