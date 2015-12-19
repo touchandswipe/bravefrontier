@@ -93,7 +93,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid" style="margin:0px;padding:5px;">
-<h2 style="margin-top:0;">Squad Builder BETA - <span class="text-danger">日本 (Global)</span> Server</h2>
+<h2 style="margin-top:0;">Squad Builder BETA - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 
@@ -397,36 +397,28 @@ function searchIdRun() {
 /*Search by Unit Name*/
 function searchNameRun() {
     var sVal=$('#searchNameBox').val();
-    var outputObj=[];
-	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    var outputHTML=[];
+    if (sVal.length <2) {
+        $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
     } else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
-	        outputObj.push(rawParseObj[i]);
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="'+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" />');
 	    }
 	}
 	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*pushstate update*/
-	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
-    }
-    	/*Google analytics*/
+	outputObj=outputObj.sort(function(a,b) {
+        	return parseInt(b.rarity)-parseInt(a.rarity);
+    	});
+    	/*Joins array and replace HTML*/
+	$(rawTable).html(outputHTML.join(' '));
+	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_Search_Name',
-  		'title': 'Brave Frontier PROs - Skills Guide JP Search Name'
+  		'page': '/vurl/squadguideJP_SearchNAme',
+  		'title': 'Brave Frontier PROs - Squad Guide SearchName'
 	});
+	}
 }
 
 function resetBtns() {
