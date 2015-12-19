@@ -1,19 +1,19 @@
 countVar=0;
 rawParseObj=[];
 bbMap=[
-	{desc:"ATK+", impact:"atk% buff (1)", turns:"buff turns"},
-	{desc:"DEF+", impact:"def% buff (3)", turns:"buff turns"},
-	{desc:"REC+", impact:"rec% buff (5)", turns:"buff turns"},
+	{desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
+	{desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
+	{desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
 	{desc:"Cure Ails", impact:"ailments cured"},
 	{desc:"Null Ails", impact:"resist poison% (30)", turns:"resist status ails turns"},
-	{desc:"Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
-	{desc:"Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
-	{desc:"CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
-	{desc:"CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
+	{desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
+	{desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
+	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
+	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
 	{desc:"Add Elements", impact:"elements added", turns:"elements added turns"},
-	{desc:"Weakness DMG+ (Light)", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns"},
-	{desc:"BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
-	{desc:"Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
+	{desc:"% Weakness DMG+ (Light)", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns"},
+	{desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
+	{desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
 ];
 
 /*Check filedate*/
