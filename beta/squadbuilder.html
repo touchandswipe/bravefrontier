@@ -22,7 +22,6 @@
       border-radius:15px;
       padding:15px;
       text-align: center;
-      color:#888;
       display:block;
       width:150px;
     }
@@ -441,8 +440,9 @@ function scanSkills() {
 	/*iterate thru selected units*/
 	$( ".unitBox .unitSelected" ).each( function() {
 		for (i in scanScope) {
-			if (rawParseObj[$(this).attr("data-unitid")][scanScope[i]] != "none") {
-				var scanArray=rawParseObj[$(this).attr("data-unitid")][scanScope[i]].effects;
+			var selectUnit=$(this).attr("data-unitid");
+			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
+				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in bbMap) {
@@ -450,6 +450,11 @@ function scanSkills() {
 						if (scanArray[j][bbMap[k].impact]) {
 							$(".bbBtns").each( function() {
 								if ($(this).text()==bbMap[k].desc) {
+									/*create list of units with skills*/
+									if ($(this).attr("data-found"))
+										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									else
+										$(this).attr("data-found",selectUnit)
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
@@ -461,6 +466,45 @@ function scanSkills() {
 			}
 		}
 	});
+}
+
+/*show unit & skills on skill click*/
+function showSkills() {
+	var scanScope=["bb", "sbb", "ubb"];
+	var unitIDs=$(this).split(",");
+	var skillDesc=$(this).text();
+	var skillsHTML="";
+	/*identify the skill*/
+	for (i in bbMap) {
+		if (skillDesc==bbMap[i].desc) {
+			var bbMapKey=i;
+			break;
+		}
+	}
+	/*Scan unit details*/
+	for (l in unitIDs) {
+		for (i in scanScope) {
+			var selectUnit=unitIDs[l];
+			skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h3>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</h3>';
+			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
+				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
+				/*Scan mapping*/
+				for (j in scanArray) {
+					/*match*/
+					if (scanArray[j][bbMap[bbMapKey].impact]) {
+						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+						skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' '+bbMap[bbMapKey].desc;
+						if (bbMap[bbMapKey].turns)
+							skillsHTML+=scanArray[j][bbMap[bbMapKey].turns]+'Turns'
+						skillsHTML+='</br>';
+					}
+				}
+			}
+		}
+	}
+	/*load dom*/
+	$('#showSkillBody').html(skillsHTML);
+	$('#showSkillModal').modal('show')
 }
 
 /*Sync New Button*/
@@ -479,13 +523,14 @@ $(document).on("click", '.unitBox', function(e){
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
+	showSkills()
 })
 
 /*update unitspace*/
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>');
+	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" "+rawParseObj[$(this).attr("data-unitid")].rarity+"*"+'" />');
 	scanSkills();
 })
 
