@@ -207,9 +207,12 @@ if (window.location.hash == '#_=_') {
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add to Squad</h4>
+      </div>
       <div class="modal-body" style="height:300px;">
 	<div class="text-center">
-	    <h2 class="text-primary"><b>Add to Squad</b></h3>
 	    	<!--Search-->
 		<div class="input-group" style="margin-bottom:5px;">
 		        <span class="input-group-btn">
@@ -221,8 +224,23 @@ if (window.location.hash == '#_=_') {
 		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
 		        <input type="search" placeholder="e.g. ラムナ" class="form-control" id="searchNameBox">
 		</div> -->
-		<div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
+		<div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name you wish to view.</h4></div>
 	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Skills availability Modal -->
+<div class="modal fade" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Skill Availability</h4>
+      </div>
+      <div class="modal-body">
+	<div class="text-center" id="showSkillBody"></div>
       </div>
     </div>
   </div>
