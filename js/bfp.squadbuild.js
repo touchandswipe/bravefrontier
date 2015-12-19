@@ -1,5 +1,4 @@
 countVar=0;
-collapseID=1;
 rawParseObj=[];
 
 /*Check filedate*/
@@ -54,25 +53,24 @@ countVar=0; /*reset count*/
         else
         	unitObj.ls="none";
 	if (valObj["bb"])
-        	unitObj.bb=valObj["bb"];
+        	unitObj.bb=valObj["bb"]["levels"][9];
         else
         	unitObj.bb="none";
 	if (valObj["sbb"])
-        	unitObj.sbb=valObj["sbb"];
+        	unitObj.sbb=valObj["sbb"]["levels"][9];
         else
         	unitObj.sbb="none";
         if (valObj["ubb"])
-        	unitObj.ubb=valObj["ubb"];
+        	unitObj.ubb=valObj["ubb"]["levels"][9];
         else
         	unitObj.ubb="none";
         if (valObj["extra skill"])
-        	unitObj.es=valObj["extra skill"];
+        	unitObj.es=valObj["extra skill"]["effects"];
         else
         	unitObj.es="none";
 	/*Parse into MEMORY DB*/
         rawParseObj.push(unitObj);
         countVar+=1;
-        collapseID+=1;
     }); /*Each record*/
     
 	var aheadNameRead = new Bloodhound({
