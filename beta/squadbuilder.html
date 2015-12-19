@@ -471,7 +471,7 @@ function scanSkills() {
 /*show unit & skills on skill click*/
 function showSkills() {
 	var scanScope=["bb", "sbb", "ubb"];
-	var unitIDs=$(this).split(",");
+	var unitIDs=$(this).attr("data-found").split(",");
 	var skillDesc=$(this).text();
 	var skillsHTML="";
 	/*identify the skill*/
