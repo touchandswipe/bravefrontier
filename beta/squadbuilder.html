@@ -409,6 +409,25 @@ function searchNameRun() {
 	});
 }
 
+function scanSkills() {
+	var scanScope=["bb", "sbb", "ubb"];
+	$( ".unitBox .unitSelected" ).each( function(i) {
+		for (i in scanScope) {
+			var scanArray=rawParseObj[$(this).attr("data-unitid")][scanScope[i]].effects;
+			alert("debug"+scanArray);
+			/*Scan mapping*/
+			for (j in scanArray) {
+				for (k in bbMap) {
+					/*match exist*/
+					if (scanArray[j][bbMap[k].impact]) {
+						alert("found in " + scanScope[i])
+					}
+				}
+			}
+		}
+	});
+}
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
@@ -426,7 +445,8 @@ $(document).on("click", '.unitBox', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>')
+	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>');
+	scanSkills();
 })
 
 /*Refresh data*/
