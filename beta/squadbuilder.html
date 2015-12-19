@@ -360,7 +360,7 @@ function searchIdRun() {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['id']==sVal) {
-	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" />');
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="'+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" />');
 	        break;
 	    }
 	}
@@ -416,7 +416,6 @@ function scanSkills() {
 		for (i in scanScope) {
 			if (rawParseObj[$(this).attr("data-unitid")][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[$(this).attr("data-unitid")][scanScope[i]].effects;
-				alert("debug "+scanArray);
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in bbMap) {
@@ -424,7 +423,8 @@ function scanSkills() {
 						if (scanArray[j][bbMap[k].impact]) {
 							$(".bbBtns").each( function() {
 								if ($(this).attr("data-skill")==scanArray[j][bbMap[k].desc]) {
-									$(this).toggleClass("btn-success");
+									alert("match "+scanArray[j][bbMap[k].desc];
+									$(this).addClass("btn-success");
 									$(this).removeAttr("disabled")
 								}
 							})
