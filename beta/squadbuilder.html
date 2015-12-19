@@ -27,7 +27,7 @@
       width:150px;
     }
     .bbBtns {
-    	width:80%;
+    	width:95%;
     	text-align: center;
     }
     .unitFound, .unitSelected {
@@ -411,16 +411,24 @@ function searchNameRun() {
 
 function scanSkills() {
 	var scanScope=["bb", "sbb", "ubb"];
-	$( ".unitBox .unitSelected" ).each( function(i) {
+	/*iterate thru selected units*/
+	$( ".unitBox .unitSelected" ).each( function() {
 		for (i in scanScope) {
-			var scanArray=rawParseObj[$(this).attr("data-unitid")][scanScope[i]].effects;
-			alert("debug"+scanArray);
-			/*Scan mapping*/
-			for (j in scanArray) {
-				for (k in bbMap) {
-					/*match exist*/
-					if (scanArray[j][bbMap[k].impact]) {
-						alert("found in " + scanScope[i])
+			if (rawParseObj[$(this).attr("data-unitid")][scanScope[i]] != "none") {
+				var scanArray=rawParseObj[$(this).attr("data-unitid")][scanScope[i]].effects;
+				alert("debug "+scanArray);
+				/*Scan mapping*/
+				for (j in scanArray) {
+					for (k in bbMap) {
+						/*match exist*/
+						if (scanArray[j][bbMap[k].impact]) {
+							$(".bbBtns").each( function() {
+								if ($(this).attr("data-skill")==scanArray[j][bbMap[k].desc) {
+									$(this).toggleClass("btn-success");
+									$(this).removeAttr("disabled")
+								}
+							})
+						}
 					}
 				}
 			}
@@ -512,7 +520,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     var bbString="";
     for (i in bbMap) {
     	bbString+='<div class="col-xs-4 col-sm-3 col-md-2">';
-    	bbString+='<a href="#" class="btn btn-default bbBtns" disabled="disabled">'+bbMap[i].desc+'</a>';
+    	bbString+='<a href="#" class="btn bbBtns" disabled="disabled" data-skill="'+bbMap[i].desc+'">'+bbMap[i].desc+'</a>';
     	bbString+='</div>';
     }
     $("#bbSpace").append(bbString);
