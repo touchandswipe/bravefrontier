@@ -431,7 +431,7 @@ function scanSkills() {
 						/*match exist*/
 						if (scanArray[j][bbMap[k].impact]) {
 							$(".bbBtns").each( function() {
-								if ($(this).attr("data-skill")==bbMap[k].desc) {
+								if ($(this).text()==bbMap[k].desc) {
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
@@ -456,6 +456,11 @@ $(document).on("click", '.unitBox', function(e){
 	e.preventDefault();
 	unitProcessing="#"+$(this).attr("id");
 	$('#searchModal').modal('show')
+})
+
+/*BB Btn Click*/
+$(document).on("click", '.bbBtns', function(e){
+	e.preventDefault();
 })
 
 /*update unitspace*/
@@ -529,7 +534,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     var bbString="";
     for (i in bbMap) {
     	bbString+='<div class="col-xs-4 col-sm-3 col-md-2">';
-    	bbString+='<a href="#" class="btn bbBtns btn-default" disabled="disabled" data-skill="'+bbMap[i].desc+'">'+bbMap[i].desc+'</a>';
+    	bbString+='<a href="#" class="btn bbBtns btn-default" disabled="disabled">'+bbMap[i].desc+'</a>';
     	bbString+='</div>';
     }
     $("#bbSpace").append(bbString);
