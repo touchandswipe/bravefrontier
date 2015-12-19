@@ -35,6 +35,10 @@
     	padding:0;
     	cursor:pointer;
     }
+    .untiIcon {
+    	width:70px;
+    	height:auto;
+    }
     .clear {clear:both;}
     .bd {
         font-weight:bold;
@@ -485,7 +489,7 @@ function showSkills(e) {
 	}
 	/*Scan unit details*/
 	for (l in unitIDs) {
-		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h3>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</h3>';
+		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</b></h4>';
 		for (i in scanScope) {
 			var selectUnit=unitIDs[l];
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
