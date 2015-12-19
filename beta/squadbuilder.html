@@ -26,6 +26,10 @@
       display:block;
       width:150px;
     }
+    .bbBtns {
+    	width:80%;
+    	text-align: center;
+    }
     .unitFound, .unitSelected {
     	width:70px;
     	height:auto;
@@ -491,6 +495,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     	bbString+='<a href="#" class="btn btn-default bbBtns" disabled="disabled">'+bbMap[i].desc+'</a>';
     	bbString+='</div>';
     }
+    $("#bbSpace").append("bbString");
 })
 </script>
 
