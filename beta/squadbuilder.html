@@ -423,7 +423,7 @@ function scanSkills() {
 						if (scanArray[j][bbMap[k].impact]) {
 							$(".bbBtns").each( function() {
 								if ($(this).attr("data-skill")==bbMap[k].desc) {
-									$(this).toggleClass("btn-default btn-success");
+									$(this).toggleClass("btn-default", "btn-success");
 									$(this).removeAttr("disabled")
 								}
 							})
@@ -452,7 +452,7 @@ $(document).on("click", '.unitBox', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[i].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>');
+	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected"/>');
 	scanSkills();
 })
 
