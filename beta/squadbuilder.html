@@ -500,7 +500,7 @@ function showSkills(e) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 						skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' '+bbMap[bbMapKey].desc;
 						if (bbMap[bbMapKey].turns)
-							skillsHTML+=scanArray[j][bbMap[bbMapKey].turns]+'Turns'
+							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
 						skillsHTML+='</br>';
 					}
 				}
