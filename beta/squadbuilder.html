@@ -443,8 +443,8 @@ function scanSkills() {
 	var scanScope=["bb", "sbb", "ubb"];
 	/*iterate thru selected units*/
 	$( ".unitBox .unitSelected" ).each( function() {
+		var selectUnit=$(this).attr("data-unitid");
 		for (i in scanScope) {
-			var selectUnit=$(this).attr("data-unitid");
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
@@ -489,9 +489,9 @@ function showSkills(e) {
 	}
 	/*Scan unit details*/
 	for (l in unitIDs) {
-		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' '+rawParseObj[selectUnit].rarity+'*'+'</b></h4>';
+		var selectUnit=unitIDs[l];
+		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' ('+rawParseObj[selectUnit].rarity+'*)</b></h4>';
 		for (i in scanScope) {
-			var selectUnit=unitIDs[l];
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
@@ -536,7 +536,7 @@ $(document).on("click", '.bbBtns', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" "+rawParseObj[$(this).attr("data-unitid")].rarity+"*"+'" />');
+	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
 	scanSkills();
 })
 
