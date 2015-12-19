@@ -423,7 +423,7 @@ function scanSkills() {
 						if (scanArray[j][bbMap[k].impact]) {
 							alert("match found");
 							$(".bbBtns").each( function() {
-								alert($(this).attr("data-skill"));
+								alert($(this).attr("data-skill") + " " + scanArray[j][bbMap[k].desc]);
 								if ($(this).attr("data-skill")==scanArray[j][bbMap[k].desc]) {
 									alert("match "+scanArray[j][bbMap[k].desc]);
 									$(this).addClass("btn-success");
