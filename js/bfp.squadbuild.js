@@ -23,6 +23,7 @@ bbMap=[
 	{desc:"% OD Fill", impact:"increase od gauge%"},
 	{desc:"% BC+", impact:"bc drop rate% buff (10)", turns:"drop rate buff turns"},
 	{desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
+	{desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%", turns:"bc fill when attacked turns (38)"},
 	{desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
 	{desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
 	{desc:"% Reduce Fire DMG", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
