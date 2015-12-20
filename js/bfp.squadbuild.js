@@ -8,7 +8,7 @@ bbMap=[
 	{desc:"Gradual Heal", impact:"gradual heal low", impact2:"gradual heal high", turns:"gradual heal turns (8)"},
 	{desc:"Heal", impact:"heal low", impact2:"heal high"},
 	{desc:"Angel Idol", impact:"angel idol recover chance%", chance:"angel idol recover chance%", turns:"angel idol buff turns (91)", hideprefix:true},
-	{desc:"Revive Dead", impact:"revive unit hp%", chance:"revive unit chance%", turns:"angel idol buff turns (91)", hideprefix:true},
+	{desc:"Revive Dead", impact:"revive unit hp%", chance:"revive unit chance%", hideprefix:true},
 	{desc:"% Convert to ATK", impact:"atk% buff (46)", impact2:"converted attribute", turns:"% converted turns"},
 	{desc:"% Convert to DEF", impact:"def% buff (47)", impact2:"converted attribute", turns:"% converted turns"},
 	{desc:"Cure Ails", impact:"ailments cured", hideprefix:true},
