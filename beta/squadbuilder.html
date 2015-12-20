@@ -501,10 +501,10 @@ function showSkills(e) {
 						if (bbMap[bbMapKey].chance)
 							skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
 						if (!bbMap[bbMapKey].hideprefix)
-							skillsHTML+=scanArray[j][bbMap[bbMapKey].impact];
+							skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' ';
 						if (bbMap[bbMapKey].impact2)
-							skillsHTML+=' ('+scanArray[j][bbMap[bbMapKey].impact2]+')';
-						skillsHTML+=' '+bbMap[bbMapKey].desc;
+							skillsHTML+='('+scanArray[j][bbMap[bbMapKey].impact2]+') ';
+						skillsHTML+=bbMap[bbMapKey].desc;
 						if (bbMap[bbMapKey].turns)
 							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
 						if (scanArray[j]["target area"])
