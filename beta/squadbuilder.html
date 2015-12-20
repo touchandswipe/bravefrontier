@@ -487,6 +487,40 @@ function scanSkills(classBtns,scanScope) {
 							})
 						}
 					}
+					/*ATK Down Inconsistency*/
+					if (scanArray[j]["buff #1"]["atk% buff (2)"] || scanArray[j]["buff #2"]["atk% buff (2)"]) {
+						$(classBtns).each( function() {
+							if ($(this).text()=="% ATK-Down") {
+								/*create list of units with skills*/
+								if ($(this).attr("data-found")) {
+									if ($(this).attr("data-found").search(selectUnit)==-1)
+										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+								}
+								else
+									$(this).attr("data-found",selectUnit)
+								$(this).removeAttr("disabled");
+								if ($(this).hasClass("btn-default"))
+									$(this).toggleClass("btn-default btn-success");
+							}
+						})
+					};
+					/*DEF Down Inconsistency*/
+					if (scanArray[j]["buff #1"]["def% buff (4)"] || scanArray[j]["buff #2"]["def% buff (4)"]) {
+						$(classBtns).each( function() {
+							if ($(this).text()=="% DEF-Down") {
+								/*create list of units with skills*/
+								if ($(this).attr("data-found")) {
+									if ($(this).attr("data-found").search(selectUnit)==-1)
+										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+								}
+								else
+									$(this).attr("data-found",selectUnit)
+								$(this).removeAttr("disabled");
+								if ($(this).hasClass("btn-default"))
+									$(this).toggleClass("btn-default btn-success");
+							}
+						})
+					};
 				}
 			}
 		}
@@ -535,7 +569,34 @@ function showSkills(e,scanScope) {
 						}
 						skillsHTML+='</br>';
 					}
+					/*ATK Down Inconsistency*/
+					if (bbMap[bbMapKey].desc=="% ATK-Down") {
+						if (scanArray[j]["buff #1"]["atk% buff (2)"]) {
+							skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
+							skillsHTML+=scanArray[j]["buff #1"]["atk% buff (2)"]+bbMap[bbMapKey].desc;
+							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+						}
+						if (scanArray[j]["buff #2"]["atk% buff (2)"]) {
+							skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
+							skillsHTML+=scanArray[j]["buff #2"]["atk% buff (2)"]+bbMap[bbMapKey].desc;
+							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+						} 
+					}
+					/*DEF Down Inconsistency*/
+					if (bbMap[bbMapKey].desc=="% DEF-Down") {
+						if (scanArray[j]["buff #1"]["def% buff (4)"]) {
+							skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
+							skillsHTML+=scanArray[j]["buff #1"]["def% buff (4)"]+bbMap[bbMapKey].desc;
+							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+						}
+						if (scanArray[j]["buff #2"]["def% buff (4)"]) {
+							skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
+							skillsHTML+=scanArray[j]["buff #2"]["def% buff (4)"]+bbMap[bbMapKey].desc;
+							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+						} 
+					}
 				}
+				
 			}
 		}
 		skillsHTML+='<hr>';
