@@ -133,7 +133,7 @@ if (window.location.hash == '#_=_') {
 	  </div>
 	</div>
 <!-- Skills buttons-->
-	<div class="row" id="bbSpace"><h3>Skills Effects Available in Squad</h3></div>
+	<div class="row" id="bbSpace"><h3>BB Effects Available in Squad</h3></div>
 </div>
 
 <!-- NEWResponsiveBlog-->
@@ -498,7 +498,10 @@ function showSkills(e) {
 					/*match*/
 					if (scanArray[j][bbMap[bbMapKey].impact]) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
-						skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' '+bbMap[bbMapKey].desc;
+						skillsHTML+=scanArray[j][bbMap[bbMapKey].impact];
+						if (bbMap[bbMapKey].impact2)
+							skillsHTML+=' ('+scanArray[j][bbMap[bbMapKey].impact2]+')';
+						skillsHTML+=' '+bbMap[bbMapKey].desc;
 						if (bbMap[bbMapKey].turns)
 							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
 						skillsHTML+='</br>';
