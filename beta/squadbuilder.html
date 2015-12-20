@@ -444,7 +444,7 @@ function badgeRun() {
 		if ($(this).attr("data-found")) {
 			var countDupes=$(this).attr("data-found").split(',').length;
 			if (countDupes>1)
-				$(this).prepend('<span class="badge">'+countDupes+'</span>')
+				$(this).prepend('<span class="badge">'+countDupes+'</span> ')
 		}
 	})
 }
