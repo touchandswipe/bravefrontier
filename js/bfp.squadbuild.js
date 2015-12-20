@@ -34,6 +34,13 @@ bbMap=[
 	{desc:"% Reduce Thunder DMG", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
 	{desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
 	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
+	{desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75))", turns:"stat% debuff turns"},
+	{desc:"% Sick", impact:"sick%"},
+	{desc:"% Weak", impact:"weaken%"},
+	{desc:"% Curse", impact:"curse%"},
+	{desc:"% Injury", impact:"injury%"},
+	{desc:"% Paralyse", impact:"paralyse%"},
 ];
 
 /*Check filedate*/
