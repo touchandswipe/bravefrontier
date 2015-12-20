@@ -498,6 +498,8 @@ function showSkills(e) {
 					/*match*/
 					if (scanArray[j][bbMap[bbMapKey].impact]) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+						if (bbMap[bbMapKey].chance)
+							skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
 						skillsHTML+=scanArray[j][bbMap[bbMapKey].impact];
 						if (bbMap[bbMapKey].impact2)
 							skillsHTML+=' ('+scanArray[j][bbMap[bbMapKey].impact2]+')';
