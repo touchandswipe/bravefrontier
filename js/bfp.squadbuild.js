@@ -41,6 +41,8 @@ bbMap=[
 	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
 	{desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
 	{desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75)", turns:"stat% debuff turns"},
+	{desc:"% ATK-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
+	{desc:"% DEF-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
 	{desc:"% Sick", impact:"sick%"},
 	{desc:"% Weaken", impact:"weaken%"},
 	{desc:"% Injury", impact:"injury%"},
