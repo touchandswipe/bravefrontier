@@ -22,10 +22,15 @@ bbMap=[
 	{desc:"% BB Fill", impact:"bb bc fill%"},
 	{desc:"% OD Fill", impact:"increase od gauge%"},
 	{desc:"% BC+", impact:"bc drop rate% buff (10)", turns:"drop rate buff turns"},
-	{desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
 	{desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
+	{desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
 	{desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
 	{desc:"% Reduce Fire DMG", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Water DMG", impact:"mitigate water attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Earth DMG", impact:"mitigate earth attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Thunder DMG", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
 ];
 
 /*Check filedate*/
