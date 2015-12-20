@@ -628,12 +628,12 @@ function showSkills(e,scanScope) {
 	$('#showSkillModal').modal('show')
 }
 
-function generateBtns(btnclass,dest) {
+function generateBtns(btnclass,dest,mapArray) {
 /*generate skills buttons*/
     var bbString="";
     for (i in bbMap) {
     	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
-    	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+bbMap[i].desc+'</span></a>';
+    	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+mapArray[i].desc+'</span></a>';
     	bbString+='</div>';
     }
     $(dest).append(bbString);
@@ -742,8 +742,9 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	    })
     }
     /*generate skills buttons*/
-    generateBtns("bbBtns","#bbSpace");
-    generateBtns("ubbBtns","#ubbSpace");
+    generateBtns("lsBtns","#lsSpace",lsMap);
+    generateBtns("bbBtns","#bbSpace",bbMap);
+    generateBtns("ubbBtns","#ubbSpace",bbMap);
 })
 </script>
 
