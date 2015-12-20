@@ -20,10 +20,12 @@ bbMap=[
 	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
 	{desc:"BC InstaFill", impact:"increase bb gauge"},
 	{desc:"% BB Fill", impact:"bb bc fill%"},
+	{desc:"% OD Fill", impact:"increase od gauge%"},
 	{desc:"% BC+", impact:"bc drop rate% buff (10)", turns:"drop rate buff turns"},
 	{desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
 	{desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
 	{desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
+	{desc:"% Reduce Fire DMG", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% reduction turns (36)"},
 ];
 
 /*Check filedate*/
