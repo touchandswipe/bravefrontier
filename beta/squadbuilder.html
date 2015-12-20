@@ -546,6 +546,42 @@ function scanSkills(classBtns,scanScope) {
 	badgeRun(classBtns);
 }
 
+function scanLeaderSkills(classBtns,scanScope) {
+	resetBtns(classBtns);
+	/*iterate thru selected units*/
+	$( ".unitBox .unitSelected" ).each( function() {
+		var selectUnit=$(this).attr("data-unitid");
+		for (i in scanScope) {
+			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
+				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
+				/*Scan mapping*/
+				for (j in scanArray) {
+					for (k in lsMap) {
+						/*match exist*/
+						if (scanArray[j][lsMap[k].impact]) {
+							$(classBtns).each( function() {
+								if ($(this).text()==lsMap[k].desc) {
+									/*create list of units with skills*/
+									if ($(this).attr("data-found")) {
+										if ($(this).attr("data-found").search(selectUnit)==-1)
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									}
+									else
+										$(this).attr("data-found",selectUnit)
+									$(this).removeAttr("disabled");
+									if ($(this).hasClass("btn-default"))
+										$(this).toggleClass("btn-default btn-success");
+								}
+							})
+						}
+					}
+				}
+			}
+		}
+	})
+	badgeRun(classBtns);
+}
+
 /*show unit & skills on skill click*/
 function showSkills(e,scanScope) {
 	var unitIDs=e.attr("data-found").split(",");
@@ -650,6 +686,7 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
+	scanSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
 })
@@ -678,6 +715,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
+	scanSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
 })
