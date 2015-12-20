@@ -438,8 +438,8 @@ function searchNameRun() {
 	});
 }
 
-function resetBtns() {
-	$(".bbBtns").each( function() {
+function resetBtns(classBtns) {
+	$(classBtns).each( function() {
 		$(this).remove(".badge");
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
@@ -458,8 +458,8 @@ function badgeRun() {
 	})
 }
 
-function scanSkills(scanScope) {
-	resetBtns();
+function scanSkills(classBtns,scanScope) {
+	resetBtns(classBtns);
 	/*iterate thru selected units*/
 	$( ".unitBox .unitSelected" ).each( function() {
 		var selectUnit=$(this).attr("data-unitid");
@@ -471,7 +471,7 @@ function scanSkills(scanScope) {
 					for (k in bbMap) {
 						/*match exist*/
 						if (scanArray[j][bbMap[k].impact]) {
-							$(".bbBtns").each( function() {
+							$(classBtns).each( function() {
 								if ($(this).text()==bbMap[k].desc) {
 									/*create list of units with skills*/
 									if ($(this).attr("data-found")) {
@@ -575,12 +575,19 @@ $(document).on("click", '.bbBtns', function(e){
 	showSkills($(this),["bb", "sbb", "ubb"])
 })
 
+/*BB Btn Click*/
+$(document).on("click", '.ubbBtns', function(e){
+	e.preventDefault();
+	showSkills($(this),["ubb"])
+})
+
 /*update unitspace*/
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
-	scanSkills(["bb", "sbb", "ubb"]);
+	scanSkills(".bbBtns",["bb", "sbb"]);
+	scanSkills(".ubbBtns",["ubb"]);
 })
 
 /*Refresh data*/
