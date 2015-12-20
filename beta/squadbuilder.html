@@ -562,10 +562,8 @@ function scanLeaderSkills(classBtns,scanScope) {
 							$(classBtns).each( function() {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
-									if ($(this).attr("data-found")) {
-										if ($(this).attr("data-found").search(selectUnit)==-1)
-											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
-									}
+									if ($(this).attr("data-found"))
+										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
 									else
 										$(this).attr("data-found",selectUnit)
 									$(this).removeAttr("disabled");
