@@ -442,7 +442,7 @@ function resetBtns() {
 function badgeRun() {
 	$(".bbBtns").each( function() {
 		if ($(this).attr("data-found")) {
-			var countDupes=$(this).attr("data-found").split(',').length();
+			var countDupes=$(this).attr("data-found").split(',').length;
 			if (countDupes>1)
 				$(this).prepend('<span class="badge">'+countDupes+'</span>')
 		}
