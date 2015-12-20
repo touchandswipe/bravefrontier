@@ -235,8 +235,12 @@ if (window.location.hash == '#_=_') {
 		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
 		        <input type="search" placeholder="e.g. ラムナ" class="form-control" id="searchNameBox">
 		</div> -->
-		<div class="panel-group" id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name you wish to view.</h4></div>
+		<div id="rawTable"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name you wish to view.</h4></div>
+		<div
 	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="trashBtn"><i class="fa fa-trash-0 fa-2x"></i></button>
       </div>
     </div>
   </div>
@@ -262,6 +266,7 @@ if (window.location.hash == '#_=_') {
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
 unitProcessing="";
+trashStr="<i class="fa fa-plus fa-5x"></i>";
 
 /*Rarity Filter*/
 function rarityRun(select) {
@@ -639,6 +644,12 @@ function generateBtns(btnclass,dest) {
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
 	resetLocalData("skillsguidejapan",false)
+})
+
+/*Trash Unit*/
+$(document).on("click", '#trashBtn', function(e){
+	e.preventDefault();
+	$(unitProcessing).html(trashStr);
 })
 
 /*SearchModal Trigger*/
