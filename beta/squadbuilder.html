@@ -96,7 +96,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid" style="margin:0px;padding:5px;">
-<h2 style="margin-top:0;">Squad Builder BETA - <span class="text-danger">日本 (Japan)</span> Server</h2>
+<h2 style="margin-top:0;">Squad Builder BETA - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 
@@ -137,8 +137,12 @@ if (window.location.hash == '#_=_') {
 		<a class="unitBox" id="unitF" href="#"><i class="fa fa-plus fa-5x"></i></a>
 	  </div>
 	</div>
-<!-- Skills buttons-->
-	<div class="row" id="bbSpace"><h3>BB Effects Available in Squad</h3></div>
+	<!-- LS Skills Buttons-->
+	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
+	<!-- BB Skills Buttons-->
+	<div class="row" id="bbSpace"><h3>BB/SBB Effects Available in Squad</h3></div>
+	<!-- UBB Skills Buttons-->
+	<div class="row" id="ubbSpace"><h3>UBB Effects Available in Squad</h3></div>
 </div>
 
 <!-- NEWResponsiveBlog-->
@@ -454,9 +458,8 @@ function badgeRun() {
 	})
 }
 
-function scanSkills() {
+function scanSkills(scanScope) {
 	resetBtns();
-	var scanScope=["bb", "sbb", "ubb"];
 	/*iterate thru selected units*/
 	$( ".unitBox .unitSelected" ).each( function() {
 		var selectUnit=$(this).attr("data-unitid");
@@ -492,8 +495,7 @@ function scanSkills() {
 }
 
 /*show unit & skills on skill click*/
-function showSkills(e) {
-	var scanScope=["bb", "sbb", "ubb"];
+function showSkills(e,scanScope) {
 	var unitIDs=e.attr("data-found").split(",");
 	var skillDesc=e.children(".btnDesc").text();
 	var skillsHTML="";
@@ -559,7 +561,7 @@ $(document).on("click", '.unitBox', function(e){
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this))
+	showSkills($(this),["bb", "sbb", "ubb"])
 })
 
 /*update unitspace*/
@@ -567,7 +569,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
-	scanSkills();
+	scanSkills(["bb", "sbb", "ubb"]);
 })
 
 /*Refresh data*/
