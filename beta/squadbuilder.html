@@ -545,6 +545,17 @@ function showSkills(e,scanScope) {
 	$('#showSkillModal').modal('show')
 }
 
+function generateBtns(btnclass,dest) {
+/*generate skills buttons*/
+    var bbString="";
+    for (i in bbMap) {
+    	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
+    	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+bbMap[i].desc+'</span></a>';
+    	bbString+='</div>';
+    }
+    $(dest).append(bbString);
+}
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
@@ -632,13 +643,8 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	    })
     }
     /*generate skills buttons*/
-    var bbString="";
-    for (i in bbMap) {
-    	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
-    	bbString+='<a href="#" class="btn bbBtns btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+bbMap[i].desc+'</span></a>';
-    	bbString+='</div>';
-    }
-    $("#bbSpace").append(bbString);
+    generateBtns("bbBtns","#bbSpace");
+    generateBtns("ubbBtns","#ubbSpace");
 })
 </script>
 
