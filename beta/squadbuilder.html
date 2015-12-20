@@ -439,7 +439,7 @@ function searchNameRun() {
 }
 
 function resetBtns(classBtns) {
-	$(classBtns).has(".badge").remove(".badge");
+	$(".badge").remove();
 	alert("badges removed");
 	$(classBtns).each( function() {
 		$(this).attr("disabled","disabled");
