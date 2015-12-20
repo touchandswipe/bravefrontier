@@ -1,10 +1,16 @@
 countVar=0;
 rawParseObj=[];
+lsMap=[
+	{desc:"% HP+", impact:"hp% buff"},
+	{desc:"% ATK+", impact:"atk% buff"},
+	{desc:"% DEF+", impact:"def% buff"},
+	{desc:"% REC+", impact:"rec% buff"},
+];
 bbMap=[
+	{desc:"% HP+", impact:"max hp% increase"},
 	{desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
 	{desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
 	{desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
-	{desc:"% HP+", impact:"max hp% increase"},
 	{desc:"Gradual Heal", impact:"gradual heal low", impact2:"gradual heal high", turns:"gradual heal turns (8)"},
 	{desc:"Heal", impact:"heal low", impact2:"heal high"},
 	{desc:"Angel Idol", impact:"angel idol buff (12)", hideprefix:true},
