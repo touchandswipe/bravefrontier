@@ -539,7 +539,6 @@ function scanSkills(classBtns,scanScope) {
 			}
 		}
 	})
-	badgeRun();
 }
 
 /*show unit & skills on skill click*/
@@ -667,6 +666,7 @@ $(document).on("click", '.unitFound', function(e){
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
+	badgeRun();
 })
 
 /*Refresh data*/
