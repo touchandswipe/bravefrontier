@@ -476,7 +476,7 @@ function scanSkills() {
 function showSkills(e) {
 	var scanScope=["bb", "sbb", "ubb"];
 	var unitIDs=e.attr("data-found").split(",");
-	var skillDesc=e.text();
+	var skillDesc=e.children("btnDesc").text();
 	var skillsHTML="";
 	/*identify the skill*/
 	for (i in bbMap) {
@@ -614,7 +614,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     var bbString="";
     for (i in bbMap) {
     	bbString+='<div class="col-xs-6 col-sm-4 col-md-2">';
-    	bbString+='<a href="#" class="btn bbBtns btn-sm btn-default" disabled="disabled">'+bbMap[i].desc+'</a>';
+    	bbString+='<a href="#" class="btn bbBtns btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+bbMap[i].desc+'</span></a>';
     	bbString+='</div>';
     }
     $("#bbSpace").append(bbString);
