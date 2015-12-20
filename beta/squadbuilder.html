@@ -548,9 +548,8 @@ function scanSkills(classBtns,scanScope) {
 
 function scanLeaderSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
-	var leadArray=["#unitA", "#unitB"];
 	/*iterate thru selected units*/
-	$.each(leadArray, function() {
+	$("#unitA,#unitB").each(function() {
 		var selectUnit=$(this).attr("data-unitid");
 		alert(selectUnit);
 		for (i in scanScope) {
