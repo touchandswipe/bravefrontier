@@ -507,8 +507,12 @@ function showSkills(e) {
 						skillsHTML+=bbMap[bbMapKey].desc;
 						if (bbMap[bbMapKey].turns)
 							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
-						if (scanArray[j]["target area"])
-							skillsHTML+=' ['+scanArray[j]["target area"].toUpperCase()+']';
+						if (scanArray[j]["target area"]) {
+							skillsHTML+=' ['+scanArray[j]["target area"].toUpperCase();
+							if (scanArray[j]["target type"]) {
+								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
+							skillsHTML+=']';
+						}
 						skillsHTML+='</br>';
 					}
 				}
