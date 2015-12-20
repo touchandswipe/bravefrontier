@@ -476,7 +476,8 @@ function scanSkills() {
 function showSkills(e) {
 	var scanScope=["bb", "sbb", "ubb"];
 	var unitIDs=e.attr("data-found").split(",");
-	var skillDesc=e.children("btnDesc").text();
+	var skillDesc=e.children(".btnDesc").text();
+	alert(skillDesc);
 	var skillsHTML="";
 	/*identify the skill*/
 	for (i in bbMap) {
