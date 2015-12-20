@@ -1,10 +1,10 @@
 countVar=0;
 rawParseObj=[];
 lsMap=[
-	{desc:"% HP+", impact:"hp% buff"},
-	{desc:"% ATK+", impact:"atk% buff"},
-	{desc:"% DEF+", impact:"def% buff"},
-	{desc:"% REC+", impact:"rec% buff"},
+	{desc:"% HP", impact:"hp% buff"},
+	{desc:"% ATK", impact:"atk% buff"},
+	{desc:"% DEF", impact:"def% buff"},
+	{desc:"% REC", impact:"rec% buff"},
 ];
 bbMap=[
 	{desc:"% HP+", impact:"max hp% increase"},
