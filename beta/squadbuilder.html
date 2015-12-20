@@ -686,7 +686,7 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
-	scanSkills(".lsBtns",["ls"]);
+	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
 })
@@ -715,7 +715,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
-	scanSkills(".lsBtns",["ls"]);
+	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
 })
