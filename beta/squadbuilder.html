@@ -509,7 +509,7 @@ function showSkills(e) {
 							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
 						if (scanArray[j]["target area"]) {
 							skillsHTML+=' ['+scanArray[j]["target area"].toUpperCase();
-							if (scanArray[j]["target type"]) {
+							if (scanArray[j]["target type"])
 								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
 							skillsHTML+=']';
 						}
