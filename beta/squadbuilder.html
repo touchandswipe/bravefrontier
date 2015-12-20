@@ -431,9 +431,21 @@ function searchNameRun() {
 
 function resetBtns() {
 	$(".bbBtns").each( function() {
+		$(this).remove(".badge");
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
 			$(this).toggleClass("btn-default btn-success");
+	})
+}
+
+/*load badges on dupe skills*/
+function badgeRun() {
+	$(".bbBtns").each( function() {
+		if ($(this).attr("data-found")) {
+			var countDupes=$(this).attr("data-found").split(',').length();
+			if (countDupes>1)
+				$(this).prepend('<span class="badge">'+countDupes+'</span>')
+		}
 	})
 }
 
@@ -470,7 +482,8 @@ function scanSkills() {
 				}
 			}
 		}
-	});
+	})
+	badgeRun();
 }
 
 /*show unit & skills on skill click*/
