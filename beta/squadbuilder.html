@@ -650,6 +650,9 @@ $(document).on("click", '#syncNewBtn', function(e){
 $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
+	$('#searchModal').modal('hide');
+	scanSkills(".bbBtns",["bb", "sbb"]);
+	scanSkills(".ubbBtns",["ubb"]);
 })
 
 /*SearchModal Trigger*/
