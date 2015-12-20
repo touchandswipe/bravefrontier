@@ -439,9 +439,8 @@ function searchNameRun() {
 }
 
 function resetBtns(classBtns) {
-	$(".badge").remove();
-	alert("badges removed");
 	$(classBtns).each( function() {
+		$(this).find(".badge").remove();
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
 			$(this).toggleClass("btn-default btn-success");
