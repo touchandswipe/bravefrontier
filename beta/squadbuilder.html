@@ -508,10 +508,10 @@ function showSkills(e) {
 						if (bbMap[bbMapKey].turns)
 							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
 						if (scanArray[j]["target area"]) {
-							skillsHTML+=' ['+scanArray[j]["target area"].toUpperCase();
+							skillsHTML+=' <span class="badge">'+scanArray[j]["target area"].toUpperCase();
 							if (scanArray[j]["target type"])
 								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
-							skillsHTML+=']';
+							skillsHTML+='</span>';
 						}
 						skillsHTML+='</br>';
 					}
