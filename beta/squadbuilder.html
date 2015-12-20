@@ -439,8 +439,9 @@ function searchNameRun() {
 }
 
 function resetBtns(classBtns) {
+	$(classBtns).has(".badge").remove(".badge");
+	alert("badges removed");
 	$(classBtns).each( function() {
-		$(this).remove(".badge");
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
 			$(this).toggleClass("btn-default btn-success");
@@ -448,8 +449,8 @@ function resetBtns(classBtns) {
 }
 
 /*load badges on dupe skills*/
-function badgeRun() {
-	$(".bbBtns").each( function() {
+function badgeRun(classBtns) {
+	$(classBtns).each( function() {
 		if ($(this).attr("data-found")) {
 			var countDupes=$(this).attr("data-found").split(',').length;
 			if (countDupes>1)
@@ -539,6 +540,7 @@ function scanSkills(classBtns,scanScope) {
 			}
 		}
 	})
+	badgeRun(classBtns);
 }
 
 /*show unit & skills on skill click*/
@@ -666,7 +668,6 @@ $(document).on("click", '.unitFound', function(e){
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
-	badgeRun();
 })
 
 /*Refresh data*/
