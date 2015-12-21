@@ -603,7 +603,7 @@ function showSkills(e,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					/*match*/
-					if (scanArray[j][bbMap[bbMapKey].impact]) {
+					if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact)) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 						if (bbMap[bbMapKey].chance)
 							skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
@@ -685,7 +685,7 @@ function showLeaderSkills(e,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					/*match*/
-					if (scanArray[j][lsMap[lsMapKey].impact]) {
+					if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact)) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 						if (lsMap[lsMapKey].chance)
 							skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
