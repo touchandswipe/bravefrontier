@@ -1,4 +1,5 @@
 countVar=0;
+var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 rawParseObj=[];
 lsMap=[
 	{desc:"% HP", impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
@@ -235,29 +236,20 @@ function isValidJSON(str) {
     return true;
 }
 
-/*Update URL based on bb filters*/
-$(document).on("click", '.skillEffect', function(e){
-    e.preventDefault();
-	skillRun($(this).text());
-})
-
-/*Update URL based on sbb filters*/
-$(document).on("click", '.skillEffect2', function(e){
-    e.preventDefault();
-	skillRun2($(this).text());
-})
-
-/*Update URL based on rarity filters*/
-$(document).on("click", '.raritySelect', function(e){
-    e.preventDefault();
-	rarityRun($(this).text().charAt(0));
-})
-
-/*Update URL based on ls filters*/
-$(document).on("click", '.lsEffect', function(e){
-    e.preventDefault();
-	lsRun($(this).text());
-})
+/*AJAX Call to Google URL Shortener API*/
+function gooShorten(URLtoShort,linkAsset) {
+    $.ajax({
+	    type: 'POST',
+	    async: false,
+	    url: 'https://www.googleapis.com/urlshortener/v1/url?fields=id&key='+gKey,
+	    contentType: 'application/json; charset=utf-8',
+	    data: '{ longUrl: "'+ URLtoShort +'"}',
+		success : function(text)
+	         {
+	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	         }
+	})
+}
 
 /*Update URL based on search filters*/
 $(document).on("click", '#searchIdBtn', function(e){
