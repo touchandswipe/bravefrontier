@@ -170,7 +170,7 @@ function searchIdRun() {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['id']==sVal) {
-	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="'+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" />');
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" />');
 	        break;
 	    }
 	}
