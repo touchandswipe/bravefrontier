@@ -646,8 +646,10 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-link fa-2x sumIcon"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-users fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	//setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
 	$("#SummarySpace").html(sHTML);
+	/*update state*/
+	var state = { stateSquad: sParam.join() };
+	history.pushState(state, "squad state", "?squad="+encodeURIComponent(sParam.join()) );
 	/*build sharing url*/
 	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam.join()), $('#shareURL') );
 }
