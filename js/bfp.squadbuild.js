@@ -2,7 +2,7 @@ countVar=0;
 rawParseObj=[];
 lsMap=[
 	{desc:"% HP", impact:"hp% buff"},
-	{desc:"% ATK", impact:"atk% buff"},
+	{desc:"% ATK", impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% DEF", impact:"def% buff"},
 	{desc:"% REC", impact:"rec% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
