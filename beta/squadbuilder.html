@@ -664,7 +664,9 @@ function refreshALL() {
 function loadSquad() {
 	/*load squad from param*/
 	var sParam=urlParam('squad');
+	alert(sParam);
 	if (sParam != "") {
+		alert("url loading");
 	    	var squadList=sParam.split(',');
 	    	var squadElements=[".unitA",".unitB",".unitC",".unitD",".unitE",".unitF"];
 	    	if (squadList.length>6)
