@@ -624,11 +624,23 @@ function generateBtns(btnclass,dest,mapArray) {
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
+	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
+	var sElementCount=0;
 	var sHTML="";
 	$(".unitBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
+		/*totals cost*/
 		sCost+=parseInt(rawParseObj[selectUnit].cost);
+		/*builds element*/
+		sElement[rawParseObj[selectUnit].element]+=1;
 	})
+	/*counts element*/
+	for (var key in sElement)
+		if (sElement[key]!=0)
+			sElementCount+=1
+	/*generate HTML*/
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sCost+' Cost</h4></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sElementCount+' Unique</br>Element(s)</h4></div>';
 	$("#SummarySpace").html('<h2><b>Squad Cost:</b> '+sCost+'</h2>');
 }
 
