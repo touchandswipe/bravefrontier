@@ -1,5 +1,7 @@
 countVar=0;
-var gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
+unitProcessing="";
+trashStr='<i class="fa fa-plus fa-5x"></i>';
+gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 rawParseObj=[];
 lsMap=[
 	{desc:"% HP", impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
