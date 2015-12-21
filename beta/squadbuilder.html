@@ -686,14 +686,14 @@ function showLeaderSkills(e,scanScope) {
 					/*match*/
 					if (scanArray[j][lsMap[lsMapKey].impact]) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
-						if (lsMap[bbMapKey].chance)
+						if (lsMap[lsMapKey].chance)
 							skillsHTML+=scanArray[j][bbMap[lsMapKey].chance]+' % Chance ';
-						if (!lsMap[bbMapKey].hideprefix)
+						if (!lsMap[lsMapKey].hideprefix)
 							skillsHTML+=scanArray[j][bbMap[lsMapKey].impact]+' ';
-						if (lsMap[bbMapKey].impact2)
+						if (lsMap[lsMapKey].impact2)
 							skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
-						skillsHTML+=bbMap[bbMapKey].desc;
-						if (lsMap[bbMapKey].turns)
+						skillsHTML+=lsMap[lsMapKey].desc;
+						if (lsMap[lsMapKey].turns)
 							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
 						if (scanArray[j]["target area"]) {
 							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase();
