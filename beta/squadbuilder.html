@@ -139,7 +139,7 @@ if (window.location.hash == '#_=_') {
 	  </div>
 	</div>
 	<!-- Squad Summary-->
-	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace"></div></div>
+	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"></div></div>
 	<!-- LS Skills Buttons-->
 	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
 	<!-- BB Skills Buttons-->
@@ -641,7 +641,7 @@ function generateSummary() {
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sCost+' Cost</h4></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sElementCount+' Unique</br>Element(s)</h4></div>';
-	$("#SummarySpace").html('<h2><b>Squad Cost:</b> '+sCost+'</h2>');
+	$("#SummarySpace").html(sHTML);
 }
 
 /*Sync New Button*/
