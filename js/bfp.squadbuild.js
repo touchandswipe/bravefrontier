@@ -55,6 +55,7 @@ lsMap=[
 	{desc:"% Thunder Weakness DMG+", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% Light Weakness DMG+", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% Dark Weakness DMG+", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% EXP+", impact:"xp gained increase%"},
 ];
 bbMap=[
 	{desc:"% HP+", impact:"max hp% increase"},
