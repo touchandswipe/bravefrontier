@@ -386,7 +386,7 @@ function showSkills(e,scanScope) {
 							if (bbMap[bbMapKey].criteria) {
 								for (m in bbMap[bbMapKey].criteria)
 									if (scanArray[j][bbMap[bbMapKey].criteria[m]])
-										skillsHTML+='<h5 style="margin-top:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
+										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
 							skillsHTML+='</br>';
 						}
@@ -477,7 +477,7 @@ function showLeaderSkills(e,scanScope) {
 						if (lsMap[lsMapKey].criteria) {
 							for (m in lsMap[lsMapKey].criteria)
 								if (scanArray[j][lsMap[lsMapKey].criteria[m]])
-									skillsHTML+='<h5 style="margin-top:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
+									skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
 						}
 						skillsHTML+='</br>';
 					}
