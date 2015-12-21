@@ -687,20 +687,14 @@ function showLeaderSkills(e,scanScope) {
 					if (scanArray[j][lsMap[lsMapKey].impact]) {
 						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 						if (lsMap[lsMapKey].chance)
-							skillsHTML+=scanArray[j][bbMap[lsMapKey].chance]+' % Chance ';
+							skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
 						if (!lsMap[lsMapKey].hideprefix)
-							skillsHTML+=scanArray[j][bbMap[lsMapKey].impact]+' ';
+							skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
 						if (lsMap[lsMapKey].impact2)
 							skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 						skillsHTML+=lsMap[lsMapKey].desc;
 						if (lsMap[lsMapKey].turns)
 							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
-						if (scanArray[j]["target area"]) {
-							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase();
-							if (scanArray[j]["target type"])
-								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
-							skillsHTML+='</kbd>';
-						}
 						skillsHTML+='</br>';
 					}
 				}
