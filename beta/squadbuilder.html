@@ -138,6 +138,8 @@ if (window.location.hash == '#_=_') {
 		<a class="unitBox" id="unitF" href="#"><i class="fa fa-plus fa-5x"></i></a>
 	  </div>
 	</div>
+	<!-- Squad Summary-->
+	<div class="row" id="SummarySpace"><h3>Squad Summary</h3></div>
 	<!-- LS Skills Buttons-->
 	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
 	<!-- BB Skills Buttons-->
@@ -735,6 +737,17 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+function generateSummary() {
+/*generate squad summary*/
+	var sCost=0;
+	var sHTML="";
+	$(".unitBox").each(function(){
+		var selectUnit=$(this).attr("data-unitid");
+		sCost+=rawParseObj[selectUnit].cost;
+	})
+	$("#summarySpace").append('<h2><b>Squad Cost:</b> '+sCost+'</h2>');
+}
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
@@ -746,6 +759,7 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
+	generateSummary();
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
@@ -781,6 +795,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
+	generateSummary();
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
