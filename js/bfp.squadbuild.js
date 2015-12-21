@@ -104,7 +104,7 @@ bbMap=[
 	{desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
 	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
 	{desc:"HP Shield", impact:"elemental barrier element", impact2:"elemental barrier hp"},
-	{desc:"Elemental Shield", impact:"shield element", impact2:"elemental barrier hp", turns:"shield turns (10002)", criteria:["shield hp","shield def"]},
+	{desc:"Elemental Shield", impact:"shield element", turns:"shield turns (10002)", criteria:["shield hp","shield def"]},
 	{desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
 	{desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75)", turns:"stat% debuff turns"},
 	{desc:"% ATK-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
