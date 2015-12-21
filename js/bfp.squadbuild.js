@@ -10,6 +10,7 @@ lsMap=[
 	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
+	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
@@ -101,6 +102,7 @@ bbMap=[
 	{desc:"% Reduce Thunder DMG", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
 	{desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
 	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns"},
+	{desc:"HP Shield", impact:"elemental barrier element", impact2:"elemental barrier hp"},
 	{desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
 	{desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75)", turns:"stat% debuff turns"},
 	{desc:"% ATK-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
@@ -117,6 +119,8 @@ bbMap=[
 	{desc:"% Counter-Curse", impact:"counter inflict curse% (82)", turns:"counter inflict ailment turns"},
 	{desc:"% Counter-Paralysis", impact:"counter inflict paralysis% (83)", turns:"counter inflict ailment turns"},
 	{desc:"% Counter-Poison", impact:"counter inflict poison% (78)", turns:"counter inflict ailment turns"},
+	{desc:"Taunt", impact:"taunt turns (10000)", turns:"taunt turns (10000)", criteria:["def% buff"], hideprefix:true},
+	{desc:"Stealth", impact:"stealth turns (10001)", turns:"stealth turns (10001)", criteria:["atk% buff", "crit% buff"], hideprefix:true},
 ];
 
 /*Check filedate*/
@@ -377,6 +381,11 @@ function showSkills(e,scanScope) {
 								if (scanArray[j]["target type"])
 									skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
 								skillsHTML+='</kbd>';
+							}
+							if (bbMap[bbMapKey].criteria) {
+								for (m in bbMap[bbMapKey].criteria)
+									if (scanArray[j][bbMap[bbMapKey].criteria[m]])
+										skillsHTML+='<h5 style="margin-top:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
 							skillsHTML+='</br>';
 						}
