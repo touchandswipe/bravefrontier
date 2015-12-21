@@ -5,6 +5,18 @@ lsMap=[
 	{desc:"% ATK", impact:"atk% buff"},
 	{desc:"% DEF", impact:"def% buff"},
 	{desc:"% REC", impact:"rec% buff"},
+	{desc:"% Fire Resist", impact:"fire resist%"},
+	{desc:"% Water Resist", impact:"water resist%"},
+	{desc:"% Earth Resist", impact:"earth resist%"},
+	{desc:"% Thunder Resist", impact:"thunder resist%"},
+	{desc:"% Light Resist", impact:"light resist%"},
+	{desc:"% Dark Resist", impact:"dark resist%"},
+	{desc:"% Fire Weakness DMG+", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Water Weakness DMG+", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Earth Weakness DMG+", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Thunder Weakness DMG+", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Light Weakness DMG+", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Dark Weakness DMG+", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
 ];
 bbMap=[
 	{desc:"% HP+", impact:"max hp% increase"},
