@@ -25,6 +25,7 @@
       display:block;
       width:125px;
     }
+    .sumIcon {color:#090;}
     .unitBox:hover {background:#eef;}
     .leader {
     	position: relative;
@@ -639,8 +640,8 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate HTML*/
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sCost+' Cost</h4></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-3x"></i><h4>'+sElementCount+' Unique</br>Element(s)</h4></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	$("#SummarySpace").html(sHTML);
 }
 
