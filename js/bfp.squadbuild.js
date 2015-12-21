@@ -211,13 +211,53 @@ function scanSkills(classBtns,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
-				/*Scan mapping*/
-				for (j in scanArray) {
-					for (k in bbMap) {
-						/*match exist*/
-						if (scanArray[j][bbMap[k].impact]) {
+				/*add ES triggered Effects to BB and SBB*/
+				if (scanScope[i]=="es") {
+					var esTriggered=false;
+					for (j in scanArray)
+						if (scanArray[j].hasOwnProperty("triggered effect")) {
+							scanArray=scanArray[j]["triggered effect"];
+							esTriggered=true;
+						}
+				}
+				if (scanScope[i]!="es" || esTriggered) {
+					/*Scan mapping*/
+					for (j in scanArray) {
+						for (k in bbMap) {
+							/*match exist*/
+							if (scanArray[j][bbMap[k].impact]) {
+								$(classBtns).each( function() {
+									if ($(this).text()==bbMap[k].desc) {
+										/*create list of units with skills*/
+										if ($(this).attr("data-found")) {
+											if ($(this).attr("data-found").search(selectUnit)==-1)
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+										}
+										else
+											$(this).attr("data-found",selectUnit)
+										$(this).removeAttr("disabled");
+										if ($(this).hasClass("btn-default"))
+											$(this).toggleClass("btn-default btn-success");
+									}
+								})
+							}
+						}
+						/*ATK/DEF Down Inconsistency*/
+						if (scanArray[j].hasOwnProperty("buff #1")) {
+							if (scanArray[j]["buff #1"].hasOwnProperty("atk% buff (2)"))
+								ATKdown=true;
+							if (scanArray[j]["buff #1"].hasOwnProperty("def% buff (4)"))
+								DEFdown=true;
+						}
+						if (scanArray[j].hasOwnProperty("buff #2")) {
+							if (scanArray[j]["buff #2"].hasOwnProperty("atk% buff (2)"))
+								ATKdown=true;
+							if (scanArray[j]["buff #2"].hasOwnProperty("def% buff (4)"))
+								DEFdown=true;
+						}
+						if (ATKdown) {
 							$(classBtns).each( function() {
-								if ($(this).text()==bbMap[k].desc) {
+								if ($(this).text()=="% ATK-Down") {
 									/*create list of units with skills*/
 									if ($(this).attr("data-found")) {
 										if ($(this).attr("data-found").search(selectUnit)==-1)
@@ -231,52 +271,23 @@ function scanSkills(classBtns,scanScope) {
 								}
 							})
 						}
-					}
-					/*ATK/DEF Down Inconsistency*/
-					if (scanArray[j].hasOwnProperty("buff #1")) {
-						if (scanArray[j]["buff #1"].hasOwnProperty("atk% buff (2)"))
-							ATKdown=true;
-						if (scanArray[j]["buff #1"].hasOwnProperty("def% buff (4)"))
-							DEFdown=true;
-					}
-					if (scanArray[j].hasOwnProperty("buff #2")) {
-						if (scanArray[j]["buff #2"].hasOwnProperty("atk% buff (2)"))
-							ATKdown=true;
-						if (scanArray[j]["buff #2"].hasOwnProperty("def% buff (4)"))
-							DEFdown=true;
-					}
-					if (ATKdown) {
-						$(classBtns).each( function() {
-							if ($(this).text()=="% ATK-Down") {
-								/*create list of units with skills*/
-								if ($(this).attr("data-found")) {
-									if ($(this).attr("data-found").search(selectUnit)==-1)
-										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+						if (DEFdown) {
+							$(classBtns).each( function() {
+								if ($(this).text()=="% DEF-Down") {
+									/*create list of units with skills*/
+									if ($(this).attr("data-found")) {
+										if ($(this).attr("data-found").search(selectUnit)==-1)
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									}
+									else
+										$(this).attr("data-found",selectUnit)
+									$(this).removeAttr("disabled");
+									if ($(this).hasClass("btn-default"))
+										$(this).toggleClass("btn-default btn-success");
 								}
-								else
-									$(this).attr("data-found",selectUnit)
-								$(this).removeAttr("disabled");
-								if ($(this).hasClass("btn-default"))
-									$(this).toggleClass("btn-default btn-success");
-							}
-						})
-					}
-					if (DEFdown) {
-						$(classBtns).each( function() {
-							if ($(this).text()=="% DEF-Down") {
-								/*create list of units with skills*/
-								if ($(this).attr("data-found")) {
-									if ($(this).attr("data-found").search(selectUnit)==-1)
-										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
-								}
-								else
-									$(this).attr("data-found",selectUnit)
-								$(this).removeAttr("disabled");
-								if ($(this).hasClass("btn-default"))
-									$(this).toggleClass("btn-default btn-success");
-							}
-						})
-					}
+							})
+						}
+					} /*End For Loop*/
 				}
 			}
 		}
@@ -337,60 +348,70 @@ function showSkills(e,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
-				/*Scan mapping*/
-				for (j in scanArray) {
-					/*match*/
-					if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact)) {
-						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
-						if (bbMap[bbMapKey].chance)
-							skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
-						if (!bbMap[bbMapKey].hideprefix)
-							skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' ';
-						if (bbMap[bbMapKey].impact2)
-							skillsHTML+='('+scanArray[j][bbMap[bbMapKey].impact2]+') ';
-						skillsHTML+=bbMap[bbMapKey].desc;
-						if (bbMap[bbMapKey].turns)
-							skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
-						if (scanArray[j]["target area"]) {
-							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase();
-							if (scanArray[j]["target type"])
-								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
-							skillsHTML+='</kbd>';
+				/*add ES triggered Effects to BB and SBB*/
+				if (scanScope[i]=="es") {
+					var esTriggered=false;
+					for (j in scanArray)
+						if (scanArray[j].hasOwnProperty("triggered effect")) {
+							scanArray=scanArray[j]["triggered effect"];
+							esTriggered=true;
 						}
-						skillsHTML+='</br>';
-					}
-					/*ATK Down Inconsistency*/
-					if (bbMap[bbMapKey].desc=="% ATK-Down") {
-						if (scanArray[j].hasOwnProperty("buff #1"))
-							if (scanArray[j]["buff #1"]["atk% buff (2)"]) {
-								skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
-								skillsHTML+=scanArray[j]["buff #1"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
-								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-							}
-						if (scanArray[j].hasOwnProperty("buff #2"))
-							if (scanArray[j]["buff #2"]["atk% buff (2)"]) {
-								skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
-								skillsHTML+=scanArray[j]["buff #2"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
-								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-						} 
-					}
-					/*DEF Down Inconsistency*/
-					if (bbMap[bbMapKey].desc=="% DEF-Down") {
-						if (scanArray[j].hasOwnProperty("buff #1"))
-							if (scanArray[j]["buff #1"]["def% buff (4)"]) {
-								skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
-								skillsHTML+=scanArray[j]["buff #1"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
-								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-							}
-						if (scanArray[j].hasOwnProperty("buff #2"))
-							if (scanArray[j]["buff #2"]["def% buff (4)"]) {
-								skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
-								skillsHTML+=scanArray[j]["buff #2"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
-								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-							}
-					}
 				}
-				
+				if (scanScope[i]!="es" || esTriggered) {
+					/*Scan mapping*/
+					for (j in scanArray) {
+						/*match*/
+						if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact)) {
+							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+							if (bbMap[bbMapKey].chance)
+								skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
+							if (!bbMap[bbMapKey].hideprefix)
+								skillsHTML+=scanArray[j][bbMap[bbMapKey].impact]+' ';
+							if (bbMap[bbMapKey].impact2)
+								skillsHTML+='('+scanArray[j][bbMap[bbMapKey].impact2]+') ';
+							skillsHTML+=bbMap[bbMapKey].desc;
+							if (bbMap[bbMapKey].turns)
+								skillsHTML+=' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns'
+							if (scanArray[j]["target area"]) {
+								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase();
+								if (scanArray[j]["target type"])
+									skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
+								skillsHTML+='</kbd>';
+							}
+							skillsHTML+='</br>';
+						}
+						/*ATK Down Inconsistency*/
+						if (bbMap[bbMapKey].desc=="% ATK-Down") {
+							if (scanArray[j].hasOwnProperty("buff #1"))
+								if (scanArray[j]["buff #1"]["atk% buff (2)"]) {
+									skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
+									skillsHTML+=scanArray[j]["buff #1"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
+									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+								}
+							if (scanArray[j].hasOwnProperty("buff #2"))
+								if (scanArray[j]["buff #2"]["atk% buff (2)"]) {
+									skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
+									skillsHTML+=scanArray[j]["buff #2"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
+									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+							} 
+						}
+						/*DEF Down Inconsistency*/
+						if (bbMap[bbMapKey].desc=="% DEF-Down") {
+							if (scanArray[j].hasOwnProperty("buff #1"))
+								if (scanArray[j]["buff #1"]["def% buff (4)"]) {
+									skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
+									skillsHTML+=scanArray[j]["buff #1"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
+									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+								}
+							if (scanArray[j].hasOwnProperty("buff #2"))
+								if (scanArray[j]["buff #2"]["def% buff (4)"]) {
+									skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
+									skillsHTML+=scanArray[j]["buff #2"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
+									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+								}
+						}
+					} /* End FOR Loop */
+				}
 			}
 		}
 		skillsHTML+='<hr>';
@@ -507,7 +528,7 @@ function generateSummary() {
 function refreshALL() {
 	generateSummary();
 	scanLeaderSkills(".lsBtns",["ls"]);
-	scanSkills(".bbBtns",["bb", "sbb"]);
+	scanSkills(".bbBtns",["bb", "sbb", "es"]);
 	scanSkills(".ubbBtns",["ubb"]);
 }
 
@@ -565,7 +586,7 @@ $(document).on("click", '.unitBox', function(e){
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this),["bb", "sbb", "ubb"])
+	showSkills($(this),["bb", "sbb", "es"])
 })
 
 /*UBB Btn Click*/
