@@ -1,0 +1,53 @@
+    .unitBox {
+      border:3px dotted #ddf;
+      margin:10px auto;
+      border-radius:15px;
+      padding:15px;
+      text-align: center;
+      display:block;
+      width:125px;
+    }
+    .sumIcon {color:#090;}
+    .unitBox:hover {background:#eef;}
+    .leader {
+    	position: relative;
+    	bottom:20px;
+    	width: 80px;
+    	background: #fee;
+    	border: 1px solid #CCC;
+    	border-radius: 5px;
+    	padding: 0 10px;
+    	margin:0 auto;
+    	font-weight: bold;
+    	color:red;
+    }
+    .htfixed {height:135px;}
+    .cross {
+    	font-size: 30pt;
+    	line-height: 20px;
+    }
+    .badge {
+    	float:left;
+    	color:red !important;
+    }
+    .bbBtns, .ubbBtns, .lsBtns {
+    	width:95%;
+    	text-align: center;
+    }
+    .unitFound, .unitSelected {
+    	width:70px;
+    	height:auto;
+    	padding:0;
+    	cursor:pointer;
+    }
+    .untiIcon {
+    	width:70px;
+    	height:auto;
+    }
+    .clear {clear:both;}
+    .upper {
+        text-transform:uppercase;
+    }
+    .btn {
+    	margin-bottom:8px;
+    }
