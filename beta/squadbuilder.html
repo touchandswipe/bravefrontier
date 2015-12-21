@@ -698,7 +698,7 @@ function showLeaderSkills(e,scanScope) {
 						if (lsMap[lsMapKey].criteria) {
 							for (m in lsMap[lsMapKey].criteria)
 								if (scanArray[j][lsMap[lsMapKey].criteria[m]])
-									skillsHTML+='<h6 class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h6>'
+									skillsHTML+='<h5 style="margin-top:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
 						}
 						skillsHTML+='</br>';
 					}
