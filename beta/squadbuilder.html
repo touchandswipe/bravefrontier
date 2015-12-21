@@ -580,7 +580,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 	badgeRun(classBtns);
 }
 
-/*show unit & skills on skill click*/
+/*show unit bb skills on skill click*/
 function showSkills(e,scanScope) {
 	var unitIDs=e.attr("data-found").split(",");
 	var skillDesc=e.children(".btnDesc").text();
@@ -662,6 +662,58 @@ function showSkills(e,scanScope) {
 	$('#showSkillModal').modal('show')
 }
 
+/*show unit leader skills on skill click*/
+function showLeaderSkills(e,scanScope) {
+	var unitIDs=e.attr("data-found").split(",");
+	var skillDesc=e.children(".btnDesc").text();
+	var skillsHTML="";
+	/*identify the skill*/
+	for (i in lsMap) {
+		if (skillDesc==lsMap[i].desc) {
+			var lsMapKey=i;
+			break;
+		}
+	}
+	/*Scan unit details*/
+	for (l in unitIDs) {
+		var selectUnit=unitIDs[l];
+		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' ('+rawParseObj[selectUnit].rarity+'*)</b></h4>';
+		for (i in scanScope) {
+			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
+				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
+				/*Scan mapping*/
+				for (j in scanArray) {
+					/*match*/
+					if (scanArray[j][lsMap[lsMapKey].impact]) {
+						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+						if (lsMap[bbMapKey].chance)
+							skillsHTML+=scanArray[j][bbMap[lsMapKey].chance]+' % Chance ';
+						if (!lsMap[bbMapKey].hideprefix)
+							skillsHTML+=scanArray[j][bbMap[lsMapKey].impact]+' ';
+						if (lsMap[bbMapKey].impact2)
+							skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
+						skillsHTML+=bbMap[bbMapKey].desc;
+						if (lsMap[bbMapKey].turns)
+							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+						if (scanArray[j]["target area"]) {
+							skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase();
+							if (scanArray[j]["target type"])
+								skillsHTML+='/'+scanArray[j]["target type"].toUpperCase();
+							skillsHTML+='</kbd>';
+						}
+						skillsHTML+='</br>';
+					}
+				}
+				
+			}
+		}
+		skillsHTML+='<hr>';
+	}
+	/*load dom*/
+	$('#showSkillBody').html(skillsHTML);
+	$('#showSkillModal').modal('show')
+}
+
 function generateBtns(btnclass,dest,mapArray) {
 /*generate skills buttons*/
     var bbString="";
@@ -702,10 +754,16 @@ $(document).on("click", '.bbBtns', function(e){
 	showSkills($(this),["bb", "sbb", "ubb"])
 })
 
-/*BB Btn Click*/
+/*UBB Btn Click*/
 $(document).on("click", '.ubbBtns', function(e){
 	e.preventDefault();
 	showSkills($(this),["ubb"])
+})
+
+/*LS Btn Click*/
+$(document).on("click", '.lsBtns', function(e){
+	e.preventDefault();
+	showLeaderSkills($(this),["ls"])
 })
 
 /*update unitspace*/
