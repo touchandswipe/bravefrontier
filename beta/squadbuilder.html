@@ -628,21 +628,35 @@ function generateSummary() {
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
 	var sHTML="";
+	var sParam=[];
 	$(".unitBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
 		sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
+		/*builds id array*/
+		sParam.push(rawParseObj[selectUnit].id);
 	})
 	/*counts element*/
 	for (var key in sElement)
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate HTML*/
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-link fa-2x sumIcon"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-users fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
+	//setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
 	$("#SummarySpace").html(sHTML);
+	/*build sharing url*/
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam.join()), $('#shareURL') );
+}
+
+function refreshALL() {
+	generateSummary();
+	scanLeaderSkills(".lsBtns",["ls"]);
+	scanSkills(".bbBtns",["bb", "sbb"]);
+	scanSkills(".ubbBtns",["ubb"]);
 }
 
 /*Sync New Button*/
@@ -656,10 +670,7 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
-	generateSummary();
-	scanLeaderSkills(".lsBtns",["ls"]);
-	scanSkills(".bbBtns",["bb", "sbb"]);
-	scanSkills(".ubbBtns",["ubb"]);
+	refreshALL();
 })
 
 /*SearchModal Trigger*/
@@ -692,10 +703,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" />');
-	generateSummary();
-	scanLeaderSkills(".lsBtns",["ls"]);
-	scanSkills(".bbBtns",["bb", "sbb"]);
-	scanSkills(".ubbBtns",["ubb"]);
+	refreshALL();
 })
 
 /*Refresh data*/
