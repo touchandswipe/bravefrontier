@@ -695,6 +695,11 @@ function showLeaderSkills(e,scanScope) {
 						skillsHTML+=lsMap[lsMapKey].desc;
 						if (lsMap[lsMapKey].turns)
 							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+						if (lsMap[lsMapKey].criteria) {
+							for (m in lsMap[lsMapKey].criteria)
+								if (scanArray[j][lsMap[lsMapKey].criteria[m]])
+									skillsHTML+='</br><i>'+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+'</i>'
+						}
 						skillsHTML+='</br>';
 					}
 				}
