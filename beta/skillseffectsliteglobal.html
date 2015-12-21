@@ -314,6 +314,7 @@ $(document).on("click", '#refreshData', function(e){
 		localStorage.setItem("skillsguideglobal",LZString.compress(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
+    		refreshALL();
  	}
     });
 })
