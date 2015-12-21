@@ -15,6 +15,7 @@ lsMap=[
 	{desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
 	{desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%"},
 	{desc:"BC Fill on CRIT", impact:"bc fill on crit min", impact2:"bc fill on crit max", chance:"bc fill on crit%"},
+	{desc:"BC TurnFill", impact:"increase bb gauge", criteria:["damage threshold activation"]},
 	{desc:"% Fire Resist", impact:"fire resist%"},
 	{desc:"% Water Resist", impact:"water resist%"},
 	{desc:"% Earth Resist", impact:"earth resist%"},
