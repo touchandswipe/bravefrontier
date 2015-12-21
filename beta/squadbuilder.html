@@ -661,6 +661,21 @@ function refreshALL() {
 	scanSkills(".ubbBtns",["ubb"]);
 }
 
+function loadSquad() {
+	/*load squad from param*/
+	var sParam=urlParam('squad');
+	if (sParam != "") {
+	    	var squadList=sParam.split(',');
+	    	var squadElements=[".unitA",".unitB",".unitC",".unitD",".unitE",".unitF"];
+	    	if (squadList.length>6)
+	    		alert("Error: URL is corrupted.")
+	    	else
+		    	for (i in squadList)
+		    		$(squadElements[i]).html('<img src="'+rawParseObj[squadList[i]].img+'" data-unitid="'+squadList[i]+'" class="unitSelected" title="'+rawParseObj[squadList[i]].name+" ("+rawParseObj[squadList[i]].rarity+'*)" />');
+	}
+	refreshALL()
+}
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
@@ -771,6 +786,8 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     generateBtns("lsBtns","#lsSpace",lsMap);
     generateBtns("bbBtns","#bbSpace",bbMap);
     generateBtns("ubbBtns","#ubbSpace",bbMap);
+    /*checks and loads from URL Param*/
+    loadSquad();
 })
 </script>
 
