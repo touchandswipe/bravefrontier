@@ -639,7 +639,7 @@ countVar=0; /*reset count*/
         else
         	unitObj.ubb="none";
         if (valObj["extra skill"])
-        	unitObj.es=valObj["extra skill"]["effects"];
+        	unitObj.es=valObj["extra skill"];
         else
         	unitObj.es="none";
 	/*Parse into MEMORY DB*/
