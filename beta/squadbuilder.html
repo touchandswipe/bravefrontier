@@ -695,13 +695,12 @@ function showLeaderSkills(e,scanScope) {
 							if (lsMap[lsMapKey].impact2.charAt(0)!="!")
 								skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
 							else {
+								/*Parse nested string*/
 								var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
-								alert("array "+nestedArray);
 								var nestedO=scanArray[j];
 								for (m in nestedArray)
 									if (nestedArray[m] in nestedO)
 										nestedO=nestedO[nestedArray[m]]
-								alert(nestedO);
 								skillsHTML+='('+nestedO+') '
 							}
 						skillsHTML+=lsMap[lsMapKey].desc;
