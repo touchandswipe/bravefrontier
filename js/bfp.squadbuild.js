@@ -78,7 +78,7 @@ bbMap=[
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
-	{desc:"Add Elements", impact:"elements added", turns:"elements added turns"},
+	{desc:"Element(s) Add", impact:"elements added", turns:"elements added turns"},
 	{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns"},
 	{desc:"% Weakness DMG+ (Water)", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns"},
 	{desc:"% Weakness DMG+ (Earth)", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns"},
