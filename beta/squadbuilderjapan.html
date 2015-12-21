@@ -235,6 +235,7 @@ $(document).on("click", '#refreshData', function(e){
 		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguidejapandate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
+    		refreshALL();
  	}
     });
 })
