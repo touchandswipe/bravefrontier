@@ -161,6 +161,8 @@ countVar=0; /*reset count*/
     	unitObj={};
         unitObj.img=imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png';
         unitObj.name=valObj.name;
+        unitObj.cost=valObj.cost;
+        unitObj.element=valObj.element;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
         if (valObj["leader skill"])
