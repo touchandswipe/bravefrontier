@@ -559,7 +559,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 				for (j in scanArray) {
 					for (k in lsMap) {
 						/*match exist*/
-						if (scanArray[j][lsMap[k].impact]) {
+						if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
 							$(classBtns).each( function() {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
