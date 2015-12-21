@@ -225,7 +225,7 @@ function searchNameRun() {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1)
-	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="'+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
 	}
     	/*Joins array and replace HTML*/
 	$(rawTable).html(outputHTML.join(' '));
