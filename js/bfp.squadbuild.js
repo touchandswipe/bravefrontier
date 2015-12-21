@@ -1,10 +1,10 @@
 countVar=0;
 rawParseObj=[];
 lsMap=[
-	{desc:"% HP", impact:"hp% buff"},
+	{desc:"% HP", impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK", impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% DEF", impact:"def% buff"},
-	{desc:"% REC", impact:"rec% buff"},
+	{desc:"% DEF", impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
