@@ -545,7 +545,7 @@ function generateSummary() {
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
 	var sStats=["% HP","% ATK","% DEF","% REC"];
-	var sTotalStats={};
+	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
 	$(".unitBox .unitSelected").each(function(){
