@@ -527,7 +527,7 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate HTML*/
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><span class="st_facebook_large" displayText="Facebook"></span><span class="st_twitter_large" displayText="Tweet"></span><span class="st_tumblr_large" displayText="Tumblr"></span></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><span class="st_sharethis"></span></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-link fa-2x sumIcon"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-users fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
@@ -537,6 +537,18 @@ function generateSummary() {
 	history.pushState(state, "squad state", "?squad="+encodeURIComponent(sParam.join()) );
 	/*build sharing url*/
 	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam.join()), $('#shareURL') );
+	/*load sharethis buttons*/
+	stWidget.addEntry({
+		"service":"sharethis",
+		"element":document.getElementById('button_1'),
+		"url":"http://sharethis.com",
+		"title":"sharethis",
+		"type":"large",
+		"text":"ShareThis" ,
+		"image":"http://www.softicons.com/download/internet-icons/social-superheros-icons-by-iconshock/
+	png/256/sharethis_hulk.png",
+		"summary":"Check out the squad i built with Squad Builder by Brave Frontier PROs."   
+	});
 }
 
 function refreshALL() {
