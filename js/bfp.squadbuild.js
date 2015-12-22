@@ -538,7 +538,7 @@ function generateSummary() {
 	$(".unitBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
-		if ($(this).attr("id")!="unitB")
+		if ($(this).parent().attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
