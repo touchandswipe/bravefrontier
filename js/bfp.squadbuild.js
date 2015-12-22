@@ -548,7 +548,7 @@ function loadSquad() {
 	var sParam=urlParam('squad');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
-	    	var squadElements=["#unitA","#unitB","#unitC","#unitD","#unitE","#unitF"];
+	    	var squadElements=["#unitA",#unitC","#unitD","#unitE","#unitF"];
 	    	if (squadList.length>6)
 	    		alert("Error: URL is corrupted.")
 	    	else {
