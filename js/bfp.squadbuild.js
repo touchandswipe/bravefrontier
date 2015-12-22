@@ -545,8 +545,7 @@ function generateSummary() {
 		"title":"sharethis",
 		"type":"large",
 		"text":"ShareThis" ,
-		"image":"http://www.softicons.com/download/internet-icons/social-superheros-icons-by-iconshock/
-	png/256/sharethis_hulk.png",
+		"image":"http://www.softicons.com/download/internet-icons/social-superheros-icons-by-iconshock/png/256/sharethis_hulk.png",
 		"summary":"Check out the squad i built with Squad Builder by Brave Frontier PROs."   
 	});
 }
