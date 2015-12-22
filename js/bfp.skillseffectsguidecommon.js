@@ -410,6 +410,11 @@ countVar=0; /*reset count*/
     }
 }
 
+/*execute typeahead on selection*/
+$('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
+	searchNameRun()
+});
+
 /*check valid json*/
 function isValidJSON(str) {
     try {
