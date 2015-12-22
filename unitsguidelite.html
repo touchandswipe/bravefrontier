@@ -290,6 +290,11 @@ function initializeDB() {
 	})
 }/*End init fn*/
 
+/*execute typeahead on selection*/
+$('#searchBox').on('typeahead:select', function(ev, suggestion) {
+	searchNameRun($('#searchBox').val())
+});
+
 /*Query unit and openCard*/
 function openCard(whatunit) {
 	/*Loader*/
