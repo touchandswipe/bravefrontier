@@ -538,7 +538,8 @@ function generateSummary() {
 	$(".unitBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
-		sCost+=parseInt(rawParseObj[selectUnit].cost);
+		if ($(this).attr("id")!="unitB")
+			sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
@@ -584,7 +585,7 @@ function loadSquad() {
 	var sParam=urlParam('squad');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
-	    	var squadElements=["#unitA","#unitC","#unitD","#unitE","#unitF"];
+	    	var squadElements=["#unitA","#unitB","#unitC","#unitD","#unitE","#unitF"];
 	    	if (squadList.length>6)
 	    		alert("Error: URL is corrupted.")
 	    	else {
