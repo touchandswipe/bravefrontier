@@ -575,7 +575,7 @@ function generateSummary() {
 						break;
 					}
 				}
-				if ($(this).parent().attr("data-found")) {
+				if ($(this).parent(".lsBtns").attr("data-found")) {
 					alert("data-found "+lsKey);
 					var tArray=$(this).attr("data-found").split(',');
 					for (j in tArray) {
