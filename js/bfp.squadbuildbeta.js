@@ -578,11 +578,11 @@ function generateSummary() {
 					var tArray=$(this).attr("data-found").split(',');
 					for (j in tArray) {
 						var scanArray=rawParseObj[j].ls.effects;
-						for (k in ScanArray) {
-							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact]))
+						for (k in ScanArray)
+							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
 								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact])
-							break;
-						}
+								break;
+							}
 					}
 				}
 	})
