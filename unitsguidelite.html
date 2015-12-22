@@ -290,13 +290,6 @@ function initializeDB() {
 	})
 }/*End init fn*/
 
-/*execute typeahead on selection*/
-$('#searchBox').on('typeahead:select', function(ev, suggestion) {
-	$(this).val(suggestion);
-	console.log(JSON.stringify(suggestion));
-	searchNameRun($(this).val())
-});
-
 /*Query unit and openCard*/
 function openCard(whatunit) {
 	/*Loader*/
@@ -744,6 +737,13 @@ $('.nav-tt').tooltip({placement:'bottom'});
 /*Update URL based on search filters*/
 $(document).on("click", '#searchBtn', function(e){
 	searchNameRun($('#searchBox').val())
+})
+
+/*execute typeahead on selection*/
+$('#searchBox').on('typeahead:select', function(ev, suggestion) {
+	alert($(this).val());
+	console.log(suggestion);
+	searchNameRun($(this).val())
 })
 
 /*Binds Enter KEY to BOX*/
