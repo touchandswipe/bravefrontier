@@ -637,12 +637,25 @@ $(document).on("click", '.unitFound', function(e){
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
 countVar=0; /*reset count*/
+/*JP Mapping*/
+mapJPnames=false;
+if (typeof mappedNames !== 'undefined') {
+    mapJPnames=true;
+}
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	/*Extract needed data*/
     	unitObj={};
         unitObj.img=imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png';
-        unitObj.name=valObj.name;
+        /*process for JP only*/
+        if (mapJPnames) {
+        	strName=String(unitKey);
+        	if (mappedNames.hasOwnProperty(strName))
+        		unitObj.name=mappedNames[strName];
+        	else
+        		unitObj.name=valObj.name;
+        } else
+        	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
         unitObj.element=valObj.element;
         unitObj.id=valObj.guide_id;
