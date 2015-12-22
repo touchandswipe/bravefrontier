@@ -596,7 +596,7 @@ function generateSummary() {
 			lsStatsHTML.push(sTotalStats[key]+"<b>"+key+"</b>");
 	}
 	if (lsStatsHTML.length==0)
-		lsStatsHTML.push("No leaders")
+		lsStatsHTML.push("No STATS Bonus")
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
