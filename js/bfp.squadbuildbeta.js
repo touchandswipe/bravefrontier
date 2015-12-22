@@ -776,7 +776,7 @@ if (typeof mappedNames !== 'undefined') {
 }
 
 /*execute typeahead on selection*/
-$('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+$('.typeahead').on('typeahead:select', function(ev, suggestion) {
 	console.log('Selection: ' + suggestion);
 	searchNameRun()
 });
