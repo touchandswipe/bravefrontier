@@ -773,22 +773,13 @@ if (typeof mappedNames !== 'undefined') {
     
     $("#unitCount").html(countVar);
     $('#progressModal').modal('hide');
-    
-    /*check for card param*/
-    var searchParam=urlParam('unitid');
-    if (searchParam != "") {
-        /*sets searchbox value then execute*/
-        $('#searchIdBox').val(searchParam);
-        searchIdRun();
-    }
-    /*check for card param*/
-    var searchParam=urlParam('query');
-    if (searchParam != "") {
-        /*sets searchbox value then execute*/
-        $('#searchNameBox').val(searchParam);
-        searchNameRun();
-    }
 }
+
+/*execute typeahead on selection*/
+$('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+	console.log('Selection: ' + suggestion);
+	searchNameRun()
+});
 
 /*check valid json*/
 function isValidJSON(str) {
