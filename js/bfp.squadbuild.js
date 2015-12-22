@@ -527,7 +527,7 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate HTML*/
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><span class="st_sharethis"></span></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><span class="share_this_icon"></span></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-link fa-2x sumIcon"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-users fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
@@ -540,7 +540,7 @@ function generateSummary() {
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
-		"element":document.getElementById('button_1'),
+		"element":document.getElementById('share_this_icon'),
 		"url":"http://sharethis.com",
 		"title":"sharethis",
 		"type":"large",
