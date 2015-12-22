@@ -187,6 +187,28 @@ function searchIdRun() {
 	});
 }
 
+/*Search by Unit Name*/
+function searchNameRun() {
+    var sVal=$('#searchNameBox').val();
+    var outputHTML=[];
+    if (sVal.length <2) {
+        $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h4>')
+    } else {
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*compares lowercase string*/
+	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1)
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
+	}
+    	/*Joins array and replace HTML*/
+	$(rawTable).html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/squadguide_SearchName',
+  		'title': 'Brave Frontier PROs - Squad Guide SearchName'
+	});
+	}
+}
+
 function resetBtns(classBtns) {
 	$(classBtns).each( function() {
 		$(this).find(".badge").remove();
