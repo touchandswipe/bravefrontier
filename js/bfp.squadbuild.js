@@ -10,6 +10,8 @@ lsMap=[
 	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
+	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
+	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
