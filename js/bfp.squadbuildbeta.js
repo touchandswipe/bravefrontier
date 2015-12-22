@@ -565,7 +565,8 @@ function generateSummary() {
 	/*generate LS stats total*/
 	$(".lsBtns .btnDesc").each( function() {
 		var lsKey=$(this).text();
-		for (i in sStats)
+		for (i in sStats) {
+			alert("array is "+sStats[i]+" lsKey is "+lsKey);
 			if (lsKey==sStats[i]) {
 				alert("lsKey found "+lsKey);
 				/*identify the skill*/
@@ -589,6 +590,7 @@ function generateSummary() {
 				} else
 					sTotalStats[lsKey]+=0;
 			}
+		}
 	})
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
