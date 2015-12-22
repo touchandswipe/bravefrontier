@@ -593,7 +593,7 @@ function generateSummary() {
 	var lsStatsHTML=[];
 	for (var key in sTotalStats) {
 		if (sTotalStats[key]!=0)
-			lsStatsHTML.push(TotalStats[key]+key);
+			lsStatsHTML.push(sTotalStats[key]+key);
 	}
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
