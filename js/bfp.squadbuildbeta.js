@@ -563,10 +563,9 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate LS stats total*/
-	$(".lsBtns .btnDesc").each( function() {
-		var lsKey=$(this).text();
-		for (i in sStats) {
-			//alert("array is "+sStats[i]+" lsKey is "+lsKey);
+	for (i in sStats) {
+		$(".lsBtns .btnDesc").each( function() {
+			lsKey=$(this).text();
 			if (lsKey==sStats[i]) {
 				alert("lsKey found "+lsKey);
 				/*identify the skill*/
@@ -576,7 +575,7 @@ function generateSummary() {
 						break;
 					}
 				}
-				if ($(this).attr("data-found")) {
+				if ($(this).parent().attr("data-found")) {
 					alert("data-found "+lsKey);
 					var tArray=$(this).attr("data-found").split(',');
 					for (j in tArray) {
@@ -590,15 +589,16 @@ function generateSummary() {
 					}
 				} else
 					sTotalStats[lsKey]+=0;
+				return false; /*break each loop*/
 			}
-		}
-	})
+		})
+	}
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+'y </h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+'z </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
