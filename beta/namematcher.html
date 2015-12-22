@@ -222,8 +222,8 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     }
 /*LocalStorage GLOBAL Retreival and storage*/
     if (localStorage.skillsguideglobal) {
-	guideDatajapan=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
-	if (isValidJSON(guideDatajapan)) {
+	guideDataglobal=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideDataglobal)) {
 		dataglobal=JSON.parse(guideDataglobal);
 		$('#lastModDateglobal').text("Using local cache - "+localStorage.skillsguideglobaldate);
 		/*checks for update on server*/
