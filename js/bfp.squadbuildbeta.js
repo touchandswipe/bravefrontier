@@ -575,10 +575,10 @@ function generateSummary() {
 						break;
 					}
 				}
-				alert("units are "+$(this).parent().attr("data-found"));
+				//alert("units are "+$(this).parent().attr("data-found"));
 				if ($(this).parent().attr("data-found")) {
 					alert("data-found "+lsKey);
-					var tArray=$(this).attr("data-found").split(',');
+					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
 						var scanArray=rawParseObj[j].ls.effects;
 						for (k in scanArray)
@@ -599,7 +599,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+'a </h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+'b </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
