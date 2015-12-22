@@ -179,7 +179,7 @@ function buildnamematch() {
 	$.each( datajapan, function( unitKey, valObj ) {
 		keymatch=String(unitKey);
 		alert(keymatch);
-    		if (dataglobal.hasOwnProperty(keymatch)
+    		if (dataglobal.hasOwnProperty(keymatch))
     			namematchObj[keymatch]=dataglobal[keymatch].name+" ("+datajapan[keymatch].name+")";
 	})
 	$("#outputString").html(JSON.stringify(namematchObj))
