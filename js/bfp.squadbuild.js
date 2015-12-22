@@ -544,6 +544,8 @@ function generateSummary() {
 	var sCost=0;
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
+	var sStats=["% HP","% ATK","% DEF","% REC"];
+	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
 	$(".unitBox .unitSelected").each(function(){
@@ -560,11 +562,45 @@ function generateSummary() {
 	for (var key in sElement)
 		if (sElement[key]!=0)
 			sElementCount+=1
+	/*generate LS stats total*/
+	for (i in sStats) {
+		$(".lsBtns .btnDesc").each( function() {
+			lsKey=$(this).text();
+			if (lsKey==sStats[i]) {
+				/*identify the skill*/
+				for (m in lsMap)
+					if (lsKey==lsMap[m].desc) {
+						var lsMapKey=m;
+						break;
+					}
+				if ($(this).parent().attr("data-found")) {
+					var tArray=$(this).parent().attr("data-found").split(',');
+					for (j in tArray) {
+						var scanArray=rawParseObj[tArray[j]].ls.effects;
+						for (k in scanArray)
+							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
+								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
+								break;
+							}
+					}
+				} else
+					sTotalStats[lsKey]+=0;
+				return false; /*break each loop*/
+			}
+		})
+	}
+	/*generate LS Stats Summary*/
+	var lsStatsHTML=[];
+	for (var key in sTotalStats) {
+		if (sTotalStats[key]!=0)
+			lsStatsHTML.push(sTotalStats[key]+"<b>"+key+"</b>");
+	}
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS Potential"></i><h5>'+lsStatsHTML.join("</br>")+' </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
@@ -585,10 +621,10 @@ function generateSummary() {
 }
 
 function refreshALL() {
-	generateSummary();
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
 	scanSkills(".ubbBtns",["ubb"]);
+	generateSummary();
 }
 
 function loadSquad() {
