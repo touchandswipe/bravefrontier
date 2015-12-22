@@ -83,12 +83,15 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
 <script type="text/javascript">
 jsonURLglobal="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 jsonURLjapan="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePathglobal="//2.cdn.bravefrontier.gumi.sg/content/";
 imgPrePathjapan="//v2.cdn.android.brave.a-lim.jp/";
+datajapan={};
+dataglobal={};
+rawParseObjjapan=[];
+rawParseObjglobal=[];
 
 /*check valid json*/
 function isValidJSON(str) {
@@ -99,7 +102,6 @@ function isValidJSON(str) {
     }
     return true;
 }
-
 
 /*Refresh data*/
 $(document).on("click", '#refreshData', function(e){
@@ -116,7 +118,7 @@ $(document).on("click", '#refreshData', function(e){
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObjjapan=[]; /*reset*/
-    		buildDB(data);
+    		datajapan=data;
     		/*Save in local storage*/
 		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguidejapandate",lastModified);
@@ -130,7 +132,7 @@ $(document).on("click", '#refreshData', function(e){
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObjglobal=[]; /*reset*/
-    		buildDB(data);
+    		dataglobal=data;
     		/*Save in local storage*/
 		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguideglobaldate",lastModified);
@@ -139,19 +141,50 @@ $(document).on("click", '#refreshData', function(e){
     });
 })
 
+/*Reset Local Storage*/
+function resetLocalData(serverStr, corrupted) {
+	/*LocalStorage Delete and Refresh*/
+	if (corrupted)
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+	localStorage.removeItem(serverStr);
+	localStorage.removeItem(serverStr+"date");
+}
+
+/*Sync New Button*/
+$(document).on("click", '#syncNewBtn', function(e){
+	e.preventDefault();
+	resetLocalData("skillsguideglobal",false);
+	resetLocalData("skillsguidejapan",false);
+	location.replace(location.href);
+})
+
+/*Check filedate*/
+function checkUpdate(fileURL,localDate) {
+    $.ajax({
+    	type: "Head",
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: fileURL,
+        success: function(data, textStatus, request) {
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		if (Date.parse(lastModified) > Date.parse(localDate))
+    			$("#alertmodal").modal("show")
+ 	}
+    })
+}
 
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
-/*LocalStorage Retreival and storage*/
+/*LocalStorage JAPAN Retreival and storage*/
     if (localStorage.skillsguidejapan) {
-	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
-	if (isValidJSON(guideData)) {
-		buildDB(JSON.parse(guideData));
-		$('#lastModDate').text("Using local cache - "+localStorage.skillsguidejapandate);
+	guideDatajapan=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
+	if (isValidJSON(guideDatajapan)) {
+		datajapan=JSON.parse(guideDatajapan);
+		$('#lastModDatejapan').text("Using local cache - "+localStorage.skillsguidejapandate);
 		/*checks for update on server*/
-		checkUpdate(jsonURL,localStorage.skillsguidejapandate);
+		checkUpdate(jsonURLjapan,localStorage.skillsguidejapandate);
 	} else
 		resetLocalData("skillsguidejapan",true)
     } else {
@@ -159,28 +192,55 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	    $('#progressModal').modal({
 	    	keyboard:false,
 	    	backdrop:'static',
-	    	toggle:true
+	    	show:true
 	    })
 	    $.ajax({
 	        dataType: "json",
 	        contentType: "text/plain; charset=UTF-8",
-	        url: jsonURL,
+	        url: jsonURLjapan,
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguidejapandate",lastModified);
-	    		$('#lastModDate').text("Server data - "+lastModified);
-	    		buildDB(data);
+	    		$('#lastModDatejapan').text("Server data - "+lastModified);
+	    		datajapan=data;
 	 	}
 	    })
     }
-    /*generate skills buttons*/
-    generateBtns("lsBtns","#lsSpace",lsMap);
-    generateBtns("bbBtns","#bbSpace",bbMap);
-    generateBtns("ubbBtns","#ubbSpace",bbMap);
-    /*checks and loads from URL Param*/
-    loadSquad();
+/*LocalStorage GLOBAL Retreival and storage*/
+    if (localStorage.skillsguideglobal) {
+	guideDatajapan=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideDatajapan)) {
+		dataglobal=JSON.parse(guideDataglobal);
+		$('#lastModDateglobal').text("Using local cache - "+localStorage.skillsguideglobaldate);
+		/*checks for update on server*/
+		checkUpdate(jsonURLglobal,localStorage.skillsguideglobaldate);
+	} else
+		resetLocalData("skillsguideglobal",true)
+    } else {
+	    /*Init loader*/
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	show:true
+	    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: jsonURLglobal,
+	        success: function(data, textStatus, request){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobaldate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+	    		dataglobal=data;
+	 	}
+	    })
+    }
+    $('#progressModal').modal('hide');
+    buildnamematch();
 })
 </script>
 
