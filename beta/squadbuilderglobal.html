@@ -22,6 +22,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "c856fe5f-812c-43ae-a551-75ad52580035", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -44,8 +46,8 @@ if (window.location.hash == '#_=_') {
 <body>
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
-<div class="text-center container-fluid" style="margin:0px;padding:5px;">
-<h2 style="margin-top:0;">Squad Builder BETA - <span class="text-danger">Global</span></h2>
+<div class="text-center container-fluid">
+<h2 style="margin-top:0;">Squad Builder R1 - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 
@@ -87,7 +89,7 @@ if (window.location.hash == '#_=_') {
 	  </div>
 	</div>
 	<!-- Squad Summary-->
-	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"><h4><i class="fa fa-exclamation-triangle text-danger"></i> No units added.</h5></div></div>
+	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"><h5><i class="fa fa-exclamation-triangle text-danger"></i> No units added.</h5></div></div>
 	<!-- LS Skills Buttons-->
 	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
 	<!-- BB Skills Buttons-->
@@ -225,7 +227,7 @@ function searchNameRun() {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1)
-	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="'+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
+	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
 	}
     	/*Joins array and replace HTML*/
 	$(rawTable).html(outputHTML.join(' '));
