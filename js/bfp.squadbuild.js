@@ -194,14 +194,14 @@ function searchIdRun() {
 
 /*Search by Unit Name*/
 function searchNameRun() {
-    var sVal=escapeRegExp($('#searchNameBox').val());
+    var sVal=escapeRegExp($('#searchNameBox').val()).toLowerCase();
     var outputHTML=[];
     if (sVal.length<3) {
         $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 3 characters required. Please try again.</h4>')
     } else {
 	for (i in rawParseObj) {
 	    /*compares lowercase string*/
-	    if ( rawParseObj[i].name.search(sVal)!=-1)
+	    if ( rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
 	        outputHTML.push('<img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" />');
 	}
     	/*Joins array and replace HTML*/
