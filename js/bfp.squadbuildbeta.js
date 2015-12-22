@@ -563,7 +563,7 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate LS stats total*/
-	$(".LsBtns .btnDesc").each( function() {
+	$(".lsBtns .btnDesc").each( function() {
 		var lsKey=$(this).text();
 		/*identify the skill*/
 		for (i in lsMap) {
@@ -580,7 +580,8 @@ function generateSummary() {
 						var scanArray=rawParseObj[j].ls.effects;
 						for (k in ScanArray)
 							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
-								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact])
+								alert("scanArray[k][lsMap[lsMapKey].impact]");
+								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
 								break;
 							}
 					}
