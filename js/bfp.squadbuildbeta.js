@@ -566,7 +566,7 @@ function generateSummary() {
 	$(".lsBtns .btnDesc").each( function() {
 		var lsKey=$(this).text();
 		for (i in sStats) {
-			alert("array is "+sStats[i]+" lsKey is "+lsKey);
+			//alert("array is "+sStats[i]+" lsKey is "+lsKey);
 			if (lsKey==sStats[i]) {
 				alert("lsKey found "+lsKey);
 				/*identify the skill*/
@@ -577,10 +577,11 @@ function generateSummary() {
 					}
 				}
 				if ($(this).attr("data-found")) {
+					alert("data-found "+lsKey);
 					var tArray=$(this).attr("data-found").split(',');
 					for (j in tArray) {
 						var scanArray=rawParseObj[j].ls.effects;
-						for (k in ScanArray)
+						for (k in scanArray)
 							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
 								alert("scanArray[k][lsMap[lsMapKey].impact]");
 								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
