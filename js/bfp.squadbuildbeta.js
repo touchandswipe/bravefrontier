@@ -573,16 +573,17 @@ function generateSummary() {
 			}
 		}
 		for (i in sStats)
-			if (==sStats[i])
+			if (lsKey==sStats[i])
 				if ($(this).attr("data-found")) {
 					var tArray=$(this).attr("data-found").split(',');
 					for (j in tArray) {
 						var scanArray=rawParseObj[j].ls.effects;
-						for (k in ScanArray)
-							if (scanArray[k][lsMap[lsMapKey].impact])
-								
+						for (k in ScanArray) {
+							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact]))
+								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact])
+							break;
+						}
 					}
-						
 				}
 	})
 	/*generate HTML*/
@@ -590,6 +591,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+' </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
