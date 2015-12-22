@@ -211,7 +211,7 @@ function searchNameRun() {
 	    if ( rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
 	        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" ("+rawParseObj[i].rarity+"*"+')" /></div>');
     	/*Joins array and replace HTML*/
-	$(rawTable).html(outputHTML.join(' '));
+	$(rawTable).html('<h5 class="text-success"><i class="fa fa-search"></i> '+outputHTML.length+' unit(s) found.</h5>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/squadguide_SearchName',
