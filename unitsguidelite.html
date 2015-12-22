@@ -741,8 +741,6 @@ $(document).on("click", '#searchBtn', function(e){
 
 /*execute typeahead on selection*/
 $('#searchBox').on('typeahead:select', function(ev, suggestion) {
-	alert($(this).val());
-	console.log(suggestion);
 	searchNameRun($(this).val())
 })
 
