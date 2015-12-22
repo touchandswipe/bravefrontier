@@ -127,6 +127,11 @@ bbMap=[
 	{desc:"Stealth", impact:"stealth turns (10001)", turns:"stealth turns (10001)", criteria:["atk% buff", "crit% buff"], hideprefix:true},
 ];
 
+/*Escape regex string*/
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
     $.ajax({
@@ -189,7 +194,7 @@ function searchIdRun() {
 
 /*Search by Unit Name*/
 function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
+    var sVal=escapeRegExp($('#searchNameBox').val());
     var outputHTML=[];
     if (sVal.length<3) {
         $(rawTable).html('<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 3 characters required. Please try again.</h4>')
