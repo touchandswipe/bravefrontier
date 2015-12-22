@@ -527,6 +527,7 @@ function generateSummary() {
 		if (sElement[key]!=0)
 			sElementCount+=1
 	/*generate HTML*/
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><span class="st_facebook_large" displayText="Facebook"></span><span class="st_twitter_large" displayText="Tweet"></span><span class="st_tumblr_large" displayText="Tumblr"></span></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-link fa-2x sumIcon"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-dollar fa-2x sumIcon"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center"><i class="fa fa-users fa-2x sumIcon"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
