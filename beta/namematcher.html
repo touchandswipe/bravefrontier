@@ -49,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDateglobal">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDatejapan">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <button type="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
-	<div id="outputSTRING"></div>
+	<div id="outputString"></div>
 </div> <!-- /container -->
 <div id="bfp_foot"></div>
 <!-- Modal for Progress-->
@@ -171,6 +171,18 @@ function checkUpdate(fileURL,localDate) {
     			$("#alertmodal").modal("show")
  	}
     })
+}
+
+function buildnamematch() {
+	/*Process for Each Unit from Japan*/
+	namematchObj={};
+	$.each( datajapan, function( unitKey, valObj ) {
+		keymatch=String(unitKey);
+		alert(keymatch);
+    		if (dataglobal.hasOwnProperty(keymatch)
+    			namematchObj[keymatch]=dataglobal[keymatch].name+" ("+datajapan[keymatch].name+")";
+	})
+	$("#outputString").html(JSON.stringify(namematchObj))
 }
 
 $(document).ready( function(e) {
