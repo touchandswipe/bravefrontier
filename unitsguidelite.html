@@ -292,7 +292,9 @@ function initializeDB() {
 
 /*execute typeahead on selection*/
 $('#searchBox').on('typeahead:select', function(ev, suggestion) {
-	searchNameRun($('#searchBox').val())
+	$(this).val(suggestion);
+	console.log(JSON.stringify(suggestion));
+	searchNameRun($(this).val())
 });
 
 /*Query unit and openCard*/
