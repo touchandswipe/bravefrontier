@@ -567,23 +567,18 @@ function generateSummary() {
 		$(".lsBtns .btnDesc").each( function() {
 			lsKey=$(this).text();
 			if (lsKey==sStats[i]) {
-				alert("lsKey found "+lsKey);
 				/*identify the skill*/
-				for (m in lsMap) {
+				for (m in lsMap)
 					if (lsKey==lsMap[m].desc) {
 						var lsMapKey=m;
 						break;
 					}
-				}
-				//alert("units are "+$(this).parent().attr("data-found"));
 				if ($(this).parent().attr("data-found")) {
-					alert("data-found "+lsKey);
 					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
 						var scanArray=rawParseObj[tArray[j]].ls.effects;
 						for (k in scanArray)
 							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
-								alert("value is "+scanArray[k][lsMap[lsMapKey].impact]);
 								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
 								break;
 							}
@@ -594,12 +589,18 @@ function generateSummary() {
 			}
 		})
 	}
+	/*generate LS Stats Summary*/
+	var lsStatsHTML=[];
+	for (var key in sTotalStats) {
+		if (sTotalStats[key]!=0)
+			lsStatsHTML.push(TotalStats[key]+key);
+	}
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+JSON.stringify(sTotalStats)+' c</h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS"></i><h5>'+lsStatsHTML.join(", ")+' </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
