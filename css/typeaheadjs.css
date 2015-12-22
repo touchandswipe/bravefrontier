@@ -1,56 +1,71 @@
-span.twitter-typeahead .tt-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
-  list-style: none;
-  font-size: 14px;
-  text-align: left;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
+/**********************************************************
+ *     typeahead.js v0.11.1 - twitter bootstrap v3.3.5    *
+ **********************************************************/
+/*root typeahead class*/
+.twitter-typeahead {
+    display: inherit !important;
+    width: 100%;
 }
-span.twitter-typeahead .tt-suggestion > p {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
+
+.twitter-typeahead .tt-input[disabled] {
+  background-color : #eeeeee !important;
+}
+
+/*Added to input that's initialized into a typeahead*/
+.twitter-typeahead .tt-input {
+
+}
+
+/*Added to hint input.*/
+.twitter-typeahead .hint {
+    color:#F80;
+}
+
+/*Added to menu element*/
+.twitter-typeahead .tt-menu {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #cccccc;
+  text-align: left;
+  -moz-box-shadow: 12px 14px 30px -7px #616161;
+  -webkit-box-shadow: 12px 14px 30px -7px #616161;
+  box-shadow: 12px 14px 30px -7px #616161;
+  padding:5px 0;
+  margin:-1px 0;
+}
+
+/*Added to dataset elements*/
+.twitter-typeahead .tt-dataset {
+
+}
+
+/*dded to suggestion elements*/
+.twitter-typeahead .tt-suggestion {
+  padding: 5px 20px;
   white-space: nowrap;
 }
-span.twitter-typeahead .tt-suggestion > p:hover,
-span.twitter-typeahead .tt-suggestion > p:focus {
-  color: #ffffff;
-  text-decoration: none;
-  outline: 0;
-  background-color: #428bca;
+
+/*Added to menu element when it contains no content*/
+.twitter-typeahead .tt-empty {
+  background-color: white;
 }
-span.twitter-typeahead .tt-suggestion.tt-cursor {
-  color: #ffffff;
-  background-color: #428bca;
+
+/*Added to menu element when it is opened*/
+.twitter-typeahead .tt-open {
+  background-color: white;
 }
-span.twitter-typeahead {
-  width: 100%;
+
+/*Added to suggestion element when menu cursor moves to said suggestion*/
+.twitter-typeahead .tt-suggestion:hover,
+.twitter-typeahead .tt-suggestion:focus,
+.twitter-typeahead .tt-cursor {
+  cursor: pointer !important;
+  background-color: #337ab7;
+  color: white;
 }
-.input-group span.twitter-typeahead {
-  display: block !important;
-}
-.input-group span.twitter-typeahead .tt-dropdown-menu {
-  top: 32px !important;
-}
-.input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
-  top: 44px !important;
-}
-.input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
-  top: 28px !important;
+
+/*Added to the element that wraps highlighted text*/
+.twitter-typeahead .tt-highlight {
+
 }
