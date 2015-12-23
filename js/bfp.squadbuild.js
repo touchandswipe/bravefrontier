@@ -23,8 +23,6 @@ lsMap=[
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
 	{desc:"Null Element Weakness", impact:"strong base element damage resist%",hideprefix:true},
-	{desc:"% BC+",impact:"bc drop rate% buff"},
-	{desc:"% BC+ on Spark",impact:"bc drop% for spark"},
 	{desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
 	{desc:"BC Fill on ATK", impact:"bc fill when attacking low", impact2:"bc fill when attacking high", chance:"bc fill when attacking%"},
 	{desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%"},
@@ -35,19 +33,13 @@ lsMap=[
 	{desc:"% BC Fill+", impact:"bb gauge fill rate%"},
 	{desc:"% BB Cost Reduced", impact:"reduced bb bc cost%"},
 	{desc:"% Reduce BB Gauge Used", impact:"reduced bb bc use% low", impact2:"reduced bb bc use% high", chance:"reduced bb bc use chance%"},
-	{desc:"% HP Drain", impact:"hp drain% low", impact2:"hp drain% high",chance:"hp drain chance%"},
-	{desc:"% HC+",impact:"hc drop rate% buff"},
-	{desc:"% HC+ on Spark",impact:"hc drop% for spark"},
-	{desc:"% HC Fill+", impact:"hc effectiveness%"},
 	{desc:"Heal Each Turn+", impact:"turn heal low", impact2:"turn heal high",criteria:["rec% added (turn heal)"]},
-	{desc:"Heal on Spark", impact:"heal on spark low", impact2:"heal on spark high", chance:"heal on spark%"},
+	{desc:"% HP Drain", impact:"hp drain% low", impact2:"hp drain% high",chance:"hp drain chance%"},
+	{desc:"% HC Fill+", impact:"hc effectiveness%"},
 	{desc:"% HP Heal on ATKed", impact:"dmg% to hp% when attacked low", impact2:"dmg% to hp% when attacked high", chance:"dmg% to hp% when attacked chance%"},
 	{desc:"Heal on Guard", impact:"on guard activation chance%", impact2:"!buff.gradual heal low", hideprefix:true},
 	{desc:"% Angel Idol", impact:"angel idol recover chance% low", impact2:"angel idol recover chance% high", criteria:["angel idol recover counts"]},
 	{desc:"% OD Fill+", impact:"od fill rate%"},
-	{desc:"% Item+",impact:"item drop rate% buff"},
-	{desc:"% Karma+",impact:"karma drop rate% buff"},
-	{desc:"% Zel+",impact:"zel drop rate% buff"},
 	{desc:"% Reduce DMG", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
 	{desc:"% Fire Resist", impact:"fire resist%"},
@@ -554,6 +546,7 @@ function generateBtns(btnclass,dest,mapArray) {
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
+	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
 	var sStats=["% HP","% ATK","% DEF","% REC"];
@@ -565,6 +558,15 @@ function generateSummary() {
 		/*totals cost*/
 		if ($(this).parent().attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
+		/*BBSBB Spam cost*/
+		if (rawParseObj[selectUnit]["bbdc"])
+			bbSpam["MAX BB DC"]+=rawParseObj[selectUnit]["bbdc"];
+		if (rawParseObj[selectUnit]["bbcost"])
+			bbSpam["BB Cost"]+=rawParseObj[selectUnit]["bbcost"];
+		if (rawParseObj[selectUnit]["sbbdc"])
+			bbSpam["MAX SBB DC"]+=rawParseObj[selectUnit]["sbbdc"];
+		if (rawParseObj[selectUnit]["sbbcost"])
+			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
@@ -609,12 +611,21 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	/*generate bbspam strings*/
+	var bbSpamHTML=[];
+	for (var key in bbSpam) {
+		if (bbSpam[key]!=0)
+			bbSpamHTML.push(key+" <b>"+bbSpam[key]+"</b>");
+	}
+	if (bbSpamHTML.length==0)
+		bbSpamHTML.push("No Units Added")
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS Potential"></i><h5>'+lsStatsHTML.join("</br>")+' </h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("</br>")+' </h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
@@ -748,12 +759,18 @@ if (typeof mappedNames !== 'undefined') {
         	unitObj.ls=valObj["leader skill"];
         else
         	unitObj.ls="none";
-	if (valObj["bb"])
+	if (valObj["bb"]) {
         	unitObj.bb=valObj["bb"]["levels"][9];
+        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
+        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+	}
         else
         	unitObj.bb="none";
-	if (valObj["sbb"])
+	if (valObj["sbb"]) {
         	unitObj.sbb=valObj["sbb"]["levels"][9];
+        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
+        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+	}
         else
         	unitObj.sbb="none";
         if (valObj["ubb"])
