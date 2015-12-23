@@ -693,7 +693,7 @@ $(document).on("click", '#moveInactive', function(e){
 })
 
 /*Reset buttons*/
-$(document).on("click", '#moveInactive', function(e){
+$(document).on("click", '#resetInactive', function(e){
 	e.preventDefault();
 	$(".bbBtns").each( function() {
 		$(this).parent("div").appendTo("#bbSpace")
