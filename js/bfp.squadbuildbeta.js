@@ -270,6 +270,7 @@ function scanSkills(classBtns,scanScope) {
 						for (k in bbMap) {
 							/*match exist*/
 							if (scanArray[j][bbMap[k].impact]) {
+								alert(scanScope[i]+" found "+scanArray[j][bbMap[k].impact]);
 								$(classBtns).each( function() {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
@@ -628,7 +629,7 @@ function generateSummary() {
 function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
-	//scanSkills(".ubbBtns",["ubb"]);
+	scanSkills(".ubbBtns",["ubb"]);
 	generateSummary();
 }
 
