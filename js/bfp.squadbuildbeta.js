@@ -698,9 +698,9 @@ function generateSummary() {
 		"service":"sharethis",
 		"element":document.getElementById('share_this_icon'),
 		"url":window.location.href,
-		"title":"sharethis",
+		"title":"BFPROs - Squad Builder / My Squad",
 		"type":"large",
-		"text":"ShareThis" ,
+		"text":"You gotta <3 my squad!" ,
 		"image":"http://w.sharethis.com/images/sharethis_32.png",
 		"summary":"Check out the squad i built with Squad Builder by Brave Frontier PROs."   
 	});
