@@ -251,7 +251,6 @@ function scanSkills(classBtns,scanScope) {
 		/*variables for coping with inconsistent data structure*/
 		var ATKdown=false;
 		var DEFdown=false;
-		var esTriggered=false;
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
@@ -262,11 +261,14 @@ function scanSkills(classBtns,scanScope) {
 					var esTriggered=false;
 					for (var m in scanArray)
 						console.log("es m "+JSON.stringify(scanArray[m]));
-						if (scanArray[m].hasOwnProperty("triggered effect")) {
-							scanArray=scanArray[m]["triggered effect"];
+						if (scanArray[m]["triggered effect"]) {
+							var esScanArray.push(scanArray[m]["triggered effect"]);
 							esTriggered=true;
 						}
 				}
+				/*replace temp array with ES shortlisted effects*/
+				if (esScanArray.length!=0)
+					scanArray=esScanArray;
 				if (scanScope[i]!="es" || esTriggered) {
 					/*Scan mapping*/
 					for (j in scanArray) {
@@ -392,7 +394,6 @@ function showSkills(e,scanScope) {
 	/*Scan unit details*/
 	for (l in unitIDs) {
 		var selectUnit=unitIDs[l];
-		var esTriggered=false;
 		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' ('+rawParseObj[selectUnit].rarity+'*)</b></h4>';
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
@@ -402,10 +403,13 @@ function showSkills(e,scanScope) {
 					var esTriggered=false;
 					for (var m in scanArray)
 						if (scanArray[m].hasOwnProperty("triggered effect")) {
-							scanArray=scanArray[m]["triggered effect"];
+							var esScanArray.push(scanArray[m]["triggered effect"]);
 							esTriggered=true;
 						}
 				}
+				/*replace temp array with ES shortlisted effects*/
+				if (esScanArray.length!=0)
+					scanArray=esScanArray;
 				if (scanScope[i]!="es" || esTriggered) {
 					/*Scan mapping*/
 					for (j in scanArray) {
