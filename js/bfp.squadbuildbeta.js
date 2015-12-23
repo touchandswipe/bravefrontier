@@ -86,7 +86,7 @@ bbMap=[
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
 	{desc:"Element(s) Add", impact:"elements added", turns:"elements added turns"},
-	//{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Water)", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Earth)", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Thunder)", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
@@ -628,7 +628,7 @@ function generateSummary() {
 function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
-	scanSkills(".ubbBtns",["ubb"]);
+	//scanSkills(".ubbBtns",["ubb"]);
 	generateSummary();
 }
 
