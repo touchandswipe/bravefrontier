@@ -692,6 +692,14 @@ $(document).on("click", '#moveInactive', function(e){
 	})
 })
 
+/*Reset buttons*/
+$(document).on("click", '#moveInactive', function(e){
+	e.preventDefault();
+	$(".bbBtns").each( function() {
+		$(this).parent("div").appendTo("#bbSpace")
+	})
+})
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
