@@ -629,7 +629,7 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push(rawParseObj[selectUnit].id);
+		sParam.push($(this).attr("id").slice(-1)+rawParseObj[selectUnit].id);
 	})
 	/*counts element*/
 	for (var key in sElement)
@@ -720,12 +720,12 @@ function loadSquad() {
 	    	var squadList=sParam.split(',');
 	    	var squadElements=["#unitA","#unitB","#unitC","#unitD","#unitE","#unitF"];
 	    	if (squadList.length>6)
-	    		alert("Error: URL is corrupted.")
+	    		alert("OOPS! URL structure has changed to fix unit to spots OR URL is corrupted. Pls rebuild your squad/ Sorry!")
 	    	else {
 		    	for (i in squadList) {
 		    		for (j in rawParseObj)
-		    			if (rawParseObj[j].id==squadList[i]) {
-		    				$(squadElements[i]).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd>');
+		    			if (rawParseObj[j].id==squadList[i].substr(1)) {
+		    				$("#unit'+squadList.charAt(0)).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd>');
 		    				break;
 		    			}
 		    	}
