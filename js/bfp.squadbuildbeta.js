@@ -686,17 +686,26 @@ $(window).on('popstate', function(e) {
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
 	e.preventDefault();
-	$(".bbBtns").each( function() {
+	$(".lsBtns,.bbBtns,sbbBtns,ubbBtns").each( function() {
 		if (!$(this).hasClass("btn-success"))
-			$(this).parent("div").appendTo("#bbSpaceInactive")
+			$(this).parent("div").appendTo("#inactiveSpace")
 	})
 })
 
 /*Reset buttons*/
 $(document).on("click", '#resetInactive', function(e){
 	e.preventDefault();
+	$(".lsBtns").each( function() {
+		$(this).parent("div").appendTo("#lsSpace")
+	})
 	$(".bbBtns").each( function() {
 		$(this).parent("div").appendTo("#bbSpace")
+	})
+	$(".sbbBtns").each( function() {
+		$(this).parent("div").appendTo("#sbbSpace")
+	})
+	$(".ubbBtns").each( function() {
+		$(this).parent("div").appendTo("#ubbSpace")
 	})
 })
 
