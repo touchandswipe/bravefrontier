@@ -10,7 +10,7 @@
     .sumIcon {color:#090;}
     .unitBox:hover {background:#eef;}
     .leader {
-    	position: relative;
+    	position:absolute;
         left: 50%;
         margin-left: -40px;
         bottom: 0;
