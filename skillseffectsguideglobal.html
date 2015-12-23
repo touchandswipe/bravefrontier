@@ -436,12 +436,12 @@ function searchNameRun() {
 }
 
 /*Sync New Button*/
-$(document).on("click", '#syncNewBtn', function(e){
-	resetLocalData("skillsguideglobal",false)
-})
+//$(document).on("click", '#syncNewBtn', function(e){
+//	resetLocalData("skillsguideglobal",false)
+//})
 
 /*Refresh data*/
-$(document).on("click", '#refreshData', function(e){
+$(document).on("click", '#refreshData, #syncNewBtn', function(e){
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
