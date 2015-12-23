@@ -559,7 +559,7 @@ function generateSummary() {
 		if ($(this).parent().attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*BBSBB Spam cost*/
-		if (rawParseObj[selectUnit].hasOWnProperty("bbdc"))
+		if (rawParseObj[selectUnit]["bbdc"]])
 			bbSpam["MAX BB DC"]+=rawParseObj[selectUnit]["bbdc"];
 		if (rawParseObj[selectUnit].hasOWnProperty("bbcost"))
 			bbSpam["BB Cost"]+=rawParseObj[selectUnit]["bbcost"];
