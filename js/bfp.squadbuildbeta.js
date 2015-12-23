@@ -313,8 +313,8 @@ function scanSkills(classBtns,scanScope) {
 						}
 						for (x in breakElements) {
 							$(classBtns).each( function() {
-								var elementMatchStr="Add "+breakElements[x]+" to ATK";
-								if ($(this).text()==elementMatchStr) {
+								var elementMatchStr="Add "+x+" to ATK";
+								if ($(this).text()==elementMatchStr && breakElements[x]) {
 									/*create list of units with skills*/
 									if ($(this).attr("data-found")) {
 										if ($(this).attr("data-found").search(selectUnit)==-1)
