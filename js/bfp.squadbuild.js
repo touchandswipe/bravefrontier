@@ -109,6 +109,7 @@ bbMap=[
 	{desc:"% Weakness DMG+ (Thunder)", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Light)", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Dark)", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
 	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
 	{desc:"BC InstaFill", impact:"increase bb gauge"},
 	{desc:"% BB Fill", impact:"bb bc fill%"},
