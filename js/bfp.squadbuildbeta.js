@@ -613,6 +613,7 @@ function generateSummary() {
 		lsStatsHTML.push("No STATS Bonus")
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
+	bbSpam["SBB Cost"]+=bbSpam["BB Cost"];
 	for (var key in bbSpam) {
 		if (bbSpam[key]!=0)
 			bbSpamHTML.push(key+" <b>"+bbSpam[key]+"</b>");
