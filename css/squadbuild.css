@@ -21,6 +21,7 @@
     	font-weight: bold;
     	color:red;
     }
+    .inactiveSpace {display:none};
     .htfixed {height:135px;}
     .htfixed2 {height:120px;}
     .cross {
