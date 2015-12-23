@@ -254,7 +254,6 @@ function scanSkills(classBtns,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
-				var esScanArray=[];
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
@@ -271,7 +270,6 @@ function scanSkills(classBtns,scanScope) {
 						for (k in bbMap) {
 							/*match exist*/
 							if (scanArray[j][bbMap[k].impact]) {
-								alert(scanScope[i]+" found "+scanArray[j][bbMap[k].impact]+" "+bbMap[k].impact);
 								$(classBtns).each( function() {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
@@ -394,19 +392,16 @@ function showSkills(e,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
-				var esScanArray=[];
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
-					for (var m in scanArray)
+					for (m in scanArray)
 						if (scanArray[m].hasOwnProperty("triggered effect")) {
-							esScanArray.push(scanArray[m]["triggered effect"]);
+							scanArray=scanArray[m]["triggered effect"];
 							esTriggered=true;
+							break;
 						}
 				}
-				/*replace temp array with ES shortlisted effects*/
-				if (esScanArray.length!=0)
-					scanArray=esScanArray;
 				if (scanScope[i]!="es" || esTriggered) {
 					/*Scan mapping*/
 					for (j in scanArray) {
