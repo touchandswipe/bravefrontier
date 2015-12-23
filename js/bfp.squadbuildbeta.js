@@ -258,8 +258,10 @@ function scanSkills(classBtns,scanScope) {
 				console.log(JSON.stringify(scanArray));
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
+					console.log("es processing "+JSON.stringify(scanArray));
 					var esTriggered=false;
-					for (m in scanArray)
+					for (var m in scanArray)
+						console.log("es m "+JSON.stringify(scanArray[m]));
 						if (scanArray[m].hasOwnProperty("triggered effect")) {
 							scanArray=scanArray[m]["triggered effect"];
 							esTriggered=true;
@@ -398,7 +400,7 @@ function showSkills(e,scanScope) {
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
-					for (m in scanArray)
+					for (var m in scanArray)
 						if (scanArray[m].hasOwnProperty("triggered effect")) {
 							scanArray=scanArray[m]["triggered effect"];
 							esTriggered=true;
