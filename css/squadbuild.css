@@ -43,7 +43,8 @@
         border-radius: 8px;
         bottom: 4px;
         margin: 0;
-        right: 16px;
+        left: 16px;
+        white-space:nowrap;
         padding: 0 5px;
         font-size: 10pt;
         font-weight: bold;
