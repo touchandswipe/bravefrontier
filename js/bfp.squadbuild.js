@@ -707,12 +707,6 @@ $(document).on("click", '#resetInactive', function(e){
 	})
 })
 
-/*Sync New Button*/
-$(document).on("click", '#syncNewBtn', function(e){
-	e.preventDefault();
-	resetLocalData("skillsguidejapan",false)
-})
-
 /*Trash Unit*/
 $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
