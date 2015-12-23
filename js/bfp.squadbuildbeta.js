@@ -627,7 +627,7 @@ function generateSummary() {
 
 function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
-	scanSkills(".bbBtns",["bb", "sbb", "es"]);
+	scanSkills(".bbBtns",["bb", "sbb"]);
 	scanSkills(".ubbBtns",["ubb"]);
 	generateSummary();
 }
