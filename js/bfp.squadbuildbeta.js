@@ -546,6 +546,7 @@ function generateBtns(btnclass,dest,mapArray) {
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
+	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
 	var sStats=["% HP","% ATK","% DEF","% REC"];
@@ -557,6 +558,15 @@ function generateSummary() {
 		/*totals cost*/
 		if ($(this).parent().attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
+		/*BBSBB Spam cost*/
+		if (rawParseObj[selectUnit].hasOWnProperty(bbdc))
+			bbSpam["MAX BB DC"]+=rawParseObj[selectUnit]["bbdc"];
+		if (rawParseObj[selectUnit].hasOWnProperty(bbcost))
+			bbSpam["BB Cost"]+=rawParseObj[selectUnit]["bbcost"];
+		if (rawParseObj[selectUnit].hasOWnProperty(bbdc))
+			bbSpam["MAX SBB DC"]+=rawParseObj[selectUnit]["sbbdc"];
+		if (rawParseObj[selectUnit].hasOWnProperty(sbbdc))
+			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
@@ -601,12 +611,21 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	/*generate bbspam strings*/
+	var bbSpamHTML=[];
+	for (var key in bbSpam) {
+		if (bbSpam[key]!=0)
+			bbSpamHTML.push(key+" <b>"+bbSpam[key]+"</b>");
+	}
+	if (lsStatsHTML.length==0)
+		lsStatsHTML.push("No STATS Bonus")
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-2x sumIcon" title="Leader STATS Potential"></i><h5>'+lsStatsHTML.join("</br>")+' </h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h3 class="bbspam sumIcon" title="BB Spam"><b>BB SPAM</b></h3><h5>'+bbSpamsHTML.join("</br>")+' </h5></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
@@ -740,12 +759,18 @@ if (typeof mappedNames !== 'undefined') {
         	unitObj.ls=valObj["leader skill"];
         else
         	unitObj.ls="none";
-	if (valObj["bb"])
+	if (valObj["bb"]) {
         	unitObj.bb=valObj["bb"]["levels"][9];
+        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
+        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+	}
         else
         	unitObj.bb="none";
-	if (valObj["sbb"])
+	if (valObj["sbb"]) {
         	unitObj.sbb=valObj["sbb"]["levels"][9];
+        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
+        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+	}
         else
         	unitObj.sbb="none";
         if (valObj["ubb"])
