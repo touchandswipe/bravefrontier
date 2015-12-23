@@ -251,6 +251,7 @@ function scanSkills(classBtns,scanScope) {
 		/*variables for coping with inconsistent data structure*/
 		var ATKdown=false;
 		var DEFdown=false;
+		var esTriggered=false;
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
@@ -258,9 +259,9 @@ function scanSkills(classBtns,scanScope) {
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
-					for (j in scanArray)
-						if (scanArray[j].hasOwnProperty("triggered effect")) {
-							scanArray=scanArray[j]["triggered effect"];
+					for (m in scanArray)
+						if (scanArray[m].hasOwnProperty("triggered effect")) {
+							scanArray=scanArray[m]["triggered effect"];
 							esTriggered=true;
 						}
 				}
@@ -270,7 +271,7 @@ function scanSkills(classBtns,scanScope) {
 						for (k in bbMap) {
 							/*match exist*/
 							if (scanArray[j][bbMap[k].impact]) {
-								alert(scanScope[i]+" found "+scanArray[j][bbMap[k].impact]);
+								alert(scanScope[i]+" found "+scanArray[j][bbMap[k].impact]+" "+bbMap[k].impact);
 								$(classBtns).each( function() {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
@@ -389,6 +390,7 @@ function showSkills(e,scanScope) {
 	/*Scan unit details*/
 	for (l in unitIDs) {
 		var selectUnit=unitIDs[l];
+		var esTriggered=false;
 		skillsHTML+='<img src="'+rawParseObj[selectUnit].img+'"/><h4><b>'+rawParseObj[selectUnit].name+' ('+rawParseObj[selectUnit].rarity+'*)</b></h4>';
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
@@ -396,9 +398,9 @@ function showSkills(e,scanScope) {
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
-					for (j in scanArray)
-						if (scanArray[j].hasOwnProperty("triggered effect")) {
-							scanArray=scanArray[j]["triggered effect"];
+					for (m in scanArray)
+						if (scanArray[m].hasOwnProperty("triggered effect")) {
+							scanArray=scanArray[m]["triggered effect"];
 							esTriggered=true;
 						}
 				}
