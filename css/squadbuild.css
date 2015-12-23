@@ -36,10 +36,23 @@
     	width:95%;
     	text-align: center;
     }
+    .unitFound {padding:3px 0 !important;}
+    .fRarity {
+        position: absolute;
+        color: #FD0;
+        border-radius: 8px;
+        bottom: 4px;
+        margin: 0;
+        right: 15px;
+        padding: 0 5px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
     .unitFound, .unitSelected {
     	width:70px;
     	height:auto;
     	padding:0;
+    	position:relative;
     	cursor:pointer;
     }
     .untiIcon {
