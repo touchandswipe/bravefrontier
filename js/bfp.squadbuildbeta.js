@@ -97,12 +97,12 @@ bbMap=[
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
-	{desc:"Add fire to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add water to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add earth to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add thunder to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add light to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add dark to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add fire to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add water to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add earth to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add thunder to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add light to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add dark to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Water)", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Earth)", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
@@ -471,6 +471,12 @@ function showSkills(e,scanScope) {
 										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
 							skillsHTML+='</br>';
+						}
+						/*Element add breakdown*/
+						if (bbMap[bbMapKey].impact=="elements dummy") {
+							if (scanArray[j].hasOwnProperty("elements added"))
+								skillsHTML+='Add '+scanArray[j]["elements added"]+' to ATK '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
+								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
 						}
 						/*ATK Down Inconsistency*/
 						if (bbMap[bbMapKey].desc=="% ATK-Down") {
