@@ -474,9 +474,10 @@ function showSkills(e,scanScope) {
 						}
 						/*Element add breakdown*/
 						if (bbMap[bbMapKey].impact=="elements dummy") {
-							if (scanArray[j].hasOwnProperty("elements added"))
+							if (scanArray[j].hasOwnProperty("elements added")) {
 								skillsHTML+='Add '+scanArray[j]["elements added"]+' to ATK '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
+							}
 						}
 						/*ATK Down Inconsistency*/
 						if (bbMap[bbMapKey].desc=="% ATK-Down") {
