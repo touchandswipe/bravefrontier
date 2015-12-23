@@ -254,7 +254,7 @@ function scanSkills(classBtns,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
-				console.log(scanArray);
+				console.log(JSON.Stringify(scanArray));
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
