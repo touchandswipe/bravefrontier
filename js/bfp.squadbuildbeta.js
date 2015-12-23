@@ -683,6 +683,15 @@ $(window).on('popstate', function(e) {
 	}
 })
 
+/*MoveinActive skills*/
+$(document).on("click", '#moveInactive', function(e){
+	e.preventDefault();
+	$(".bbBtns").each( function() {
+		if (!$(this).hasClass("btn-success"))
+			$(this).parent("div").appendTo("#bbSpaceInactive")
+	})
+})
+
 /*Sync New Button*/
 $(document).on("click", '#syncNewBtn', function(e){
 	e.preventDefault();
