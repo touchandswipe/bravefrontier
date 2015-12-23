@@ -97,7 +97,12 @@ bbMap=[
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
-	{desc:"Element(s) Add", impact:"elements added", turns:"elements added turns"},
+	{desc:"Add fire to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add water to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add earth to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add thunder to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add light to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{desc:"Add dark to ATK", impact2:"elements added", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Water)", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Earth)", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
@@ -263,6 +268,7 @@ function scanSkills(classBtns,scanScope) {
 		/*variables for coping with inconsistent data structure*/
 		var ATKdown=false;
 		var DEFdown=false;
+		var breakElements={"fire":false,"water":false,"earth":false,"thunder":false,"light":false,"dark":false};
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
@@ -297,6 +303,30 @@ function scanSkills(classBtns,scanScope) {
 									}
 								})
 							}
+						}
+						/*Break up Element ADD*/
+						if (scanArray[j].hasOwnProperty("elements added")) {
+							for (x in breakElements) {
+								if (scanArray[j]["elements added"].indexOf(x)!=-1)
+									breakElements[x]=true
+							}
+						}
+						for (x in breakElements) {
+							$(classBtns).each( function() {
+								var elementMatchStr="Add "+breakElements[x]+" to ATK";
+								if ($(this).text()==elementMatchStr) {
+									/*create list of units with skills*/
+									if ($(this).attr("data-found")) {
+										if ($(this).attr("data-found").search(selectUnit)==-1)
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									}
+									else
+										$(this).attr("data-found",selectUnit)
+									$(this).removeAttr("disabled");
+									if ($(this).hasClass("btn-default"))
+										$(this).toggleClass("btn-default btn-success");
+								}
+							})
 						}
 						/*ATK/DEF Down Inconsistency*/
 						if (scanArray[j].hasOwnProperty("buff #1")) {
