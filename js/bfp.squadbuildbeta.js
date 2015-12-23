@@ -686,7 +686,7 @@ $(window).on('popstate', function(e) {
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
 	e.preventDefault();
-	$(".lsBtns,.bbBtns,sbbBtns,ubbBtns").each( function() {
+	$(".lsBtns,.bbBtns,.ubbBtns").each( function() {
 		if (!$(this).hasClass("btn-success"))
 			$(this).parent("div").appendTo("#inactiveSpace")
 	})
@@ -700,9 +700,6 @@ $(document).on("click", '#resetInactive', function(e){
 	})
 	$(".bbBtns").each( function() {
 		$(this).parent("div").appendTo("#bbSpace")
-	})
-	$(".sbbBtns").each( function() {
-		$(this).parent("div").appendTo("#sbbSpace")
 	})
 	$(".ubbBtns").each( function() {
 		$(this).parent("div").appendTo("#ubbSpace")
