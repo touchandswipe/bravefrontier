@@ -561,11 +561,11 @@ function generateSummary() {
 		/*BBSBB Spam cost*/
 		if (rawParseObj[selectUnit]["bbdc"])
 			bbSpam["MAX BB DC"]+=rawParseObj[selectUnit]["bbdc"];
-		if (rawParseObj[selectUnit].hasOWnProperty("bbcost"))
+		if (rawParseObj[selectUnit]["bbcost"])
 			bbSpam["BB Cost"]+=rawParseObj[selectUnit]["bbcost"];
-		if (rawParseObj[selectUnit].hasOWnProperty("bbdc"))
+		if (rawParseObj[selectUnit]["sbbdc"])
 			bbSpam["MAX SBB DC"]+=rawParseObj[selectUnit]["sbbdc"];
-		if (rawParseObj[selectUnit].hasOWnProperty("sbbdc"))
+		if (rawParseObj[selectUnit]["sbbcost"])
 			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
