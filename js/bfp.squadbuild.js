@@ -683,7 +683,7 @@ function generateSummary() {
 		bbSpamHTML.push("No Units Added")
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
@@ -692,8 +692,6 @@ function generateSummary() {
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
 	history.pushState(state, "squad state", "?squad="+encodeURIComponent(sParam.join()) );
-	/*build sharing url*/
-	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam.join()), $('#shareURL') );
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -798,6 +796,14 @@ $(document).on("click", '.ubbBtns', function(e){
 $(document).on("click", '.lsBtns', function(e){
 	e.preventDefault();
 	showLeaderSkills($(this),["ls"])
+})
+
+/*LS Btn Click*/
+$(document).on("click", '#getShort', function(e){
+	e.preventDefault();
+	/*build sharing url*/
+	var sParam=urlParam('squad');
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam), $('#shareURL') );
 })
 
 /*update unitspace*/
