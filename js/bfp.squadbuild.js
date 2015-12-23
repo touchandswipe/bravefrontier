@@ -613,7 +613,8 @@ function generateSummary() {
 		lsStatsHTML.push("No STATS Bonus")
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
-	bbSpam["SBB Cost"]+=bbSpam["BB Cost"];
+	if (bbSpam["SBB Cost"]!=0)
+		bbSpam["SBB Cost"]+=bbSpam["BB Cost"];
 	for (var key in bbSpam) {
 		if (bbSpam[key]!=0)
 			bbSpamHTML.push(key+" <b>"+bbSpam[key]+"</b>");
@@ -681,6 +682,29 @@ $(window).on('popstate', function(e) {
 	if (state.stateSquad) {
 		loadSquad()
 	}
+})
+
+/*MoveinActive skills*/
+$(document).on("click", '#moveInactive', function(e){
+	e.preventDefault();
+	$(".lsBtns,.bbBtns,.ubbBtns").each( function() {
+		if (!$(this).hasClass("btn-success"))
+			$(this).parent("div").appendTo("#inactiveSpace")
+	})
+})
+
+/*Reset buttons*/
+$(document).on("click", '#resetInactive', function(e){
+	e.preventDefault();
+	$(".lsBtns").each( function() {
+		$(this).parent("div").appendTo("#lsSpace")
+	})
+	$(".bbBtns").each( function() {
+		$(this).parent("div").appendTo("#bbSpace")
+	})
+	$(".ubbBtns").each( function() {
+		$(this).parent("div").appendTo("#ubbSpace")
+	})
 })
 
 /*Sync New Button*/
