@@ -678,7 +678,7 @@ function loadSquad() {
 		    	for (i in squadList) {
 		    		for (j in rawParseObj)
 		    			if (rawParseObj[j].id==squadList[i]) {
-		    				$(squadElements[i]).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" />');
+		    				$(squadElements[i]).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd>');
 		    				break;
 		    			}
 		    	}
