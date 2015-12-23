@@ -697,7 +697,7 @@ function generateSummary() {
 	stWidget.addEntry({
 		"service":"sharethis",
 		"element":document.getElementById('share_this_icon'),
-		"url":"http://sharethis.com",
+		"url":window.location.href,
 		"title":"sharethis",
 		"type":"large",
 		"text":"ShareThis" ,
