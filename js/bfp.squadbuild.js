@@ -16,7 +16,7 @@ lsMap=[
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
-	{desc:"% BB ATK%+", impact:"bb atk% buff"},
+	{desc:"% BB ATK%+", impact:"bb atk% buff",criteria:["damage dealt threshold buff activation","damage threshold buff activation"]},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
