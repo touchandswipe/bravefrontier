@@ -629,7 +629,7 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push($(this).attr("id").slice(-1)+rawParseObj[selectUnit].id);
+		sParam.push($(this).parent().attr("id").slice(-1)+rawParseObj[selectUnit].id);
 	})
 	/*counts element*/
 	for (var key in sElement)
