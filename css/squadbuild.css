@@ -37,7 +37,7 @@
     	width:95%;
     	text-align: center;
     }
-    .unitFound {padding:3px 0 !important;}
+    .unitFound, .unitRecommend {padding:3px 0 !important;}
     .sRarity {
         position: absolute;
         color: #FD0;
@@ -63,7 +63,7 @@
         font-size: 10pt;
         font-weight: bold;
     }
-    .unitFound, .unitSelected {
+    .unitFound,.unitSelected,.unitRecommend {
     	width:70px;
     	height:auto;
     	padding:0;
