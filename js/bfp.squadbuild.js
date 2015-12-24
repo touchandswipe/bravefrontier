@@ -262,6 +262,96 @@ function badgeRun(classBtns) {
 	})
 }
 
+function recommendSkills(e,skillType,mapArray) {
+	/*skillType are ls,bb,sbb,es,ubb in array*/
+	var minRarity=7;
+	var matchUnits=[];
+	/*scan for skill*/
+	var skillDesc=e.children(".btnDesc").text();
+	/*identify the skill*/
+	for (var i in mapArray) {
+		if (skillDesc==mapArray[i].desc) {
+			var mapKey=i;
+			break;
+		}
+	}
+	for (var i in rawParseObj)
+		if (rawParseObj[i].rarity>=minRarity) {
+			/*scan skillType*/
+			for (var j in skillType) {
+				if (rawParseObj[i][skillType[j]]!="none") {
+					var scanArray=rawParseObj[i][skillType[j]].effects;
+					/*add ES triggered Effects to BB and SBB*/
+					if (skillType[j]=="es") {
+						var esTriggered=false;
+						for (m in scanArray)
+							if (scanArray[m].hasOwnProperty("triggered effect")) {
+								scanArray=scanArray[m]["triggered effect"];
+								esTriggered=true;
+								break;
+							}
+					}
+					if (skillType[j]!="es" || esTriggered) {
+						/*skills scan*/
+						for (var k in scanArray) {
+							/*normal scope*/
+							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
+								if (matchUnits.indexOf(i)==-1)
+									matchUnits.push(i)
+							}
+							/*elemental breakup scan*/
+							if (mapArray[mapKey].impact=="elements dummy") {
+								if (scanArray[k].hasOwnProperty("elements added")) {
+									/*split string for 2nd word*/
+									var skillElement=skillDesc.split(" ");
+									if (scanArray[k]["elements added"].indexOf(skillElement[1])!=-1) {
+										if (matchUnits.indexOf(i)==-1)
+											matchUnits.push(i)
+									}
+								}
+							}
+							/*ATK Down buff scan*/
+							if (skillDesc=="% ATK-Down") {
+								if (scanArray[k].hasOwnProperty("buff #1"))
+									if (scanArray[k]["buff #1"].hasOwnProperty("atk% buff (2)")) {
+										if (matchUnits.indexOf(i)==-1)
+											matchUnits.push(i)
+									}
+								if (scanArray[k].hasOwnProperty("buff #2"))
+									if (scanArray[k]["buff #2"].hasOwnProperty("atk% buff (2)")) {
+										if (matchUnits.indexOf(i)==-1)
+											matchUnits.push(i)
+									}
+							}
+							/*DEF Down buff scan*/
+							if (skillDesc=="% DEF-Down") {
+								if (scanArray[k].hasOwnProperty("buff #1"))
+									if (scanArray[k]["buff #1"].hasOwnProperty("def% buff (4)")) {
+										if (matchUnits.indexOf(i)==-1)
+											matchUnits.push(i)
+									}
+								if (scanArray[k].hasOwnProperty("buff #2"))
+									if (scanArray[k]["buff #2"].hasOwnProperty("def% buff (4)")) {
+										if (matchUnits.indexOf(i)==-1)
+											matchUnits.push(i)
+									}
+							}
+						}
+					}
+				}				
+			}
+		}
+	/*show results*/
+	var skillsHTML=[];
+	if (matchUnits.length!=0)
+		for (i in matchUnits)
+			skillsHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[matchUnits[i]].img+'" data-unitid="'+matchUnits[i]+'" class="unitRecommend" title="ADD to Squad - '+rawParseObj[matchUnits[i]].name+" ("+rawParseObj[matchUnits[i]].rarity+"*"+')" /><kbd class="fRarity">'+rawParseObj[matchUnits[i]].rarity+'<i class="fa fa-star"></i></kbd></div>');
+		else
+			skillsHTML.push('<h4>No 7<i class="fa fa-star-o"></i> unit with matching skill.</h4>');
+	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
+	$("#rBody").html(skillsHTML);
+}
+	
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	/*iterate thru selected units*/
@@ -778,6 +868,15 @@ $(document).on("click", '#trashBtn', function(e){
 	refreshALL();
 })
 
+/*clearSquad*/
+$(document).on("click", '#clearSquad', function(e){
+	e.preventDefault();
+	$(".unitBox").each( function(){
+		$(this).html(trashStr);
+	})
+	refreshALL();
+})
+
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
 	e.preventDefault();
@@ -788,19 +887,34 @@ $(document).on("click", '.unitBox', function(e){
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this),["bb", "sbb", "es"])
+	if ($(this).hasClass("btn-success"))
+		showSkills($(this),["bb", "sbb", "es"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["bb", "sbb", "es"],bbMap)
+	}
 })
 
 /*UBB Btn Click*/
 $(document).on("click", '.ubbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this),["ubb"])
+	if ($(this).hasClass("btn-success"))
+		showSkills($(this),["ubb"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["ubb"],bbMap)
+	}
 })
 
 /*LS Btn Click*/
 $(document).on("click", '.lsBtns', function(e){
 	e.preventDefault();
-	showLeaderSkills($(this),["ls"])
+	if ($(this).hasClass("btn-success"))
+		showLeaderSkills($(this),["ls"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["ls"],lsMap)
+	}
 })
 
 /*LS Btn Click*/
@@ -816,6 +930,16 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	refreshALL();
+})
+
+/*update unitspace*/
+$(document).on("click", '.unitRecommend', function(e){
+	e.preventDefault();
+	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
+	alert(slotAdd);
+	$(slotAdd).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	$('#recommendModal').modal('hide');
 	refreshALL();
 })
 
