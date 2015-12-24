@@ -15,6 +15,7 @@ lsMap=[
 	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
+	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
 	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
