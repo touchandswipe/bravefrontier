@@ -201,6 +201,48 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Unit Recommendation Modal -->
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Recommended 7<i class="fa fa-star-o"></i> with <span id="rTitle"></span></b></h4>
+      </div>
+      <div class="modal-body" style="min-height:400px;">
+	<div>
+		<div class="container-fluid">
+			<h4>Select Unit Slot</h4>
+			<div class="btn-group btn-group-lg" data-toggle="buttons">
+			  <label class="btn btn-default active">
+			    <input type="radio" name="unitPos" value="A" autocomplete="off" checked>Lead
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="B" autocomplete="off">Ally
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="C" autocomplete="off">1
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="D" autocomplete="off">2
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="E" autocomplete="off">3
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="F" autocomplete="off">4
+			  </label>
+			</div>
+			<hr>
+			<h4>Add Recommended Unit to Selected Slot</h4>
+			<div class="row" id="rBody"></div>
+		</div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Skills availability Modal -->
 <div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
