@@ -268,6 +268,7 @@ function recommendSkills(e,skillType,mapArray) {
 	var matchUnits=[];
 	/*scan for skill*/
 	var skillDesc=e.children(".btnDesc").text();
+	alert("scanning for "+skillDesc)
 	/*identify the skill*/
 	for (var i in mapArray) {
 		if (skillDesc==mapArray[i].desc) {
@@ -295,7 +296,7 @@ function recommendSkills(e,skillType,mapArray) {
 						/*skills scan*/
 						for (var k in scanArray) {
 							/*normal scope*/
-							if (scanArray[k]==mapArray[mapKey].impact)
+							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact))
 								matchUnits.push(i)
 							/*elemental breakup scan*/
 							if (mapArray[mapKey]=="element dummy")
