@@ -268,7 +268,6 @@ function recommendSkills(e,skillType,mapArray) {
 	var matchUnits=[];
 	/*scan for skill*/
 	var skillDesc=e.children(".btnDesc").text();
-	alert("scanning for "+skillDesc)
 	/*identify the skill*/
 	for (var i in mapArray) {
 		if (skillDesc==mapArray[i].desc) {
