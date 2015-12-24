@@ -93,6 +93,7 @@ bbMap=[
 	{desc:"Hitcount+", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
 	{desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
+	{desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
 	{desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
