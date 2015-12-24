@@ -300,7 +300,7 @@ function recommendSkills(e,skillType,mapArray) {
 									matchUnits.push(i)
 							}
 							/*elemental breakup scan*/
-							if (mapArray[mapKey]=="element dummy") {
+							if (mapArray[mapKey].impact=="elements dummy") {
 								if (scanArray[k].hasOwnProperty("elements added")) {
 									/*split string for 2nd word*/
 									var skillElement=skillDesc.split(" ");
