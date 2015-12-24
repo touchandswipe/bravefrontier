@@ -345,6 +345,7 @@ function recommendSkills(e,skillType,mapArray) {
 	var skillsHTML=[];
 	for (i in matchUnits)
 		skillsHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[matchUnits[i]].img+'" data-unitid="'+matchUnits[i]+'" class="unitFound" title="ADD to Squad - '+rawParseObj[matchUnits[i]].name+" ("+rawParseObj[matchUnits[i]].rarity+"*"+')" /><kbd class="fRarity">'+rawParseObj[matchUnits[i]].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger"'+skillType+'</span>');
 	$("#rBody").html(skillsHTML);
 }
 	
