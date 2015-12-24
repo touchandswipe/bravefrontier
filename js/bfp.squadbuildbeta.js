@@ -885,13 +885,23 @@ $(document).on("click", '.bbBtns', function(e){
 /*UBB Btn Click*/
 $(document).on("click", '.ubbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this),["ubb"])
+	if ($(this).hasClass("btn-success"))
+		showSkills($(this),["ubb"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["ubb"],bbMap)
+	}
 })
 
 /*LS Btn Click*/
 $(document).on("click", '.lsBtns', function(e){
 	e.preventDefault();
-	showLeaderSkills($(this),["ls"])
+	if ($(this).hasClass("btn-success"))
+		showLeaderSkills($(this),["ls"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["ls"],lsMap)
+	}
 })
 
 /*LS Btn Click*/
