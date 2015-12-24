@@ -299,29 +299,34 @@ function recommendSkills(e,skillType,mapArray) {
 							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact))
 								matchUnits.push(i)
 							/*elemental breakup scan*/
-							if (mapArray[mapKey]=="element dummy")
+							if (mapArray[mapKey]=="element dummy") {
 								if (scanArray[k].hasOwnProperty("elements added")) {
 									/*split string for 2nd word*/
 									var skillElement=skillDesc.split(" ");
 									if (scanArray[k]["elements added"].indexOf(skillElement[1])!=-1)
 										matchUnits.push(i)
 								}
+							}
 							/*ATK Down buff scan*/
-							if (skillDesc=="% ATK-Down")
+							if (skillDesc=="% ATK-Down") {
+								alert("Skilldesc is ATK Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("atk% buff (2)"))
 										matchUnits.push(i)
 								if (scanArray[k].hasOwnProperty("buff #2"))
 									if (scanArray[k]["buff #2"].hasOwnProperty("atk% buff (2)"))
 										matchUnits.push(i)
+							}
 							/*DEF Down buff scan*/
-							if (skillDesc=="% DEF-Down")
+							if (skillDesc=="% DEF-Down") {
+								alert("Skilldesc is DEF Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("def% buff (4)"))
 										matchUnits.push(i)
 								if (scanArray[k].hasOwnProperty("buff #2"))
 									if (scanArray[k]["buff #2"].hasOwnProperty("def% buff (4)"))
 										matchUnits.push(i)
+							}
 						}
 					}
 				}				
@@ -329,7 +334,7 @@ function recommendSkills(e,skillType,mapArray) {
 		}
 	/*show results*/
 	var skillsHTML=[];
-	for (var i in matchUnits)
+	for (i in matchUnits)
 		skillsHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[matchUnits[i]].img+'" data-unitid="'+matchUnits[i]+'" class="unitFound" title="ADD to Squad - '+rawParseObj[matchUnits[i]].name+" ("+rawParseObj[matchUnits[i]].rarity+"*"+')" /><kbd class="fRarity">'+rawParseObj[matchUnits[i]].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$("#rBody").html(skillsHTML);
 }
