@@ -262,6 +262,77 @@ function badgeRun(classBtns) {
 	})
 }
 
+function recommendSkills(e,skillType,mapArray) {
+	/*skillType are ls,bb,sbb,es,ubb in array*/
+	var minRarity=7;
+	var matchUnits=[];
+	/*scan for skill*/
+	var skillDesc=e.children(".btnDesc").text();
+	/*identify the skill*/
+	for (var i in mapArray) {
+		if (skillDesc==mapArray[i].desc) {
+			var mapKey=i;
+			break;
+		}
+	}
+	for (var i in rawParseObj)
+		if (rawParseObj[i].rarity>=minRarity) {
+			/*scan skillType*/
+			for (var j in skillType) {
+				if (rawParseObj[i][skillType[j]]!="none") {
+					var scanArray=rawParseObj[i][skillType[j]].effects;
+					/*add ES triggered Effects to BB and SBB*/
+					if (skillType[j]=="es") {
+						var esTriggered=false;
+						for (m in scanArray)
+							if (scanArray[m].hasOwnProperty("triggered effect")) {
+								scanArray=scanArray[m]["triggered effect"];
+								esTriggered=true;
+								break;
+							}
+					}
+					if (skillType[j]!="es" || esTriggered) {
+						/*skills scan*/
+						for (var k in scanArray) {
+							/*normal scope*/
+							if (scanArray[k]==mapArray[mapKey].impact)
+								matchUnits.push(i)
+							/*elemental breakup scan*/
+							if (mapArray[mapKey]=="element dummy")
+								if (scanArray[k].hasOwnProperty("elements added")) {
+									/*split string for 2nd word*/
+									var skillElement=skillDesc.split(" ");
+									if (scanArray[j]["elements added"].indexOf(skillElement[1])!=-1)
+										matchUnits.push(i)
+								}
+							/*ATK Down buff scan*/
+							if (skillDesc=="% ATK-Down")
+								if (scanArray[k].hasOwnProperty("buff #1"))
+									if (scanArray[j]["buff #1"].hasOwnProperty("atk% buff (2)"))
+										matchUnits.push(i)
+								if (scanArray[k].hasOwnProperty("buff #2"))
+									if (scanArray[j]["buff #2"].hasOwnProperty("atk% buff (2)"))
+										matchUnits.push(i)
+							/*DEF Down buff scan*/
+							if (skillDesc=="% DEF-Down")
+								if (scanArray[k].hasOwnProperty("buff #1"))
+									if (scanArray[k]["buff #1"].hasOwnProperty("def% buff (4)"))
+										matchUnits.push(i)
+								if (scanArray[k].hasOwnProperty("buff #2"))
+									if (scanArray[k]["buff #2"].hasOwnProperty("def% buff (4)"))
+										matchUnits.push(i)
+						}
+					}
+				}				
+			}
+		}
+	/*show results*/
+	var skillsHTML=[];
+	for (var i in matchUnits)
+		skillsHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[matchUnits[i]].img+'" data-unitid="'+matchUnits[i]+'" class="unitFound" title="ADD to Squad - '+rawParseObj[matchUnits[i]].name+" ("+rawParseObj[matchUnits[i]].rarity+"*"+')" /><kbd class="fRarity">'+rawParseObj[matchUnits[i]].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	$("#rBody").html(skillsHTML);
+}
+	
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	/*iterate thru selected units*/
@@ -788,7 +859,12 @@ $(document).on("click", '.unitBox', function(e){
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
-	showSkills($(this),["bb", "sbb", "es"])
+	if ($(this).hasClass("btn-success"))
+		showSkills($(this),["bb", "sbb", "es"])
+	else {
+		$("#recommendModal").modal('show');
+		recommendSkills($(this),["bb", "sbb", "es"],bbMap)
+	}
 })
 
 /*UBB Btn Click*/
