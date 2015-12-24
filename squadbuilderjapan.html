@@ -225,6 +225,7 @@ imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     /*Init loader*/
+    $("#alertmodal").modal("hide");
     $('#progressModal').modal({
     	keyboard:false,
     	backdrop:'static',
