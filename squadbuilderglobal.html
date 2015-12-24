@@ -47,11 +47,12 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R1 - <span class="text-danger">Global</span></h2>
+<h2>Squad Builder R2x - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</a>
 <a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
-<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> Reset View</a>
+<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> Show All Skills</a>
+<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
 	<div class="text-center" style="margin-bottom:5px;">
@@ -201,6 +202,48 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Unit Recommendation Modal -->
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Recommended 7<i class="fa fa-star-o"></i> with <span id="rTitle"></span></b></h4>
+      </div>
+      <div class="modal-body" style="min-height:400px;">
+	<div>
+		<div class="container-fluid">
+			<h4>Select Unit Slot</h4>
+			<div class="btn-group btn-group-lg" data-toggle="buttons">
+			  <label class="btn btn-default active">
+			    <input type="radio" name="unitPos" value="A" autocomplete="off" checked>Lead
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="B" autocomplete="off">Ally
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="C" autocomplete="off">1
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="D" autocomplete="off">2
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="E" autocomplete="off">3
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="F" autocomplete="off">4
+			  </label>
+			</div>
+			<hr>
+			<h4>Add Recommended Unit to Selected Slot</h4>
+			<div class="row" id="rBody"></div>
+		</div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Skills availability Modal -->
 <div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -216,7 +259,7 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
 imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
