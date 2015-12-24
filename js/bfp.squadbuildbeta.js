@@ -868,6 +868,15 @@ $(document).on("click", '#trashBtn', function(e){
 	refreshALL();
 })
 
+/*clearSquad*/
+$(document).on("click", '#clearSquad', function(e){
+	e.preventDefault();
+	$(".unitBox").each( function(){
+		$(this).html(trashStr);
+	})
+	refreshALL();
+})
+
 /*SearchModal Trigger*/
 $(document).on("click", '.unitBox', function(e){
 	e.preventDefault();
