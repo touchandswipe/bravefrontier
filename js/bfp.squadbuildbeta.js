@@ -312,7 +312,6 @@ function recommendSkills(e,skillType,mapArray) {
 							}
 							/*ATK Down buff scan*/
 							if (skillDesc=="% ATK-Down") {
-								alert("Skilldesc is ATK Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("atk% buff (2)")) {
 										if (matchUnits.indexOf(i)==-1)
@@ -326,7 +325,6 @@ function recommendSkills(e,skillType,mapArray) {
 							}
 							/*DEF Down buff scan*/
 							if (skillDesc=="% DEF-Down") {
-								alert("Skilldesc is DEF Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("def% buff (4)")) {
 										if (matchUnits.indexOf(i)==-1)
