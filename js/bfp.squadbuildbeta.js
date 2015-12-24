@@ -297,7 +297,7 @@ function recommendSkills(e,skillType,mapArray) {
 						for (var k in scanArray) {
 							/*normal scope*/
 							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
-								if (matchUnits.indexOf(i)!=-1)
+								if (matchUnits.indexOf(i)==-1)
 									matchUnits.push(i)
 							}
 							/*elemental breakup scan*/
@@ -306,7 +306,7 @@ function recommendSkills(e,skillType,mapArray) {
 									/*split string for 2nd word*/
 									var skillElement=skillDesc.split(" ");
 									if (scanArray[k]["elements added"].indexOf(skillElement[1])!=-1) {
-										if (matchUnits.indexOf(i)!=-1)
+										if (matchUnits.indexOf(i)==-1)
 											matchUnits.push(i)
 									}
 								}
@@ -316,12 +316,12 @@ function recommendSkills(e,skillType,mapArray) {
 								alert("Skilldesc is ATK Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("atk% buff (2)")) {
-										if (matchUnits.indexOf(i)!=-1)
+										if (matchUnits.indexOf(i)==-1)
 											matchUnits.push(i)
 									}
 								if (scanArray[k].hasOwnProperty("buff #2"))
 									if (scanArray[k]["buff #2"].hasOwnProperty("atk% buff (2)")) {
-										if (matchUnits.indexOf(i)!=-1)
+										if (matchUnits.indexOf(i)==-1)
 											matchUnits.push(i)
 									}
 							}
@@ -330,12 +330,12 @@ function recommendSkills(e,skillType,mapArray) {
 								alert("Skilldesc is DEF Down");
 								if (scanArray[k].hasOwnProperty("buff #1"))
 									if (scanArray[k]["buff #1"].hasOwnProperty("def% buff (4)")) {
-										if (matchUnits.indexOf(i)!=-1)
+										if (matchUnits.indexOf(i)==-1)
 											matchUnits.push(i)
 									}
 								if (scanArray[k].hasOwnProperty("buff #2"))
 									if (scanArray[k]["buff #2"].hasOwnProperty("def% buff (4)")) {
-										if (matchUnits.indexOf(i)!=-1)
+										if (matchUnits.indexOf(i)==-1)
 											matchUnits.push(i)
 									}
 							}
