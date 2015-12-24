@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Squad Builder (Global)  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Squad Buidler (Global) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Squad Builder (Global) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -179,7 +179,7 @@ if (window.location.hash == '#_=_') {
         <h4 class="modal-title"><b>Add to Squad</b></h4>
       </div>
       <div class="modal-body" style="min-height:300px;">
-	<div class="text-center">
+	<div>
 	    	<!--Search-->
 		<div class="input-group" style="margin-bottom:5px;">
 		        <span class="input-group-btn">
@@ -191,7 +191,7 @@ if (window.location.hash == '#_=_') {
 		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
 		        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
 		</div>
-		<div id="rawTable" class="row"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name/id to ADD.</h4></div>
+		<div id="rawTable" class="container-fluid"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name/id to ADD.</h4></div>
 	</div>
       </div>
       	<div class="modal-footer">
@@ -216,7 +216,7 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
 imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
@@ -224,6 +224,7 @@ imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     /*Init loader*/
+    $("#alertmodal").modal("hide");
     $('#progressModal').modal({
     	keyboard:false,
     	backdrop:'static',
