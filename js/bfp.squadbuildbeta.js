@@ -302,16 +302,16 @@ function recommendSkills(e,skillType,mapArray) {
 								if (scanArray[k].hasOwnProperty("elements added")) {
 									/*split string for 2nd word*/
 									var skillElement=skillDesc.split(" ");
-									if (scanArray[j]["elements added"].indexOf(skillElement[1])!=-1)
+									if (scanArray[k]["elements added"].indexOf(skillElement[1])!=-1)
 										matchUnits.push(i)
 								}
 							/*ATK Down buff scan*/
 							if (skillDesc=="% ATK-Down")
 								if (scanArray[k].hasOwnProperty("buff #1"))
-									if (scanArray[j]["buff #1"].hasOwnProperty("atk% buff (2)"))
+									if (scanArray[k]["buff #1"].hasOwnProperty("atk% buff (2)"))
 										matchUnits.push(i)
 								if (scanArray[k].hasOwnProperty("buff #2"))
-									if (scanArray[j]["buff #2"].hasOwnProperty("atk% buff (2)"))
+									if (scanArray[k]["buff #2"].hasOwnProperty("atk% buff (2)"))
 										matchUnits.push(i)
 							/*DEF Down buff scan*/
 							if (skillDesc=="% DEF-Down")
