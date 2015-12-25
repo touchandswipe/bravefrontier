@@ -398,8 +398,8 @@ function scanSkills(classBtns,scanScope) {
 											$(this).toggleClass("btn-default btn-success");
 									}
 								})
+								break; /*performance*/
 							}
-							break; /*performance*/
 						}
 						/*Break up Element ADD*/
 						if (scanArray[j].hasOwnProperty("elements added")) {
