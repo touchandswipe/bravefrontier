@@ -221,6 +221,8 @@ var evoQuery = [
 ['Water Hero Gem','iconitem110110.png'],
 ['Earth Hero Gem','iconitem110120.png'],
 ['Thunder Hero Gem','iconitem110130.png'],
+['Glorious Hero Gem','iconitem110160.png'],
+['Dark Hero Gem','iconitem110150.png'],
 ['Miracle Sphere','iconitem111000.png'],
 ['Legend Stone','iconitem111000.png'],
 ['Turbo Cyclaw','icon8106.png'],
