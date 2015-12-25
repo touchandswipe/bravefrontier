@@ -569,7 +569,6 @@ function showSkills(e,scanScope) {
 										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
 							skillsHTML+='<br/>';
-							break; /*stops similar skill repeats*/
 						}
 						/*Element add breakdown*/
 						if (bbMap[bbMapKey].impact=="elements dummy") {
@@ -678,7 +677,6 @@ function showLeaderSkills(e,scanScope) {
 									skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
 						}
 						skillsHTML+='</br>';
-						break;/*performance*/
 					}
 				}
 				
