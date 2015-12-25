@@ -54,6 +54,7 @@ lsMap=[
  	{desc:"% Zel+ on Spark",impact:"zel drop% for spark"},
 	{desc:"% Reduce DMG", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
+	{desc:"% Reduce DMG Buff", impact:"dmg reduction% buff, criteria:["damage threshold buff activation"]},
 	{desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
 	{desc:"% Fire Resist", impact:"fire resist%"},
 	{desc:"% Water Resist", impact:"water resist%"},
