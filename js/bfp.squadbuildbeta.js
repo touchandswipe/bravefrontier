@@ -502,8 +502,8 @@ function scanLeaderSkills(classBtns,scanScope) {
 										$(this).toggleClass("btn-default btn-success");
 								}
 							})
+							break; /*stop repeat*/
 						}
-						break; /*stop repeat*/
 					}
 				}
 			}
