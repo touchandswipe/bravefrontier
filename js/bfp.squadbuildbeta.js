@@ -738,12 +738,13 @@ function generateSummary() {
 		$(".lsBtns .btnDesc").each( function() {
 			lsKey=$(this).text();
 			if (lsKey==sStats[i]) {
-				/*identify the skill*/
+				/*match desired skill to summarise*/
 				for (m in lsMap)
 					if (lsKey==lsMap[m].desc) {
 						var lsMapKey=m;
 						break;
 					}
+				/**/
 				if ($(this).parent().attr("data-found")) {
 					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
@@ -751,7 +752,7 @@ function generateSummary() {
 						for (k in scanArray)
 							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
 								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
-								break;
+								/*break; Removal to support dupe skills stacks */
 							}
 					}
 				} else
