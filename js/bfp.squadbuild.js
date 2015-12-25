@@ -300,6 +300,7 @@ function recommendSkills(e,skillType,mapArray) {
 							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
 								if (matchUnits.indexOf(i)==-1)
 									matchUnits.push(i)
+								break; /*performance*/
 							}
 							/*elemental breakup scan*/
 							if (mapArray[mapKey].impact=="elements dummy") {
@@ -386,8 +387,9 @@ function scanSkills(classBtns,scanScope) {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
 										if ($(this).attr("data-found")) {
-											if ($(this).attr("data-found").search(selectUnit)==-1)
+											if ($(this).attr("data-found").search(selectUnit)==-1) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+											}
 										}
 										else
 											$(this).attr("data-found",selectUnit)
@@ -397,6 +399,7 @@ function scanSkills(classBtns,scanScope) {
 									}
 								})
 							}
+							break; /*performance*/
 						}
 						/*Break up Element ADD*/
 						if (scanArray[j].hasOwnProperty("elements added")) {
@@ -500,6 +503,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 										$(this).toggleClass("btn-default btn-success");
 								}
 							})
+							break; /*stop repeat*/
 						}
 					}
 				}
@@ -734,12 +738,13 @@ function generateSummary() {
 		$(".lsBtns .btnDesc").each( function() {
 			lsKey=$(this).text();
 			if (lsKey==sStats[i]) {
-				/*identify the skill*/
+				/*match desired skill to summarise*/
 				for (m in lsMap)
 					if (lsKey==lsMap[m].desc) {
 						var lsMapKey=m;
 						break;
 					}
+				/**/
 				if ($(this).parent().attr("data-found")) {
 					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
@@ -747,7 +752,7 @@ function generateSummary() {
 						for (k in scanArray)
 							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
 								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
-								break;
+								/*break; Removal to support dupe skills stacks */
 							}
 					}
 				} else
