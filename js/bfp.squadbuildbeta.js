@@ -300,6 +300,7 @@ function recommendSkills(e,skillType,mapArray) {
 							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
 								if (matchUnits.indexOf(i)==-1)
 									matchUnits.push(i)
+								break; /*performance*/
 							}
 							/*elemental breakup scan*/
 							if (mapArray[mapKey].impact=="elements dummy") {
@@ -398,7 +399,7 @@ function scanSkills(classBtns,scanScope) {
 									}
 								})
 							}
-							break; /*speed performance*/
+							break; /*performance*/
 						}
 						/*Break up Element ADD*/
 						if (scanArray[j].hasOwnProperty("elements added")) {
@@ -677,6 +678,7 @@ function showLeaderSkills(e,scanScope) {
 									skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
 						}
 						skillsHTML+='</br>';
+						break;/*performance*/
 					}
 				}
 				
