@@ -386,8 +386,9 @@ function scanSkills(classBtns,scanScope) {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
 										if ($(this).attr("data-found")) {
-											if ($(this).attr("data-found").search(selectUnit)==-1)
+											if ($(this).attr("data-found").search(selectUnit)==-1) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+											}
 										}
 										else
 											$(this).attr("data-found",selectUnit)
@@ -397,6 +398,7 @@ function scanSkills(classBtns,scanScope) {
 									}
 								})
 							}
+							break; /*speed performance*/
 						}
 						/*Break up Element ADD*/
 						if (scanArray[j].hasOwnProperty("elements added")) {
@@ -501,6 +503,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 								}
 							})
 						}
+						break; /*stop repeat*/
 					}
 				}
 			}
@@ -565,6 +568,7 @@ function showSkills(e,scanScope) {
 										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
 							skillsHTML+='<br/>';
+							break; /*stops similar skill repeats*/
 						}
 						/*Element add breakdown*/
 						if (bbMap[bbMapKey].impact=="elements dummy") {
