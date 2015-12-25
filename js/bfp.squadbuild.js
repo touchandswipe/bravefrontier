@@ -819,7 +819,7 @@ function loadSquad() {
 			else {
 			    	for (i in squadList) {
 			    		for (j in rawParseObj)
-			    			if (rawParseObj[j].id==squadList[i].substr(1)) {
+			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
 			    				$("#unit"+squadList[i].charAt(0)).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd>');
 			    				break;
 			    			}
