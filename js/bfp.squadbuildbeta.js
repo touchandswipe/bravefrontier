@@ -667,6 +667,7 @@ function showLeaderSkills(e,scanScope) {
 								for (m in nestedArray)
 									if (nestedArray[m] in nestedO)
 										nestedO=nestedO[nestedArray[m]]
+								alert(JSON.stringify(nestedO));
 								skillsHTML+='('+nestedO+') '
 							}
 						skillsHTML+=lsMap[lsMapKey].desc;
