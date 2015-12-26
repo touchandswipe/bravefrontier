@@ -499,6 +499,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 									if ($(this).hasClass("btn-default")) {
 										$(this).toggleClass("btn-default btn-success");
 										$(this).attr("data-found",selectUnit);
+										thisUnitAdded=true;
 									} else {
 										if (!thisUnitAdded)
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
