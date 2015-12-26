@@ -510,12 +510,12 @@ function scanLeaderSkills(classBtns,scanScope) {
 							var chkScope=lsMap[k].impact.substr(1).split('||');
 							for (z in chkScope)
 								if (chkScope[z].search(".")!=-1) {
-									if (!nestedChk(chkScope[z],scanArray[j]))
-										skillMatched=false;
-									else
+									if (nestedChk(chkScope[z],scanArray[j]))
 										skillMatched=true;
-								}
-								else {
+									else
+										skillMatched=false;
+									alert(chkScope[z]+" "+skillMatched);
+								} else {
 									if (scanArray[j].hasOwnProperty(chkScope[z]))
 										skillMatched=true;
 									else
