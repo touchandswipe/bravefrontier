@@ -10,17 +10,19 @@ lsMap=[
 	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
+	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
+	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -704,7 +706,6 @@ function showLeaderSkills(e,scanScope) {
 										zChkArray.push(true);
 									else
 										zChkArray.push(false);
-									alert(chkScope[z]+" "+skillMatched);
 								} else {
 									if (scanArray[j].hasOwnProperty(chkScope[z]))
 										zChkArray.push(true);
