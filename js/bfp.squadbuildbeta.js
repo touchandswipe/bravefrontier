@@ -18,9 +18,9 @@ lsMap=[
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -34,6 +34,7 @@ lsMap=[
 	{desc:"BC Fill ATKed on Guard", impact:"bc filled when attacked while guarded"},
 	{desc:"BC TurnFill", impact:"bc fill per turn"},
 	{desc:"BC Fill", impact:"increase bb gauge", criteria:["damage threshold activation"]},
+	{desc:"BC Fill on DMG", impact:"increase bb gauge", criteria:["damage threshold activation"]},
 	{desc:"% BC Fill+", impact:"bb gauge fill rate%"},
 	{desc:"% BB Cost Reduced", impact:"reduced bb bc cost%"},
 	{desc:"% Reduce BB Gauge Used", impact:"reduced bb bc use% low", impact2:"reduced bb bc use% high", chance:"reduced bb bc use chance%"},
@@ -398,8 +399,8 @@ function scanSkills(classBtns,scanScope) {
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
 									}
+									return; /*reduce cycle*/
 								})
-								break; /*performance*/
 							}
 						}
 						/*Break up Element ADD*/
