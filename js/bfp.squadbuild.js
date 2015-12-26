@@ -18,9 +18,9 @@ lsMap=[
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -54,6 +54,7 @@ lsMap=[
  	{desc:"% Zel+ on Spark",impact:"zel drop% for spark"},
 	{desc:"% Reduce DMG", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
+	{desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
 	{desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
 	{desc:"% Fire Resist", impact:"fire resist%"},
 	{desc:"% Water Resist", impact:"water resist%"},
@@ -397,8 +398,8 @@ function scanSkills(classBtns,scanScope) {
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
 									}
+									return; /*reduce cycle*/
 								})
-								break; /*performance*/
 							}
 						}
 						/*Break up Element ADD*/
@@ -666,6 +667,7 @@ function showLeaderSkills(e,scanScope) {
 								for (m in nestedArray)
 									if (nestedArray[m] in nestedO)
 										nestedO=nestedO[nestedArray[m]]
+								alert(JSON.stringify(nestedO));
 								skillsHTML+='('+nestedO+') '
 							}
 						skillsHTML+=lsMap[lsMapKey].desc;
