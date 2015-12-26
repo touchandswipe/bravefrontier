@@ -508,19 +508,25 @@ function scanLeaderSkills(classBtns,scanScope) {
 						var skillMatched=false;
 						if (lsMap[k].impact.charAt(0)=="!") {
 							var chkScope=lsMap[k].impact.substr(1).split('||');
-							for (z in chkScope)
+							var zChkArray=[];
+							for (var z in chkScope)
 								if (chkScope[z].indexOf('.')>=0) {
 									if (nestedChk(chkScope[z],scanArray[j]))
-										skillMatched=true;
+										zChkArray.push(true);
 									else
-										skillMatched=false;
-									alert(chkScope[z]+" "+skillMatched);
+										zChkArray.push(false);
 								} else {
 									if (scanArray[j].hasOwnProperty(chkScope[z]))
-										skillMatched=true;
+										zChkArray.push(true);
 									else
-										skillMatched=false;
+										zChkArray.push(false);
 								}
+							for (var y in zChkArray) {
+								var zChk=true;
+								if (!zChkArray[y])
+									zChk=false;
+								skillMatched=zChk;
+							}
 						} else if (scanArray[j].hasOwnProperty(lsMap[k].impact))
 							skillMatched=true;
 						/*match exist*/
@@ -691,19 +697,26 @@ function showLeaderSkills(e,scanScope) {
 						var skillMatched=false;
 						if (lsMap[lsMapKey].impact.charAt(0)=="!") {
 							var chkScope=lsMap[lsMapKey].impact.substr(1).split('||');
-							for (z in chkScope)
+							var zChkArray=[];
+							for (var z in chkScope)
 								if (chkScope[z].indexOf('.')>=0) {
-									if (!nestedChk(chkScope[z],scanArray[j]))
-										skillMatched=false;
+									if (nestedChk(chkScope[z],scanArray[j]))
+										zChkArray.push(true);
 									else
-										skillMatched=true;
-								}
-								else {
+										zChkArray.push(false);
+									alert(chkScope[z]+" "+skillMatched);
+								} else {
 									if (scanArray[j].hasOwnProperty(chkScope[z]))
-										skillMatched=true;
+										zChkArray.push(true);
 									else
-										skillMatched=false;
+										zChkArray.push(false);
 								}
+							for (var y in zChkArray) {
+								var zChk=true;
+								if (!zChkArray[y])
+									zChk=false;
+								skillMatched=zChk;
+							}
 						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
 							skillMatched=true;
 						/*match*/
