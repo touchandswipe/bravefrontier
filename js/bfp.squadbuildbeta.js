@@ -34,7 +34,6 @@ lsMap=[
 	{desc:"BC Fill ATKed on Guard", impact:"bc filled when attacked while guarded"},
 	{desc:"BC TurnFill", impact:"bc fill per turn"},
 	{desc:"BC Fill", impact:"increase bb gauge", criteria:["damage threshold activation"]},
-	{desc:"BC Fill on DMG", impact:"increase bb gauge", criteria:["damage threshold activation"]},
 	{desc:"% BC Fill+", impact:"bb gauge fill rate%"},
 	{desc:"% BB Cost Reduced", impact:"reduced bb bc cost%"},
 	{desc:"% Reduce BB Gauge Used", impact:"reduced bb bc use% low", impact2:"reduced bb bc use% high", chance:"reduced bb bc use chance%"},
@@ -398,8 +397,8 @@ function scanSkills(classBtns,scanScope) {
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
+										return; /*reduce cycle*/
 									}
-									return; /*reduce cycle*/
 								})
 							}
 						}
@@ -503,9 +502,9 @@ function scanLeaderSkills(classBtns,scanScope) {
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
+									return;
 								}
 							})
-							break; /*stop repeat*/
 						}
 					}
 				}
