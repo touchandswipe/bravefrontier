@@ -18,9 +18,9 @@ lsMap=[
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -492,26 +492,52 @@ function scanLeaderSkills(classBtns,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in lsMap) {
-						/*match exist*/
-						if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
-							$(classBtns).each( function() {
-								if ($(this).text()==lsMap[k].desc) {
-									/*create list of units with skills*/
-									if ($(this).attr("data-found")) {
-										if ($(this).attr("data-found").split(',').length<leadCount) {
-										/*stop dupe skills w/ criteria*/
-											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+						if (lsMap[k].impact.charAt(0)!=!) {
+							/*match exist*/
+							if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
+								$(classBtns).each( function() {
+									if ($(this).text()==lsMap[k].desc) {
+										/*create list of units with skills*/
+										if ($(this).attr("data-found")) {
+											if ($(this).attr("data-found").split(',').length<leadCount) {
+											/*stop dupe skills w/ criteria*/
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+											}
 										}
+										else {
+											$(this).attr("data-found",selectUnit);
+										}
+										$(this).removeAttr("disabled");
+										if ($(this).hasClass("btn-default"))
+											$(this).toggleClass("btn-default btn-success");
+										return;
 									}
-									else {
-										$(this).attr("data-found",selectUnit);
-									}
-									$(this).removeAttr("disabled");
-									if ($(this).hasClass("btn-default"))
-										$(this).toggleClass("btn-default btn-success");
-									return;
+								})
+							}
+						} else { /*nested obj*/
+							var nestedArray=lsMap[k].impact.substr(1).split('.');
+							var nestedO=scanArray[j];
+							for (m in nestedArray)
+								if (nestedArray[m] in nestedO) {
+									$(classBtns).each( function() {
+										if ($(this).text()==lsMap[k].desc) {
+											/*create list of units with skills*/
+											if ($(this).attr("data-found")) {
+												if ($(this).attr("data-found").split(',').length<leadCount) {
+												/*stop dupe skills w/ criteria*/
+													$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+												}
+											}
+											else {
+												$(this).attr("data-found",selectUnit);
+											}
+											$(this).removeAttr("disabled");
+											if ($(this).hasClass("btn-default"))
+												$(this).toggleClass("btn-default btn-success");
+											return;
+										}
+									})
 								}
-							})
 						}
 					}
 				}
@@ -674,7 +700,6 @@ function showLeaderSkills(e,scanScope) {
 								for (m in nestedArray)
 									if (nestedArray[m] in nestedO)
 										nestedO=nestedO[nestedArray[m]]
-								alert(JSON.stringify(nestedO));
 								skillsHTML+='('+nestedO+') '
 							}
 						skillsHTML+=lsMap[lsMapKey].desc;
