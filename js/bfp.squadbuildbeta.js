@@ -500,6 +500,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 										$(this).toggleClass("btn-default btn-success");
 										$(this).attr("data-found",selectUnit);
 										thisUnitAdded=true;
+										alert("activated")
 									} else {
 										if (!thisUnitAdded)
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
