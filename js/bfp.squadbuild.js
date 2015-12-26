@@ -397,8 +397,8 @@ function scanSkills(classBtns,scanScope) {
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
+										return; /*reduce cycle*/
 									}
-									return; /*reduce cycle*/
 								})
 							}
 						}
@@ -502,9 +502,9 @@ function scanLeaderSkills(classBtns,scanScope) {
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
+									return;
 								}
 							})
-							break; /*stop repeat*/
 						}
 					}
 				}
