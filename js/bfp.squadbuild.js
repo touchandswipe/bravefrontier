@@ -481,9 +481,11 @@ function scanSkills(classBtns,scanScope) {
 
 function scanLeaderSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
+	var leadCount=0;
 	/*iterate thru leader spots and selected unit images*/
 	$("#unitA .unitSelected,#unitB .unitSelected").each(function() {
 		var selectUnit=$(this).attr("data-unitid");
+		leadCount+=1;
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
@@ -495,10 +497,15 @@ function scanLeaderSkills(classBtns,scanScope) {
 							$(classBtns).each( function() {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
-									if ($(this).attr("data-found"))
-										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
-									else
-										$(this).attr("data-found",selectUnit)
+									if ($(this).attr("data-found")) {
+										if ($(this).attr("data-found").split(',').length<leadCount) {
+										/*stop dupe skills w/ criteria*/
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+										}
+									}
+									else {
+										$(this).attr("data-found",selectUnit);
+									}
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
