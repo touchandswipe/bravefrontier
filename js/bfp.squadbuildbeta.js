@@ -492,7 +492,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in lsMap) {
-						if (lsMap[k].impact.charAt(0)!=!) {
+						if (lsMap[k].impact.charAt(0)!="!") {
 							/*match exist*/
 							if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
 								$(classBtns).each( function() {
