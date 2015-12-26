@@ -521,8 +521,8 @@ function scanLeaderSkills(classBtns,scanScope) {
 									else
 										zChkArray.push(false);
 								}
+							var zChk=true;
 							for (var y in zChkArray) {
-								var zChk=true;
 								if (!zChkArray[y])
 									zChk=false;
 								skillMatched=zChk;
@@ -711,8 +711,8 @@ function showLeaderSkills(e,scanScope) {
 									else
 										zChkArray.push(false);
 								}
+							var zChk=true;
 							for (var y in zChkArray) {
-								var zChk=true;
 								if (!zChkArray[y])
 									zChk=false;
 								skillMatched=zChk;
