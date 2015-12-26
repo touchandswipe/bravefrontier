@@ -707,7 +707,7 @@ function showLeaderSkills(e,scanScope) {
 						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
 							skillMatched=true;
 						/*match*/
-						if (skillMatched)) {
+						if (skillMatched) {
 							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 							if (lsMap[lsMapKey].chance)
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
