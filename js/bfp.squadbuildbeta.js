@@ -509,7 +509,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 						if (lsMap[k].impact.charAt(0)=="!") {
 							var chkScope=lsMap[k].impact.substr(1).split('||');
 							for (z in chkScope)
-								if (chkScope[z].search(".")!=-1) {
+								if (chkScope[z].search("\.")!=-1) {
 									if (nestedChk(chkScope[z],scanArray[j]))
 										skillMatched=true;
 									else
@@ -692,7 +692,7 @@ function showLeaderSkills(e,scanScope) {
 						if (lsMap[lsMapKey].impact.charAt(0)=="!") {
 							var chkScope=lsMap[lsMapKey].impact.substr(1).split('||');
 							for (z in chkScope)
-								if (chkScope[z].search(".")!=-1) {
+								if (chkScope[z].search("\.")!=-1) {
 									if (!nestedChk(chkScope[z],scanArray[j]))
 										skillMatched=false;
 									else
