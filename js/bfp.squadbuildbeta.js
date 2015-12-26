@@ -199,6 +199,19 @@ function urlParam(name){
     }
 }
 
+/*nest obj check*/
+function nestedChk(nestedStr,parentObj) {
+	/*Parse nested string*/
+	var nestedArray=nestedStr.split('.');
+	var nestedO=parentObj;
+	for (var x in nestedArray)
+		if (nestedArray[x] in nestedO)
+			nestedO=nestedO[nestedArray[x]];
+		else
+			return false;
+	return nestedO;
+}
+
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
@@ -492,52 +505,44 @@ function scanLeaderSkills(classBtns,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in lsMap) {
-						if (lsMap[k].impact.charAt(0)!="!") {
-							/*match exist*/
-							if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
-								$(classBtns).each( function() {
-									if ($(this).text()==lsMap[k].desc) {
-										/*create list of units with skills*/
-										if ($(this).attr("data-found")) {
-											if ($(this).attr("data-found").split(',').length<leadCount) {
-											/*stop dupe skills w/ criteria*/
-												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
-											}
-										}
-										else {
-											$(this).attr("data-found",selectUnit);
-										}
-										$(this).removeAttr("disabled");
-										if ($(this).hasClass("btn-default"))
-											$(this).toggleClass("btn-default btn-success");
-										return;
-									}
-								})
-							}
-						} else { /*nested obj*/
-							var nestedArray=lsMap[k].impact.substr(1).split('||');
-							var nestedO=scanArray[j];
-							for (m in nestedArray)
-								if (nestedArray[m] in nestedO) {
-									$(classBtns).each( function() {
-										if ($(this).text()==lsMap[k].desc) {
-											/*create list of units with skills*/
-											if ($(this).attr("data-found")) {
-												if ($(this).attr("data-found").split(',').length<leadCount) {
-												/*stop dupe skills w/ criteria*/
-													$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
-												}
-											}
-											else {
-												$(this).attr("data-found",selectUnit);
-											}
-											$(this).removeAttr("disabled");
-											if ($(this).hasClass("btn-default"))
-												$(this).toggleClass("btn-default btn-success");
-											return;
-										}
-									})
+						var skillMatched=false;
+						if (lsMap[k].impact.charAt(0)=="!") {
+							var chkScope=lsMap[k].impact.substr(1).split('||');
+							for (z in chkScope)
+								if (chkScope[z].search(".")!=-1) {
+									if (!nestedChk(chkScope[z]))
+										skillMatched=false;
+									else
+										skillMatched=true;
 								}
+								else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										skillMatched=true;
+									else
+										skillMatched=false;
+								}
+						} else if (scanArray[j].hasOwnProperty(lsMap[k].impact))
+							skillMatched=true;
+						/*match exist*/
+						if (skillMatched) {
+							$(classBtns).each( function() {
+								if ($(this).text()==lsMap[k].desc) {
+									/*create list of units with skills*/
+									if ($(this).attr("data-found")) {
+										if ($(this).attr("data-found").split(',').length<leadCount) {
+										/*stop dupe skills w/ criteria*/
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+										}
+									}
+									else {
+										$(this).attr("data-found",selectUnit);
+									}
+									$(this).removeAttr("disabled");
+									if ($(this).hasClass("btn-default"))
+										$(this).toggleClass("btn-default btn-success");
+									return;
+								}
+							})
 						}
 					}
 				}
@@ -683,20 +688,26 @@ function showLeaderSkills(e,scanScope) {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
 				for (j in scanArray) {
-					if (lsMap[k].impact.charAt(0)!="!") {
-						if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
-							var impactMatch=true;
-					} else {
-						/*Parse nested string*/
-						var nestedArray=lsMap[lsMapKey].impact.substr(1).split('.');
-						var nestedO=scanArray[j];
-						for (m in nestedArray)
-							if (nestedArray[m] in nestedO)
-								nestedO=nestedO[nestedArray[m]]
-					}
-						
+						var skillMatched=false;
+						if (lsMap[lsMapKey].impact.charAt(0)=="!") {
+							var chkScope=lsMap[lsMapKey].impact.substr(1).split('||');
+							for (z in chkScope)
+								if (chkScope[z].search(".")!=-1) {
+									if (!nestedChk(chkScope[z]))
+										skillMatched=false;
+									else
+										skillMatched=true;
+								}
+								else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										skillMatched=true;
+									else
+										skillMatched=false;
+								}
+						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
+							skillMatched=true;
 						/*match*/
-						if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact)) {
+						if (skillMatched)) {
 							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 							if (lsMap[lsMapKey].chance)
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
