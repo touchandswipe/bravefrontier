@@ -496,13 +496,13 @@ function scanLeaderSkills(classBtns,scanScope) {
 							$(classBtns).each( function() {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
-									if ($(this).attr("data-found")) {
-										$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									if ($(this).attr("data-found"))
+										if (!thisUnitAdded)
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+									else {
+										$(this).attr("data-found",selectUnit);
 										thisUnitAdded=true;
 									}
-									else
-										if (!thisUnitAdded)
-											$(this).attr("data-found",selectUnit)
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
 										$(this).toggleClass("btn-default btn-success");
