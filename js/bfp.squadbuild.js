@@ -10,17 +10,19 @@ lsMap=[
 	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
+	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
+	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -197,6 +199,19 @@ function urlParam(name){
     else{
        return decodeURIComponent(results[1]) || '';
     }
+}
+
+/*nest obj check*/
+function nestedChk(nestedStr,parentObj) {
+	/*Parse nested string*/
+	var nestedArray=nestedStr.split('.');
+	var nestedO=parentObj;
+	for (var x in nestedArray)
+		if (nestedArray[x] in nestedO)
+			nestedO=nestedO[nestedArray[x]];
+		else
+			return false;
+	return nestedO;
 }
 
 /*Search by Unit ID*/
@@ -492,8 +507,32 @@ function scanLeaderSkills(classBtns,scanScope) {
 				/*Scan mapping*/
 				for (j in scanArray) {
 					for (k in lsMap) {
+						var skillMatched=false;
+						if (lsMap[k].impact.charAt(0)=="!") {
+							var chkScope=lsMap[k].impact.substr(1).split('||');
+							var zChkArray=[];
+							for (var z in chkScope)
+								if (chkScope[z].indexOf('.')>=0) {
+									if (nestedChk(chkScope[z],scanArray[j]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								} else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								}
+							var zChk=true;
+							for (var y in zChkArray) {
+								if (!zChkArray[y])
+									zChk=false;
+								skillMatched=zChk;
+							}
+						} else if (scanArray[j].hasOwnProperty(lsMap[k].impact))
+							skillMatched=true;
 						/*match exist*/
-						if (scanArray[j].hasOwnProperty(lsMap[k].impact)) {
+						if (skillMatched) {
 							$(classBtns).each( function() {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
@@ -657,36 +696,59 @@ function showLeaderSkills(e,scanScope) {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
 				for (j in scanArray) {
-					/*match*/
-					if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact)) {
-						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
-						if (lsMap[lsMapKey].chance)
-							skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
-						if (!lsMap[lsMapKey].hideprefix)
-							skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
-						if (lsMap[lsMapKey].impact2)
-							if (lsMap[lsMapKey].impact2.charAt(0)!="!")
-								skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
-							else {
-								/*Parse nested string*/
-								var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
-								var nestedO=scanArray[j];
-								for (m in nestedArray)
-									if (nestedArray[m] in nestedO)
-										nestedO=nestedO[nestedArray[m]]
-								alert(JSON.stringify(nestedO));
-								skillsHTML+='('+nestedO+') '
+						var skillMatched=false;
+						if (lsMap[lsMapKey].impact.charAt(0)=="!") {
+							var chkScope=lsMap[lsMapKey].impact.substr(1).split('||');
+							var zChkArray=[];
+							for (var z in chkScope)
+								if (chkScope[z].indexOf('.')>=0) {
+									if (nestedChk(chkScope[z],scanArray[j]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								} else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								}
+							var zChk=true;
+							for (var y in zChkArray) {
+								if (!zChkArray[y])
+									zChk=false;
+								skillMatched=zChk;
 							}
-						skillsHTML+=lsMap[lsMapKey].desc;
-						if (lsMap[lsMapKey].turns)
-							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
-						if (lsMap[lsMapKey].criteria) {
-							for (m in lsMap[lsMapKey].criteria)
-								if (scanArray[j][lsMap[lsMapKey].criteria[m]])
-									skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
+						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
+							skillMatched=true;
+						/*match*/
+						if (skillMatched) {
+							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+							if (lsMap[lsMapKey].chance)
+								skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
+							if (!lsMap[lsMapKey].hideprefix)
+								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
+							if (lsMap[lsMapKey].impact2)
+								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
+									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
+								else {
+									/*Parse nested string*/
+									var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
+									var nestedO=scanArray[j];
+									for (m in nestedArray)
+										if (nestedArray[m] in nestedO)
+											nestedO=nestedO[nestedArray[m]]
+									skillsHTML+='('+nestedO+') '
+								}
+							skillsHTML+=lsMap[lsMapKey].desc;
+							if (lsMap[lsMapKey].turns)
+								skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+							if (lsMap[lsMapKey].criteria) {
+								for (m in lsMap[lsMapKey].criteria)
+									if (scanArray[j][lsMap[lsMapKey].criteria[m]])
+										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
+							}
+							skillsHTML+='</br>';
 						}
-						skillsHTML+='</br>';
-					}
 				}
 				
 			}
