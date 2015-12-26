@@ -18,9 +18,9 @@ lsMap=[
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount+", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMG", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on DMGed", impact:"!damage threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -515,7 +515,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 								})
 							}
 						} else { /*nested obj*/
-							var nestedArray=lsMap[k].impact.substr(1).split('.');
+							var nestedArray=lsMap[k].impact.substr(1).split('||');
 							var nestedO=scanArray[j];
 							for (m in nestedArray)
 								if (nestedArray[m] in nestedO) {
@@ -683,35 +683,47 @@ function showLeaderSkills(e,scanScope) {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
 				/*Scan mapping*/
 				for (j in scanArray) {
-					/*match*/
-					if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact)) {
-						skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
-						if (lsMap[lsMapKey].chance)
-							skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
-						if (!lsMap[lsMapKey].hideprefix)
-							skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
-						if (lsMap[lsMapKey].impact2)
-							if (lsMap[lsMapKey].impact2.charAt(0)!="!")
-								skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
-							else {
-								/*Parse nested string*/
-								var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
-								var nestedO=scanArray[j];
-								for (m in nestedArray)
-									if (nestedArray[m] in nestedO)
-										nestedO=nestedO[nestedArray[m]]
-								skillsHTML+='('+nestedO+') '
-							}
-						skillsHTML+=lsMap[lsMapKey].desc;
-						if (lsMap[lsMapKey].turns)
-							skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
-						if (lsMap[lsMapKey].criteria) {
-							for (m in lsMap[lsMapKey].criteria)
-								if (scanArray[j][lsMap[lsMapKey].criteria[m]])
-									skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
-						}
-						skillsHTML+='</br>';
+					if (lsMap[k].impact.charAt(0)!="!") {
+						if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
+							var impactMatch=true;
+					} else {
+						/*Parse nested string*/
+						var nestedArray=lsMap[lsMapKey].impact.substr(1).split('.');
+						var nestedO=scanArray[j];
+						for (m in nestedArray)
+							if (nestedArray[m] in nestedO)
+								nestedO=nestedO[nestedArray[m]]
 					}
+						
+						/*match*/
+						if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact)) {
+							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
+							if (lsMap[lsMapKey].chance)
+								skillsHTML+=scanArray[j][lsMap[lsMapKey].chance]+' % Chance ';
+							if (!lsMap[lsMapKey].hideprefix)
+								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
+							if (lsMap[lsMapKey].impact2)
+								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
+									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
+								else {
+									/*Parse nested string*/
+									var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
+									var nestedO=scanArray[j];
+									for (m in nestedArray)
+										if (nestedArray[m] in nestedO)
+											nestedO=nestedO[nestedArray[m]]
+									skillsHTML+='('+nestedO+') '
+								}
+							skillsHTML+=lsMap[lsMapKey].desc;
+							if (lsMap[lsMapKey].turns)
+								skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+							if (lsMap[lsMapKey].criteria) {
+								for (m in lsMap[lsMapKey].criteria)
+									if (scanArray[j][lsMap[lsMapKey].criteria[m]])
+										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
+							}
+							skillsHTML+='</br>';
+						}
 				}
 				
 			}
