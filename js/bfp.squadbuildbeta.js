@@ -11,6 +11,7 @@ lsMap=[
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% ATK+ Turn after CRIT", impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
@@ -729,19 +730,20 @@ function showLeaderSkills(e,scanScope) {
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
 							if (lsMap[lsMapKey].impact2)
 								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
-									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
+									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 								else {
-									/*Parse nested string*/
-									var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
-									var nestedO=scanArray[j];
-									for (m in nestedArray)
-										if (nestedArray[m] in nestedO)
-											nestedO=nestedO[nestedArray[m]]
-									skillsHTML+='('+nestedO+') '
+									if (!nestedChk(lsMap[lsMapKey].impact2,scanArray[j]))
+										skillsHTML+='('+nestedChk(lsMap[lsMapKey].impact2,scanArray[j])+') ';
 								}
 							skillsHTML+=lsMap[lsMapKey].desc;
-							if (lsMap[lsMapKey].turns)
-								skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+							if (lsMap[lsMapKey].turns) {
+								if (lsMap[lsMapKey].turns.charAt(0)!="!")
+									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
+								else {
+									if (!nestedChk(lsMap[lsMapKey].turns,scanArray[j]))
+										skillsHTML+=' '+nestedChk(lsMap[lsMapKey].turns,scanArray[j])+'Turns';
+								}
+							}
 							if (lsMap[lsMapKey].criteria) {
 								for (m in lsMap[lsMapKey].criteria)
 									if (scanArray[j][lsMap[lsMapKey].criteria[m]])
