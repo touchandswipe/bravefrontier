@@ -313,11 +313,39 @@ function recommendSkills(e,skillType,mapArray) {
 					if (skillType[j]!="es" || esTriggered) {
 						/*skills scan*/
 						for (var k in scanArray) {
-							/*normal scope*/
-							if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
-								if (matchUnits.indexOf(i)==-1)
-									matchUnits.push(i)
-								break; /*performance*/
+							/*nested and multi-criteria*/
+							if (mapArray[mapKey].impact.charAt(0)=="!") {
+								var chkScope=mapArray[mapKey].impact.substr(1).split('||');
+								var zChkArray=[];
+								for (var z in chkScope)
+									if (chkScope[z].indexOf('.')>=0) {
+										if (nestedChk(chkScope[z],scanArray[k]))
+											zChkArray.push(true);
+										else
+											zChkArray.push(false);
+									} else {
+										if (scanArray[k].hasOwnProperty(chkScope[z]))
+											zChkArray.push(true);
+										else
+											zChkArray.push(false);
+									}
+								var zChk=true;
+								for (var y in zChkArray) {
+									if (!zChkArray[y])
+										zChk=false;
+								};
+								/*if all criteria checks true*/
+								if (zChk) {
+									if (matchUnits.indexOf(i)==-1)
+										matchUnits.push(i)
+								}
+							} else {
+								/*normal scope*/
+								if (scanArray[k].hasOwnProperty(mapArray[mapKey].impact)) {
+									if (matchUnits.indexOf(i)==-1)
+										matchUnits.push(i)
+									break; /*performance*/
+								}
 							}
 							/*elemental breakup scan*/
 							if (mapArray[mapKey].impact=="elements dummy") {
@@ -528,8 +556,8 @@ function scanLeaderSkills(classBtns,scanScope) {
 							for (var y in zChkArray) {
 								if (!zChkArray[y])
 									zChk=false;
-								skillMatched=zChk;
-							}
+							};
+							skillMatched=zChk;
 						} else if (scanArray[j].hasOwnProperty(lsMap[k].impact))
 							skillMatched=true;
 						/*match exist*/
@@ -717,8 +745,8 @@ function showLeaderSkills(e,scanScope) {
 							for (var y in zChkArray) {
 								if (!zChkArray[y])
 									zChk=false;
-								skillMatched=zChk;
-							}
+							};
+							skillMatched=zChk;
 						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
 							skillMatched=true;
 						/*match*/
