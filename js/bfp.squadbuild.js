@@ -10,19 +10,20 @@ lsMap=[
 	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
 	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
-	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% ATK+ Turn after CRIT", impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark"},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
-	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
 	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -728,20 +729,24 @@ function showLeaderSkills(e,scanScope) {
 							if (!lsMap[lsMapKey].hideprefix)
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
 							if (lsMap[lsMapKey].impact2)
+								var nestedSTR=lsMap[lsMapKey].impact2.substr('1');
 								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
-									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') '
+									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 								else {
-									/*Parse nested string*/
-									var nestedArray=lsMap[lsMapKey].impact2.substr(1).split('.');
-									var nestedO=scanArray[j];
-									for (m in nestedArray)
-										if (nestedArray[m] in nestedO)
-											nestedO=nestedO[nestedArray[m]]
-									skillsHTML+='('+nestedO+') '
+									if (nestedChk(nestedSTR,scanArray[j]))
+										skillsHTML+='('+nestedChk(nestedSTR,scanArray[j])+') ';
 								}
 							skillsHTML+=lsMap[lsMapKey].desc;
-							if (lsMap[lsMapKey].turns)
-								skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns'
+							if (lsMap[lsMapKey].turns) {
+								/*remove !*/
+								var nestedSTR=lsMap[lsMapKey].turns.substr('1');
+								if (lsMap[lsMapKey].turns.charAt(0)!="!")
+									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
+								else {
+									if (nestedChk(nestedSTR,scanArray[j]))
+										skillsHTML+=' '+nestedChk(nestedSTR,scanArray[j])+'Turns';
+								}
+							}
 							if (lsMap[lsMapKey].criteria) {
 								for (m in lsMap[lsMapKey].criteria)
 									if (scanArray[j][lsMap[lsMapKey].criteria[m]])
