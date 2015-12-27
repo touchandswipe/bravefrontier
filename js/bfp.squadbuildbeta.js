@@ -729,19 +729,22 @@ function showLeaderSkills(e,scanScope) {
 							if (!lsMap[lsMapKey].hideprefix)
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
 							if (lsMap[lsMapKey].impact2)
+								var nestedSTR=lsMap[lsMapKey].impact2.substr('1');
 								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
 									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 								else {
-									if (nestedChk(lsMap[lsMapKey].impact2,scanArray[j]))
-										skillsHTML+='('+nestedChk(lsMap[lsMapKey].impact2,scanArray[j])+') ';
+									if (nestedChk(nestedSTR,scanArray[j]))
+										skillsHTML+='('+nestedChk(nestedSTR,scanArray[j])+') ';
 								}
 							skillsHTML+=lsMap[lsMapKey].desc;
 							if (lsMap[lsMapKey].turns) {
+								/*remove !*/
+								var nestedSTR=lsMap[lsMapKey].turns.substr('1');
 								if (lsMap[lsMapKey].turns.charAt(0)!="!")
 									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
 								else {
-									if (nestedChk(lsMap[lsMapKey].turns.substr('1'),scanArray[j]))
-										skillsHTML+=' '+nestedChk(lsMap[lsMapKey].turns,scanArray[j])+'Turns';
+									if (nestedChk(nestedSTR,scanArray[j]))
+										skillsHTML+=' '+nestedSTR,scanArray[j])+'Turns';
 								}
 							}
 							if (lsMap[lsMapKey].criteria) {
