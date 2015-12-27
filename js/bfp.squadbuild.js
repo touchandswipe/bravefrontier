@@ -745,7 +745,7 @@ function showLeaderSkills(e,scanScope) {
 							for (var y in zChkArray) {
 								if (!zChkArray[y])
 									zChk=false;
-							};
+							}
 							skillMatched=zChk;
 						} else if (scanArray[j].hasOwnProperty(lsMap[lsMapKey].impact))
 							skillMatched=true;
@@ -757,20 +757,20 @@ function showLeaderSkills(e,scanScope) {
 							if (!lsMap[lsMapKey].hideprefix)
 								skillsHTML+=scanArray[j][lsMap[lsMapKey].impact]+' ';
 							if (lsMap[lsMapKey].impact2)
-								var nestedSTR=lsMap[lsMapKey].impact2.substr('1');
 								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
 									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 								else {
+									var nestedSTR=lsMap[lsMapKey].impact2.substr('1');
 									if (nestedChk(nestedSTR,scanArray[j]))
 										skillsHTML+='('+nestedChk(nestedSTR,scanArray[j])+') ';
 								}
 							skillsHTML+=lsMap[lsMapKey].desc;
 							if (lsMap[lsMapKey].turns) {
-								/*remove !*/
-								var nestedSTR=lsMap[lsMapKey].turns.substr('1');
 								if (lsMap[lsMapKey].turns.charAt(0)!="!")
 									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
 								else {
+									/*remove !*/
+									var nestedSTR=lsMap[lsMapKey].turns.substr('1');
 									if (nestedChk(nestedSTR,scanArray[j]))
 										skillsHTML+=' '+nestedChk(nestedSTR,scanArray[j])+'Turns';
 								}
