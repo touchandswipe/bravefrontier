@@ -744,7 +744,7 @@ function showLeaderSkills(e,scanScope) {
 									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
 								else {
 									if (nestedChk(nestedSTR,scanArray[j]))
-										skillsHTML+=' '+nestedSTR,scanArray[j])+'Turns';
+										skillsHTML+=' '+nestedChk(nestedSTR,scanArray[j])+'Turns';
 								}
 							}
 							if (lsMap[lsMapKey].criteria) {
