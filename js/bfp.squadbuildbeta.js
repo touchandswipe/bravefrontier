@@ -732,7 +732,7 @@ function showLeaderSkills(e,scanScope) {
 								if (lsMap[lsMapKey].impact2.charAt(0)!="!")
 									skillsHTML+='('+scanArray[j][lsMap[lsMapKey].impact2]+') ';
 								else {
-									if (!nestedChk(lsMap[lsMapKey].impact2,scanArray[j]))
+									if (nestedChk(lsMap[lsMapKey].impact2,scanArray[j]))
 										skillsHTML+='('+nestedChk(lsMap[lsMapKey].impact2,scanArray[j])+') ';
 								}
 							skillsHTML+=lsMap[lsMapKey].desc;
@@ -740,7 +740,7 @@ function showLeaderSkills(e,scanScope) {
 								if (lsMap[lsMapKey].turns.charAt(0)!="!")
 									skillsHTML+=' '+scanArray[j][lsMap[lsMapKey].turns]+'Turns';
 								else {
-									if (!nestedChk(lsMap[lsMapKey].turns,scanArray[j]))
+									if (nestedChk(lsMap[lsMapKey].turns.substr('1'),scanArray[j]))
 										skillsHTML+=' '+nestedChk(lsMap[lsMapKey].turns,scanArray[j])+'Turns';
 								}
 							}
