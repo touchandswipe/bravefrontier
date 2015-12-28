@@ -51,13 +51,12 @@
         border-radius: 8px;
         left: 50%;
         margin-left: -33px;
-        bottom: 30px;
+        bottom: 1px;
         width: 30px;
         white-space: nowrap;
         padding: 0 5px;
         font-size: 10pt;
         font-weight: bold;
-        margin-bottom:10px;
     }
     .fRarity {
         position: absolute;
