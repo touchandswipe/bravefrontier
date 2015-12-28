@@ -956,6 +956,7 @@ function dragActivate(){
     		containment:"#squadBox",
     		snap:".unitBox",
     		snapMode:"inner",
+    		cursor: "crosshair"
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
 			console.log(unitProcessing)
