@@ -965,7 +965,7 @@ function dragActivate(){
 }
 
 /*Drop Event*/
-$( ".unitBox" ).on( "drop", function(e, ui) {
+$(".unitBox").on( "drop", function(e, ui) {
 	if ($(this).children(".dragBox").length>0) {
 		/*Exist Unit*/
 		$(this).children(".dragBox").detach().appendTo(unitProcessing);
@@ -974,6 +974,7 @@ $( ".unitBox" ).on( "drop", function(e, ui) {
 	} else {
 		/*Empty*/
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
+		$(unitProcessing).html(trashStr);
 		refreshALL();
 	}
 });
