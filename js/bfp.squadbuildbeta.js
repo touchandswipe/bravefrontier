@@ -403,7 +403,7 @@ function recommendSkills(e,skillType,mapArray) {
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	/*iterate thru selected units*/
-	$( ".unitBox .unitSelected" ).each( function() {
+	$( ".unitBox .dragBox .unitSelected" ).each( function() {
 		var selectUnit=$(this).attr("data-unitid");
 		/*variables for coping with inconsistent data structure*/
 		var ATKdown=false;
@@ -527,7 +527,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	var leadCount=0;
 	/*iterate thru leader spots and selected unit images*/
-	$("#unitA .unitSelected,#unitB .unitSelected").each(function() {
+	$("#unitA .dragBox .unitSelected,#unitB .dragBox .unitSelected").each(function() {
 		var selectUnit=$(this).attr("data-unitid");
 		leadCount+=1;
 		for (i in scanScope) {
@@ -814,7 +814,7 @@ function generateSummary() {
 	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
-	$(".unitBox .unitSelected").each(function(){
+	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
 		if ($(this).parent().attr("id")!="unitB")
@@ -929,7 +929,7 @@ function loadSquad() {
 			    	for (i in squadList) {
 			    		for (j in rawParseObj)
 			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
-			    				$("#unit"+squadList[i].charAt(0)).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd>');
+			    				$("#unit"+squadList[i].charAt(0)).html('<div class="dragBox"><img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd></div>');
 			    				break;
 			    			}
 			    	}
@@ -1040,7 +1040,7 @@ $(document).on("click", '#getShort', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	$(unitProcessing).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	refreshALL();
 })
 
@@ -1048,7 +1048,7 @@ $(document).on("click", '.unitFound', function(e){
 $(document).on("click", '.unitRecommend', function(e){
 	e.preventDefault();
 	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
-	$(slotAdd).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	$(slotAdd).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$('#recommendModal').modal('hide');
 	refreshALL();
 })
