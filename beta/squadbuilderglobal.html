@@ -335,10 +335,10 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     /*activate Drag and drop*/
     $(function() {
     	$( ".dragBox" ).draggable({
-    		snap: ".unitBox"
+    		scope:".unitBox"
     	});
     	$( ".unitBox" ).droppable({
-		accept: ".dragBox"
+		accept:".dragBox"
 	});
   });
 })
