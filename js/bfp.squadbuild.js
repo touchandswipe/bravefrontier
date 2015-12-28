@@ -968,7 +968,7 @@ function dragActivate(){
     		stack:".dragBox",
     		revert:true,
     		zIndex:500,
-    		cursor: "crosshair",
+    		cursor:"move",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
     		}
