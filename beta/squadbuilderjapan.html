@@ -201,12 +201,15 @@ if (window.location.hash == '#_=_') {
 		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
 		        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
 		</div>
-		<button class="btn btn-danger" type="button" id="JPOnly">JP Only</button><div class="input-group" style="margin-bottom:5px;">
+		<div class="input-group" style="margin-bottom:5px;">
 		        <span class="input-group-btn">
 		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search by name</button></span>
 		        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
 		</div>
-		<h6>Note: Only officially released English names are mapped to JP Units. JP Only button shows all units without English names.</h6>
+		<div class="row">
+			<div class="col-xs-5 col-sm-5 col-md-5"><button class="btn btn-danger" type="button" id="JPOnly">JP Only</button></div>
+			<div class="col-xs-7 col-sm-7 col-sm-7"><h6>Note: Only officially released English names are mapped to JP Units. JP Only button shows all units without English names.</h6></div>
+		</div>
 		<div id="rawTable" class="container-fluid"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name/ID to ADD.</h4></div>
 	</div>
       </div>
