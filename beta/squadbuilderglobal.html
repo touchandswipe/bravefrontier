@@ -174,7 +174,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Unit Select Modal -->
-<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -205,7 +205,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Unit Recommendation Modal -->
-<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="recommend Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -247,7 +247,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Skills availability Modal -->
-<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -256,6 +256,22 @@ if (window.location.hash == '#_=_') {
       </div>
       <div class="modal-body">
 	<div class="text-center" id="showSkillBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body">
+      	<i class="fa fa-5 fa-reddit-alien text-success text-center"></i>
+	<div class="text-center"><pre id="redditShare"></pre></div>
       </div>
     </div>
   </div>
