@@ -1094,6 +1094,7 @@ $(document).on("click", '.unitRecommend', function(e){
 	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
 	$(slotAdd).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$('#recommendModal').modal('hide');
+	dragActivate();
 	refreshALL();
 })
 
