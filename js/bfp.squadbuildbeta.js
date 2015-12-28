@@ -950,13 +950,13 @@ $(window).on('popstate', function(e) {
 })
 
 /*Drag Event*/
-$( ".dragBox" ).on( "drag", function( e, ui ) {
+$(".dragBox").on("dragstart", function(e, ui) {
 	unitProcessing="#"+$(this).parents(".unitBox").attr("id");
-	alert(unitProcessing)
+	console.log(unitProcessing)
 });
 
 /*Drop Event*/
-$( ".unitBox" ).on( "drop", function( e, ui ) {
+$( ".unitBox" ).on( "drop", function(e, ui) {
 	if ($(this).children(".dragBox").length>0) {
 		/*Exist Unit*/
 		$(this).children(".dragBox").detach().appendTo(unitProcessing);
