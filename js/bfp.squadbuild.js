@@ -403,7 +403,7 @@ function recommendSkills(e,skillType,mapArray) {
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	/*iterate thru selected units*/
-	$( ".unitBox .unitSelected" ).each( function() {
+	$( ".unitBox .dragBox .unitSelected" ).each( function() {
 		var selectUnit=$(this).attr("data-unitid");
 		/*variables for coping with inconsistent data structure*/
 		var ATKdown=false;
@@ -527,7 +527,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
 	var leadCount=0;
 	/*iterate thru leader spots and selected unit images*/
-	$("#unitA .unitSelected,#unitB .unitSelected").each(function() {
+	$("#unitA .dragBox .unitSelected,#unitB .dragBox .unitSelected").each(function() {
 		var selectUnit=$(this).attr("data-unitid");
 		leadCount+=1;
 		for (i in scanScope) {
@@ -814,10 +814,10 @@ function generateSummary() {
 	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
-	$(".unitBox .unitSelected").each(function(){
+	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
-		if ($(this).parent().attr("id")!="unitB")
+		if ($(this).parents(".unitBox").attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*BBSBB Spam cost*/
 		if (rawParseObj[selectUnit]["bbdc"])
@@ -831,7 +831,7 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push($(this).parent().attr("id").slice(-1)+rawParseObj[selectUnit].id);
+		sParam.push($(this).parents(".unitBox").attr("id").slice(-1)+rawParseObj[selectUnit].id);
 	})
 	/*counts element*/
 	for (var key in sElement)
@@ -929,11 +929,12 @@ function loadSquad() {
 			    	for (i in squadList) {
 			    		for (j in rawParseObj)
 			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
-			    				$("#unit"+squadList[i].charAt(0)).html('<img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd>');
+			    				$("#unit"+squadList[i].charAt(0)).html('<div class="dragBox"><img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd></div>');
 			    				break;
 			    			}
 			    	}
-		    		refreshALL()
+		    		refreshALL();
+		    		dragActivate()
 			}
 	    	}
 	}
@@ -947,6 +948,47 @@ $(window).on('popstate', function(e) {
 		loadSquad()
 	}
 })
+
+/*popover hide after 2s*/
+$('.unitBox').on('shown.bs.popover', function () {
+    var $pop = $(this);
+    setTimeout(function () {
+        $pop.popover('hide');
+    }, 1500);
+});
+
+/*Drag Activate*/
+function dragActivate(){
+	$('.dragBox:not(.ui-draggable)').draggable({
+    		scope:"squadunits",
+    		containment:"#squadBox",
+    		snap:".unitBox",
+    		snapMode:"inner",
+    		snapTolerance:30,
+    		stack:".dragBox",
+    		revert:true,
+    		zIndex:500,
+    		cursor: "crosshair",
+    		start: function( event, ui ) {
+    			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
+    		}
+	});
+}
+
+/*Drop Event*/
+$(".unitBox").on( "drop", function(e, ui) {
+	if ($(this).children(".dragBox").length>0) {
+		/*Exist Unit*/
+		$(this).children(".dragBox").detach().appendTo(unitProcessing);
+		$(ui.draggable).detach().css({top:"",left:""}).appendTo($(this));
+		refreshALL();
+	} else {
+		/*Empty*/
+		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
+		$(unitProcessing).html(trashStr);
+		refreshALL();
+	}
+});
 
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
@@ -1040,7 +1082,8 @@ $(document).on("click", '#getShort', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	$(unitProcessing).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	dragActivate();
 	refreshALL();
 })
 
@@ -1048,7 +1091,7 @@ $(document).on("click", '.unitFound', function(e){
 $(document).on("click", '.unitRecommend', function(e){
 	e.preventDefault();
 	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
-	$(slotAdd).html('<img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd>');
+	$(slotAdd).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$('#recommendModal').modal('hide');
 	refreshALL();
 })
