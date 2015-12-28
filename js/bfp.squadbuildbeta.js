@@ -901,9 +901,12 @@ function generateSummary() {
 	}
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
+	/*Reddit Share*/
+	
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
@@ -1087,12 +1090,21 @@ $(document).on("click", '.lsBtns', function(e){
 	}
 })
 
-/*LS Btn Click*/
+/*short url Btn Click*/
 $(document).on("click", '#getShort', function(e){
 	e.preventDefault();
 	/*build sharing url*/
 	var sParam=urlParam('squad');
 	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam), $('#shareURL') );
+})
+
+/*Reddit Btn Click*/
+$(document).on("click", '#getReddit', function(e){
+	e.preventDefault();
+	var shareTxt="[View my Squad]";
+	/*build reddit markdown*/
+	$("#redditShare").html(shareTxt+"("+window.location.href+")");
+	$("#redditmodal").modal("show");
 })
 
 /*update unitspace*/
