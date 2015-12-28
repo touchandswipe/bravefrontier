@@ -185,15 +185,15 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<!-- Unit Select Modal -->
-<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<!-- search Modal -->
+<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
         <h4 class="modal-title"><b>Add to Squad</b></h4>
       </div>
-      <div class="modal-body" style="min-height:350px;">
+      <div class="modal-body" style="min-height:300px;">
 	<div>
 	    	<!--Search-->
 		<div class="input-group">
@@ -201,17 +201,15 @@ if (window.location.hash == '#_=_') {
 		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
 		        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
 		</div>
-		<form class="form-inline">
-			<button class="btn btn-danger" type="button" id="JPOnly">JP Only</button>
-			<div class="form-group">
-				<div class="input-group">
-				        <span class="input-group-btn">
-				        <button class="btn btn-primary" type="button" id="searchNameBtn">Search by name</button></span>
-				        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
-				</div>
-			</div>
+		<div class="input-group">
+		        <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search by name</button></span>
+		        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
 		</div>
-		<h5><b>Note:</b> Only officially released English names are mapped to JP Units. JP Only button shows all units without English names.</h5>
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2"><button class="btn btn-danger" type="button" id="JPOnly">JP Only</button></div>
+			<div class="col-xs-10 col-sm-10 col-sm-10"><h6 style="margin-top:4px;"><b>Note:</b> Only officially released English names are mapped to JP Units. JP Only button shows all units without English names.</h6></div>
+		</div>
 		<div id="rawTable" class="container-fluid"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name/ID to ADD.</h4></div>
 	</div>
       </div>
@@ -223,7 +221,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Unit Recommendation Modal -->
-<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="recommend Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -265,7 +263,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Skills availability Modal -->
-<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -279,8 +277,26 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
+	<pre id="redditShare"></pre>
+	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
