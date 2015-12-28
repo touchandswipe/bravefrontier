@@ -6,6 +6,7 @@
       text-align: center;
       display:block;
       width:125px;
+      height:105px;
     }
     .dropZone {background:#EFE;}
     .dropHover {background:#ECF;}
