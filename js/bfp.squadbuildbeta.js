@@ -948,6 +948,14 @@ $(window).on('popstate', function(e) {
 	}
 })
 
+/*Drop Event*/
+$( ".unitBox" ).on( "drop", function( event, ui ) {
+	if ($(this).contains(".dragBox"))
+		alert("Existing Unit")
+	else
+		alert("Empty")
+});
+
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
 	e.preventDefault();
