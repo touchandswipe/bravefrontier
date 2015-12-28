@@ -950,7 +950,7 @@ $(window).on('popstate', function(e) {
 
 /*Drop Event*/
 $( ".unitBox" ).on( "drop", function( event, ui ) {
-	if ($(this).contains(".dragBox"))
+	if ($(this).children(".dragBox").length>0)
 		alert("Existing Unit")
 	else
 		alert("Empty")
