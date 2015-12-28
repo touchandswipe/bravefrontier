@@ -951,19 +951,19 @@ $(window).on('popstate', function(e) {
 
 /*Drag Event*/
 $( ".dragBox" ).on( "drag", function( e, ui ) {
-	unitProcessing="#"+$(this).parent(".unitBox").attr("id");
+	unitProcessing="#"+$(this).parents(".unitBox").attr("id");
+	alert(unitProcessing)
 });
 
 /*Drop Event*/
 $( ".unitBox" ).on( "drop", function( e, ui ) {
 	if ($(this).children(".dragBox").length>0) {
 		/*Exist Unit*/
-		var $oldUnit=$(this).children(".dragBox");
-		$(unitProcessing).append($oldUnit);
-		$(this).append(ui.draggable);
+		$(this).children(".dragBox").detach().appendTo(unitProcessing);
+		$(ui.draggable).detach().css({top:"",left:""}).appendTo($(this));
 	} else {
 		/*Empty*/
-		$(this).append(ui.draggable);
+		$(this).append($(ui.draggable).detach().css({top:"",left:""}));
 	}
 });
 
