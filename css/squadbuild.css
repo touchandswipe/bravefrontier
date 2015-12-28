@@ -30,6 +30,10 @@
         display:none;
         clear:both;
     }
+    #redditShare {
+        width:90%;
+        margin:10px auto;
+    }
     .htfixed {height:135px;}
     .htfixed2 {height:120px;}
     .cross {
