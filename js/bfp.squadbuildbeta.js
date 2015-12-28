@@ -967,7 +967,6 @@ function dragActivate(){
     		snapMode:"inner",
     		snapTolerance:30,
     		stack:".dragBox",
-    		helper:"clone",
     		revert:true,
     		zIndex:500,
     		cursor:"move",
