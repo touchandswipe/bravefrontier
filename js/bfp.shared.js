@@ -6,7 +6,7 @@ $('#nav-toggle').on('click', function (e) {
     	$('#overlayC').addClass('open');
     }
     else {
-	    $('#overlayC').removeClass('open');
+	$('#overlayC').removeClass('open');
     	$('#overlayC').addClass('close');
     }
 });
