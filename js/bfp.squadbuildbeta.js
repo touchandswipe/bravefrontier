@@ -970,9 +970,11 @@ $( ".unitBox" ).on( "drop", function(e, ui) {
 		/*Exist Unit*/
 		$(this).children(".dragBox").detach().appendTo(unitProcessing);
 		$(ui.draggable).detach().css({top:"",left:""}).appendTo($(this));
+		refreshALL();
 	} else {
 		/*Empty*/
-		$(this).append($(ui.draggable).detach().css({top:"",left:""}));
+		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
+		refreshALL();
 	}
 });
 
