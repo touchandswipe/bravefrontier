@@ -957,7 +957,7 @@ function dragActivate(){
     		snap:".unitBox",
     		snapMode:"inner",
     		stack:".dragBox",
-    		revert:"true",
+    		revert:true,
     		cursor: "crosshair",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
