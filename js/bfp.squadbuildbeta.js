@@ -952,7 +952,7 @@ $(window).on('popstate', function(e) {
 /*Drag Activate*/
 function dragActivate(){
 	$('.dragBox:not(.ui-draggable)').draggable({
-    		scope:".unitBox",
+    		scope:"squadunits",
     		snap:".unitBox",
     		snapMode:"inner",
     		start: function( event, ui ) {
