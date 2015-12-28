@@ -956,6 +956,7 @@ function dragActivate(){
     		containment:"#squadBox",
     		snap:".unitBox",
     		snapMode:"inner",
+    		snapTolerance:30,
     		stack:".dragBox",
     		revert:true,
     		zIndex:500,
