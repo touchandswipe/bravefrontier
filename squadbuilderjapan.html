@@ -19,6 +19,8 @@
 <style type="text/css"></style>
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.jquerycustom.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.touchpunch.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
@@ -47,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R2x - <span class="text-danger">日本 (Japan)</span></h2>
+<h2>Squad Builder R3 - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
 <a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
@@ -94,8 +96,6 @@ if (window.location.hash == '#_=_') {
 	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"><h5><i class="fa fa-exclamation-triangle text-danger"></i> No units added.</h5></div></div>
 	<!-- LS Skills Buttons-->
 	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
-	<!-- BB Skills Buttons-->
-	<div class="row" id="bbSpace"><h3>BB/SBB Effects Available in Squad</h3></div>
 	<!-- NEWResponsiveBlog-->
 	<div style="margin:10px auto;">
 	<ins class="adsbygoogle"
@@ -107,13 +107,27 @@ if (window.location.hash == '#_=_') {
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 	</div>
-	<!-- UBB Skills Buttons-->
-	<div class="row" id="ubbSpace"><h3>UBB Effects Available in Squad</h3></div>
+	
+	<!-- BB/SBB and UBB Tab Navs -->
+	<div>
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs nav-justified" role="tablist">
+	    <li role="presentation" class="active"><a href="#bbSpace" aria-controls="home" role="tab" data-toggle="tab"><h4>Squad BB/SBB</h4></a></li>
+	    <li role="presentation"><a href="#ubbSpace" aria-controls="profile" role="tab" data-toggle="tab"><h4>Squad UBB</h4></a></li>
+	  </ul>
+	
+	  <!-- Tab panes -->
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="bbSpace"><h3>BB/SBB Effects in Squad</h3></div>
+	    <div role="tabpanel" class="tab-pane" id="ubbSpace"><h3>UBB Effects in Squad</h3></div>
+	  </div>
+	</div>
+
 	<!-- Non-Activated BB Skills Buttons-->
 	<div class="row" id="inactiveSpace"><h3>Inactive BB/SBB Effects</h3></div>
-	<h6>Credit: Data made possible by the efforts of <a href="https://www.reddit.com/user/Deathmax" target="_blank">Deathmax</a> datamining.</h6>
+	<h5 style="clear:both;">CREDIT: Data made possible by the efforts of <a href="https://www.reddit.com/user/Deathmax" target="_blank">Deathmax</a> datamining.</h5>
 </div>
-<div style="margin:10px auto;">
+<div style="margin:0 auto;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -295,6 +309,7 @@ $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+$('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",content:"Drag/Drop Units to switch positions."});
 /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguidejapan) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
@@ -332,6 +347,14 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     generateBtns("ubbBtns","#ubbSpace",bbMap);
     /*checks and loads from URL Param*/
     loadSquad();
+    /*activate Drag and drop*/
+    dragActivate();
+    $( ".unitBox" ).droppable({
+	scope:"squadunits",
+	accept:".dragBox",
+	activeClass:"dropZone",
+	hoverClass:"dropHover"
+    });
 })
 </script>
 
