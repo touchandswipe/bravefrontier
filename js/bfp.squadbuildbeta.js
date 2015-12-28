@@ -117,6 +117,7 @@ bbMap=[
 	{desc:"% Weakness DMG+ (Light)", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% Weakness DMG+ (Dark)", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
+	{desc:"% Enemy HP DMG", impact:"hp% damage low", impact2:"hp% damage high", chance:"hp% damage chance%"},
 	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
 	{desc:"BC InstaFill", impact:"increase bb gauge"},
 	{desc:"% BB Fill", impact:"bb bc fill%"},
@@ -968,7 +969,7 @@ function dragActivate(){
     		stack:".dragBox",
     		revert:true,
     		zIndex:500,
-    		cursor: "crosshair",
+    		cursor:"move",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
     		}
