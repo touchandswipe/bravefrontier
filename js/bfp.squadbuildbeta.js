@@ -961,7 +961,6 @@ function dragActivate(){
     		cursor: "crosshair",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
-			console.log(unitProcessing)
     		}
 	});
 }
