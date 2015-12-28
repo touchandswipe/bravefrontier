@@ -949,12 +949,22 @@ $(window).on('popstate', function(e) {
 	}
 })
 
+/*Drag Event*/
+$( ".dragBox" ).on( "drag", function( e, ui ) {
+	unitProcessing="#"+$(this).parent(".unitBox").attr("id");
+});
+
 /*Drop Event*/
-$( ".unitBox" ).on( "drop", function( event, ui ) {
-	if ($(this).children(".dragBox").length>0)
-		alert("Existing Unit")
-	else
-		alert("Empty")
+$( ".unitBox" ).on( "drop", function( e, ui ) {
+	if ($(this).children(".dragBox").length>0) {
+		/*Exist Unit*/
+		var $oldUnit=$(this).children(".dragBox");
+		$(unitProcessing).append($oldUnit);
+		$(this).append(ui.draggable);
+	} else {
+		/*Empty*/
+		$(this).append(ui.draggable);
+	}
 });
 
 /*MoveinActive skills*/
