@@ -934,7 +934,7 @@ function loadSquad() {
 			    			}
 			    	}
 		    		refreshALL();
-		    		$('.draggable:not(.ui-draggable)').draggable();
+		    		$('.unitSelected:not(.ui-draggable)').draggable();
 			}
 	    	}
 	}
@@ -1050,7 +1050,7 @@ $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
 	$(unitProcessing).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
-	$('.draggable:not(.ui-draggable)').draggable();
+	$('.unitSelected:not(.ui-draggable)').draggable();
 	refreshALL();
 })
 
