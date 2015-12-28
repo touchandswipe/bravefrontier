@@ -970,7 +970,7 @@ function dragActivate(){
     		helper:"clone",
     		revert:true,
     		zIndex:500,
-    		cursor:"move !important",
+    		cursor:"move",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
     		}
