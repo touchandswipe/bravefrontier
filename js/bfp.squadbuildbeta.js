@@ -949,6 +949,14 @@ $(window).on('popstate', function(e) {
 	}
 })
 
+/*popover hide after 2s*/
+$('.unitBox').on('shown.bs.popover', function () {
+    var $pop = $(this);
+    setTimeout(function () {
+        $pop.popover('hide');
+    }, 2000);
+});
+
 /*Drag Activate*/
 function dragActivate(){
 	$('.dragBox:not(.ui-draggable)').draggable({
