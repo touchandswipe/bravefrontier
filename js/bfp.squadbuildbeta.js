@@ -953,6 +953,8 @@ $(window).on('popstate', function(e) {
 function dragActivate(){
 	$('.dragBox:not(.ui-draggable)').draggable({
     		scope:".unitBox",
+    		snap:".unitBox",
+    		snapMode:"inner",
     		start: function( event, ui ) {
     			unitProcessing="#"+$(this).parents(".unitBox").attr("id");
 			console.log(unitProcessing)
