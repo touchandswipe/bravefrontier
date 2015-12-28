@@ -1104,7 +1104,7 @@ $(document).on("click", '#getReddit', function(e){
 	var shareTxt="[View my Squad]";
 	/*build reddit markdown*/
 	$("#redditShare").html(shareTxt+"("+window.location.href+")");
-	$("#redditmodal").modal("show");
+	$("#redditModal").modal("show");
 })
 
 /*update unitspace*/
