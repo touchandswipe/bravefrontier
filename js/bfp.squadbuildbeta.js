@@ -217,6 +217,22 @@ function nestedChk(nestedStr,parentObj) {
 	return nestedO;
 }
 
+/*JP Onlu*/
+function JPOnlyRun() {
+	var outputHTML=[];
+	for (var i in rawParseObj) {
+	    if (rawParseObj[i].name.indexOf("(")!=-1)
+	        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" /><kbd class="fRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	}
+	/*Joins array and replace HTML*/
+	$(rawTable).html(outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/squadguide_SearchID',
+  		'title': 'Brave Frontier PROs - Squad Guide SearchID'
+	});
+}
+
 /*Search by Unit ID*/
 function searchIdRun() {
     var sVal=$('#searchIdBox').val();
@@ -1088,12 +1104,20 @@ $(document).on("click", '.unitFound', function(e){
 	refreshALL();
 })
 
-/*update unitspace*/
+/*update unitspace by recommendation*/
 $(document).on("click", '.unitRecommend', function(e){
 	e.preventDefault();
 	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
 	$(slotAdd).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$('#recommendModal').modal('hide');
+	dragActivate();
+	refreshALL();
+})
+
+/*JP Only*/
+$(document).on("click", '#JPOnly', function(e){
+	e.preventDefault();
+	JPOnlyRun();
 	dragActivate();
 	refreshALL();
 })
