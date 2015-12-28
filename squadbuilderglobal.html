@@ -19,6 +19,8 @@
 <style type="text/css"></style>
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.jquerycustom.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.touchpunch.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
@@ -47,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R2x - <span class="text-danger">Global</span></h2>
+<h2>Squad Builder R3 - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
 <a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
@@ -68,7 +70,7 @@ if (window.location.hash == '#_=_') {
 	</script>
 	</div>
 <!-- 6 unit spots -->
-	<div class="row" style="padding-top:20px;">
+	<div class="row" id="squadBox" style="padding-top:20px;">
 	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitA" href="#"><i class="fa fa-plus fa-5x"></i></a>
 	    <div class="leader">LEAD</div>
@@ -293,6 +295,7 @@ $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+$('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",content:"Drag/Drop Units to switch positions."});
 /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
@@ -330,6 +333,14 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     generateBtns("ubbBtns","#ubbSpace",bbMap);
     /*checks and loads from URL Param*/
     loadSquad();
+    /*activate Drag and drop*/
+    dragActivate();
+    $( ".unitBox" ).droppable({
+	scope:"squadunits",
+	accept:".dragBox",
+	activeClass:"dropZone",
+	hoverClass:"dropHover"
+    });
 })
 </script>
 
