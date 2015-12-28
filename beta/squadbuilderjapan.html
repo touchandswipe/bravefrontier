@@ -19,6 +19,8 @@
 <style type="text/css"></style>
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.jquerycustom.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.touchpunch.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
@@ -47,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R2x - <span class="text-danger">日本 (Japan)</span></h2>
+<h2>Squad Builder R3 - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
 <a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
@@ -344,6 +346,14 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     generateBtns("ubbBtns","#ubbSpace",bbMap);
     /*checks and loads from URL Param*/
     loadSquad();
+    /*activate Drag and drop*/
+    dragActivate();
+    $( ".unitBox" ).droppable({
+	scope:"squadunits",
+	accept:".dragBox",
+	activeClass:"dropZone",
+	hoverClass:"dropHover"
+    });
 })
 </script>
 
