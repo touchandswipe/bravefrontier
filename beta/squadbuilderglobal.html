@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
@@ -19,6 +20,7 @@
 <style type="text/css"></style>
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
@@ -94,6 +96,8 @@ if (window.location.hash == '#_=_') {
 	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"><h5><i class="fa fa-exclamation-triangle text-danger"></i> No units added.</h5></div></div>
 	<!-- LS Skills Buttons-->
 	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
+	<!-- BB Skills Buttons-->
+	<div class="row" id="bbSpace"><h3>BB/SBB Effects Available in Squad</h3></div>
 	<!-- NEWResponsiveBlog-->
 	<div style="margin:10px auto;">
 	<ins class="adsbygoogle"
@@ -105,27 +109,13 @@ if (window.location.hash == '#_=_') {
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 	</div>
-	
-	<!-- BB/SBB and UBB Tab Navs -->
-	<div>
-	  <!-- Nav tabs -->
-	  <ul class="nav nav-tabs nav-justified" role="tablist">
-	    <li role="presentation" class="active"><a href="#bbSpace" aria-controls="home" role="tab" data-toggle="tab"><h4>Squad BB/SBB</h4></a></li>
-	    <li role="presentation"><a href="#ubbSpace" aria-controls="profile" role="tab" data-toggle="tab"><h4>Squad UBB</h4></a></li>
-	  </ul>
-	
-	  <!-- Tab panes -->
-	  <div class="tab-content">
-	    <div role="tabpanel" class="tab-pane active" id="bbSpace"><h3>BB/SBB Effects in Squad</h3></div>
-	    <div role="tabpanel" class="tab-pane" id="ubbSpace"><h3>UBB Effects in Squad</h3></div>
-	  </div>
-	</div>
-
+	<!-- UBB Skills Buttons-->
+	<div class="row" id="ubbSpace"><h3>UBB Effects Available in Squad</h3></div>
 	<!-- Non-Activated BB Skills Buttons-->
 	<div class="row" id="inactiveSpace"><h3>Inactive BB/SBB Effects</h3></div>
-	<h5 style="clear:both;">CREDIT: Data made possible by the efforts of <a href="https://www.reddit.com/user/Deathmax" target="_blank">Deathmax</a> datamining.</h5>
+	<h6>Credit: Data made possible by the efforts of <a href="https://www.reddit.com/user/Deathmax" target="_blank">Deathmax</a> datamining.</h6>
 </div>
-<div style="margin:0 auto;">
+<div style="margin:10px auto;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -342,6 +332,10 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     generateBtns("ubbBtns","#ubbSpace",bbMap);
     /*checks and loads from URL Param*/
     loadSquad();
+    /*activate Drag and drop*/
+    $(function() {
+    	$( ".unitSelected" ).draggable();
+  });
 })
 </script>
 
