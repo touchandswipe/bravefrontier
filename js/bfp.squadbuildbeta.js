@@ -817,7 +817,7 @@ function generateSummary() {
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
-		if ($(this).parent().attr("id")!="unitB")
+		if ($(this).parents(".unitBox").attr("id")!="unitB")
 			sCost+=parseInt(rawParseObj[selectUnit].cost);
 		/*BBSBB Spam cost*/
 		if (rawParseObj[selectUnit]["bbdc"])
@@ -831,7 +831,7 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push($(this).parent().attr("id").slice(-1)+rawParseObj[selectUnit].id);
+		sParam.push($(this).parents(".unitBox").attr("id").slice(-1)+rawParseObj[selectUnit].id);
 	})
 	/*counts element*/
 	for (var key in sElement)
