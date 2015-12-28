@@ -954,7 +954,7 @@ $('.unitBox').on('shown.bs.popover', function () {
     var $pop = $(this);
     setTimeout(function () {
         $pop.popover('hide');
-    }, 2000);
+    }, 1500);
 });
 
 /*Drag Activate*/
