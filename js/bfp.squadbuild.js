@@ -962,7 +962,6 @@ $('.unitBox').on('shown.bs.popover', function () {
 function dragActivate(){
 	$('.dragBox:not(.ui-draggable)').draggable({
     		scope:"squadunits",
-    		containment:"#squadBox",
     		snap:".unitBox",
     		snapMode:"inner",
     		snapTolerance:30,
