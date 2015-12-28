@@ -276,7 +276,7 @@ function buildDB(skill) {
 	      }
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
-	      /*temporary removal of ratings <span class="text-primary">'+keyRating+'<i class="fa fa-star"></i></span>*/
+	      <span class="text-primary">'+keyRating+'<i class="fa fa-star"></i></span>
 	      nameSTR+='<b>'+valObj.name+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effects) {
