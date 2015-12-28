@@ -335,7 +335,9 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     /*activate Drag and drop*/
     dragActivate();
     $( ".unitBox" ).droppable({
-	accept:".dragBox"
+	accept:".dragBox",
+	activeClass:"dropZone",
+	hoverClass:"dropHover"
     });
 })
 </script>
