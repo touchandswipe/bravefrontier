@@ -418,7 +418,9 @@ function recommendSkills(e,skillType,mapArray) {
 	$("#rBody").html(skillsHTML);
 }
 
-function isNumber(obj) { return !isNaN(parseFloat(obj)) }
+function isNumber(o) {
+  return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
+}
 	
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
