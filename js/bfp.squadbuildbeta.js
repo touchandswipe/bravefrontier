@@ -849,18 +849,21 @@ function generateBtns(btnclass,dest,mapArray) {
 }
 
 function getTop(btnclass,btnDesc) {
+	var returnVal=0
 	$(btnclass+" .btnDesc").each( function() {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc) {
 			if ($(this).parent(".btn-success").attr("data-top")){
-				alert($(this).parent(".btn-success").attr("data-top"));
-				return (parseInt($(this).parent(".btn-success").attr("data-top")));
+				returnVal=parseInt($(this).parent(".btn-success").attr("data-top")));
+				return;
 			}
-			else
-				return 0
-		} else
-			return 0
+			else {
+				returnVal=0;
+				return;
+			}
+		}
 	});
+	return returnVal;
 }
 
 function generateSummary() {
