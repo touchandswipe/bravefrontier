@@ -185,8 +185,8 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<!-- Unit Select Modal -->
-<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<!-- search Modal -->
+<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -196,14 +196,14 @@ if (window.location.hash == '#_=_') {
       <div class="modal-body" style="min-height:300px;">
 	<div>
 	    	<!--Search-->
-		<div class="input-group" style="margin-bottom:5px;">
+		<div class="input-group">
 		        <span class="input-group-btn">
-		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
+		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter Unit ID</button></span>
 		        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
 		</div>
-		<div class="input-group" style="margin-bottom:5px;">
+		<div class="input-group">
 		        <span class="input-group-btn">
-		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search by name</button></span>
+		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit name</button></span>
 		        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
 		</div>
 		<div class="row">
@@ -221,7 +221,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Unit Recommendation Modal -->
-<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="recommend Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -263,7 +263,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Skills availability Modal -->
-<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
@@ -277,8 +277,26 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
+	<pre id="redditShare"></pre>
+	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
