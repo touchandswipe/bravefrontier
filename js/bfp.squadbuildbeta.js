@@ -608,8 +608,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 												if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
 													$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
 											} else {
-												$(this).attr("data-top", $(this).attr("data-top")+scanArray[j][lsMap[k].impact]);
-												console.log(scanArray[j][lsMap[k].desc]+$(this).attr("data-top"));
+												$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
 											}
 										}
 									}
@@ -855,7 +854,7 @@ function getTop(btnclass,btnDesc) {
 		if (lsKey==btnDesc)
 			return parseInt(e.attr("data-top"));
 	});
-	return false;
+	return 0;
 }
 
 function generateSummary() {
@@ -931,7 +930,20 @@ function generateSummary() {
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
 	var sparkUBB=["% Spark DMG+","% Spark DMG Debuff"];
-
+	var sparkLSTotal,sparkBBTotal,sparkUBBTotal=0;
+	for (var i in sparkLS) {
+		var sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
+	}
+	for (var i in sparkBB) {
+		var sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
+	}
+	for (var i in sparkLS) {
+		var sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
+	}
+	var sparkHTML='<span class="text-success"><b>TOTAL '+sparkLSTotal+sparkBBTotal+sparkUBBTotal+'%</b></span><br/>';
+	sparkHTML="LS <b>"+sparkLSTotal+"%</b><br/>";
+	sparkHTML="BB <b>"+sparkBBTotal+"%</b><br/>";
+	sparkHTML="UBB <b>"+sparkUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -951,7 +963,8 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>MOD</b></h4><h6>'+sparkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
