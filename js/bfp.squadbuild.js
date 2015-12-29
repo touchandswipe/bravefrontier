@@ -15,13 +15,13 @@ lsMap=[
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
-	{desc:"% Spark DMG+", impact:"damage% for spark"},
+	{desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
-	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% Spark DMG+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
-	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
-	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
+	{desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
+	{desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
 	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
@@ -282,6 +282,7 @@ function resetBtns(classBtns) {
 	$(classBtns).each( function() {
 		$(this).find(".badge").remove();
 		$(this).removeAttr("data-found");
+		$(this).removeAttr("data-top");
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
 			$(this).toggleClass("btn-default btn-success");
@@ -417,6 +418,10 @@ function recommendSkills(e,skillType,mapArray) {
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
 	$("#rBody").html(skillsHTML);
 }
+
+function isNumber(o) {
+  return ! isNaN (o-0) && o !== null && o !== "" && typeof o !== "boolean";
+}
 	
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
@@ -451,11 +456,20 @@ function scanSkills(classBtns,scanScope) {
 										/*create list of units with skills*/
 										if ($(this).attr("data-found")) {
 											if ($(this).attr("data-found").search(selectUnit)==-1) {
-												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+											}
+											/*build TOPval*/
+											if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
+												if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+													$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 											}
 										}
-										else
-											$(this).attr("data-found",selectUnit)
+										else {
+											$(this).attr("data-found",selectUnit);
+											/*build TOPval*/
+											if (isNumber(scanArray[j][bbMap[k].impact]))
+												$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+										}
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
@@ -588,9 +602,21 @@ function scanLeaderSkills(classBtns,scanScope) {
 										/*stop dupe skills w/ criteria*/
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
 										}
+										/*build TOPval*/
+										if ($(this).attr("data-top") && isNumber(scanArray[j][lsMap[k].impact])) {
+											if (!lsMap[k].stack) {
+												if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
+													$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+											} else {
+												$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
+											}
+										}
 									}
 									else {
 										$(this).attr("data-found",selectUnit);
+										/*build TOPval*/
+										if (isNumber(scanArray[j][lsMap[k].impact]))
+											$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
 									}
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
@@ -822,6 +848,24 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+function getTop(btnclass,btnDesc) {
+	var returnVal=0
+	$(btnclass+" .btnDesc").each( function() {
+		var lsKey=$(this).text();
+		if (lsKey==btnDesc) {
+			if ($(this).parent(".btn-success").attr("data-top")){
+				returnVal=parseInt($(this).parent(".btn-success").attr("data-top"));
+				return;
+			}
+			else {
+				returnVal=0;
+				return;
+			}
+		}
+	});
+	return returnVal;
+}
+
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
@@ -866,7 +910,7 @@ function generateSummary() {
 						var lsMapKey=m;
 						break;
 					}
-				/**/
+				/*match*/
 				if ($(this).parent().attr("data-found")) {
 					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
@@ -891,6 +935,40 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	/*spark summary*/
+	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
+	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
+	var sparkUBB=["% Spark DMG+","% Spark DMG Debuff"];
+	var sparkLSTotal=0;
+	var sparkBBTotal=0;
+	var sparkUBBTotal=0;
+	for (var i in sparkLS)
+		sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
+	for (var i in sparkBB)
+		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
+	for (var i in sparkLS)
+		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
+	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
+	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
+	sparkHTML+="BB/SBB <b>"+sparkBBTotal+"%</b><br/>";
+	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
+	/*crit summary*/
+	var critLS=["% CRIT DMG+"];
+	var critBB=["% CRIT DMG+"];
+	var critUBB=["% CRIT DMG+"];
+	var critLSTotal=0;
+	var critBBTotal=0;
+	var critUBBTotal=0;
+	for (var i in critLS)
+		critLSTotal+=getTop(".lsBtns",critLS[i]);
+	for (var i in critBB)
+		critBBTotal+=getTop(".bbBtns",critBB[i]);
+	for (var i in critLS)
+		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
+	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br/>';
+	critHTML+="LS <b>"+critLSTotal+"%</b><br/>";
+	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br/>";
+	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -901,13 +979,18 @@ function generateSummary() {
 	}
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
+	/*Reddit Share*/
+	
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
 	var state = { stateSquad: sParam.join() };
@@ -1087,12 +1170,21 @@ $(document).on("click", '.lsBtns', function(e){
 	}
 })
 
-/*LS Btn Click*/
+/*short url Btn Click*/
 $(document).on("click", '#getShort', function(e){
 	e.preventDefault();
 	/*build sharing url*/
 	var sParam=urlParam('squad');
 	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam), $('#shareURL') );
+})
+
+/*Reddit Btn Click*/
+$(document).on("click", '#getReddit', function(e){
+	e.preventDefault();
+	var shareTxt="[View my Squad]";
+	/*build reddit markdown*/
+	$("#redditShare").html(shareTxt+"("+window.location.href+")");
+	$("#redditModal").modal("show");
 })
 
 /*update unitspace*/
