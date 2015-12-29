@@ -452,6 +452,11 @@ function scanSkills(classBtns,scanScope) {
 										if ($(this).attr("data-found")) {
 											if ($(this).attr("data-found").search(selectUnit)==-1) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+												/*build TOPval*/
+												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
+													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												}
 											}
 										}
 										else
@@ -822,6 +827,32 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+/*returns highest mod or false*/
+function getTopMod(btnclass,skillType,descArray,mapArray) {
+	var topMod=0;
+	$(btnclass+" .btnDesc").each( function() {
+		var lsKey=$(this).text();
+		for (var m in mapArray) {
+			if (lsKey==mapArray[m].desc) {
+				var lsMapKey=m;
+				break;
+			}
+			/*match*/
+			if ($(this).parent().attr("data-found")) {
+				var tArray=$(this).parent().attr("data-found").split(',');
+				for (j in tArray) {
+					var scanArray=rawParseObj[tArray[j]][skillType].effects;
+					for (k in scanArray)
+						if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
+							sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
+							/*break; Removal to support dupe skills stacks */
+						}
+				}
+			}
+		}
+	}
+}
+
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
@@ -866,7 +897,7 @@ function generateSummary() {
 						var lsMapKey=m;
 						break;
 					}
-				/**/
+				/*match*/
 				if ($(this).parent().attr("data-found")) {
 					var tArray=$(this).parent().attr("data-found").split(',');
 					for (j in tArray) {
@@ -891,6 +922,8 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	/*spark summary*/
+	
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
