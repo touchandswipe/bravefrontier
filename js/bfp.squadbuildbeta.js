@@ -473,7 +473,7 @@ function scanSkills(classBtns,scanScope) {
 										else {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
-											if (!isNaN(scanArray[j][bbMap[k].impact]))
+											if (isNumber(scanArray[j][bbMap[k].impact]))
 												$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
 										}
 										$(this).removeAttr("disabled");
