@@ -417,6 +417,8 @@ function recommendSkills(e,skillType,mapArray) {
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
 	$("#rBody").html(skillsHTML);
 }
+
+function isNumber(obj) { return !isNaN(parseFloat(obj)) }
 	
 function scanSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
@@ -453,13 +455,13 @@ function scanSkills(classBtns,scanScope) {
 											if ($(this).attr("data-found").search(selectUnit)==-1) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 												/*build TOPval*/
-												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
+												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
 													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
 														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 												}
 											} else {
 												/*build TOPval*/
-												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
+												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
 													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
 														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 												}
