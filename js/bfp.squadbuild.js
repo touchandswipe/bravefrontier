@@ -279,6 +279,7 @@ function searchNameRun() {
 	}
 }
 
+/*resets to base state*/
 function resetBtns(classBtns) {
 	$(classBtns).each( function() {
 		$(this).find(".badge").remove();
