@@ -853,8 +853,8 @@ function getTop(btnclass,btnDesc) {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc) {
 			if ($(this).parent(".btn-success").attr("data-top")){
-				console.log(parseInt($(this).attr("data-top")));
-				return parseInt($(this).attr("data-top"));
+				console.log(parseInt($(this).parent(".btn-success").attr("data-top")));
+				return parseInt($(this).parent(".btn-success").attr("data-top"));
 			}
 			else
 				return 0
@@ -948,7 +948,7 @@ function generateSummary() {
 	for (var i in sparkLS) {
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	}
-	var sparkHTML='<span class="text-success"><b>TOTAL '+sparkLSTotal+sparkBBTotal+sparkUBBTotal+'%</b></span><br/>';
+	var sparkHTML='<span class="text-success"><b>TOTAL '+(+sparkLSTotal++sparkBBTotal++sparkUBBTotal)+'%</b></span><br/>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
 	sparkHTML+="BB <b>"+sparkBBTotal+"%</b><br/>";
 	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
