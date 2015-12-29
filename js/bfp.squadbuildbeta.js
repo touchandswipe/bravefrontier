@@ -930,7 +930,9 @@ function generateSummary() {
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
 	var sparkUBB=["% Spark DMG+","% Spark DMG Debuff"];
-	var sparkLSTotal=0,sparkBBTotal=0,sparkUBBTotal=0;
+	var sparkLSTotal=0;
+	var sparkBBTotal=0;
+	var sparkUBBTotal=0;
 	for (var i in sparkLS) {
 		var sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
 	}
