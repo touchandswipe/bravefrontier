@@ -934,13 +934,13 @@ function generateSummary() {
 	var sparkBBTotal=0;
 	var sparkUBBTotal=0;
 	for (var i in sparkLS) {
-		var sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
+		sparkLSTotal=sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
 	}
 	for (var i in sparkBB) {
-		var sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
+		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
 	}
 	for (var i in sparkLS) {
-		var sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
+		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	}
 	var sparkHTML='<span class="text-success"><b>TOTAL '+sparkLSTotal+sparkBBTotal+sparkUBBTotal+'%</b></span><br/>';
 	sparkHTML="LS <b>"+sparkLSTotal+"%</b><br/>";
