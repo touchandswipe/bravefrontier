@@ -451,7 +451,7 @@ function scanSkills(classBtns,scanScope) {
 										/*create list of units with skills*/
 										if ($(this).attr("data-found")) {
 											if ($(this).attr("data-found").search(selectUnit)==-1) {
-												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 												/*build TOPval*/
 												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
 													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
