@@ -851,8 +851,12 @@ function generateBtns(btnclass,dest,mapArray) {
 function getTop(btnclass,btnDesc) {
 	$(btnclass+" .btnDesc").each( function() {
 		var lsKey=$(this).text();
-		if (lsKey==btnDesc)
-			return parseInt(e.attr("data-top"));
+		if (lsKey==btnDesc) {
+			if ($(this).attr("data-top"))
+				return parseInt($(this).attr("data-top"));
+			else
+				return 0
+		}
 	});
 	return 0;
 }
