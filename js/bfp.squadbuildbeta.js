@@ -609,7 +609,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 													$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
 											} else {
 												$(this).attr("data-top", $(this).attr("data-top")+scanArray[j][lsMap[k].impact]);
-												console.log(scanArray[j][lsMap[k].desc]+$(this).attr("data-top");
+												console.log(scanArray[j][lsMap[k].desc]+$(this).attr("data-top"));
 											}
 										}
 									}
