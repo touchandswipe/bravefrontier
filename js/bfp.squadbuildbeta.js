@@ -853,7 +853,6 @@ function getTop(btnclass,btnDesc) {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc) {
 			if ($(this).parent(".btn-success").attr("data-top")){
-				console.log(parseInt($(this).parent(".btn-success").attr("data-top")));
 				return parseInt($(this).parent(".btn-success").attr("data-top"));
 			}
 			else
@@ -941,7 +940,7 @@ function generateSummary() {
 	var sparkUBBTotal=0;
 	for (var i in sparkLS) {
 		sparkLSTotal=sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
-		console.log("spark LS "+sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
+		console.log("spark LS "+sparkLSTotal+" return value "+getTop(".lsBtns",sparkLS[i]));
 	}
 	for (var i in sparkBB) {
 		sparkBBTotal=sparkBBTotal+getTop(".bbBtns",sparkBB[i]);
