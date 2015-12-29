@@ -419,7 +419,7 @@ function recommendSkills(e,skillType,mapArray) {
 }
 
 function isNumber(o) {
-  return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
+  return ! isNaN (o-0) && o !== null && o !== "" && typeof o !== "boolean";
 }
 	
 function scanSkills(classBtns,scanScope) {
