@@ -456,18 +456,11 @@ function scanSkills(classBtns,scanScope) {
 										if ($(this).attr("data-found")) {
 											if ($(this).attr("data-found").search(selectUnit)==-1) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
-												/*build TOPval*/
-												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
-												}
-											} else {
-												/*build TOPval*/
-												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
-												}
-												
+											}
+											/*build TOPval*/
+											if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
+												if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+													$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 											}
 										}
 										else {
@@ -608,9 +601,17 @@ function scanLeaderSkills(classBtns,scanScope) {
 										/*stop dupe skills w/ criteria*/
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
 										}
+										/*build TOPval*/
+										if ($(this).attr("data-top") && isNumber(scanArray[j][lsMap[k].impact])) {
+											if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
+												$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+										}
 									}
 									else {
 										$(this).attr("data-found",selectUnit);
+										/*build TOPval*/
+										if (isNumber(scanArray[j][lsMap[k].impact]))
+											$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
 									}
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
