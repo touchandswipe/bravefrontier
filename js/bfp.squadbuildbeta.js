@@ -941,7 +941,7 @@ function generateSummary() {
 	var sparkUBBTotal=0;
 	for (var i in sparkLS) {
 		sparkLSTotal=sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
-		console.log("spark LS "+sparkLSTotal);
+		console.log("spark LS "+sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
 	}
 	for (var i in sparkBB) {
 		sparkBBTotal=sparkBBTotal+getTop(".bbBtns",sparkBB[i]);
