@@ -948,7 +948,7 @@ function generateSummary() {
 	for (var i in sparkLS) {
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	}
-	var sparkHTML='<span class="text-success"><b>TOTAL '+(+sparkLSTotal++sparkBBTotal++sparkUBBTotal)+'%</b></span><br/>';
+	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
 	sparkHTML+="BB <b>"+sparkBBTotal+"%</b><br/>";
 	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
