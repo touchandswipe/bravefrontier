@@ -854,7 +854,7 @@ function getTop(btnclass,btnDesc) {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc)
 			return parseInt(e.attr("data-top"));
-	}
+	});
 	return false;
 }
 
