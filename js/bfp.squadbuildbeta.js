@@ -454,9 +454,16 @@ function scanSkills(classBtns,scanScope) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 												/*build TOPval*/
 												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
-													if (parseInt($(this).attr("data-top"))<parseInt(scanArray[j][bbMap[k].impact]))
+													if ($(this).attr("data-top"))<scanArray[j][bbMap[k].impact])
 														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 												}
+											} else {
+												/*build TOPval*/
+												if ($(this).attr("data-top") && !isNaN(scanArray[j][bbMap[k].impact])) {
+													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												}
+												
 											}
 										}
 										else {
