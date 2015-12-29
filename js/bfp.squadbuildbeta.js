@@ -854,7 +854,7 @@ function getTop(btnclass,btnDesc) {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc) {
 			if ($(this).parent(".btn-success").attr("data-top")){
-				returnVal=parseInt($(this).parent(".btn-success").attr("data-top")));
+				returnVal=parseInt($(this).parent(".btn-success").attr("data-top"));
 				return;
 			}
 			else {
