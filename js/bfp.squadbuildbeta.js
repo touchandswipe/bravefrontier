@@ -940,14 +940,14 @@ function generateSummary() {
 	var sparkBBTotal=0;
 	var sparkUBBTotal=0;
 	for (var i in sparkLS) {
-		sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
+		sparkLSTotal=sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
 		console.log("spark LS "+sparkLSTotal);
 	}
 	for (var i in sparkBB) {
-		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
+		sparkBBTotal=sparkBBTotal+getTop(".bbBtns",sparkBB[i]);
 	}
 	for (var i in sparkLS) {
-		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
+		sparkUBBTotal=sparkUBBTotal+getTop(".ubbBtns",sparkUBB[i]);
 	}
 	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
