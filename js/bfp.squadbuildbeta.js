@@ -849,7 +849,7 @@ function generateBtns(btnclass,dest,mapArray) {
 }
 
 function getTop(btnclass,btnDesc) {
-	$(btnclas+" .btnDesc").each( function() {
+	$(btnclass+" .btnDesc").each( function() {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc)
 			return parseInt(e.attr("data-top"));
