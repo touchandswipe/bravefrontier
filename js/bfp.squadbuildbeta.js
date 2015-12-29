@@ -15,13 +15,13 @@ lsMap=[
 	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{desc:"% CRIT+", impact:"crit% buff"},
-	{desc:"% Spark DMG+", impact:"damage% for spark"},
+	{desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
 	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
-	{desc:"% Spark DMG+ on SparkCount", impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% Spark DMG+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
-	{desc:"% CRIT DMG+", impact:"crit multiplier%"},
-	{desc:"% BB ATK%+", impact:"bb atk% buff"},
-	{desc:"% BB ATK%+ on SparkCount", impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
+	{desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
+	{desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
 	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
 	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
@@ -282,6 +282,7 @@ function resetBtns(classBtns) {
 	$(classBtns).each( function() {
 		$(this).find(".badge").remove();
 		$(this).removeAttr("data-found");
+		$(this).removeAttr("data-top");
 		$(this).attr("disabled","disabled");
 		if ($(this).hasClass("btn-success"))
 			$(this).toggleClass("btn-default btn-success");
@@ -603,8 +604,13 @@ function scanLeaderSkills(classBtns,scanScope) {
 										}
 										/*build TOPval*/
 										if ($(this).attr("data-top") && isNumber(scanArray[j][lsMap[k].impact])) {
-											if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
-												$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+											if (!lsMap[k].stack) {
+												if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
+													$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+											} else {
+												$(this).attr("data-top", $(this).attr("data-top")+scanArray[j][lsMap[k].impact]);
+												console.log(scanArray[j][lsMap[k].desc]+$(this).attr("data-top");
+											}
 										}
 									}
 									else {
@@ -843,6 +849,15 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+function getTop(btnclass,btnDesc) {
+	$(btnclas+" .btnDesc").each( function() {
+		var lsKey=$(this).text();
+		if (lsKey==btnDesc)
+			return parseInt(e.attr("data-top"));
+	}
+	return false;
+}
+
 function generateSummary() {
 /*generate squad summary*/
 	var sCost=0;
@@ -913,7 +928,10 @@ function generateSummary() {
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
 	/*spark summary*/
-	
+	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
+	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
+	var sparkUBB=["% Spark DMG+","% Spark DMG Debuff"];
+
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
