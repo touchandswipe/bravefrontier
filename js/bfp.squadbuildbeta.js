@@ -858,9 +858,9 @@ function getTop(btnclass,btnDesc) {
 			}
 			else
 				return 0
-		}
+		} else
+			return 0
 	});
-	return 0;
 }
 
 function generateSummary() {
@@ -939,16 +939,12 @@ function generateSummary() {
 	var sparkLSTotal=0;
 	var sparkBBTotal=0;
 	var sparkUBBTotal=0;
-	for (var i in sparkLS) {
-		sparkLSTotal=sparkLSTotal+getTop(".lsBtns",sparkLS[i]);
-		console.log("spark LS "+sparkLSTotal+" return value "+getTop(".lsBtns",sparkLS[i]));
-	}
-	for (var i in sparkBB) {
-		sparkBBTotal=sparkBBTotal+getTop(".bbBtns",sparkBB[i]);
-	}
-	for (var i in sparkLS) {
-		sparkUBBTotal=sparkUBBTotal+getTop(".ubbBtns",sparkUBB[i]);
-	}
+	for (var i in sparkLS)
+		sparkLSTotal+=getTop(".lsBtns",sparkLS[i]);
+	for (var i in sparkBB)
+		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
+	for (var i in sparkLS)
+		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
 	sparkHTML+="BB <b>"+sparkBBTotal+"%</b><br/>";
