@@ -852,7 +852,7 @@ function getTop(btnclass,btnDesc) {
 	$(btnclass+" .btnDesc").each( function() {
 		var lsKey=$(this).text();
 		if (lsKey==btnDesc) {
-			if ($(this).attr("data-top")){
+			if ($(this).parent(".btn-success").attr("data-top")){
 				console.log(parseInt($(this).attr("data-top")));
 				return parseInt($(this).attr("data-top"));
 			}
@@ -949,9 +949,9 @@ function generateSummary() {
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	}
 	var sparkHTML='<span class="text-success"><b>TOTAL '+sparkLSTotal+sparkBBTotal+sparkUBBTotal+'%</b></span><br/>';
-	sparkHTML="LS <b>"+sparkLSTotal+"%</b><br/>";
-	sparkHTML="BB <b>"+sparkBBTotal+"%</b><br/>";
-	sparkHTML="UBB <b>"+sparkUBBTotal+"%</b>";
+	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
+	sparkHTML+="BB <b>"+sparkBBTotal+"%</b><br/>";
+	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
