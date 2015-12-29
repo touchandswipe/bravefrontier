@@ -463,7 +463,7 @@ function scanSkills(classBtns,scanScope) {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
 											if (!isNaN(scanArray[j][bbMap[k].impact]))
-												$(this).attr("data-found",scanArray[j][bbMap[k].impact]);
+												$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
 										}
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
