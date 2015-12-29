@@ -220,9 +220,12 @@ function nestedChk(nestedStr,parentObj) {
 /*JP Onlu*/
 function JPOnlyRun() {
 	var outputHTML=[];
+	var starLimit=6;
 	for (var i in rawParseObj) {
-	    if (rawParseObj[i].name.indexOf("(")==-1)
-	        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" /><kbd class="fRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd></div>');
+		if (rawParseObj[i].rarity>=starLimit) {
+		    if (rawParseObj[i].name.indexOf("(")==-1)
+		        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" /><kbd class="fRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd></div>');
+		}
 	}
 	/*Joins array and replace HTML*/
 	$(rawTable).html(outputHTML.join(' '));
