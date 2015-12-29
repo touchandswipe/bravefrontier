@@ -459,8 +459,12 @@ function scanSkills(classBtns,scanScope) {
 												}
 											}
 										}
-										else
-											$(this).attr("data-found",selectUnit)
+										else {
+											$(this).attr("data-found",selectUnit);
+											/*build TOPval*/
+											if (!isNaN(scanArray[j][bbMap[k].impact]))
+												$(this).attr("data-found",scanArray[j][bbMap[k].impact]);
+										}
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
 											$(this).toggleClass("btn-default btn-success");
