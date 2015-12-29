@@ -950,8 +950,25 @@ function generateSummary() {
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
 	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
-	sparkHTML+="BB <b>"+sparkBBTotal+"%</b><br/>";
+	sparkHTML+="BB/SBB <b>"+sparkBBTotal+"%</b><br/>";
 	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
+	/*crit summary*/
+	var critLS=["% CRIT DMG+"];
+	var critBB=["% CRIT DMG+"];
+	var critUBB=["% CRIT DMG+"];
+	var critLSTotal=0;
+	var critBBTotal=0;
+	var critUBBTotal=0;
+	for (var i in critLS)
+		critLSTotal+=getTop(".lsBtns",critLS[i]);
+	for (var i in critBB)
+		critBBTotal+=getTop(".bbBtns",critBB[i]);
+	for (var i in critLS)
+		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
+	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br/>';
+	critHTML+="LS <b>"+critLSTotal+"%</b><br/>";
+	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br/>";
+	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -972,6 +989,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>MOD</b></h4><h6>'+sparkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>CRIT<br/>MOD</b></h4><h6>'+critHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
