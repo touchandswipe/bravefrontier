@@ -55,8 +55,7 @@ lsMap=[
  	{desc:"% Karma+ on Spark",impact:"karma drop% for spark"},
  	{desc:"% Zel+",impact:"zel drop rate% buff"},
  	{desc:"% Zel+ on Spark",impact:"zel drop% for spark"},
- 	{desc:"% Reduce DMG", impact:"dmg% mitigation"},
-	{desc:"% Reduce DMG by Chance", impact:"dmg reduction%", chance:"dmg reduction chance%"},
+	{desc:"% Reduce DMG", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
 	{desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
 	{desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
@@ -221,9 +220,12 @@ function nestedChk(nestedStr,parentObj) {
 /*JP Onlu*/
 function JPOnlyRun() {
 	var outputHTML=[];
+	var starLimit=6;
 	for (var i in rawParseObj) {
-	    if (rawParseObj[i].name.indexOf("(")==-1)
-	        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" /><kbd class="fRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd></div>');
+		if (rawParseObj[i].rarity>=starLimit) {
+		    if (rawParseObj[i].name.indexOf("(")==-1)
+		        outputHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[i].img+'" data-unitid="'+i+'" class="unitFound" title="ADD to Squad - '+rawParseObj[i].name+" "+rawParseObj[i].rarity+"*"+'" /><kbd class="fRarity">'+rawParseObj[i].rarity+'<i class="fa fa-star"></i></kbd></div>');
+		}
 	}
 	/*Joins array and replace HTML*/
 	$(rawTable).html(outputHTML.join(' '));
@@ -279,7 +281,6 @@ function searchNameRun() {
 	}
 }
 
-/*resets to base state*/
 function resetBtns(classBtns) {
 	$(classBtns).each( function() {
 		$(this).find(".badge").remove();
