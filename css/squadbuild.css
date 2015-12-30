@@ -1,6 +1,17 @@
     .btn-default[disabled] {
         cursor: help !important;
     }
+    .affix {
+        position: fixed;
+        padding: 10px 0 0 0;
+        width: 100%;
+        top: 50px;
+        background: #fff;
+        z-index: 990;
+        box-shadow:0 1px 3px #AAA;
+    }
+    /* margin: 0; */
+    box-shadow: 0 1px 5px #AAA;
     .unitBox {
       border:3px dotted #ddf;
       margin:10px auto;
