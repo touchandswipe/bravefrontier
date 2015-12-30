@@ -1252,21 +1252,27 @@ if (typeof mappedNames !== 'undefined') {
         else
         	unitObj.ls="none";
 	if (valObj["bb"]) {
-        	unitObj.bb=valObj["bb"]["levels"][9];
-        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
-        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+		if (valObj[bb][levels][9]) {
+	        	unitObj.bb=valObj["bb"]["levels"][9];
+	        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
+	        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+		}
 	}
         else
         	unitObj.bb="none";
 	if (valObj["sbb"]) {
-        	unitObj.sbb=valObj["sbb"]["levels"][9];
-        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
-        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+		if (valObj["sbb"]["levels"][9]) {
+	        	unitObj.sbb=valObj["sbb"]["levels"][9];
+	        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
+	        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+		}
 	}
         else
         	unitObj.sbb="none";
-        if (valObj["ubb"])
-        	unitObj.ubb=valObj["ubb"]["levels"][9];
+        if (valObj["ubb"]) {
+        	if (valObj["ubb"]["levels"][9])
+        		unitObj.ubb=valObj["ubb"]["levels"][9];
+        }
         else
         	unitObj.ubb="none";
         if (valObj["extra skill"])
