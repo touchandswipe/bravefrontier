@@ -10,8 +10,6 @@
         z-index: 990;
         box-shadow:0 1px 3px #AAA;
     }
-    /* margin: 0; */
-    box-shadow: 0 1px 5px #AAA;
     .unitBox {
       border:3px dotted #ddf;
       margin:10px auto;
