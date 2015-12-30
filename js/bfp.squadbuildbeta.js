@@ -1125,7 +1125,6 @@ $(document).on("click", '#trashBtn', function(e){
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
 	refreshALL();
-	window.scrollTo(0,0);
 })
 
 /*clearSquad*/
@@ -1135,6 +1134,7 @@ $(document).on("click", '#clearSquad', function(e){
 		$(this).html(trashStr);
 	})
 	refreshALL();
+	window.scrollTo(0,0);
 })
 
 /*SearchModal Trigger*/
