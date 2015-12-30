@@ -1059,7 +1059,7 @@ $('.unitBox').on('shown.bs.popover', function () {
     var $pop = $(this);
     setTimeout(function () {
         $pop.popover('hide');
-    }, 1500);
+    }, 1000);
 });
 
 /*Drag Activate*/
