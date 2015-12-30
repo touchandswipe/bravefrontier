@@ -51,10 +51,12 @@ if (window.location.hash == '#_=_') {
 <div class="text-center container-fluid">
 <h2>Squad Builder R3 - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
-<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
-<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
-<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
-<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+<div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
+	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
+	<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
+	<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
+	<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+</div>
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
 	<div class="text-center" style="margin-bottom:5px;">
@@ -160,9 +162,9 @@ if (window.location.hash == '#_=_') {
     <div class="modal-content">
       <div class="modal-body">
 	<div class="text-center">
-	    <h3 class="text-primary"><b>Finding Koalas</b></h3>
+	    <h3 class="text-primary"><b>Syncing data</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
-	    <h4 class="text-primary">A moment please ...</h4>
+	    <h4 class="text-primary">This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future. Thank you for your patience.</h4>
 	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
 	</div>
       </div>
