@@ -1252,7 +1252,7 @@ if (typeof mappedNames !== 'undefined') {
         else
         	unitObj.ls="none";
 	if (valObj["bb"]) {
-		if (valObj[bb][levels][9]) {
+		if (valObj["bb"]["levels"][9]) {
 	        	unitObj.bb=valObj["bb"]["levels"][9];
 	        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 	        	unitObj.bbdc=valObj["bb"]["max bc generated"];
