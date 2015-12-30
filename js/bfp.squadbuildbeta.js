@@ -1101,6 +1101,7 @@ $(document).on("click", '#moveInactive', function(e){
 		if (!$(this).hasClass("btn-success"))
 			$(this).parent("div").appendTo("#inactiveSpace")
 	})
+	window.scrollTo(0,0);
 })
 
 /*Reset buttons*/
@@ -1115,6 +1116,7 @@ $(document).on("click", '#resetInactive', function(e){
 	$(".ubbBtns").each( function() {
 		$(this).parent("div").appendTo("#ubbSpace")
 	})
+	window.scrollTo(0,0);
 })
 
 /*Trash Unit*/
@@ -1123,6 +1125,7 @@ $(document).on("click", '#trashBtn', function(e){
 	$(unitProcessing).html(trashStr);
 	$('#searchModal').modal('hide');
 	refreshALL();
+	window.scrollTo(0,0);
 })
 
 /*clearSquad*/
