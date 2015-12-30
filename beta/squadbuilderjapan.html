@@ -51,10 +51,12 @@ if (window.location.hash == '#_=_') {
 <div class="text-center container-fluid">
 <h2>Squad Builder R3 - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
-<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
-<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
-<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
-<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+<div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
+	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
+	<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
+	<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
+	<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+</div>
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
 	<div class="text-center" style="margin-bottom:5px;">
