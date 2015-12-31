@@ -107,19 +107,19 @@ countVar=0; /*reset count*/
                 	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey+"</span></div>";
                 	lsSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj["leader skill"][lsKey]+'</div></div>';
             	} else if (lsKey=="effects") {
+            		var effCount=0;
             		for (j in valObj["leader skill"].effects) {
-            			var effCount=0;
             			effCount+=1;
             			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 be"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
             				if (lsKey2!="passive id") {
-	            				if (lsVal2 !== null && typeof lsVal2 === 'object') {
+	            				if (lsVal2.constructor === Object) {
 	            					$.each(lsVal2, function(lowKey,lowVal) {
-	            						lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lowKey+"</span></div>";
+	            						lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ls">'+lowKey+"</span></div>";
 			                			lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
 	            					})
 	            				} else {
-			            			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey2+"</span></div>";
+			            			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ls">'+lsKey2+"</span></div>";
 			                		lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lsVal2+'</div></div>';
 	            				}
             				}
@@ -131,7 +131,7 @@ countVar=0; /*reset count*/
 
         /*Checks BB*/
         if (valObj["bb"]) {
-            bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-success"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
+            bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
             if (valObj["bb"]["hit dmg% distribution"]) {
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["hits"]+' hits distributed as '+valObj['bb']["hit dmg% distribution"].join('% ')+'%</div></div>';
             }
@@ -139,32 +139,34 @@ countVar=0; /*reset count*/
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["bb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / BB hit:</b>&nbsp;'+(parseInt(valObj["bb"]["max bc generated"])/parseInt(valObj.bb.hits))+'</div></div>';
             }
             /*BB Heading*/
-            bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div>';
+            bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd bg-info">Tech Bits</div>';
             for (i=0;i<10;i++) {
-                    bbSTR+='<div class="col-xs-1 col-md-1 bd">Lv '+(i+1)+'</div>';
+                    bbSTR+='<div class="col-xs-1 col-md-1 bd bg-info">Lv '+(i+1)+'</div>';
                 }
             bbSTR+="</div>";
             if (valObj.bb.levels) {
             $.each(valObj.bb.levels[0], function(bbKey,bbVal) {
                 if (bbKey!="effects") {
-                    bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey+'</span></div>';
-                    if (valObj.bb.levels[0][bbKey]==valObj.bb.levels[9][bbKey])
-                    	bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9][bbKey]+'</div>';
+                    bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="bb">'+bbKey+'</span></div>';
+                    if (String(valObj.bb.levels[0][bbKey])==String(valObj.bb.levels[9][bbKey]))
+                    	bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9][bbKey]+'</div>';
                     else
 	                    for (i=0;i<10;i++) {
 	                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[i][bbKey]+'</div>'
 	                    }
                     bbSTR+="</div>";
                 } else if (bbKey=="effects") {
+                	var effCount=0;
                 	for (j in valObj.bb.levels[0].effects) {
-                		bbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"></div></div>';
+                		effCount+=1;
+            			bbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 be"><small>Effect [Proc ID: '+valObj.bb.levels[0]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
                 		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
                 			if (bbVal2) {
 	                			if (bbVal2.constructor === Object) {
 	                				$.each(valObj.bb.levels[0].effects[j][bbKey2], function(bbKey3,bbVal3) {
-		                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
+		                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
 		                				if (valObj.bb.levels[0].effects[j][bbKey2][bbKey3]==valObj.bb.levels[9].effects[j][bbKey2][bbKey3])
-		                					bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9].effects[j][bbKey2][bbKey3]+'</div>';
+		                					bbSTR+='<div class="col-xs-10 col-md-10 bi"">'+valObj.bb.levels[9].effects[j][bbKey2][bbKey3]+'</div>';
 		                				else
 									for (k=0;k<10;k++) {
 						                        	bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2][bbKey3]+'</div>'
@@ -173,9 +175,9 @@ countVar=0; /*reset count*/
 	                				})
 	                			}
 	                			else {
-							bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="bb">'+bbKey2+'</span></div>';
+							bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="bb">'+bbKey2+'</span></div>';
 							if (valObj.bb.levels[0].effects[j][bbKey2]==valObj.bb.levels[9].effects[j][bbKey2])
-								bbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
+								bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
 							else
 					                    for (k=0;k<10;k++) {
 					                        bbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.bb.levels[k].effects[j][bbKey2]+'</div>'
