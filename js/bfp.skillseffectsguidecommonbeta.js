@@ -104,7 +104,7 @@ countVar=0; /*reset count*/
             lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd bg-info">Tech Bits</div><div class="col-xs-10 col-md-10 bd bg-info">Value</div></div>';
             $.each(valObj["leader skill"], function(lsKey,lsVal) {
             	if ((lsKey!="effects") && (lsKey!="name") && (lsKey!="desc")) {
-                	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey+"</span></div>";
+                	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ls">'+lsKey+"</span></div>";
                 	lsSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj["leader skill"][lsKey]+'</div></div>';
             	} else if (lsKey=="effects") {
             		var effCount=0;
