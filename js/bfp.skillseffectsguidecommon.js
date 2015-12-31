@@ -198,7 +198,6 @@ function searchNameRun() {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
 	        outputObj.push(rawParseObj[i]);
-	    }
 	}
 	/*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
