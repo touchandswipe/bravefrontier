@@ -336,7 +336,10 @@ countVar=0; /*reset count*/
             		var effCount=0;
             		for (j in valObj["extra skill"].effects) {
             			effCount+=1;
-                		exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Passive ID: '+valObj["extra skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
+            			if (valObj["extra skill"].effects[j].hasOwnProperty("passive id"))
+                			exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Passive ID: '+valObj["extra skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
+                		if (valObj["extra skill"].effects[j].hasOwnProperty("proc id"))
+                			exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Proc ID: '+valObj["extra skill"]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
             				if (exKey2!="passive id") {
 	            				if (exKey2=="triggered effect") {
