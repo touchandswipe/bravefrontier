@@ -110,7 +110,7 @@ countVar=0; /*reset count*/
             		for (j in valObj["leader skill"].effects) {
             			var effCount=0;
             			effCount+=1;
-            			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
+            			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 be"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
             				if (lsKey2!="passive id") {
 	            				if (lsVal2 !== null && typeof lsVal2 === 'object') {
