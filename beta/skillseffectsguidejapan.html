@@ -97,7 +97,7 @@ if (window.location.hash == '#_=_') {
 <div class="row" style="margin-bottom:5px;" id="btnMenu" data-spy="affix" data-offset-top="100">
 	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 	<!-- Leader Skills button -->
-	<div class="btn-group btn-group-sm">
+	<div class="btn-group btn-group-xs">
 	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
@@ -114,7 +114,7 @@ if (window.location.hash == '#_=_') {
 	  </ul>
 	</div>
 	<!-- BB Skills button -->
-	<div class="btn-group btn-group-sm">
+	<div class="btn-group btn-group-xs">
 	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
@@ -133,7 +133,7 @@ if (window.location.hash == '#_=_') {
 	  </ul>
 	</div>
 	<!-- SBB Skills button -->
-	<div class="btn-group btn-group-sm">
+	<div class="btn-group btn-group-xs">
 	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
@@ -152,7 +152,7 @@ if (window.location.hash == '#_=_') {
 	  </ul>
 	</div>
 	<!-- Rarity Filter -->
-	<div class="btn-group btn-group-sm">
+	<div class="btn-group btn-group-xs">
 	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
@@ -169,6 +169,7 @@ if (window.location.hash == '#_=_') {
 
 <div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-2145833818900192"
@@ -180,7 +181,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!--Search-->
-<div class="input-group" style="margin-bottom:5px;">
+<div class="input-group" style="margin-bottom:10px;">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
         <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
@@ -193,8 +194,11 @@ if (window.location.hash == '#_=_') {
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-<div class="text-center" style="margin-bottom:5px;">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
+</div>
+
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data-mined by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
+<div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -205,11 +209,6 @@ if (window.location.hash == '#_=_') {
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
-</div>
-
-<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data-mined by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
-
 <div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
@@ -298,11 +297,11 @@ function rarityRun(select) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_RarityFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide JP Rarity Filter'
+  		'page': '/vurl/skillsguide_RarityFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide Rarity Filter'
 	});
 }
 
@@ -326,11 +325,11 @@ function lsRun(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_LSFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide JP LS Filter'
+  		'page': '/vurl/skillsguide_LSFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide LS Filter'
 	});
 }
 
@@ -354,11 +353,11 @@ function skillRun2(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_SBBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide JP SBB Filter'
+  		'page': '/vurl/skillsguide_SBBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide SBB Filter'
 	});
 }
 
@@ -382,11 +381,11 @@ function skillRun(selectSkill) {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_BBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide JP BB Filter'
+  		'page': '/vurl/skillsguide_BBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide BB Filter'
 	});
 }
 
@@ -405,15 +404,15 @@ function searchIdRun() {
 	    }
 	}
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIdFilter: sVal };
-    history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
+    	history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
     }
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_Search_ID',
-  		'title': 'Brave Frontier PROs - Skills Guide JP Search ID'
+  		'page': '/vurl/skillsguide_Search_ID',
+  		'title': 'Brave Frontier PROs - Skills Guide Search ID'
 	});
 }
 
@@ -440,15 +439,15 @@ function searchNameRun() {
         outputHTML.push(outputObj[i].collapseCode)
     }
 	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
     history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideJP_Search_Name',
-  		'title': 'Brave Frontier PROs - Skills Guide JP Search Name'
+  		'page': '/vurl/skillsguide_Search_Name',
+  		'title': 'Brave Frontier PROs - Skills Guide Search Name'
 	});
 }
 
