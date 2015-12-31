@@ -112,14 +112,16 @@ countVar=0; /*reset count*/
             			effCount+=1;
             			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
-            				if (lsVal2 !== null && typeof lsVal2 === 'object') {
-            					$.each(lsVal2, function(lowKey,lowVal) {
-            						lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lowKey+"</span></div>";
-		                			lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
-            					})
-            				} else {
-		            			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey2+"</span></div>";
-		                		lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lsVal2+'</div></div>';
+            				if (lsKey2!="passive id") {
+	            				if (lsVal2 !== null && typeof lsVal2 === 'object') {
+	            					$.each(lsVal2, function(lowKey,lowVal) {
+	            						lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lowKey+"</span></div>";
+			                			lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
+	            					})
+	            				} else {
+			            			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey2+"</span></div>";
+			                		lsSTR+='<div class="col-xs-10 col-md-10 bi">'+lsVal2+'</div></div>';
+	            				}
             				}
             			})
             		}
