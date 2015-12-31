@@ -87,7 +87,7 @@ countVar=0; /*reset count*/
         } else statsSTR='';
         /*Normal DMG % Distribution*/
         if (valObj["hit dmg% distribution"]) {
-            dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-warning"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
+            dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
             dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["hits"]+' hits distributed as '+valObj["hit dmg% distribution"].join('% ')+'%</div></div>';
             /*Max BC Generated*/
             if (valObj["max bc generated"]) {
@@ -99,9 +99,9 @@ countVar=0; /*reset count*/
         }
         /*Checks LS*/
         if (valObj["leader skill"]) {
-            lsSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Leader Skill:</b> ['+valObj["leader skill"].name+'] '+valObj["leader skill"].desc+'</h5></div></div>';
+            lsSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Leader Skill:</b> ['+valObj["leader skill"].name+'] '+valObj["leader skill"].desc+'</h5></div></div>';
             /*ls Heading*/
-            lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd">Value</div></div>';
+            lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd bg-info">Value</div></div>';
             $.each(valObj["leader skill"], function(lsKey,lsVal) {
             	if ((lsKey!="effects") && (lsKey!="name") && (lsKey!="desc")) {
                 	lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lsKey+"</span></div>";
@@ -109,9 +109,9 @@ countVar=0; /*reset count*/
             	} else if (lsKey=="effects") {
             		for (j in valObj["leader skill"].effects) {
             			var effCount=0;
+            			effCount+=1;
+            			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"><small>Effect ['+valObj["passive id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
-            				effCount+=1;
-            				lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bd"><small>Effect ['+valObj["passive id"]+'] No.'+effCount+'</small></div></div>';
             				if (lsVal2 !== null && typeof lsVal2 === 'object') {
             					$.each(lsVal2, function(lowKey,lowVal) {
             						lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ls">'+lowKey+"</span></div>";
