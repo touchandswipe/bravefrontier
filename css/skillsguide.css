@@ -1,0 +1,46 @@
+.clear {clear:both;}
+    .btnMenu {padding:10px 0 5px;}
+    .affix {
+        position: fixed;
+        padding: 10px 0 0 0;
+        width: 100%;
+        top: 50px;
+        background: #fff;
+        z-index: 990;
+        box-shadow:0 1px 3px #AAA;
+    }
+    .bd {
+        font-weight:bold;
+        text-transform:uppercase;
+        border:1px solid #CCCCCC;
+        padding:3px;
+        word-wrap: break-word;
+	text-align:left;
+    }
+    .be {
+    	background:#EEF;
+    	font-weight:bold;
+        border:1px solid #CCCCCC;
+        padding:3px;
+        justify-content:center;
+    }
+    .bi {
+        border:1px solid #CCCCCC;
+        padding:3px;
+        word-wrap: break-word;
+        justify-content:center;
+    }
+    .upper {
+        text-transform:uppercase;
+    }
+    .equal, .equal > div[class*='col-'] {  
+	    display: -webkit-flex;
+	    display: flex;
+	    flex:1 1 auto;
+    }
+    .btn {
+    	margin-bottom:5px;
+    }
+    body {
+    	font-size:10px;
+    }
