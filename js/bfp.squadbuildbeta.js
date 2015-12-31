@@ -1238,7 +1238,7 @@ if (typeof mappedNames !== 'undefined') {
         if (mapJPnames) {
         	strName=String(unitKey);
         	if (mappedNames.hasOwnProperty(strName))
-        		unitObj.name=mappedNames[strName];
+        		unitObj.name=mappedNames[strName]+" ("+valObj.name+")";
         	else
         		unitObj.name=valObj.name;
         } else
