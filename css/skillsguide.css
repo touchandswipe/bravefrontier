@@ -2,7 +2,7 @@
     .btnMenu {padding:10px 0 5px;}
     .affix {
         position: fixed;
-        padding: 10px 0 0 0;
+        padding: 10px 0 5px;
         width: 100%;
         top: 50px;
         background: #fff;
