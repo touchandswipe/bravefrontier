@@ -230,7 +230,7 @@ if (typeof mappedNames !== 'undefined') {
         if (mapJPnames) {
         	var strName=String(unitKey);
         	if (mappedNames.hasOwnProperty(strName))
-        		var unitName=mappedNames[strName];
+        		var unitName=mappedNames[strName]+" ("+valObj.name+")";
         	else
         		var unitName=valObj.name;
         } else
