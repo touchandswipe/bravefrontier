@@ -225,9 +225,9 @@ countVar=0; /*reset count*/
         nameSTR+='<div class="row"><div class="col-xs-12 col-sm-12"><img src="'+imgPrePath+'unit/img/unit_ills_full_'+valObj.id+'.png" width="450"></div></div>';
 	/*Stats Bits*/
         if (valObj.stats) {
-            statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>RAW Stats / Types and Variation</b></h5></div></div>';
-            statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>Type</b></div>';
-            statsSTR+='<div class="col-xs-2 col-sm-2 bd"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd"><b>REC</b></div><div class="col-xs-2 col-sm-2 bd"></div>';
+            statsSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Stats / Types and Variation</b></h5></div></div>';
+            statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd bg-info"><b>Type</b></div>';
+            statsSTR+='<div class="col-xs-2 col-sm-2 bd bg-info"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>REC</b></div><div class="col-xs-2 col-sm-2 bd"></div>';
             statsSTR+='</div>';
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
@@ -553,12 +553,12 @@ countVar=0; /*reset count*/
 		/*AI Heading*/
 		var aiCol=valObj['ai'].length;
 		aiSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>ARENA AI</b> [Action Probability & Triggers]</h5></div></div>';
-            	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2">Tech Bits</div>';
+            	aiSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div>';
 		for (i=0;i<aiCol;i++) {
-			aiSTR+='<div class="bd col-xs-2 col-md-2">Action '+(i+1)+'</div>';
+			aiSTR+='<div class="bd col-xs-2 col-md-2 bg-info">Action '+(i+1)+'</div>';
 		}
 		for (i=1;i<=5-aiCol;i++) {
-			aiSTR+='<div class="bd col-xs-2 col-md-2"></div>';
+			aiSTR+='<div class="bd col-xs-2 col-md-2 bg-info"></div>';
 		}
             	aiSTR+="</div>";
         	/*AI*/
