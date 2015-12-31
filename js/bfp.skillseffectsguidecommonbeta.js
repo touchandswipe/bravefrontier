@@ -38,6 +38,184 @@ function urlParam(name){
     }
 }
 
+/*Rarity Filter*/
+function rarityRun(select) {
+    var sVal=select;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for matching skill across LS*/
+	    if ( rawParseObj[i]['rarity']==sVal) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort by Name*/
+	outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+	});
+    /*Build HTML Array*/
+    for (i in outputObj) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_RarityFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide Rarity Filter'
+	});
+}
+
+/*Skill Filter Search*/
+function lsRun(selectSkill) {
+    var sVal=selectSkill;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*searches for matching skill across LS*/
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        return parseInt(b.rarity)-parseInt(a.rarity);
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_LSFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide LS Filter'
+	});
+}
+
+/*Skill SBB Filter Search*/
+function skillRun2(selectSkill) {
+    var sVal=selectSkill;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*searches for matching skill across BB / SBB*/
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        return parseInt(b.rarity)-parseInt(a.rarity);
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_SBBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide SBB Filter'
+	});
+}
+
+/*Skill BB Filter Search*/
+function skillRun(selectSkill) {
+    var sVal=selectSkill;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*searches for matching skill across BB / SBB*/
+	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        return parseInt(b.rarity)-parseInt(a.rarity);
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_BBFilter',
+  		'title': 'Brave Frontier PROs - Skills Guide BB Filter'
+	});
+}
+
+/*Search by Unit ID*/
+function searchIdRun() {
+    var sVal=$('#searchIdBox').val();
+    if (sVal.length <1) {
+        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
+    } else {
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*compares lowercase string*/
+	    if ( rawParseObj[i]['id']==sVal) {
+	        outputHTML.push(rawParseObj[i]['collapseCode']);
+	        break;
+	    }
+	}
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*pushstate update*/
+	var state = { stateIdFilter: sVal };
+    	history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
+    }
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_Search_ID',
+  		'title': 'Brave Frontier PROs - Skills Guide Search ID'
+	});
+}
+
+/*Search by Unit Name*/
+function searchNameRun() {
+    var sVal=$('#searchNameBox').val();
+    var outputObj=[];
+	var outputHTML=[];
+	if (sVal.length <2) {
+        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
+    } else {
+	for (i=0;i<rawParseObj.length;i++) {
+	    /*compares lowercase string*/
+	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        return parseInt(b.rarity)-parseInt(a.rarity);
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*pushstate update*/
+	var state = { stateNameFilter: sVal };
+    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+    }
+    	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/skillsguide_Search_Name',
+  		'title': 'Brave Frontier PROs - Skills Guide Search Name'
+	});
+}
+
 /*Build DATABASE IN MEMORY*/
 function buildDB(unit) {
 countVar=0; /*reset count*/
