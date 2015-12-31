@@ -183,7 +183,7 @@ function searchIdRun() {
 
 /*Search by Unit Name*/
 function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
+    var sVal=escapeRegExp($('#searchNameBox').val()).toLowerCase();
     var outputObj=[];
 	var outputHTML=[];
 	if (sVal.length <2) {
@@ -191,7 +191,7 @@ function searchNameRun() {
     } else {
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
+	    if ( rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
 	        outputObj.push(rawParseObj[i]);
 	    }
 	}
@@ -630,6 +630,11 @@ if (typeof mappedNames !== 'undefined') {
         searchNameRun();
     }
 }
+
+/*execute typeahead on selection*/
+$('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
+	searchNameRun()
+});
 
 /*execute typeahead on selection*/
 $('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
