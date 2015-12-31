@@ -263,7 +263,7 @@ countVar=0; /*reset count*/
         
 	/*Checks UBB*/
         if (valObj["ubb"]) {
-            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
+            ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
             if (valObj["ubb"]["hit dmg% distribution"]) {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["hits"]+' hits distributed as '+valObj["ubb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
             }
@@ -328,7 +328,7 @@ countVar=0; /*reset count*/
         
 	/*Checks Extra Skill*/
         if (valObj["extra skill"]) {
-            exSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-danger text-danger"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Extra/Passive Skill: </b>['+valObj["extra skill"]["name"]+'] '+valObj["extra skill"]["desc"]+'</h5></div></div>';
+            exSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Extra/Passive Skill: </b>['+valObj["extra skill"]["name"]+'] '+valObj["extra skill"]["desc"]+'</h5></div></div>';
             /*xtra Heading*/
             exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd">Value</div></div>';
             $.each(valObj["extra skill"], function(exKey,exVal) {
@@ -338,8 +338,6 @@ countVar=0; /*reset count*/
             			effCount+=1;
             			if (valObj["extra skill"].effects[j].hasOwnProperty("passive id"))
                 			exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Passive ID: '+valObj["extra skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
-                		if (valObj["extra skill"].effects[j].hasOwnProperty("proc id"))
-                			exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Proc ID: '+valObj["extra skill"]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
             				if (exKey2!="passive id") {
 	            				if (exKey2=="triggered effect") {
