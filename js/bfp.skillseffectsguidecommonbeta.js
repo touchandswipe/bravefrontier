@@ -166,7 +166,7 @@ countVar=0; /*reset count*/
 		                			if (bbVal2.constructor === Object) {
 		                				$.each(valObj.bb.levels[0].effects[j][bbKey2], function(bbKey3,bbVal3) {
 			                				bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="bb">'+bbKey2+' ('+bbKey3+')</span></div>';
-			                				if (valObj.bb.levels[0].effects[j][bbKey2][bbKey3]==valObj.bb.levels[9].effects[j][bbKey2][bbKey3])
+			                				if (String(valObj.bb.levels[0].effects[j][bbKey2][bbKey3])==String(valObj.bb.levels[9].effects[j][bbKey2][bbKey3]))
 			                					bbSTR+='<div class="col-xs-10 col-md-10 bi"">'+valObj.bb.levels[9].effects[j][bbKey2][bbKey3]+'</div>';
 			                				else
 										for (k=0;k<10;k++) {
@@ -177,7 +177,7 @@ countVar=0; /*reset count*/
 		                			}
 		                			else {
 								bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="bb">'+bbKey2+'</span></div>';
-								if (valObj.bb.levels[0].effects[j][bbKey2]==valObj.bb.levels[9].effects[j][bbKey2])
+								if (String(valObj.bb.levels[0].effects[j][bbKey2])==String(valObj.bb.levels[9].effects[j][bbKey2]))
 									bbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.bb.levels[9].effects[j][bbKey2]+'</div>';
 								else
 						                    for (k=0;k<10;k++) {
@@ -233,7 +233,7 @@ countVar=0; /*reset count*/
 		                			if (sbbVal2.constructor === Object) {
 		                				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
 			                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
-			                				if (valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3]==valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3])
+			                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3])==String(valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3]))
 			                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9].effects[j][sbbKey2][sbbKey3]+'</div>';
 			                				else
 										for (k=0;k<10;k++) {
@@ -244,7 +244,7 @@ countVar=0; /*reset count*/
 		                			}
 		                			else {
 		                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey2+'</span></div>';
-		                				if (valObj.sbb.levels[0].effects[j][sbbKey2]==valObj.sbb.levels[9].effects[j][sbbKey2])
+		                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2])==String(valObj.sbb.levels[9].effects[j][sbbKey2]))
 		                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9].effects[j][sbbKey2]+'</div>';
 		                				else
 									for (k=0;k<10;k++) {
@@ -298,7 +298,7 @@ countVar=0; /*reset count*/
 		                			if (ubbVal2.constructor === Object) {
 		                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
 			                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
-			                				if (valObj.ubb.levels[0].effects[j][ubbKey2][ubbKey3]==valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3])
+			                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2][ubbKey3])==String(valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]))
 			                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]+'</div>';
 			                				else
 										for (k=0;k<10;k++) {
@@ -309,7 +309,7 @@ countVar=0; /*reset count*/
 		                			}
 		                			else {
 		                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+'</span></div>';
-		                				if (valObj.ubb.levels[0].effects[j][ubbKey2]==valObj.ubb.levels[9].effects[j][ubbKey2])
+		                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2])==String(valObj.ubb.levels[9].effects[j][ubbKey2]))
 		                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2]+'</div>'
 		                				else
 									for (k=0;k<10;k++) {
@@ -341,7 +341,7 @@ countVar=0; /*reset count*/
 	            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
 	                					exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
 	            					})
-                			} else if (exVal2 !== null && typeof exVal2 === 'object') {
+                			} else if (exVal2.constructor===Object) {
             					$.each(exVal2, function(lowKey,lowVal) {
             						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
 							exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
