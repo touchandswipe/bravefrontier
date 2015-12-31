@@ -181,6 +181,11 @@ function searchIdRun() {
 	});
 }
 
+/*Escape regex string*/
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
 /*Search by Unit Name*/
 function searchNameRun() {
     var sVal=escapeRegExp($('#searchNameBox').val()).toLowerCase();
