@@ -3,50 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Global (Ultima R3)  - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Global RxA  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Unit Skills and Effects Guide Global (Ultima R3) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Unit Skills and Effects Guide Global RxA - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-<style type="text/css">
-    .clear {clear:both;}
-    .bd {
-        font-weight:bold;
-        background:#EEEEEE;
-        text-transform:uppercase;
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .bi {
-        border:1px solid #CCCCCC;
-        padding:3px;
-        word-wrap: break-word;
-    }
-    .upper {
-        text-transform:uppercase;
-    }
-    .equal, .equal > div[class*='col-'] {  
-	    display: -webkit-flex;
-	    display: flex;
-	    flex:1 1 auto;
-    }
-    .btn {
-    	margin-bottom:5px;
-    }
-</style>
+    <link href="//touchandswipe.github.io/bravefrontier/css/skillsguide.css" rel="stylesheet">
 <!-- START JSON Code-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -69,85 +42,99 @@ if (window.location.hash == '#_=_') {
 <body>
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
-<div class="container-fluid" style="margin:0px;padding:5px;">
-<h3 style="margin-top:0;">Skills & Effects Guide - <span class="text-danger">Global</span> Server</h3>
-<h6><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+<div class="container-fluid text-center">
+<h2>Skills & Effects Guide - <span class="text-danger">Global</span> Server</h2>
+<h6><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
 <!-- Buttons row -->
-<div style="margin-bottom:5px;">
-<!-- Leader Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
-    <li><a href="#" class="lsEffect">bc fill per turn</a></li>
-    <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
-    <li><a href="#" class="lsEffect">hc production%</a></li>
-    <li><a href="#" class="lsEffect">hc effectiveness%</a></li>
-    <li><a href="#" class="lsEffect">damage% for spark</a></li>
-    <li><a href="#" class="lsEffect">dmg% for crits</a></li>
-    <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
-    <li><a href="#" class="lsEffect">turn heal</a></li>
-  </ul>
-</div>
-<!-- BB Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="skillEffect">atk% buff</a></li>
-    <li><a href="#" class="skillEffect">def% buff</a></li>
-    <li><a href="#" class="skillEffect">rec% buff</a></li>
-    <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
-    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">bb bc%</a></li>
-    <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
-    <li><a href="#" class="skillEffect">heal</a></li>
-    <li><a href="#" class="skillEffect">gradual heal</a></li>
-  </ul>
-</div>
-<!-- SBB Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="skillEffect2">atk% buff</a></li>
-    <li><a href="#" class="skillEffect2">def% buff</a></li>
-    <li><a href="#" class="skillEffect2">rec% buff</a></li>
-    <li><a href="#" class="skillEffect2">crit% buff</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
-    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect2">bb bc%</a></li>
-    <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
-    <li><a href="#" class="skillEffect2">heal</a></li>
-    <li><a href="#" class="skillEffect2">gradual heal</a></li>
-  </ul>
-</div>
-<!-- Rarity Filter -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">2<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">3<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">4<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">5<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">7<i class="fa fa-star-o"></i></a></li>
-  </ul>
-</div>
+<div class="row" style="margin-bottom:5px;" id="btnMenu" data-spy="affix" data-offset-top="100">
+	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+	<!-- Leader Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
+	    <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">bc fill per turn</a></li>
+	    <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">hc production%</a></li>
+	    <li><a href="#" class="lsEffect">hc effectiveness%</a></li>
+	    <li><a href="#" class="lsEffect">damage% for spark</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for crits</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
+	    <li><a href="#" class="lsEffect">turn heal</a></li>
+	  </ul>
+	</div>
+	<!-- BB Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect">def% buff</a></li>
+	    <li><a href="#" class="skillEffect">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect">heal</a></li>
+	    <li><a href="#" class="skillEffect">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- SBB Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect2">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect2">def% buff</a></li>
+	    <li><a href="#" class="skillEffect2">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect2">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect2">heal</a></li>
+	    <li><a href="#" class="skillEffect2">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- Rarity Filter -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">2<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">3<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">4<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">5<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">7<i class="fa fa-star-o"></i></a></li>
+	  </ul>
+	</div>
 </div> <!-- End button row -->
 
+<div class="text-center" style="margin:10px 0;">
+<!-- NEWResponsiveBlog -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
 <!--Search-->
-<div class="input-group" style="margin-bottom:5px;">
+<div class="input-group" style="margin-bottom:10px;">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
         <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
@@ -155,34 +142,16 @@ if (window.location.hash == '#_=_') {
 <div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
-        <input type="search" placeholder="e.g. luther" class="form-control" id="searchNameBox">
+        <input type="search" placeholder="e.g. vishra" class="form-control" id="searchNameBox">
 </div>
 
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
-<div class="text-center" style="margin-bottom:5px;">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- NEWResponsiveBlog -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="1729026867"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
     <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
 </div>
 
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
-<i class="fa fa-exclamation-circle"></i> ALL types of Buff % indicated are incremental.<br/>
-<i class="fa fa-exclamation-circle"></i> CRIT has a hard cap at 70% and all units have 10% base CRIT. Credit to <a href="http://www.reddit.com/user/_nnng_" target="_blank">_nnng_</a> on <a href="http://www.reddit.com/r/bravefrontier/comments/2fbssl/about_base_crit_and_crit_spheres/" target="_blank">reddit</a>.<br/>
-</div>
-
-<div class="text-center" style="margin-bottom:2px;">
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data-mined by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
+<div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -193,7 +162,7 @@ if (window.location.hash == '#_=_') {
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-<div class="text-center">
+<div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -222,7 +191,7 @@ if (window.location.hash == '#_=_') {
 </div> <!-- /container -->
 <div id="bfp_foot"></div>
 <!-- Modal for Progress-->
-<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -238,7 +207,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Alert Modal -->
-<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
@@ -252,196 +221,15 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommon.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommonbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
 imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
 
-/*Rarity Filter*/
-function rarityRun(select) {
-    var sVal=select;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i in rawParseObj) {
-	    /*searches for matching skill across LS*/
-	    if ( rawParseObj[i]['rarity']==sVal) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort by Name*/
-	outputObj=outputObj.sort(function(a,b) {
-        if (a.name < b.name)
-            return -1;
-        if (a.name > b.name)
-            return 1;
-        return 0;
-	});
-    /*Build HTML Array*/
-    for (i in outputObj) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_RarityFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL Rarity Filter'
-	});
-}
-
-/*Skill Filter Search*/
-function lsRun(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across LS*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="ls">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_LSFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL LS Filter'
-	});
-}
-
-/*Skill SBB Filter Search*/
-function skillRun2(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="sbb">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_SBBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL SBB Filter'
-	});
-}
-
-/*Skill BB Filter Search*/
-function skillRun(selectSkill) {
-    var sVal=selectSkill;
-    var outputObj=[];
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*searches for matching skill across BB / SBB*/
-	    if ( rawParseObj[i]['collapseCode'].search('<span class="bb">'+sVal) != -1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_BBFilter',
-  		'title': 'Brave Frontier PROs - Skills Guide GL BB Filter'
-	});
-}
-
-/*Search by Unit ID*/
-function searchIdRun() {
-    var sVal=$('#searchIdBox').val();
-    if (sVal.length <1) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
-    } else {
-	var outputHTML=[];
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['id']==sVal) {
-	        outputHTML.push(rawParseObj[i]['collapseCode']);
-	        break;
-	    }
-	}
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*pushstate update*/
-	var state = { stateIdFilter: sVal };
-    history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
-    }
-	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_Search_ID',
-  		'title': 'Brave Frontier PROs - Skills Guide GL Search ID'
-	});
-}
-
-/*Search by Unit Name*/
-function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
-    var outputObj=[];
-	var outputHTML=[];
-	if (sVal.length <2) {
-        $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 2 characters required. Please try again.</h3>')
-    } else {
-	for (i=0;i<rawParseObj.length;i++) {
-	    /*compares lowercase string*/
-	    if ( rawParseObj[i]['name'].toLowerCase().search(sVal.toLowerCase())!=-1) {
-	        outputObj.push(rawParseObj[i]);
-	    }
-	}
-	/*Sort array*/
-    outputObj=outputObj.sort(function(a,b) {
-        return parseInt(b.rarity)-parseInt(a.rarity);
-    });
-    /*Build HTML Array*/
-    for (i=0;i<outputObj.length;i++) {
-        outputHTML.push(outputObj[i].collapseCode)
-    }
-	/*Joins array and replace HTML*/
-	$(rawTable).html('<h3 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h3>'+outputHTML.join(' '));
-	/*pushstate update*/
-	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
-    }
-    	/*Google analytics*/
-	ga('send', 'pageview', {
-  		'page': '/vurl/skillsguideGL_Search_Name',
-  		'title': 'Brave Frontier PROs - Skills Guide GL Search Name'
-	});
-}
-
-/*Sync New Button*/
-//$(document).on("click", '#syncNewBtn', function(e){
-//	resetLocalData("skillsguideglobal",false)
-//})
-
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
+    /*close alert if open*/
+    $('#alertModal').modal("hide");
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
@@ -468,13 +256,13 @@ $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
-    /*LocalStorage Retreival and storage*/
+/*LocalStorage Retreival and storage*/
     if (localStorage.skillsguideglobal) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
 		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
-		/*checks for update on server*/ 
+		/*checks for update on server*/
 		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
 	} else
 		resetLocalData("skillsguideglobal",true)
@@ -498,7 +286,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	    		buildDB(data);
 	 	}
 	    })
-    };
+    }
 })
 </script>
 
@@ -512,7 +300,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
-<!--Chatroom-->
-<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":30,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
+<script id="cid0020000112449143277" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
