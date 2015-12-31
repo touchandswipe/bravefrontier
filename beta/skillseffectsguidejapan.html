@@ -17,6 +17,15 @@
     <!-- Custom styles for this template -->
 <style type="text/css">
     .clear {clear:both;}
+    .affix {
+        position: fixed;
+        padding: 10px 0 0 0;
+        width: 100%;
+        top: 50px;
+        background: #fff;
+        z-index: 990;
+        box-shadow:0 1px 3px #AAA;
+    }
     .bd {
         font-weight:bold;
         text-transform:uppercase;
@@ -82,80 +91,93 @@ if (window.location.hash == '#_=_') {
 <!-- Main Body Space-->
 <div class="container-fluid text-center">
 <h2>Skills & Effects Guide - <span class="text-danger">日本 (Japan)</span> Server</h2>
-<h6><button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button> <span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+<h6><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
 <!-- Buttons row -->
-<div style="margin-bottom:5px;">
-<!-- Leader Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
-    <li><a href="#" class="lsEffect">bc fill per turn</a></li>
-    <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
-    <li><a href="#" class="lsEffect">hc production%</a></li>
-    <li><a href="#" class="lsEffect">hc effectiveness%</a></li>
-    <li><a href="#" class="lsEffect">damage% for spark</a></li>
-    <li><a href="#" class="lsEffect">dmg% for crits</a></li>
-    <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
-    <li><a href="#" class="lsEffect">turn heal</a></li>
-  </ul>
-</div>
-<!-- BB Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="skillEffect">atk% buff</a></li>
-    <li><a href="#" class="skillEffect">def% buff</a></li>
-    <li><a href="#" class="skillEffect">rec% buff</a></li>
-    <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
-    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">bb bc%</a></li>
-    <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
-    <li><a href="#" class="skillEffect">heal</a></li>
-    <li><a href="#" class="skillEffect">gradual heal</a></li>
-  </ul>
-</div>
-<!-- SBB Skills button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="skillEffect2">atk% buff</a></li>
-    <li><a href="#" class="skillEffect2">def% buff</a></li>
-    <li><a href="#" class="skillEffect2">rec% buff</a></li>
-    <li><a href="#" class="skillEffect2">crit% buff</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
-    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
-    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect2">bb bc%</a></li>
-    <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
-    <li><a href="#" class="skillEffect2">heal</a></li>
-    <li><a href="#" class="skillEffect2">gradual heal</a></li>
-  </ul>
-</div>
-<!-- Rarity Filter -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">2<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">3<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">4<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">5<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
-    <li><a href="#" class="raritySelect">7<i class="fa fa-star-o"></i></a></li>
-  </ul>
-</div>
+<div class="row" style="margin-bottom:5px;" id="btnMenu" data-spy="affix" data-offset-top="100">
+	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+	<!-- Leader Skills button -->
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
+	    <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">bc fill per turn</a></li>
+	    <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">hc production%</a></li>
+	    <li><a href="#" class="lsEffect">hc effectiveness%</a></li>
+	    <li><a href="#" class="lsEffect">damage% for spark</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for crits</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
+	    <li><a href="#" class="lsEffect">turn heal</a></li>
+	  </ul>
+	</div>
+	<!-- BB Skills button -->
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect">def% buff</a></li>
+	    <li><a href="#" class="skillEffect">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect">heal</a></li>
+	    <li><a href="#" class="skillEffect">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- SBB Skills button -->
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect2">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect2">def% buff</a></li>
+	    <li><a href="#" class="skillEffect2">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect2">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect2">heal</a></li>
+	    <li><a href="#" class="skillEffect2">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- Rarity Filter -->
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">2<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">3<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">4<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">5<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">7<i class="fa fa-star-o"></i></a></li>
+	  </ul>
+	</div>
 </div> <!-- End button row -->
+
+<div class="text-center" style="margin:10px 0;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 
 <!--Search-->
 <div class="input-group" style="margin-bottom:5px;">
@@ -186,25 +208,9 @@ if (window.location.hash == '#_=_') {
     <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
 </div>
 
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data extracted by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.<br/>
-<i class="fa fa-exclamation-circle"></i> ALL types of Buff % indicated are incremental.<br/>
-<i class="fa fa-exclamation-circle"></i> CRIT has a hard cap at 70% and all units have 10% base CRIT. Credit to <a href="http://www.reddit.com/user/_nnng_" target="_blank">_nnng_</a> on <a href="http://www.reddit.com/r/bravefrontier/comments/2fbssl/about_base_crit_and_crit_spheres/" target="_blank">reddit</a>.<br/>
-</div>
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data-mined by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
 
-<div class="text-center" style="margin-bottom:2px;">
-<!-- NEWResponsiveBlog -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2145833818900192"
-     data-ad-slot="1729026867"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-<div class="text-center">
+<div class="text-center" style="margin:10px 0;">
 <!-- NEWResponsiveBlog -->
 <ins class="adsbygoogle"
      style="display:block"
