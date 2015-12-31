@@ -279,7 +279,7 @@ countVar=0; /*reset count*/
             if (valObj.ubb.levels) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
-                    ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ubb">'+ubbKey+'</span></div>';
+                    ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey+'</span></div>';
                     if (String(valObj.ubb.levels[0][ubbKey])==String(valObj.ubb.levels[9][ubbKey]))
                     	ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.ubb.levels[9][ubbKey]+'</div>';
                     else
@@ -333,24 +333,27 @@ countVar=0; /*reset count*/
             exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd">Tech Bits</div><div class="col-xs-10 col-md-10 bd">Value</div></div>';
             $.each(valObj["extra skill"], function(exKey,exVal) {
             	if (exKey=="effects") {
+            		var effCount=0;
             		for (j in valObj["extra skill"].effects) {
+            			effCount+=1;
+                		exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Proc ID: '+valObj["extra skills"]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["extra skill"].effects[j], function(exKey2,exVal2) {
             				if (exKey2=="triggered effect") {
             					for (i in exVal2)
 	            					$.each(exVal2[i], function(lowKey,lowVal) {
-	            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
+	            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+lowKey+"</span></div>";
 	                					exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
 	            					})
                 			} else if (exVal2.constructor===Object) {
             					$.each(exVal2, function(lowKey,lowVal) {
-            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+lowKey+"</span></div>";
+            						exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+lowKey+"</span></div>";
 							exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
             					})
             				} else if (exKey2=="conditions") {
-                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+exKey2+"</span></div>";
                 				exSTR+='<div class="col-xs-10 col-md-10 bi">'+JSON.stringify(exVal2)+'</div></div>';
                 			} else {
-                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bi"><span class="ex">'+exKey2+"</span></div>";
+                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+exKey2+"</span></div>";
                 				exSTR+='<div class="col-xs-10 col-md-10 bi">'+exVal2+'</div></div>';
                 			}
             			})
