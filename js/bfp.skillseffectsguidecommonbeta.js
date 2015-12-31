@@ -591,7 +591,7 @@ if (typeof mappedNames !== 'undefined') {
         var splitSTR='<div class="row">&nbsp;</div>';
         var appendSTR=nameSTR+statsSTR+splitSTR+aiSTR+splitSTR+dmgSTR+splitSTR+lsSTR+splitSTR+bbSTR+splitSTR+sbbSTR+splitSTR+ubbSTR+splitSTR+exSTR+'</div></div></div></div>';
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":valObj.name, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
+        rawParseObj.push({"name":unitName, "collapseCode":appendSTR,"id":valObj.guide_id,"rarity":valObj.rarity});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
