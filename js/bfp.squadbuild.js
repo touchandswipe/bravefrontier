@@ -1238,7 +1238,7 @@ if (typeof mappedNames !== 'undefined') {
         if (mapJPnames) {
         	strName=String(unitKey);
         	if (mappedNames.hasOwnProperty(strName))
-        		unitObj.name=mappedNames[strName];
+        		unitObj.name=mappedNames[strName]+" ("+valObj.name+")";
         	else
         		unitObj.name=valObj.name;
         } else
@@ -1258,7 +1258,7 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
 			}
-		}
+		} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
 	}
         else
         	unitObj.bb="none";
@@ -1269,7 +1269,7 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
 			}
-		}
+		} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
 	}
         else
         	unitObj.sbb="none";
@@ -1277,7 +1277,7 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
-        	}
+        	} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
 	}
         else
         	unitObj.ubb="none";
