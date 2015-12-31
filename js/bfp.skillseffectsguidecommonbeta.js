@@ -110,7 +110,7 @@ countVar=0; /*reset count*/
             		var effCount=0;
             		for (j in valObj["leader skill"].effects) {
             			effCount+=1;
-            			lsSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 be"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
+            			lsSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 be"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Passive ID: '+valObj["leader skill"]["effects"][j]["passive id"]+'] No.'+effCount+'</small></div></div>';
             			$.each(valObj["leader skill"].effects[j], function(lsKey2,lsVal2) {
             				if (lsKey2!="passive id") {
 	            				if (lsVal2.constructor === Object) {
@@ -159,7 +159,7 @@ countVar=0; /*reset count*/
                 	var effCount=0;
                 	for (j in valObj.bb.levels[0].effects) {
                 		effCount+=1;
-            			bbSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 be"><small>Effect [Proc ID: '+valObj.bb.levels[0]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
+            			bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2"></div><div class="col-xs-10 col-md-10 be"><small>Effect [Proc ID: '+valObj.bb.levels[0]["effects"][j]["proc id"]+'] No.'+effCount+'</small></div></div>';
                 		$.each(valObj.bb.levels[0].effects[j], function(bbKey2,bbVal2) {
                 			if (bbVal2) {
 	                			if (bbVal2.constructor === Object) {
