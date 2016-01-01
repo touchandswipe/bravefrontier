@@ -427,9 +427,9 @@ function searchNameRun() {
 		}
 		/*Sort array*/
 	    	outputObj=outputObj.sort(function(a,b) {
-		        if (a.rating > b.rating)
+		        if (a.name > b.name)
 		            return -1;
-		        if (a.rating < b.rating)
+		        if (a.name < b.name)
 		            return 1;
 		        return 0;
     		});
