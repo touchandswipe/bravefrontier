@@ -279,11 +279,14 @@ function buildDB() {
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
 	      /*check global name*/
-	      if (data_GL[skillKey])
+	      if (data_GL[skillKey]) {
 	      	var elgifName=data_GL[skillKey].name+" ("+valObj.name+")";
-	      else
-	      	var elgifName=valObj.name;
-	      nameSTR+='<b>'+elgifName+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	      	var elgifDesc=data_GL[skillKey].desc+" ("+valObj.desc+")";
+	      }
+	      else {
+	      	var elgifDesc=valObj.desc;
+	      }
+	      nameSTR+='<b>'+elgifName+':</b> '+elgifDesc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effects) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
