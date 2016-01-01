@@ -279,13 +279,13 @@ function buildDB(skill,serverID) {
 	            					$.each(esVal, function(lowKey,lowVal) {
 	            						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lowKey+"</span></div>";
 					                	effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
-					                	if (effectsList.indexOf(lowVal)!=-1 && lowKey!="proc id")
+					                	if (effectsList.indexOf(lowVal)!=-1 && lowKey!="passive id")
 					                		effectsList.push(lowVal);
 	            					})
 	            				} else {
 					                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+esKey+"</span></div>";
 					                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+esVal+'</div></div>';
-					                if (effectsList.indexOf(esVal)!=-1 && esKey!="proc id")
+					                if (effectsList.indexOf(esVal)!=-1 && esKey!="passive id")
 					                	effectsList.push(esVal);
 	            				}
 					} else {
@@ -307,12 +307,14 @@ function buildDB(skill,serverID) {
 	        collapseID+=1;
       } /*End KeyLength Check*/
     }); /*Each record*/
-    $('#progressModal').modal('hide');
     
     /*build effects list*/
+    alert(effectsList);
     for (var i in effectsList) {
     	$("#effectsList").append('<li><a href="#" class="skillEffect">'+effectsList[i]+'</li>');
     }
+    
+    $('#progressModal').modal('hide');
     
     /*check for card param*/
     var searchParam=urlParam('query');
