@@ -64,10 +64,10 @@ if (window.location.hash == '#_=_') {
 <body>
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
-<div class="container-fluid" style="margin-top:5px;">
-<h3 style="margin-top:0px;"><img src="http://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon1088.png" width="60" height="60"> Learned Extra Skills (LES) Guide - <span class="text-danger">Japan</span></h3>
-<h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd> <b>Total LES Found:</b> <kbd id="unitCount_GL">Pulling data ...</kbd></h6>
-<h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd> <b>Total LES Found:</b> <kbd id="unitCount_JP">Pulling data ...</kbd></h6>
+<div class="container-fluid text-center">
+<h3 style="margin-top:0px;"><img src="http://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon1088.png" width="60" height="60"> Elgif Guide - <span class="text-danger">Global + Japan</span></h3>
+<h6 class="hidden-xs hidden-sm"><b>Global Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd></h6>
+<h6 class="hidden-xs hidden-sm"><b>JP Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
 <!-- Ratings -->
 <div class="btn-group" style="margin-bottom:5px;">
@@ -210,7 +210,6 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <script type="text/javascript">
-countVar=0;
 collapseID=1;
 data_GL={};
 data_JP={};
@@ -264,8 +263,7 @@ var findIndex=function(key,arr) {
 };
 
 /*Build DATABASE IN MEMORY*/
-function buildDB() {
-    var skill=data_JP;
+function buildDB(skill) {
     /*Process for Each Unit*/
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
@@ -321,11 +319,9 @@ function buildDB() {
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
 	        /*Parse into MEMORY DB*/
 	        rawParseObj.push({"name":elgifName,"desc":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
-	        countVar+=1;
 	        collapseID+=1;
       } /*End KeyLength Check*/
     }); /*Each record*/
-    $("#unitCount_JP").html(countVar);
     $('#progressModal').modal('hide');
     
     /*check for card param*/
@@ -487,22 +483,23 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
     $.ajax({
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/jp/es.json",
+        url: "//touchandswipe.github.io/bravefrontier_data/es.json",
         success: function(data, textStatus, request){
       		lastModified = request.getResponseHeader("Last-Modified");
-      		$("#lastModDate_JP").text(lastModified);
-      		data_JP=data;
+      		$("#lastModDate_GL").text(lastModified);
+      		data_GL=data;
+      		buildDB(data_GL);
 			/*AJAX Global*/
 			$.ajax({
 				dataType: "json",
 				contentType: "text/plain; charset=UTF-8",
-				url: "//touchandswipe.github.io/bravefrontier_data/es.json",
+				url: "//touchandswipe.github.io/bravefrontier_data/jp/es.json",
 				success: function(data2, textStatus, request){
 				      	lastModified = request.getResponseHeader("Last-Modified");
-				      	$("#lastModDate_GL").text(lastModified);
-				      	data_GL=data2;
+				      	$("#lastModDate_JP").text(lastModified);
+				      	data_JP=data2;
 				      	/*build data*/
-				      	buildDB();
+				      	buildDB(data_JP);
 				       }
 			});
  	      }
