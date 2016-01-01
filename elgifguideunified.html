@@ -88,39 +88,7 @@ if (window.location.hash == '#_=_') {
 <div class="btn-group" style="margin-bottom:5px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Effects <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu">
-  <li><a href="#" class="skillEffect">hp% buff</a></li>
-    <li><a href="#" class="skillEffect">atk% buff</a></li>
-    <li><a href="#" class="skillEffect">def% buff</a></li>
-    <li><a href="#" class="skillEffect">rec% buff</a></li>
-    <li><a href="#" class="skillEffect">crit% buff</a></li>
-    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
-    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
-    <li><a href="#" class="skillEffect">bc fill when attacking</a></li>
-    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
-    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
-    <li><a href="#" class="skillEffect">damage% for spark</a></li>
-    <li><a href="#" class="skillEffect">atk% buff when enemy has ailment</a></li>
-    <li><a href="#" class="skillEffect">turn heal</a></li>
-    <li><a href="#" class="skillEffect">curse resist%</a></li>
-    <li><a href="#" class="skillEffect">injury resist%</a></li>
-    <li><a href="#" class="skillEffect">paralysis resist%</a></li>
-    <li><a href="#" class="skillEffect">poison resist%</a></li>
-    <li><a href="#" class="skillEffect">sick resist%</a></li>
-    <li><a href="#" class="skillEffect">weaken resist%</a></li>
-    <li><a href="#" class="skillEffect">crit chance base resist%</a></li>
-    <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
-    <li><a href="#" class="skillEffect">light resist%</a></li>
-    <li><a href="#" class="skillEffect">dark resist%</a></li>
-    <li><a href="#" class="skillEffect">fire resist%</a></li>
-    <li><a href="#" class="skillEffect">water resist%</a></li>
-    <li><a href="#" class="skillEffect">earth resist%</a></li>
-    <li><a href="#" class="skillEffect">thunder resist%</a></li>
-  </ul>
+  <ul class="dropdown-menu" role="menu" id="effectsList"></ul>
 </div>
 
 <!--Search item-->
@@ -264,6 +232,7 @@ var findIndex=function(key,arr) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB(skill,serverID) {
+	var effectsList=[];
     /*Process for Each Unit*/
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
@@ -306,15 +275,26 @@ function buildDB(skill,serverID) {
 		            	/*Loop thru effects obj*/
 				$.each(valObj.effects[i], function(esKey,esVal) {
 					if (esKey!="conditions") {
-						if (esVal !== null && typeof esVal === 'object') {
+						if (esVal.constructor===Object) {
 	            					$.each(esVal, function(lowKey,lowVal) {
 	            						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lowKey+"</span></div>";
 					                	effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
+					                	if (effectsList.indexOf(lowKey)!=-1)
+					                		effectsList.push("lowKey");
 	            					})
 	            				} else {
 					                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+esKey+"</span></div>";
 					                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+esVal+'</div></div>';
+					                if (effectsList.indexOf(lowKey)!=-1)
+					                	effectsList.push("lowKey");
 	            				}
+					} else {
+						for (var x in esVal){
+							$.each(esVal[x], function(lowKey,lowVal) {
+	            						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lowKey+"</span></div>";
+					                	effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
+	            					})
+						}
 					}
 				})
 		            }
@@ -328,6 +308,11 @@ function buildDB(skill,serverID) {
       } /*End KeyLength Check*/
     }); /*Each record*/
     $('#progressModal').modal('hide');
+    
+    /*build effects list*/
+    for (var i in effectsList) {
+    	$("#effectsList").append('<li><a href="#" class="skillEffect">'+effectsList[i]+'</li>');
+    }
     
     /*check for card param*/
     var searchParam=urlParam('query');
