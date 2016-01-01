@@ -279,14 +279,14 @@ function buildDB(skill,serverID) {
 	            					$.each(esVal, function(lowKey,lowVal) {
 	            						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lowKey+"</span></div>";
 					                	effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
-					                	if (effectsList.indexOf(lowKey)!=-1)
-					                		effectsList.push("lowKey");
+					                	if (effectsList.indexOf(lowVal)!=-1 && lowKey!="proc id")
+					                		effectsList.push(lowVal);
 	            					})
 	            				} else {
 					                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+esKey+"</span></div>";
 					                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+esVal+'</div></div>';
-					                if (effectsList.indexOf(lowKey)!=-1)
-					                	effectsList.push("lowKey");
+					                if (effectsList.indexOf(esVal)!=-1 && esKey!="proc id")
+					                	effectsList.push(esVal);
 	            				}
 					} else {
 						for (var x in esVal){
