@@ -282,9 +282,9 @@ function buildDB() {
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
 	      /*check global name*/
 	      if (data_GL[skillKey])
-	      	var elgifName=data_GL[skillKey]+" ("+skillKey+")";
+	      	var elgifName=data_GL[skillKey].name+" ("+valObj.name+")";
 	      else
-	      	var elgifName=skillKey;
+	      	var elgifName=valObj.name;
 	      nameSTR+='<b>'+elgifName+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effects) {
