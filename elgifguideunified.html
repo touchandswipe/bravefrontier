@@ -488,22 +488,21 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
       		lastModified = request.getResponseHeader("Last-Modified");
       		$("#lastModDate_JP").text(lastModified);
       		data_JP=data;
+			/*AJAX Global*/
+			$.ajax({
+				dataType: "json",
+				contentType: "text/plain; charset=UTF-8",
+				url: "//touchandswipe.github.io/bravefrontier_data/es.json",
+				success: function(data2, textStatus, request){
+				      	lastModified = request.getResponseHeader("Last-Modified");
+				      	$("#lastModDate_GL").text(lastModified);
+				      	data_GL=data2;
+				      	/*build data*/
+				      	buildDB();
+				       }
+			});
  	      }
     });
-    /*AJAX Global*/
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: "//touchandswipe.github.io/bravefrontier_data/es.json",
-        success: function(data, textStatus, request){
-      		lastModified = request.getResponseHeader("Last-Modified");
-      		$("#lastModDate_GL").text(lastModified);
-      		data_GL=data;
- 	      }
-    });
-    /*build data*/
-    buildDB();
-    
     /*POP state*/
     $(window).on('popstate', function(ev) {
     	var state = ev.originalEvent.state;
