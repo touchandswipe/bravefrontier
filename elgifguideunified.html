@@ -265,9 +265,7 @@ var findIndex=function(key,arr) {
 
 /*Build DATABASE IN MEMORY*/
 function buildDB() {
-    /*build sphere type*/
-    var sphereTypeArray=[];
-    var sphereArray=[];
+    alert(JSON.stringify(data_JP));
     var skill=data_JP;
     alert(JSON.stringify(skill));
     /*Process for Each Unit*/
@@ -504,7 +502,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
  	      }
     });
     /*build data*/
-		buildDB();
+    buildDB();
     
     /*POP state*/
     $(window).on('popstate', function(ev) {
