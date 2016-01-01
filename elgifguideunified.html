@@ -279,11 +279,12 @@ function buildDB() {
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
 	      /*check global name*/
-	      if (data_GL[skillKey]) {
+	      if (data_GL[skillKey] && data_GL[skillKey].name.substr(0,3)!="MST") {
 	      	var elgifName=data_GL[skillKey].name+" ("+valObj.name+")";
 	      	var elgifDesc=data_GL[skillKey].desc;
 	      }
 	      else {
+	      	var elgifName=valObj.name;
 	      	var elgifDesc=valObj.desc;
 	      }
 	      nameSTR+='<b>'+elgifName+':</b> '+elgifDesc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
