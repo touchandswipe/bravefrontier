@@ -15,6 +15,15 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css">
+    .affix {
+        position: fixed;
+        padding: 10px 0 5px;
+        width: 100%;
+        top: 50px;
+        background: #fff;
+        z-index: 990;
+        box-shadow:0 1px 3px #AAA;
+    }
     .clear {clear:both;}
     .bd {
         font-weight:bold;
@@ -70,7 +79,8 @@ if (window.location.hash == '#_=_') {
 <h6 class="hidden-xs hidden-sm"><b>JP Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
 <!-- Ratings -->
-<div class="btn-group" style="margin-bottom:5px;">
+<div class="row" id="elgifMenu" data-spy="affix" data-offset-top="100">
+<div class="btn-group btn-group-xs" style="margin-bottom:5px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="starRatingList">
@@ -85,10 +95,42 @@ if (window.location.hash == '#_=_') {
   </ul>
 </div>
 <!-- Effects -->
-<div class="btn-group" style="margin-bottom:5px;">
+<div class="btn-group btn-group-xs" style="margin-bottom:5px;">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Effects <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" id="effectsList"></ul>
+  <ul class="dropdown-menu" role="menu" id="effectsList">
+  <li><a href="#" class="skillEffect">hp% buff</a></li>
+    <li><a href="#" class="skillEffect">atk% buff</a></li>
+    <li><a href="#" class="skillEffect">def% buff</a></li>
+    <li><a href="#" class="skillEffect">rec% buff</a></li>
+    <li><a href="#" class="skillEffect">crit% buff</a></li>
+    <li><a href="#" class="skillEffect">bc fill per turn</a></li>
+    <li><a href="#" class="skillEffect">bc fill when attacked</a></li>
+    <li><a href="#" class="skillEffect">bc fill when attacking</a></li>
+    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">zel drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">karma drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">item drop rate% buff</a></li>
+    <li><a href="#" class="skillEffect">bb gauge fill rate%</a></li>
+    <li><a href="#" class="skillEffect">damage% for spark</a></li>
+    <li><a href="#" class="skillEffect">atk% buff when enemy has ailment</a></li>
+    <li><a href="#" class="skillEffect">turn heal</a></li>
+    <li><a href="#" class="skillEffect">curse resist%</a></li>
+    <li><a href="#" class="skillEffect">injury resist%</a></li>
+    <li><a href="#" class="skillEffect">paralysis resist%</a></li>
+    <li><a href="#" class="skillEffect">poison resist%</a></li>
+    <li><a href="#" class="skillEffect">sick resist%</a></li>
+    <li><a href="#" class="skillEffect">weaken resist%</a></li>
+    <li><a href="#" class="skillEffect">crit chance base resist%</a></li>
+    <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
+    <li><a href="#" class="skillEffect">light resist%</a></li>
+    <li><a href="#" class="skillEffect">dark resist%</a></li>
+    <li><a href="#" class="skillEffect">fire resist%</a></li>
+    <li><a href="#" class="skillEffect">water resist%</a></li>
+    <li><a href="#" class="skillEffect">earth resist%</a></li>
+    <li><a href="#" class="skillEffect">thunder resist%</a></li>
+  </ul>
 </div>
 
 <!--Search item-->
@@ -308,11 +350,11 @@ var effectsList=[];
       } /*End KeyLength Check*/
     }); /*Each record*/
     
-    /*build effects list*/
+    /*
     alert(effectsList);
     for (var i in effectsList) {
     	$("#effectsList").append('<li><a href="#" class="skillEffect">'+effectsList[i]+'</li>');
-    }
+    }*/
     
     $('#progressModal').modal('hide');
     
