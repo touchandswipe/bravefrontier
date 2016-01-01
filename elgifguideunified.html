@@ -279,7 +279,7 @@ function buildDB(skill,serverID) {
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
 	      /*check global name*/
-	      if (serverID="JP") {
+	      if (serverID=="JP") {
 		      if (data_GL[skillKey] && data_GL[skillKey].name.substr(0,3)!="MST") {
 		      	var elgifName=data_GL[skillKey].name+' (<span class="text-danger">'+valObj.name+'</span>)';
 		      	var elgifDesc=data_GL[skillKey].desc;
