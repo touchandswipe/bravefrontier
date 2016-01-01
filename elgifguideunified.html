@@ -65,13 +65,13 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="container-fluid text-center">
-<h3 style="margin-top:0px;"><img src="http://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon1088.png" width="60" height="60"> Elgif Guide - <span class="text-danger">Global + Japan</span></h3>
+<h2 style="margin-top:0px;"><img src="http://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon1088.png" width="60" height="60"> Elgif Guide - <span class="text-danger">Global + Japan</span></h2>
 <h6 class="hidden-xs hidden-sm"><b>Global Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd></h6>
 <h6 class="hidden-xs hidden-sm"><b>JP Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
 <!-- Ratings -->
 <div class="btn-group" style="margin-bottom:5px;">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Stars <span class="caret"></span>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">by Rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="starRatingList">
   	<li><a href="#" class="starRating" data-value="1">1<i class="fa fa-star"></i></a></li>
@@ -263,7 +263,7 @@ var findIndex=function(key,arr) {
 };
 
 /*Build DATABASE IN MEMORY*/
-function buildDB(skill) {
+function buildDB(skill,serverID) {
     /*Process for Each Unit*/
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
@@ -279,13 +279,18 @@ function buildDB(skill) {
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
 	      /*check global name*/
-	      if (data_GL[skillKey] && data_GL[skillKey].name.substr(0,3)!="MST") {
-	      	var elgifName=data_GL[skillKey].name+' (<span class="text-danger">'+valObj.name+'</span>)';
-	      	var elgifDesc=data_GL[skillKey].desc;
-	      }
-	      else {
-	      	var elgifName='<span class="text-danger">'+valObj.name+'</span>';
-	      	var elgifDesc=valObj.desc;
+	      if (serverID="JP") {
+		      if (data_GL[skillKey] && data_GL[skillKey].name.substr(0,3)!="MST") {
+		      	var elgifName=data_GL[skillKey].name+' (<span class="text-danger">'+valObj.name+'</span>)';
+		      	var elgifDesc=data_GL[skillKey].desc;
+		      }
+		      else {
+		      	var elgifName='<span class="text-danger">'+valObj.name+'</span>';
+		      	var elgifDesc=valObj.desc;
+		      }
+	      } else {
+	      		var elgifName=valObj.name;
+		      	var elgifDesc=valObj.desc;
 	      }
 	      nameSTR+='<b>'+elgifName+':</b> '+elgifDesc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
@@ -488,7 +493,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
       		lastModified = request.getResponseHeader("Last-Modified");
       		$("#lastModDate_GL").text(lastModified);
       		data_GL=data;
-      		buildDB(data_GL);
+      		buildDB(data_GL,"GL");
 			/*AJAX Global*/
 			$.ajax({
 				dataType: "json",
@@ -499,7 +504,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 				      	$("#lastModDate_JP").text(lastModified);
 				      	data_JP=data2;
 				      	/*build data*/
-				      	buildDB(data_JP);
+				      	buildDB(data_JP,"JP");
 				       }
 			});
  	      }
