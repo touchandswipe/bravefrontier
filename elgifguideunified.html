@@ -273,7 +273,9 @@ function buildDB() {
       if (keyLength==7) {
 	      for (var m in matchElgif) {
 	      	if (String(matchElgif[m].esid)==skillKey)
-	      		var keyRating=parseInt(matchElgif[m].rarity)
+	      		var keyRating=parseInt(matchElgif[m].rarity);
+	      	else
+	      		var keyRating=0;
 	      }
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
