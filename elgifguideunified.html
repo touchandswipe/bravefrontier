@@ -66,7 +66,8 @@ if (window.location.hash == '#_=_') {
 <!-- Main Body Space-->
 <div class="container-fluid" style="margin-top:5px;">
 <h3 style="margin-top:0px;"><img src="http://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon1088.png" width="60" height="60"> Learned Extra Skills (LES) Guide - <span class="text-danger">Japan</span></h3>
-<h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate">TBD</kbd> <b>Total LES Found:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+<h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd> <b>Total LES Found:</b> <kbd id="unitCount_GL">Pulling data ...</kbd></h6>
+<h6 class="hidden-xs hidden-sm"><b>Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd> <b>Total LES Found:</b> <kbd id="unitCount_JP">Pulling data ...</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
 <!-- Ratings -->
 <div class="btn-group" style="margin-bottom:5px;">
@@ -263,10 +264,11 @@ var findIndex=function(key,arr) {
 };
 
 /*Build DATABASE IN MEMORY*/
-function buildDB(skill) {
+function buildDB() {
     /*build sphere type*/
     var sphereTypeArray=[];
     var sphereArray=[]
+    var skill=data_JP;
     /*Process for Each Unit*/
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
@@ -279,7 +281,12 @@ function buildDB(skill) {
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
-	      nameSTR+='<b>'+valObj.name+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+	      /*check global name*/
+	      if (data_GL.skillKey)
+	      	var elgifName=data_GL.skillKey+" ("+skillKey+")";
+	      else
+	      	var elgifName=skillKey;
+	      nameSTR+='<b>'+elgifName+':</b> '+valObj.desc+'</a></h4></div><div id="skill'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
 	        /*Checks Effects*/
 	        if (valObj.effects) {
 	            effectSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-info"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>EFFECTS</b></h5></div></div>';
@@ -310,7 +317,7 @@ function buildDB(skill) {
 	        /*Append each HTML and close accordion*/
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
 	        /*Parse into MEMORY DB*/
-	        rawParseObj.push({"name":valObj.name,"desc":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
+	        rawParseObj.push({"name":elgifName,"desc":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
 	        countVar+=1;
 	        collapseID+=1;
       } /*End KeyLength Check*/
@@ -480,7 +487,8 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
         url: "//touchandswipe.github.io/bravefrontier_data/jp/es.json",
         success: function(data, textStatus, request){
       		lastModified = request.getResponseHeader("Last-Modified");
-      		$(lastModDate).text(lastModified);
+      		$("#lastModDate_JP").text(lastModified);
+      		data_JP=data;
  	      }
     });
     /*AJAX Global*/
@@ -490,7 +498,8 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
         url: "//touchandswipe.github.io/bravefrontier_data/es.json",
         success: function(data, textStatus, request){
       		lastModified = request.getResponseHeader("Last-Modified");
-      		$(lastModDate).text(lastModified);
+      		$("#lastModDate_GL").text(lastModified);
+      		data_GL=data;
  	      }
     });
     /*build data*/
