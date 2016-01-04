@@ -1,0 +1,112 @@
+    .btn-default[disabled] {
+        cursor: help !important;
+    }
+    h3 {
+        font-weight:bold;
+    }
+    .affix {
+        position: fixed;
+        padding: 10px 0 0 0;
+        width: 100%;
+        top: 50px;
+        background: #fff;
+        z-index: 990;
+        box-shadow:0 1px 3px #AAA;
+    }
+    .unitBox {
+      border:3px dotted #ddf;
+      margin:10px auto;
+      border-radius:15px;
+      padding:15px;
+      text-align: center;
+      display:block;
+      width:125px;
+      height:105px;
+    }
+    .dropZone {background:#EFE;}
+    .dropHover {background:#ECF;}
+    .sumIcon {color:#090;}
+    .unitBox:hover {background:#eef;}
+    .leader {
+    	position:absolute;
+        left: 50%;
+        margin-left: -40px;
+        bottom: 0;
+        margin-bottom: 10px;
+    	width: 80px;
+    	background: #fee;
+    	border: 1px solid #CCC;
+    	border-radius: 5px;
+    	padding: 0 10px;
+    	font-weight: bold;
+    	color:red;
+    }
+    #inactiveSpace {
+        display:none;
+        clear:both;
+    }
+    #redditShare {
+        width:90%;
+        margin:10px auto;
+    }
+    .htfixed {height:135px;}
+    .htfixed2 {
+        min-height:120px;
+        margin:10px 0;
+    }
+    .cross {
+    	font-size: 30pt;
+    	line-height: 20px;
+    }
+    .badge {
+    	float:left;
+    	color:red !important;
+    }
+    .bbBtns, .ubbBtns, .lsBtns {
+    	width:95%;
+    	text-align: center;
+    }
+    .unitFound, .unitRecommend {padding:3px 0 !important;}
+    .sRarity {
+        position: absolute;
+        color: #FD0;
+        border-radius: 8px;
+        left: 50%;
+        margin-left: -33px;
+        bottom: 1px;
+        width: 30px;
+        white-space: nowrap;
+        padding: 0 5px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+    .fRarity {
+        position: absolute;
+        color: #FD0;
+        border-radius: 8px;
+        bottom: 4px;
+        margin: 0;
+        left: 16px;
+        white-space:nowrap;
+        padding: 0 5px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+    .unitFound,.unitSelected,.unitRecommend {
+    	width:70px;
+    	height:auto;
+    	padding:0;
+    	position:relative;
+    	cursor:pointer;
+    }
+    .untiIcon {
+    	width:70px;
+    	height:auto;
+    }
+    .clear {clear:both;}
+    .upper {
+        text-transform:uppercase;
+    }
+    .btn {
+    	margin-bottom:8px;
+    }
