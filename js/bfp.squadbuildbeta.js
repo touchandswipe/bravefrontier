@@ -732,8 +732,32 @@ function showSkills(e,scanScope) {
 				if (scanScope[i]!="es" || esTriggered) {
 					/*Scan mapping*/
 					for (j in scanArray) {
+						var skillMatched=false;
+						if (bbMap[bbMapKey].impact.charAt(0)=="!") {
+							var chkScope=bbMap[bbMapKey].impact.substr(1).split('||');
+							var zChkArray=[];
+							for (var z in chkScope)
+								if (chkScope[z].indexOf('.')>=0) {
+									if (nestedChk(chkScope[z],scanArray[j]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								} else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								}
+							var zChk=true;
+							for (var y in zChkArray) {
+								if (!zChkArray[y])
+									zChk=false;
+							}
+							skillMatched=zChk;
+						} else if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact))
+							skillMatched=true;
 						/*match*/
-						if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact)) {
+						if (skillMatched) {
 							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 							if (bbMap[bbMapKey].chance)
 								skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
