@@ -72,7 +72,7 @@ lsMap=[
 	{desc:"% Reduce DMG (Thunder Enemy)", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
 	{desc:"% Reduce DMG (Light Enemy)", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
 	{desc:"% Reduce DMG (Dark Enemy)", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Fire Weakness DMG+", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% Water Weakness DMG+", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% Earth Weakness DMG+", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% Thunder Weakness DMG+", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
