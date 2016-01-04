@@ -978,7 +978,7 @@ function generateSummary() {
 	var bbatkBB=["% BB ATK%+"];
 	var bbatkUBB=["% BB ATK%+"];
 	var bbatkLSTotal=0;
-	var batkBBTotal=0;
+	var bbatkBBTotal=0;
 	var bbatkUBBTotal=0;
 	for (var i in bbatkLS)
 		bbatkLSTotal+=getTop(".lsBtns",bbatkLS[i]);
