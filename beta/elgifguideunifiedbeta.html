@@ -522,7 +522,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
       		lastModified = request.getResponseHeader("Last-Modified");
       		$("#lastModDate_GL").text(lastModified);
       		data_GL=data;
-      		buildDB(data_GL,"GL");
 			/*AJAX Global*/
 			$.ajax({
 				dataType: "json",
@@ -533,6 +532,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 				      	$("#lastModDate_JP").text(lastModified);
 				      	data_JP=data2;
 				      	/*build data*/
+				      	buildDB(data_GL,"GL");
 				      	buildDB(data_JP,"JP");
 				       }
 			});
