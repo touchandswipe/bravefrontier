@@ -653,8 +653,16 @@ function scanLeaderSkills(classBtns,scanScope) {
 									else {
 										$(this).attr("data-found",selectUnit);
 										/*build TOPval*/
-										if (isNumber(scanArray[j][lsMap[k].impact]))
-											$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
+										if (lsMap[k].impact.charAt(0)!="!") {
+											if (isNumber(scanArray[j][lsMap[k].impact]))
+												$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
+										} else {
+											var nestedArray=lsMap[k].impact.substr(1).split("||");
+											var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+											console.log("Nested Value "+getNestedVal);
+											if (isNumber(getNestedVal))
+												$(this).attr("data-top", getNestedVal);
+										}
 									}
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
