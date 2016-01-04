@@ -510,6 +510,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
     for (i in sphereTypeArray) {
         $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img style="margin-right:5px;" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[i]+'.png"/>'+sphereTypeArray[i]+'</a></li>');
     }
+    sphereRun("Special"); /*default load*/
     $('#progressModal').modal('hide');
     
     /*check for card param*/
