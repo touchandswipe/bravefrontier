@@ -617,7 +617,7 @@ if (typeof mappedNames !== 'undefined') {
 	});
     
     $("#unitCount").html(countVar);
-    rarityRun(7);
+    rarityRun(1); /*default run to fill space*/
     $('#progressModal').modal('hide');
     
     /*check for card param*/
