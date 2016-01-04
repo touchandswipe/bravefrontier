@@ -72,12 +72,12 @@ lsMap=[
 	{desc:"% Reduce DMG (Thunder Enemy)", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
 	{desc:"% Reduce DMG (Light Enemy)", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
 	{desc:"% Reduce DMG (Dark Enemy)", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Fire Weakness DMG+", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Water Weakness DMG+", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Earth Weakness DMG+", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Thunder Weakness DMG+", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Light Weakness DMG+", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Dark Weakness DMG+", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{desc:"% EXP+", impact:"xp gained increase%"},
 ];
 bbMap=[
@@ -112,12 +112,12 @@ bbMap=[
 	{desc:"Add thunder to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"Add light to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"Add dark to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"% Weakness DMG+ (Fire)", impact:"fire units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Water)", impact:"water units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Earth)", impact:"earth units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Thunder)", impact:"thunder units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Light)", impact:"light units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Dark)", impact:"dark units do extra elemental weakness dmg", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
 	{desc:"% Enemy HP DMG", impact:"hp% damage low", impact2:"hp% damage high", chance:"hp% damage chance%"},
 	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
@@ -453,8 +453,32 @@ function scanSkills(classBtns,scanScope) {
 					/*Scan mapping*/
 					for (j in scanArray) {
 						for (k in bbMap) {
+							var skillMatched=false;
+							if (bbMap[k].impact.charAt(0)=="!") {
+								var chkScope=bbMap[k].impact.substr(1).split('||');
+								var zChkArray=[];
+								for (var z in chkScope)
+									if (chkScope[z].indexOf('.')>=0) {
+										if (nestedChk(chkScope[z],scanArray[j]))
+											zChkArray.push(true);
+										else
+											zChkArray.push(false);
+									} else {
+										if (scanArray[j].hasOwnProperty(chkScope[z]))
+											zChkArray.push(true);
+										else
+											zChkArray.push(false);
+									}
+								var zChk=true;
+								for (var y in zChkArray) {
+									if (!zChkArray[y])
+										zChk=false;
+								};
+								skillMatched=zChk;
+							} else if (scanArray[j].hasOwnProperty(bbMap[k].impact))
+								skillMatched=true;
 							/*match exist*/
-							if (scanArray[j][bbMap[k].impact]) {
+							if (skillMatched) {
 								$(classBtns).each( function() {
 									if ($(this).text()==bbMap[k].desc) {
 										/*create list of units with skills*/
@@ -469,7 +493,7 @@ function scanSkills(classBtns,scanScope) {
 														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 												}
 											} else {
-												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
 												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
 													if ($(this).attr("data-top")<getNestedVal)
@@ -484,7 +508,7 @@ function scanSkills(classBtns,scanScope) {
 												if (isNumber(scanArray[j][bbMap[k].impact]))
 													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
 											} else {
-												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
 												if (isNumber(getNestedVal))
 													$(this).attr("data-top",getNestedVal);
@@ -708,8 +732,32 @@ function showSkills(e,scanScope) {
 				if (scanScope[i]!="es" || esTriggered) {
 					/*Scan mapping*/
 					for (j in scanArray) {
+						var skillMatched=false;
+						if (bbMap[bbMapKey].impact.charAt(0)=="!") {
+							var chkScope=bbMap[bbMapKey].impact.substr(1).split('||');
+							var zChkArray=[];
+							for (var z in chkScope)
+								if (chkScope[z].indexOf('.')>=0) {
+									if (nestedChk(chkScope[z],scanArray[j]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								} else {
+									if (scanArray[j].hasOwnProperty(chkScope[z]))
+										zChkArray.push(true);
+									else
+										zChkArray.push(false);
+								}
+							var zChk=true;
+							for (var y in zChkArray) {
+								if (!zChkArray[y])
+									zChk=false;
+							}
+							skillMatched=zChk;
+						} else if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact))
+							skillMatched=true;
 						/*match*/
-						if (scanArray[j].hasOwnProperty(bbMap[bbMapKey].impact)) {
+						if (skillMatched) {
 							skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 							if (bbMap[bbMapKey].chance)
 								skillsHTML+=scanArray[j][bbMap[bbMapKey].chance]+' % Chance ';
@@ -1063,6 +1111,26 @@ function generateSummary() {
 	defHTML+="LS <b>"+defLSTotal+"%</b><br/>";
 	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br/>";
 	defHTML+="UBB <b>"+defUBBTotal+"%</b>";
+	/*Elemental weakness*/
+	var fireWk="% Fire Weakness DMG+";
+	var waterWk="% Water Weakness DMG+";
+	var thunderWk="% Thunder Weakness DMG+";
+	var earthWk="% Earth Weakness DMG+";
+	var lightWk="% Light Weakness DMG+";
+	var darkWk="% Dark Weakness DMG+";
+	var elementWk=[fireWk,waterWk,earthWk,thunderWk,lightWk,darkWk];
+	var elementTotal=[0,0,0,0,0,0];
+	for (var i in elementWk) {
+		elementTotal[i]+=getTop(".lsBtns",elementWk[i]);
+		elementTotal[i]+=getTop(".bbBtns",elementWk[i]);
+		elementTotal[i]+=getTop(".ubbBtns",elementWk[i]);
+	}
+	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br/>";
+	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br/>";
+	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br/>";
+	elementWkHTML+="Thunder <b>"+elementTotal[3]+"%</b><br/>";
+	elementWkHTML+="Light <b>"+elementTotal[4]+"%</b><br/>";
+	elementWkHTML+="Dark <b>"+elementTotal[5]+"%</b><br/>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -1073,8 +1141,6 @@ function generateSummary() {
 	}
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
-	/*Reddit Share*/
-	
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
@@ -1087,6 +1153,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br/>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
