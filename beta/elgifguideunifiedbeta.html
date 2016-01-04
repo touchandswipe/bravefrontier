@@ -373,16 +373,8 @@ var effectsList=[];
     if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
-        searchNameRun();
+        searchNameRun(searchParam);
     }
-    
-    var searchParam=urlParam('ingredient');
-    if (searchParam != "") {
-        /*sets searchbox value then execute*/
-        $('#searchIngredientBox').val(searchParam);
-        searchIngredientRun();
-    }
-    
 }
 
 /*star rating Filter*/
@@ -451,8 +443,7 @@ function skillRun(selectSkill) {
 }
 
 /*Search by Name*/
-function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
+function searchNameRun(sVal) {
     var outputObj=[];
 	var outputHTML=[];
 	if (sVal.length <2)
@@ -491,7 +482,7 @@ function searchNameRun() {
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun()
+     searchNameRun($('#searchNameBox').val())
   }
 })
 
@@ -516,7 +507,7 @@ $(document).on("click", '.skillEffect', function(e){
 /*name search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
-    searchNameRun()
+    searchNameRun($('#searchNameBox').val())
 })
 
 $(document).ready( function(e) {
