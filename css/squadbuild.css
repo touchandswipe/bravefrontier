@@ -1,6 +1,9 @@
     .btn-default[disabled] {
         cursor: help !important;
     }
+    h3 {
+        font-weight:bold;
+    }
     .affix {
         position: fixed;
         padding: 10px 0 0 0;
