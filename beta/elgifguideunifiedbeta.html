@@ -148,7 +148,7 @@ if (window.location.hash == '#_=_') {
 </script>
 </div>
 <!--Search item-->
-<div class="input-group input-group-lg">
+<div class="input-group">
         <span class="input-group-btn">
         <button class="btn btn-primary" type="button" id="searchNameBtn">Skill Name</button></span>
         <input type="search" placeholder="e.g. divine oracle OR 破壊の刻印Lv3" class="form-control" id="searchNameBox">
@@ -497,6 +497,11 @@ $( "#searchNameBox" ).keypress( function( event ) {
      searchNameRun()
   }
 })
+
+/*execute typeahead on selection*/
+$('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
+	searchNameRun()
+});
 
 /*starRating filter*/
 $(document).on("click", '.starRating', function(e){
