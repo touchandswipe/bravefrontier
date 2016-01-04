@@ -980,7 +980,7 @@ function generateSummary() {
 	var bbatkLSTotal=0;
 	var batkBBTotal=0;
 	var bbatkUBBTotal=0;
-	for (var i in batkLS)
+	for (var i in bbatkLS)
 		bbatkLSTotal+=getTop(".lsBtns",bbatkLS[i]);
 	for (var i in critBB)
 		bbatkBBTotal+=getTop(".bbBtns",bbatkBB[i]);
