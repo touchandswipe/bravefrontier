@@ -493,7 +493,7 @@ function scanSkills(classBtns,scanScope) {
 														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 												}
 											} else {
-												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
 												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
 													if ($(this).attr("data-top")<getNestedVal)
@@ -508,7 +508,7 @@ function scanSkills(classBtns,scanScope) {
 												if (isNumber(scanArray[j][bbMap[k].impact]))
 													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
 											} else {
-												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
 												if (isNumber(getNestedVal))
 													$(this).attr("data-top",getNestedVal);
