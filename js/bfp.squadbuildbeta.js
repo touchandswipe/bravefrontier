@@ -463,16 +463,32 @@ function scanSkills(classBtns,scanScope) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 											}
 											/*build TOPval*/
-											if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-												if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-													$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+											if (bbMap[k].impact.charAt(0)!="!") {
+												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
+													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												}
+											} else {
+												var getNestedVal=nestedChk(bbMap[k].impact,scanArray[j]);
+												alert(getNestVal);
+												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
+													if ($(this).attr("data-top")<getNestedVal)
+														$(this).attr("data-top", getNestedVal);
+												}
 											}
 										}
 										else {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
-											if (isNumber(scanArray[j][bbMap[k].impact]))
-												$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+											if (bbMap[k].impact.charAt(0)!="!") {
+												if (isNumber(scanArray[j][bbMap[k].impact]))
+													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+											} else {
+												var getNestedVal=nestedChk(bbMap[k].impact,scanArray[j]);
+												alert(getNestVal);
+												if (isNumber(getNestedVal))
+													$(this).attr("data-top",getNestedVal);
+											}
 										}
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
