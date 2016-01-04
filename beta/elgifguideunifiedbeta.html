@@ -278,15 +278,12 @@ var effectsList=[];
       var keyRating=0;
       if (keyLength==7) {
 	      for (var x in matchElgif) {
-	      	if (matchElgif[x].esid==skillKey) {
-	      		keyRating=matchElgif[x]["rarity"];
-	      		console.log("match "+matchElgif[x].esid+" "+skillKey+" pos:"+rawParseObj.length+" key is:"+keyRating);
-	      	}
+	      	if (matchElgif[x].esid==skillKey)
+			keyRating=matchElgif[x]["rarity"];
 	      }
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
 	      nameSTR+='<span class="text-primary">'+keyRating+'<i class="fa fa-star"></i> </span>';
-	      console.log(keyRating);
 	      /*check global name*/
 	      if (serverID=="JP") {
 		      if (data_GL[skillKey] && data_GL[skillKey].name.substr(0,3)!="MST") {
