@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
@@ -51,6 +52,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.elgifmatch.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
@@ -350,6 +352,22 @@ var effectsList=[];
     for (var i in effectsList) {
     	$("#effectsList").append('<li><a href="#" class="skillEffect">'+effectsList[i]+'</li>');
     }*/
+    	/*typeahead*/
+    	var aheadNameRead = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		local: $.map(rawParseObj, function(uName) { return { value: uName.name }; })
+	});
+	aheadNameRead.initialize();
+	$('#searchNameBox').typeahead({
+		hint: true,
+		highlight: true,
+		minLength: 2
+	},
+	{
+		displayKey: 'value',
+		source: aheadNameRead.ttAdapter()
+	});
     
     $('#progressModal').modal('hide');
     
