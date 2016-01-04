@@ -621,22 +621,27 @@ function scanLeaderSkills(classBtns,scanScope) {
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
 										}
 										/*build TOPval*/
-										if ($(this).attr("data-top") && isNumber(scanArray[j][lsMap[k].impact])) {
+										if ($(this).attr("data-top")) {
 											if (!lsMap[k].stack) {
 												if (lsMap[k].impact.charAt(0)!="!") {
-													if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
+													if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact] && isNumber(scanArray[j][lsMap[k].impact]))
 														$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
 												} else {
 													var getNestedVal=nestedChk(lsMap[k].impact,scanArray[j]);
 													alert(getNestedVal);
-													if ($(this).attr("data-top")<getNestedVal)
+													if ($(this).attr("data-top")<getNestedVal && isNumber(getNestedVal))
 														$(this).attr("data-top", getNestedVal);
 												}
 											} else {
-												if (lsMap[k].impact.charAt(0)!="!")
-													$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
+												if (lsMap[k].impact.charAt(0)!="!") {
+													 if (isNumber(scanArray[j][lsMap[k].impact]))
+														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
+												}
 												else {
-													$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(nestedChk(lsMap[k].impact,scanArray[j])));
+													var getNestedVal=nestedChk(lsMap[k].impact,scanArray[j]);
+													alert(getNestedVal);
+													if (isNumber(getNestedVal))
+														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(getNestedVal));
 												}
 											}
 										}
