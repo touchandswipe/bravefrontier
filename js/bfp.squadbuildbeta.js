@@ -627,8 +627,10 @@ function scanLeaderSkills(classBtns,scanScope) {
 													if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact] && isNumber(scanArray[j][lsMap[k].impact]))
 														$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
 												} else {
-													var getNestedVal=nestedChk(lsMap[k].impact,scanArray[j]);
-													alert(getNestedVal);
+													console.log("splitting");
+													var nestedArray=lsMap[k].impact.substr(1).split("||");
+													var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+													console.log(getNestedVal);
 													if ($(this).attr("data-top")<getNestedVal && isNumber(getNestedVal))
 														$(this).attr("data-top", getNestedVal);
 												}
@@ -638,8 +640,10 @@ function scanLeaderSkills(classBtns,scanScope) {
 														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
 												}
 												else {
-													var getNestedVal=nestedChk(lsMap[k].impact,scanArray[j]);
-													alert(getNestedVal);
+													console.log("splitting");
+													var nestedArray=lsMap[k].impact.substr(1).split("||");
+													var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+													console.log(getNestedVal);
 													if (isNumber(getNestedVal))
 														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(getNestedVal));
 												}
