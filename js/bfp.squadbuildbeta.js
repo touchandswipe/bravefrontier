@@ -870,8 +870,8 @@ function getTop(btnclass,btnDesc) {
 	return returnVal;
 }
 
-function generateSummary() {
 /*generate squad summary*/
+function generateSummary() {
 	var sCost=0;
 	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
@@ -967,12 +967,24 @@ function generateSummary() {
 		critLSTotal+=getTop(".lsBtns",critLS[i]);
 	for (var i in critBB)
 		critBBTotal+=getTop(".bbBtns",critBB[i]);
-	for (var i in critLS)
+	for (var i in critUBB)
 		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
 	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br/>';
 	critHTML+="LS <b>"+critLSTotal+"%</b><br/>";
 	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br/>";
 	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
+	/*ATK summary*/
+	var atkBB=["% ATK+"];
+	var atkUBB=["% ATK+"];
+	var atkBBTotal=0;
+	var atkUBBTotal=0;
+	for (var i in atkBB)
+		atkBBTotal+=getTop(".bbBtns",atkBB[i]);
+	for (var i in atkUBB)
+		atkUBBTotal+=getTop(".ubbBtns",atkUBB[i]);
+	var atkHTML='<span class="text-success"><b>TOTAL '+ (+atkBBTotal + +atkUBBTotal) +'%</b></span><br/>';
+	atkHTML+="BB/SBB <b>"+atkBBTotal+"%</b><br/>";
+	atkHTML+="UBB <b>"+atkUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -992,8 +1004,9 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK Buff Potential"><b>BB ATK<br/>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
@@ -1258,7 +1271,7 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
 			}
-		} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
+		}
 	}
         else
         	unitObj.bb="none";
@@ -1269,7 +1282,7 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
 			}
-		} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
+		}
 	}
         else
         	unitObj.sbb="none";
@@ -1277,7 +1290,7 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
-        	} else alert(valObj.guide_id+" "+valObj.name+" Error in data");
+        	}
 	}
         else
         	unitObj.ubb="none";
