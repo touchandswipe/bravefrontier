@@ -79,8 +79,8 @@ if (window.location.hash == '#_=_') {
 <h6 class="hidden-xs hidden-sm"><b>Global Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd></h6>
 <h6 class="hidden-xs hidden-sm"><b>JP Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
-<!-- Ratings -->
 <div class="row" id="elgifMenu" data-spy="affix" data-offset-top="150">
+<!-- Ratings -->
 <div class="btn-group btn-group-xs" style="margin-bottom:5px;">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">by Rarity <span class="caret"></span>
   </button>
@@ -93,6 +93,20 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="starRating" data-value="6">6<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="7">7<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="0">Unknown</a></li>
+  </ul>
+</div>
+<!-- Skills lv -->
+<div class="btn-group btn-group-xs" style="margin-bottom:5px;">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">by Skill LV <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="skillLvList">
+  	<li><a href="#" class="skillLV">Lv1</a></li>
+  	<li><a href="#" class="skillLV">Lv2</a></li>
+  	<li><a href="#" class="skillLV">Lv3</a></li>
+  	<li><a href="#" class="skillLV">Lv4</a></li>
+  	<li><a href="#" class="skillLV">Lv5</a></li>
+  	<li><a href="#" class="skillLV">Lv6</a></li>
+  	<li><a href="#" class="skillLV">Lv7</a></li>
   </ul>
 </div>
 <!-- Effects -->
@@ -485,6 +499,12 @@ $( "#searchNameBox" ).keypress( function( event ) {
 $(document).on("click", '.starRating', function(e){
     e.preventDefault();
     starRun($(this).attr("data-value"));
+})
+
+/*skill lv filter*/
+$(document).on("click", '.starRating', function(e){
+    e.preventDefault();
+    searchNameRun($(this).text());
 })
 
 /*filterbased on Effect*/
