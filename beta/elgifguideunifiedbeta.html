@@ -277,9 +277,9 @@ var effectsList=[];
       var keyLength=skillKey.length;
       if (keyLength==7) {
 	      for (var m in matchElgif) {
-	      	console.log(matchElgif[m].esid+" "+skillKey);
-	      	if (matchElgif[m].esid==skillKey) {
-	      		var keyRating=parseInt(matchElgif[m].rarity);
+	      	if (String(matchElgif[m].esid)==String(skillKey)) {
+	      		console.log("match"+matchElgif[m]+" "+skillKey);
+	      		var keyRating=matchElgif[m].rarity;
 	      	}
 	      	else
 	      		var keyRating=0;
@@ -532,7 +532,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 				      	data_JP=data2;
 				      	/*build data*/
 				      	buildDB(data_JP,"JP");
-				      	starRun("7");
 				       }
 			});
  	      }
