@@ -278,7 +278,7 @@ var effectsList=[];
       if (keyLength==7) {
 	      for (var m in matchElgif) {
 	      	if (String(matchElgif[m].esid)==String(skillKey)) {
-	      		console.log("match"+matchElgif[m]+" "+skillKey);
+	      		console.log("match"+matchElgif[m].esid+" "+skillKey+" pos:"+rawParseObj.length);
 	      		var keyRating=matchElgif[m].rarity;
 	      	}
 	      	else
