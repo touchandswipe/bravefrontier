@@ -79,8 +79,8 @@ if (window.location.hash == '#_=_') {
 <h6 class="hidden-xs hidden-sm"><b>Global Last Updated: </b><kbd id="lastModDate_GL">TBD</kbd></h6>
 <h6 class="hidden-xs hidden-sm"><b>JP Last Updated: </b><kbd id="lastModDate_JP">TBD</kbd></h6>
 <h6 class="text-warning"><b>NOTE:</b> Rarity is mapped manually by Picione on Chatroom.</h6>
-<!-- Ratings -->
 <div class="row" id="elgifMenu" data-spy="affix" data-offset-top="150">
+<!-- Ratings -->
 <div class="btn-group btn-group-xs" style="margin-bottom:5px;">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">by Rarity <span class="caret"></span>
   </button>
@@ -93,6 +93,20 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="starRating" data-value="6">6<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="7">7<i class="fa fa-star"></i></a></li>
   	<li><a href="#" class="starRating" data-value="0">Unknown</a></li>
+  </ul>
+</div>
+<!-- Skills lv -->
+<div class="btn-group btn-group-xs" style="margin-bottom:5px;">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">by Skill LV <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="skillLvList">
+  	<li><a href="#" class="skillLV">Lv1</a></li>
+  	<li><a href="#" class="skillLV">Lv2</a></li>
+  	<li><a href="#" class="skillLV">Lv3</a></li>
+  	<li><a href="#" class="skillLV">Lv4</a></li>
+  	<li><a href="#" class="skillLV">Lv5</a></li>
+  	<li><a href="#" class="skillLV">Lv6</a></li>
+  	<li><a href="#" class="skillLV">Lv7</a></li>
   </ul>
 </div>
 <!-- Effects -->
@@ -341,6 +355,7 @@ var effectsList=[];
 	        var appendSTR=nameSTR+effectSTR+'</div></div></div></div>';
 	        /*Parse into MEMORY DB*/
 	        rawParseObj.push({"name":elgifName,"desc":valObj.desc,"collapseCode":appendSTR,"rating":keyRating});
+	        console.log(rawParseObj[rawParseObj.length-1].rating);
 	        collapseID+=1;
       } /*End KeyLength Check*/
     }); /*Each record*/
@@ -358,16 +373,8 @@ var effectsList=[];
     if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
-        searchNameRun();
+        searchNameRun(searchParam);
     }
-    
-    var searchParam=urlParam('ingredient');
-    if (searchParam != "") {
-        /*sets searchbox value then execute*/
-        $('#searchIngredientBox').val(searchParam);
-        searchIngredientRun();
-    }
-    
 }
 
 /*star rating Filter*/
@@ -436,8 +443,7 @@ function skillRun(selectSkill) {
 }
 
 /*Search by Name*/
-function searchNameRun() {
-    var sVal=$('#searchNameBox').val();
+function searchNameRun(sVal) {
     var outputObj=[];
 	var outputHTML=[];
 	if (sVal.length <2)
@@ -476,7 +482,7 @@ function searchNameRun() {
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun()
+     searchNameRun($('#searchNameBox').val())
   }
 })
 
@@ -484,6 +490,12 @@ $( "#searchNameBox" ).keypress( function( event ) {
 $(document).on("click", '.starRating', function(e){
     e.preventDefault();
     starRun($(this).attr("data-value"));
+})
+
+/*skill lv filter*/
+$(document).on("click", '.skillLV', function(e){
+    e.preventDefault();
+    searchNameRun($(this).text());
 })
 
 /*filterbased on Effect*/
@@ -495,7 +507,7 @@ $(document).on("click", '.skillEffect', function(e){
 /*name search*/
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
-    searchNameRun()
+    searchNameRun($('#searchNameBox').val())
 })
 
 $(document).ready( function(e) {
