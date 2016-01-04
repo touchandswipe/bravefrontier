@@ -657,7 +657,6 @@ function scanLeaderSkills(classBtns,scanScope) {
 										} else {
 											var nestedArray=lsMap[k].impact.substr(1).split("||");
 											var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
-											console.log("Nested Value "+getNestedVal);
 											if (isNumber(getNestedVal))
 												$(this).attr("data-top", getNestedVal);
 										}
