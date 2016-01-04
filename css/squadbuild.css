@@ -50,7 +50,10 @@
         margin:10px auto;
     }
     .htfixed {height:135px;}
-    .htfixed2 {height:120px;}
+    .htfixed2 {
+        min-height:120px;
+        margin:15px 0;
+    }
     .cross {
     	font-size: 30pt;
     	line-height: 20px;
