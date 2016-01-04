@@ -275,12 +275,11 @@ var effectsList=[];
     $.each( skill, function( skillKey, valObj ) {
       /*Extract Learned ES only*/
       var keyLength=skillKey.length;
+      var keyRating=0;
       if (keyLength==7) {
-	      for (var m in matchElgif) {
-	      	if (String(matchElgif[m].esid)==skillKey)
-	      		var keyRating=parseInt(matchElgif[m].rarity);
-	      	else
-	      		var keyRating=0;
+	      for (var x in matchElgif) {
+	      	if (matchElgif[x].esid==skillKey)
+			keyRating=matchElgif[x]["rarity"];
 	      }
 	      /*accordion heading*/
 	      nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#skill'+collapseID+'">';
@@ -518,7 +517,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
       		lastModified = request.getResponseHeader("Last-Modified");
       		$("#lastModDate_GL").text(lastModified);
       		data_GL=data;
-      		buildDB(data_GL,"GL");
 			/*AJAX Global*/
 			$.ajax({
 				dataType: "json",
@@ -529,7 +527,9 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 				      	$("#lastModDate_JP").text(lastModified);
 				      	data_JP=data2;
 				      	/*build data*/
+				      	buildDB(data_GL,"GL");
 				      	buildDB(data_JP,"JP");
+				      	starRun(7);
 				       }
 			});
  	      }
