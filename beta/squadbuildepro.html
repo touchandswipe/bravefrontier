@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Squad Builder (Global)  - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Squad Builder (Global) - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bravefrontier/css/squadbuild.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+<style type="text/css"></style>
+<!-- START JSON Code-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.jquerycustom.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.touchpunch.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "c856fe5f-812c-43ae-a551-75ad52580035", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+<div class="container-fluid" id="bfp_mast"></div>
+<!-- Main Body Space-->
+<div class="text-center container-fluid">
+<h2>Squad Builder R3 - <span class="text-danger">Global</span></h2>
+<h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
+	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
+	<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
+	<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
+	<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+</div>
+<!--Containing Div-->
+<div class="container-fluid" id="rawMod">
+	<div class="text-center" style="margin-bottom:5px;">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- NEWResponsiveBlog -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-2145833818900192"
+	     data-ad-slot="1729026867"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
+<!-- 6 unit spots -->
+	<div class="row" id="squadBox" style="padding-top:20px;">
+	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+	    <a class="unitBox" id="unitA" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	    <div class="leader">LEAD</div>
+	  </div>
+	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+	    <a class="unitBox" id="unitB" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	    <div class="leader">ALLY</div>
+	  </div>
+	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+	    <a class="unitBox" id="unitC" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	  </div>
+	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+	    <a class="unitBox" id="unitD" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	  </div>
+	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+	    <a class="unitBox" id="unitE" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	  </div>
+	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
+		<a class="unitBox" id="unitF" href="#"><i class="fa fa-plus fa-5x"></i></a>
+	  </div>
+	</div>
+	<!-- Squad Summary-->
+	<div class="row"><h3>Squad Summary</h3><div id="SummarySpace" class="row"><h5><i class="fa fa-exclamation-triangle text-danger"></i> No units added.</h5></div></div>
+	<!-- LS Skills Buttons-->
+	<div class="row" id="lsSpace"><h3>Leader Skills Available in Squad</h3></div>
+	<!-- NEWResponsiveBlog -->
+	<div style="margin:10px auto;">
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-2145833818900192"
+	     data-ad-slot="1729026867"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
+	<!-- BB Skills Buttons-->
+	<div class="row" id="bbSpace"><h3>BB/SBB Effects Available in Squad</h3></div>
+	<!-- NEWResponsiveBlog-->
+	<div style="margin:10px auto;">
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-2145833818900192"
+	     data-ad-slot="1729026867"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
+	<!-- UBB Skills Buttons-->
+	<div class="row" id="ubbSpace"><h3>UBB Effects Available in Squad</h3></div>
+	<!-- Non-Activated BB Skills Buttons-->
+	<div class="row" id="inactiveSpace"><h3>Inactive BB/SBB Effects</h3></div>
+	<h6>CREDIT: Data made possible by the efforts of <a href="https://www.reddit.com/user/Deathmax" target="_blank">Deathmax</a> datamining.</h6>
+</div>
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0 auto;">
+    <script type="text/javascript">
+        var disqus_shortname = 'bravefrontierpros';
+        var disqus_url = location.protocol + '//' + location.host + location.pathname;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div> <!-- /container -->
+<div id="bfp_foot"></div>
+<!-- Modal for Progress-->
+<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Syncing data</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary"><p>This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future.</p><p>Thank you for your patience.</p></h4>
+	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alert Modal -->
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Unit Select Modal -->
+<div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Add to Squad</b></h4>
+      </div>
+      <div class="modal-body" style="min-height:350px;">
+	<div>
+	    	<!--Search-->
+		<div class="input-group">
+		        <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter Unit ID</button></span>
+		        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+		</div>
+		<div class="input-group">
+		        <span class="input-group-btn">
+		        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
+		        <input type="search" placeholder="e.g. elza" class="form-control" id="searchNameBox">
+		</div>
+		<div id="rawTable" class="container-fluid"><h4 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: Search for the unit name/id to ADD.</h4></div>
+	</div>
+      </div>
+      	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" id="trashBtn" title="Remove Unit"><i class="fa fa-trash-o fa-2x"></i></button>
+	</div>
+    </div>
+  </div>
+</div>
+
+<!-- Unit Recommendation Modal -->
+<div class="modal" id="recommendModal" tabindex="-1" role="dialog" aria-labelledby="recommend Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Recommended 7<i class="fa fa-star-o"></i> with <span id="rTitle"></span></b></h4>
+      </div>
+      <div class="modal-body" style="min-height:400px;">
+	<div>
+		<div class="container-fluid">
+			<h4>Select Unit Slot</h4>
+			<div class="btn-group btn-group-lg" data-toggle="buttons">
+			  <label class="btn btn-default active">
+			    <input type="radio" name="unitPos" value="A" autocomplete="off" checked>Lead
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="B" autocomplete="off">Ally
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="C" autocomplete="off">1
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="D" autocomplete="off">2
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="E" autocomplete="off">3
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="radio" name="unitPos" value="F" autocomplete="off">4
+			  </label>
+			</div>
+			<hr>
+			<h4>Add Recommended Unit to Selected Slot</h4>
+			<div class="row" id="rBody"></div>
+		</div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Skills availability Modal -->
+<div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Skill Availability</b></h4>
+      </div>
+      <div class="modal-body">
+	<div class="text-center" id="showSkillBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
+	<pre id="redditShare"></pre>
+	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
+<script type="text/javascript">
+jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
+imgPrePath="http://2.cdn.bravefrontier.gumi.sg/content/";
+
+/*Refresh data*/
+$(document).on("click", '#refreshData, #syncNewBtn', function(e){
+    /*Init loader*/
+    $("#alertmodal").modal("hide");
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:'static',
+    	toggle:true
+    })
+    $.ajax({
+        dataType: "json",
+        contentType: "text/plain; charset=UTF-8",
+        url: jsonURL,
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		rawParseObj=[]; /*reset*/
+    		buildDB(data);
+    		/*Save in local storage*/
+		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+		localStorage.setItem("skillsguideglobaldate",lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
+ 	}
+    });
+})
+
+$(document).ready( function(e) {
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+$('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",content:"Drag/Drop Units to switch positions."});
+/*LocalStorage Retreival and storage*/
+    if (localStorage.skillsguideglobal) {
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
+		/*checks for update on server*/
+		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
+	} else
+		resetLocalData("skillsguideglobal",true)
+    } else {
+	    /*Init loader*/
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	toggle:true
+	    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: jsonURL,
+	        success: function(data, textStatus, request){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobaldate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+	    		buildDB(data);
+	 	}
+	    })
+    }
+    /*generate skills buttons*/
+    generateBtns("lsBtns","#lsSpace",lsMap);
+    generateBtns("bbBtns","#bbSpace",bbMap);
+    generateBtns("ubbBtns","#ubbSpace",bbMap);
+    /*checks and loads from URL Param*/
+    loadSquad();
+    /*activate Drag and drop*/
+    dragActivate();
+    $( ".unitBox" ).droppable({
+	scope:"squadunits",
+	accept:".dragBox",
+	activeClass:"dropZone",
+	hoverClass:"dropHover"
+    });
+})
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script id="cid0020000112449143277" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
+</body>
+</html>
