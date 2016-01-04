@@ -1,6 +1,6 @@
 .clear {clear:both;}
     .btnMenu {padding:10px 0 5px;}
-    #rawMod {padding:0;}
+    #rawMod {padding:0;text-align:left;}
     .affix {
         position: fixed;
         padding: 10px 0 5px;
