@@ -112,12 +112,12 @@ bbMap=[
 	{desc:"Add thunder to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"Add light to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
 	{desc:"Add dark to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"% Weakness DMG+ (Fire)", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Water)", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Earth)", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Thunder)", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Light)", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Weakness DMG+ (Dark)", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
 	{desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
 	{desc:"% Enemy HP DMG", impact:"hp% damage low", impact2:"hp% damage high", chance:"hp% damage chance%"},
 	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
@@ -1111,6 +1111,26 @@ function generateSummary() {
 	defHTML+="LS <b>"+defLSTotal+"%</b><br/>";
 	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br/>";
 	defHTML+="UBB <b>"+defUBBTotal+"%</b>";
+	/*Elemental weakness*/
+	var fireWk="% Fire Weakness DMG+";
+	var waterWk="% Water Weakness DMG+";
+	var thunderWk="% Thunder Weakness DMG+";
+	var earthWk="% Earth Weakness DMG+";
+	var lightWk="% Light Weakness DMG+";
+	var darkWk="% Dark Weakness DMG+";
+	var elementWk=[fireWk,waterWk,earthWk,thunderWk,lightWk,darkWk];
+	var elementTotal=[0,0,0,0,0,0];
+	for (var i in elementWk) {
+		elementTotal[i]+=getTop(".lsBtns",elementWk[i]);
+		elementTotal[i]+=getTop(".bbBtns",elementWk[i]);
+		elementTotal[i]+=getTop(".ubbBtns",elementWk[i]);
+	}
+	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br/>";
+	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br/>";
+	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br/>";
+	elementWkHTML+="Thunder <b>"+elementTotal[3]+"%</b><br/>";
+	elementWkHTML+="Light <b>"+elementTotal[4]+"%</b><br/>";
+	elementWkHTML+="Dark <b>"+elementTotal[5]+"%</b><br/>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -1133,6 +1153,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br/>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementalWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
