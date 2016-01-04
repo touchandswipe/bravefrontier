@@ -22,8 +22,8 @@ lsMap=[
 	{desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
 	{desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
 	{desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Taken", impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Dealt",stack:true, impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% BB ATK%+ on X DMG Taken",stack:true, impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
 	{desc:"% Ignore DEF", impact:"ignore def%"},
 	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
 	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
@@ -463,16 +463,32 @@ function scanSkills(classBtns,scanScope) {
 												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 											}
 											/*build TOPval*/
-											if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-												if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-													$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+											if (bbMap[k].impact.charAt(0)!="!") {
+												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
+													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												}
+											} else {
+												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
+													if ($(this).attr("data-top")<getNestedVal)
+														$(this).attr("data-top", getNestedVal);
+												}
 											}
 										}
 										else {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
-											if (isNumber(scanArray[j][bbMap[k].impact]))
-												$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+											if (bbMap[k].impact.charAt(0)!="!") {
+												if (isNumber(scanArray[j][bbMap[k].impact]))
+													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+											} else {
+												var nestedArray=lsMap[k].impact.substr(1).split("||");
+												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+												if (isNumber(getNestedVal))
+													$(this).attr("data-top",getNestedVal);
+											}
 										}
 										$(this).removeAttr("disabled");
 										if ($(this).hasClass("btn-default"))
@@ -607,20 +623,43 @@ function scanLeaderSkills(classBtns,scanScope) {
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
 										}
 										/*build TOPval*/
-										if ($(this).attr("data-top") && isNumber(scanArray[j][lsMap[k].impact])) {
+										if ($(this).attr("data-top")) {
 											if (!lsMap[k].stack) {
-												if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact])
-													$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+												if (lsMap[k].impact.charAt(0)!="!") {
+													if ($(this).attr("data-top")<scanArray[j][lsMap[k].impact] && isNumber(scanArray[j][lsMap[k].impact]))
+														$(this).attr("data-top", scanArray[j][lsMap[k].impact]);
+												} else {
+													var nestedArray=lsMap[k].impact.substr(1).split("||");
+													var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+													if ($(this).attr("data-top")<getNestedVal && isNumber(getNestedVal))
+														$(this).attr("data-top", getNestedVal);
+												}
 											} else {
-												$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
+												if (lsMap[k].impact.charAt(0)!="!") {
+													 if (isNumber(scanArray[j][lsMap[k].impact]))
+														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(scanArray[j][lsMap[k].impact]));
+												}
+												else {
+													var nestedArray=lsMap[k].impact.substr(1).split("||");
+													var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+													if (isNumber(getNestedVal))
+														$(this).attr("data-top", parseInt($(this).attr("data-top"))+parseInt(getNestedVal));
+												}
 											}
 										}
 									}
 									else {
 										$(this).attr("data-found",selectUnit);
 										/*build TOPval*/
-										if (isNumber(scanArray[j][lsMap[k].impact]))
-											$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
+										if (lsMap[k].impact.charAt(0)!="!") {
+											if (isNumber(scanArray[j][lsMap[k].impact]))
+												$(this).attr("data-top",scanArray[j][lsMap[k].impact]);
+										} else {
+											var nestedArray=lsMap[k].impact.substr(1).split("||");
+											var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
+											if (isNumber(getNestedVal))
+												$(this).attr("data-top", getNestedVal);
+										}
 									}
 									$(this).removeAttr("disabled");
 									if ($(this).hasClass("btn-default"))
@@ -870,8 +909,8 @@ function getTop(btnclass,btnDesc) {
 	return returnVal;
 }
 
-function generateSummary() {
 /*generate squad summary*/
+function generateSummary() {
 	var sCost=0;
 	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
@@ -967,12 +1006,63 @@ function generateSummary() {
 		critLSTotal+=getTop(".lsBtns",critLS[i]);
 	for (var i in critBB)
 		critBBTotal+=getTop(".bbBtns",critBB[i]);
-	for (var i in critLS)
+	for (var i in critUBB)
 		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
 	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br/>';
 	critHTML+="LS <b>"+critLSTotal+"%</b><br/>";
 	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br/>";
 	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
+	/*BB ATK% summary*/
+	var bbatkLS=["% BB ATK%+","% BB ATK%+ on SparkCount","% BB ATK%+ on X DMG Dealt","% BB ATK%+ on X DMG Taken"];
+	var bbatkBB=["% BB ATK%+"];
+	var bbatkUBB=["% BB ATK%+"];
+	var bbatkLSTotal=0;
+	var bbatkBBTotal=0;
+	var bbatkUBBTotal=0;
+	for (var i in bbatkLS)
+		bbatkLSTotal+=getTop(".lsBtns",bbatkLS[i]);
+	for (var i in critBB)
+		bbatkBBTotal+=getTop(".bbBtns",bbatkBB[i]);
+	for (var i in critUBB)
+		bbatkUBBTotal+=getTop(".ubbBtns",bbatkUBB[i]);
+	var bbatkHTML='<span class="text-success"><b>TOTAL '+ (+bbatkLSTotal + +bbatkBBTotal + +bbatkUBBTotal) +'%</b></span><br/>';
+	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br/>";
+	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br/>";
+	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
+	/*ATK summary*/
+	var atkLS=["% ATK+"];
+	var atkBB=["% ATK+"];
+	var atkUBB=["% ATK+"];
+	var atkLSTotal=0;
+	var atkBBTotal=0;
+	var atkUBBTotal=0;
+	for (var i in atkLS)
+		atkLSTotal+=getTop(".lsBtns",atkLS[i]);
+	for (var i in atkBB)
+		atkBBTotal+=getTop(".bbBtns",atkBB[i]);
+	for (var i in atkUBB)
+		atkUBBTotal+=getTop(".ubbBtns",atkUBB[i]);
+	var atkHTML='<span class="text-success"><b>TOTAL '+ (+atkLSTotal + +atkBBTotal + +atkUBBTotal) +'%</b></span><br/>';
+	atkHTML+="LS <b>"+atkLSTotal+"%</b><br/>";
+	atkHTML+="BB/SBB <b>"+atkBBTotal+"%</b><br/>";
+	atkHTML+="UBB <b>"+atkUBBTotal+"%</b>";
+	/*DEF summary*/
+	var defLS=["% DEF+"];
+	var defBB=["% DEF+"];
+	var defUBB=["% DEF+"];
+	var defLSTotal=0;
+	var defBBTotal=0;
+	var defUBBTotal=0;
+	for (var i in defLS)
+		defLSTotal+=getTop(".lsBtns",defLS[i]);
+	for (var i in defBB)
+		defBBTotal+=getTop(".bbBtns",defBB[i]);
+	for (var i in defUBB)
+		defUBBTotal+=getTop(".ubbBtns",defUBB[i]);
+	var defHTML='<span class="text-success"><b>TOTAL '+ (+defLSTotal + +defBBTotal + +defUBBTotal) +'%</b></span><br/>';
+	defHTML+="LS <b>"+defLSTotal+"%</b><br/>";
+	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br/>";
+	defHTML+="UBB <b>"+defUBBTotal+"%</b>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -992,8 +1082,11 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="ATK Buff Potential"><b>ATK<br/>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="DEF Buff Potential"><b>DEF<br/>BUFF</b></h4><h6>'+defHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br/>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
