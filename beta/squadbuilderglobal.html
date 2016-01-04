@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Brave Frontier - Squad Builder (Europe)  - A community effort by Brave Frontier PROs" />
+    <meta name="description" content="Brave Frontier - Squad Builder (Global)  - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brave Frontier - Squad Builder (Europe) - by Brave Frontier PROs</title>
+    <title>Brave Frontier - Squad Builder (Global) - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -49,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R3 - <span class="text-danger">Europe</span></h2>
+<h2>Squad Builder R3 - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
 	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
@@ -281,10 +281,10 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuild.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
 <script type="text/javascript">
-jsonURL="//touchandswipe.github.io/bravefrontier_data/eu/info.json";
-imgPrePath="//static.bravefrontier.gumi-europe.net/content/";
+jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
+imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
 
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
@@ -304,8 +304,8 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
-		localStorage.setItem("skillsguideeurope",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguideeuropedate",lastModified);
+		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+		localStorage.setItem("skillsguideglobaldate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
  	}
     });
@@ -317,15 +317,15 @@ $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html'
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
 $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",content:"Drag/Drop Units to switch positions."});
 /*LocalStorage Retreival and storage*/
-    if (localStorage.skillsguideeurope) {
-	guideData=LZString.decompressFromUTF16(localStorage.skillsguideeurope);
+    if (localStorage.skillsguideglobal) {
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguideglobal);
 	if (isValidJSON(guideData)) {
 		buildDB(JSON.parse(guideData));
-		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideeuropedate);
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguideglobaldate);
 		/*checks for update on server*/
-		checkUpdate(jsonURL,localStorage.skillsguideeuropedate);
+		checkUpdate(jsonURL,localStorage.skillsguideglobaldate);
 	} else
-		resetLocalData("skillsguideeurope",true)
+		resetLocalData("skillsguideglobal",true)
     } else {
 	    /*Init loader*/
 	    $('#progressModal').modal({
@@ -340,8 +340,8 @@ $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",con
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideeurope",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguideeuropedate",lastModified);
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobaldate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
 	 	}
@@ -373,7 +373,6 @@ $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",con
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
-<!--Chatroom-->
 <script id="cid0020000112449143277" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
