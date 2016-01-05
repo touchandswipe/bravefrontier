@@ -25,21 +25,21 @@ trashStr='<i class="fa fa-plus fa-5x"></i>';
 gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 rawParseObj=[];
 lsMap=[
-	{desc:"% HP", impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% ATK", impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% DEF", impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% REC", impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% ATK+ by HP", impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
-	{desc:"% DEF+ by HP", impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
-	{desc:"% ATK+ on X DMG Dealt", impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% ATK+ Turn after CRIT", impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
-	{desc:"% ATK+ First Turns", impact:"first x turns atk% (1)", criteria:["first x turns"]},
-	{desc:"% DEF+ First Turns", impact:"first x turns def% (3)", criteria:["first x turns"]},
-	{desc:"% CRIT+", impact:"crit% buff"},
+	{desc:"% HP", stack:true, impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{desc:"% ATK", stack:true, impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{desc:"% DEF", stack:true, impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{desc:"% REC", stack:true, impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{desc:"% ATK+ by HP", stack:true, impact:"atk% extra buff based on hp", impact2:"atk% base buff", criteria:["buff proportional to hp"]},
+	{desc:"% DEF+ by HP", stack:true, impact:"def% extra buff based on hp", impact2:"def% base buff", criteria:["buff proportional to hp"]},
+	{desc:"% ATK+ on X DMG Dealt", stack:true, impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{desc:"% ATK+ Turn after CRIT", stack:true, impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
+	{desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
+	{desc:"% DEF+ First Turns", stack:true, impact:"first x turns def% (3)", criteria:["first x turns"]},
+	{desc:"% CRIT+", stack:true, impact:"crit% buff"},
 	{desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
-	{desc:"% Spark DMG Debuff", impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
-	{desc:"% Spark DMG+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment"},
+	{desc:"% Spark DMG Debuff", stack:true, impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
+	{desc:"% Spark DMG+ on SparkCount", stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
+	{desc:"% DMG+ to Ailed Enemy", stack:true, impact:"atk% buff when enemy has ailment"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
 	{desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
 	{desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
@@ -665,7 +665,9 @@ function scanLeaderSkills(classBtns,scanScope) {
 									if ($(this).attr("data-found")) {
 										if ($(this).attr("data-found").split(',').length<leadCount) {
 										/*stop dupe skills w/ criteria*/
-											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+											if ($(this).attr("data-found").split(',').indexOf(selectUnit)==-1) {
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+											}
 										}
 										/*build TOPval*/
 										if ($(this).attr("data-top")) {
@@ -984,8 +986,6 @@ function generateSummary() {
 	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
-	var sStats=["% HP","% ATK","% DEF","% REC"];
-	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
 	$(".unitBox .dragBox .unitSelected").each(function(){
@@ -1010,45 +1010,30 @@ function generateSummary() {
 	/*counts element*/
 	for (var key in sElement)
 		if (sElement[key]!=0)
-			sElementCount+=1
-	/*generate LS stats total*/
-	for (i in sStats) {
-		$(".lsBtns .btnDesc").each( function() {
-			lsKey=$(this).text();
-			if (lsKey==sStats[i]) {
-				/*match desired skill to summarise*/
-				for (m in lsMap)
-					if (lsKey==lsMap[m].desc) {
-						var lsMapKey=m;
-						break;
-					}
-				/*match*/
-				if ($(this).parent().attr("data-found")) {
-					var tArray=$(this).parent().attr("data-found").split(',');
-					for (j in tArray) {
-						var scanArray=rawParseObj[tArray[j]].ls.effects;
-						for (k in scanArray)
-							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
-								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
-								/*break; Removal to support dupe skills stacks */
-							}
-					}
-				} else
-					sTotalStats[lsKey]+=0;
-				return false; /*break each loop*/
-			}
-		})
-	}
-	/*generate LS Stats Summary*/
-	var lsStatsHTML=[];
-	for (var key in sTotalStats) {
-		if (sTotalStats[key]!=0)
-			lsStatsHTML.push(sTotalStats[key]+"<b>"+key+"</b>");
-	}
-	if (lsStatsHTML.length==0)
-		lsStatsHTML.push("No STATS Bonus")
+			sElementCount+=1;
+	/*New LS Summary*/
+	var lsHP=["% HP"];
+	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns"];
+	var lsDEF=["% DEF","% DEF+ by HP","% DEF+ First Turns"];
+	var lsREC=["% REC"];
+	var lsHPTotal=0;
+	var lsATKTotal=0;
+	var lsDEFTotal=0;
+	var lsRECTotal=0;
+	for (var i in lsHP)
+		lsHPTotal+=getTop(".lsBtns",lsHP[i]);
+	for (var i in lsATK)
+		lsATKTotal+=getTop(".lsBtns",lsATK[i]);
+	for (var i in lsDEF)
+		lsDEFTotal+=getTop(".lsBtns",lsDEF[i]);
+	for (var i in lsREC)
+		lsRECTotal+=getTop(".lsBtns",lsREC[i]);
+	var lsHTML=lsHPTotal+'% <b>HP</b><br>';
+	lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
+	lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
+	lsHTML+=lsRECTotal+'% <b>REC</b>';
 	/*Update multiplier*/
-	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
+	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
 	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
@@ -1172,7 +1157,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsHTML+' </h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="ATK Buff Potential"><b>ATK<br/>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="DEF Buff Potential"><b>DEF<br/>BUFF</b></h4><h6>'+defHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
