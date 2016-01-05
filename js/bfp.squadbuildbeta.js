@@ -1176,10 +1176,10 @@ function generateSummary() {
 function parseUnit(slot,rawID) {
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$("#stats"+slot.slice(-1)).html('<ul class="list-unstyled">');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].anima.hp+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].anima.atk+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].anima.def+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].anima.rec+'</li>');
 	$("#stats"+slot.slice(-1)+" .list-unstyled").append('</ul>');
 	$("#spheres"+slot.slice(-1)).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
@@ -1468,6 +1468,15 @@ if (typeof mappedNames !== 'undefined') {
         			unitObj.lord.rec=+valObj.stats._lord.rec + +valObj.imp["max rec"];
         		} else {
         			unitObj.lord=valObj.stats._lord;
+        		}
+        	}
+		if (valObj.stats.anima) {
+        		if (valObj.imp) {
+        			unitObj.anima={};
+        			unitObj.anima.hp=parseInt((+valObj.stats.anima["hp max"] + +valObj.stats.anima["hp min"])/2) + +valObj.imp["max hp"];
+        			unitObj.anima.atk=+valObj.stats.anima.atk + +valObj.imp["max atk"];
+        			unitObj.anima.def=+valObj.stats.anima.def + +valObj.imp["max def"];
+        			unitObj.anima.rec=parseInt((+valObj.stats.anima["rec max"] + +valObj.stats.anima["rec min"])/2) + +valObj.imp["max rec"];
         		}
         	}
         }
