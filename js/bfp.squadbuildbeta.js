@@ -1225,6 +1225,7 @@ function refreshALL() {
 	$(".unitBox").each( function(){
 		if ($(this).find(".unitSelected").length) {
 			var boxRef=$(this).find(".unitSelected").attr("id");
+			console.log(boxRef);
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
