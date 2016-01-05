@@ -10,7 +10,7 @@
     div[id^='spheres'], div[id^='stats'] {
         border-radius:10px;
         margin:0px auto 5px;
-        width:140px;
+        width:160px;
         padding:5px;
         background:#EEF;
     }
