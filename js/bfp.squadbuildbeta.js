@@ -5,6 +5,8 @@ sphereList=[
 	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
 	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
 ];
+/*Stats Calc Var*/
+LSMultiplier=[0,0,0,0];
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1033,6 +1035,8 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	LSMultiplier=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
+	console.log("LS Multiplier is ",LSMultiplier);
 	/*spark summary*/
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
