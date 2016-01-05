@@ -1181,6 +1181,7 @@ function parseUnit(slot,rawID) {
 	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
 	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
 	$("#stats"+slot.slice(-1)+" .list-unstyled").append('</ul>');
+	$("#spheres"+slot.slice(-1)).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
 
 function refreshALL() {
