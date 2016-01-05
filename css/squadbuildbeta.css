@@ -13,6 +13,9 @@
         padding:5px;
         background:#EEF;
     }
+    div[id^='TYPEHEADER'] {
+        font-weight:bold;
+    }
     .affix {
         position: fixed;
         padding: 10px 0 0 0;
