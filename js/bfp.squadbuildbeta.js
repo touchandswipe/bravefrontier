@@ -1177,7 +1177,7 @@ function parseUnit(slot,rawID) {
 	var insertHTML="";
 	var uRef=slot.slice(-1);
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
-	insertHTML+='<h4 id="TYPEHEADER_'+uRef+'"><b>'+LORD+'</b></h4>';
+	insertHTML+='<h4 id="TYPEHEADER_'+uRef+'"><b>LORD</b></h4>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="lord">L</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="anima">A</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="breaker">B</button>';
