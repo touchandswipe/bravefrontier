@@ -1040,8 +1040,8 @@ function generateSummary() {
 	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
 	var unitRun=["A","B","C","D","E","F"];
 	for (var i in unitRun){
-		var sphere1Bonus=$("#sphere1_"+unitRun[i]).split(",");
-		var sphere2Bonus=$("#sphere1_"+unitRun[i]).split(",");
+		var sphere1Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
+		var sphere2Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
 		unitBonus[unitRun[i]]=[
 			sphere1Bonus[0]+sphere2Bonus[0]+lsBonus[0],
 			sphere1Bonus[1]+sphere2Bonus[1]+lsBonus[1],
