@@ -1043,14 +1043,15 @@ function generateSummary() {
 		var sphere1Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
 		var sphere2Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
 		unitBonus[unitRun[i]]=[
-			+sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			+sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
-			+sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			+sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
+			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
+			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
 		];
 		console.log("Unit"+unitRun[i]+" Bonus is "+unitBonus[unitRun[i]]);
 	}
 	console.log("LS Multiplier is ",lsBonus);
+	refreshBonus();
 	/*spark summary*/
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
@@ -1231,6 +1232,20 @@ function refreshALL() {
 	generateSummary();
 }
 
+function refreshBonus(){
+	/*Process for Each Unit*/
+	$.each( unitBonus, function( key, bonus ) {
+		if ($("#unit"+key+" .unitSelected").length) {
+			var unitID=$("#unit"+key+" .unitSelected").attr("data-unitid");
+			var unitType=$("#TYPEHEADER_"+key).text().toLowerCase();
+			$("#HP_"+key).text(+rawParseObj[unitID][unitType].hp * +bonus[0]);
+			$("#ATK_"+key).text(+rawParseObj[unitID][unitType].atk * +bonus[1]);
+			$("#DEF_"+key).text(+rawParseObj[unitID][unitType].def * +bonus[2]);
+			$("#REC_"+key).text(+rawParseObj[unitID][unitType].rec * +bonus[3]);
+		}
+	})
+}
+
 function loadSquad() {
 	/*load squad from param*/
 	var sParam=urlParam('squad');
@@ -1303,7 +1318,6 @@ $(".unitBox").on( "drop", function(e, ui) {
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
 		$(unitProcessing).html(trashStr);
 		$("#stats"+unitProcessing.slice(-1)).html("");
-		//$("#spheres"+unitProcessing.slice(-1)).html("");
 		refreshALL();
 	}
 });
@@ -1348,7 +1362,6 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$("#stats"+unitProcessing.slice(-1)).html("");
-	//$("#spheres"+unitProcessing.slice(-1)).html("");
 	$('#searchModal').modal('hide');
 	refreshALL();
 })
