@@ -1172,6 +1172,17 @@ function generateSummary() {
 	});
 }
 
+/*fill squad box*/
+function parseUnit(slot,rawID) {
+	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	$("#details"+slot.slice(-1)).html('<ul class="list-unstyled">');
+	$("#details"+slot.slice(-1)).append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
+	$("#details"+slot.slice(-1)).append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
+	$("#details"+slot.slice(-1)).append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
+	$("#details"+slot.slice(-1)).append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
+	$("#details"+slot.slice(-1)).append('</ul>');
+}
+
 function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
@@ -1194,7 +1205,7 @@ function loadSquad() {
 			    	for (i in squadList) {
 			    		for (j in rawParseObj)
 			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
-			    				$("#unit"+squadList[i].charAt(0)).html('<div class="dragBox"><img src="'+rawParseObj[j].img+'" data-unitid="'+j+'" class="unitSelected" title="'+rawParseObj[j].name+" ("+rawParseObj[j].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[j].rarity+'<i class="fa fa-star"></i></kbd></div>');
+			    				parseUnit("#unit"+squadList[i].charAt(0), j);
 			    				break;
 			    			}
 			    	}
@@ -1358,7 +1369,7 @@ $(document).on("click", '#getReddit', function(e){
 $(document).on("click", '.unitFound', function(e){
 	e.preventDefault();
 	$('#searchModal').modal('hide');
-	$(unitProcessing).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	parseUnit(unitProcessing, $(this).attr("data-unitid"));
 	dragActivate();
 	refreshALL();
 })
@@ -1367,7 +1378,7 @@ $(document).on("click", '.unitFound', function(e){
 $(document).on("click", '.unitRecommend', function(e){
 https://github.com/touchandswipe/bravefrontier	e.preventDefault();
 	var slotAdd="#unit"+$('input:radio[name="unitPos"]:checked').val();
-	$(slotAdd).html('<div class="dragBox"><img src="'+rawParseObj[$(this).attr("data-unitid")].img+'" data-unitid="'+$(this).attr("data-unitid")+'" class="unitSelected" title="'+rawParseObj[$(this).attr("data-unitid")].name+" ("+rawParseObj[$(this).attr("data-unitid")].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[$(this).attr("data-unitid")].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	parseUnit(slotAdd, $(this).attr("data-unitid"));
 	$('#recommendModal').modal('hide');
 	dragActivate();
 	refreshALL();
