@@ -1177,6 +1177,7 @@ function parseUnit(slot,rawID) {
 	var insertHTML="";
 	var uRef=slot.slice(-1);
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
+	insertHTML+='<h4 id="TYPEHEADER_'+uRef+'"><b>'+LORD+'</b></h4>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="lord">L</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="anima">A</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="breaker">B</button>';
@@ -1302,9 +1303,8 @@ $(document).on("click", '#resetInactive', function(e){
 /*Reset buttons*/
 $(document).on("click", '.typeBtn', function(e){
 	e.preventDefault();
-	console.log("changing type to "+$(this).attr("title"));
+	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("data-unitid").toUpperCase());
 	$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
-	console.log("#HP_"+$(this).attr("data-unitbox")+" "+rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
 	$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
 	$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
 	$("#REC_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
@@ -1496,6 +1496,33 @@ if (typeof mappedNames !== 'undefined') {
         			unitObj.anima.atk=+valObj.stats.anima.atk + +valObj.imp["max atk"];
         			unitObj.anima.def=+valObj.stats.anima.def + +valObj.imp["max def"];
         			unitObj.anima.rec=parseInt((+valObj.stats.anima["rec max"] + +valObj.stats.anima["rec min"])/2) + +valObj.imp["max rec"];
+        		}
+        	}
+		if (valObj.stats.breaker) {
+        		if (valObj.imp) {
+        			unitObj.breaker={};
+        			unitObj.breaker.atk=parseInt((+valObj.stats.breaker["atk max"] + +valObj.stats.breaker["atk min"])/2) + +valObj.imp["max atk"];
+        			unitObj.breaker.hp=+valObj.stats.breaker.hp + +valObj.imp["max hp"];
+        			unitObj.breaker.rec=+valObj.stats.breaker.rec + +valObj.imp["max rec"];
+        			unitObj.breaker.def=parseInt((+valObj.stats.breaker["def max"] + +valObj.stats.breaker["def min"])/2) + +valObj.imp["max def"];
+        		}
+        	}
+		if (valObj.stats.oracle) {
+        		if (valObj.imp) {
+        			unitObj.oracle={};
+        			unitObj.oracle.def=parseInt((+valObj.stats.oracle["def max"] + +valObj.stats.oracle["def min"])/2) + +valObj.imp["max def"];
+        			unitObj.oracle.atk=+valObj.stats.oracle.atk + +valObj.imp["max atk"];
+        			unitObj.oracle.hp=+valObj.stats.oracle.hp + +valObj.imp["max hp"];
+        			unitObj.oracle.rec=parseInt((+valObj.stats.oracle["rec max"] + +valObj.stats.oracle["rec min"])/2) + +valObj.imp["max rec"];
+        		}
+        	}
+		if (valObj.stats.guardian) {
+        		if (valObj.imp) {
+        			unitObj.guardian={};
+        			unitObj.guardian.def=parseInt((+valObj.stats.guardian["def max"] + +valObj.stats.guardian["def min"])/2) + +valObj.imp["max def"];
+        			unitObj.guardian.hp=+valObj.stats.guardian.hp + +valObj.imp["max hp"];
+        			unitObj.guardian.atk=+valObj.stats.guardian.atk + +valObj.imp["max atk"];
+        			unitObj.guardian.rec=parseInt((+valObj.stats.guardian["rec max"] + +valObj.stats.guardian["rec min"])/2) + +valObj.imp["max rec"];
         		}
         	}
         }
