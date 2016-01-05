@@ -9,7 +9,7 @@
     #squadBox {padding-top:20px;}
     div[id^='spheres'], div[id^='stats'] {
         border-radius:10px;
-        margin:0px auto 5px;
+        margin:0 auto;
         width:160px;
         padding:5px;
         background:#EEF;
