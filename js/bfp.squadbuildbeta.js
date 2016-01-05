@@ -6,7 +6,8 @@ sphereList=[
 	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
 ];
 /*Stats Calc Var*/
-LSMultiplier=[0,0,0,0];
+lsBonus=[0,0,0,0];
+unitBonus={A:[0,0,0,0],B:[0,0,0,0],C:[0,0,0,0],D:[0,0,0,0],E:[0,0,0,0],F:[0,0,0,0]};
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1035,7 +1036,20 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
-	LSMultiplier=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
+	/*Update multiplier*/
+	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
+	var unitRun=["A","B","C","D","E","F"];
+	for (var i in unitRun){
+		var sphere1Bonus=$("#sphere1_"+unitRun[i]).split(",");
+		var sphere2Bonus=$("#sphere1_"+unitRun[i]).split(",");
+		unitBonus[unitRun[i]]=[
+			sphere1Bonus[0]+sphere2Bonus[0]+lsBonus[0],
+			sphere1Bonus[1]+sphere2Bonus[1]+lsBonus[1],
+			sphere1Bonus[2]+sphere2Bonus[2]+lsBonus[2],
+			sphere1Bonus[3]+sphere2Bonus[3]+lsBonus[3]
+		];
+		console.log("Unit"+unitRun[i]+" Bonus is "+unitBonus[unitRun[i]]);
+	}
 	console.log("LS Multiplier is ",LSMultiplier);
 	/*spark summary*/
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
