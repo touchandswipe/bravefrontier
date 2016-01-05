@@ -1,4 +1,5 @@
 sphereList=[
+	{name:"None",stats:[0,0,0,0]},
 	{name:"Legwand",stats:[0.25,0.25,0.25,0.25]},
 	{name:"Malice Jewel",stats:[0.3,0.3,0.3,0.3]},
 	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
