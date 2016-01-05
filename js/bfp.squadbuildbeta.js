@@ -1238,10 +1238,10 @@ function refreshBonus(){
 		if ($("#unit"+key+" .unitSelected").length) {
 			var unitID=$("#unit"+key+" .unitSelected").attr("data-unitid");
 			var unitType=$("#TYPEHEADER_"+key).text().toLowerCase();
-			$("#HP_"+key).text(+rawParseObj[unitID][unitType].hp * +bonus[0]);
-			$("#ATK_"+key).text(+rawParseObj[unitID][unitType].atk * +bonus[1]);
-			$("#DEF_"+key).text(+rawParseObj[unitID][unitType].def * +bonus[2]);
-			$("#REC_"+key).text(+rawParseObj[unitID][unitType].rec * +bonus[3]);
+			$("#HP_"+key).text(parseInt(+rawParseObj[unitID][unitType].hp * +bonus[0]));
+			$("#ATK_"+key).text(parseInt(+rawParseObj[unitID][unitType].atk * +bonus[1]));
+			$("#DEF_"+key).text(parseInt(+rawParseObj[unitID][unitType].def * +bonus[2]));
+			$("#REC_"+key).text(parseInt(+rawParseObj[unitID][unitType].rec * +bonus[3]));
 		}
 	})
 }
