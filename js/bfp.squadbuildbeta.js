@@ -665,7 +665,9 @@ function scanLeaderSkills(classBtns,scanScope) {
 									if ($(this).attr("data-found")) {
 										if ($(this).attr("data-found").split(',').length<leadCount) {
 										/*stop dupe skills w/ criteria*/
-											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit)
+											if ($(this).attr("data-found").split(',').indexOf(selectUnit)!=-1) {
+												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+											}
 										}
 										/*build TOPval*/
 										if ($(this).attr("data-top")) {
