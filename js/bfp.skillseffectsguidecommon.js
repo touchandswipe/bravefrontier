@@ -253,7 +253,7 @@ if (typeof mappedNames !== 'undefined') {
 	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max atk"]+'</div>';
 	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max def"]+'</div>';
 	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max rec"]+'</div>';
-	            statsSTR+='</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
             }
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
