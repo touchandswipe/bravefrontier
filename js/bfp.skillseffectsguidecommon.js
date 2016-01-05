@@ -247,6 +247,14 @@ if (typeof mappedNames !== 'undefined') {
             statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd bg-info"><b>Type</b></div>';
             statsSTR+='<div class="col-xs-2 col-sm-2 bd bg-info"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>REC</b></div><div class="col-xs-2 col-sm-2 bd"></div>';
             statsSTR+='</div>';
+            if (valObj.imp) {
+	            statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>Max Pimp!</b></div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max hp"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max atk"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max def"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max rec"]+'</div>';
+	            statsSTR+='</div>';
+            }
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
             	/*HP*/
