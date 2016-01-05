@@ -6,6 +6,13 @@
     }
     .dBtn {margin-top:10px;}
     #squadBox {padding-top:20px;}
+    .spheres*,.details* {
+        border-radius:10px;
+        margin:0px auto 5px;
+        width:140px;
+        padding:5px;
+        background:#EEF;
+    }
     .affix {
         position: fixed;
         padding: 10px 0 0 0;
