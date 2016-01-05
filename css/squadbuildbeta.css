@@ -4,6 +4,7 @@
     h3 {
         font-weight:bold;
     }
+    .dBtn {margin-top:10px;}
     #squadBox {padding-top:20px;}
     .affix {
         position: fixed;
