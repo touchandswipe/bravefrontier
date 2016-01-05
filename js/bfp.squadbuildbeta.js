@@ -1175,12 +1175,12 @@ function generateSummary() {
 /*fill squad box*/
 function parseUnit(slot,rawID) {
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
-	$("#details"+slot.slice(-1)).html('<ul class="list-unstyled">');
-	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
-	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
-	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
-	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
-	$("#details"+slot.slice(-1)+" .list-unstyled").append('</ul>');
+	$("#stats"+slot.slice(-1)).html('<ul class="list-unstyled">');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
+	$("#stats"+slot.slice(-1)+" .list-unstyled").append('</ul>');
 }
 
 function refreshALL() {
