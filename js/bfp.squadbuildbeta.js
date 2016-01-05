@@ -1460,6 +1460,7 @@ if (typeof mappedNames !== 'undefined') {
         if (valObj.stats) {
         	if (valObj.stats._lord) {
         		if (valObj.imp) {
+        			unitObj.lord={};
         			unitObj.lord.hp=valObj.stats._lord.hp+valObj.imp["max hp"];
         			unitObj.lord.atk=valObj.stats._lord.atk+valObj.imp["max atk"];
         			unitObj.lord.def=valObj.stats._lord.def+valObj.imp["max def"];
