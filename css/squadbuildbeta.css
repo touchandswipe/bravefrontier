@@ -6,7 +6,7 @@
     }
     .dBtn {margin-top:10px;}
     #squadBox {padding-top:20px;}
-    #spheres*,#stats* {
+    div[id^='spheres_'], div[id^='stats_'] {
         border-radius:10px;
         margin:0px auto 5px;
         width:140px;
