@@ -1038,19 +1038,8 @@ function generateSummary() {
 		lsStatsHTML.push("No STATS Bonus")
 	/*Update multiplier*/
 	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
-	var unitRun=["A","B","C","D","E","F"];
-	for (var i in unitRun){
-		var sphere1Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
-		var sphere2Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
-		unitBonus[unitRun[i]]=[
-			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
-			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
-		];
-		console.log("Unit"+unitRun[i]+" Bonus is "+unitBonus[unitRun[i]]);
-	}
 	console.log("LS Multiplier is ",lsBonus);
+	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
@@ -1232,6 +1221,22 @@ function refreshALL() {
 	generateSummary();
 }
 
+function refreshSpheres(){
+	var unitRun=["A","B","C","D","E","F"];
+	
+	$.each( unitBonus, function( key, bonus ) {
+		var sphere1Bonus=$("#sphere1_"+key).val().split(",");
+		var sphere2Bonus=$("#sphere1_"+key).val().split(",");
+		unitBonus[key]=[
+			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
+			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
+		];
+		console.log("Unit"+key+" Bonus is "+unitBonus[key]);
+	})
+}
+
 function refreshBonus(){
 	/*Process for Each Unit*/
 	$.each( unitBonus, function( key, bonus ) {
@@ -1351,10 +1356,14 @@ $(document).on("click", '#resetInactive', function(e){
 $(document).on("click", '.typeBtn', function(e){
 	e.preventDefault();
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
-	//$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
-	//$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
-	//$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
-	//$("#REC_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
+	refreshSpheres();
+	refreshBonus();
+})
+
+/*Trash Unit*/
+$(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
+	e.preventDefault();
+	refreshSpheres();
 	refreshBonus();
 })
 
