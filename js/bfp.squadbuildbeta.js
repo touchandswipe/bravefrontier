@@ -1198,9 +1198,8 @@ function refreshALL() {
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
 	scanSkills(".ubbBtns",["ubb"]);
 	$(".unitBox").each( function(){
-		if ($(this).find(".unitSelected")) {
+		if ($(this).find(".unitSelected").length) {
 			var unitID=$(this).find(".unitSelected").attr("data-unitid");
-			console.log(unitID);
 			parseUnit($(this).attr("id"), unitID);
 		}
 	});
