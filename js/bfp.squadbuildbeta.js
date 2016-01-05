@@ -1176,11 +1176,11 @@ function generateSummary() {
 function parseUnit(slot,rawID) {
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
 	$("#details"+slot.slice(-1)).html('<ul class="list-unstyled">');
-	$("#details"+slot.slice(-1)).append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
-	$("#details"+slot.slice(-1)).append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
-	$("#details"+slot.slice(-1)).append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
-	$("#details"+slot.slice(-1)).append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
-	$("#details"+slot.slice(-1)).append('</ul>');
+	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].lord.hp+'</li>');
+	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].lord.atk+'</li>');
+	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].lord.def+'</li>');
+	$("#details"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].lord.rec+'</li>');
+	$("#details"+slot.slice(-1)+" .list-unstyled").append('</ul>');
 }
 
 function refreshALL() {
@@ -1461,10 +1461,10 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj.stats._lord) {
         		if (valObj.imp) {
         			unitObj.lord={};
-        			unitObj.lord.hp=valObj.stats._lord.hp+valObj.imp["max hp"];
-        			unitObj.lord.atk=valObj.stats._lord.atk+valObj.imp["max atk"];
-        			unitObj.lord.def=valObj.stats._lord.def+valObj.imp["max def"];
-        			unitObj.lord.rec=valObj.stats._lord.rec+valObj.imp["max rec"];
+        			unitObj.lord.hp=+valObj.stats._lord.hp + +valObj.imp["max hp"];
+        			unitObj.lord.atk=+valObj.stats._lord.atk + +valObj.imp["max atk"];
+        			unitObj.lord.def=+valObj.stats._lord.def + +valObj.imp["max def"];
+        			unitObj.lord.rec=+valObj.stats._lord.rec + +valObj.imp["max rec"];
         		} else {
         			unitObj.lord=valObj.stats._lord;
         		}
