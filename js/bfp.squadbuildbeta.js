@@ -1,3 +1,9 @@
+sphereList=[
+	{name:"Legwand",stats:[0.25,0.25,0.25,0.25]},
+	{name:"Malice Jewel",stats:[0.3,0.3,0.3,0.3]},
+	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
+	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
+];
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1190,7 +1196,7 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
-	$("#spheres"+uRef).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
+	//$("#sphere1_"+uRef).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
 
 function refreshALL() {
@@ -1558,6 +1564,10 @@ if (typeof mappedNames !== 'undefined') {
 	});
     
     $("#unitCount").html(countVar);
+    /*Preload SphereList*/
+    for (var i in sphereList) {
+    	$(".input-sphere").append('<option value="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
+    };
     $('#progressModal').modal('hide');
 }
 
