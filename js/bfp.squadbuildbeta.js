@@ -1050,7 +1050,7 @@ function generateSummary() {
 		];
 		console.log("Unit"+unitRun[i]+" Bonus is "+unitBonus[unitRun[i]]);
 	}
-	console.log("LS Multiplier is ",LSMultiplier);
+	console.log("LS Multiplier is ",lsBonus);
 	/*spark summary*/
 	var sparkLS=["% Spark DMG+","% Spark DMG Debuff","% Spark DMG+ on SparkCount"];
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
