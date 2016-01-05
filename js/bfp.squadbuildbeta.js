@@ -1174,14 +1174,22 @@ function generateSummary() {
 
 /*fill squad box*/
 function parseUnit(slot,rawID) {
+	var insertHTML="";
+	var uRef=slot.slice(-1);
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
-	$("#stats"+slot.slice(-1)).html('<ul class="list-unstyled">');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>HP:</b> '+rawParseObj[rawID].anima.hp+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>ATK:</b> '+rawParseObj[rawID].anima.atk+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>DEF:</b> '+rawParseObj[rawID].anima.def+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('<li><b>REC:</b> '+rawParseObj[rawID].anima.rec+'</li>');
-	$("#stats"+slot.slice(-1)+" .list-unstyled").append('</ul>');
-	$("#spheres"+slot.slice(-1)).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
+	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="unit'+uRef+'" title="lord">L</button>';
+	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="unit'+uRef+'" title="anima">A</button>';
+	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="unit'+uRef+'" title="breaker">B</button>';
+	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="unit'+uRef+'" title="guardian">G</button>';
+	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="unit'+uRef+'" title="oracle">O</button>';
+	insertHTML+='<ul class="list-unstyled">';
+	insertHTML+='<li><b>HP:</b> <span id="HP_'+uRef+'">'+rawParseObj[rawID].lord.hp+'</span></li>';
+	insertHTML+='<li><b>ATK:</b> <span id="ATK_'+uRef+'">'+rawParseObj[rawID].lord.atk+'</span></li>';
+	insertHTML+='<li><b>DEF:</b> <span id="DEF_'+uRef+'">'+rawParseObj[rawID].lord.def+'</span></li>';
+	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
+	insertHTML+='</ul>';
+	$("#stats"+uRef).html(insertHTML);
+	$("#spheres"+uRef).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
 
 function refreshALL() {
@@ -1289,6 +1297,15 @@ $(document).on("click", '#resetInactive', function(e){
 		$(this).parent("div").appendTo("#ubbSpace")
 	})
 	window.scrollTo(0,0);
+})
+
+/*Reset buttons*/
+$(".htfixed").on("click", '.typeBtn', function(e){
+	e.preventDefault();
+	$("#HP_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
+	$("#ATK_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
+	$("#DEF_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
+	$("#REC_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
 })
 
 /*Trash Unit*/
