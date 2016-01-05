@@ -1199,7 +1199,7 @@ function refreshALL() {
 	scanSkills(".ubbBtns",["ubb"]);
 	$(".unitBox").each( function(){
 		if ($(this).children(".unitSelected")) {
-			var unitID=$(this).child(".unitSelected").attr("data-unitid");
+			var unitID=$(this).children(".unitSelected").attr("data-unitid");
 			parseUnit($(this).attr("id"), unitID);
 		}
 	});
