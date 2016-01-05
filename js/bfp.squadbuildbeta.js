@@ -1067,9 +1067,9 @@ function generateSummary() {
 	for (var i in lsREC)
 		lsRECTotal+=getTop(".lsBtns",lsREC[i]);
 	var lsHTML=lsHPTotal+'% <b>HP</b><br>';
-	var lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
-	var lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
-	var lsHTML+=lsRECTotal+'% <b>REC</b>';
+	lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
+	lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
+	lsHTML+=lsRECTotal+'% <b>REC</b>';
 	/*Update multiplier*/
 	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
 	//lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
