@@ -1351,10 +1351,11 @@ $(document).on("click", '#resetInactive', function(e){
 $(document).on("click", '.typeBtn', function(e){
 	e.preventDefault();
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
-	$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
-	$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
-	$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
-	$("#REC_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
+	//$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
+	//$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
+	//$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
+	//$("#REC_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
+	refreshBonus();
 })
 
 /*Trash Unit*/
