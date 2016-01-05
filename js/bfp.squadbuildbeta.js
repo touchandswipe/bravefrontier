@@ -1177,7 +1177,7 @@ function parseUnit(slot,rawID) {
 	var insertHTML="";
 	var uRef=slot.slice(-1);
 	$(slot).html('<div class="dragBox"><img src="'+rawParseObj[rawID].img+'" data-unitid="'+rawID+'" class="unitSelected" title="'+rawParseObj[rawID].name+" ("+rawParseObj[rawID].rarity+'*)" /><kbd class="sRarity">'+rawParseObj[rawID].rarity+'<i class="fa fa-star"></i></kbd></div>');
-	insertHTML+='<h4 id="TYPEHEADER_'+uRef+'"><b>LORD</b></h4>';
+	insertHTML+='<h4 id="TYPEHEADER_'+uRef+'">LORD</h4>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="lord">L</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="anima">A</button>';
 	insertHTML+='<button type="button" class="btn btn-xs btn-default typeBtn" data-unitid="'+rawID+'" data-unitbox="'+uRef+'" title="breaker">B</button>';
@@ -1197,6 +1197,12 @@ function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
 	scanSkills(".ubbBtns",["ubb"]);
+	$(".unitBox").each( function(){
+		if ($(this).children(".unitSelected")) {
+			var unitID=$(this).child(".unitSelected").attr("data-unitid");
+			parseUnit($(this).attr("id"), unitID);
+		}
+	});
 	generateSummary();
 }
 
@@ -1271,6 +1277,8 @@ $(".unitBox").on( "drop", function(e, ui) {
 		/*Empty*/
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
 		$(unitProcessing).html(trashStr);
+		$("#stats"+unitProcessing.slice(-1)).html("");
+		$("#spheres"+unitProcessing.slice(-1)).html("");
 		refreshALL();
 	}
 });
@@ -1314,6 +1322,8 @@ $(document).on("click", '.typeBtn', function(e){
 $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
+	$("#stats"+unitProcessing.slice(-1)).html("");
+	$("#spheres"+unitProcessing.slice(-1)).html("");
 	$('#searchModal').modal('hide');
 	refreshALL();
 })
