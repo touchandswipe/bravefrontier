@@ -986,8 +986,6 @@ function generateSummary() {
 	var bbSpam={"MAX BB DC":0,"BB Cost":0,"MAX SBB DC":0,"SBB Cost":0};
 	var sElement={fire:0,water:0,earth:0,thunder:0,light:0,dark:0};
 	var sElementCount=0;
-	var sStats=["% HP","% ATK","% DEF","% REC"];
-	var sTotalStats={"% HP":0,"% ATK":0,"% DEF":0,"% REC":0};
 	var sHTML="";
 	var sParam=[];
 	$(".unitBox .dragBox .unitSelected").each(function(){
@@ -1012,43 +1010,7 @@ function generateSummary() {
 	/*counts element*/
 	for (var key in sElement)
 		if (sElement[key]!=0)
-			sElementCount+=1
-	/*generate LS stats total*/
-	for (i in sStats) {
-		$(".lsBtns .btnDesc").each( function() {
-			lsKey=$(this).text();
-			if (lsKey==sStats[i]) {
-				/*match desired skill to summarise*/
-				for (m in lsMap)
-					if (lsKey==lsMap[m].desc) {
-						var lsMapKey=m;
-						break;
-					}
-				/*match*/
-				if ($(this).parent().attr("data-found")) {
-					var tArray=$(this).parent().attr("data-found").split(',');
-					for (j in tArray) {
-						var scanArray=rawParseObj[tArray[j]].ls.effects;
-						for (k in scanArray)
-							if (scanArray[k].hasOwnProperty([lsMap[lsMapKey].impact])) {
-								sTotalStats[lsKey]+=parseInt(scanArray[k][lsMap[lsMapKey].impact]);
-								/*break; Removal to support dupe skills stacks */
-							}
-					}
-				} else
-					sTotalStats[lsKey]+=0;
-				return false; /*break each loop*/
-			}
-		})
-	}
-	/*generate LS Stats Summary*/
-	var lsStatsHTML=[];
-	for (var key in sTotalStats) {
-		if (sTotalStats[key]!=0)
-			lsStatsHTML.push(sTotalStats[key]+"<b>"+key+"</b>");
-	}
-	if (lsStatsHTML.length==0)
-		lsStatsHTML.push("No STATS Bonus")
+			sElementCount+=1;
 	/*New LS Summary*/
 	var lsHP=["% HP"];
 	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns"];
@@ -1071,8 +1033,7 @@ function generateSummary() {
 	lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
 	lsHTML+=lsRECTotal+'% <b>REC</b>';
 	/*Update multiplier*/
-	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
-	//lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
+	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
 	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
