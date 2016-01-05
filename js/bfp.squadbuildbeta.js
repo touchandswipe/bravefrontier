@@ -1303,7 +1303,7 @@ $(document).on("click", '#resetInactive', function(e){
 /*Reset buttons*/
 $(document).on("click", '.typeBtn', function(e){
 	e.preventDefault();
-	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("data-unitid").toUpperCase());
+	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
 	$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
 	$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
 	$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
