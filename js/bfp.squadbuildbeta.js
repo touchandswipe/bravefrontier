@@ -29,8 +29,8 @@ lsMap=[
 	{desc:"% ATK", stack:true, impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% DEF", stack:true, impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
 	{desc:"% REC", stack:true, impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% ATK+ by HP", stack:true, impact:"atk% base buff", impact2:"atk% extra buff based on hp", criteria:["buff proportional to hp"]},
-	{desc:"% DEF+ by HP", stack:true, impact:"def% base buff", impact2:"def% extra buff based on hp", criteria:["buff proportional to hp"]},
+	{desc:"% ATK+ by HP", stack:true, impact:"atk% extra buff based on hp", impact2:"atk% base buff", criteria:["buff proportional to hp"]},
+	{desc:"% DEF+ by HP", stack:true, impact:"def% extra buff based on hp", impact2:"def% base buff", criteria:["buff proportional to hp"]},
 	{desc:"% ATK+ on X DMG Dealt", stack:true, impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
 	{desc:"% ATK+ Turn after CRIT", stack:true, impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
 	{desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
@@ -1049,8 +1049,30 @@ function generateSummary() {
 	}
 	if (lsStatsHTML.length==0)
 		lsStatsHTML.push("No STATS Bonus")
+	/*New LS Summary*/
+	var lsHP=["% HP"];
+	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns"];
+	var lsDEF=["% DEF","% DEF+ by HP","% DEF+ First Turns"];
+	var lsREC=["% REC"];
+	var lsHPTotal=0;
+	var lsATKTotal=0;
+	var lsDEFTotal=0;
+	var lsRECTotal=0;
+	for (var i in lsHP)
+		lsHPTotal+=getTop(".lsBtns",lsHP[i]);
+	for (var i in lsATK)
+		lsATKTotal+=getTop(".lsBtns",lsATK[i]);
+	for (var i in lsDEF)
+		lsDEFTotal+=getTop(".lsBtns",lsDEF[i]);
+	for (var i in lsREC)
+		lsRECTotal+=getTop(".lsBtns",lsREC[i]);
+	var lsHTML=lsHPTotal+'% <b>HP</b><br>';
+	var lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
+	var lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
+	var lsHTML+=lsRECTotal+'% <b>REC</b>';
 	/*Update multiplier*/
 	lsBonus=[sTotalStats["% HP"]/100,sTotalStats["% ATK"]/100,sTotalStats["% DEF"]/100,sTotalStats["% REC"]/100];
+	//lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
 	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
@@ -1175,6 +1197,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsStatsHTML.join("</br>")+' </h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsHTML+' </h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="ATK Buff Potential"><b>ATK<br/>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="DEF Buff Potential"><b>DEF<br/>BUFF</b></h4><h6>'+defHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
