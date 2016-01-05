@@ -1224,8 +1224,7 @@ function refreshALL() {
 	scanSkills(".ubbBtns",["ubb"]);
 	$(".unitBox").each( function(){
 		if ($(this).find(".unitSelected").length) {
-			var boxRef=$(this).find(".unitSelected").attr("id");
-			console.log(boxRef);
+			var boxRef=$(this).attr("id");
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
