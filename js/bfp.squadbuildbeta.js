@@ -1303,10 +1303,11 @@ $(document).on("click", '#resetInactive', function(e){
 $(document).on("click", '.typeBtn', function(e){
 	e.preventDefault();
 	console.log("changing type to "+$(this).attr("title"));
-	$("#HP_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
-	$("#ATK_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
-	$("#DEF_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
-	$("#REC_"+$(this).attr("data-unitbox")).html(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
+	$("#HP_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
+	console.log("#HP_"+$(this).attr("data-unitbox")+" "+rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].hp);
+	$("#ATK_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].atk);
+	$("#DEF_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].def);
+	$("#REC_"+$(this).attr("data-unitbox")).text(rawParseObj[$(this).attr("data-unitid")][$(this).attr("title")].rec);
 })
 
 /*Trash Unit*/
