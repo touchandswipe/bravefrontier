@@ -1222,12 +1222,14 @@ function refreshALL() {
 	scanLeaderSkills(".lsBtns",["ls"]);
 	scanSkills(".bbBtns",["bb", "sbb", "es"]);
 	scanSkills(".ubbBtns",["ubb"]);
+	/*	
 	$(".unitBox").each( function(){
 		if ($(this).find(".unitSelected").length) {
 			var unitID=$(this).find(".unitSelected").attr("data-unitid");
 			parseUnit($(this).attr("id"), unitID);
 		}
 	});
+	*/
 	generateSummary();
 }
 
