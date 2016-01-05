@@ -1200,6 +1200,7 @@ function refreshALL() {
 	$(".unitBox").each( function(){
 		if ($(this).children(".unitSelected")) {
 			var unitID=$(this).children(".unitSelected").attr("data-unitid");
+			console.log(unitID);
 			parseUnit($(this).attr("id"), unitID);
 		}
 	});
