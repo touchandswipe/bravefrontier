@@ -1348,7 +1348,7 @@ $(document).on("click", '#trashBtn', function(e){
 	e.preventDefault();
 	$(unitProcessing).html(trashStr);
 	$("#stats"+unitProcessing.slice(-1)).html("");
-	$("#spheres"+unitProcessing.slice(-1)).html("");
+	//$("#spheres"+unitProcessing.slice(-1)).html("");
 	$('#searchModal').modal('hide');
 	refreshALL();
 })
