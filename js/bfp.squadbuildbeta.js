@@ -1303,7 +1303,7 @@ $(".unitBox").on( "drop", function(e, ui) {
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
 		$(unitProcessing).html(trashStr);
 		$("#stats"+unitProcessing.slice(-1)).html("");
-		$("#spheres"+unitProcessing.slice(-1)).html("");
+		//$("#spheres"+unitProcessing.slice(-1)).html("");
 		refreshALL();
 	}
 });
