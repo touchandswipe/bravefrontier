@@ -1445,6 +1445,19 @@ if (typeof mappedNames !== 'undefined') {
         	unitObj.es=valObj["extra skill"];
         else
         	unitObj.es="none";
+        /*stats - lordonly*/
+        if (valObj.stats) {
+        	if (valObj.stats._lord) {
+        		if (valObj.imp) {
+        			unitObj.lord.hp=valObj.stats._lord.hp+valObj.imp["max hp"];
+        			unitObj.lord.atk=valObj.stats._lord.atk+valObj.imp["max atk"];
+        			unitObj.lord.def=valObj.stats._lord.def+valObj.imp["max def"];
+        			unitObj.lord.rec=valObj.stats._lord.rec+valObj.imp["max rec"];
+        		} else {
+        			unitObj.lord=valObj.stats._lord;
+        		}
+        	}
+        }
 	/*Parse into MEMORY DB*/
         rawParseObj.push(unitObj);
         countVar+=1;
