@@ -1,9 +1,20 @@
 sphereList=[
 	{name:"None",stats:[0,0,0,0]},
+	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
+	{name:"Fallacy Orb",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Frozen Fantasy",stats:[0.3,0.3,0.4,0.4]},
+	{name:"Frozen Myth",stats:[0.2,0.2,0.3,0.3]},
+	{name:"Heresy Orb",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Impiety Orb",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Infidelity Orb",stats:[0.15,0.15,0.15,0.15]},
 	{name:"Legwand",stats:[0.25,0.25,0.25,0.25]},
 	{name:"Malice Jewel",stats:[0.3,0.3,0.3,0.3]},
-	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
+	{name:"Medulla Gem",stats:[0.2,0.2,0.2,0.2]},
 	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
+	{name:"Reeze's Armor",stats:[0.4,0.5,0.5,0.5]},
+	{name:"Sacred Jewel",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Sky Harbinger",stats:[0.3,2.3,0,0]},
+	{name:"Sky Orb",stats:[1,1,1,1]}
 ];
 /*Stats Calc Var*/
 lsBonus=[0,0,0,0];
