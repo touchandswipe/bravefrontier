@@ -1043,10 +1043,10 @@ function generateSummary() {
 		var sphere1Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
 		var sphere2Bonus=$("#sphere1_"+unitRun[i]).val().split(",");
 		unitBonus[unitRun[i]]=[
-			sphere1Bonus[0]+sphere2Bonus[0]+lsBonus[0],
-			sphere1Bonus[1]+sphere2Bonus[1]+lsBonus[1],
-			sphere1Bonus[2]+sphere2Bonus[2]+lsBonus[2],
-			sphere1Bonus[3]+sphere2Bonus[3]+lsBonus[3]
+			+sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
+			+sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
+			+sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
+			+sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
 		];
 		console.log("Unit"+unitRun[i]+" Bonus is "+unitBonus[unitRun[i]]);
 	}
