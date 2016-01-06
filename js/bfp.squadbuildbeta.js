@@ -1238,8 +1238,8 @@ function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
 	
 	$.each( unitBonus, function( key, bonus ) {
-		var sphere1Bonus=$("#sphere1_"+key).attr("data-val").split(",");
-		var sphere2Bonus=$("#sphere2_"+key).attr("data-val").split(",");
+		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
+		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
