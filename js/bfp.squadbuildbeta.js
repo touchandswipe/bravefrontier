@@ -1181,7 +1181,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
-	var fullParam=[sParam.join(),typeParam.join(),spheresParam.join()].join("&");
+	var fullParam=[sParam.join(),typeParam.join(),sphereParam.join()].join("&");
 	console.log("full param: "+fullParam);
 	var state = { stateSquad: fullParam };
 	history.pushState(state, "squad state", "?squad="+encodeURIComponent(fullParam) );
