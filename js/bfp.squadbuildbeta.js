@@ -1494,7 +1494,9 @@ $(document).on("click", '#getShort', function(e){
 	e.preventDefault();
 	/*build sharing url*/
 	var sParam=urlParam('squad');
-	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam), $('#shareURL') );
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam), $('#shareURL') );
 })
 
 /*Reddit Btn Click*/
