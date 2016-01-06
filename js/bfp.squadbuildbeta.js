@@ -1181,12 +1181,10 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
-	var fullParam="?squad="+sParam.join();
-	fullParam+="&type="+typeParam.join();
-	fullParam+="&sphere="+sphereParam.join();
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
 	console.log("full param: "+fullParam);
 	var state = { stateSquad: fullParam };
-	history.pushState(state, "squad state", encodeURIComponent(fullParam) );
+	history.pushState(state, "squad state", fullParam );
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
