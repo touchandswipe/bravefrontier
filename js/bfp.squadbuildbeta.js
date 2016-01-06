@@ -1011,7 +1011,7 @@ function generateSummary() {
 		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
 		sParam.push(unitX+rawParseObj[selectUnit].id);
 		/*builds type param*/
-		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text().charAt(0));
+		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text());
 		console.log("Unit Type: "+unitX+$("#TYPEHEADER_"+unitX).text().charAt(0));
 		/*builds sphere param*/
 		for (x=1;x<3;x++) {
@@ -1181,10 +1181,12 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
-	var fullParam=[sParam.join(),typeParam.join(),sphereParam.join()].join("&");
+	var fullParam="?squad="+sParam.join();
+	fullParam+="&type="+typeParam.join();
+	fullParam+="&sphere="+sphereParam.join();
 	console.log("full param: "+fullParam);
 	var state = { stateSquad: fullParam };
-	history.pushState(state, "squad state", "?squad="+encodeURIComponent(fullParam) );
+	history.pushState(state, "squad state", encodeURIComponent(fullParam) );
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1236,7 +1238,6 @@ function refreshALL() {
 
 function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
-	
 	$.each( unitBonus, function( key, bonus ) {
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
@@ -1266,26 +1267,48 @@ function refreshBonus(){
 function loadSquad() {
 	/*load squad from param*/
 	var sParam=urlParam('squad');
+	var sParamValid=false;
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
-	    	//var squadElements=["#unitA","#unitB","#unitC","#unitD","#unitE","#unitF"];
 	    	if (squadList.length>6)
 	    		alert("OOPS! URL structure has changed to fix unit to spots OR URL is corrupted. Pls rebuild your squad/ Sorry!")
 	    	else {
 	    		if (!squadList[0].match(/[a-z]/i))
 			    alert("OOPS! URL structure has changed to fix unit to spots OR URL is corrupted. Pls rebuild your squad/ Sorry!")
 			else {
-			    	for (i in squadList) {
-			    		for (j in rawParseObj)
+				sParamValid=true;
+			    	for (var i in squadList) {
+			    		for (var j in rawParseObj)
 			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
 			    				parseUnit("#unit"+squadList[i].charAt(0), j);
 			    				break;
 			    			}
 			    	}
-		    		refreshALL();
-		    		dragActivate()
 			}
+			refreshALL();
+			dragActivate()
 	    	}
+	}
+	/*sphere load*/
+	if (sphereParam!="" && sParamValid) {
+		var sphereRef=sphereParam.split(',');
+		for (var i in sphereRef) {
+			var sNick=sphereRef[i].substr(3);
+			console.log(sNick);
+			$("#sphere"+sphereRef[i].substr(0,3)+" option").filter(function() { 
+    				return ($(this).val()==sNick);
+			}).attr("selected", true);
+		}
+	}
+	/*type load*/
+	if (tParam !="" && sParamValid) {
+		var typeList=tParam.split(',');
+		for (var i in typeList) {
+			$("#TYPEHEADER_"+typeList[i].charAt(0)).text(typeList[i].substr(1).toUpperCase());
+		}
+		refreshBonus();
 	}
 }
 
