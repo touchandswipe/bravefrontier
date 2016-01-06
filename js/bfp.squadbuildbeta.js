@@ -980,6 +980,34 @@ function getTop(btnclass,btnDesc) {
 	return returnVal;
 }
 
+/*refreshURLParam*/
+function refreshParam() {
+	var sParam=[];
+	var typeParam=[];
+	var sphereParam=[];
+	/*build param*/
+	$(".unitBox .dragBox .unitSelected").each(function(){
+		var selectUnit=$(this).attr("data-unitid");
+		/*builds id array*/
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		sParam.push(unitX+rawParseObj[selectUnit].id);
+		/*builds type param*/
+		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text());
+		/*builds sphere param*/
+		for (x=1;x<3;x++) {
+			var tVal=$("#sphere"+x+"_"+unitX).val();
+			if (tVal!="none") {
+				sphereParam.push(x+"_"+unitX+tVal);
+			}
+		}
+	})
+	/*update state*/
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+	console.log("full param: "+fullParam);
+	var state = { stateSquad: fullParam };
+	history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
+}
+
 /*generate squad summary*/
 function generateSummary() {
 	var sCost=0;
@@ -1180,11 +1208,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
-	/*update state*/
-	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
-	console.log("full param: "+fullParam);
-	var state = { stateSquad: fullParam };
-	history.pushState(state, "squad state", fullParam );
+	refreshParam();
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1309,6 +1333,9 @@ function loadSquad() {
 		}
 		refreshBonus();
 	}
+	if (sParamValid) {
+		refreshParam();
+	}
 }
 
 /*POP state*/
@@ -1392,6 +1419,7 @@ $(document).on("click", '.typeBtn', function(e){
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
 	refreshSpheres();
 	refreshBonus();
+	refreshParam();
 })
 
 /*Trash Unit*/
@@ -1399,6 +1427,7 @@ $(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
+	refreshParam();
 })
 
 /*Trash Unit*/
