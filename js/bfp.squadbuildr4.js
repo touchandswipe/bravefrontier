@@ -1,20 +1,20 @@
 sphereList=[
-	{name:"None",stats:[0,0,0,0]},
-	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
-	{name:"Fallacy Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Frozen Fantasy",stats:[0.3,0.3,0.4,0.4]},
-	{name:"Frozen Myth",stats:[0.2,0.2,0.3,0.3]},
-	{name:"Heresy Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Impiety Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Infidelity Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Legwand",stats:[0.25,0.25,0.25,0.25]},
-	{name:"Malice Jewel",stats:[0.3,0.3,0.3,0.3]},
-	{name:"Medulla Gem",stats:[0.2,0.2,0.2,0.2]},
-	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
-	{name:"Reeze's Armor",stats:[0.4,0.5,0.5,0.5]},
-	{name:"Sacred Jewel",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Sky Harbinger",stats:[0.3,2.3,0,0]},
-	{name:"Sky Orb",stats:[1,1,1,1]}
+	{name:"None",nick:"none",stats:[0,0,0,0]},
+	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35]},
+	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4]},
+	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3]},
+	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25]},
+	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3]},
+	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2]},
+	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4]},
+	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5]},
+	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,2.3,0,0]},
+	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1]}
 ];
 /*Stats Calc Var*/
 lsBonus=[0,0,0,0];
@@ -980,6 +980,33 @@ function getTop(btnclass,btnDesc) {
 	return returnVal;
 }
 
+/*refreshURLParam*/
+function refreshParam() {
+	var sParam=[];
+	var typeParam=[];
+	var sphereParam=[];
+	/*build param*/
+	$(".unitBox .dragBox .unitSelected").each(function(){
+		var selectUnit=$(this).attr("data-unitid");
+		/*builds id array*/
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		sParam.push(unitX+rawParseObj[selectUnit].id);
+		/*builds type param*/
+		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text());
+		/*builds sphere param*/
+		for (x=1;x<3;x++) {
+			var tVal=$("#sphere"+x+"_"+unitX).val();
+			if (tVal!="none") {
+				sphereParam.push(x+"_"+unitX+tVal);
+			}
+		}
+	})
+	/*update state*/
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+	var state = { stateSquad: fullParam };
+	history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
+}
+
 /*generate squad summary*/
 function generateSummary() {
 	var sCost=0;
@@ -988,6 +1015,9 @@ function generateSummary() {
 	var sElementCount=0;
 	var sHTML="";
 	var sParam=[];
+	var typeParam=[];
+	var sphereParam=[];
+	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
@@ -1005,7 +1035,17 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push($(this).parents(".unitBox").attr("id").slice(-1)+rawParseObj[selectUnit].id);
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		sParam.push(unitX+rawParseObj[selectUnit].id);
+		/*builds type param*/
+		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text());
+		/*builds sphere param*/
+		for (x=1;x<3;x++) {
+			var tVal=$("#sphere"+x+"_"+unitX).val();
+			if (tVal!="none") {
+				sphereParam.push(x+"_"+unitX+tVal);
+			}
+		}
 	})
 	/*counts element*/
 	for (var key in sElement)
@@ -1166,9 +1206,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
-	/*update state*/
-	var state = { stateSquad: sParam.join() };
-	history.pushState(state, "squad state", "?squad="+encodeURIComponent(sParam.join()) );
+	refreshParam();
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1200,7 +1238,6 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
-	//$("#sphere1_"+uRef).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
 
 function refreshALL() {
@@ -1221,10 +1258,9 @@ function refreshALL() {
 
 function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
-	
 	$.each( unitBonus, function( key, bonus ) {
-		var sphere1Bonus=$("#sphere1_"+key).val().split(",");
-		var sphere2Bonus=$("#sphere2_"+key).val().split(",");
+		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
+		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
@@ -1251,26 +1287,51 @@ function refreshBonus(){
 function loadSquad() {
 	/*load squad from param*/
 	var sParam=urlParam('squad');
+	var sParamValid=false;
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
-	    	//var squadElements=["#unitA","#unitB","#unitC","#unitD","#unitE","#unitF"];
 	    	if (squadList.length>6)
 	    		alert("OOPS! URL structure has changed to fix unit to spots OR URL is corrupted. Pls rebuild your squad/ Sorry!")
 	    	else {
 	    		if (!squadList[0].match(/[a-z]/i))
 			    alert("OOPS! URL structure has changed to fix unit to spots OR URL is corrupted. Pls rebuild your squad/ Sorry!")
 			else {
-			    	for (i in squadList) {
-			    		for (j in rawParseObj)
+				sParamValid=true;
+			    	for (var i in squadList) {
+			    		for (var j in rawParseObj)
 			    			if (rawParseObj[j].id==parseInt(squadList[i].substr(1))) {
 			    				parseUnit("#unit"+squadList[i].charAt(0), j);
 			    				break;
 			    			}
 			    	}
-		    		refreshALL();
-		    		dragActivate()
 			}
+			refreshALL();
+			dragActivate()
 	    	}
+	}
+	/*sphere load*/
+	if (sphereParam!="" && sParamValid) {
+		var sphereRef=sphereParam.split(',');
+		for (var i in sphereRef) {
+			var sNick=sphereRef[i].substr(3);
+			$("#sphere"+sphereRef[i].substr(0,3)+" option").filter(function() { 
+    				return ($(this).val()==sNick);
+			}).attr("selected", true);
+		}
+		refreshSpheres();
+	}
+	/*type load*/
+	if (tParam !="" && sParamValid) {
+		var typeList=tParam.split(',');
+		for (var i in typeList) {
+			$("#TYPEHEADER_"+typeList[i].charAt(0)).text(typeList[i].substr(1).toUpperCase());
+		}
+		refreshBonus();
+	}
+	if (sParamValid) {
+		refreshParam();
 	}
 }
 
@@ -1355,6 +1416,7 @@ $(document).on("click", '.typeBtn', function(e){
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
 	refreshSpheres();
 	refreshBonus();
+	refreshParam();
 })
 
 /*Trash Unit*/
@@ -1362,6 +1424,7 @@ $(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
+	refreshParam();
 })
 
 /*Trash Unit*/
@@ -1428,7 +1491,9 @@ $(document).on("click", '#getShort', function(e){
 	e.preventDefault();
 	/*build sharing url*/
 	var sParam=urlParam('squad');
-	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam), $('#shareURL') );
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam), $('#shareURL') );
 })
 
 /*Reddit Btn Click*/
@@ -1605,7 +1670,7 @@ if (typeof mappedNames !== 'undefined') {
     $("#unitCount").html(countVar);
     /*Preload SphereList*/
     for (var i in sphereList) {
-    	$(".input-sphere").append('<option value="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
+    	$(".input-sphere").append('<option value="'+sphereList[i].nick+'" data-val="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
     };
     $('#progressModal').modal('hide');
 }
