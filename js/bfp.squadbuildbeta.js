@@ -1299,6 +1299,7 @@ function loadSquad() {
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
 		}
+		refreshSpheres();
 	}
 	/*type load*/
 	if (tParam !="" && sParamValid) {
