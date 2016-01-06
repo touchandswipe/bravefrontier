@@ -1003,7 +1003,6 @@ function refreshParam() {
 	})
 	/*update state*/
 	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
-	console.log("full param: "+fullParam);
 	var state = { stateSquad: fullParam };
 	history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
 }
@@ -1040,7 +1039,6 @@ function generateSummary() {
 		sParam.push(unitX+rawParseObj[selectUnit].id);
 		/*builds type param*/
 		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text());
-		console.log("Unit Type: "+unitX+$("#TYPEHEADER_"+unitX).text().charAt(0));
 		/*builds sphere param*/
 		for (x=1;x<3;x++) {
 			var tVal=$("#sphere"+x+"_"+unitX).val();
@@ -1318,7 +1316,6 @@ function loadSquad() {
 		var sphereRef=sphereParam.split(',');
 		for (var i in sphereRef) {
 			var sNick=sphereRef[i].substr(3);
-			console.log(sNick);
 			$("#sphere"+sphereRef[i].substr(0,3)+" option").filter(function() { 
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
