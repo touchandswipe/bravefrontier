@@ -1,20 +1,20 @@
 sphereList=[
-	{name:"None",stats:[0,0,0,0]},
-	{name:"Buffer Jewel",stats:[0.35,0.35,0.35,0.35]},
-	{name:"Fallacy Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Frozen Fantasy",stats:[0.3,0.3,0.4,0.4]},
-	{name:"Frozen Myth",stats:[0.2,0.2,0.3,0.3]},
-	{name:"Heresy Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Impiety Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Infidelity Orb",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Legwand",stats:[0.25,0.25,0.25,0.25]},
-	{name:"Malice Jewel",stats:[0.3,0.3,0.3,0.3]},
-	{name:"Medulla Gem",stats:[0.2,0.2,0.2,0.2]},
-	{name:"Occult Treasure",stats:[0.4,0.4,0.4,0.4]},
-	{name:"Reeze's Armor",stats:[0.4,0.5,0.5,0.5]},
-	{name:"Sacred Jewel",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Sky Harbinger",stats:[0.3,2.3,0,0]},
-	{name:"Sky Orb",stats:[1,1,1,1]}
+	{name:"None",nick:"none",stats:[0,0,0,0]},
+	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35]},
+	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4]},
+	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3]},
+	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25]},
+	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3]},
+	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2]},
+	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4]},
+	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5]},
+	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15]},
+	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,2.3,0,0]},
+	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1]}
 ];
 /*Stats Calc Var*/
 lsBonus=[0,0,0,0];
@@ -988,6 +988,9 @@ function generateSummary() {
 	var sElementCount=0;
 	var sHTML="";
 	var sParam=[];
+	var typeParam=[];
+	var sphereParam=[];
+	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
 		/*totals cost*/
@@ -1005,7 +1008,18 @@ function generateSummary() {
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
-		sParam.push($(this).parents(".unitBox").attr("id").slice(-1)+rawParseObj[selectUnit].id);
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		sParam.push(unitX+rawParseObj[selectUnit].id);
+		/*builds type param*/
+		typeParam.push(unitX+$("#TYPEHEADER_"+unitX).text().charAt(0));
+		console.log("Unit Type: "+unitX+$("#TYPEHEADER_"+unitX).text().charAt(0));
+		/*builds sphere param*/
+		for (x=1;x<3;x++) {
+			var tVal=$("#sphere"+x+"_"+unitX).val();
+			if (tVal!="none") {
+				sphereParam.push(x+"_"+unitX+tVal);
+			}
+		}
 	})
 	/*counts element*/
 	for (var key in sElement)
@@ -1167,8 +1181,10 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	/*update state*/
-	var state = { stateSquad: sParam.join() };
-	history.pushState(state, "squad state", "?squad="+encodeURIComponent(sParam.join()) );
+	var fullParam=[sParam.join(),typeParam.join(),spheresParam.join()].join("&");
+	console.log("full param: "+fullParam);
+	var state = { stateSquad: fullParam };
+	history.pushState(state, "squad state", "?squad="+encodeURIComponent(fullParam) );
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1200,7 +1216,6 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
-	//$("#sphere1_"+uRef).html('<ul class="list-unstyled"><li>Sphere A</li><li>Sphere B</li></ul>');
 }
 
 function refreshALL() {
@@ -1223,8 +1238,8 @@ function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
 	
 	$.each( unitBonus, function( key, bonus ) {
-		var sphere1Bonus=$("#sphere1_"+key).val().split(",");
-		var sphere2Bonus=$("#sphere2_"+key).val().split(",");
+		var sphere1Bonus=$("#sphere1_"+key).attr("data-val").split(",");
+		var sphere2Bonus=$("#sphere2_"+key).attr("data-val").split(",");
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
@@ -1605,7 +1620,7 @@ if (typeof mappedNames !== 'undefined') {
     $("#unitCount").html(countVar);
     /*Preload SphereList*/
     for (var i in sphereList) {
-    	$(".input-sphere").append('<option value="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
+    	$(".input-sphere").append('<option value="'+sphereList[i].nick+'" data-val="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
     };
     $('#progressModal').modal('hide');
 }
