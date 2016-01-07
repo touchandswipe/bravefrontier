@@ -1394,14 +1394,14 @@ function showDMG() {
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
-		unitHTML+='<h4><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h4>';
-		unitHTML+='<h4><b>SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h4>';
-		unitHTML+='<h4><b>UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h4>';
+		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b>SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b>UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h5>';
 		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
 	/*total*/
-	var totalHTML='<div class="col-xs-12 col-md-12"><h3><b class="text-center">Squad Total</b></h3>';
+	var totalHTML='<hr><div class="col-xs-12 col-md-12"><h3><b class="text-center">Squad Total</b></h3>';
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4>';
