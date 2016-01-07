@@ -1344,6 +1344,11 @@ $(window).on('popstate', function(e) {
 	}
 })
 
+/*select redditshare*/
+$("#redditShare").on('focus', function(e) {
+	$(this).select();
+})
+
 /*popover hide after 2s*/
 $('.unitBox').on('shown.bs.popover', function () {
     var $pop = $(this);
