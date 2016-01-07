@@ -1362,7 +1362,9 @@ function loadSquad() {
 
 /*Calculate Squad DMG*/
 function showDMG() {
-	var squadTotalDMG=0;
+	var squadTotalBB=0;
+	var squadTotalSBB=0;
+	var squadTotalUBB=0;
 	var unitHTMLArray=[];
 	/*Process for Each Unit*/
 	$(".unitBox .dragBox .unitSelected").each( function(){
@@ -1372,20 +1374,39 @@ function showDMG() {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
-		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
-		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		if (+rawParseObj[selectUnit].bbdmg!=0)
+			var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitBBDMG=0;
+		if (+rawParseObj[selectUnit].sbbdmg!=0)
+			var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitSBBDMG=0;
+		if (+rawParseObj[selectUnit].ubbdmg!=0)
+			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitUBBDMG=0;
 		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
 		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
 		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
 		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		squadTotalBB+= +unitBBDMG;
+		squadTotalSBB+= +unitSBBDMG;
+		squadTotalUBB+= +unitUBBDMG;
 		unitHTML+='<h4><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h4>';
 		unitHTML+='<h4><b>SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h4>';
 		unitHTML+='<h4><b>UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h4>';
+		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
-	$("#unitDmgBox").html(unitHTMLArray.join("</div>"));
+	/*total*/
+	var totalHTML='<div class="col-xs-12 col-md-12"><h3><b class="text-center">Squad Total</b></h3>';
+	totalHTML+='<h4><b>BB: </b></h4>'+(squadTotalBB/1000000).toFixed(2);
+	totalHTML+='<h4><b>SBB: </b></h4>'+(squadTotalSBB/1000000).toFixed(2);
+	totalHTML+='<h4><b>UBB: </b></h4>'+(squadTotalUBB/1000000).toFixed(2);
+	totalHTML+='</div>';
+	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
 
 /*POP state*/
