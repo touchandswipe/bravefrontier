@@ -1345,7 +1345,7 @@ $(window).on('popstate', function(e) {
 })
 
 /*select redditshare*/
-$("#redditShare").on('focus', function(e) {
+$("#redditShare").focus(function(e) {
 	$(this).select();
 })
 
