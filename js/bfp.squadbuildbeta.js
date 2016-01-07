@@ -1286,10 +1286,10 @@ function refreshSpheres(){
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
 			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
-			1 + +sphere1Bonus[4] + +sphere2Bonus[4] + +lsBonus[4],
-			1 + +sphere1Bonus[5] + +sphere2Bonus[5] + +lsBonus[5],
-			1 + +sphere1Bonus[6] + +sphere2Bonus[6] + +lsBonus[6],
-			1 + +sphere1Bonus[7] + +sphere2Bonus[7] + +lsBonus[7]
+			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
+			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
+			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
+			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7]
 		];
 	})
 }
@@ -1304,10 +1304,10 @@ function refreshBonus(){
 			$("#ATK_"+key).text(parseInt(+rawParseObj[unitID][unitType].atk * +bonus[1]));
 			$("#DEF_"+key).text(parseInt(+rawParseObj[unitID][unitType].def * +bonus[2]));
 			$("#REC_"+key).text(parseInt(+rawParseObj[unitID][unitType].rec * +bonus[3]));
-			$("#CRIT_"+key).text(bonus[4]);
-			$("#SPARK_"+key).text(bonus[5]);
-			$("#ELEMENT_"+key).text(bonus[6]);
-			$("#BB_"+key).text(bonus[7]);
+			$("#CRIT_"+key).text(bonus[4]+"%");
+			$("#SPARK_"+key).text(bonus[5]+"%");
+			$("#ELEMENT_"+key).text(bonus[6]+"%");
+			$("#BB_"+key).text(bonus[7]+"%");
 			/*calculate DMG*/
 			
 		}
