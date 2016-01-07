@@ -1701,7 +1701,7 @@ if (typeof mappedNames !== 'undefined') {
 		        			if (unitObj.sbbdmg==0) {
     							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk%']) ? valObj.sbb.levels[9].effects[k]['bb atk%'] : 0 ;
     							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +valObj.sbb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.sbbdmg;
-    							unitObj.ubbdmg=(valObj.sbb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +(+valObj.sbb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.sbb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.sbbdmg;
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +(+valObj.sbb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.sbb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.sbbdmg;
 		        			}
     						if (unitObj.sbbflat==0)
     							unitObj.sbbflat=(valObj.sbb.levels[9].effects[k]['bb flat atk']) ? valObj.sbb.levels[9].effects[k]['bb flat atk'] : 0;
