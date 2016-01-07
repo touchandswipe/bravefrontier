@@ -1402,9 +1402,9 @@ function showDMG() {
 	});
 	/*total*/
 	var totalHTML='<div class="col-xs-12 col-md-12"><h3><b class="text-center">Squad Total</b></h3>';
-	totalHTML+='<h4><b>BB: </b></h4>'+(squadTotalBB/1000000).toFixed(2);
-	totalHTML+='<h4><b>SBB: </b></h4>'+(squadTotalSBB/1000000).toFixed(2);
-	totalHTML+='<h4><b>UBB: </b></h4>'+(squadTotalUBB/1000000).toFixed(2);
+	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h4><b>SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h4><b>UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
