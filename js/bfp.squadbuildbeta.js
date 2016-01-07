@@ -1405,7 +1405,7 @@ function showDMG() {
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h5 clas="text-danger">*NOTE* Excludes conversion buffs for now. DMG calculated based on best case, all UBB activated.</h5>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. DMG calculated based on best case, all UBB activated.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
