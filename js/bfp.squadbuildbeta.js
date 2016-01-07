@@ -1375,20 +1375,19 @@ function showDMG() {
 		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
 		var unitT=$("#TYPEHEADER_"+unitX).text().toLowerCase();
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
-		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'"/>';
+		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		var unitBBDMG=parseFloat(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
-		console.log("BB BUFF part "+(1.5 * +unitBonus[unitX][7]/100));
 		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
 		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
 		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
-		unitHTML+='<h4><b>BB:</b> '+unitBBDMG+'</h4>';
-		unitHTML+='<h4><b>SBB:</b> '+unitSBBDMG+'</h4>';
-		unitHTML+='<h4><b>UBB:</b> '+unitUBBDMG+'</h4>';
+		unitHTML+='<h4><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h4>';
+		unitHTML+='<h4><b>SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h4>';
+		unitHTML+='<h4><b>UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h4>';
 		unitHTMLArray.push(unitHTML);
 	});
 	$("#unitDmgBox").html(unitHTMLArray.join("</div>"));
