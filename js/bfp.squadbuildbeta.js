@@ -1,4 +1,4 @@
-/*hp,atk,def,rec,crit,spark,elemental,bbmod*/
+/*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
 	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0]},
@@ -19,8 +19,8 @@ sphereList=[
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,1,0,0,0,0.5,0.5,0]}
 ];
 /*Stats Calc Var*/
-lsBonus=[0,0,0,0,0,0,0,0];
-unitBonus={A:[0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0]};
+lsBonus=[0,0,0,0,0,0,0,0,0];
+unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
 squadSparkDMG=0;
 squadCritDMG=0;
 squadElementDMG=0;
@@ -1198,7 +1198,7 @@ function generateSummary() {
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
 	/*Update multiplier*/
-	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG];
+	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
@@ -1245,6 +1245,7 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>ATK:</b> <span id="ATK_'+uRef+'">'+rawParseObj[rawID].lord.atk+'</span></li>';
 	insertHTML+='<li><b>DEF:</b> <span id="DEF_'+uRef+'">'+rawParseObj[rawID].lord.def+'</span></li>';
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
+	insertHTML+='<li><b class="text-danger">ATKbuff:</b> <span id="ATKBUFF_'+uRef+'">'+squadATKBUFF+'</span></li>';
 	insertHTML+='<li><b class="text-danger">CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
@@ -1277,7 +1278,7 @@ function refreshSpheres(){
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +(squadATKBUFF/100),
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
 			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
 			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
@@ -1298,6 +1299,7 @@ function refreshBonus(){
 			$("#ATK_"+key).text(parseInt(+rawParseObj[unitID][unitType].atk * +bonus[1]));
 			$("#DEF_"+key).text(parseInt(+rawParseObj[unitID][unitType].def * +bonus[2]));
 			$("#REC_"+key).text(parseInt(+rawParseObj[unitID][unitType].rec * +bonus[3]));
+			$("#ATKBUFF_"+key).text(bonus[8]+"%");
 			$("#CRIT_"+key).text(bonus[4]+"%");
 			$("#SPARK_"+key).text(bonus[5]+"%");
 			$("#ELEMENT_"+key).text(bonus[6]+"%");
@@ -1369,9 +1371,9 @@ function showDMG() {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
-		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
-		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +(squadATKBUFF/100) + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +(squadATKBUFF/100) + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +(squadATKBUFF/100) + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
 		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
