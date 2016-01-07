@@ -1654,12 +1654,16 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
-		        	if (valObj["bb"]["levels"][9]["bb atk%"]) {
-		        		unitObj.bbdmg=valObj["bb"]["levels"][9]["effects"]["bb atk%"];
-		        	} else unitObj.bbdmg=0;
-		        	if (valObj["bb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.bbflat=valObj["bb"]["levels"][9]["effects"]["bb flat atk"];
-		        	} else unitObj.bbflat=0;
+		        	unitObj.bbdmg=0;
+		        	unitObj.bbflat=0;
+		        	if (valObj["bb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
+		        			if (unitObj.bbdmg==0)
+    							unitObj.bbdmg=(valObj.bb.levels[9].effects[k]['bb atk%']) ? valObj.bb.levels[9].effects[k]['bb atk%'] : 0 ;
+    						if (unitObj.bbflat==0)
+    							unitObj.bbflat=(valObj.bb.levels[9].effects[k]['bb flat atk']) ? valObj.bb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
 			}
 		};
 	}
@@ -1671,12 +1675,16 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
-		        	if (valObj["sbb"]["levels"][9]["bb atk%"]) {
-		        		unitObj.sbbdmg=valObj["sbb"]["levels"][9]["effects"]["bb atk%"];
-		        	} else unitObj.sbbdmg=0;
-		        	if (valObj["sbb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.sbbflat=valObj["sbb"]["levels"][9]["effects"]["bb flat atk"];
-		        	} else unitObj.sbbflat=0;
+		        	unitObj.sbbdmg=0;
+		        	unitObj.sbbflat=0;
+		        	if (valObj["sbb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
+		        			if (unitObj.sbbdmg==0)
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk%']) ? valObj.sbb.levels[9].effects[k]['bb atk%'] : 0 ;
+    						if (unitObj.sbbflat==0)
+    							unitObj.sbbflat=(valObj.sbb.levels[9].effects[k]['bb flat atk']) ? valObj.sbb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
 			}
 		}
 	}
@@ -1686,12 +1694,16 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
-	        		if (valObj["ubb"]["levels"][9]["bb atk%"]) {
-		        		unitObj.ubbdmg=valObj["ubb"]["levels"][9]["effects"]["bb atk%"];
-		        	} else unitObj.ubbdmg=0;
-		        	if (valObj["ubb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.ubbflat=valObj["ubb"]["levels"][9]["effects"]["bb flat atk"];
-		        	} else unitObj.ubbflat=0;
+		        	unitObj.ubbdmg=0;
+		        	unitObj.ubbflat=0;
+		        	if (valObj["ubb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
+		        			if (unitObj.ubbdmg==0)
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
+    						if (unitObj.ubbflat==0)
+    							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
         	}
 	}
         else
