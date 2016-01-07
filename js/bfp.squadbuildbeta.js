@@ -1345,10 +1345,8 @@ $(window).on('popstate', function(e) {
 })
 
 /*select redditshare*/
-$('#redditShare').toggle(function() {
-	$(this).select();
-}, function() {
-	$(this).unselect();
+$('#redditShare').click(function() {
+    $(this).select();
 });
 
 /*popover hide after 2s*/
