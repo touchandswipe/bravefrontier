@@ -1,21 +1,37 @@
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
 	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0.75,0,0,0,0,0,0,0]},
+	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,1.5,1.5,0,1,0,0,0,0]},
+	{name:"Batootha",nick:"batootha",stats:[0,0.3,0.3,0,0,0.5,0,0,0]},
+	{name:"Blades of Ultor",nick:"bladeultor",stats:[0,0.3,0.3,0,1,0,0,0,0]},
+	{name:"Blighted Seal",nick:"blightseal",stats:[0,1,-0.2,-0.2,1.5,0,0,0,0]},
+	{name:"Brass Orb",nick:"brassorb",stats:[0,0.2,0.2,0,0,0,0,1.3,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4,0,0,0,0,0]},
 	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3,0,0,0,0,0]},
+	{name:"Geldnite Axe",nick:"geldnite",stats:[0,0,0,0,0.5,0,0,0,0]},
+	{name:"Godly Flower",nick:"godflower",stats:[0,0,0.75,0.75,0,0.5,0,0,0.75]},
+	{name:"Golem Core",nick:"golemcore",stats:[0,0.3,0.3,0,0,0,0,1.5,0]},
+	{name:"Heavenly Bud",nick:"heavenbud",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Holy Eight",nick:"holyeight",stats:[0,0.3,0.3,0,0.5,0,0,0,0]},
 	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
 	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
+	{name:"Nevana Crown",nick:"nevanacrown",stats:[0.4,0.4,0.4,0.4,0,0,0,0,1]},
 	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4,0,0,0,0,0]},
 	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5,0,0,0,0,0]},
+	{name:"Revelation Book",nick:"revbook",stats:[0,0,0,0,0,0.5,0.5,0,0]},
+	{name:"Sacred Axe",nick:"sacredaxe",stats:[0,0,0,0,0,1.5,0,0,0]},
 	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,0.3,0,0,0,0,0,0,2]},
 	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1,0,0,0,0,0]},
+	{name:"Star Flower",nick:"starflower",stats:[0,0,0,0,0,1.2,0,0,0]},
+	{name:"Steeple Rose",nick:"steeple",stats:[0,0,0,0,0,0.5,0,0,0]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
 ];
 /*Stats Calc Var*/
@@ -1345,16 +1361,16 @@ function loadSquad() {
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
 		}
-		refreshSpheres();
-	}
+	};
+	refreshSpheres();
 	/*type load*/
 	if (tParam !="" && sParamValid) {
 		var typeList=tParam.split(',');
 		for (var i in typeList) {
 			$("#TYPEHEADER_"+typeList[i].charAt(0)).text(typeList[i].substr(1).toUpperCase());
 		}
-		refreshBonus();
 	}
+	refreshBonus();
 	if (sParamValid) {
 		refreshParam();
 	}
@@ -1386,25 +1402,25 @@ function showDMG() {
 			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
 			var unitUBBDMG=0;
-		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
-		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
-		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
-		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
-		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
+		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
+		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
+		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
+		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
-		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h5>';
-		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h5>';
-		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'m</h5>';
+		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'m</h5>';
+		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
 	/*total*/
 	var totalHTML='<div class="col-xs-12 col-md-12"><hr><h3><b class="text-center">Squad Total</b></h3>';
-	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4><hr>';
+	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
+	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
+	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
 	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Assume ignore DEF, All Hits Spark, and All Hits CRIT. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
@@ -1667,14 +1683,14 @@ if (typeof mappedNames !== 'undefined') {
         	unitObj.ls=valObj["leader skill"];
         else
         	unitObj.ls="none";
+	unitObj.bbdmg=0;
+	unitObj.bbflat=0;
 	if (valObj["bb"]) {
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
-		        	unitObj.bbdmg=0;
-		        	unitObj.bbflat=0;
 		        	if (valObj["bb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
 		        			if (unitObj.bbdmg==0)
@@ -1688,19 +1704,20 @@ if (typeof mappedNames !== 'undefined') {
 	}
         else
         	unitObj.bb="none";
+	unitObj.sbbdmg=0;
+	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
 		if (valObj["sbb"]["levels"]) {
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
-		        	unitObj.sbbdmg=0;
-		        	unitObj.sbbflat=0;
 		        	if (valObj["sbb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
 		        			if (unitObj.sbbdmg==0) {
     							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk%']) ? valObj.sbb.levels[9].effects[k]['bb atk%'] : 0 ;
-    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb base atk%']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +valObj.sbb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.sbbdmg;
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +valObj.sbb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.sbbdmg;
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +(+valObj.sbb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.sbb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.sbbdmg;
 		        			}
     						if (unitObj.sbbflat==0)
     							unitObj.sbbflat=(valObj.sbb.levels[9].effects[k]['bb flat atk']) ? valObj.sbb.levels[9].effects[k]['bb flat atk'] : 0;
@@ -1711,17 +1728,18 @@ if (typeof mappedNames !== 'undefined') {
 	}
         else
         	unitObj.sbb="none";
+        unitObj.ubbdmg=0;
+	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
-		        	unitObj.ubbdmg=0;
-		        	unitObj.ubbflat=0;
 		        	if (valObj["ubb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
     							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb base atk%']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +(+valObj.ubb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.ubb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.ubbdmg;
 		        			}
     						if (unitObj.ubbflat==0)
     							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
