@@ -17,6 +17,7 @@ sphereList=[
 	{name:"Heavenly Bud",nick:"heavenbud",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Holy Eight",nick:"holyeight",stats:[0,0.3,0.3,0,0.5,0,0,0,0]},
+	{name:"Illusion Gizmo",nick:"illugizmo",stats:[0,0.3,0,0,0.5,0,0.5,0,0]},
 	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
