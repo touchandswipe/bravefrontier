@@ -48,6 +48,10 @@ sphereList=[
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
 ];
+extraList=[
+	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]}
+];
 /*Stats Calc Var*/
 lsBonus=[0,0,0,0,0,0,0,0,0];
 unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
@@ -1304,13 +1308,14 @@ function refreshALL() {
 function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
 	$.each( unitBonus, function( key, bonus ) {
+		var extraBonus=$("#extra_"+key+" option:selected").attr("data-val").split(",");
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
-			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
-			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
+			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
+			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2] + +extraBonus[2],
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3] + +extraBonus[3],
 			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
 			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
@@ -1842,6 +1847,10 @@ if (typeof mappedNames !== 'undefined') {
     /*Preload SphereList*/
     for (var i in sphereList) {
     	$(".input-sphere").append('<option value="'+sphereList[i].nick+'" data-val="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
+    };
+    /*Preload ExtraSkill*/
+    for (var i in extraList) {
+    	$(".input-extra").append('<option value="'+extraList[i].nick+'" data-val="'+extraList[i].stats+'">'+extraList[i].name+'</option>');
     };
     $('#progressModal').modal('hide');
 }
