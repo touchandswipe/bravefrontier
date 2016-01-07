@@ -981,9 +981,9 @@ function getTop(btnclass,btnDesc) {
 }
 
 /*refreshURLParam*/
-function refreshParam(stateRefresh) {
-	if (stateRefresh===undefined)
-		stateRefresh=true;
+function refreshParam(statePush) {
+	if (statePush===undefined)
+		statePush=false;
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
@@ -1004,11 +1004,13 @@ function refreshParam(stateRefresh) {
 		}
 	})
 	/*update state*/
-	if (stateRefresh) {
-		var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
-		var state = { stateSquad: fullParam };
-		history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
-	};
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+	var state = { stateSquad: fullParam };
+	if (statePush) {
+		history.pushState(state, "squad state", fullParam );
+	} else {
+		history.replaceState(state, "squad state", fullParam );
+	}
 }
 
 /*generate squad summary*/
@@ -1210,7 +1212,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
-	refreshParam();
+	refreshParam(true);
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1335,7 +1337,7 @@ function loadSquad() {
 		refreshBonus();
 	}
 	if (sParamValid) {
-		refreshParam(false);
+		refreshParam();
 	}
 }
 
@@ -1425,7 +1427,7 @@ $(document).on("click", '.typeBtn', function(e){
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
 	refreshSpheres();
 	refreshBonus();
-	refreshParam(false);
+	refreshParam();
 })
 
 /*Trash Unit*/
@@ -1433,7 +1435,7 @@ $(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
-	refreshParam(false);
+	refreshParam();
 })
 
 /*Trash Unit*/
