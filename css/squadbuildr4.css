@@ -6,10 +6,15 @@
     }
     .badge {padding:2px 5px !important;}
     .dBtn {margin-top:-8px;}
+    .imgDMG {width:80px;height:80px;}
+    #expandAll {
+        width:93%;
+        margin:5px 0 20px;
+    }
     #squadBox {padding-top:20px;}
     div[id^='spheres'], div[id^='stats'] {
         margin:0 auto;
-        width:160px;
+        width:180px;
         padding:5px;
         background:#EEF;
     }
