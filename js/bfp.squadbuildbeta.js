@@ -1380,6 +1380,8 @@ function showDMG() {
 		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 * +unitBonus[unitX][4]/100) * (1.5 * +unitBonus[unitX][5]/100) * (1.5 * +unitBonus[unitX][6]/100);
 		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 * +unitBonus[unitX][4]/100) * (1.5 * +unitBonus[unitX][5]/100) * (1.5 * +unitBonus[unitX][6]/100);
 		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 * +unitBonus[unitX][4]/100) * (1.5 * +unitBonus[unitX][5]/100) * (1.5 * +unitBonus[unitX][6]/100);
+		console.log("first part "+(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + "unit BB: "+ +rawParseObj[selectUnit].bbdmg/100);
+		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		unitHTML+='<h4><b>BB:</b> '+unitBBDMG+'</h4>';
 		unitHTML+='<h4><b>SBB:</b> '+unitSBBDMG+'</h4>';
 		unitHTML+='<h4><b>UBB:</b> '+unitUBBDMG+'</h4>';
