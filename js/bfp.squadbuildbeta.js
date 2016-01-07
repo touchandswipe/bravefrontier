@@ -1386,26 +1386,26 @@ function showDMG() {
 			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
 			var unitUBBDMG=0;
-		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
-		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
-		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
-		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
-		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
+		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
+		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
+		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
+		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
 		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h5>';
-		unitHTML+='<h5><b>SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h5>';
-		unitHTML+='<h5><b>UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h5>';
 		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
 	/*total*/
-	var totalHTML='<hr><div class="col-xs-12 col-md-12"><h3><b class="text-center">Squad Total</b></h3>';
+	var totalHTML='<div class="col-xs-12 col-md-12"><hr><h3><b class="text-center">Squad Total</b></h3>';
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h4><b>SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h4><b>UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4>';
-	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. DMG calculated based on best case, all UBB activated.</h5>';
+	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4><hr>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Assume ignore DEF, All Hits Spark, and All Hits CRIT. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
