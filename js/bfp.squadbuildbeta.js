@@ -1,6 +1,6 @@
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
-	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"No Sphere",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
 	{name:"Axe of Hadaron",nick:"axehadaron",stats:[0,0.2,0.2,0,0,0,0.3,0,2.8]},
 	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0.75,0,0,0,0,0,0,0]},
 	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,1.5,1.5,0,1,0,0,0,0]},
@@ -49,7 +49,7 @@ sphereList=[
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
 ];
 extraList=[
-	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"No Extra Skill Bonus",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
 	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]}
 ];
 /*Stats Calc Var*/
