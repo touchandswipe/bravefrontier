@@ -172,7 +172,7 @@ function searchIdRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIdFilter: sVal };
-    	history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
     }
 	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -211,7 +211,7 @@ function searchNameRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+	history.replaceState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
