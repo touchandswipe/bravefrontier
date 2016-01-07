@@ -1418,12 +1418,16 @@ $(".unitBox").on( "drop", function(e, ui) {
 		$(this).children(".dragBox").detach().appendTo(unitProcessing);
 		$(ui.draggable).detach().css({top:"",left:""}).appendTo($(this));
 		refreshALL();
+		refreshSpheres();
+		refreshBonus()
 	} else {
 		/*Empty*/
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
 		$(unitProcessing).html(trashStr);
 		$("#stats"+unitProcessing.slice(-1)).html("");
 		refreshALL();
+		refreshSpheres();
+		refreshBonus()
 	}
 });
 
@@ -1476,6 +1480,8 @@ $(document).on("click", '#trashBtn', function(e){
 	$("#stats"+unitProcessing.slice(-1)).html("");
 	$('#searchModal').modal('hide');
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*clearSquad*/
