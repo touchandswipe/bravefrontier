@@ -225,6 +225,24 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
+		<textarea id="redditShare" class="form-controls text-center" rows="6" readonly="true"></textarea>
+	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Unit Select Modal -->
 <div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
   <div class="modal-dialog">
@@ -298,6 +316,7 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+
 <!-- Skills availability Modal -->
 <div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
   <div class="modal-dialog">
@@ -308,24 +327,6 @@ if (window.location.hash == '#_=_') {
       </div>
       <div class="modal-body">
 	<div class="text-center" id="showSkillBody"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Reddit Modal -->
-<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
-        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
-      </div>
-      <div class="modal-body text-center">
-      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
-	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
-		<textarea id="redditShare" class="form-controls text-center" rows="6" readonly="true"></textarea>
-	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
       </div>
     </div>
   </div>
