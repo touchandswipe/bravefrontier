@@ -296,7 +296,6 @@ function resetLocalData(serverStr, corrupted) {
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
-	//history.pushState(null, null, location.pathname);
 	location.replace(location.href);
 }
 
@@ -322,7 +321,6 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguidejapan');
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
-	//history.pushState(null, null, location.pathname);
 	location.replace(location.href);
 })
 
@@ -753,7 +751,7 @@ function searchNameRun() {
 	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes using \"<b>'+sVal+'</b>\" ingredient</button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -793,7 +791,7 @@ function searchIngredientRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' recipes(s) using '+sVal+' found. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
-    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
