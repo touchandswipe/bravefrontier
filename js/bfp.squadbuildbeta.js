@@ -1028,6 +1028,7 @@ function refreshParam(statePush) {
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
+	var extraParam=[];
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1042,10 +1043,15 @@ function refreshParam(statePush) {
 			if (tVal!="none") {
 				sphereParam.push(x+"_"+unitX+tVal);
 			}
+		};
+		/*builds ex param*/
+		var extraVal=$("#extra_"+unitX).val();
+		if (extraVal!="none") {
+			extraParam.push(unitX+extraVal);
 		}
 	})
 	/*update state*/
-	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join())+"&exs="+encodeURIComponent(extraParam.join());
 	var state = { stateSquad: fullParam };
 	if (statePush) {
 		history.pushState(state, "squad state", fullParam );
@@ -1350,6 +1356,7 @@ function loadSquad() {
 	var sParamValid=false;
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
+	var extraParam=urlParam('exs');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
 	    	if (squadList.length>6)
@@ -1377,6 +1384,16 @@ function loadSquad() {
 		for (var i in sphereRef) {
 			var sNick=sphereRef[i].substr(3);
 			$("#sphere"+sphereRef[i].substr(0,3)+" option").filter(function() { 
+    				return ($(this).val()==sNick);
+			}).attr("selected", true);
+		}
+	};
+	/*ES load*/
+	if (extraParam!="" && sParamValid) {
+		var extraRef=extraParam.split(',');
+		for (var i in extraRef) {
+			var sNick=extraRef[i].substr(1);
+			$("#extra_"+extraRef[i].charAt(0)+" option").filter(function() { 
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
 		}
@@ -1552,7 +1569,7 @@ $(document).on("click", '.typeBtn', function(e){
 })
 
 /*Trash Unit*/
-$(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
+$(document).on("change", '[id^=extra_],[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
