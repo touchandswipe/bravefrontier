@@ -24,6 +24,7 @@ unitBonus={A:[0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0],D:[0,0,0,
 squadSparkDMG=0;
 squadCritDMG=0;
 squadElementDMG=0;
+squadATKBUFF=0;
 squadBBDMG=0;
 countVar=0;
 unitProcessing="";
@@ -1141,37 +1142,28 @@ function generateSummary() {
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
 	/*ATK summary*/
-	var atkLS=["% ATK+"];
 	var atkBB=["% ATK+"];
 	var atkUBB=["% ATK+"];
-	var atkLSTotal=0;
 	var atkBBTotal=0;
 	var atkUBBTotal=0;
-	for (var i in atkLS)
-		atkLSTotal+=getTop(".lsBtns",atkLS[i]);
 	for (var i in atkBB)
 		atkBBTotal+=getTop(".bbBtns",atkBB[i]);
 	for (var i in atkUBB)
 		atkUBBTotal+=getTop(".ubbBtns",atkUBB[i]);
-	var atkHTML='<span class="text-success"><b>TOTAL '+ (+atkLSTotal + +atkBBTotal + +atkUBBTotal) +'%</b></span><br>';
-	atkHTML+="LS <b>"+atkLSTotal+"%</b><br>";
+	squadATKBUFF=+atkBBTotal + +atkUBBTotal;
+	var atkHTML='<span class="text-success"><b>TOTAL '+ squadATKBUFF +'%</b></span><br>';
 	atkHTML+="BB/SBB <b>"+atkBBTotal+"%</b><br>";
 	atkHTML+="UBB <b>"+atkUBBTotal+"%</b>";
 	/*DEF summary*/
-	var defLS=["% DEF+"];
 	var defBB=["% DEF+"];
 	var defUBB=["% DEF+"];
-	var defLSTotal=0;
 	var defBBTotal=0;
 	var defUBBTotal=0;
-	for (var i in defLS)
-		defLSTotal+=getTop(".lsBtns",defLS[i]);
 	for (var i in defBB)
 		defBBTotal+=getTop(".bbBtns",defBB[i]);
 	for (var i in defUBB)
 		defUBBTotal+=getTop(".ubbBtns",defUBB[i]);
-	var defHTML='<span class="text-success"><b>TOTAL '+ (+defLSTotal + +defBBTotal + +defUBBTotal) +'%</b></span><br>';
-	defHTML+="LS <b>"+defLSTotal+"%</b><br>";
+	var defHTML='<span class="text-success"><b>TOTAL '+ (+defBBTotal + +defUBBTotal) +'%</b></span><br>';
 	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br>";
 	defHTML+="UBB <b>"+defUBBTotal+"%</b>";
 	/*Elemental weakness*/
@@ -1285,7 +1277,7 @@ function refreshSpheres(){
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +(squadATKBUFF/100),
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
 			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
 			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
