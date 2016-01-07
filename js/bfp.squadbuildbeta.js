@@ -1252,10 +1252,10 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>ATK:</b> <span id="ATK_'+uRef+'">'+rawParseObj[rawID].lord.atk+'</span></li>';
 	insertHTML+='<li><b>DEF:</b> <span id="DEF_'+uRef+'">'+rawParseObj[rawID].lord.def+'</span></li>';
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
-	insertHTML+='<li><b>CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
-	insertHTML+='<li><b>SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
-	insertHTML+='<li><b>ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
-	insertHTML+='<li><b>BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
 }
@@ -1270,6 +1270,7 @@ function refreshALL() {
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
+				console.log("reparsing?")
 			}
 		}
 	});
@@ -1553,6 +1554,8 @@ $(document).on("click", '.unitFound', function(e){
 	parseUnit(unitProcessing, $(this).attr("data-unitid"));
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus();
 })
 
 /*update unitspace by recommendation*/
@@ -1563,6 +1566,8 @@ https://github.com/touchandswipe/bravefrontier	e.preventDefault();
 	$('#recommendModal').modal('hide');
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*JP Only*/
@@ -1571,6 +1576,8 @@ $(document).on("click", '#JPOnly', function(e){
 	JPOnlyRun();
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*Build DATABASE IN MEMORY*/
