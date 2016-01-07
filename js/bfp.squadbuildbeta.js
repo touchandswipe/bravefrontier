@@ -981,7 +981,9 @@ function getTop(btnclass,btnDesc) {
 }
 
 /*refreshURLParam*/
-function refreshParam() {
+function refreshParam(stateRefresh) {
+	if (stateRefresh===undefined)
+		stateRefresh=true;
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
@@ -1002,9 +1004,11 @@ function refreshParam() {
 		}
 	})
 	/*update state*/
-	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
-	var state = { stateSquad: fullParam };
-	history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
+	if (stateRefresh) {
+		var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+		var state = { stateSquad: fullParam };
+		history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
+	};
 }
 
 /*generate squad summary*/
@@ -1331,7 +1335,7 @@ function loadSquad() {
 		refreshBonus();
 	}
 	if (sParamValid) {
-		refreshParam();
+		refreshParam(false);
 	}
 }
 
@@ -1421,7 +1425,7 @@ $(document).on("click", '.typeBtn', function(e){
 	$("#TYPEHEADER_"+$(this).attr("data-unitbox")).text($(this).attr("title").toUpperCase());
 	refreshSpheres();
 	refreshBonus();
-	refreshParam();
+	refreshParam(false);
 })
 
 /*Trash Unit*/
@@ -1429,7 +1433,7 @@ $(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
-	refreshParam();
+	refreshParam(false);
 })
 
 /*Trash Unit*/
