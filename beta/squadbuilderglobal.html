@@ -316,7 +316,6 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-
 <!-- Skills availability Modal -->
 <div class="modal" id="showSkillModal" tabindex="-1" role="dialog" aria-labelledby="skills Modal" aria-hidden="true">
   <div class="modal-dialog">
@@ -327,6 +326,24 @@ if (window.location.hash == '#_=_') {
       </div>
       <div class="modal-body">
 	<div class="text-center" id="showSkillBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DMG Modal -->
+<div class="modal" id="damageModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Squad Damage Estimation</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<div class="row" id="unitDmgBox">
+      	</div><!--EndRow-->
+      	<div class="row" id="squadDmgBox">
+      	</div><!--EndRow-->
       </div>
     </div>
   </div>
