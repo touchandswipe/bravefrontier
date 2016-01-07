@@ -1210,7 +1210,7 @@ function generateSummary() {
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsHTML+' </h6></div>';
@@ -1221,6 +1221,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br>Weakness</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br>SPAM</b></h4><h6>'+bbSpamHTML.join("<br>")+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><a href="#" role="button" id="calculateDMG" class="btn btn-sm btn-default">Calculate</a></div>';
 	$("#SummarySpace").html(sHTML);
 	refreshParam(true);
 	/*load sharethis buttons*/
@@ -1309,8 +1310,6 @@ function refreshBonus(){
 			$("#SPARK_"+key).text(bonus[5]+"%");
 			$("#ELEMENT_"+key).text(bonus[6]+"%");
 			$("#BB_"+key).text(bonus[7]+"%");
-			/*calculate DMG*/
-			
 		}
 	})
 }
@@ -1364,6 +1363,30 @@ function loadSquad() {
 	if (sParamValid) {
 		refreshParam();
 	}
+}
+
+/*Calculate Squad DMG*/
+function showDMG() {
+	var squadTotalDMG=0;
+	var unitHTMLArray=[];
+	/*Process for Each Unit*/
+	$(".unitBox .dragBox .unitSelected").each(function(){
+		var selectUnit=$(this).attr("data-unitid");
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		var unitT=$("#TYPEHEADER_"+unitX).text().toLowerCase();
+		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
+		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'"/>';
+		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
+		var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + unitBonus[1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[7]/100)+ rawParseObj[selectUnit].bbflat) * (1.5 * +unitBonus[4]) * (1.5 * +unitBonus[5]) * (1.5 * +unitBonus[6]);
+		var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + unitBonus[1] + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[7]/100)+ rawParseObj[selectUnit].sbbflat) * (1.5 * +unitBonus[4]) * (1.5 * +unitBonus[5]) * (1.5 * +unitBonus[6]);
+		var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + unitBonus[1] + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[7]/100)+ rawParseObj[selectUnit].ubbflat) * (1.5 * +unitBonus[4]) * (1.5 * +unitBonus[5]) * (1.5 * +unitBonus[6]);
+		unitHTML+='<h4><b>BB:</b> '+unitBBDMG+'</h4>';
+		unitHTML+='<h4><b>SBB:</b> '+unitSBBDMG+'</h4>';
+		unitHTML+='<h4><b>UBB:</b> '+unitUBBDMG+'</h4>';
+		unitHTML+='</div>';
+		unitHTMLArray.push(unitHTML);
+	});
+	$("#unitDmgBox").html(unitHTMLArray.join(" "));
 }
 
 /*POP state*/
@@ -1430,6 +1453,13 @@ $(".unitBox").on( "drop", function(e, ui) {
 		refreshBonus()
 	}
 });
+
+/*Calculate BTN*/
+$(document).on("click", '#calculateDMG', function(e){
+	e.preventDefault();
+	showDMG();
+	$("#damageModal").modal("show");
+})
 
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
@@ -1626,7 +1656,7 @@ if (typeof mappedNames !== 'undefined') {
 		        		unitObj.bbdmg=valObj["bb"]["levels"][9]["bb atk%"];
 		        	} else unitObj.bbdmg=0;
 		        	if (valObj["bb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.bbdmg=valObj["bb"]["levels"][9]["bb flat atk"];
+		        		unitObj.bbflat=valObj["bb"]["levels"][9]["bb flat atk"];
 		        	} else unitObj.bbflat=0;
 			}
 		};
@@ -1643,7 +1673,7 @@ if (typeof mappedNames !== 'undefined') {
 		        		unitObj.sbbdmg=valObj["sbb"]["levels"][9]["bb atk%"];
 		        	} else unitObj.sbbdmg=0;
 		        	if (valObj["sbb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.sbbdmg=valObj["sbb"]["levels"][9]["bb flat atk"];
+		        		unitObj.sbbflat=valObj["sbb"]["levels"][9]["bb flat atk"];
 		        	} else unitObj.sbbflat=0;
 			}
 		}
@@ -1658,7 +1688,7 @@ if (typeof mappedNames !== 'undefined') {
 		        		unitObj.ubbdmg=valObj["ubb"]["levels"][9]["bb atk%"];
 		        	} else unitObj.ubbdmg=0;
 		        	if (valObj["ubb"]["levels"][9]["bb flat atk"]) {
-		        		unitObj.ubbdmg=valObj["ubb"]["levels"][9]["bb flat atk"];
+		        		unitObj.ubbflat=valObj["ubb"]["levels"][9]["bb flat atk"];
 		        	} else unitObj.ubbflat=0;
         	}
 	}
