@@ -1345,16 +1345,16 @@ function loadSquad() {
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
 		}
-		refreshSpheres();
-	}
+	};
+	refreshSpheres();
 	/*type load*/
 	if (tParam !="" && sParamValid) {
 		var typeList=tParam.split(',');
 		for (var i in typeList) {
 			$("#TYPEHEADER_"+typeList[i].charAt(0)).text(typeList[i].substr(1).toUpperCase());
 		}
-		refreshBonus();
 	}
+	refreshBonus();
 	if (sParamValid) {
 		refreshParam();
 	}
