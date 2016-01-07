@@ -1,6 +1,6 @@
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
-	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"No Sphere",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
 	{name:"Axe of Hadaron",nick:"axehadaron",stats:[0,0.2,0.2,0,0,0,0.3,0,2.8]},
 	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0.75,0,0,0,0,0,0,0]},
 	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,1.5,1.5,0,1,0,0,0,0]},
@@ -47,6 +47,10 @@ sphereList=[
 	{name:"Tridon\'s Trident",nick:"tridont",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
+];
+extraList=[
+	{name:"No Extra Skill Bonus",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]}
 ];
 /*Stats Calc Var*/
 lsBonus=[0,0,0,0,0,0,0,0,0];
@@ -1024,6 +1028,7 @@ function refreshParam(statePush) {
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
+	var extraParam=[];
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1038,10 +1043,15 @@ function refreshParam(statePush) {
 			if (tVal!="none") {
 				sphereParam.push(x+"_"+unitX+tVal);
 			}
+		};
+		/*builds ex param*/
+		var extraVal=$("#extra_"+unitX).val();
+		if (extraVal!="none") {
+			extraParam.push(unitX+extraVal);
 		}
 	})
 	/*update state*/
-	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
+	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join())+"&exs="+encodeURIComponent(extraParam.join());
 	var state = { stateSquad: fullParam };
 	if (statePush) {
 		history.pushState(state, "squad state", fullParam );
@@ -1304,13 +1314,14 @@ function refreshALL() {
 function refreshSpheres(){
 	var unitRun=["A","B","C","D","E","F"];
 	$.each( unitBonus, function( key, bonus ) {
+		var extraBonus=$("#extra_"+key+" option:selected").attr("data-val").split(",");
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		unitBonus[key]=[
-			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
-			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
+			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
+			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
+			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2] + +extraBonus[2],
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3] + +extraBonus[3],
 			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
 			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
@@ -1345,6 +1356,7 @@ function loadSquad() {
 	var sParamValid=false;
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
+	var extraParam=urlParam('exs');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
 	    	if (squadList.length>6)
@@ -1372,6 +1384,16 @@ function loadSquad() {
 		for (var i in sphereRef) {
 			var sNick=sphereRef[i].substr(3);
 			$("#sphere"+sphereRef[i].substr(0,3)+" option").filter(function() { 
+    				return ($(this).val()==sNick);
+			}).attr("selected", true);
+		}
+	};
+	/*ES load*/
+	if (extraParam!="" && sParamValid) {
+		var extraRef=extraParam.split(',');
+		for (var i in extraRef) {
+			var sNick=extraRef[i].substr(1);
+			$("#extra_"+extraRef[i].charAt(0)+" option").filter(function() { 
     				return ($(this).val()==sNick);
 			}).attr("selected", true);
 		}
@@ -1547,7 +1569,7 @@ $(document).on("click", '.typeBtn', function(e){
 })
 
 /*Trash Unit*/
-$(document).on("change", '[id^=sphere1_],[id^=sphere2_]', function(e){
+$(document).on("change", '[id^=extra_],[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
 	refreshBonus();
@@ -1842,6 +1864,10 @@ if (typeof mappedNames !== 'undefined') {
     /*Preload SphereList*/
     for (var i in sphereList) {
     	$(".input-sphere").append('<option value="'+sphereList[i].nick+'" data-val="'+sphereList[i].stats+'">'+sphereList[i].name+'</option>');
+    };
+    /*Preload ExtraSkill*/
+    for (var i in extraList) {
+    	$(".input-extra").append('<option value="'+extraList[i].nick+'" data-val="'+extraList[i].stats+'">'+extraList[i].name+'</option>');
     };
     $('#progressModal').modal('hide');
 }
