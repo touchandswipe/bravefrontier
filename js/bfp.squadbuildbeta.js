@@ -1697,8 +1697,10 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbbflat=0;
 		        	if (valObj["sbb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
-		        			if (unitObj.sbbdmg==0)
+		        			if (unitObj.sbbdmg==0) {
     							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk%']) ? valObj.sbb.levels[9].effects[k]['bb atk%'] : 0 ;
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb base atk%']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +valObj.sbb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.sbbdmg;
+		        			}
     						if (unitObj.sbbflat==0)
     							unitObj.sbbflat=(valObj.sbb.levels[9].effects[k]['bb flat atk']) ? valObj.sbb.levels[9].effects[k]['bb flat atk'] : 0;
 		        		}
@@ -1716,8 +1718,10 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.ubbflat=0;
 		        	if (valObj["ubb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
-		        			if (unitObj.ubbdmg==0)
+		        			if (unitObj.ubbdmg==0) {
     							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb base atk%']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+		        			}
     						if (unitObj.ubbflat==0)
     							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
 		        		}
