@@ -1355,6 +1355,12 @@ $('#redditShare').click(function() {
     $(this).select();
 });
 
+/*expand all*/
+$('#expandAll').click(function() {
+    $("[id^=stats]").collapse("toggle");
+    $("[id^=spheres]").collapse("toggle");
+});
+
 /*popover hide after 2s*/
 $('.unitBox').on('shown.bs.popover', function () {
     var $pop = $(this);
