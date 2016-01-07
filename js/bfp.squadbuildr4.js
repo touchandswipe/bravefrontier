@@ -981,7 +981,9 @@ function getTop(btnclass,btnDesc) {
 }
 
 /*refreshURLParam*/
-function refreshParam() {
+function refreshParam(statePush) {
+	if (statePush===undefined)
+		statePush=false;
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
@@ -1004,7 +1006,11 @@ function refreshParam() {
 	/*update state*/
 	var fullParam="?squad="+encodeURIComponent(sParam.join())+"&type="+encodeURIComponent(typeParam.join())+"&sphere="+encodeURIComponent(sphereParam.join());
 	var state = { stateSquad: fullParam };
-	history.pushState(state, "squad state", location.protocol + '//' + location.host + location.pathname + fullParam );
+	if (statePush) {
+		history.pushState(state, "squad state", fullParam );
+	} else {
+		history.replaceState(state, "squad state", fullParam );
+	}
 }
 
 /*generate squad summary*/
@@ -1206,7 +1212,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
-	refreshParam();
+	refreshParam(true);
 	/*load sharethis buttons*/
 	stWidget.addEntry({
 		"service":"sharethis",
@@ -1343,6 +1349,11 @@ $(window).on('popstate', function(e) {
 		loadSquad()
 	}
 })
+
+/*select redditshare*/
+$('#redditShare').click(function() {
+    $(this).select();
+});
 
 /*popover hide after 2s*/
 $('.unitBox').on('shown.bs.popover', function () {
