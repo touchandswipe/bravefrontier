@@ -1,24 +1,31 @@
+/*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
-	{name:"None",nick:"none",stats:[0,0,0,0]},
-	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35]},
-	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4]},
-	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3]},
-	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25]},
-	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3]},
-	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2]},
-	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4]},
-	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5]},
-	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,2.3,0,0]},
-	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1]}
+	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
+	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4,0,0,0,0,0]},
+	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3,0,0,0,0,0]},
+	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
+	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
+	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
+	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4,0,0,0,0,0]},
+	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5,0,0,0,0,0]},
+	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,0.3,0,0,0,0,0,0,2]},
+	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1,0,0,0,0,0]},
+	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
 ];
 /*Stats Calc Var*/
-lsBonus=[0,0,0,0];
-unitBonus={A:[0,0,0,0],B:[0,0,0,0],C:[0,0,0,0],D:[0,0,0,0],E:[0,0,0,0],F:[0,0,0,0]};
+lsBonus=[0,0,0,0,0,0,0,0,0];
+unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
+squadSparkDMG=0;
+squadCritDMG=0;
+squadElementDMG=0;
+squadATKBUFF=0;
+squadBBDMG=0;
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -802,7 +809,7 @@ function showSkills(e,scanScope) {
 									if (scanArray[j][bbMap[bbMapKey].criteria[m]])
 										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+bbMap[bbMapKey].criteria[m]+': '+scanArray[j][bbMap[bbMapKey].criteria[m]]+')</i></h5>'
 							}
-							skillsHTML+='<br/>';
+							skillsHTML+='<br>';
 						}
 						/*Element add breakdown*/
 						if (bbMap[bbMapKey].impact=="elements dummy") {
@@ -810,7 +817,7 @@ function showSkills(e,scanScope) {
 								skillsHTML+='<b>'+scanScope[i].toUpperCase()+': </b>';
 								skillsHTML+='Add '+scanArray[j]["elements added"]+' to ATK '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 								skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-								skillsHTML+='<br/>';
+								skillsHTML+='<br>';
 							}
 						}
 						/*ATK Down Inconsistency*/
@@ -821,7 +828,7 @@ function showSkills(e,scanScope) {
 									skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
 									skillsHTML+=scanArray[j]["buff #1"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-									skillsHTML+='<br/>';
+									skillsHTML+='<br>';
 								}
 							if (scanArray[j].hasOwnProperty("buff #2"))
 								if (scanArray[j]["buff #2"]["atk% buff (2)"]) {
@@ -829,7 +836,7 @@ function showSkills(e,scanScope) {
 									skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
 									skillsHTML+=scanArray[j]["buff #2"]["atk% buff (2)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-									skillsHTML+='<br/>';
+									skillsHTML+='<br>';
 							} 
 						}
 						/*DEF Down Inconsistency*/
@@ -840,7 +847,7 @@ function showSkills(e,scanScope) {
 									skillsHTML+=scanArray[j]["buff #1"][bbMap[bbMapKey].chance]+' % Chance ';
 									skillsHTML+=scanArray[j]["buff #1"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-									skillsHTML+='<br/>';
+									skillsHTML+='<br>';
 								}
 							if (scanArray[j].hasOwnProperty("buff #2"))
 								if (scanArray[j]["buff #2"]["def% buff (4)"]) {
@@ -848,7 +855,7 @@ function showSkills(e,scanScope) {
 									skillsHTML+=scanArray[j]["buff #2"][bbMap[bbMapKey].chance]+' % Chance ';
 									skillsHTML+=scanArray[j]["buff #2"]["def% buff (4)"]+bbMap[bbMapKey].desc+' '+scanArray[j][bbMap[bbMapKey].turns]+'Turns';
 									skillsHTML+=' <kbd>'+scanArray[j]["target area"].toUpperCase()+'/'+scanArray[j]["target type"].toUpperCase()+'</kbd>';
-									skillsHTML+='<br/>';
+									skillsHTML+='<br>';
 								}
 						}
 					} /* End FOR Loop */
@@ -938,7 +945,7 @@ function showLeaderSkills(e,scanScope) {
 									if (scanArray[j][lsMap[lsMapKey].criteria[m]])
 										skillsHTML+='<h5 style="margin:2px;" class="text-danger"><i>('+lsMap[lsMapKey].criteria[m]+': '+scanArray[j][lsMap[lsMapKey].criteria[m]]+')</i></h5>'
 							}
-							skillsHTML+='</br>';
+							skillsHTML+='<br>';
 						}
 				}
 				
@@ -1078,8 +1085,6 @@ function generateSummary() {
 	lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
 	lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
 	lsHTML+=lsRECTotal+'% <b>REC</b>';
-	/*Update multiplier*/
-	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
 	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
@@ -1095,9 +1100,10 @@ function generateSummary() {
 		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
 	for (var i in sparkLS)
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
-	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br/>';
-	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br/>";
-	sparkHTML+="BB/SBB <b>"+sparkBBTotal+"%</b><br/>";
+	squadSparkDMG=+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal;
+	var sparkHTML='<span class="text-success"><b>TOTAL '+ squadSparkDMG +'%</b></span><br>';
+	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br>";
+	sparkHTML+="BB/SBB <b>"+sparkBBTotal+"%</b><br>";
 	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
 	/*crit summary*/
 	var critLS=["% CRIT DMG+"];
@@ -1112,9 +1118,10 @@ function generateSummary() {
 		critBBTotal+=getTop(".bbBtns",critBB[i]);
 	for (var i in critUBB)
 		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
-	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br/>';
-	critHTML+="LS <b>"+critLSTotal+"%</b><br/>";
-	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br/>";
+	squadCritDMG=+critLSTotal + +critBBTotal + +critUBBTotal;
+	var critHTML='<span class="text-success"><b>TOTAL '+ squadCritDMG +'%</b></span><br>';
+	critHTML+="LS <b>"+critLSTotal+"%</b><br>";
+	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br>";
 	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
 	/*BB ATK% summary*/
 	var bbatkLS=["% BB ATK%+","% BB ATK%+ on SparkCount","% BB ATK%+ on X DMG Dealt","% BB ATK%+ on X DMG Taken"];
@@ -1129,43 +1136,35 @@ function generateSummary() {
 		bbatkBBTotal+=getTop(".bbBtns",bbatkBB[i]);
 	for (var i in critUBB)
 		bbatkUBBTotal+=getTop(".ubbBtns",bbatkUBB[i]);
-	var bbatkHTML='<span class="text-success"><b>TOTAL '+ (+bbatkLSTotal + +bbatkBBTotal + +bbatkUBBTotal) +'%</b></span><br/>';
-	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br/>";
-	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br/>";
+	squadBBDMG=+bbatkLSTotal + +bbatkBBTotal + +bbatkUBBTotal;
+	var bbatkHTML='<span class="text-success"><b>TOTAL '+ squadBBDMG +'%</b></span><br>';
+	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br>";
+	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
 	/*ATK summary*/
-	var atkLS=["% ATK+"];
 	var atkBB=["% ATK+"];
 	var atkUBB=["% ATK+"];
-	var atkLSTotal=0;
 	var atkBBTotal=0;
 	var atkUBBTotal=0;
-	for (var i in atkLS)
-		atkLSTotal+=getTop(".lsBtns",atkLS[i]);
 	for (var i in atkBB)
 		atkBBTotal+=getTop(".bbBtns",atkBB[i]);
 	for (var i in atkUBB)
 		atkUBBTotal+=getTop(".ubbBtns",atkUBB[i]);
-	var atkHTML='<span class="text-success"><b>TOTAL '+ (+atkLSTotal + +atkBBTotal + +atkUBBTotal) +'%</b></span><br/>';
-	atkHTML+="LS <b>"+atkLSTotal+"%</b><br/>";
-	atkHTML+="BB/SBB <b>"+atkBBTotal+"%</b><br/>";
+	squadATKBUFF=+atkBBTotal + +atkUBBTotal;
+	var atkHTML='<span class="text-success"><b>TOTAL '+ squadATKBUFF +'%</b></span><br>';
+	atkHTML+="BB/SBB <b>"+atkBBTotal+"%</b><br>";
 	atkHTML+="UBB <b>"+atkUBBTotal+"%</b>";
 	/*DEF summary*/
-	var defLS=["% DEF+"];
 	var defBB=["% DEF+"];
 	var defUBB=["% DEF+"];
-	var defLSTotal=0;
 	var defBBTotal=0;
 	var defUBBTotal=0;
-	for (var i in defLS)
-		defLSTotal+=getTop(".lsBtns",defLS[i]);
 	for (var i in defBB)
 		defBBTotal+=getTop(".bbBtns",defBB[i]);
 	for (var i in defUBB)
 		defUBBTotal+=getTop(".ubbBtns",defUBB[i]);
-	var defHTML='<span class="text-success"><b>TOTAL '+ (+defLSTotal + +defBBTotal + +defUBBTotal) +'%</b></span><br/>';
-	defHTML+="LS <b>"+defLSTotal+"%</b><br/>";
-	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br/>";
+	var defHTML='<span class="text-success"><b>TOTAL '+ (+defBBTotal + +defUBBTotal) +'%</b></span><br>';
+	defHTML+="BB/SBB <b>"+defBBTotal+"%</b><br>";
 	defHTML+="UBB <b>"+defUBBTotal+"%</b>";
 	/*Elemental weakness*/
 	var fireWk="% Fire Weakness DMG+";
@@ -1181,12 +1180,13 @@ function generateSummary() {
 		elementTotal[i]+=getTop(".bbBtns",elementWk[i]);
 		elementTotal[i]+=getTop(".ubbBtns",elementWk[i]);
 	}
-	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br/>";
-	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br/>";
-	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br/>";
-	elementWkHTML+="Thunder <b>"+elementTotal[3]+"%</b><br/>";
-	elementWkHTML+="Light <b>"+elementTotal[4]+"%</b><br/>";
-	elementWkHTML+="Dark <b>"+elementTotal[5]+"%</b><br/>";
+	squadElementDMG=Math.max.apply(Math, elementTotal);
+	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br>";
+	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br>";
+	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br>";
+	elementWkHTML+="Thunder <b>"+elementTotal[3]+"%</b><br>";
+	elementWkHTML+="Light <b>"+elementTotal[4]+"%</b><br>";
+	elementWkHTML+="Dark <b>"+elementTotal[5]+"%</b><br>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -1197,20 +1197,23 @@ function generateSummary() {
 	}
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
+	/*Update multiplier*/
+	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique</br>Element(s)</h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsHTML+' </h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="ATK Buff Potential"><b>ATK<br/>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="DEF Buff Potential"><b>DEF<br/>BUFF</b></h4><h6>'+defHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br/>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br/>DMG</b></h4><h6>'+critHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br/>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br/>Weakness DMG</b></h4><h6>'+elementWkHTML+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br/>SPAM</b></h4><h6>'+bbSpamHTML.join("<br/>")+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="ATK Buff Potential"><b>ATK<br>BUFF</b></h4><h6>'+atkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="DEF Buff Potential"><b>DEF<br>BUFF</b></h4><h6>'+defHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Spark DMG Potential"><b>SPARK<br>DMG</b></h4><h6>'+sparkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="CRIT DMG Potential"><b>CRIT<br>DMG</b></h4><h6>'+critHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br>Weakness</b></h4><h6>'+elementWkHTML+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br>SPAM</b></h4><h6>'+bbSpamHTML.join("<br>")+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-sm btn-danger">Calculate</a></h5></div>';
 	$("#SummarySpace").html(sHTML);
 	refreshParam(true);
 	/*load sharethis buttons*/
@@ -1242,6 +1245,11 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>ATK:</b> <span id="ATK_'+uRef+'">'+rawParseObj[rawID].lord.atk+'</span></li>';
 	insertHTML+='<li><b>DEF:</b> <span id="DEF_'+uRef+'">'+rawParseObj[rawID].lord.def+'</span></li>';
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
+	insertHTML+='<li><b class="text-danger">ATKbuff:</b> <span id="ATKBUFF_'+uRef+'">'+squadATKBUFF+'</span></li>';
+	insertHTML+='<li><b class="text-danger">CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
 }
@@ -1256,6 +1264,7 @@ function refreshALL() {
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
+				console.log("reparsing?")
 			}
 		}
 	});
@@ -1271,7 +1280,12 @@ function refreshSpheres(){
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
+			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
+			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
+			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
+			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7],
+			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8]
 		];
 	})
 }
@@ -1286,6 +1300,11 @@ function refreshBonus(){
 			$("#ATK_"+key).text(parseInt(+rawParseObj[unitID][unitType].atk * +bonus[1]));
 			$("#DEF_"+key).text(parseInt(+rawParseObj[unitID][unitType].def * +bonus[2]));
 			$("#REC_"+key).text(parseInt(+rawParseObj[unitID][unitType].rec * +bonus[3]));
+			$("#ATKBUFF_"+key).text(bonus[8]+"%");
+			$("#CRIT_"+key).text(bonus[4]+"%");
+			$("#SPARK_"+key).text(bonus[5]+"%");
+			$("#ELEMENT_"+key).text(bonus[6]+"%");
+			$("#BB_"+key).text(bonus[7]+"%");
 		}
 	})
 }
@@ -1341,6 +1360,56 @@ function loadSquad() {
 	}
 }
 
+/*Calculate Squad DMG*/
+function showDMG() {
+	var squadTotalBB=0;
+	var squadTotalSBB=0;
+	var squadTotalUBB=0;
+	var unitHTMLArray=[];
+	/*Process for Each Unit*/
+	$(".unitBox .dragBox .unitSelected").each( function(){
+		var selectUnit=$(this).attr("data-unitid");
+		var unitX=$(this).parents(".unitBox").attr("id").slice(-1);
+		var unitT=$("#TYPEHEADER_"+unitX).text().toLowerCase();
+		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
+		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
+		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
+		if (+rawParseObj[selectUnit].bbdmg!=0)
+			var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitBBDMG=0;
+		if (+rawParseObj[selectUnit].sbbdmg!=0)
+			var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitSBBDMG=0;
+		if (+rawParseObj[selectUnit].ubbdmg!=0)
+			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitUBBDMG=0;
+		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
+		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
+		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
+		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
+		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		squadTotalBB+= +unitBBDMG;
+		squadTotalSBB+= +unitSBBDMG;
+		squadTotalUBB+= +unitUBBDMG;
+		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'M</h5>';
+		unitHTML+='</div>';
+		unitHTMLArray.push(unitHTML);
+	});
+	/*total*/
+	var totalHTML='<div class="col-xs-12 col-md-12"><hr><h3><b class="text-center">Squad Total</b></h3>';
+	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4><hr>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Assume ignore DEF, All Hits Spark, and All Hits CRIT. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
+	totalHTML+='</div>';
+	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
+}
+
 /*POP state*/
 $(window).on('popstate', function(e) {
 	var state = e.originalEvent.state;
@@ -1353,6 +1422,12 @@ $(window).on('popstate', function(e) {
 /*select redditshare*/
 $('#redditShare').click(function() {
     $(this).select();
+});
+
+/*expand all*/
+$('#expandAll').click(function() {
+    $("[id^=stats]").collapse("toggle");
+    $("[id^=spheres]").collapse("toggle");
 });
 
 /*popover hide after 2s*/
@@ -1387,14 +1462,25 @@ $(".unitBox").on( "drop", function(e, ui) {
 		$(this).children(".dragBox").detach().appendTo(unitProcessing);
 		$(ui.draggable).detach().css({top:"",left:""}).appendTo($(this));
 		refreshALL();
+		refreshSpheres();
+		refreshBonus()
 	} else {
 		/*Empty*/
 		$(this).html($(ui.draggable).detach().css({top:"",left:""}));
 		$(unitProcessing).html(trashStr);
 		$("#stats"+unitProcessing.slice(-1)).html("");
 		refreshALL();
+		refreshSpheres();
+		refreshBonus()
 	}
 });
+
+/*Calculate BTN*/
+$(document).on("click", '#calculateDMG', function(e){
+	e.preventDefault();
+	showDMG();
+	$("#damageModal").modal("show");
+})
 
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
@@ -1445,6 +1531,8 @@ $(document).on("click", '#trashBtn', function(e){
 	$("#stats"+unitProcessing.slice(-1)).html("");
 	$('#searchModal').modal('hide');
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*clearSquad*/
@@ -1523,6 +1611,8 @@ $(document).on("click", '.unitFound', function(e){
 	parseUnit(unitProcessing, $(this).attr("data-unitid"));
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus();
 })
 
 /*update unitspace by recommendation*/
@@ -1533,6 +1623,8 @@ https://github.com/touchandswipe/bravefrontier	e.preventDefault();
 	$('#recommendModal').modal('hide');
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*JP Only*/
@@ -1541,6 +1633,8 @@ $(document).on("click", '#JPOnly', function(e){
 	JPOnlyRun();
 	dragActivate();
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 })
 
 /*Build DATABASE IN MEMORY*/
@@ -1579,8 +1673,18 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+		        	unitObj.bbdmg=0;
+		        	unitObj.bbflat=0;
+		        	if (valObj["bb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
+		        			if (unitObj.bbdmg==0)
+    							unitObj.bbdmg=(valObj.bb.levels[9].effects[k]['bb atk%']) ? valObj.bb.levels[9].effects[k]['bb atk%'] : 0 ;
+    						if (unitObj.bbflat==0)
+    							unitObj.bbflat=(valObj.bb.levels[9].effects[k]['bb flat atk']) ? valObj.bb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
 			}
-		}
+		};
 	}
         else
         	unitObj.bb="none";
@@ -1590,6 +1694,18 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+		        	unitObj.sbbdmg=0;
+		        	unitObj.sbbflat=0;
+		        	if (valObj["sbb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
+		        			if (unitObj.sbbdmg==0) {
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb atk%']) ? valObj.sbb.levels[9].effects[k]['bb atk%'] : 0 ;
+    							unitObj.sbbdmg=(valObj.sbb.levels[9].effects[k]['bb base atk%']) ? +valObj.sbb.levels[9].effects[k]['bb base atk%'] + +valObj.sbb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.sbbdmg;
+		        			}
+    						if (unitObj.sbbflat==0)
+    							unitObj.sbbflat=(valObj.sbb.levels[9].effects[k]['bb flat atk']) ? valObj.sbb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
 			}
 		}
 	}
@@ -1599,6 +1715,18 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
+		        	unitObj.ubbdmg=0;
+		        	unitObj.ubbflat=0;
+		        	if (valObj["ubb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
+		        			if (unitObj.ubbdmg==0) {
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
+    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb base atk%']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+		        			}
+    						if (unitObj.ubbflat==0)
+    							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
+		        		}
+		        	}
         	}
 	}
         else
