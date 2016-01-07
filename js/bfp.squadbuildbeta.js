@@ -1213,7 +1213,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br>Weakness</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br>SPAM</b></h4><h6>'+bbSpamHTML.join("<br>")+'</h6></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-sm btn-default">Calculate</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-sm btn-danger">Calculate</a></h5></div>';
 	$("#SummarySpace").html(sHTML);
 	refreshParam(true);
 	/*load sharethis buttons*/
@@ -1405,6 +1405,7 @@ function showDMG() {
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + '</h4>';
 	totalHTML+='<h4><b>UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + '</h4>';
+	totalHTML+='<h5 clas="text-danger">*NOTE* Excludes conversion buffs for now. DMG calculated based on best case, all UBB activated.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
