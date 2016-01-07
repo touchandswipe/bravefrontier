@@ -14,7 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
-    <link href="//touchandswipe.github.io/bravefrontier/css/squadbuildr4.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bravefrontier/css/squadbuildbeta.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 <style type="text/css"></style>
 <!-- START JSON Code-->
@@ -72,6 +72,11 @@ if (window.location.hash == '#_=_') {
 	</script>
 	</div>
 <!-- 6 unit spots -->
+	<div clas="row">
+		<div class="col-xs-12 col-md-12">
+			<button class="btn btn-sm btn-default" id="expandAll">Show/hide all stats and spheres</button>
+		</div>
+	</div>
 	<div class="row" id="squadBox">
 	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitA" href="#"><i class="fa fa-plus fa-5x"></i></a>
@@ -232,6 +237,24 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Reddit Modal -->
+<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
+		<textarea id="redditShare" class="form-controls text-center" rows="6" readonly="true"></textarea>
+	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- search Modal -->
 <div class="modal" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="search Modal" aria-hidden="true">
   <div class="modal-dialog">
@@ -324,26 +347,26 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
-<!-- Reddit Modal -->
-<div class="modal" id="redditModal" tabindex="-1" role="dialog" aria-labelledby="redditModal" aria-hidden="true">
+<!-- DMG Modal -->
+<div class="modal" id="damageModal" tabindex="-1" role="dialog" aria-labelledby="damageModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
-        <h4 class="modal-title"><b>Markdown for Reddit</b></h4>
+        <h4 class="modal-title"><b>Squad Damage Estimation</b></h4>
       </div>
       <div class="modal-body text-center">
-      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
-	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> the following to your reddit thread / post.</h5><hr>
-	<pre id="redditShare"></pre>
-	<h5><a href="//www.reddit.com/r/bravefrontier" target="_blank"><i class="fa fa-reddit-alien"></i> Brave Frontier Subreddit</a></h5>
+      	<div class="row" id="unitDmgBox">
+      	</div><!--EndRow-->
+      	<div class="row" id="squadDmgBox">
+      	</div><!--EndRow-->
       </div>
     </div>
   </div>
 </div>
 
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildr4.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadbuildbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
