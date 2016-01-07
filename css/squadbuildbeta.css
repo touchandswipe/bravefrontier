@@ -14,7 +14,7 @@
     #squadBox {padding-top:20px;}
     div[id^='spheres'], div[id^='stats'] {
         margin:0 auto;
-        width:160px;
+        width:180px;
         padding:5px;
         background:#EEF;
     }
