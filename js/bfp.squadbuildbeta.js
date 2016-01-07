@@ -1924,6 +1924,7 @@ $( "#searchIdBox" ).keypress( function( event ) {
 /*Binds Enter KEY to BOX*/
 $( "#searchNameBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun()
+     searchNameRun();
+     $('#searchNameBox').typeahead("close")
   }
 })
