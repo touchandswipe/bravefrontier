@@ -9,6 +9,7 @@ sphereList=[
 	{name:"Brass Orb",nick:"brassorb",stats:[0,0.2,0.2,0,0,0,0,1.3,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Four Bonds",nick:"fourbonds",stats:[0,0,0,0,0,0.5,0,0,0]},
 	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4,0,0,0,0,0]},
 	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3,0,0,0,0,0]},
 	{name:"Geldnite Axe",nick:"geldnite",stats:[0,0,0,0,0.5,0,0,0,0]},
