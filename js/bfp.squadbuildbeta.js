@@ -1,24 +1,30 @@
+/*hp,atk,def,rec,crit,spark,elemental,bbmod*/
 sphereList=[
-	{name:"None",nick:"none",stats:[0,0,0,0]},
-	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35]},
-	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4]},
-	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3]},
-	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25]},
-	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3]},
-	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2]},
-	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4]},
-	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5]},
-	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15]},
-	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,2.3,0,0]},
-	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1]}
+	{name:"None",nick:"none",stats:[0,0,0,0,0,0,0,0]},
+	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0]},
+	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0]},
+	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4,0,0,0,0]},
+	{name:"Frozen Myth",nick:"fmyth",stats:[0.2,0.2,0.3,0.3,0,0,0,0]},
+	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0]},
+	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0]},
+	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,0,0,0]},
+	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0]},
+	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0]},
+	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0]},
+	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4,0,0,0,0]},
+	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5,0,0,0,0]},
+	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15,0,0,0,0]},
+	{name:"Sky Harbinger",nick:"skyharb",stats:[0.3,2.3,0,0,0,0,0,0]},
+	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1,0,0,0,0]},
+	{name:"War Demon Blade",nick:"wardemon",stats:[0,1,0,0,0,0.5,0.5,0]}
 ];
 /*Stats Calc Var*/
-lsBonus=[0,0,0,0];
-unitBonus={A:[0,0,0,0],B:[0,0,0,0],C:[0,0,0,0],D:[0,0,0,0],E:[0,0,0,0],F:[0,0,0,0]};
+lsBonus=[0,0,0,0,0,0,0,0];
+unitBonus={A:[0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0]};
+squadSparkDMG=0;
+squadCritDMG=0;
+squadElementDMG=0;
+squadBBDMG=0;
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1078,8 +1084,6 @@ function generateSummary() {
 	lsHTML+=lsATKTotal+'% <b>ATK</b><br>';
 	lsHTML+=lsDEFTotal+'% <b>DEF</b><br>';
 	lsHTML+=lsRECTotal+'% <b>REC</b>';
-	/*Update multiplier*/
-	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100];
 	refreshSpheres();
 	refreshBonus();
 	/*spark summary*/
@@ -1095,7 +1099,8 @@ function generateSummary() {
 		sparkBBTotal+=getTop(".bbBtns",sparkBB[i]);
 	for (var i in sparkLS)
 		sparkUBBTotal+=getTop(".ubbBtns",sparkUBB[i]);
-	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal) +'%</b></span><br>';
+	squadSparkDMG=+sparkLSTotal + +sparkBBTotal + +sparkUBBTotal;
+	var sparkHTML='<span class="text-success"><b>TOTAL '+ squadSparkDMG +'%</b></span><br>';
 	sparkHTML+="LS <b>"+sparkLSTotal+"%</b><br>";
 	sparkHTML+="BB/SBB <b>"+sparkBBTotal+"%</b><br>";
 	sparkHTML+="UBB <b>"+sparkUBBTotal+"%</b>";
@@ -1112,7 +1117,8 @@ function generateSummary() {
 		critBBTotal+=getTop(".bbBtns",critBB[i]);
 	for (var i in critUBB)
 		critUBBTotal+=getTop(".ubbBtns",critUBB[i]);
-	var critHTML='<span class="text-success"><b>TOTAL '+ (+critLSTotal + +critBBTotal + +critUBBTotal) +'%</b></span><br>';
+	squadCritDMG=+critLSTotal + +critBBTotal + +critUBBTotal;
+	var critHTML='<span class="text-success"><b>TOTAL '+ squadCritDMG +'%</b></span><br>';
 	critHTML+="LS <b>"+critLSTotal+"%</b><br>";
 	critHTML+="BB/SBB <b>"+critBBTotal+"%</b><br>";
 	critHTML+="UBB <b>"+critUBBTotal+"%</b>";
@@ -1129,7 +1135,8 @@ function generateSummary() {
 		bbatkBBTotal+=getTop(".bbBtns",bbatkBB[i]);
 	for (var i in critUBB)
 		bbatkUBBTotal+=getTop(".ubbBtns",bbatkUBB[i]);
-	var bbatkHTML='<span class="text-success"><b>TOTAL '+ (+bbatkLSTotal + +bbatkBBTotal + +bbatkUBBTotal) +'%</b></span><br>';
+	squadBBDMG=+bbatkLSTotal + +bbatkBBTotal + +bbatkUBBTotal;
+	var bbatkHTML='<span class="text-success"><b>TOTAL '+ squadBBDMG +'%</b></span><br>';
 	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br>";
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
@@ -1181,6 +1188,7 @@ function generateSummary() {
 		elementTotal[i]+=getTop(".bbBtns",elementWk[i]);
 		elementTotal[i]+=getTop(".ubbBtns",elementWk[i]);
 	}
+	squadElementDMG=Math.max.apply(Math, elementTotal);
 	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br>";
 	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br>";
 	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br>";
@@ -1197,6 +1205,8 @@ function generateSummary() {
 	}
 	if (bbSpamHTML.length==0)
 		bbSpamHTML.push("No Units Added")
+	/*Update multiplier*/
+	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG];
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
@@ -1242,6 +1252,10 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b>ATK:</b> <span id="ATK_'+uRef+'">'+rawParseObj[rawID].lord.atk+'</span></li>';
 	insertHTML+='<li><b>DEF:</b> <span id="DEF_'+uRef+'">'+rawParseObj[rawID].lord.def+'</span></li>';
 	insertHTML+='<li><b>REC:</b> <span id="REC_'+uRef+'">'+rawParseObj[rawID].lord.rec+'</span></li>';
+	insertHTML+='<li><b>CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
+	insertHTML+='<li><b>SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
+	insertHTML+='<li><b>ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
+	insertHTML+='<li><b>BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
 	insertHTML+='</ul>';
 	$("#stats"+uRef).html(insertHTML);
 }
@@ -1271,7 +1285,11 @@ function refreshSpheres(){
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1],
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3]
+			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3],
+			1 + +sphere1Bonus[4] + +sphere2Bonus[4] + +lsBonus[4],
+			1 + +sphere1Bonus[5] + +sphere2Bonus[5] + +lsBonus[5],
+			1 + +sphere1Bonus[6] + +sphere2Bonus[6] + +lsBonus[6],
+			1 + +sphere1Bonus[7] + +sphere2Bonus[7] + +lsBonus[7]
 		];
 	})
 }
@@ -1286,6 +1304,12 @@ function refreshBonus(){
 			$("#ATK_"+key).text(parseInt(+rawParseObj[unitID][unitType].atk * +bonus[1]));
 			$("#DEF_"+key).text(parseInt(+rawParseObj[unitID][unitType].def * +bonus[2]));
 			$("#REC_"+key).text(parseInt(+rawParseObj[unitID][unitType].rec * +bonus[3]));
+			$("#CRIT_"+key).text(bonus[4]);
+			$("#SPARK_"+key).text(bonus[5]);
+			$("#ELEMENT_"+key).text(bonus[6]);
+			$("#BB_"+key).text(bonus[7]);
+			/*calculate DMG*/
+			
 		}
 	})
 }
@@ -1585,8 +1609,14 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+		        	if (valObj["bb"]["levels"][9]["bb atk%"]) {
+		        		unitObj.bbdmg=valObj["bb"]["levels"][9]["bb atk%"];
+		        	} else unitObj.bbdmg=0;
+		        	if (valObj["bb"]["levels"][9]["bb flat atk"]) {
+		        		unitObj.bbdmg=valObj["bb"]["levels"][9]["bb flat atk"];
+		        	} else unitObj.bbflat=0;
 			}
-		}
+		};
 	}
         else
         	unitObj.bb="none";
@@ -1596,6 +1626,12 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
 		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+		        	if (valObj["sbb"]["levels"][9]["bb atk%"]) {
+		        		unitObj.sbbdmg=valObj["sbb"]["levels"][9]["bb atk%"];
+		        	} else unitObj.sbbdmg=0;
+		        	if (valObj["sbb"]["levels"][9]["bb flat atk"]) {
+		        		unitObj.sbbdmg=valObj["sbb"]["levels"][9]["bb flat atk"];
+		        	} else unitObj.sbbflat=0;
 			}
 		}
 	}
@@ -1605,6 +1641,12 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
+	        		if (valObj["ubb"]["levels"][9]["bb atk%"]) {
+		        		unitObj.ubbdmg=valObj["ubb"]["levels"][9]["bb atk%"];
+		        	} else unitObj.ubbdmg=0;
+		        	if (valObj["ubb"]["levels"][9]["bb flat atk"]) {
+		        		unitObj.ubbdmg=valObj["ubb"]["levels"][9]["bb flat atk"];
+		        	} else unitObj.ubbflat=0;
         	}
 	}
         else
