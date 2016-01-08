@@ -903,6 +903,13 @@ function showSkills(e,scanScope) {
 	}
 	/*load dom*/
 	$('#showSkillBody').html(skillsHTML);
+	if (scanScope.indexOf("ubb")!=-1) {
+		$('#moreUnitsBtn').attr("data-skillType","ubb");
+		$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	} else {
+		$('#moreUnitsBtn').attr("data-skillType","bb");
+		$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	}
 	$('#showSkillModal').modal('show')
 }
 
@@ -992,6 +999,8 @@ function showLeaderSkills(e,scanScope) {
 	}
 	/*load dom*/
 	$('#showSkillBody').html(skillsHTML);
+	$('#moreUnitsBtn').attr("data-skillType","ls");
+	$('#moreUnitsBtn').attr("data-skill",skillDesc);
 	$('#showSkillModal').modal('show')
 }
 
@@ -1650,6 +1659,21 @@ $(document).on("click", '.lsBtns', function(e){
 		$("#recommendModal").modal('show');
 		recommendSkills($(this),["ls"],lsMap)
 	}
+})
+
+/*Recommend on Modal*/
+$(document).on("click", '#moreUnitsBtn', function(e){
+	e.preventDefault();
+	var thisSkillType=$(this).attr("data-skillType");
+	var thisSkill=$(this).attr("data-skill");
+	console.log(thisSkill+" "+thisSkillType);
+	$("#showSkillModal").modal('hide');
+	if (thisSkillType=="ls")
+		recommendSkills(thisSkill,["ls"],lsMap);
+	else if (thisSkillType=="bb")
+		recommendSkills(thisSkill,["bb", "sbb", "es"],bbMap);
+	else if (thisSkillType=="ubb")
+		recommendSkills(thisSkill,["ubb"],bbMap);
 })
 
 /*short url Btn Click*/
