@@ -11,7 +11,9 @@ sphereList=[
 	{name:"Brass Orb",nick:"brassorb",stats:[0,0.2,0.2,0,0,0,0,1.3,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Dandelga",nick:"dandelga",stats:[0.3,0.3,0,0,0,0,0,0,0]},
+	{name:"Duel Fragment",nick:"duelfrag",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
+	{name:"Flag Flower",nick:"flagflow",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Forgebreaker",nick:"forgebreak",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
 	{name:"Four Bonds",nick:"fourbonds",stats:[0,0,0,0,0,0.5,0,0,0]},
 	{name:"Frozen Fantasy",nick:"ffantasy",stats:[0.3,0.3,0.4,0.4,0,0,0,0,0]},
@@ -165,6 +167,7 @@ bbMap=[
 	{desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
 	{desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
+	{desc:"% RED Spark DMG+ ", impact:"spark dmg inc% buff", chance:"spark dmg inc chance%", turns:"spark dmg inc buff turns (131)"},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment", turns:"atk% buff turns (110)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
@@ -1457,7 +1460,7 @@ function showDMG() {
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
-	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Assume ignore DEF, All Hits Spark, and All Hits CRIT. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, and All Hits CRIT. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
