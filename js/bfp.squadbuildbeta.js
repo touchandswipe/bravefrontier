@@ -369,12 +369,10 @@ function badgeRun(classBtns) {
 	})
 }
 
-function recommendSkills(e,skillType,mapArray) {
+function recommendSkills(skillDesc,skillType,mapArray) {
 	/*skillType are ls,bb,sbb,es,ubb in array*/
 	var minRarity=7;
 	var matchUnits=[];
-	/*scan for skill*/
-	var skillDesc=e.children(".btnDesc").text();
 	/*identify the skill*/
 	for (var i in mapArray) {
 		if (skillDesc==mapArray[i].desc) {
@@ -910,7 +908,7 @@ function showSkills(e,scanScope) {
 		$('#moreUnitsBtn').attr("data-skillType","bb");
 		$('#moreUnitsBtn').attr("data-skill",skillDesc);
 	}
-	$('#moreUnitsBtn').text("More units with <b>"+skillDesc+"</b>");
+	$('#moreUnitsBtn').text("More units with "+skillDesc);
 	$('#showSkillModal').modal('show')
 }
 
@@ -1002,7 +1000,7 @@ function showLeaderSkills(e,scanScope) {
 	$('#showSkillBody').html(skillsHTML);
 	$('#moreUnitsBtn').attr("data-skillType","ls");
 	$('#moreUnitsBtn').attr("data-skill",skillDesc);
-	$('#moreUnitsBtn').text("More units with <b>"+skillDesc+"</b>");
+	$('#moreUnitsBtn').text("More units with "+skillDesc);
 	$('#showSkillModal').modal('show')
 }
 
@@ -1637,7 +1635,7 @@ $(document).on("click", '.bbBtns', function(e){
 		showSkills($(this),["bb", "sbb", "es"])
 	else {
 		$("#recommendModal").modal('show');
-		recommendSkills($(this),["bb", "sbb", "es"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["bb", "sbb", "es"],bbMap)
 	}
 })
 
@@ -1648,7 +1646,7 @@ $(document).on("click", '.ubbBtns', function(e){
 		showSkills($(this),["ubb"])
 	else {
 		$("#recommendModal").modal('show');
-		recommendSkills($(this),["ubb"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ubb"],bbMap)
 	}
 })
 
@@ -1659,7 +1657,7 @@ $(document).on("click", '.lsBtns', function(e){
 		showLeaderSkills($(this),["ls"])
 	else {
 		$("#recommendModal").modal('show');
-		recommendSkills($(this),["ls"],lsMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ls"],lsMap)
 	}
 })
 
