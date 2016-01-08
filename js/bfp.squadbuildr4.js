@@ -1460,7 +1460,7 @@ function showDMG() {
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
-	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs, Unit ES Buffs, and DMG Buff to Ailed Enemies for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
