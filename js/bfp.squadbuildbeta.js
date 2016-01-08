@@ -1872,8 +1872,12 @@ if (typeof mappedNames !== 'undefined') {
     for (var i in extraList) {
     	$(".input-extra").append('<option value="'+extraList[i].nick+'" data-val="'+extraList[i].stats+'">'+extraList[i].name+'</option>');
     };
-    $('#progressModal').modal('hide');
 }
+
+/*windows load*/
+$(window).load( function(){
+	$('#progressModal').modal('hide');
+})
 
 /*execute typeahead on selection*/
 $('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
