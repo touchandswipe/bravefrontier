@@ -369,12 +369,10 @@ function badgeRun(classBtns) {
 	})
 }
 
-function recommendSkills(e,skillType,mapArray) {
+function recommendSkills(skillDesc,skillType,mapArray) {
 	/*skillType are ls,bb,sbb,es,ubb in array*/
 	var minRarity=7;
 	var matchUnits=[];
-	/*scan for skill*/
-	var skillDesc=e.children(".btnDesc").text();
 	/*identify the skill*/
 	for (var i in mapArray) {
 		if (skillDesc==mapArray[i].desc) {
@@ -486,6 +484,7 @@ function recommendSkills(e,skillType,mapArray) {
 			skillsHTML.push('<h4>No 7<i class="fa fa-star-o"></i> unit with matching skill.</h4>');
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
 	$("#rBody").html(skillsHTML);
+	$("#recommendModal").modal('show');
 }
 
 function isNumber(o) {
@@ -903,6 +902,14 @@ function showSkills(e,scanScope) {
 	}
 	/*load dom*/
 	$('#showSkillBody').html(skillsHTML);
+	if (scanScope.indexOf("ubb")!=-1) {
+		$('#moreUnitsBtn').attr("data-skillType","ubb");
+		$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	} else {
+		$('#moreUnitsBtn').attr("data-skillType","bb");
+		$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	}
+	$('#moreUnitsBtn').text("More units with "+skillDesc);
 	$('#showSkillModal').modal('show')
 }
 
@@ -992,6 +999,9 @@ function showLeaderSkills(e,scanScope) {
 	}
 	/*load dom*/
 	$('#showSkillBody').html(skillsHTML);
+	$('#moreUnitsBtn').attr("data-skillType","ls");
+	$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	$('#moreUnitsBtn').text("More units with "+skillDesc);
 	$('#showSkillModal').modal('show')
 }
 
@@ -1246,7 +1256,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-md btn-danger">Calculate</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-md btn-success">Calculate</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dashboard fa-3x sumIcon" title="Leader STATS Potential"></i><h6>'+lsHTML+' </h6></div>';
@@ -1441,11 +1451,11 @@ function showDMG() {
 			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
 			var unitUBBDMG=0;
-		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
-		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
-		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
-		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
-		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
+		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
+		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
+		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
+		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
@@ -1590,6 +1600,18 @@ $(document).on("click", '#trashBtn', function(e){
 	refreshBonus()
 })
 
+/*Quick Trash Unit*/
+$(document).on("click", '.qkTrash', function(e){
+	e.preventDefault();
+	var tgtBox=$(this).attr("data-box").slice(-1);
+	$("#unit"+tgtBox).html(trashStr);
+	$("#stats"+tgtBox).html("");
+	$('#searchModal').modal('hide');
+	refreshALL();
+	refreshSpheres();
+	refreshBonus()
+})
+
 /*clearSquad*/
 $(document).on("click", '#clearSquad', function(e){
 	e.preventDefault();
@@ -1613,8 +1635,7 @@ $(document).on("click", '.bbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["bb", "sbb", "es"])
 	else {
-		$("#recommendModal").modal('show');
-		recommendSkills($(this),["bb", "sbb", "es"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["bb", "sbb", "es"],bbMap)
 	}
 })
 
@@ -1624,8 +1645,7 @@ $(document).on("click", '.ubbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["ubb"])
 	else {
-		$("#recommendModal").modal('show');
-		recommendSkills($(this),["ubb"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ubb"],bbMap)
 	}
 })
 
@@ -1635,9 +1655,22 @@ $(document).on("click", '.lsBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showLeaderSkills($(this),["ls"])
 	else {
-		$("#recommendModal").modal('show');
-		recommendSkills($(this),["ls"],lsMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ls"],lsMap)
 	}
+})
+
+/*Recommend on Modal*/
+$(document).on("click", '#moreUnitsBtn', function(e){
+	e.preventDefault();
+	var thisSkillType=$(this).attr("data-skillType");
+	var thisSkill=$(this).attr("data-skill");
+	$("#showSkillModal").modal('hide');
+	if (thisSkillType=="ls")
+		recommendSkills(thisSkill,["ls"],lsMap);
+	else if (thisSkillType=="bb")
+		recommendSkills(thisSkill,["bb", "sbb", "es"],bbMap);
+	else if (thisSkillType=="ubb")
+		recommendSkills(thisSkill,["ubb"],bbMap);
 })
 
 /*short url Btn Click*/
