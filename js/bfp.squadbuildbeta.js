@@ -707,7 +707,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
 									if ($(this).attr("data-found")) {
-										if (addedSkill.indexOf(lsMap[k].desc)==-1) {
+										if (addedSkills.indexOf(lsMap[k].desc)==-1) {
 											/*stop dupe skills w/ criteria*/
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
 										}
