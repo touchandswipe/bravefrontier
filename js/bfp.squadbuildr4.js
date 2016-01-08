@@ -666,11 +666,11 @@ function scanSkills(classBtns,scanScope) {
 
 function scanLeaderSkills(classBtns,scanScope) {
 	resetBtns(classBtns);
-	var leadCount=0;
+	var addedSkills=[];
 	/*iterate thru leader spots and selected unit images*/
 	$("#unitA .dragBox .unitSelected,#unitB .dragBox .unitSelected").each(function() {
 		var selectUnit=$(this).attr("data-unitid");
-		leadCount+=1;
+		addedSkills=[];
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
@@ -707,11 +707,10 @@ function scanLeaderSkills(classBtns,scanScope) {
 								if ($(this).text()==lsMap[k].desc) {
 									/*create list of units with skills*/
 									if ($(this).attr("data-found")) {
-										if ($(this).attr("data-found").split(',').length<leadCount) {
-										/*stop dupe skills w/ criteria*/
-											if ($(this).attr("data-found").split(',').indexOf(selectUnit)==-1) {
-												$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
-											}
+										if (addedSkills.indexOf(lsMap[k].desc)==-1) {
+											/*stop dupe skills w/ criteria*/
+											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+											addedSkills.push(lsMap[k].desc);
 										}
 										/*build TOPval*/
 										if ($(this).attr("data-top")) {
@@ -741,6 +740,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 									}
 									else {
 										$(this).attr("data-found",selectUnit);
+										addedSkills.push(lsMap[k].desc);
 										/*build TOPval*/
 										if (lsMap[k].impact.charAt(0)!="!") {
 											if (isNumber(scanArray[j][lsMap[k].impact]))
@@ -1109,7 +1109,7 @@ function generateSummary() {
 			sElementCount+=1;
 	/*New LS Summary*/
 	var lsHP=["% HP"];
-	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns"];
+	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns","% DMG+ to Ailed Enemy"];
 	var lsDEF=["% DEF","% DEF+ by HP","% DEF+ First Turns"];
 	var lsREC=["% REC"];
 	var lsHPTotal=0;
@@ -1185,7 +1185,7 @@ function generateSummary() {
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
 	/*ATK summary*/
-	var atkBB=["% ATK+"];
+	var atkBB=["% ATK+","% DMG+ to Ailed Enemy"];
 	var atkUBB=["% ATK+"];
 	var atkBBTotal=0;
 	var atkUBBTotal=0;
