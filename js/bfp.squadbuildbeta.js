@@ -1109,7 +1109,7 @@ function generateSummary() {
 			sElementCount+=1;
 	/*New LS Summary*/
 	var lsHP=["% HP"];
-	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns"];
+	var lsATK=["% ATK","% ATK+ by HP","% ATK+ on X DMG Dealt","% ATK+ Turn after CRIT","% ATK+ First Turns","% DMG+ to Ailed Enemy"];
 	var lsDEF=["% DEF","% DEF+ by HP","% DEF+ First Turns"];
 	var lsREC=["% REC"];
 	var lsHPTotal=0;
@@ -1185,7 +1185,7 @@ function generateSummary() {
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
 	/*ATK summary*/
-	var atkBB=["% ATK+"];
+	var atkBB=["% ATK+","% DMG+ to Ailed Enemy"];
 	var atkUBB=["% ATK+"];
 	var atkBBTotal=0;
 	var atkUBBTotal=0;
@@ -1460,7 +1460,7 @@ function showDMG() {
 	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
-	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, and All Hits CRIT. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs, Unit ES Buffs, and DMG Buff to Ailed Enemies for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
@@ -1872,12 +1872,8 @@ if (typeof mappedNames !== 'undefined') {
     for (var i in extraList) {
     	$(".input-extra").append('<option value="'+extraList[i].nick+'" data-val="'+extraList[i].stats+'">'+extraList[i].name+'</option>');
     };
+    $('#progressModal').modal('hide');
 }
-
-/*windows load*/
-$(window).load( function(){
-	$('#progressModal').modal('hide');
-})
 
 /*execute typeahead on selection*/
 $('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
