@@ -49,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R4z - <span class="text-danger">Global</span></h2>
+<h2>Squad Builder R5 - <span class="text-danger">Global</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
 	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
@@ -71,7 +71,7 @@ if (window.location.hash == '#_=_') {
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 	</div>
-<!-- 6 unit spots -->
+	<!-- 6 unit spots -->
 	<div clas="row">
 		<div class="col-xs-12 col-md-12">
 			<button class="btn btn-sm btn-default" id="expandAll">Show/hide all stats and spheres</button>
@@ -81,8 +81,9 @@ if (window.location.hash == '#_=_') {
 	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitA" href="#"><i class="fa fa-plus fa-5x"></i></a>
 	    <div class="leader">LEAD</div>
-	    <button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsA">Stats</button>
-	    <button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresA">Spheres</button>
+	    <button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitA"><i class="fa fa-trash-o"></i></button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsA">Stats</button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresA">Spheres</button>
 	    <div class="collapse" id="statsA"></div>
 	    <div class="collapse" id="spheresA">
 	    	<select class="form-control input-sm input-extra" id="extra_A"></select>
@@ -93,8 +94,9 @@ if (window.location.hash == '#_=_') {
 	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitB" href="#"><i class="fa fa-plus fa-5x"></i></a>
 	    <div class="leader">ALLY</div>
-	    <button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsB">Stats</button>
-	    <button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresB">Spheres</button>
+	    <button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitB"><i class="fa fa-trash-o"></i></button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsB">Stats</button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresB">Spheres</button>
 	    <div class="collapse" id="statsB"></div>
 	    <div class="collapse" id="spheresB">
 	    	<select class="form-control input-sm input-extra" id="extra_B"></select>
@@ -105,8 +107,9 @@ if (window.location.hash == '#_=_') {
 	  <div class="clearfix visible-xs-block"></div>
 	  <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitC" href="#"><i class="fa fa-plus fa-5x"></i></a>
-	    <button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsC">Stats</button>
-	    <button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresC">Spheres</button>
+	    <button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitC"><i class="fa fa-trash-o"></i></button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsC">Stats</button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresC">Spheres</button>
 	    <div class="collapse" id="statsC"></div>
 	    <div class="collapse" id="spheresC">
 	    	<select class="form-control input-sm input-extra" id="extra_C"></select>
@@ -117,8 +120,9 @@ if (window.location.hash == '#_=_') {
 	  <div class="clearfix visible-sm-block"></div>
 	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitD" href="#"><i class="fa fa-plus fa-5x"></i></a>
-	    <button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsD">Stats</button>
-	    <button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresD">Spheres</button>
+	    <button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitD"><i class="fa fa-trash-o"></i></button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsD">Stats</button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresD">Spheres</button>
 	    <div class="collapse" id="statsD"></div>
 	    <div class="collapse" id="spheresD">
 	    	<select class="form-control input-sm input-extra" id="extra_D"></select>
@@ -129,8 +133,9 @@ if (window.location.hash == '#_=_') {
 	  <div class="clearfix visible-xs-block"></div>
 	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 	    <a class="unitBox" id="unitE" href="#"><i class="fa fa-plus fa-5x"></i></a>
-	    <button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsE">Stats</button>
-	    <button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresE">Spheres</button>
+	    <button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitE"><i class="fa fa-trash-o"></i></button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsE">Stats</button>
+	    <button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresE">Spheres</button>
 	    <div class="collapse" id="statsE"></div>
 	    <div class="collapse" id="spheresE">
 	    	<select class="form-control input-sm input-extra" id="extra_E"></select>
@@ -140,8 +145,9 @@ if (window.location.hash == '#_=_') {
 	  </div>
 	   <div class="col-xs-6 col-sm-4 col-md-2 htfixed">
 		<a class="unitBox" id="unitF" href="#"><i class="fa fa-plus fa-5x"></i></a>
-		<button class="btn btn-info btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsF">Stats</button>
-		<button class="btn btn-warning btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresF">Spheres</button>
+		<button class="btn btn-danger btn-xs dBtn qkTrash" type="button" data-box="unitF"><i class="fa fa-trash-o"></i></button>
+		<button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#statsF">Stats</button>
+		<button class="btn btn-default btn-xs dBtn" type="button" data-toggle="collapse" data-target="#spheresF">Spheres</button>
 		<div class="collapse" id="statsF"></div>
 		<div class="collapse" id="spheresF">
 			<select class="form-control input-sm input-extra" id="extra_F"></select>
@@ -331,7 +337,8 @@ if (window.location.hash == '#_=_') {
         <h4 class="modal-title"><b>Skill Availability</b></h4>
       </div>
       <div class="modal-body">
-	<div class="text-center" id="showSkillBody"></div>
+	<div class="row text-center" id="showSkillBody"></div>
+	<div class="row text-center"><button class="btn btn-success" id="moreUnitsBtn"></button></div>
       </div>
     </div>
   </div>
