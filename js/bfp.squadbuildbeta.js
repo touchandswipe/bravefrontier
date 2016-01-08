@@ -1590,6 +1590,18 @@ $(document).on("click", '#trashBtn', function(e){
 	refreshBonus()
 })
 
+/*Quick Trash Unit*/
+$(document).on("click", '.qkTrash', function(e){
+	e.preventDefault();
+	var tgtBox=$(this).attr("data-box").slice(-1);
+	$("#unit"+tgtBox).html(trashStr);
+	$("#stats"+tgtBox).html("");
+	$('#searchModal').modal('hide');
+	refreshALL();
+	refreshSpheres();
+	refreshBonus()
+})
+
 /*clearSquad*/
 $(document).on("click", '#clearSquad', function(e){
 	e.preventDefault();
