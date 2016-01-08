@@ -484,6 +484,7 @@ function recommendSkills(skillDesc,skillType,mapArray) {
 			skillsHTML.push('<h4>No 7<i class="fa fa-star-o"></i> unit with matching skill.</h4>');
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
 	$("#rBody").html(skillsHTML);
+	$("#recommendModal").modal('show');
 }
 
 function isNumber(o) {
@@ -1634,7 +1635,6 @@ $(document).on("click", '.bbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["bb", "sbb", "es"])
 	else {
-		$("#recommendModal").modal('show');
 		recommendSkills($(this).children(".btnDesc").text(),["bb", "sbb", "es"],bbMap)
 	}
 })
@@ -1645,7 +1645,6 @@ $(document).on("click", '.ubbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["ubb"])
 	else {
-		$("#recommendModal").modal('show');
 		recommendSkills($(this).children(".btnDesc").text(),["ubb"],bbMap)
 	}
 })
@@ -1656,7 +1655,6 @@ $(document).on("click", '.lsBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showLeaderSkills($(this),["ls"])
 	else {
-		$("#recommendModal").modal('show');
 		recommendSkills($(this).children(".btnDesc").text(),["ls"],lsMap)
 	}
 })
