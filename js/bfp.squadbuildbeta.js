@@ -739,6 +739,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 									}
 									else {
 										$(this).attr("data-found",selectUnit);
+										addedSkills.push(lsMap[k].desc);
 										/*build TOPval*/
 										if (lsMap[k].impact.charAt(0)!="!") {
 											if (isNumber(scanArray[j][lsMap[k].impact]))
