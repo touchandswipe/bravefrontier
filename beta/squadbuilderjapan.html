@@ -408,6 +408,12 @@ $(document).ready( function(e) {
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
 $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
 $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",content:"Drag / Drop Units to switch positions."});
+/*Init loader*/
+$('#progressModal').modal({
+    keyboard:false,
+    backdrop:'static',
+    toggle:true
+})
 /*LocalStorage Retreival and storage*/
     if (localStorage.skillsguidejapan) {
 	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
@@ -419,12 +425,6 @@ $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",con
 	} else
 		resetLocalData("skillsguidejapan",true)
     } else {
-	    /*Init loader*/
-	    $('#progressModal').modal({
-	    	keyboard:false,
-	    	backdrop:'static',
-	    	toggle:true
-	    })
 	    $.ajax({
 	        dataType: "json",
 	        contentType: "text/plain; charset=UTF-8",
