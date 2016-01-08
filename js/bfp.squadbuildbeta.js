@@ -710,6 +710,7 @@ function scanLeaderSkills(classBtns,scanScope) {
 										if (addedSkills.indexOf(lsMap[k].desc)==-1) {
 											/*stop dupe skills w/ criteria*/
 											$(this).attr("data-found", $(this).attr("data-found")+","+selectUnit);
+											addedSkills.push(lsMap[k].desc);
 										}
 										/*build TOPval*/
 										if ($(this).attr("data-top")) {
