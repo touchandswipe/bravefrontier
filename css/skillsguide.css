@@ -12,7 +12,6 @@
     }
     .bd {
         font-weight:bold;
-        text-transform:uppercase;
         border:1px solid #CCCCCC;
         padding:3px;
         word-wrap: break-word;
