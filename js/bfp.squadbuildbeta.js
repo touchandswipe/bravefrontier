@@ -910,6 +910,7 @@ function showSkills(e,scanScope) {
 		$('#moreUnitsBtn').attr("data-skillType","bb");
 		$('#moreUnitsBtn').attr("data-skill",skillDesc);
 	}
+	$('#moreUnitsBtn').text("More units with <b>"+skillDesc+"</b>");
 	$('#showSkillModal').modal('show')
 }
 
@@ -1001,6 +1002,7 @@ function showLeaderSkills(e,scanScope) {
 	$('#showSkillBody').html(skillsHTML);
 	$('#moreUnitsBtn').attr("data-skillType","ls");
 	$('#moreUnitsBtn').attr("data-skill",skillDesc);
+	$('#moreUnitsBtn').text("More units with <b>"+skillDesc+"</b>");
 	$('#showSkillModal').modal('show')
 }
 
