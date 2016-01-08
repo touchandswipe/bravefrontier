@@ -4,7 +4,16 @@
     h3 {
         font-weight:bold;
     }
-    .btn-marker {
+    .mkBox {
+        position: absolute;
+        border: 1px solid red;
+        padding: 4px 12px;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        background: white;
+    }
+    .marker {
         border: 1px dashed red !important;
         color: red !important;
     }
