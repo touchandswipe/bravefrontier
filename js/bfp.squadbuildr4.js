@@ -167,6 +167,7 @@ bbMap=[
 	{desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
 	{desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
 	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
+	{desc:"% RED Spark DMG+ ", impact:"spark dmg inc% buff", chance:"spark dmg inc chance%", turns:"spark dmg inc buff turns (131)"},
 	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment", turns:"atk% buff turns (110)"},
 	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
 	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
