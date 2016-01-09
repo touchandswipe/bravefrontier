@@ -1963,9 +1963,9 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 /*keep markerbox visible*/
 $("body").on("mouseenter",".mkBox", function(e){
 	$(this).show();
-})
-
-$("body").on("click", ".mkBox", function(e){
+}).on("mouseleave",".mkBox", function(e){
+	$(this).hide();
+}).on("click", ".mkBox", function(e){
 	$(this).siblings("a").addClass("marker");
 })
 
