@@ -11,6 +11,7 @@ sphereList=[
 	{name:"Brass Orb",nick:"brassorb",stats:[0,0.2,0.2,0,0,0,0,1.3,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Dandelga",nick:"dandelga",stats:[0.3,0.3,0,0,0,0,0,0,0]},
+	{name:"Divine Stone",nick:"divinestone",stats:[0,0,0,0,0,0,0,0,0.5]},
 	{name:"Duel Fragment",nick:"duelfrag",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Flag Flower",nick:"flagflow",stats:[0,0,0,0,0,1,0,0,0]},
@@ -30,6 +31,7 @@ sphereList=[
 	{name:"Illusion Gizmo",nick:"illugizmo",stats:[0,0.3,0,0,0.5,0,0.5,0,0]},
 	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,1,0,0,0]},
+	{name:"Lafdranya",nick:"lafdranya",stats:[0,0,0.5,0,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
 	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
@@ -559,9 +561,11 @@ function scanSkills(classBtns,scanScope) {
 											}
 											/*build TOPval*/
 											if (bbMap[k].impact.charAt(0)!="!") {
-												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
+													if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
+														if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+															$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+													}
 												}
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
@@ -576,8 +580,10 @@ function scanSkills(classBtns,scanScope) {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
 											if (bbMap[k].impact.charAt(0)!="!") {
-												if (isNumber(scanArray[j][bbMap[k].impact]))
-													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
+													if (isNumber(scanArray[j][bbMap[k].impact]))
+														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+												}
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
