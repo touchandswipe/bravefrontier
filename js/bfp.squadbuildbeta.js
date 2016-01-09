@@ -1021,7 +1021,8 @@ function generateBtns(btnclass,dest,mapArray) {
 function buildMarkerLink(){
 	var markersArray=[];
 	$(".marker").each( function(e){
-		var markerDesc=$(this).siblings("a").children(".btnDesc").text();
+		var markerDesc=$(this).children(".btnDesc").text();
+		console.log("marker desc is "+markerDesc);
 		if ($(this).hasClass("lsBtns")) {
 			for (i in lsMap) {
 				if (lsMap[i].desc==markerDesc) {
