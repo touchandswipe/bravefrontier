@@ -2107,3 +2107,7 @@ $( "#searchNameBox" ).keypress( function( event ) {
      $('#searchNameBox').typeahead("close")
   }
 })
+
+$("#searchNameBox").on("focus", function(){
+	$(this).select()
+})
