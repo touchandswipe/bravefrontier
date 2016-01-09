@@ -1957,7 +1957,7 @@ $(document).on("click", '#searchNameBtn', function(e){
 $(document).on("mouseenter mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
     e.preventDefault();
     console.log("triggered");
-    $(this).siblings(".mkBtn").toggle();
+    $(this).siblings(".mkBox").toggle();
 })
 
 /*Binds Enter KEY to BOX*/
