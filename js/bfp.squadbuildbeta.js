@@ -1956,12 +1956,11 @@ $(document).on("click", '#searchNameBtn', function(e){
 /*trigger marker*/
 $(document).on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
     e.preventDefault();
+    console.log("triggered in");
     $(this).siblings(".mkBtn").css("visibility","visible");
-})
-
-/*trigger marker out*/
-$(document).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+}).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
     e.preventDefault();
+    console.log("triggered leave");
     $(this).siblings(".mkBtn").css("visibility","hidden");
 })
 
