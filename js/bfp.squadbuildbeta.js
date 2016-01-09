@@ -1520,11 +1520,11 @@ function showDMG() {
 			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
 			var unitUBBDMG=0;
-		console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
-		console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
-		console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
-		console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
-		console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
+		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
+		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
+		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
+		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
@@ -1739,7 +1739,6 @@ $(document).on("click", '#moreUnitsBtn', function(e){
 	e.preventDefault();
 	var thisSkillType=$(this).attr("data-skillType");
 	var thisSkill=$(this).attr("data-skill");
-	console.log(thisSkill+" "+thisSkillType);
 	$("#showSkillModal").modal('hide');
 	if (thisSkillType=="ls")
 		recommendSkills(thisSkill,["ls"],lsMap);
@@ -1782,15 +1781,12 @@ $(document).on("click", '#shareMarkerBtn', function(e){
 	if (markerParam) {
 		var markerURL=location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&marker="+encodeURIComponent(markerParam);
 		var markerOnlyURL=location.protocol + '//' + location.host + location.pathname + "?marker="+encodeURIComponent(markerParam);
-		console.log(markerURL);
-		console.log(markerOnlyURL);
 		gooShorten(markerURL, $('#markerShare'),true);
 		gooShorten(markerOnlyURL, $('#markerOnlyShare'),true);
 		$("#markerShareReddit").val(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
 		$("#markerOnlyShareReddit").val(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
 	} else {
 		$("#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit").val("No markers selected");
-		console.log("no markers found");
 	};
 	$("#markerModal").modal("show");
 })
