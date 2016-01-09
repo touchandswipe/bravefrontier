@@ -1454,7 +1454,7 @@ function loadSquad() {
 			}
 			/*scan btns*/
 			$(scanBtns+" .btnDesc").each( function(){
-				if ($(this).text()=markerString)
+				if ($(this).text()==markerString)
 					$(this).parent("a").addClass("marker");
 			})
 		}
