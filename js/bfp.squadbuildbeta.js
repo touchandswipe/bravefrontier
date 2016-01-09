@@ -1772,7 +1772,6 @@ $(document).on("click", '#shareMarkerBtn', function(e){
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
 	var markerParam=buildMarkerLink();
-	console.log("marker Param is - "+markerParam);
 	if (markerParam) {
 		var markerURL=location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&marker="+encodeURIComponent(markerParam);
 		var markerOnlyURL=location.protocol + '//' + location.host + location.pathname + "?marker="+encodeURIComponent(markerParam);
@@ -1780,10 +1779,10 @@ $(document).on("click", '#shareMarkerBtn', function(e){
 		console.log(markerOnlyURL);
 		gooShorten(markerURL, $('#markerShare'),true);
 		gooShorten(markerOnlyURL, $('#markerOnlyShare'),true);
-		$("#markerShareReddit").text(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
-		$("#markerOnlyShareReddit").text(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
+		$("#markerShareReddit").val(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
+		$("#markerOnlyShareReddit").val(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
 	} else {
-		$("#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit").text("No markers selected");
+		$("#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit").val("No markers selected");
 		console.log("no markers found");
 	};
 	$("#markerModal").modal("show");
