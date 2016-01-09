@@ -563,8 +563,8 @@ function scanSkills(classBtns,scanScope) {
 											if (bbMap[k].impact.charAt(0)!="!") {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact])) {
-														if ($(this).attr("data-top")) {
-															if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+														if ($(this).attr("data-top").length) {
+															if (+$(this).attr("data-top") < +scanArray[j][bbMap[k].impact])
 																$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 														} else { $(this).attr("data-top", scanArray[j][bbMap[k].impact]); }
 													}
