@@ -344,6 +344,34 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- marker Modal -->
+<div class="modal" id="markerModal" tabindex="-1" role="dialog" aria-labelledby="markerModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Share Suggested Skills</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-5x fa-reddit-alien text-success text-center"></i></h2>
+	<h5>Mark skills by type (Leader, BB/SBB or UBB) with <i class="fa fa-border fa-check-square-o text-danger"></i> and save it to help suggest squad builds and/or skills required with your friends or the community. A handy way to write guides too, with suggested skill effects and variations required. BE Creative!</h5>
+		<hr>
+		<h4><b>Share markers with squad</b></h4>
+		<input id="markerShare" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers without Squad</b></h4>
+		<input id="markerOnlyShare" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers with squad [Reddit]</b></h4>
+		<input id="markerShareReddit" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers without Squad [Reddit]</b></h4>
+		<input id="markerOnlyShareReddit" class="form-control" type="text" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- DMG Modal -->
 <div class="modal" id="damageModal" tabindex="-1" role="dialog" aria-labelledby="damageModal" aria-hidden="true">
   <div class="modal-dialog">
