@@ -4,6 +4,44 @@
     h3 {
         font-weight:bold;
     }
+    .mkBox {
+        position: absolute;
+        border: 1px solid red;
+        padding: 4px 12px;
+        top: 0;
+        left: 5px;
+        display:none;
+        background: white;
+        color: red;
+        z-index:+2;
+    }
+    .mkBox:hover {
+        background: red;
+        color: white;
+    }
+    .marker {
+        border: 1px dashed red !important;
+        color: red !important;
+        font-weight: bold !important;
+    }
+    .pimptxt {margin:0;color:#C00;}
+    .badge {padding:2px 5px !important;}
+    .dBtn {margin-top:-8px;}
+    .imgDMG {width:80px;height:80px;}
+    #expandAll {
+        width:93%;
+        margin:5px 0 20px;
+    }
+    #squadBox {padding-top:20px;}
+    div[id^='spheres'], div[id^='stats'] {
+        margin:0 auto;
+        width:180px;
+        padding:5px;
+        background:#EEF;
+    }
+    div[id^='TYPEHEADER'] {
+        font-weight:bold;
+    }
     .affix {
         position: fixed;
         padding: 10px 0 0 0;
@@ -31,8 +69,7 @@
     	position:absolute;
         left: 50%;
         margin-left: -40px;
-        bottom: 0;
-        margin-bottom: 10px;
+        top: -5px;
     	width: 80px;
     	background: #fee;
     	border: 1px solid #CCC;
@@ -49,7 +86,7 @@
         width:90%;
         margin:10px auto;
     }
-    .htfixed {height:135px;}
+    .htfixed {min-height:135px;}
     .htfixed2 {
         min-height:120px;
         margin:10px 0;
