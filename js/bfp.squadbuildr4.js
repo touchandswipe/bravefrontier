@@ -11,6 +11,7 @@ sphereList=[
 	{name:"Brass Orb",nick:"brassorb",stats:[0,0.2,0.2,0,0,0,0,1.3,0]},
 	{name:"Buffer Jewel",nick:"buffer",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Dandelga",nick:"dandelga",stats:[0.3,0.3,0,0,0,0,0,0,0]},
+	{name:"Divine Stone",nick:"divinestone",stats:[0,0,0,0,0,0,0,0,0.5]},
 	{name:"Duel Fragment",nick:"duelfrag",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Flag Flower",nick:"flagflow",stats:[0,0,0,0,0,1,0,0,0]},
@@ -26,18 +27,23 @@ sphereList=[
 	{name:"Heavenly Bud",nick:"heavenbud",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Holy Eight",nick:"holyeight",stats:[0,0.3,0.3,0,0.5,0,0,0,0]},
+	{name:"Ihsir\'s Guise",nick:"ihsirsguise",stats:[0.1,0.05,0.1,0.05,0,0,0,0,0]},
 	{name:"Illusion Gizmo",nick:"illugizmo",stats:[0,0.3,0,0,0.5,0,0.5,0,0]},
 	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,1,0,0,0]},
+	{name:"Lafdranya",nick:"lafdranya",stats:[0,0,0.5,0,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
 	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
 	{name:"Nevana Crown",nick:"nevanacrown",stats:[0.4,0.4,0.4,0.4,0,0,0,0,1]},
 	{name:"Obsidian Core Amp",nick:"obcoreamp",stats:[0,0.8,0,0,0,0,0,0,0]},
 	{name:"Occult Treasure",nick:"occult",stats:[0.4,0.4,0.4,0.4,0,0,0,0,0]},
+	{name:"Phantom Gizmo",nick:"phantomgiz",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Reeze's Armor",nick:"reeze",stats:[0.4,0.5,0.5,0.5,0,0,0,0,0]},
 	{name:"Revelation Book",nick:"revbook",stats:[0,0,0,0,0,0.5,0.5,0,0]},
 	{name:"Sacred Axe",nick:"sacredaxe",stats:[0,0,0,0,0,1.5,0,0,0]},
+	{name:"Sacred Crystal",nick:"sacredcrystal",stats:[0,0,0,0,0,0,0,0,0]},
+	{name:"Sacred Gem",nick:"sacredgem",stats:[0,0,0,0,0,0,0,0,1]},
 	{name:"Sacred Jewel",nick:"sacredj",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Sacred Staff",nick:"sacredstaff",stats:[0.5,0,0,0,0,0,0,0,0]},
 	{name:"Sacred Treasure",nick:"sacredtrea",stats:[0,0,0,0,0,0,0,0,1.5]},
@@ -45,8 +51,11 @@ sphereList=[
 	{name:"Sky Orb",nick:"skyorb",stats:[1,1,1,1,0,0,0,0,0]},
 	{name:"Spear of Zedus",nick:"spearzedus",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
 	{name:"Star Flower",nick:"starflower",stats:[0,0,0,0,0,1.2,0,0,0]},
+	{name:"Star of Hope",nick:"starhope",stats:[0,0,0,0,0,0,0,0,0]},
 	{name:"Steeple Rose",nick:"steeple",stats:[0,0,0,0,0,0.5,0,0,0]},
 	{name:"Tridon\'s Trident",nick:"tridont",stats:[0.3,0,0,0.3,0,0,0,0,0]},
+	{name:"Vestige Alpha",nick:"vestigealp",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
+	{name:"Vestige Omega",nick:"vestigeomega",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]}
 ];
@@ -552,14 +561,22 @@ function scanSkills(classBtns,scanScope) {
 											}
 											/*build TOPval*/
 											if (bbMap[k].impact.charAt(0)!="!") {
-												if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-													if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-														$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
+													if (isNumber(scanArray[j][bbMap[k].impact])) {
+														if ($(this).attr("data-top").length) {
+															if (+$(this).attr("data-top") < +scanArray[j][bbMap[k].impact])
+																$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+														} else
+															$(this).attr("data-top", scanArray[j][bbMap[k].impact]); 
+													}
+												} else {
+													if (!$(this).attr("data-top").length)
+														$(this).attr("data-top", 0); /*0 for self buff*/ 
 												}
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
-												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
+												if ($(this).attr("data-top").length && isNumber(getNestedVal)) {
 													if ($(this).attr("data-top")<getNestedVal)
 														$(this).attr("data-top", getNestedVal);
 												}
@@ -569,8 +586,10 @@ function scanSkills(classBtns,scanScope) {
 											$(this).attr("data-found",selectUnit);
 											/*build TOPval*/
 											if (bbMap[k].impact.charAt(0)!="!") {
-												if (isNumber(scanArray[j][bbMap[k].impact]))
-													$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
+													if (isNumber(scanArray[j][bbMap[k].impact]))
+														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
+												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
@@ -1357,7 +1376,6 @@ function refreshALL() {
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
-				console.log("reparsing?")
 			}
 		}
 	});
@@ -1692,8 +1710,12 @@ $(document).on("click", '#clearSquad', function(e){
 	e.preventDefault();
 	$(".unitBox").each( function(){
 		$(this).html(trashStr);
+		var boxID=$(this).attr("id").slice(-1);
+		$("#stats"+boxID).html("");
 	})
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 	window.scrollTo(0,0);
 })
 
@@ -2083,4 +2105,8 @@ $( "#searchNameBox" ).keypress( function( event ) {
      searchNameRun();
      $('#searchNameBox').typeahead("close")
   }
+})
+
+$("#searchNameBox").on("focus", function(){
+	$(this).select()
 })
