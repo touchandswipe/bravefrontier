@@ -512,6 +512,7 @@ function scanSkills(classBtns,scanScope) {
 		for (i in scanScope) {
 			if (rawParseObj[selectUnit][scanScope[i]] != "none") {
 				var scanArray=rawParseObj[selectUnit][scanScope[i]].effects;
+				console.log("unit "+rawParseObj[selectUnit].name);
 				/*add ES triggered Effects to BB and SBB*/
 				if (scanScope[i]=="es") {
 					var esTriggered=false;
@@ -572,7 +573,7 @@ function scanSkills(classBtns,scanScope) {
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
-												if ($(this).attr("data-top") && isNumber(getNestedVal)) {
+												if ($(this).attr("data-top").length && isNumber(getNestedVal)) {
 													if ($(this).attr("data-top")<getNestedVal)
 														$(this).attr("data-top", getNestedVal);
 												}
@@ -585,7 +586,7 @@ function scanSkills(classBtns,scanScope) {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact]))
 														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
-												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
+												} else { $(this).attr("data-top", 1); /*0 for self buff*/ }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
