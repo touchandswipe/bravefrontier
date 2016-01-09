@@ -1383,11 +1383,34 @@ function refreshALL() {
 }
 
 function refreshSpheres(){
-	var unitRun=["A","B","C","D","E","F"];
+	var bbScope=["bb","sbb"];
 	$.each( unitBonus, function( key, bonus ) {
 		var extraBonus=$("#extra_"+key+" option:selected").attr("data-val").split(",");
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
+		var selfBuff=0;
+		if ($("#unit"+key+" .dragBox .unitSelected").length) {
+			var sUnit=$("#unit"+key+" .dragBox .unitSelected").attr("data-unitid");
+			/*bb skills*/
+			for (var x in bbScope) {
+				var scanArray=rawParseObj[sUnit][bbScope[x]].effects;
+				for (var i in scanArray) {
+					if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
+						if (scanArray[i]["atk% buff (1)"])
+							selfBuff+= +scanArray[i]["atk% buff (1)"];
+					}
+				}
+			}
+			/*ubb skills*/
+			var scanArray=rawParseObj[sUnit]["ubb"].effects;
+			for (var i in scanArray) {
+				if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
+					if (scanArray[i]["atk% buff (1)"])
+						selfBuff+= +scanArray[i]["atk% buff (1)"];
+				}
+			}
+			console.log(selfBuff);
+		}
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
@@ -1397,7 +1420,7 @@ function refreshSpheres(){
 			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
 			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7],
-			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8]
+			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8] + +selfBuff/100
 		];
 	})
 }
