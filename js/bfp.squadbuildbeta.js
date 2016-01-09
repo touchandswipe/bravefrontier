@@ -1402,7 +1402,7 @@ function refreshSpheres(){
 						if (scanArray[i]["atk% buff (1)"])
 							selfBuff+= +scanArray[i]["atk% buff (1)"];
 						if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
-							selfBuff+= +scanArray[i]["atk% buff (1)"];
+							selfBuff+= +scanArray[i]["self atk% buff"];
 					}
 				}
 			}
@@ -1413,7 +1413,7 @@ function refreshSpheres(){
 					if (scanArray[i]["atk% buff (1)"])
 						selfBuff+= +scanArray[i]["atk% buff (1)"];
 					if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
-						selfBuff+= +scanArray[i]["atk% buff (1)"];
+						selfBuff+= +scanArray[i]["self atk% buff"];
 				}
 			}
 		}
