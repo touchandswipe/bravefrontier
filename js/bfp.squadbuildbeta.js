@@ -1011,7 +1011,7 @@ function generateBtns(btnclass,dest,mapArray) {
     for (i in mapArray) {
     	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
     	/*markers*/
-    	bbString+='<div class="mkBox"><i class="fa fa-exclamation" data-skill="'+mapArray[i].desc+'"></i></div>';
+    	bbString+='<div class="mkBox"><i class="fa fa-check-square-o" data-skill="'+mapArray[i].desc+'"></i></div>';
     	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+mapArray[i].desc+'</span></a>';
     	bbString+='</div>';
     }
@@ -1051,8 +1051,11 @@ function buildMarkerLink(){
 			markersArray.push("u"+markerID);
 			console.log("u"+markerID);
 		}
-	})
-	console.log(markersArray);
+	});
+	if (markersArray.length!=0)
+		return markersArray.join();
+	else
+		return false;
 }
 
 function getTop(btnclass,btnDesc) {
@@ -1295,6 +1298,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Share Marked Skills"></i><h5><a href="#" role="button" id="shareMarkerBtn" class="btn btn-sm btn-default">Share Marked<b>Skills</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-md btn-success">Calculate</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
@@ -1409,6 +1413,7 @@ function loadSquad() {
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
 	var extraParam=urlParam('exs');
+	var markerParam=urlParam('marker');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
 	    	if (squadList.length>6)
@@ -1429,6 +1434,15 @@ function loadSquad() {
 			refreshALL();
 			dragActivate()
 	    	}
+	}
+	if (markerParam!="") {
+		var markerRef=markerParam.split(',');
+		for (var i in markerRef) {
+			if (markerRef[i].charAt(0)=="l") {
+				
+			}
+				
+		}
 	}
 	/*sphere load*/
 	if (sphereParam!="" && sParamValid) {
@@ -1523,8 +1537,8 @@ $(window).on('popstate', function(e) {
 	}
 })
 
-/*select redditshare*/
-$('#redditShare').click(function() {
+/*select share boxes*/
+$('#redditShare,#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit').click(function() {
     $(this).select();
 });
 
@@ -1720,7 +1734,8 @@ $(document).on("click", '#getShort', function(e){
 	var sParam=urlParam('squad');
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
-	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam), $('#shareURL') );
+	var extraParam=urlParam('exs');
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&exs=" + encodeURIComponent(extraParam), $('#shareURL') );
 })
 
 /*Reddit Btn Click*/
@@ -1730,6 +1745,28 @@ $(document).on("click", '#getReddit', function(e){
 	/*build reddit markdown*/
 	$("#redditShare").html(shareTxt+"("+window.location.href+")");
 	$("#redditModal").modal("show");
+})
+
+/*Share Marker Btn Click*/
+$(document).on("click", '#shareMarkerBtn', function(e){
+	e.preventDefault();
+	var redditTxtA="[My Squad and Skills Suggestion]";
+	var redditTxtB="[My Skills Suggestion]";
+	/*build shortURL*/
+	var sParam=urlParam('squad');
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
+	var markerParam=buildMarkerLink();
+	if (markerParam) {
+		var markerURL=location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&marker="+encodeURIComponent(markerParam);
+		var markerOnlyURL=location.protocol + '//' + location.host + location.pathname + "?marker="+encodeURIComponent(markerParam);
+		gooShorten(markerURL, $('#markerShare') );
+		gooShorten(markerOnlyURL, $('#markerOnlyShare') );
+		$("#markerShareReddit").text(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
+		$("#markerOnlyShareReddit").text(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
+	} else {
+		$("#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit").text("No markers selected");
+	};
 })
 
 /*update unitspace*/
