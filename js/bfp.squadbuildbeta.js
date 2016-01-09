@@ -583,7 +583,7 @@ function scanSkills(classBtns,scanScope) {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact]))
 														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
-												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
+												} else { console.log("whats up"); /*0 for self buff*/ }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
@@ -1370,7 +1370,6 @@ function refreshALL() {
 			if ($("#TYPEHEADER_"+boxRef.slice(-1)).text()=="") {
 				var unitID=$(this).find(".unitSelected").attr("data-unitid");
 				parseUnit($(this).attr("id"), unitID);
-				console.log("reparsing?")
 			}
 		}
 	});
