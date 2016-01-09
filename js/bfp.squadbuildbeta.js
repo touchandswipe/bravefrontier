@@ -1962,8 +1962,9 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 
 /*keep markerbox visible*/
 $("body").on("mouseenter", '.mkBox', function(e){
-    e.preventDefault();
-    $(this).siblings(".mkBox").show();
+    $(this).show();
+}).on("click", '.mkBox', function(e){
+    $(this).siblings.(".btn").addClass("marker");
 })
 
 /*Binds Enter KEY to BOX*/
