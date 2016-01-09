@@ -2067,7 +2067,7 @@ $("body").on("mouseenter",".mkBox", function(e){
 }).on("mouseleave",".mkBox", function(e){
 	$(this).hide();
 }).on("click", ".mkBox", function(e){
-	$(this).siblings("a").addClass("marker");
+	$(this).siblings("a").toggleClass("marker");
 })
 
 /*Binds Enter KEY to BOX*/
