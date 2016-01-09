@@ -566,7 +566,7 @@ function scanSkills(classBtns,scanScope) {
 														if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
 															$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
 													}
-												}
+												} else { console.log(scanArray[j]["target type"]); }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
@@ -583,7 +583,7 @@ function scanSkills(classBtns,scanScope) {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact]))
 														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
-												}
+												} else { console.log(scanArray[j]["target type"]); }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
@@ -1707,6 +1707,8 @@ $(document).on("click", '#clearSquad', function(e){
 		$(this).html(trashStr);
 	})
 	refreshALL();
+	refreshSpheres();
+	refreshBonus()
 	window.scrollTo(0,0);
 })
 
