@@ -567,9 +567,13 @@ function scanSkills(classBtns,scanScope) {
 														if ($(this).attr("data-top").length) {
 															if (+$(this).attr("data-top") < +scanArray[j][bbMap[k].impact])
 																$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
-														} else { $(this).attr("data-top", scanArray[j][bbMap[k].impact]); }
+														} else
+															$(this).attr("data-top", scanArray[j][bbMap[k].impact]); 
 													}
-												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
+												} else {
+													if (!$(this).attr("data-top").length)
+														$(this).attr("data-top", 0); /*0 for self buff*/ 
+												}
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
@@ -586,7 +590,7 @@ function scanSkills(classBtns,scanScope) {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact]))
 														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
-												} else { $(this).attr("data-top", 1); /*0 for self buff*/ }
+												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
