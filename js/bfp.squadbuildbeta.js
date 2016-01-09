@@ -1684,7 +1684,7 @@ $(document).on("click", '.qkTrash', function(e){
 /*Trash Markers*/
 $(document).on("click", '#deleteMarkers', function(e){
 	e.preventDefault();
-	$('.markers').toggleClass("markers");
+	$('.marker').toggleClass("marker");
 })
 
 /*clearSquad*/
