@@ -10,9 +10,10 @@
         padding: 4px 12px;
         top: 0;
         left: 0;
-        visibility: hidden;
+        display:none;
         background: white;
         color: red;
+        z-index:+2;
     }
     .mkBox:hover {
         background: red;
