@@ -68,165 +68,165 @@ trashStr='<i class="fa fa-plus fa-5x"></i>';
 gKey = 'AIzaSyCyF9yZ9Lyl57HAQXtzrd3yONewk4-fGSg';
 rawParseObj=[];
 lsMap=[
-	{desc:"% HP", stack:true, impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% ATK", stack:true, impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% DEF", stack:true, impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% REC", stack:true, impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
-	{desc:"% ATK+ by HP", stack:true, impact:"atk% extra buff based on hp", impact2:"atk% base buff", criteria:["buff proportional to hp"]},
-	{desc:"% DEF+ by HP", stack:true, impact:"def% extra buff based on hp", impact2:"def% base buff", criteria:["buff proportional to hp"]},
-	{desc:"% ATK+ on X DMG Dealt", stack:true, impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% ATK+ Turn after CRIT", stack:true, impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
-	{desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
-	{desc:"% DEF+ First Turns", stack:true, impact:"first x turns def% (3)", criteria:["first x turns"]},
-	{desc:"% CRIT+", stack:true, impact:"crit% buff"},
-	{desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
-	{desc:"% Spark DMG Debuff", stack:true, impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
-	{desc:"% Spark DMG+ on SparkCount", stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% DMG+ to Ailed Enemy", stack:true, impact:"atk% buff when enemy has ailment"},
-	{desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
-	{desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
-	{desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Dealt",stack:true, impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
-	{desc:"% BB ATK%+ on X DMG Taken",stack:true, impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
-	{desc:"% Ignore DEF", impact:"ignore def%"},
-	{desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
-	{desc:"Null Ails", impact:"poison resist%",hideprefix:true},
-	{desc:"Null Element Weakness", impact:"strong base element damage resist%",hideprefix:true},
-	{desc:"% BC+",impact:"bc drop rate% buff"},
-	{desc:"% BC+ on Spark",impact:"bc drop% for spark"},
-	{desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
-	{desc:"BC Fill on ATK", impact:"bc fill when attacking low", impact2:"bc fill when attacking high", chance:"bc fill when attacking%"},
-	{desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%"},
-	{desc:"BC Fill on CRIT", impact:"bc fill on crit min", impact2:"bc fill on crit max", chance:"bc fill on crit%"},
-	{desc:"BC Fill ATKed on Guard", impact:"bc filled when attacked while guarded"},
-	{desc:"BC TurnFill", impact:"bc fill per turn"},
-	{desc:"BC Fill", impact:"increase bb gauge", criteria:["damage threshold activation"]},
-	{desc:"% BC Fill+", impact:"bb gauge fill rate%"},
-	{desc:"% BB Cost Reduced", impact:"reduced bb bc cost%"},
-	{desc:"% Reduce BB Gauge Used", impact:"reduced bb bc use% low", impact2:"reduced bb bc use% high", chance:"reduced bb bc use chance%"},
-	{desc:"% HP Drain", impact:"hp drain% low", impact2:"hp drain% high",chance:"hp drain chance%"},
-	{desc:"% HC+",impact:"hc drop rate% buff"},
-	{desc:"% HC+ on Spark",impact:"hc drop% for spark"},
-	{desc:"% HC Fill+", impact:"hc effectiveness%"},
-	{desc:"Heal Each Turn+", impact:"turn heal low", impact2:"turn heal high",criteria:["rec% added (turn heal)"]},
-	{desc:"Heal on Spark", impact:"heal on spark low", impact2:"heal on spark high", chance:"heal on spark%"},
-	{desc:"% HP Heal on ATKed", impact:"dmg% to hp% when attacked low", impact2:"dmg% to hp% when attacked high", chance:"dmg% to hp% when attacked chance%"},
-	{desc:"Heal on Guard", impact:"on guard activation chance%", impact2:"!buff.gradual heal low", hideprefix:true},
-	{desc:"% Angel Idol", impact:"angel idol recover chance% low", impact2:"angel idol recover chance% high", criteria:["angel idol recover counts"]},
-	{desc:"% OD Fill+", impact:"od fill rate%"},
-	{desc:"% Item+",impact:"item drop rate% buff"},
-	{desc:"% Karma+",impact:"karma drop rate% buff"},
- 	{desc:"% Karma+ on Spark",impact:"karma drop% for spark"},
- 	{desc:"% Zel+",impact:"zel drop rate% buff"},
- 	{desc:"% Zel+ on Spark",impact:"zel drop% for spark"},
-	{desc:"% Reduce DMG Assured", impact:"dmg% mitigation"},
-	{desc:"% Reduce DMG by Chance", impact:"dmg reduction%", chance:"dmg reduction chance%"},
-	{desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
-	{desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
-	{desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
-	{desc:"% Fire Resist", impact:"fire resist%"},
-	{desc:"% Water Resist", impact:"water resist%"},
-	{desc:"% Earth Resist", impact:"earth resist%"},
-	{desc:"% Thunder Resist", impact:"thunder resist%"},
-	{desc:"% Light Resist", impact:"light resist%"},
-	{desc:"% Dark Resist", impact:"dark resist%"},
-	{desc:"% Reduce DMG (Fire Enemy)", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Reduce DMG (Water Enemy)", impact:"mitigate water attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Reduce DMG (Earth Enemy)", impact:"mitigate earth attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Reduce DMG (Thunder Enemy)", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Reduce DMG (Light Enemy)", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Reduce DMG (Dark Enemy)", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
-	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
-	{desc:"% EXP+", impact:"xp gained increase%"},
+	{id:1,desc:"% HP", stack:true, impact:"hp% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{id:2,desc:"% ATK", stack:true, impact:"atk% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{id:3,desc:"% DEF", stack:true, impact:"def% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{id:4,desc:"% REC", stack:true, impact:"rec% buff",criteria:["elements buffed","unique elements required","bb gauge above % buff requirement","hp above % buff requirement","hp below % buff requirement","gender required"]},
+	{id:5,desc:"% ATK+ by HP", stack:true, impact:"atk% extra buff based on hp", impact2:"atk% base buff", criteria:["buff proportional to hp"]},
+	{id:6,desc:"% DEF+ by HP", stack:true, impact:"def% extra buff based on hp", impact2:"def% base buff", criteria:["buff proportional to hp"]},
+	{id:7,desc:"% ATK+ on X DMG Dealt", stack:true, impact:"!damage dealt threshold buff activation||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{id:8,desc:"% ATK+ Turn after CRIT", stack:true, impact:"!on crit activation chance%||buff.atk% buff (1)", impact2:"!buff.atk% buff (1)", turns:"!buff.buff turns (1)", criteria:["on crit activation chance%"], hideprefix:true},
+	{id:9,desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
+	{id:10,desc:"% DEF+ First Turns", stack:true, impact:"first x turns def% (3)", criteria:["first x turns"]},
+	{id:11,desc:"% CRIT+", stack:true, impact:"crit% buff"},
+	{id:12,desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
+	{id:13,desc:"% Spark DMG Debuff", stack:true, impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
+	{id:14,desc:"% Spark DMG+ on SparkCount", stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
+	{id:15,desc:"% DMG+ to Ailed Enemy", stack:true, impact:"atk% buff when enemy has ailment"},
+	{id:16,desc:"% CRIT DMG+", impact:"crit multiplier%",stack:true},
+	{id:17,desc:"% BB ATK%+", impact:"bb atk% buff",stack:true},
+	{id:18,desc:"% BB ATK%+ on SparkCount",stack:true, impact:"!spark count buff activation||buff.bb atk% buff", impact2:"!buff.bb atk% buff", turns:"!buff.buff turns (72)", criteria:["spark count buff activation"], hideprefix:true},
+	{id:19,desc:"% BB ATK%+ on X DMG Dealt",stack:true, impact:"!damage dealt threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)" , impact2:"!buff.bb atk% buff", criteria:["damage dealt threshold buff activation"], hideprefix:true},
+	{id:20,desc:"% BB ATK%+ on X DMG Taken",stack:true, impact:"!damage threshold buff activation||buff.bb atk% buff", turns:"!buff.buff turns (72)", impact2:"!buff.bb atk% buff", criteria:["damage threshold buff activation"], hideprefix:true},
+	{id:21,desc:"% Ignore DEF", impact:"ignore def%"},
+	{id:22,desc:"Null CRITs", impact:"crit chance base resist%",hideprefix:true},
+	{id:23,desc:"Null Ails", impact:"poison resist%",hideprefix:true},
+	{id:24,desc:"Null Element Weakness", impact:"strong base element damage resist%",hideprefix:true},
+	{id:25,desc:"% BC+",impact:"bc drop rate% buff"},
+	{id:26,desc:"% BC+ on Spark",impact:"bc drop% for spark"},
+	{id:27,desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
+	{id:28,desc:"BC Fill on ATK", impact:"bc fill when attacking low", impact2:"bc fill when attacking high", chance:"bc fill when attacking%"},
+	{id:29,desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%"},
+	{id:30,desc:"BC Fill on CRIT", impact:"bc fill on crit min", impact2:"bc fill on crit max", chance:"bc fill on crit%"},
+	{id:31,desc:"BC Fill ATKed on Guard", impact:"bc filled when attacked while guarded"},
+	{id:32,desc:"BC TurnFill", impact:"bc fill per turn"},
+	{id:33,desc:"BC Fill", impact:"increase bb gauge", criteria:["damage threshold activation"]},
+	{id:34,desc:"% BC Fill+", impact:"bb gauge fill rate%"},
+	{id:35,desc:"% BB Cost Reduced", impact:"reduced bb bc cost%"},
+	{id:36,desc:"% Reduce BB Gauge Used", impact:"reduced bb bc use% low", impact2:"reduced bb bc use% high", chance:"reduced bb bc use chance%"},
+	{id:37,desc:"% HP Drain", impact:"hp drain% low", impact2:"hp drain% high",chance:"hp drain chance%"},
+	{id:38,desc:"% HC+",impact:"hc drop rate% buff"},
+	{id:39,desc:"% HC+ on Spark",impact:"hc drop% for spark"},
+	{id:40,desc:"% HC Fill+", impact:"hc effectiveness%"},
+	{id:41,desc:"Heal Each Turn+", impact:"turn heal low", impact2:"turn heal high",criteria:["rec% added (turn heal)"]},
+	{id:42,desc:"Heal on Spark", impact:"heal on spark low", impact2:"heal on spark high", chance:"heal on spark%"},
+	{id:43,desc:"% HP Heal on ATKed", impact:"dmg% to hp% when attacked low", impact2:"dmg% to hp% when attacked high", chance:"dmg% to hp% when attacked chance%"},
+	{id:44,desc:"Heal on Guard", impact:"on guard activation chance%", impact2:"!buff.gradual heal low", hideprefix:true},
+	{id:45,desc:"% Angel Idol", impact:"angel idol recover chance% low", impact2:"angel idol recover chance% high", criteria:["angel idol recover counts"]},
+	{id:46,desc:"% OD Fill+", impact:"od fill rate%"},
+	{id:47,desc:"% Item+",impact:"item drop rate% buff"},
+	{id:48,desc:"% Karma+",impact:"karma drop rate% buff"},
+ 	{id:49,desc:"% Karma+ on Spark",impact:"karma drop% for spark"},
+ 	{id:50,desc:"% Zel+",impact:"zel drop rate% buff"},
+ 	{id:51,desc:"% Zel+ on Spark",impact:"zel drop% for spark"},
+	{id:52,desc:"% Reduce DMG Assured", impact:"dmg% mitigation"},
+	{id:53,desc:"% Reduce DMG by Chance", impact:"dmg reduction%", chance:"dmg reduction chance%"},
+	{id:54,desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
+	{id:55,desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
+	{id:56,desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
+	{id:57,desc:"% Fire Resist", impact:"fire resist%"},
+	{id:58,desc:"% Water Resist", impact:"water resist%"},
+	{id:59,desc:"% Earth Resist", impact:"earth resist%"},
+	{id:60,desc:"% Thunder Resist", impact:"thunder resist%"},
+	{id:61,desc:"% Light Resist", impact:"light resist%"},
+	{id:62,desc:"% Dark Resist", impact:"dark resist%"},
+	{id:63,desc:"% Reduce DMG (Fire Enemy)", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:64,desc:"% Reduce DMG (Water Enemy)", impact:"mitigate water attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:65,desc:"% Reduce DMG (Earth Enemy)", impact:"mitigate earth attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:66,desc:"% Reduce DMG (Thunder Enemy)", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:67,desc:"% Reduce DMG (Light Enemy)", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:68,desc:"% Reduce DMG (Dark Enemy)", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks",hideprefix:true},
+	{id:69,desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:70,desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:71,desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:72,desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:73,desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:74,desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
+	{id:75,desc:"% EXP+", impact:"xp gained increase%"},
 ];
 bbMap=[
-	{desc:"% HP+", impact:"max hp% increase"},
-	{desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
-	{desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
-	{desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
-	{desc:"% Elemental ATK+", impact:"atk% buff (13)", impact2:"element buffed", turns:"buff turns"},
-	{desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
-	{desc:"Gradual Heal", impact:"gradual heal low", impact2:"gradual heal high", turns:"gradual heal turns (8)"},
-	{desc:"Heal", impact:"heal low", impact2:"heal high"},
-	{desc:"Angel Idol", impact:"angel idol buff (12)", hideprefix:true},
-	{desc:"% Angel Idol", impact:"angel idol recover chance%", turns:"angel idol buff turns (91)"},
-	{desc:"Revive Dead", impact:"revive unit hp%", chance:"revive unit chance%", hideprefix:true},
-	{desc:"% Convert to ATK", impact:"atk% buff (46)", impact2:"converted attribute", turns:"% converted turns"},
-	{desc:"% Convert to DEF", impact:"def% buff (47)", impact2:"converted attribute", turns:"% converted turns"},
-	{desc:"Cure Ails", impact:"ailments cured", hideprefix:true},
-	{desc:"Null Ails", impact:"resist status ails turns", turns:"resist status ails turns", hideprefix:true},
-	{desc:"Null Stats Debuff", impact:"stat down immunity buff turns", turns:"stat down immunity buff turns", hideprefix:true},
-	{desc:"Hitcount+", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
-	{desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
-	{desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
-	{desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
-	{desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
-	{desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
-	{desc:"% RED Spark DMG+ ", impact:"spark dmg inc% buff", chance:"spark dmg inc chance%", turns:"spark dmg inc buff turns (131)"},
-	{desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment", turns:"atk% buff turns (110)"},
-	{desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
-	{desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
-	{desc:"Add fire to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add water to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add earth to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add thunder to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add light to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"Add dark to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
-	{desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
-	{desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
-	{desc:"% Enemy HP DMG", impact:"hp% damage low", impact2:"hp% damage high", chance:"hp% damage chance%"},
-	{desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
-	{desc:"BC InstaFill", impact:"increase bb gauge"},
-	{desc:"% BB Fill", impact:"bb bc fill%"},
-	{desc:"% OD Fill", impact:"increase od gauge%"},
-	{desc:"% BC+", impact:"bc drop rate% buff (10)", turns:"drop rate buff turns"},
-	{desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
-	{desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%", turns:"bc fill when attacked turns (38)"},
-	{desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%", turns:"bc fill on spark buff turns (111)"},
-	{desc:"% Item+", impact:"item drop rate% buff (11)", turns:"drop rate buff turns"},
-	{desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
-	{desc:"% Reduce Fire DMG", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"% Reduce Water DMG", impact:"mitigate water attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"% Reduce Earth DMG", impact:"mitigate earth attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"% Reduce Thunder DMG", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
-	{desc:"HP Shield", impact:"elemental barrier element", impact2:"elemental barrier hp"},
-	{desc:"Elemental Shield", impact:"shield element", turns:"shield turns (10002)", criteria:["shield hp","shield def"]},
-	{desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
-	{desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75)", turns:"stat% debuff turns"},
-	{desc:"% ATK-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
-	{desc:"% DEF-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
-	{desc:"% Sick", impact:"sick%"},
-	{desc:"% Weaken", impact:"weaken%"},
-	{desc:"% Injury", impact:"injury%"},
-	{desc:"% Curse", impact:"curse%"},
-	{desc:"% Paralysis", impact:"paralysis%"},
-	{desc:"% Poison", impact:"poison%"},
-	{desc:"% Sick Buff", impact:"sick% buff", turns:"buff turns"},
-	{desc:"% Weaken Buff", impact:"weaken% buff", turns:"buff turns"},
-	{desc:"% Injury Buff", impact:"injury% buff", turns:"buff turns"},
-	{desc:"% Curse Buff", impact:"curse% buff", turns:"buff turns"},
-	{desc:"% Paralysis Buff", impact:"paralysis% buff", turns:"buff turns"},
-	{desc:"% Poison Buff", impact:"poison% buff", turns:"buff turns"},
-	{desc:"% Counter-Sick", impact:"counter inflict sick% (80)", turns:"counter inflict ailment turns"},
-	{desc:"% Counter-Weaken", impact:"counter inflict weaken% (79)", turns:"counter inflict ailment turns"},
-	{desc:"% Counter-Injury", impact:"counter inflict injury% (81)", turns:"counter inflict ailment turns"},
-	{desc:"% Counter-Curse", impact:"counter inflict curse% (82)", turns:"counter inflict ailment turns"},
-	{desc:"% Counter-Paralysis", impact:"counter inflict paralysis% (83)", turns:"counter inflict ailment turns"},
-	{desc:"% Counter-Poison", impact:"counter inflict poison% (78)", turns:"counter inflict ailment turns"},
-	{desc:"Taunt", impact:"taunt turns (10000)", turns:"taunt turns (10000)", criteria:["def% buff"], hideprefix:true},
-	{desc:"Stealth", impact:"stealth turns (10001)", turns:"stealth turns (10001)", criteria:["atk% buff", "crit% buff"], hideprefix:true},
+	{id:1,desc:"% HP+", impact:"max hp% increase"},
+	{id:2,desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
+	{id:3,desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
+	{id:4,desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
+	{id:5,desc:"% Elemental ATK+", impact:"atk% buff (13)", impact2:"element buffed", turns:"buff turns"},
+	{id:6,desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
+	{id:7,desc:"Gradual Heal", impact:"gradual heal low", impact2:"gradual heal high", turns:"gradual heal turns (8)"},
+	{id:8,desc:"Heal", impact:"heal low", impact2:"heal high"},
+	{id:9,desc:"Angel Idol", impact:"angel idol buff (12)", hideprefix:true},
+	{id:10,desc:"% Angel Idol", impact:"angel idol recover chance%", turns:"angel idol buff turns (91)"},
+	{id:11,desc:"Revive Dead", impact:"revive unit hp%", chance:"revive unit chance%", hideprefix:true},
+	{id:12,desc:"% Convert to ATK", impact:"atk% buff (46)", impact2:"converted attribute", turns:"% converted turns"},
+	{id:13,desc:"% Convert to DEF", impact:"def% buff (47)", impact2:"converted attribute", turns:"% converted turns"},
+	{id:14,desc:"Cure Ails", impact:"ailments cured", hideprefix:true},
+	{id:15,desc:"Null Ails", impact:"resist status ails turns", turns:"resist status ails turns", hideprefix:true},
+	{id:16,desc:"Null Stats Debuff", impact:"stat down immunity buff turns", turns:"stat down immunity buff turns", hideprefix:true},
+	{id:17,desc:"Hitcount+", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
+	{id:18,desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
+	{id:19,desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
+	{id:20,desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
+	{id:21,desc:"% Spark DMG+", impact:"spark dmg% buff (40)", turns:"buff turns"},
+	{id:22,desc:"% Spark DMG Debuff", impact:"spark dmg% received", chance:"spark dmg received apply%", turns:"spark dmg received debuff turns (94)"},
+	{id:23,desc:"% RED Spark DMG+ ", impact:"spark dmg inc% buff", chance:"spark dmg inc chance%", turns:"spark dmg inc buff turns (131)"},
+	{id:24,desc:"% DMG+ to Ailed Enemy", impact:"atk% buff when enemy has ailment", turns:"atk% buff turns (110)"},
+	{id:25,desc:"% CRIT+", impact:"crit% buff (7)", turns:"buff turns"},
+	{id:26,desc:"% CRIT DMG+", impact:"crit multiplier%", turns:"buff turns (84)"},
+	{id:27,desc:"Add fire to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:28,desc:"Add water to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:29,desc:"Add earth to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:30,desc:"Add thunder to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:31,desc:"Add light to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:32,desc:"Add dark to ATK", turns:"elements added turns", impact:"elements dummy",hideprefix:true},
+	{id:33,desc:"% Fire Weakness DMG+", impact:"!fire units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:34,desc:"% Water Weakness DMG+", impact:"!water units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:35,desc:"% Earth Weakness DMG+", impact:"!earth units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:36,desc:"% Thunder Weakness DMG+", impact:"!thunder units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:37,desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:38,desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", turns:"elemental weakness buff turns", hideprefix:true},
+	{id:39,desc:"% DoT DMG", impact:"dot atk%", turns:"dot turns (71)"},
+	{id:40,desc:"% Enemy HP DMG", impact:"hp% damage low", impact2:"hp% damage high", chance:"hp% damage chance%"},
+	{id:41,desc:"BC TurnFill", impact:"increase bb gauge gradual", turns:"increase bb gauge gradual turns (37)"},
+	{id:42,desc:"BC InstaFill", impact:"increase bb gauge"},
+	{id:43,desc:"% BB Fill", impact:"bb bc fill%"},
+	{id:44,desc:"% OD Fill", impact:"increase od gauge%"},
+	{id:45,desc:"% BC+", impact:"bc drop rate% buff (10)", turns:"drop rate buff turns"},
+	{id:46,desc:"% BC Fill+", impact:"bb gauge fill rate% buff", turns:"buff turns (77)"},
+	{id:47,desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%", turns:"bc fill when attacked turns (38)"},
+	{id:48,desc:"BC Fill on Spark", impact:"bc fill on spark low", impact2:"bc fill on spark high", chance:"bc fill on spark%", turns:"bc fill on spark buff turns (111)"},
+	{id:49,desc:"% Item+", impact:"item drop rate% buff (11)", turns:"drop rate buff turns"},
+	{id:50,desc:"% Reduce DMG", impact:"dmg% reduction", turns:"dmg% reduction turns (36)"},
+	{id:51,desc:"% Reduce Fire DMG", impact:"mitigate fire attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:52,desc:"% Reduce Water DMG", impact:"mitigate water attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:53,desc:"% Reduce Earth DMG", impact:"mitigate earth attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:54,desc:"% Reduce Thunder DMG", impact:"mitigate thunder attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:55,desc:"% Reduce Light DMG", impact:"mitigate light attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:56,desc:"% Reduce Dark DMG", impact:"mitigate dark attacks", impact2:"dmg% mitigation for elemental attacks", turns:"dmg% mitigation for elemental attacks buff turns", hideprefix:true},
+	{id:57,desc:"HP Shield", impact:"elemental barrier element", impact2:"elemental barrier hp"},
+	{id:58,desc:"Elemental Shield", impact:"shield element", turns:"shield turns (10002)", criteria:["shield hp","shield def"]},
+	{id:59,desc:"% ATK-Down to ATK", impact:"inflict atk% debuff (2)", chance:"inflict atk% debuff chance% (74)", turns:"stat% debuff turns"},
+	{id:60,desc:"% DEF-Down to ATK", impact:"inflict def% debuff (4)", chance:"inflict def% debuff chance% (75)", turns:"stat% debuff turns"},
+	{id:61,desc:"% ATK-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
+	{id:62,desc:"% DEF-Down", impact:"buff #", chance:"proc chance%", turns:"buff turns"},
+	{id:63,desc:"% Sick", impact:"sick%"},
+	{id:64,desc:"% Weaken", impact:"weaken%"},
+	{id:65,desc:"% Injury", impact:"injury%"},
+	{id:66,desc:"% Curse", impact:"curse%"},
+	{id:67,desc:"% Paralysis", impact:"paralysis%"},
+	{id:68,desc:"% Poison", impact:"poison%"},
+	{id:69,desc:"% Sick Buff", impact:"sick% buff", turns:"buff turns"},
+	{id:70,desc:"% Weaken Buff", impact:"weaken% buff", turns:"buff turns"},
+	{id:71,desc:"% Injury Buff", impact:"injury% buff", turns:"buff turns"},
+	{id:72,desc:"% Curse Buff", impact:"curse% buff", turns:"buff turns"},
+	{id:73,desc:"% Paralysis Buff", impact:"paralysis% buff", turns:"buff turns"},
+	{id:74,desc:"% Poison Buff", impact:"poison% buff", turns:"buff turns"},
+	{id:75,desc:"% Counter-Sick", impact:"counter inflict sick% (80)", turns:"counter inflict ailment turns"},
+	{id:76,desc:"% Counter-Weaken", impact:"counter inflict weaken% (79)", turns:"counter inflict ailment turns"},
+	{id:77,desc:"% Counter-Injury", impact:"counter inflict injury% (81)", turns:"counter inflict ailment turns"},
+	{id:78,desc:"% Counter-Curse", impact:"counter inflict curse% (82)", turns:"counter inflict ailment turns"},
+	{id:79,desc:"% Counter-Paralysis", impact:"counter inflict paralysis% (83)", turns:"counter inflict ailment turns"},
+	{id:80,desc:"% Counter-Poison", impact:"counter inflict poison% (78)", turns:"counter inflict ailment turns"},
+	{id:81,desc:"Taunt", impact:"taunt turns (10000)", turns:"taunt turns (10000)", criteria:["def% buff"], hideprefix:true},
+	{id:82,desc:"Stealth", impact:"stealth turns (10001)", turns:"stealth turns (10001)", criteria:["atk% buff", "crit% buff"], hideprefix:true},
 ];
 
 /*Escape regex string*/
@@ -1010,10 +1010,49 @@ function generateBtns(btnclass,dest,mapArray) {
     var bbString="";
     for (i in mapArray) {
     	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
+    	/*markers*/
+    	bbString+='<div class="mkBox"><i class="fa fa-check-square-o" data-skill="'+mapArray[i].desc+'"></i></div>';
     	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+mapArray[i].desc+'</span></a>';
     	bbString+='</div>';
     }
     $(dest).append(bbString);
+}
+
+/*scan for markers*/
+function buildMarkerLink(){
+	var markersArray=[];
+	$(".marker").each( function(e){
+		var markerDesc=$(this).children(".btnDesc").text();
+		if ($(this).hasClass("lsBtns")) {
+			for (i in lsMap) {
+				if (lsMap[i].desc==markerDesc) {
+					var markerID=lsMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("l"+markerID);
+		} else if ($(this).hasClass("bbBtns")) {
+			for (i in bbMap) {
+				if (bbMap[i].desc==markerDesc) {
+					var markerID=bbMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("b"+markerID);
+		} else if ($(this).hasClass("ubbBtns")) {
+			for (i in bbMap) {
+				if (bbMap[i].desc==markerDesc) {
+					var markerID=bbMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("u"+markerID);
+		}
+	});
+	if (markersArray.length!=0)
+		return markersArray.join();
+	else
+		return false;
 }
 
 function getTop(btnclass,btnDesc) {
@@ -1254,8 +1293,9 @@ function generateSummary() {
 	lsBonus=[lsHPTotal/100,lsATKTotal/100,lsDEFTotal/100,lsRECTotal/100,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 	/*generate HTML*/
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i style="margin:5px auto;" class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i style="margin:5px auto;" class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Marked Skills"><b>Marked<br>Skills</b></h4><h5><a href="#" role="button" id="deleteMarkers" class="btn btn-sm btn-danger" title="Delete all markers."><i class="fa fa-trash-o"></i></a> <a href="#" role="button" id="shareMarkerBtn" class="btn btn-sm btn-default">Sharing links</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-md btn-success">Calculate</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
@@ -1370,6 +1410,7 @@ function loadSquad() {
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
 	var extraParam=urlParam('exs');
+	var markerParam=urlParam('marker');
 	if (sParam != "") {
 	    	var squadList=sParam.split(',');
 	    	if (squadList.length>6)
@@ -1390,6 +1431,34 @@ function loadSquad() {
 			refreshALL();
 			dragActivate()
 	    	}
+	}
+	if (markerParam!="") {
+		var markerRef=markerParam.split(',');
+		for (var i in markerRef) {
+			var markerID= +markerRef[i].substr(1);
+			if (markerRef[i].charAt(0)=="l") {
+				var scanArray=lsMap;
+				var scanBtns=".lsBtns";
+			} else if (markerRef[i].charAt(0)=="b") {
+				var scanArray=bbMap;
+				var scanBtns=".bbBtns";
+			} else if (markerRef[i].charAt(0)=="u") {
+				var scanArray=bbMap;
+				var scanBtns=".ubbBtns";
+			}
+			/*find obj*/
+			for (var j in scanArray) {
+				if (scanArray[j].id==markerID) {
+					var markerString=scanArray[j].desc;
+					break;
+				}
+			}
+			/*scan btns*/
+			$(scanBtns+" .btnDesc").each( function(){
+				if ($(this).text()==markerString)
+					$(this).parent("a").addClass("marker");
+			})
+		}
 	}
 	/*sphere load*/
 	if (sphereParam!="" && sParamValid) {
@@ -1484,8 +1553,8 @@ $(window).on('popstate', function(e) {
 	}
 })
 
-/*select redditshare*/
-$('#redditShare').click(function() {
+/*select share boxes*/
+$('#redditShare,#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit').click(function() {
     $(this).select();
 });
 
@@ -1581,7 +1650,7 @@ $(document).on("click", '.typeBtn', function(e){
 	refreshParam();
 })
 
-/*Trash Unit*/
+/*Trigger selection*/
 $(document).on("change", '[id^=extra_],[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
@@ -1610,6 +1679,12 @@ $(document).on("click", '.qkTrash', function(e){
 	refreshALL();
 	refreshSpheres();
 	refreshBonus()
+})
+
+/*Trash Markers*/
+$(document).on("click", '#deleteMarkers', function(e){
+	e.preventDefault();
+	$('.marker').toggleClass("marker");
 })
 
 /*clearSquad*/
@@ -1680,7 +1755,8 @@ $(document).on("click", '#getShort', function(e){
 	var sParam=urlParam('squad');
 	var tParam=urlParam('type');
 	var sphereParam=urlParam('sphere');
-	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam), $('#shareURL') );
+	var extraParam=urlParam('exs');
+	gooShorten(location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&exs=" + encodeURIComponent(extraParam), $('#shareURL') );
 })
 
 /*Reddit Btn Click*/
@@ -1690,6 +1766,29 @@ $(document).on("click", '#getReddit', function(e){
 	/*build reddit markdown*/
 	$("#redditShare").html(shareTxt+"("+window.location.href+")");
 	$("#redditModal").modal("show");
+})
+
+/*Share Marker Btn Click*/
+$(document).on("click", '#shareMarkerBtn', function(e){
+	e.preventDefault();
+	var redditTxtA="[My Squad and Skills Suggestion]";
+	var redditTxtB="[My Skills Suggestion]";
+	/*build shortURL*/
+	var sParam=urlParam('squad');
+	var tParam=urlParam('type');
+	var sphereParam=urlParam('sphere');
+	var markerParam=buildMarkerLink();
+	if (markerParam) {
+		var markerURL=location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&marker="+encodeURIComponent(markerParam);
+		var markerOnlyURL=location.protocol + '//' + location.host + location.pathname + "?marker="+encodeURIComponent(markerParam);
+		gooShorten(markerURL, $('#markerShare'),true);
+		gooShorten(markerOnlyURL, $('#markerOnlyShare'),true);
+		$("#markerShareReddit").val(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
+		$("#markerOnlyShareReddit").val(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
+	} else {
+		$("#markerShare,#markerOnlyShare,#markerShareReddit,#markerOnlyShareReddit").val("No markers selected");
+	};
+	$("#markerModal").modal("show");
 })
 
 /*update unitspace*/
@@ -1924,7 +2023,9 @@ function isValidJSON(str) {
 }
 
 /*AJAX Call to Google URL Shortener API*/
-function gooShorten(URLtoShort,linkAsset) {
+function gooShorten(URLtoShort,linkAsset,replaceText) {
+	if (replaceText===undefined)
+		replaceText=false;
     $.ajax({
 	    type: 'POST',
 	    async: false,
@@ -1933,7 +2034,10 @@ function gooShorten(URLtoShort,linkAsset) {
 	    data: '{ longUrl: "'+ URLtoShort +'"}',
 		success : function(text)
 	         {
-	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	         	if (!replaceText)
+	             		linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	             	else
+	             		linkAsset.val(text.id);
 	         }
 	})
 }
@@ -1948,6 +2052,22 @@ $(document).on("click", '#searchIdBtn', function(e){
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
 	searchNameRun()
+})
+
+/*trigger marker*/
+$("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    $(this).siblings(".mkBox").show();
+}).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    $(this).siblings(".mkBox").hide();
+});
+
+/*keep markerbox visible*/
+$("body").on("mouseenter",".mkBox", function(e){
+	$(this).show();
+}).on("mouseleave",".mkBox", function(e){
+	$(this).hide();
+}).on("click", ".mkBox", function(e){
+	$(this).siblings("a").addClass("marker");
 })
 
 /*Binds Enter KEY to BOX*/
