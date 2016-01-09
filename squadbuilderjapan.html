@@ -55,7 +55,7 @@ if (window.location.hash == '#_=_') {
 	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
 	<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
 	<a href="#" role="button" id="resetInactive" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i> All Skills</a>
-	<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Clear Squad</a>
+	<a href="#" role="button" id="clearSquad" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Squad</a>
 </div>
 <!--Containing Div-->
 <div class="container-fluid" id="rawMod">
@@ -355,6 +355,36 @@ if (window.location.hash == '#_=_') {
       <div class="modal-body">
 	<div class="row text-center" id="showSkillBody"></div>
 	<div class="row text-center"><button class="btn btn-success" id="moreUnitsBtn"></button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- marker Modal -->
+<div class="modal" id="markerModal" tabindex="-1" role="dialog" aria-labelledby="markerModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="cross">&times;</span></button>
+        <h4 class="modal-title"><b>Share Suggested Skills</b></h4>
+      </div>
+      <div class="modal-body text-center">
+      	<h2><i class="fa fa-2x fa-share-alt text-success text-center"></i></h2>
+	<h5>Mark skills by (Leader, BB/SBB or UBB) with <i class="fa fa-border fa-check-square-o text-danger"></i> and share it to help other players.</h5>
+	<h5>A handy way to write guides too.</h5>
+	<h5>Copy <kbd>ctrl + c</kbd> and paste <kbd>ctrl + p</kbd> to share.</h5>
+		<hr>
+		<h4><b>Share markers with squad</b></h4>
+			<input id="markerShare" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers without Squad</b></h4>
+			<input id="markerOnlyShare" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers with squad [Reddit]</b></h4>
+			<input id="markerShareReddit" class="form-control" type="text" readonly>
+		<hr>
+		<h4><b>Share markers without Squad [Reddit]</b></h4>
+			<input id="markerOnlyShareReddit" class="form-control" type="text" readonly>
       </div>
     </div>
   </div>
