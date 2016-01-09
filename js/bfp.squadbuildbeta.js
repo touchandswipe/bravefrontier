@@ -1705,6 +1705,8 @@ $(document).on("click", '#clearSquad', function(e){
 	e.preventDefault();
 	$(".unitBox").each( function(){
 		$(this).html(trashStr);
+		var boxID=$(this).attr("id").slice(-1);
+		$("#stats"+boxID).html("");
 	})
 	refreshALL();
 	refreshSpheres();
