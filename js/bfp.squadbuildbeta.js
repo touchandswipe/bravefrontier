@@ -1021,10 +1021,37 @@ function generateBtns(btnclass,dest,mapArray) {
 function buildMarkerLink(){
 	var markersArray=[];
 	$(".marker").each( function(e){
-		markerID=$(this).siblings("a").attr("id");
-		if (markerID=="lsBtns")
-		
+		var markerDesc=$(this).siblings("a").children(".btnDesc").text();
+		if ($(this).hasClass("lsBtns")) {
+			for (i in lsMap) {
+				if (lsMap[i].desc==markerDesc) {
+					var markerID=lsMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("l"+markerID);
+			console.log("l"+markerID);
+		} else if ($(this).hasClass("bbBtns")) {
+			for (i in bbMap) {
+				if (bbMap[i].desc==markerDesc) {
+					var markerID=bbMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("b"+markerID);
+			console.log("b"+markerID);
+		} else if ($(this).hasClass("ubbBtns")) {
+			for (i in bbMap) {
+				if (bbMap[i].desc==markerDesc) {
+					var markerID=bbMap[i].id;
+					break;
+				}
+			}
+			markersArray.push("u"+markerID);
+			console.log("u"+markerID);
+		}
 	})
+	console.log(markersArray);
 }
 
 function getTop(btnclass,btnDesc) {
