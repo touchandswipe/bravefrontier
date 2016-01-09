@@ -2035,7 +2035,7 @@ function gooShorten(URLtoShort,linkAsset,replaceText) {
 	         	if (!replaceText)
 	             		linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
 	             	else
-	             		linkAsset.text(text.id);
+	             		linkAsset.val(text.id);
 	         }
 	})
 }
