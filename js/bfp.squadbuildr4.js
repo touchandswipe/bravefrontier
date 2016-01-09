@@ -156,7 +156,9 @@ lsMap=[
 bbMap=[
 	{id:1,desc:"% HP+", impact:"max hp% increase"},
 	{id:2,desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
+	{id:201,desc:"% ATK+ SELF", impact:"self atk% buff", turns:"self stat buff turns"},
 	{id:3,desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
+	{id:301,desc:"% DEF+ SELF", impact:"self def% buff", turns:"self stat buff turns"},
 	{id:4,desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
 	{id:5,desc:"% Elemental ATK+", impact:"atk% buff (13)", impact2:"element buffed", turns:"buff turns"},
 	{id:6,desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
@@ -1383,11 +1385,38 @@ function refreshALL() {
 }
 
 function refreshSpheres(){
-	var unitRun=["A","B","C","D","E","F"];
+	var bbScope=["bb","sbb"];
 	$.each( unitBonus, function( key, bonus ) {
 		var extraBonus=$("#extra_"+key+" option:selected").attr("data-val").split(",");
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
+		var selfBuff=0;
+		/*self buffs stack*/
+		if ($("#unit"+key+" .dragBox .unitSelected").length) {
+			var sUnit=$("#unit"+key+" .dragBox .unitSelected").attr("data-unitid");
+			/*bb skills*/
+			for (var x in bbScope) {
+				var scanArray=rawParseObj[sUnit][bbScope[x]].effects;
+				for (var i in scanArray) {
+					if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
+						if (scanArray[i]["atk% buff (1)"])
+							selfBuff+= +scanArray[i]["atk% buff (1)"];
+						if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
+							selfBuff+= +scanArray[i]["self atk% buff"];
+					}
+				}
+			}
+			/*ubb skills*/
+			var scanArray=rawParseObj[sUnit]["ubb"].effects;
+			for (var i in scanArray) {
+				if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
+					if (scanArray[i]["atk% buff (1)"])
+						selfBuff+= +scanArray[i]["atk% buff (1)"];
+					if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
+						selfBuff+= +scanArray[i]["self atk% buff"];
+				}
+			}
+		}
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
@@ -1397,7 +1426,7 @@ function refreshSpheres(){
 			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
 			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7],
-			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8]
+			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8] + +selfBuff
 		];
 	})
 }
