@@ -156,7 +156,9 @@ lsMap=[
 bbMap=[
 	{id:1,desc:"% HP+", impact:"max hp% increase"},
 	{id:2,desc:"% ATK+", impact:"atk% buff (1)", turns:"buff turns"},
+	{id:201,desc:"% ATK+ SELF", impact:"self atk% buff", turns:"self stat buff turns"},
 	{id:3,desc:"% DEF+", impact:"def% buff (3)", turns:"buff turns"},
+	{id:301,desc:"% DEF+ SELF", impact:"self def% buff", turns:"self stat buff turns"},
 	{id:4,desc:"% REC+", impact:"rec% buff (5)", turns:"buff turns"},
 	{id:5,desc:"% Elemental ATK+", impact:"atk% buff (13)", impact2:"element buffed", turns:"buff turns"},
 	{id:6,desc:"% HC+", impact:"hc drop rate% buff (9)", turns:"drop rate buff turns"},
@@ -1399,6 +1401,8 @@ function refreshSpheres(){
 					if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
 						if (scanArray[i]["atk% buff (1)"])
 							selfBuff+= +scanArray[i]["atk% buff (1)"];
+						if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
+							selfBuff+= +scanArray[i]["atk% buff (1)"];
 					}
 				}
 			}
@@ -1407,6 +1411,8 @@ function refreshSpheres(){
 			for (var i in scanArray) {
 				if (scanArray[i]["target type"] && scanArray[i]["target type"]=="self") {
 					if (scanArray[i]["atk% buff (1)"])
+						selfBuff+= +scanArray[i]["atk% buff (1)"];
+					if (scanArray[i]["self atk% buff"]) /*jp stack buff*/
 						selfBuff+= +scanArray[i]["atk% buff (1)"];
 				}
 			}
