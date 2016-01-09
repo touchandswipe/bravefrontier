@@ -1954,7 +1954,7 @@ $(document).on("click", '#searchNameBtn', function(e){
 })
 
 /*trigger marker*/
-$(document).on("mouseenter,mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+$(document).on("mouseenter mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
     e.preventDefault();
     console.log("triggered");
     $(this).siblings(".mkBtn").toggle();
