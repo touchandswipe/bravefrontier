@@ -1010,6 +1010,8 @@ function generateBtns(btnclass,dest,mapArray) {
     var bbString="";
     for (i in mapArray) {
     	bbString+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
+    	/*markers*/
+    	bbString+='<div class="mkBox"><i class="fa fa-exclamation" data-skill="'+mapArray[i].desc+'"></i></div>';
     	bbString+='<a href="#" class="btn '+btnclass+' btn-sm btn-default" disabled="disabled"><span class="btnDesc">'+mapArray[i].desc+'</span></a>';
     	bbString+='</div>';
     }
@@ -1949,6 +1951,18 @@ $(document).on("click", '#searchIdBtn', function(e){
 $(document).on("click", '#searchNameBtn', function(e){
     e.preventDefault();
 	searchNameRun()
+})
+
+/*trigger marker*/
+$(document).on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    e.preventDefault();
+    $(this).siblings(".mkBtn").css("visibility","visible");
+})
+
+/*trigger marker out*/
+$(document).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    e.preventDefault();
+    $(this).siblings(".mkBtn").css("visibility","hidden");
 })
 
 /*Binds Enter KEY to BOX*/
