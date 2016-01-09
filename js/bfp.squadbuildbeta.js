@@ -1438,10 +1438,29 @@ function loadSquad() {
 	if (markerParam!="") {
 		var markerRef=markerParam.split(',');
 		for (var i in markerRef) {
+			var markerID= +markerRef[i].substr(1);
 			if (markerRef[i].charAt(0)=="l") {
-				
+				var scanArray=lsMap;
+				var scanBtns=".lsBtns";
+			} else if (markerRef[i].charAt(0)=="b") {
+				var scanArray=bbMap;
+				var scanBtns=".bbBtns";
+			} else if (markerRef[i].charAt(0)=="u") {
+				var scanArray=bbMap;
+				var scanBtns=".ubbBtns";
 			}
-				
+			/*find obj*/
+			for (var j in scanArray) {
+				if (scanArray[j].id==markerID) {
+					var markerString=scanArray[j].desc;
+					break;
+				}
+			}
+			/*scan btns*/
+			$(scanBtns+" .btnDesc").each( function(){
+				if ($(this).text()=markerString)
+					$(this).parent("a").addClass("marker");
+			})
 		}
 	}
 	/*sphere load*/
@@ -1760,8 +1779,8 @@ $(document).on("click", '#shareMarkerBtn', function(e){
 	if (markerParam) {
 		var markerURL=location.protocol + '//' + location.host + location.pathname + "?squad=" + encodeURIComponent(sParam)+"&type=" + encodeURIComponent(tParam)+"&sphere=" + encodeURIComponent(sphereParam)+"&marker="+encodeURIComponent(markerParam);
 		var markerOnlyURL=location.protocol + '//' + location.host + location.pathname + "?marker="+encodeURIComponent(markerParam);
-		gooShorten(markerURL, $('#markerShare') );
-		gooShorten(markerOnlyURL, $('#markerOnlyShare') );
+		gooShorten(markerURL, $('#markerShare'),true);
+		gooShorten(markerOnlyURL, $('#markerOnlyShare'),true);
 		$("#markerShareReddit").text(redditTxtA+"("+window.location.href+"&marker="+markerParam+")");
 		$("#markerOnlyShareReddit").text(redditTxtA+"("+location.protocol + '//' + location.host + location.pathname+"?marker="+markerParam+")");
 	} else {
@@ -2001,7 +2020,9 @@ function isValidJSON(str) {
 }
 
 /*AJAX Call to Google URL Shortener API*/
-function gooShorten(URLtoShort,linkAsset) {
+function gooShorten(URLtoShort,linkAsset,replaceText) {
+	if (replaceText===undefined)
+		replaceText=false;
     $.ajax({
 	    type: 'POST',
 	    async: false,
@@ -2010,7 +2031,10 @@ function gooShorten(URLtoShort,linkAsset) {
 	    data: '{ longUrl: "'+ URLtoShort +'"}',
 		success : function(text)
 	         {
-	             	linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	         	if (!replaceText)
+	             		linkAsset.html('<a href="'+text.id+'">'+text.id+'</a>');
+	             	else
+	             		linkAsset.text(text.id);
 	         }
 	})
 }
