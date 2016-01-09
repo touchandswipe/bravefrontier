@@ -1018,6 +1018,7 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+/*scan for markers*/
 function buildMarkerLink(){
 	var markersArray=[];
 	$(".marker").each( function(e){
@@ -1294,7 +1295,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><span id="share_this_icon"></span><h5 style="margin-top:4px;">Share Squad</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i style="margin:5px auto;" class="fa fa-link fa-2x sumIcon" title="Squad Link"></i><h5 id="shareURL"><a href="#" role="button" id="getShort" class="btn btn-sm btn-default">Get short URL</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i style="margin:5px auto;" class="fa fa-reddit-alien fa-2x sumIcon" title="Squad Link"></i><h5><a href="#" role="button" id="getReddit" class="btn btn-sm btn-default">Reddit Markdown</a></h5></div>';
-	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Share Marked Skills"><b>Share Marked<br>Skills</b></h4><h5><a href="#" role="button" id="shareMarkerBtn" class="btn btn-sm btn-default">Get links</a></h5></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Share Marked Skills"><b>Share Marked<br>Skills</b></h4><h5><a href="#" role="button" id="deleteMarkers" class="btn btn-sm btn-danger" title="Delete all markers."><i class="fa fa-trash-o"></i></a> <a href="#" role="button" id="shareMarkerBtn" class="btn btn-sm btn-default">Get links</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad DMG Estimation"><b>SQUAD<br>DMG</b></h4><h5><a href="#" role="button" id="calculateDMG" class="btn btn-md btn-success">Calculate</a></h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-dollar fa-2x sumIcon" title="Unit Cost (less Ally)"></i><h5>'+sCost+' Cost</h5></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><i class="fa fa-users fa-2x sumIcon" title="Unique Elements"></i><h5>'+sElementCount+' Unique<br>Element(s)</h5></div>';
@@ -1649,7 +1650,7 @@ $(document).on("click", '.typeBtn', function(e){
 	refreshParam();
 })
 
-/*Trash Unit*/
+/*Trigger selection*/
 $(document).on("change", '[id^=extra_],[id^=sphere1_],[id^=sphere2_]', function(e){
 	e.preventDefault();
 	refreshSpheres();
@@ -1678,6 +1679,12 @@ $(document).on("click", '.qkTrash', function(e){
 	refreshALL();
 	refreshSpheres();
 	refreshBonus()
+})
+
+/*Trash Markers*/
+$(document).on("click", '#deleteMarkers', function(e){
+	e.preventDefault();
+	$('.markers').toggleClass("markers");
 })
 
 /*clearSquad*/
