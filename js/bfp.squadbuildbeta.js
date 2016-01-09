@@ -1954,10 +1954,16 @@ $(document).on("click", '#searchNameBtn', function(e){
 })
 
 /*trigger marker*/
-$(document).on("mouseenter mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+$("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    $(this).siblings(".mkBox").show();
+}).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+    $(this).siblings(".mkBox").hide();
+})
+
+/*keep markerbox visible*/
+$("body").on("mouseenter", '.mkBox', function(e){
     e.preventDefault();
-    console.log("triggered");
-    $(this).siblings(".mkBox").toggle();
+    $(this).siblings(".mkBox").show();
 })
 
 /*Binds Enter KEY to BOX*/
