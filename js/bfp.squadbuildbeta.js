@@ -562,9 +562,11 @@ function scanSkills(classBtns,scanScope) {
 											/*build TOPval*/
 											if (bbMap[k].impact.charAt(0)!="!") {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
-													if ($(this).attr("data-top") && isNumber(scanArray[j][bbMap[k].impact])) {
-														if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
-															$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+													if (isNumber(scanArray[j][bbMap[k].impact])) {
+														if ($(this).attr("data-top")) {
+															if ($(this).attr("data-top")<scanArray[j][bbMap[k].impact])
+																$(this).attr("data-top", scanArray[j][bbMap[k].impact]);
+														} else { $(this).attr("data-top", scanArray[j][bbMap[k].impact]); }
 													}
 												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
 											} else {
@@ -583,7 +585,7 @@ function scanSkills(classBtns,scanScope) {
 												if (scanArray[j]["target type"] && scanArray[j]["target type"]!="self") {
 													if (isNumber(scanArray[j][bbMap[k].impact]))
 														$(this).attr("data-top",scanArray[j][bbMap[k].impact]);
-												} else { console.log("whats up"); /*0 for self buff*/ }
+												} else { $(this).attr("data-top", 0); /*0 for self buff*/ }
 											} else {
 												var nestedArray=bbMap[k].impact.substr(1).split("||");
 												var getNestedVal=nestedChk(nestedArray[1],scanArray[j]);
