@@ -1018,6 +1018,15 @@ function generateBtns(btnclass,dest,mapArray) {
     $(dest).append(bbString);
 }
 
+function buildMarkerLink(){
+	var markersArray=[];
+	$(".marker").each( function(e){
+		markerID=$(this).siblings("a").attr("id");
+		if (markerID=="lsBtns")
+		
+	})
+}
+
 function getTop(btnclass,btnDesc) {
 	var returnVal=0
 	$(btnclass+" .btnDesc").each( function() {
