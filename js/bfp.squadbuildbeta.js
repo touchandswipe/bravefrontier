@@ -1389,6 +1389,7 @@ function refreshSpheres(){
 		var sphere1Bonus=$("#sphere1_"+key+" option:selected").attr("data-val").split(",");
 		var sphere2Bonus=$("#sphere2_"+key+" option:selected").attr("data-val").split(",");
 		var selfBuff=0;
+		/*self buffs stack*/
 		if ($("#unit"+key+" .dragBox .unitSelected").length) {
 			var sUnit=$("#unit"+key+" .dragBox .unitSelected").attr("data-unitid");
 			/*bb skills*/
@@ -1409,7 +1410,6 @@ function refreshSpheres(){
 						selfBuff+= +scanArray[i]["atk% buff (1)"];
 				}
 			}
-			console.log(selfBuff);
 		}
 		unitBonus[key]=[
 			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
@@ -1420,7 +1420,7 @@ function refreshSpheres(){
 			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
 			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7],
-			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8] + +selfBuff/100
+			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8] + +selfBuff
 		];
 	})
 }
