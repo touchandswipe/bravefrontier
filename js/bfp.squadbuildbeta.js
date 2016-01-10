@@ -1343,6 +1343,26 @@ function generateSummary() {
 	});
 }
 
+/*Unit Summary*/
+function loadUnitSummary(arrayID) {
+	var unitHTML="";
+	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
+	var skillPrefix='<table class="table table-bordered table-striped">';
+	var skillSCope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
+	/*scan*/
+	$.each(skillScope, function(shortSkill,longSkill) {
+		unitHTML+='<h3>'+longSkill+'</h3>';
+		unitHTML+=skillPrefix;
+		$.each(rawParseObj[arrayID][shortSkill].effects, function(key,val) {
+			if (exclude.indexOf(key)==-1) {
+				unitHTML+='<tr><td>'+key'+'</td>';
+				unitHTML+='<td>'+val+'</td></tr>';
+			}
+		})
+		unitHTML+='</table>';
+	})
+}
+
 /*fill squad box*/
 function parseUnit(slot,rawID) {
 	var insertHTML="";
