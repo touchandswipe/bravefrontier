@@ -1348,7 +1348,7 @@ function loadUnitSummary(arrayID) {
 	var unitHTML="";
 	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
 	var skillPrefix='<table class="table table-bordered table-striped">';
-	var skillSCope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
+	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		unitHTML+='<h3>'+longSkill+'</h3>';
@@ -1386,7 +1386,7 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
-	insertHTML+='<li>><a href="#" data-id="'+rawID+'" class="loadUnitLink">View unit summary</a></li>';
+	insertHTML+='<li><a href="#" data-id="'+rawID+'" class="loadUnitLink">View unit summary</a></li>';
 	insertHTML+='</ul><h6 class="pimptxt"><i class="fa fa-exclamation-circle"></i> stats are max pimped</h6>';
 	$("#stats"+uRef).html(insertHTML);
 }
