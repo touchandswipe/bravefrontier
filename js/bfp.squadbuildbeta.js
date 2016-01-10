@@ -1347,20 +1347,30 @@ function generateSummary() {
 function loadUnitSummary(arrayID) {
 	var unitHTML="";
 	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
-	var skillPrefix='<table class="table table-condensed table-bordered table-striped small">';
+	var skillPrefix='<table class="table table-condensed table-bordered table-striped small"><thead><th>effects</th><th>value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
-	unitHTML+='<h4>'+rawParseObj[arrayID].name+'</h4>';
+	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
 		unitHTML+=skillPrefix;
 		for (var i in rawParseObj[arrayID][shortSkill].effects) {
+			var eff=1;
 			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
+				unitHTML+=(eff==1) ? '<tr class="split">' : '</tr>';
 				if (exclude.indexOf(key)==-1) {
-					unitHTML+='<tr><td><b>'+key+'</b></td>';
-					unitHTML+='<td>'+val+'</td></tr>';
+					if (val.constructor === Object) {
+						$.each(val, function(dkey,dval) {
+							unitHTML+='<td><b>'+dkey+'</b></td>';
+							unitHTML+='<td>'+dval+'</td>';
+						})
+					}
+					unitHTML+='<td><b>'+key+'</b></td>';
+					unitHTML+='<td>'+val+'</td>';
 				}
+				unitHTML+='</tr>';
+				eff+=1;
 			})
 		}
 		unitHTML+='</table>';
