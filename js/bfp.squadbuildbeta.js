@@ -1362,6 +1362,7 @@ function loadUnitSummary(arrayID) {
 		unitHTML+='</table>';
 	})
 	$("#unitInfoBox").html(unitHTML);
+	$("#unitModal").modal("show")
 }
 
 /*fill squad box*/
