@@ -1347,16 +1347,16 @@ function generateSummary() {
 function loadUnitSummary(arrayID) {
 	var unitHTML="";
 	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
-	var skillPrefix='<table class="table table-bordered table-striped">';
+	var skillPrefix='<table class="table table-condensed table-bordered table-striped small">';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
-		unitHTML+='<h3>'+longSkill+'</h3>';
+		unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
 		unitHTML+=skillPrefix;
 		for (var i in rawParseObj[arrayID][shortSkill].effects) {
 			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
 				if (exclude.indexOf(key)==-1) {
-					unitHTML+='<tr><td>'+key+'</td>';
+					unitHTML+='<tr><td><b>'+key+'</b></td>';
 					unitHTML+='<td>'+val+'</td></tr>';
 				}
 			})
