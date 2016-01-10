@@ -1349,7 +1349,7 @@ function loadUnitSummary(arrayID) {
 	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
 	var skillPrefix='<table class="table table-condensed table-bordered table-striped small">';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
-	unitHTML+='<img src="'rawParseObj[arrayID].img+'" width="80">';
+	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
 	unitHTML+='<h4>'+rawParseObj[arrayID].name+'</h4>';
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
