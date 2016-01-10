@@ -4,6 +4,7 @@
     h3 {
         font-weight:bold;
     }
+    .split { border:1px solid #888; }
     .mkBox {
         position: absolute;
         border: 1px solid red;
