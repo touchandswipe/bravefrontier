@@ -5,6 +5,7 @@
         font-weight:bold;
     }
     .split { border:1px solid #888 !important; }
+    th {text-align:center;width:50%;}
     .mkBox {
         position: absolute;
         border: 1px solid red;
