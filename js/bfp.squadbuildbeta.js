@@ -1343,11 +1343,16 @@ function generateSummary() {
 	});
 }
 
+/*unit summary help*/
+function crawl(objA) {
+	
+}
+
 /*Unit Summary*/
 function loadUnitSummary(arrayID) {
 	var unitHTML="";
 	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
-	var skillPrefix='<table class="table table-condensed table-bordered table-striped small"><thead><th>effects</th><th>value</th></thead>';
+	var skillPrefix='<table class="table table-condensed table-bordered table-striped small"><thead><th>Effects</th><th>Value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
 	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
@@ -1358,7 +1363,7 @@ function loadUnitSummary(arrayID) {
 		for (var i in rawParseObj[arrayID][shortSkill].effects) {
 			var eff=1;
 			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
-				unitHTML+=(eff==1) ? '<tr class="split">' : '</tr>';
+				unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
 				if (exclude.indexOf(key)==-1) {
 					if (val.constructor === Object) {
 						$.each(val, function(dkey,dval) {
@@ -1368,9 +1373,9 @@ function loadUnitSummary(arrayID) {
 					}
 					unitHTML+='<td><b>'+key+'</b></td>';
 					unitHTML+='<td>'+val+'</td>';
+					eff+=1;
 				}
 				unitHTML+='</tr>';
-				eff+=1;
 			})
 		}
 		unitHTML+='</table>';
