@@ -1353,12 +1353,14 @@ function loadUnitSummary(arrayID) {
 	$.each(skillScope, function(shortSkill,longSkill) {
 		unitHTML+='<h3>'+longSkill+'</h3>';
 		unitHTML+=skillPrefix;
-		$.each(rawParseObj[arrayID][shortSkill].effects, function(key,val) {
-			if (exclude.indexOf(key)==-1) {
-				unitHTML+='<tr><td>'+key+'</td>';
-				unitHTML+='<td>'+val+'</td></tr>';
-			}
-		})
+		for (var i in rawParseObj[arrayID][shortSkill].effects) {
+			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
+				if (exclude.indexOf(key)==-1) {
+					unitHTML+='<tr><td>'+key+'</td>';
+					unitHTML+='<td>'+val+'</td></tr>';
+				}
+			})
+		}
 		unitHTML+='</table>';
 	})
 	$("#unitInfoBox").html(unitHTML);
