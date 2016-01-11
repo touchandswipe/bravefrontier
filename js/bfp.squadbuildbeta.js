@@ -1144,6 +1144,7 @@ function generateSummary() {
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
+	var totalHits=[0,0,0];
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1159,6 +1160,13 @@ function generateSummary() {
 			bbSpam["MAX SBB DC"]+=rawParseObj[selectUnit]["sbbdc"];
 		if (rawParseObj[selectUnit]["sbbcost"])
 			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
+		/*hits total*/
+		if (rawParseObj[selectUnit].hits)
+			totalHits[0]+=rawParseObj[selectUnit].hits;
+		if (rawParseObj[selectUnit].bbhits)
+			totalHits[1]+=rawParseObj[selectUnit].bbhits;
+		if (rawParseObj[selectUnit].sbbhits)
+			totalHits[2]+=rawParseObj[selectUnit].sbbhits;
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
@@ -1255,6 +1263,10 @@ function generateSummary() {
 	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br>";
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
+	/*hits summary*/
+	var hitsLS=["HitCount+/Hit"];
+	var hitsBB=["HitCount+/Hit"];
+	var hitsUBB=["HitCount+/Hit"];
 	/*ATK summary*/
 	var atkBB=["% ATK+","% DMG+ to Ailed Enemy"];
 	var atkUBB=["% ATK+"];
@@ -1972,10 +1984,6 @@ if (typeof mappedNames !== 'undefined') {
 			unitObj.bbhits=valObj.bb.hits;
 		else
 			unitObj.bbhits=0;
-		if (valObj["bb"]["max bc generated"])
-			unitObj.bbdc=valObj.bb["max bc generated"];
-		else
-			unitObj.bbdc=0;
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
@@ -2002,10 +2010,6 @@ if (typeof mappedNames !== 'undefined') {
 				unitObj.sbbhits=valObj.sbb.hits;
 			else
 				unitObj.sbbhits=0;
-			if (valObj["sbb"]["max bc generated"])
-				unitObj.sbbdc=valObj.sbb["max bc generated"];
-			else
-				unitObj.sbbdc=0;
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
@@ -2033,14 +2037,12 @@ if (typeof mappedNames !== 'undefined') {
 			unitObj.ubbhits=valObj.ubb.hits;
 		else
 			unitObj.ubbhits=0;
-		if (valObj["ubb"]["max bc generated"])
-			unitObj.ubbdc=valObj.ubb["max bc generated"];
-		else
-			unitObj.ubbdc=0;
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
 		        	if (valObj["ubb"]["levels"][9]["effects"]) {
+		        		unitObj.ubbcost=valObj["ubb"]["levels"][9]["bc cost"];
+		        		unitObj.ubbdc=valObj["ubb"]["max bc generated"];
 		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
     							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
