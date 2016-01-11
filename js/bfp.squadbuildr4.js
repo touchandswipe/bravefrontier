@@ -87,6 +87,7 @@ lsBonus=[0,0,0,0,0,0,0,0,0];
 unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
 squadSparkDMG=0;
 squadCritDMG=0;
+squadNormalHitsX={ls:0,bb:0};
 squadElementDMG=0;
 squadATKBUFF=0;
 squadBBDMG=0;
@@ -1290,11 +1291,14 @@ function generateSummary() {
 	var normalHitsBuff=0;
 	for (var i in hitsLS)
 		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
+	/*update LS normal hits*/
+	squadNormalHitsX.ls=normalHitsBuff;
 	for (var i in hitsBB)
 		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
 	for (var i in hitsUBB)
 		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
-	console.log("Max hits buff "+normalHitsBuff);
+	/*update BB Normal hits*/
+	squadNormalHitsX.bb= +normalHitsBuff - +squadNormalHitsX.ls;
 	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
 	hitsHTML+= +totalHits[0]*(1 + +normalHitsBuff) +'<b> MAX Normal Hits</b><br>';
 	hitsHTML+= +totalHits[1] +'<b> BB Hits</b><br>';
@@ -1639,10 +1643,12 @@ function loadSquad() {
 
 /*Calculate Squad DMG*/
 function showDMG() {
+	var squadTotalNormal=0;
 	var squadTotalBB=0;
 	var squadTotalSBB=0;
 	var squadTotalUBB=0;
 	var unitHTMLArray=[];
+	var normalHitsBuff= +(0.5 * +squadNormalHitsX.ls) + +squadNormalHitsX.bb;
 	/*Process for Each Unit*/
 	$(".unitBox .dragBox .unitSelected").each( function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1651,6 +1657,7 @@ function showDMG() {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
+		var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
 		if (+rawParseObj[selectUnit].bbdmg!=0)
 			var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
@@ -1668,10 +1675,12 @@ function showDMG() {
 		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
 		//console.log("WEAKNESS part "+(1.5 * +unitBonus[unitX][6]/100));
 		//console.log("AGGREGATE "+ (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100));
+		squadTotalNormal+= +unitNormalDMG;
 		squadTotalBB+= +unitBBDMG;
 		squadTotalSBB+= +unitSBBDMG;
 		squadTotalUBB+= +unitUBBDMG;
-		unitHTML+='<h5><b>BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'m</h5>';
+		unitHTML+='<h5><b>Normal:</b> '+(unitNormalDMG/1000000).toFixed(2)+'m</h5>';
+		unitHTML+='<h5><b class="text-primary">BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='</div>';
@@ -1679,7 +1688,8 @@ function showDMG() {
 	});
 	/*total*/
 	var totalHTML='<div class="col-xs-12 col-md-12"><hr><h3><b class="text-center">Squad Total</b></h3>';
-	totalHTML+='<h4><b>BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
+	totalHTML+='<h4><b>Normal: </b>'+ +(squadTotalNormal/1000000).toFixed(2) + 'm</h4>';
+	totalHTML+='<h4><b class="text-primary">BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
 	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs, Unit ES Buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
