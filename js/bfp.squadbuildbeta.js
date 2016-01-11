@@ -1299,8 +1299,6 @@ function generateSummary() {
 		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
 	/*update BB Normal hits*/
 	squadNormalHitsX.bb= +normalHitsBuff - +squadNormalHitsX.ls;
-	/*Total Update*/
-	squadNormalHitsX=normalHitsBuff;
 	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
 	hitsHTML+= +totalHits[0]*(1 + +normalHitsBuff) +'<b> MAX Normal Hits</b><br>';
 	hitsHTML+= +totalHits[1] +'<b> BB Hits</b><br>';
