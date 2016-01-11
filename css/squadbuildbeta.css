@@ -4,7 +4,6 @@
     h3 {
         font-weight:bold;
     }
-    tr.split td {border-top:1px solid #888 !important;}
     th {text-align:center;width:50% !important;}
     .mkBox {
         position: absolute;
