@@ -1361,7 +1361,8 @@ function loadUnitSummary(arrayID) {
 				unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
 				if (exclude.indexOf(key)==-1) {
 					if (val.constructor === Array) {
-						for (var j in val) {
+						var ln=val.length;
+						for (j=0;j<val.length;j++) {
 							$.each(val[j], function(dkey,dval) {
 								unitHTML+='<td><b>'+dkey+'</b></td>';
 								unitHTML+='<td>'+dval+'</td>';
