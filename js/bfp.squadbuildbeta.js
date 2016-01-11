@@ -88,7 +88,7 @@ lsMap=[
 	{id:9,desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{id:10,desc:"% DEF+ First Turns", stack:true, impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{id:11,desc:"% CRIT+", stack:true, impact:"crit% buff"},
-	{id:76,desc:"HitCount+/Hit", stack:true, impact:"hit increase/hit",stack:true,impact2:"extra hits dmg%"},
+	{id:76,desc:"HitCount+/Hit", stack:true, impact:"hit increase/hit"},
 	{id:12,desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
 	{id:13,desc:"% Spark DMG Debuff", stack:true, impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
 	{id:14,desc:"% Spark DMG+ on SparkCount", stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
