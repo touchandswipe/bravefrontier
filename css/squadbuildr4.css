@@ -4,6 +4,8 @@
     h3 {
         font-weight:bold;
     }
+    th {text-align:center;width:50%;background:#DDF; !important;}
+    .effHead{padding:0 !important;height:2px;background:#CCF;}
     .mkBox {
         position: absolute;
         border: 1px solid red;
@@ -26,7 +28,7 @@
     }
     .pimptxt {margin:0;color:#C00;}
     .badge {padding:2px 5px !important;}
-    .dBtn {margin-top:-8px;}
+    .dBtn {margin-top:-8px;min-width:24px;}
     .imgDMG {width:80px;height:80px;}
     #expandAll {
         width:93%;
