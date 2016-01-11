@@ -1407,7 +1407,6 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
-	insertHTML+='<li><a href="#" data-id="'+rawID+'" class="loadUnitLink">View unit summary</a></li>';
 	insertHTML+='</ul><h6 class="pimptxt"><i class="fa fa-exclamation-circle"></i> stats are max pimped</h6>';
 	$("#stats"+uRef).html(insertHTML);
 }
@@ -1710,7 +1709,7 @@ $(document).on("click", '#calculateDMG', function(e){
 /*load unit summary*/
 $(document).on("click", '.loadUnitLink', function(e){
 	e.preventDefault();
-	loadUnitSummary($(this).attr("data-id"))
+	loadUnitSummary($(this).siblings(".unitBox .dragbox .unitSelected").attr("data-unitid"))
 })
 
 /*MoveinActive skills*/
