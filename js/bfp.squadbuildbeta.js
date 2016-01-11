@@ -1353,36 +1353,37 @@ function loadUnitSummary(arrayID) {
 	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
-		unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
-		unitHTML+=skillPrefix;
-		for (var i in rawParseObj[arrayID][shortSkill].effects) {
-			var eff=1;
-			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
-				unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
-				if (exclude.indexOf(key)==-1) {
-					if (val.constructor === Array) {
-						var ln=val.length;
-						for (var j=0;j<ln;j++) {
-							$.each(val[j], function(dkey,dval) {
+		if (rawParseObj[arrayID][shortSkill]!="none") {
+			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			unitHTML+=skillPrefix;
+			for (var i in rawParseObj[arrayID][shortSkill].effects) {
+				var eff=1;
+				$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
+					unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
+					if (exclude.indexOf(key)==-1) {
+						if (key=="triggered effect") {
+							for (var j in val) {
+								$.each(val[j], function(dkey,dval) {
+									unitHTML+='<td><b>'+dkey+'</b></td>';
+									unitHTML+='<td>'+dval+'</td>';
+								})
+							}
+						}
+						if (val.constructor === Object) {
+							$.each(val, function(dkey,dval) {
 								unitHTML+='<td><b>'+dkey+'</b></td>';
 								unitHTML+='<td>'+dval+'</td>';
 							})
 						}
+						unitHTML+='<td><b>'+key+'</b></td>';
+						unitHTML+='<td>'+val+'</td>';
+						eff+=1;
 					}
-					if (val.constructor === Object) {
-						$.each(val, function(dkey,dval) {
-							unitHTML+='<td><b>'+dkey+'</b></td>';
-							unitHTML+='<td>'+dval+'</td>';
-						})
-					}
-					unitHTML+='<td><b>'+key+'</b></td>';
-					unitHTML+='<td>'+val+'</td>';
-					eff+=1;
-				}
-				unitHTML+='</tr>';
-			})
+					unitHTML+='</tr>';
+				})
+			}
+			unitHTML+='</table>';
 		}
-		unitHTML+='</table>';
 	})
 	$("#unitInfoBox").html(unitHTML);
 	$("#unitModal").modal("show")
