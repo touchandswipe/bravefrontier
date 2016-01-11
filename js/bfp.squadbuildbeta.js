@@ -1351,10 +1351,17 @@ function loadUnitSummary(arrayID) {
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
 	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
+	unitHTML+='Normal Hits: '+rawParseObj[arrayID].hits;
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			if (rawParseObj[arrayID][shortSkill+'hits'])
+				unitHTML+='Hits: '+rawParseObj[arrayID][shortSkill+'hits']+" ";
+			if (rawParseObj[arrayID][shortSkill+'dc'])
+				unitHTML+='Max Drop Check: '+rawParseObj[arrayID][shortSkill+'dc']+" ";
+			if (rawParseObj[arrayID][shortSkill+'cost'])
+				unitHTML+='Cost: '+rawParseObj[arrayID][shortSkill+'cost']+" ";
 			unitHTML+=skillPrefix;
 			for (var i in rawParseObj[arrayID][shortSkill].effects) {
 				unitHTML+='<tr><td colspan="2" class="danger effHead"></td></tr>';
@@ -1947,6 +1954,7 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
+        unitObj.hits=valObj.hits;
         unitObj.element=valObj.element;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
@@ -1957,6 +1965,14 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.bbdmg=0;
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
+		if (valObj["bb"]["hits"])
+			unitObj.bbhits=valObj.bb.hits;
+		else
+			unitObj.bbhits=0;
+		if (valObj["bb"]["max bc generated"])
+			unitObj.bbdc=valObj.bb["max bc generated"];
+		else
+			unitObj.bbdc=0;
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
@@ -1979,6 +1995,14 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
 		if (valObj["sbb"]["levels"]) {
+			if (valObj["sbb"]["hits"])
+				unitObj.sbbhits=valObj.sbb.hits;
+			else
+				unitObj.sbbhits=0;
+			if (valObj["sbb"]["max bc generated"])
+				unitObj.sbbdc=valObj.sbb["max bc generated"];
+			else
+				unitObj.sbbdc=0;
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
@@ -2002,6 +2026,14 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.ubbdmg=0;
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
+        	if (valObj["ubb"]["hits"])
+			unitObj.ubbhits=valObj.ubb.hits;
+		else
+			unitObj.ubbhits=0;
+		if (valObj["ubb"]["max bc generated"])
+			unitObj.ubbdc=valObj.ubb["max bc generated"];
+		else
+			unitObj.ubbdc=0;
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
