@@ -1343,6 +1343,57 @@ function generateSummary() {
 	});
 }
 
+/*Unit Summary*/
+function loadUnitSummary(arrayID) {
+	var unitHTML="";
+	var exclude=["proc id", "passive id", "effect delay time(ms)/frame"];
+	var skillPrefix='<table class="table table-condensed table-bordered small"><thead><th>Effects</th><th>Value</th></thead>';
+	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
+	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
+	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
+	/*scan*/
+	$.each(skillScope, function(shortSkill,longSkill) {
+		if (rawParseObj[arrayID][shortSkill]!="none") {
+			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			unitHTML+='<h6>';
+			if (rawParseObj[arrayID][shortSkill+'hits'])
+				unitHTML+='<b>Hits:</b> '+rawParseObj[arrayID][shortSkill+'hits']+" ";
+			if (rawParseObj[arrayID][shortSkill+'dc'])
+				unitHTML+='<b>Max Drop Check:</b> '+rawParseObj[arrayID][shortSkill+'dc']+" ";
+			if (rawParseObj[arrayID][shortSkill+'cost'])
+				unitHTML+='<b>Cost:</b> '+rawParseObj[arrayID][shortSkill+'cost']+" ";
+			unitHTML+='</h6>';
+			unitHTML+=skillPrefix;
+			for (var i in rawParseObj[arrayID][shortSkill].effects) {
+				unitHTML+='<tr><td colspan="2" class="effHead"></td></tr>';
+				$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
+					if (exclude.indexOf(key)==-1) {
+						if (key=="triggered effect" || key=="conditions") {
+							for (var j in val) {
+								$.each(val[j], function(dkey,dval) {
+									unitHTML+='<tr><td><b>'+dkey+'</b></td>';
+									unitHTML+='<td>'+dval+'</td></tr>';
+								})
+							}
+						} else if (val.constructor===Object) {
+							$.each(val, function(dkey,dval) {
+								unitHTML+='<tr><td><b>'+dkey+'</b></td>';
+								unitHTML+='<td>'+dval+'</td></tr>';
+							})
+						} else {
+							unitHTML+='<tr><td><b>'+key+'</b></td>';
+							unitHTML+='<td>'+val+'</td></tr>';
+						}
+					}
+				})
+			}
+			unitHTML+='</table>';
+		}
+	})
+	$("#unitInfoBox").html(unitHTML);
+	$("#unitModal").modal("show")
+}
+
 /*fill squad box*/
 function parseUnit(slot,rawID) {
 	var insertHTML="";
@@ -1663,6 +1714,12 @@ $(document).on("click", '#calculateDMG', function(e){
 	$("#damageModal").modal("show");
 })
 
+/*load unit summary*/
+$(document).on("click", '.loadUnitLink', function(e){
+	e.preventDefault();
+	loadUnitSummary($(this).siblings(".unitBox").find(".unitSelected").attr("data-unitid"))
+})
+
 /*MoveinActive skills*/
 $(document).on("click", '#moveInactive', function(e){
 	e.preventDefault();
@@ -1898,6 +1955,8 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
+        unitObj.lshits=valObj.hits;
+        unitObj.lsdc=valObj["max bc generated"];
         unitObj.element=valObj.element;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
@@ -1908,6 +1967,14 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.bbdmg=0;
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
+		if (valObj["bb"]["hits"])
+			unitObj.bbhits=valObj.bb.hits;
+		else
+			unitObj.bbhits=0;
+		if (valObj["bb"]["max bc generated"])
+			unitObj.bbdc=valObj.bb["max bc generated"];
+		else
+			unitObj.bbdc=0;
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
@@ -1930,6 +1997,14 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
 		if (valObj["sbb"]["levels"]) {
+			if (valObj["sbb"]["hits"])
+				unitObj.sbbhits=valObj.sbb.hits;
+			else
+				unitObj.sbbhits=0;
+			if (valObj["sbb"]["max bc generated"])
+				unitObj.sbbdc=valObj.sbb["max bc generated"];
+			else
+				unitObj.sbbdc=0;
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
@@ -1953,6 +2028,14 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.ubbdmg=0;
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
+        	if (valObj["ubb"]["hits"])
+			unitObj.ubbhits=valObj.ubb.hits;
+		else
+			unitObj.ubbhits=0;
+		if (valObj["ubb"]["max bc generated"])
+			unitObj.ubbdc=valObj.ubb["max bc generated"];
+		else
+			unitObj.ubbdc=0;
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
