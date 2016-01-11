@@ -1145,6 +1145,7 @@ function generateSummary() {
 	var typeParam=[];
 	var sphereParam=[];
 	var totalHits=[0,0,0];
+	var buffedHits=0;
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1267,7 +1268,18 @@ function generateSummary() {
 	var hitsLS=["HitCount+/Hit"];
 	var hitsBB=["HitCount+/Hit"];
 	var hitsUBB=["HitCount+/Hit"];
-	/*ATK summary*/
+	var normalHitsBuff=0;
+	for (var i in hitsLS)
+		normalHitsBuff+=getTop(".lsBtns",hitsLS[i]);
+	for (var i in hitsBB)
+		normalHitsBuff+=getTop(".bbBtns",hitsBB[i]);
+	for (var i in hitsUBB)
+		normalHitsBuff+=getTop(".ubbBtns",hitsUBB[i]);
+	console.log("Max hits buff "+normalHitsBuff);
+	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
+	hitsHTML+= +totalHits[0]*(1 + +normalHitsBuff) +'<b> MAX Normal Hits</b><br>';
+	hitsHTML+= +totalHits[1] +'<b> BB Hits</b><br>';
+	hitsHTML+= +totalHits[2] +'<b> SBB Hits</b><br>';
 	var atkBB=["% ATK+","% DMG+ to Ailed Enemy"];
 	var atkUBB=["% ATK+"];
 	var atkBBTotal=0;
@@ -1341,6 +1353,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br>Weakness</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br>SPAM</b></h4><h6>'+bbSpamHTML.join("<br>")+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad HitCounts"><b>Total<br>HitCounts</b></h4><h6>'+hitsHTML+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	refreshParam(true);
 	/*load sharethis buttons*/
