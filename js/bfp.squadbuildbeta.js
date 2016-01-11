@@ -1162,8 +1162,8 @@ function generateSummary() {
 		if (rawParseObj[selectUnit]["sbbcost"])
 			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
 		/*hits total*/
-		if (rawParseObj[selectUnit].hits)
-			totalHits[0]+=rawParseObj[selectUnit].hits;
+		if (rawParseObj[selectUnit].lshits)
+			totalHits[0]+=rawParseObj[selectUnit].lshits;
 		if (rawParseObj[selectUnit].bbhits)
 			totalHits[1]+=rawParseObj[selectUnit].bbhits;
 		if (rawParseObj[selectUnit].sbbhits)
