@@ -1273,7 +1273,7 @@ function generateSummary() {
 		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
 	for (var i in hitsBB) {
 		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
-		console.log("bb hits buff "+getTop(".bbBtns",hitsBB[i]));
+		console.log("bb hits buff " + getTop(".bbBtns",hitsBB[i]));
 	}
 	for (var i in hitsUBB)
 		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
