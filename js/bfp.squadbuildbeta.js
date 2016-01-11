@@ -1347,7 +1347,7 @@ function generateSummary() {
 function loadUnitSummary(arrayID) {
 	var unitHTML="";
 	var exclude=["proc id", "passive id", "effect delay time(ms)/frame"];
-	var skillPrefix='<table class="table table-condensed table-bordered table-striped small"><thead><th>Effects</th><th>Value</th></thead>';
+	var skillPrefix='<table class="table table-condensed table-bordered small"><thead><th>Effects</th><th>Value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
 	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
