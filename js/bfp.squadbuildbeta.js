@@ -1367,14 +1367,15 @@ function loadUnitSummary(arrayID) {
 									unitHTML+='<td>'+dval+'</td></tr>';
 								})
 							}
-						} else if (val.constructor === Object) {
+						} else if (val.constructor===Object) {
 							$.each(val, function(dkey,dval) {
 								unitHTML+='<tr><td><b>'+dkey+'</b></td>';
 								unitHTML+='<td>'+dval+'</td></tr>';
 							})
+						} else {
+							unitHTML+='<tr><td><b>'+key+'</b></td>';
+							unitHTML+='<td>'+val+'</td></tr>';
 						}
-						unitHTML+='<tr><td><b>'+key+'</b></td>';
-						unitHTML+='<td>'+val+'</td></tr>';
 					}
 				})
 			}
