@@ -4,8 +4,8 @@
     h3 {
         font-weight:bold;
     }
-    th {text-align:center;width:50% !important;}
-    .effHead{padding:1px 0;font-weight:bold;}
+    th {text-align:center;width:50%;background:#DDF; !important;}
+    .effHead{padding:0;height:2px;}
     .mkBox {
         position: absolute;
         border: 1px solid red;
