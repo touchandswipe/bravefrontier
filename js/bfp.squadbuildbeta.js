@@ -1357,29 +1357,26 @@ function loadUnitSummary(arrayID) {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
 			unitHTML+=skillPrefix;
 			for (var i in rawParseObj[arrayID][shortSkill].effects) {
-				var eff=1;
+				unitHTML+='<tr><td colspan="2" class="info effHead">juicy bits</td></tr>';
 				$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
-					unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
 					if (exclude.indexOf(key)==-1) {
 						if (key=="triggered effect") {
 							for (var j in val) {
 								$.each(val[j], function(dkey,dval) {
-									unitHTML+='<td><b>'+dkey+'</b></td>';
-									unitHTML+='<td>'+dval+'</td>';
+									unitHTML+='<tr><td><b>'+dkey+'</b></td>';
+									unitHTML+='<td>'+dval+'</td></tr>';
 								})
 							}
 						}
 						if (val.constructor === Object) {
 							$.each(val, function(dkey,dval) {
-								unitHTML+='<td><b>'+dkey+'</b></td>';
-								unitHTML+='<td>'+dval+'</td>';
+								unitHTML+='<tr><td><b>'+dkey+'</b></td>';
+								unitHTML+='<td>'+dval+'</td></tr>';
 							})
 						}
-						unitHTML+='<td><b>'+key+'</b></td>';
-						unitHTML+='<td>'+val+'</td>';
-						eff+=1;
+						unitHTML+='<tr><td><b>'+key+'</b></td>';
+						unitHTML+='<td>'+val+'</td></tr>';
 					}
-					unitHTML+='</tr>';
 				})
 			}
 			unitHTML+='</table>';
