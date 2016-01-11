@@ -1362,7 +1362,7 @@ function loadUnitSummary(arrayID) {
 				if (exclude.indexOf(key)==-1) {
 					if (val.constructor === Array) {
 						var ln=val.length;
-						for (j=0;j<val.length;j++) {
+						for (var j=0;j<ln;j++) {
 							$.each(val[j], function(dkey,dval) {
 								unitHTML+='<td><b>'+dkey+'</b></td>';
 								unitHTML+='<td>'+dval+'</td>';
