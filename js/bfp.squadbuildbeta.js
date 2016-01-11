@@ -87,7 +87,7 @@ lsBonus=[0,0,0,0,0,0,0,0,0];
 unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
 squadSparkDMG=0;
 squadCritDMG=0;
-squadNormalHitsX=0;
+squadNormalHitsX=[ls:0,bb:0];
 squadElementDMG=0;
 squadATKBUFF=0;
 squadBBDMG=0;
@@ -1291,10 +1291,14 @@ function generateSummary() {
 	var normalHitsBuff=0;
 	for (var i in hitsLS)
 		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
+	/*update LS normal hits*/
+	squadNormalHitsX.ls=normalHitsBuff;
 	for (var i in hitsBB)
 		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
 	for (var i in hitsUBB)
 		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
+	/*update BB Normal hits*/
+	squadNormalHitsX.bb= +normalHitsBuff - +squadNormalHitsX.ls;
 	/*Total Update*/
 	squadNormalHitsX=normalHitsBuff;
 	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
@@ -1646,6 +1650,7 @@ function showDMG() {
 	var squadTotalSBB=0;
 	var squadTotalUBB=0;
 	var unitHTMLArray=[];
+	var normalHitsBuff= +(0.5 * +squadNormalHitsX.ls) + +squadNormalHitsX.bb;
 	/*Process for Each Unit*/
 	$(".unitBox .dragBox .unitSelected").each( function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1654,8 +1659,8 @@ function showDMG() {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		console.log("hits multiplier " + squadNormalHitsX);
-		var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +squadNormalHitsX);
+		console.log("hits multiplier " + normalHitsBuff);
+		var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
 		if (+rawParseObj[selectUnit].bbdmg!=0)
 			var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
