@@ -1267,14 +1267,16 @@ function generateSummary() {
 	/*hits summary*/
 	var hitsLS=["HitCount+/Hit"];
 	var hitsBB=["HitCount+/Hit"];
-	var hitsUBB=["HitCount+/Hit"];
+	var hitsUBB=["Hitcount+/Hit"];
 	var normalHitsBuff=0;
 	for (var i in hitsLS)
-		normalHitsBuff+=getTop(".lsBtns",hitsLS[i]);
-	for (var i in hitsBB)
-		normalHitsBuff+=getTop(".bbBtns",hitsBB[i]);
+		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
+	for (var i in hitsBB) {
+		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
+		console.log("bb hits buff "+getTop(".bbBtns",hitsBB[i]));
+	}
 	for (var i in hitsUBB)
-		normalHitsBuff+=getTop(".ubbBtns",hitsUBB[i]);
+		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
 	console.log("Max hits buff "+normalHitsBuff);
 	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
 	hitsHTML+= +totalHits[0]*(1 + +normalHitsBuff) +'<b> MAX Normal Hits</b><br>';
