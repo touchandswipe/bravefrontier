@@ -5,7 +5,7 @@
         font-weight:bold;
     }
     th {text-align:center;width:50%;background:#DDF; !important;}
-    .effHead{padding:0;height:2px;}
+    .effHead{padding:0;height:2px !important;}
     .mkBox {
         position: absolute;
         border: 1px solid red;
