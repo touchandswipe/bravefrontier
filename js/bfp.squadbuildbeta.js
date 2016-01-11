@@ -1351,17 +1351,18 @@ function loadUnitSummary(arrayID) {
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
 	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
-	unitHTML+='Normal Hits: '+rawParseObj[arrayID].hits;
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			unitHTML+='<h6>';
 			if (rawParseObj[arrayID][shortSkill+'hits'])
-				unitHTML+='Hits: '+rawParseObj[arrayID][shortSkill+'hits']+" ";
+				unitHTML+='<b>Hits:</b> '+rawParseObj[arrayID][shortSkill+'hits']+" ";
 			if (rawParseObj[arrayID][shortSkill+'dc'])
-				unitHTML+='Max Drop Check: '+rawParseObj[arrayID][shortSkill+'dc']+" ";
+				unitHTML+='<b>Max Drop Check:</b> '+rawParseObj[arrayID][shortSkill+'dc']+" ";
 			if (rawParseObj[arrayID][shortSkill+'cost'])
-				unitHTML+='Cost: '+rawParseObj[arrayID][shortSkill+'cost']+" ";
+				unitHTML+='<b>Cost:</b> '+rawParseObj[arrayID][shortSkill+'cost']+" ";
+			unitHTML+='</h6>';
 			unitHTML+=skillPrefix;
 			for (var i in rawParseObj[arrayID][shortSkill].effects) {
 				unitHTML+='<tr><td colspan="2" class="danger effHead"></td></tr>';
@@ -1954,7 +1955,8 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
-        unitObj.hits=valObj.hits;
+        unitObj.lshits=valObj.hits;
+        unitObj.lsdc=valObj["max bc generated"];
         unitObj.element=valObj.element;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
