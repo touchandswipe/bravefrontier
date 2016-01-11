@@ -173,7 +173,7 @@ bbMap=[
 	{id:14,desc:"Cure Ails", impact:"ailments cured", hideprefix:true},
 	{id:15,desc:"Null Ails", impact:"resist status ails turns", turns:"resist status ails turns", hideprefix:true},
 	{id:16,desc:"Null Stats Debuff", impact:"stat down immunity buff turns", turns:"stat down immunity buff turns", hideprefix:true},
-	{id:17,desc:"Hitcount+/Hit", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
+	{id:17,desc:"HitCount+/Hit", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
 	{id:18,desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
 	{id:19,desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
 	{id:20,desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
@@ -1267,14 +1267,12 @@ function generateSummary() {
 	/*hits summary*/
 	var hitsLS=["HitCount+/Hit"];
 	var hitsBB=["HitCount+/Hit"];
-	var hitsUBB=["Hitcount+/Hit"];
+	var hitsUBB=["HitCount+/Hit"];
 	var normalHitsBuff=0;
 	for (var i in hitsLS)
 		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
-	for (var i in hitsBB) {
+	for (var i in hitsBB)
 		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
-		console.log("bb hits buff " + getTop(".bbBtns",hitsBB[i]));
-	}
 	for (var i in hitsUBB)
 		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
 	console.log("Max hits buff "+normalHitsBuff);
