@@ -1343,15 +1343,9 @@ function generateSummary() {
 	});
 }
 
-/*unit summary help*/
-function crawl(objA) {
-	
-}
-
 /*Unit Summary*/
 function loadUnitSummary(arrayID) {
 	var unitHTML="";
-	var exclude=["proc id","passive id","effect delay time(ms)/frame"];
 	var skillPrefix='<table class="table table-condensed table-bordered table-striped small"><thead><th>Effects</th><th>Value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
@@ -1365,6 +1359,14 @@ function loadUnitSummary(arrayID) {
 			$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
 				unitHTML+= (eff==1) ? '<tr class="split">' : '</tr>';
 				if (exclude.indexOf(key)==-1) {
+					if (val.constructor === Array) {
+						for (var j in val) {
+							$.each(val[j], function(dkey,dval) {
+								unitHTML+='<td><b>'+dkey+'</b></td>';
+								unitHTML+='<td>'+dval+'</td>';
+							})
+						}
+					}
 					if (val.constructor === Object) {
 						$.each(val, function(dkey,dval) {
 							unitHTML+='<td><b>'+dkey+'</b></td>';
