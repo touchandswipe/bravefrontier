@@ -35,6 +35,7 @@ sphereList=[
 	{name:"Illusion Gizmo",nick:"illugizmo",stats:[0,0.3,0,0,0.5,0,0.5,0,0]},
 	{name:"Impiety Orb",nick:"impiety",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Infidelity Orb",nick:"infidel",stats:[0.15,0.15,0.15,0.15,0,1,0,0,0]},
+	{name:"Ishrion",nick:"ishrion",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Lafdranya",nick:"lafdranya",stats:[0,0,0.5,0,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
 	{name:"Luna Laguliz",nick:"lunalaguliz",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
