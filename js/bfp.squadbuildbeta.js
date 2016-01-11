@@ -1365,7 +1365,7 @@ function loadUnitSummary(arrayID) {
 			unitHTML+='</h6>';
 			unitHTML+=skillPrefix;
 			for (var i in rawParseObj[arrayID][shortSkill].effects) {
-				unitHTML+='<tr><td colspan="2" class="danger effHead"></td></tr>';
+				unitHTML+='<tr><td colspan="2" class="effHead"></td></tr>';
 				$.each(rawParseObj[arrayID][shortSkill].effects[i], function(key,val) {
 					if (exclude.indexOf(key)==-1) {
 						if (key=="triggered effect" || key=="conditions") {
