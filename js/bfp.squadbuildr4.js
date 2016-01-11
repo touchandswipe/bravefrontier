@@ -88,7 +88,7 @@ lsMap=[
 	{id:9,desc:"% ATK+ First Turns", stack:true, impact:"first x turns atk% (1)", criteria:["first x turns"]},
 	{id:10,desc:"% DEF+ First Turns", stack:true, impact:"first x turns def% (3)", criteria:["first x turns"]},
 	{id:11,desc:"% CRIT+", stack:true, impact:"crit% buff"},
-	{id:76,desc:"HitCount+/Hit", stack:true, impact:"hit increase/hit",stack:true},
+	{id:76,desc:"HitCount+/Hit", stack:true, impact:"hit increase/hit"},
 	{id:12,desc:"% Spark DMG+", impact:"damage% for spark",stack:true},
 	{id:13,desc:"% Spark DMG Debuff", stack:true, impact:"spark debuff%",chance:"spark debuff chance%",criteria:["spark debuff turns"]},
 	{id:14,desc:"% Spark DMG+ on SparkCount", stack:true, impact:"!spark count buff activation||buff.spark dmg% buff", impact2:"!buff.spark dmg% buff", turns:"!buff turns (40)",criteria:["spark count buff activation"], hideprefix:true},
@@ -173,7 +173,7 @@ bbMap=[
 	{id:14,desc:"Cure Ails", impact:"ailments cured", hideprefix:true},
 	{id:15,desc:"Null Ails", impact:"resist status ails turns", turns:"resist status ails turns", hideprefix:true},
 	{id:16,desc:"Null Stats Debuff", impact:"stat down immunity buff turns", turns:"stat down immunity buff turns", hideprefix:true},
-	{id:17,desc:"Hitcount+/Hit", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
+	{id:17,desc:"HitCount+/Hit", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
 	{id:18,desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
 	{id:19,desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
 	{id:20,desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
@@ -1144,6 +1144,8 @@ function generateSummary() {
 	var sParam=[];
 	var typeParam=[];
 	var sphereParam=[];
+	var totalHits=[0,0,0];
+	var buffedHits=0;
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1159,6 +1161,13 @@ function generateSummary() {
 			bbSpam["MAX SBB DC"]+=rawParseObj[selectUnit]["sbbdc"];
 		if (rawParseObj[selectUnit]["sbbcost"])
 			bbSpam["SBB Cost"]+=rawParseObj[selectUnit]["sbbcost"];
+		/*hits total*/
+		if (rawParseObj[selectUnit].lshits)
+			totalHits[0]+=rawParseObj[selectUnit].lshits;
+		if (rawParseObj[selectUnit].bbhits)
+			totalHits[1]+=rawParseObj[selectUnit].bbhits;
+		if (rawParseObj[selectUnit].sbbhits)
+			totalHits[2]+=rawParseObj[selectUnit].sbbhits;
 		/*builds element*/
 		sElement[rawParseObj[selectUnit].element]+=1;
 		/*builds id array*/
@@ -1255,7 +1264,22 @@ function generateSummary() {
 	bbatkHTML+="LS <b>"+bbatkLSTotal+"%</b><br>";
 	bbatkHTML+="BB/SBB <b>"+bbatkBBTotal+"%</b><br>";
 	bbatkHTML+="UBB <b>"+bbatkUBBTotal+"%</b>";
-	/*ATK summary*/
+	/*hits summary*/
+	var hitsLS=["HitCount+/Hit"];
+	var hitsBB=["HitCount+/Hit"];
+	var hitsUBB=["HitCount+/Hit"];
+	var normalHitsBuff=0;
+	for (var i in hitsLS)
+		normalHitsBuff+= +getTop(".lsBtns",hitsLS[i]);
+	for (var i in hitsBB)
+		normalHitsBuff+= +getTop(".bbBtns",hitsBB[i]);
+	for (var i in hitsUBB)
+		normalHitsBuff+= +getTop(".ubbBtns",hitsUBB[i]);
+	console.log("Max hits buff "+normalHitsBuff);
+	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
+	hitsHTML+= +totalHits[0]*(1 + +normalHitsBuff) +'<b> MAX Normal Hits</b><br>';
+	hitsHTML+= +totalHits[1] +'<b> BB Hits</b><br>';
+	hitsHTML+= +totalHits[2] +'<b> SBB Hits</b><br>';
 	var atkBB=["% ATK+","% DMG+ to Ailed Enemy"];
 	var atkUBB=["% ATK+"];
 	var atkBBTotal=0;
@@ -1329,6 +1353,7 @@ function generateSummary() {
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB ATK%+ Buff Potential"><b>BB ATK%<br>BUFF</b></h4><h6>'+bbatkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Elemental Weakness Potential (LS, BB, SBB, UBB Total)"><b>Elemental<br>Weakness</b></h4><h6>'+elementWkHTML+'</h6></div>';
 	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="BB Spam"><b>BB<br>SPAM</b></h4><h6>'+bbSpamHTML.join("<br>")+'</h6></div>';
+	sHTML+='<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center htfixed2"><h4 class="bbspam sumIcon" style="margin-top:0;" title="Squad HitCounts"><b>Total<br>HitCounts</b></h4><h6>'+hitsHTML+'</h6></div>';
 	$("#SummarySpace").html(sHTML);
 	refreshParam(true);
 	/*load sharethis buttons*/
@@ -1972,10 +1997,6 @@ if (typeof mappedNames !== 'undefined') {
 			unitObj.bbhits=valObj.bb.hits;
 		else
 			unitObj.bbhits=0;
-		if (valObj["bb"]["max bc generated"])
-			unitObj.bbdc=valObj.bb["max bc generated"];
-		else
-			unitObj.bbdc=0;
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
@@ -2002,10 +2023,6 @@ if (typeof mappedNames !== 'undefined') {
 				unitObj.sbbhits=valObj.sbb.hits;
 			else
 				unitObj.sbbhits=0;
-			if (valObj["sbb"]["max bc generated"])
-				unitObj.sbbdc=valObj.sbb["max bc generated"];
-			else
-				unitObj.sbbdc=0;
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
@@ -2033,14 +2050,12 @@ if (typeof mappedNames !== 'undefined') {
 			unitObj.ubbhits=valObj.ubb.hits;
 		else
 			unitObj.ubbhits=0;
-		if (valObj["ubb"]["max bc generated"])
-			unitObj.ubbdc=valObj.ubb["max bc generated"];
-		else
-			unitObj.ubbdc=0;
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][9])
 	        		unitObj.ubb=valObj["ubb"]["levels"][9];
 		        	if (valObj["ubb"]["levels"][9]["effects"]) {
+		        		unitObj.ubbcost=valObj["ubb"]["levels"][9]["bc cost"];
+		        		unitObj.ubbdc=valObj["ubb"]["max bc generated"];
 		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
     							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
