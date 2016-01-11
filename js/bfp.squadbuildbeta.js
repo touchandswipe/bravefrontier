@@ -1709,7 +1709,6 @@ $(document).on("click", '#calculateDMG', function(e){
 /*load unit summary*/
 $(document).on("click", '.loadUnitLink', function(e){
 	e.preventDefault();
-	console.log($(this).siblings(".unitBox").find(".unitSelected").attr("data-unitid"));
 	loadUnitSummary($(this).siblings(".unitBox").find(".unitSelected").attr("data-unitid"))
 })
 
