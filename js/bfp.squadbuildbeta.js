@@ -10,7 +10,7 @@ sphereList=[
 	{name:"Generic 40%",nick:"generic40",stats:[0.4,0.4,0.4,0.4,0,0,0,0,0]},
 	{name:"Generic 45%",nick:"generic45",stats:[0.45,0.45,0.45,0.45,0,0,0,0,0]},
 	{name:"Axe of Hadaron",nick:"axehadaron",stats:[0,0.2,0.2,0,0,0,0.3,0,2.8]},
-	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0,0,0,0,0,0,0,0.75]},
+	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0,0,0,0,0,0,0e,0.75]},
 	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,0,0,0,1,0,0,0,1.5]},
 	{name:"Batootha",nick:"batootha",stats:[0,0.3,0.3,0,0,0.5,0,0,0]},
 	{name:"Blades of Ultor",nick:"bladeultor",stats:[0,0.3,0.3,0,1,0,0,0,0]},
@@ -1726,7 +1726,7 @@ function showDMG(includeubb) {
 	totalHTML+='<h4><b class="text-primary">BB: </b>'+ +(squadTotalBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-warning">SBB: </b>'+ +(squadTotalSBB/1000000).toFixed(2) + 'm</h4>';
 	totalHTML+='<h4><b class="text-danger">UBB: </b>'+ +(squadTotalUBB/1000000).toFixed(2) + 'm</h4><hr>';
-	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs, Unit ES Buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Highest available elemental weakness is assumed active regardless of element for now. DMG calculated based on best case, all UBB DMG effects activated. Normal HITs has 50% dmg penalty for LS HitCount+ bonuses as per data. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
+	totalHTML+='<h5 class="text-danger"><b>*NOTE*</b> Excludes conversion buffs, Unit ES Buffs for now. Unit stats are max pimped. Assume ignore DEF, All Hits Spark, All Hits CRIT and ATK+ items used. Element DMG is now appropriately applied by unit element. DMG calculated based on best case, all UBB DMG effects activated. Normal HITs has 50% dmg penalty for LS HitCount+ bonuses as per data. DMG shown is for 1x Enemy and expressed in (m)illions.</h5>';
 	totalHTML+='</div>';
 	$("#unitDmgBox").html(unitHTMLArray.join(" ")+totalHTML);
 }
