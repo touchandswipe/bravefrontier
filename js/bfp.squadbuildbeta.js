@@ -1711,7 +1711,6 @@ function showDMG(includeubb) {
 		unitHTML+='<h5><b class="text-primary">BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'m</h5>';
-		unitHTML+='<h5><b class="text-danger">XUBB:</b> '+(unitXUBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
