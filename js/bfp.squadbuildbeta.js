@@ -1810,7 +1810,6 @@ $(document).on("change", "input[name=ubboptions]", function(e){
 		showDMG(false);
 	else
 		showDMG(true);
-	console.log("toggled");
 	$("#damageModal").modal("show");
 })
 
