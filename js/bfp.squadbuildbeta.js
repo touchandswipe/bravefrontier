@@ -90,7 +90,7 @@ squadNormalHitsX={ls:0,bb:0,ubb:0};
 squadElementDMG=0; /*{ls:0,bb:0,ubb:0};*/
 squadATKBUFF={ls:0,bb:0,ubb:0};
 squadBBDMG={ls:0,bb:0,ubb:0};
-lsBonus=[0,0,0,0,squadCRITDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
+lsBonus=[0,0,0,0,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
