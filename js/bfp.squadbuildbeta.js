@@ -10,7 +10,7 @@ sphereList=[
 	{name:"Generic 40%",nick:"generic40",stats:[0.4,0.4,0.4,0.4,0,0,0,0,0]},
 	{name:"Generic 45%",nick:"generic45",stats:[0.45,0.45,0.45,0.45,0,0,0,0,0]},
 	{name:"Axe of Hadaron",nick:"axehadaron",stats:[0,0.2,0.2,0,0,0,0.3,0,2.8]},
-	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0,0,0,0,0,0,0e,0.75]},
+	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0,0,0,0,0,0,0,0.75]},
 	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,0,0,0,1,0,0,0,1.5]},
 	{name:"Batootha",nick:"batootha",stats:[0,0.3,0.3,0,0,0.5,0,0,0]},
 	{name:"Blades of Ultor",nick:"bladeultor",stats:[0,0.3,0.3,0,1,0,0,0,0]},
