@@ -1356,12 +1356,12 @@ function generateSummary() {
 		squadElementDMG[key]["bb"]+= +getTop(".bbBtns",elementWk[key]);
 		squadElementDMG[key]["ubb"]+= +getTop(".ubbBtns",elementWk[key]);
 	});
-	var elementWkHTML="Fire <b>" + +squadElementDMG["fire"]["ls"] + +squadElementDMG["fire"]["bb"] + +squadElementDMG["fire"]["ubb"] + "%</b><br>";
-	elementWkHTML+="Water <b>" + +squadElementDMG["water"]["ls"] + +squadElementDMG["water"]["bb"] + +squadElementDMG["water"]["ubb"] + "%</b><br>";
-	elementWkHTML+="Earth <b>" + +squadElementDMG["earth"]["ls"] + +squadElementDMG["earth"]["bb"] + +squadElementDMG["earth"]["ubb"] + "%</b><br>";
-	elementWkHTML+="Thunder <b>" + +squadElementDMG["thunder"]["ls"] + +squadElementDMG["thunder"]["bb"] + +squadElementDMG["thunder"]["ubb"] + "%</b><br>";
-	elementWkHTML+="Light <b>" + +squadElementDMG["light"]["ls"] + +squadElementDMG["light"]["bb"] + +squadElementDMG["light"]["ubb"] + "%</b><br>";
-	elementWkHTML+="Dark <b>" + +squadElementDMG["dark"]["ls"] + +squadElementDMG["dark"]["bb"] + +squadElementDMG["dark"]["ubb"] + "%</b><br>";
+	var elementWkHTML="Fire <b>" + (+squadElementDMG["fire"]["ls"] + +squadElementDMG["fire"]["bb"] + +squadElementDMG["fire"]["ubb"]) + "%</b><br>";
+	elementWkHTML+="Water <b>" + (+squadElementDMG["water"]["ls"] + +squadElementDMG["water"]["bb"] + +squadElementDMG["water"]["ubb"]) + "%</b><br>";
+	elementWkHTML+="Earth <b>" + (+squadElementDMG["earth"]["ls"] + +squadElementDMG["earth"]["bb"] + +squadElementDMG["earth"]["ubb"]) + "%</b><br>";
+	elementWkHTML+="Thunder <b>" + (+squadElementDMG["thunder"]["ls"] + +squadElementDMG["thunder"]["bb"] + +squadElementDMG["thunder"]["ubb"]) + "%</b><br>";
+	elementWkHTML+="Light <b>" + (+squadElementDMG["light"]["ls"] + +squadElementDMG["light"]["bb"] + +squadElementDMG["light"]["ubb"]) + "%</b><br>";
+	elementWkHTML+="Dark <b>" + (+squadElementDMG["dark"]["ls"] + +squadElementDMG["dark"]["bb"] + +squadElementDMG["dark"]["ubb"]) + "%</b><br>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -1676,28 +1676,31 @@ function showDMG(includeubb) {
 		if (includeubb)
 			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) ) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
 		else
-			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100)) ) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
+			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100)) ) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6][rawParseObj[selectUnit].element].ubb/100)) * (1 + +normalHitsBuff);
+		/*bb*/
 		if (+rawParseObj[selectUnit].bbdmg!=0) {
 			if (includeubb) {
 				var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 			} else {
-				var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].bbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].bbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+				var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].bbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].bbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6][rawParseObj[selectUnit].element].ubb/100));
 			}
 		} else
 			var unitBBDMG=0;
+		/*sbb*/
 		if (+rawParseObj[selectUnit].sbbdmg!=0) {
 			if (includeubb) {
 				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 			} else {
-				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].sbbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].sbbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].sbbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].sbbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6][rawParseObj[selectUnit].element].ubb/100));
 			}
 		} else
 			var unitSBBDMG=0;
+		/*ubb*/
 		if (+rawParseObj[selectUnit].ubbdmg!=0) {
 			if (includeubb) {
 				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 			} else {
-				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6][rawParseObj[selectUnit].element].ubb/100));
 			}
 		} else
 			var unitUBBDMG=0;
