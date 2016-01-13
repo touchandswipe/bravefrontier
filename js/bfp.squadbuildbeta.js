@@ -1791,7 +1791,7 @@ $(".unitBox").on( "drop", function(e, ui) {
 });
 
 /*Calculate BTN*/
-$(document).on("click", '#calculateDMG,#ubbyes', function(e){
+$(document).on("click", '#calculateDMG, #ubbyes', function(e){
 	e.preventDefault();
 	showDMG(true);
 	$("#damageModal").modal("show");
@@ -1801,6 +1801,7 @@ $(document).on("click", '#calculateDMG,#ubbyes', function(e){
 $(document).on("click", '#ubbno', function(e){
 	e.preventDefault();
 	showDMG(false);
+	console.log("false noubb");
 	$("#damageModal").modal("show");
 })
 
