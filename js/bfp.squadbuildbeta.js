@@ -1351,11 +1351,10 @@ function generateSummary() {
 	var lightWk="% Light Weakness DMG+";
 	var darkWk="% Dark Weakness DMG+";
 	var elementWk={fire:fireWk,water:waterWk,earth:earthWk,thunder:thunderWk,light:lightWk,dark:darkWk};
-	var elementTotal=[0,0,0,0,0,0];
 	$.each(elementWk, function(key,value) {
-		squadElementDMG[key]["ls"]+= +getTop(".lsBtns",elementWk[Key]);
-		squadElementDMG[key]["bb"]+= +getTop(".bbBtns",elementWk[Key]);
-		squadElementDMG[key]["ubb"]+= +getTop(".ubbBtns",elementWk[Key]);
+		squadElementDMG[key]["ls"]+= +getTop(".lsBtns",elementWk[key]);
+		squadElementDMG[key]["bb"]+= +getTop(".bbBtns",elementWk[key]);
+		squadElementDMG[key]["ubb"]+= +getTop(".ubbBtns",elementWk[key]);
 	});
 	var elementWkHTML="Fire <b>" + +squadElementDMG["fire"]["ls"] + +squadElementDMG["fire"]["bb"] + +squadElementDMG["fire"]["ubb"] + "%</b><br>";
 	elementWkHTML+="Water <b>" + +squadElementDMG["water"]["ls"] + +squadElementDMG["water"]["bb"] + +squadElementDMG["water"]["ubb"] + "%</b><br>";
