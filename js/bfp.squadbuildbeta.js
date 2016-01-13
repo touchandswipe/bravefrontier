@@ -1798,7 +1798,7 @@ $(document).on("click", '#calculateDMG', function(e){
 })
 
 /*Calculate BTN NO UBB*/
-$(document).on("change", "input[name=ubboptions], function(e){
+$(document).on("change", "input[name=ubboptions]", function(e){
 	e.preventDefault();
 	if ($(this).val()=="no")
 		showDMG(false);
