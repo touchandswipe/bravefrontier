@@ -1166,6 +1166,13 @@ function generateSummary() {
 	var sphereParam=[];
 	var totalHits=[0,0,0];
 	var buffedHits=0;
+	squadSparkDMG={ls:0,bb:0,ubb:0};
+	squadCritDMG={ls:0,bb:0,ubb:0};
+	squadNormalHitsX={ls:0,bb:0,ubb:0};
+	squadElementDMG=0; /*{ls:0,bb:0,ubb:0};*/
+	squadATKBUFF={ls:0,bb:0,ubb:0};
+	squadBBDMG={ls:0,bb:0,ubb:0};
+	lsBonus=[0,0,0,0,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
 		var selectUnit=$(this).attr("data-unitid");
@@ -1235,13 +1242,13 @@ function generateSummary() {
 	var sparkBB=["% Spark DMG+","% Spark DMG Debuff"];
 	var sparkUBB=["% Spark DMG+","% Spark DMG Debuff"];
 	for (var i in sparkLS) {
-		squadSparkDMG.ls= +getTop(".lsBtns",sparkLS[i]);
+		squadSparkDMG.ls+= +getTop(".lsBtns",sparkLS[i]);
 	}
 	for (var i in sparkBB) {
-		squadSparkDMG.bb= +getTop(".bbBtns",sparkBB[i]);
+		squadSparkDMG.bb+= +getTop(".bbBtns",sparkBB[i]);
 	}
 	for (var i in sparkUBB) {
-		squadSparkDMG.ubb= +getTop(".ubbBtns",sparkUBB[i]);
+		squadSparkDMG.ubb+= +getTop(".ubbBtns",sparkUBB[i]);
 	}
 	var sparkHTML='<span class="text-success"><b>TOTAL '+ (+squadSparkDMG.ls + +squadSparkDMG.bb + +squadSparkDMG.ubb) +'%</b></span><br>';
 	sparkHTML+="LS <b>"+squadSparkDMG.ls+"%</b><br>";
@@ -1255,13 +1262,13 @@ function generateSummary() {
 	var critBBTotal=0;
 	var critUBBTotal=0;
 	for (var i in critLS) {
-		squadCritDMG.ls= +getTop(".lsBtns",critLS[i]);
+		squadCritDMG.ls+= +getTop(".lsBtns",critLS[i]);
 	}
 	for (var i in critBB) {
-		squadCritDMG.bb= +getTop(".bbBtns",critBB[i]);
+		squadCritDMG.bb+= +getTop(".bbBtns",critBB[i]);
 	}
 	for (var i in critUBB) {
-		squadCritDMG.ubb= +getTop(".ubbBtns",critUBB[i]);
+		squadCritDMG.ubb+= +getTop(".ubbBtns",critUBB[i]);
 	}
 	var critHTML='<span class="text-success"><b>TOTAL '+ (+squadCritDMG.ls + +squadCritDMG.bb + +squadCritDMG.ubb) +'%</b></span><br>';
 	critHTML+="LS <b>"+squadCritDMG.ls+"%</b><br>";
@@ -1275,13 +1282,13 @@ function generateSummary() {
 	var bbatkBBTotal=0;
 	var bbatkUBBTotal=0;
 	for (var i in bbatkLS) {
-		squadBBDMG.ls= +getTop(".lsBtns",bbatkLS[i]);
+		squadBBDMG.ls+= +getTop(".lsBtns",bbatkLS[i]);
 	}
 	for (var i in atkBB) {
-		squadBBDMG.bb= +getTop(".bbBtns",bbatkBB[i]);
+		squadBBDMG.bb+= +getTop(".bbBtns",bbatkBB[i]);
 	}
 	for (var i in atkUBB) {
-		squadBBDMG.ubb= +getTop(".ubbBtns",bbatkUBB[i]);
+		squadBBDMG.ubb+= +getTop(".ubbBtns",bbatkUBB[i]);
 	}
 	var bbatkHTML='<span class="text-success"><b>TOTAL '+ (+squadBBDMG.ls + +squadBBDMG.bb + +squadBBDMG.ubb) +'%</b></span><br>';
 	bbatkHTML+="LS <b>"+squadBBDMG.ls+"%</b><br>";
@@ -1293,13 +1300,13 @@ function generateSummary() {
 	var hitsUBB=["HitCount+/Hit"];
 	var normalHitsBuff=0;
 	for (var i in hitsLS) {
-		squadNormalHitsX.ls= +getTop(".lsBtns",hitsLS[i]);
+		squadNormalHitsX.ls+= +getTop(".lsBtns",hitsLS[i]);
 	}
 	for (var i in hitsBB) {
-		squadNormalHitsX.bb= +getTop(".bbBtns",hitsBB[i]);
+		squadNormalHitsX.bb+= +getTop(".bbBtns",hitsBB[i]);
 	}
 	for (var i in hitsUBB) {
-		squadNormalHitsX.ubb= +getTop(".ubbBtns",hitsUBB[i]);
+		squadNormalHitsX.ubb+= +getTop(".ubbBtns",hitsUBB[i]);
 	}
 	var hitsHTML=totalHits[0]+'<b> Normal Hits</b><br>';
 	hitsHTML+= +totalHits[0]*(1 + +squadNormalHitsX.ls + +squadNormalHitsX.bb + +squadNormalHitsX.ubb) +'<b> MAX Normal Hits</b><br>';
@@ -1310,10 +1317,10 @@ function generateSummary() {
 	var atkBBTotal=0;
 	var atkUBBTotal=0;
 	for (var i in atkBB) {
-		squadATKBUFF.bb= +getTop(".bbBtns",atkBB[i]);
+		squadATKBUFF.bb+= +getTop(".bbBtns",atkBB[i]);
 	}
 	for (var i in atkUBB) {
-		squadATKBUFF.ubb= +getTop(".ubbBtns",atkUBB[i]);
+		squadATKBUFF.ubb+= +getTop(".ubbBtns",atkUBB[i]);
 	}
 	squadATKBUFF.ls=lsATKTotal;
 	var atkHTML='<span class="text-success"><b>TOTAL '+ (+squadATKBUFF.bb + +squadATKBUFF.ubb) +'%</b></span><br>';
