@@ -83,14 +83,14 @@ extraList=[
 	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]}
 ];
 /*Stats Calc Var*/
-lsBonus=[0,0,0,0,0,0,0,0,0];
 unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
-squadSparkDMG={ls:0,bb:0,ubb:0}ls:0,bb:0,ubb:0};
-squadCritDMG={ls:0,bb:0,ubb:0{ls:0,bb:0,ubb:0};
+squadSparkDMG={ls:0,bb:0,ubb:0};
+squadCritDMG={ls:0,bb:0,ubb:0};
 squadNormalHitsX={ls:0,bb:0,ubb:0};
-squadElementDMG={ls:0,bb:0,ubb:0};
+squadElementDMG=0; /*{ls:0,bb:0,ubb:0};*/
 squadATKBUFF={ls:0,bb:0,ubb:0};
 squadBBDMG={ls:0,bb:0,ubb:0};
+lsBonus=[0,0,0,0,squadCRITDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1315,6 +1315,7 @@ function generateSummary() {
 	for (var i in atkUBB) {
 		squadATKBUFF.ubb= +getTop(".ubbBtns",atkUBB[i]);
 	}
+	squadATKBUFF.ls=lsATKTotal;
 	var atkHTML='<span class="text-success"><b>TOTAL '+ (+squadATKBUFF.bb + +squadATKBUFF.ubb) +'%</b></span><br>';
 	atkHTML+="BB/SBB <b>"+squadATKBUFF.bb+"%</b><br>";
 	atkHTML+="UBB <b>"+squadATKBUFF.ubb+"%</b>";
@@ -1525,11 +1526,11 @@ function refreshSpheres(){
 			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
 			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2] + +extraBonus[2],
 			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3] + +extraBonus[3],
-			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4],
-			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5],
+			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4].ls + +lsBonus[4].bb + +lsBonus[4].ubb,
+			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5].ls + +lsBonus[5].bb + +lsBonus[5].ubb,
 			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
-			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7],
-			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8] + +selfBuff
+			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7].ls + +lsBonus[7].bb + +lsBonus[7].ubb,
+			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8].bb + +lsBonus[8].ubb + +selfBuff
 		];
 	})
 }
@@ -1673,6 +1674,10 @@ function showDMG() {
 			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 		else
 			var unitUBBDMG=0;
+		if (+rawParseObj[selectUnit].ubbdmg!=0)
+			var unitXUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100))) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100))) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+		else
+			var unitXUBBDMG=0;
 		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
 		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
@@ -1686,6 +1691,7 @@ function showDMG() {
 		unitHTML+='<h5><b class="text-primary">BB:</b> '+(unitBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-warning">SBB:</b> '+(unitSBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='<h5><b class="text-danger">UBB:</b> '+(unitUBBDMG/1000000).toFixed(2)+'m</h5>';
+		unitHTML+='<h5><b class="text-danger">XUBB:</b> '+(unitXUBBDMG/1000000).toFixed(2)+'m</h5>';
 		unitHTML+='</div>';
 		unitHTMLArray.push(unitHTML);
 	});
