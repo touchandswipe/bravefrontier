@@ -1653,7 +1653,9 @@ function loadSquad() {
 }
 
 /*Calculate Squad DMG*/
-function showDMG() {
+function showDMG(includeubb) {
+	if (includeubb===undefined)
+		includeubb=true;
 	var squadTotalNormal=0;
 	var squadTotalBB=0;
 	var squadTotalSBB=0;
@@ -1668,23 +1670,34 @@ function showDMG() {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
-		if (+rawParseObj[selectUnit].bbdmg!=0)
-			var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+		if (includeubb) {
+			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) ) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
 		else
+			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100)) ) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6].ubb/100)) * (1 + +normalHitsBuff);
+		if (+rawParseObj[selectUnit].bbdmg!=0) {
+			if (includeubb) {
+				var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].bbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+			} else {
+				var unitBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].bbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].bbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+			}
+		} else
 			var unitBBDMG=0;
 		if (+rawParseObj[selectUnit].sbbdmg!=0)
-			var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+			if (includeubb) {
+				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+			} else {
+				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].sbbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].sbbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+			}
 		else
 			var unitSBBDMG=0;
 		if (+rawParseObj[selectUnit].ubbdmg!=0)
-			var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+			if (includeubb) {
+				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
+			} else {
+				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
+			}
 		else
 			var unitUBBDMG=0;
-		if (+rawParseObj[selectUnit].ubbdmg!=0)
-			var unitXUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
-		else
-			var unitXUBBDMG=0;
 		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
 		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
 		//console.log("SPARK part "+(1.5 * +unitBonus[unitX][5]/100));
@@ -1779,11 +1792,19 @@ $(".unitBox").on( "drop", function(e, ui) {
 });
 
 /*Calculate BTN*/
-$(document).on("click", '#calculateDMG', function(e){
+$(document).on("click", '#calculateDMG,#ubbyes', function(e){
 	e.preventDefault();
-	showDMG();
+	showDMG(true);
 	$("#damageModal").modal("show");
 })
+
+/*Calculate BTN NO UBB*/
+$(document).on("click", '#ubbno', function(e){
+	e.preventDefault();
+	showDMG(false);
+	$("#damageModal").modal("show");
+})
+
 
 /*load unit summary*/
 $(document).on("click", '.loadUnitLink', function(e){
