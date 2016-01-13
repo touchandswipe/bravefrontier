@@ -1670,7 +1670,7 @@ function showDMG(includeubb) {
 		var unitHTML='<div class="col-xs-6 col-sm-4 col-md-4">';
 		unitHTML+='<img src="'+rawParseObj[selectUnit].img+'" class="imgDMG"/>';
 		/*{ [ (Unit ATK+Pimp) x (1+BaseMod+BBATK%+BB Mod) ]+FlatATK } x (1.5+CritMod) x (1.5+SparkMod) x (1.5+WeaknessMod)*/
-		if (includeubb) {
+		if (includeubb)
 			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100) ) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100) * (1 + +normalHitsBuff);
 		else
 			var unitNormalDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100)) ) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + (+unitBonus[unitX][6]/100 - +lsBonus[6].ubb/100)) * (1 + +normalHitsBuff);
@@ -1682,21 +1682,21 @@ function showDMG(includeubb) {
 			}
 		} else
 			var unitBBDMG=0;
-		if (+rawParseObj[selectUnit].sbbdmg!=0)
+		if (+rawParseObj[selectUnit].sbbdmg!=0) {
 			if (includeubb) {
 				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].sbbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].sbbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 			} else {
 				var unitSBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].sbbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].sbbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
 			}
-		else
+		} else
 			var unitSBBDMG=0;
-		if (+rawParseObj[selectUnit].ubbdmg!=0)
+		if (+rawParseObj[selectUnit].ubbdmg!=0) {
 			if (includeubb) {
 				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +unitBonus[unitX][8]/100 + +rawParseObj[selectUnit].ubbdmg/100 + +unitBonus[unitX][7]/100) + +rawParseObj[selectUnit].ubbflat) * (1.5 + +unitBonus[unitX][4]/100) * (1.5 + +unitBonus[unitX][5]/100) * (1.5 + +unitBonus[unitX][6]/100);
 			} else {
 				var unitUBBDMG=(+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + (+unitBonus[unitX][8]/100 - +lsBonus[8].ubb/100) + +rawParseObj[selectUnit].ubbdmg/100 + (+unitBonus[unitX][7]/100 - +lsBonus[7].ubb/100)) + +rawParseObj[selectUnit].ubbflat) * (1.5 + (+unitBonus[unitX][4]/100 - +lsBonus[4].ubb/100)) * (1.5 + (+unitBonus[unitX][5]/100 - +lsBonus[5].ubb/100)) * (1.5 + +unitBonus[unitX][6]/100);
 			}
-		else
+		} else
 			var unitUBBDMG=0;
 		//console.log("first part " + (+rawParseObj[selectUnit][unitT].atk * (2 + +unitBonus[unitX][1] + +rawParseObj[selectUnit].bbdmg/100 + +unitBonus[unitX][7]/100) + " unit BB: "+ +rawParseObj[selectUnit].bbdmg/100));
 		//console.log("CRIT part "+(1.5 * +unitBonus[unitX][4]/100));
