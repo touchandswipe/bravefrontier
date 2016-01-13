@@ -1791,17 +1791,20 @@ $(".unitBox").on( "drop", function(e, ui) {
 });
 
 /*Calculate BTN*/
-$(document).on("click", '#calculateDMG, #ubbyes', function(e){
+$(document).on("click", '#calculateDMG', function(e){
 	e.preventDefault();
 	showDMG(true);
 	$("#damageModal").modal("show");
 })
 
 /*Calculate BTN NO UBB*/
-$(document).on("click", '#ubbno', function(e){
+$(document).on("change", "input[name=ubboptions], function(e){
 	e.preventDefault();
-	showDMG(false);
-	console.log("false noubb");
+	if ($(this).val()=="no")
+		showDMG(false);
+	else
+		showDMG(true);
+	console.log("toggled");
 	$("#damageModal").modal("show");
 })
 
