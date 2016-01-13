@@ -87,10 +87,15 @@ unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[
 squadSparkDMG={ls:0,bb:0,ubb:0};
 squadCritDMG={ls:0,bb:0,ubb:0};
 squadNormalHitsX={ls:0,bb:0,ubb:0};
-squadElementDMG=0; /*{ls:0,bb:0,ubb:0};*/
 squadATKBUFF={ls:0,bb:0,ubb:0};
 squadBBDMG={ls:0,bb:0,ubb:0};
 lsBonus=[0,0,0,0,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
+function elementObj(ls, bb, ubb) {
+    this.ls=ls;
+    this.bb=bb;
+    this.ubb=ubb;
+}
+squadElementDMG={fire:new elementObj(0,0,0), water:new elementObj(0,0,0), earth:new elementObj(0,0,0), thunder:new elementObj(0,0,0), light:new elementObj(0,0,0), dark:new elementObj(0,0,0)};
 countVar=0;
 unitProcessing="";
 trashStr='<i class="fa fa-plus fa-5x"></i>';
@@ -1169,9 +1174,9 @@ function generateSummary() {
 	squadSparkDMG={ls:0,bb:0,ubb:0};
 	squadCritDMG={ls:0,bb:0,ubb:0};
 	squadNormalHitsX={ls:0,bb:0,ubb:0};
-	squadElementDMG=0; /*{ls:0,bb:0,ubb:0};*/
 	squadATKBUFF={ls:0,bb:0,ubb:0};
 	squadBBDMG={ls:0,bb:0,ubb:0};
+	squadElementDMG={fire:new elementObj(0,0,0), water:new elementObj(0,0,0), earth:new elementObj(0,0,0), thunder:new elementObj(0,0,0), light:new elementObj(0,0,0), dark:new elementObj(0,0,0)};
 	lsBonus=[0,0,0,0,squadCritDMG,squadSparkDMG,squadElementDMG,squadBBDMG,squadATKBUFF];
 	/*build param*/
 	$(".unitBox .dragBox .unitSelected").each(function(){
@@ -1345,20 +1350,19 @@ function generateSummary() {
 	var earthWk="% Earth Weakness DMG+";
 	var lightWk="% Light Weakness DMG+";
 	var darkWk="% Dark Weakness DMG+";
-	var elementWk=[fireWk,waterWk,earthWk,thunderWk,lightWk,darkWk];
+	var elementWk={fire:fireWk,water:waterWk,earth:earthWk,thunder:thunderWk,light:lightWk,dark:darkWk};
 	var elementTotal=[0,0,0,0,0,0];
-	for (var i in elementWk) {
-		elementTotal[i]+=getTop(".lsBtns",elementWk[i]);
-		elementTotal[i]+=getTop(".bbBtns",elementWk[i]);
-		elementTotal[i]+=getTop(".ubbBtns",elementWk[i]);
-	}
-	squadElementDMG=Math.max.apply(Math, elementTotal);
-	var elementWkHTML="Fire <b>"+elementTotal[0]+"%</b><br>";
-	elementWkHTML+="Water <b>"+elementTotal[1]+"%</b><br>";
-	elementWkHTML+="Earth <b>"+elementTotal[2]+"%</b><br>";
-	elementWkHTML+="Thunder <b>"+elementTotal[3]+"%</b><br>";
-	elementWkHTML+="Light <b>"+elementTotal[4]+"%</b><br>";
-	elementWkHTML+="Dark <b>"+elementTotal[5]+"%</b><br>";
+	$.each(elementWk, function(key,value) {
+		squadElementDMG[key]["ls"]+= +getTop(".lsBtns",elementWk[Key]);
+		squadElementDMG[key]["bb"]+= +getTop(".bbBtns",elementWk[Key]);
+		squadElementDMG[key]["ubb"]+= +getTop(".ubbBtns",elementWk[Key]);
+	});
+	var elementWkHTML="Fire <b>" + +squadElementDMG["fire"]["ls"] + +squadElementDMG["fire"]["bb"] + +squadElementDMG["fire"]["ubb"] + "%</b><br>";
+	elementWkHTML+="Water <b>" + +squadElementDMG["water"]["ls"] + +squadElementDMG["water"]["bb"] + +squadElementDMG["water"]["ubb"] + "%</b><br>";
+	elementWkHTML+="Earth <b>" + +squadElementDMG["earth"]["ls"] + +squadElementDMG["earth"]["bb"] + +squadElementDMG["earth"]["ubb"] + "%</b><br>";
+	elementWkHTML+="Thunder <b>" + +squadElementDMG["thunder"]["ls"] + +squadElementDMG["thunder"]["bb"] + +squadElementDMG["thunder"]["ubb"] + "%</b><br>";
+	elementWkHTML+="Light <b>" + +squadElementDMG["light"]["ls"] + +squadElementDMG["light"]["bb"] + +squadElementDMG["light"]["ubb"] + "%</b><br>";
+	elementWkHTML+="Dark <b>" + +squadElementDMG["dark"]["ls"] + +squadElementDMG["dark"]["bb"] + +squadElementDMG["dark"]["ubb"] + "%</b><br>";
 	/*generate bbspam strings*/
 	var bbSpamHTML=[];
 	if (bbSpam["SBB Cost"]!=0)
@@ -1473,7 +1477,7 @@ function parseUnit(slot,rawID) {
 	insertHTML+='<li><b class="text-danger">ATKbuff:</b> <span id="ATKBUFF_'+uRef+'">'+squadATKBUFF+'</span></li>';
 	insertHTML+='<li><b class="text-danger">CRITmod:</b> <span id="CRIT_'+uRef+'">'+squadCritDMG+'</span></li>';
 	insertHTML+='<li><b class="text-danger">SPARKmod:</b> <span id="SPARK_'+uRef+'">'+squadSparkDMG+'</span></li>';
-	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+squadElementDMG+'</span></li>';
+	insertHTML+='<li><b class="text-danger">ELEMENTmod:</b> <span id="ELEMENT_'+uRef+'">'+ +squadElementDMG[rawParseObj[rawID].element].ls + +squadElementDMG[rawParseObj[rawID].element].bb + +squadElementDMG[rawParseObj[rawID].element].ubb +'</span></li>';
 	insertHTML+='<li><b class="text-danger">BBmod:</b> <span id="BB_'+uRef+'">'+squadBBDMG+'</span></li>';
 	insertHTML+='</ul><h6 class="pimptxt"><i class="fa fa-exclamation-circle"></i> stats are max pimped</h6>';
 	$("#stats"+uRef).html(insertHTML);
@@ -1527,18 +1531,18 @@ function refreshSpheres(){
 						selfBuff+= +scanArray[i]["self atk% buff"];
 				}
 			}
+			unitBonus[key]=[
+				1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
+				1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
+				1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2] + +extraBonus[2],
+				1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3] + +extraBonus[3],
+				+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4].ls + +lsBonus[4].bb + +lsBonus[4].ubb,
+				+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5].ls + +lsBonus[5].bb + +lsBonus[5].ubb,
+				+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6][rawParseObj[sUnit].element].ls + +lsBonus[6][rawParseObj[sUnit].element].bb + +lsBonus[6][rawParseObj[sUnit].element].ubb,
+				+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7].ls + +lsBonus[7].bb + +lsBonus[7].ubb,
+				+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8].bb + +lsBonus[8].ubb + +selfBuff
+			];
 		}
-		unitBonus[key]=[
-			1 + +sphere1Bonus[0] + +sphere2Bonus[0] + +lsBonus[0] + +extraBonus[0],
-			1 + +sphere1Bonus[1] + +sphere2Bonus[1] + +lsBonus[1] + +extraBonus[1],
-			1 + +sphere1Bonus[2] + +sphere2Bonus[2] + +lsBonus[2] + +extraBonus[2],
-			1 + +sphere1Bonus[3] + +sphere2Bonus[3] + +lsBonus[3] + +extraBonus[3],
-			+sphere1Bonus[4]*100 + +sphere2Bonus[4]*100 + +lsBonus[4].ls + +lsBonus[4].bb + +lsBonus[4].ubb,
-			+sphere1Bonus[5]*100 + +sphere2Bonus[5]*100 + +lsBonus[5].ls + +lsBonus[5].bb + +lsBonus[5].ubb,
-			+sphere1Bonus[6]*100 + +sphere2Bonus[6]*100 + +lsBonus[6],
-			+sphere1Bonus[7]*100 + +sphere2Bonus[7]*100 + +lsBonus[7].ls + +lsBonus[7].bb + +lsBonus[7].ubb,
-			+sphere1Bonus[8]*100 + +sphere2Bonus[8]*100 + +lsBonus[8].bb + +lsBonus[8].ubb + +selfBuff
-		];
 	})
 }
 
