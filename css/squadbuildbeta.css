@@ -21,6 +21,7 @@
     .mkBox:hover {
         background: red;
         color: white;
+        cursor: pointer;
     }
     .marker {
         border: 1px dashed red !important;
