@@ -231,6 +231,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"elemental barrier hp", "skillref":["elemental barrier hp", "!HP Barrier (", "elemental barrier element", "!)"]},
         {"skillid":"stealth turns (10001)", "skillref":["!Stealth (", "atk% buff", "!% ATK+ ", "crit% buff", "!% CRIT+) ", "target type", "! ", "stealth turns (10001)", "!Turns"]},
         {"skillid":"stats buff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
+        {"skillid":"selfstatsbuff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
         {"skillid":"dot atk%", "skillref":["dot atk%", "!% DMG Each Turn ", "dot turns (71)", "!Turns"]},
         {"skillid":"angel idol buff turns (91)", "skillref":["angel idol recover chance%", "!% Chance Angel Idol ", "angel idol recover hp%", "!% HP ", "target type", "! ", "angel idol buff turns (91)", "!Turns"]},
         {"skillid":"revive unit chance%", "skillref":["revive unit chance%", "!% Chance Revive Dead Ally ", "revive unit hp%", "!% HP ", "target type"]},
@@ -248,6 +249,7 @@ $.getJSON( serverSelect, function( unit ) {
       ];
     var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var selfstatsBuffArray=[{"skillid":"self atk% buff", "suffix":"% ATK+ "}, {"skillid":"self def% buff", "suffix":"% DEF+ "}, {"skillid":"self rec% buff", "suffix":"% REC+ "}];
     var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}];
     var bbSelfBuffArray=[{"skillid":"bb bc%", "suffix":"% BC+ "}, {"skillid":"bb hc%", "suffix":"% HC+ "}];
     var gradualhealbuffArray=[{"skillid":"gradual heal high", "suffix":"Gradual Heal "}];
@@ -547,6 +549,18 @@ $.getJSON( serverSelect, function( unit ) {
                           $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check SELF collective group buff*/
+                    else if (skillSeek=="selfstatsbuff") {
+                      for (ix in selfstatsBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==selfstatsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+selfstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
