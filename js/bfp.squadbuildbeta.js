@@ -2286,13 +2286,13 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 });
 
 /*keep markerbox visible*/
-$("body").on("mouseenter",".mkBox", function(e){
+$(document).on("mouseenter",".mkBox", function(e){
 	$(this).show();
 }).on("mouseleave",".mkBox", function(e){
 	$(this).hide();
 })
 
-$("body").on("click", ".mkBox", function(e){
+$(document).on("click", ".mkBox", function(e){
 	alert("pre class change");
 	$(this).siblings("a").toggleClass("marker");
 	alert("ios test");
