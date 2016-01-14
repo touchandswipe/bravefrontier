@@ -2286,12 +2286,9 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 });
 
 /*keep markerbox visible*/
-$("body").on("mouseenter",".mkBox", function(e){
-	$(this).show();
-}).on("mouseleave",".mkBox", function(e){
-	$(this).hide();
-}).on("click", ".mkBox", function(e){
+$("body").on("click", ".mkBox", function(e){
 	$(this).siblings("a").toggleClass("marker");
+	$(this).hide();
 })
 
 /*Binds Enter KEY to BOX*/
