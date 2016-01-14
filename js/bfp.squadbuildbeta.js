@@ -2284,7 +2284,7 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 }).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 	var $thatID=$(this);
 	setTimeout(function () {
-        	$thatID.siblings(".mkBox").hide().fadeOut( "slow" );
+        	$thatID.siblings(".mkBox").fadeOut( "slow" );
     	}, 2000);
 });
 
@@ -2292,7 +2292,7 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 $("body").on("mouseleave",".mkBox", function(e){
 	var $thatID=$(this);
 	setTimeout(function () {
-        	$thatID.siblings(".mkBox").hide().fadeOut( "slow" );
+        	$thatID.siblings(".mkBox").fadeOut( "slow" );
     	}, 2000);
 }).on("click", ".mkBox", function(e){
 	$(this).siblings("a").toggleClass("marker");
