@@ -2280,19 +2280,19 @@ $(document).on("click", '#searchNameBtn', function(e){
 
 /*trigger marker*/
 $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
-	var thatID=$(this);
+	var $thatID=$(this);
     	$(this).siblings(".mkBox").show();
 }).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 	setTimeout(function () {
-        	thatID.siblings(".mkBox").hide();
+        	$thatID.siblings(".mkBox").hide();
     	}, 3000);
 });
 
 /*keep markerbox visible*/
 $("body").on("mouseleave",".mkBox", function(e){
-	var thatID=$(this);
+	var $thatID=$(this);
 	setTimeout(function () {
-        	thatID.siblings(".mkBox").hide();
+        	$thatID.siblings(".mkBox").hide();
     	}, 3000);
 }).on("click", ".mkBox", function(e){
 	$(this).siblings("a").toggleClass("marker");
