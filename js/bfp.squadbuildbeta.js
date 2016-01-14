@@ -2291,7 +2291,7 @@ $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
 /*keep markerbox visible*/
 $("body").on("mouseleave",".mkBox", function(e){
 	var thatID=$(this);
-	setTimeout(function ($(this)) {
+	setTimeout(function () {
         	thatID.siblings(".mkBox").hide();
     	}, 3000);
 }).on("click", ".mkBox", function(e){
