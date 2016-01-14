@@ -16,6 +16,7 @@
         background: white;
         color: red;
         z-index:+2;
+        cursor: pointer;
     }
     .mkBox:hover {
         background: red;
