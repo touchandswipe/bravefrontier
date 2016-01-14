@@ -747,7 +747,8 @@ $('#searchBox').on('typeahead:select', function(ev, suggestion) {
 /*Binds Enter KEY to BOX*/
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun($('#searchBox').val())
+     searchNameRun($('#searchBox').val());
+     $('#searchBox').typeahead("close")
   }
 })
 
