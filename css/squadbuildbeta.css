@@ -18,7 +18,7 @@
         z-index:+2;
         cursor: pointer;
     }
-    .mkBox:hover {
+    .mkBox:active {
         background: red;
         color: white;
         cursor: pointer;
