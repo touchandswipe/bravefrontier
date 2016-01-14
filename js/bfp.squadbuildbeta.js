@@ -2282,14 +2282,14 @@ $(document).on("click", '#searchNameBtn', function(e){
 $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
     $(this).siblings(".mkBox").show();
 }).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
-	setTimeout(function () {
+	setTimeout(function ($(this)) {
         	$(this).siblings(".mkBox").hide();
     	}, 3000);
 });
 
 /*keep markerbox visible*/
 $("body").on("mouseleave",".mkBox", function(e){
-	setTimeout(function () {
+	setTimeout(function ($(this)) {
         	$(this).siblings(".mkBox").hide();
     	}, 3000);
 }).on("click", ".mkBox", function(e){
