@@ -2290,7 +2290,10 @@ $("body").on("mouseenter",".mkBox", function(e){
 	$(this).show();
 }).on("mouseleave",".mkBox", function(e){
 	$(this).hide();
-}).on("click", ".mkBox", function(e){
+})
+
+$("body").on("click", ".mkBox", function(e){
+	alert("pre class change");
 	$(this).siblings("a").toggleClass("marker");
 	alert("ios test");
 })
