@@ -2280,9 +2280,9 @@ $(document).on("click", '#searchNameBtn', function(e){
 
 /*trigger marker*/
 $("body").on("mouseenter", '.lsBtns, .bbBtns, .ubbBtns', function(e){
-	var $thatID=$(this);
     	$(this).siblings(".mkBox").show();
 }).on("mouseleave", '.lsBtns, .bbBtns, .ubbBtns', function(e){
+	var $thatID=$(this);
 	setTimeout(function () {
         	$thatID.siblings(".mkBox").hide();
     	}, 3000);
