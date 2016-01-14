@@ -2292,6 +2292,7 @@ $("body").on("mouseenter",".mkBox", function(e){
 	$(this).hide();
 }).on("click", ".mkBox", function(e){
 	$(this).siblings("a").toggleClass("marker");
+	alert("ios test");
 })
 
 /*Binds Enter KEY to BOX*/
