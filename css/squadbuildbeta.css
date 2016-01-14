@@ -18,6 +18,11 @@
         z-index:+2;
         cursor: pointer;
     }
+    .mkBox:active {
+        background: red;
+        color: white;
+        cursor: pointer;
+    }
     .marker {
         border: 1px dashed red !important;
         color: red !important;
