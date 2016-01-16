@@ -415,9 +415,9 @@ function recommendSkills(skillDesc,skillType,chgRarity) {
 	else
 		var minRarity=chgRarity;
 	if (skillType.indexOf("ls")==-1)
-		var mapArray=lsMap;
-	else
 		var mapArray=bbMap;
+	else
+		var mapArray=lsMap;
 	var matchUnits=[];
 	/*identify the skill*/
 	for (var i in mapArray) {
