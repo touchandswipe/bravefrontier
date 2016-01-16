@@ -408,9 +408,16 @@ function badgeRun(classBtns) {
 	})
 }
 
-function recommendSkills(skillDesc,skillType,mapArray) {
+function recommendSkills(skillDesc,skillType,chgRarity) {
 	/*skillType are ls,bb,sbb,es,ubb in array*/
-	var minRarity=7;
+	if (chgRarity===undefined)
+		var minRarity=7;
+	else
+		var minRarity=chgRarity;
+	if (skillType.indexOf("ls")==-1)
+		var mapArray=lsMap;
+	else
+		var mapArray=bbMap;
 	var matchUnits=[];
 	/*identify the skill*/
 	for (var i in mapArray) {
@@ -420,7 +427,7 @@ function recommendSkills(skillDesc,skillType,mapArray) {
 		}
 	}
 	for (var i in rawParseObj)
-		if (rawParseObj[i].rarity>=minRarity) {
+		if (rawParseObj[i].rarity==minRarity) {
 			/*scan skillType*/
 			for (var j in skillType) {
 				if (rawParseObj[i][skillType[j]]!="none") {
@@ -520,8 +527,9 @@ function recommendSkills(skillDesc,skillType,mapArray) {
 		for (i in matchUnits)
 			skillsHTML.push('<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"><img src="'+rawParseObj[matchUnits[i]].img+'" data-unitid="'+matchUnits[i]+'" class="unitRecommend" title="ADD to Squad - '+rawParseObj[matchUnits[i]].name+" ("+rawParseObj[matchUnits[i]].rarity+"*"+')" /><kbd class="fRarity">'+rawParseObj[matchUnits[i]].rarity+'<i class="fa fa-star"></i></kbd></div>');
 		else
-			skillsHTML.push('<h4>No 7<i class="fa fa-star-o"></i> unit with matching skill.</h4>');
+			skillsHTML.push('<div class="col-xs-12 col-md-12"><h4>No 7<i class="fa fa-star-o"></i> unit with matching skill.</h4></div>');
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
+	skillsHTML+='<div class="col-xs-12 col-md-12"><h4>Show units of other rarity</h4> <a href="#" role="button" class="btn btn-sm btn-info showMoreRec" data-info="5" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">5 <i class="fa fa-star-o"></i></a> <a href="#" role="button" class="btn btn-sm btn-info showMoreRec" data-info="6" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">6 <i class="fa fa-star-o"></i></a> <a href="#" role="button" class="btn btn-sm btn-info showMoreRec" data-info="7" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">7 <i class="fa fa-star-o"></i></a>'+'</div>';
 	$("#rBody").html(skillsHTML);
 	$("#recommendModal").modal('show');
 }
@@ -1920,7 +1928,7 @@ $(document).on("click", '.bbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["bb", "sbb", "es"])
 	else {
-		recommendSkills($(this).children(".btnDesc").text(),["bb", "sbb", "es"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["bb", "sbb", "es"])
 	}
 })
 
@@ -1930,7 +1938,7 @@ $(document).on("click", '.ubbBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showSkills($(this),["ubb"])
 	else {
-		recommendSkills($(this).children(".btnDesc").text(),["ubb"],bbMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ubb"])
 	}
 })
 
@@ -1940,8 +1948,14 @@ $(document).on("click", '.lsBtns', function(e){
 	if ($(this).hasClass("btn-success"))
 		showLeaderSkills($(this),["ls"])
 	else {
-		recommendSkills($(this).children(".btnDesc").text(),["ls"],lsMap)
+		recommendSkills($(this).children(".btnDesc").text(),["ls"])
 	}
+})
+
+/*show other rarity reck*/
+$(document).on("click", '.showMoreRec', function(e){
+	e.preventDefault();
+	recommendSkills($(this).attr("data-desc"),$(this).attr("data-scope").split(),+$(this).attr("data-info"));
 })
 
 /*Recommend on Modal*/
@@ -1951,11 +1965,11 @@ $(document).on("click", '#moreUnitsBtn', function(e){
 	var thisSkill=$(this).attr("data-skill");
 	$("#showSkillModal").modal('hide');
 	if (thisSkillType=="ls")
-		recommendSkills(thisSkill,["ls"],lsMap);
+		recommendSkills(thisSkill,["ls"]);
 	else if (thisSkillType=="bb")
-		recommendSkills(thisSkill,["bb", "sbb", "es"],bbMap);
+		recommendSkills(thisSkill,["bb", "sbb", "es"]);
 	else if (thisSkillType=="ubb")
-		recommendSkills(thisSkill,["ubb"],bbMap);
+		recommendSkills(thisSkill,["ubb"]);
 })
 
 /*short url Btn Click*/
