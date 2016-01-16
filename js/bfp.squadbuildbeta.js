@@ -529,7 +529,7 @@ function recommendSkills(skillDesc,skillType,chgRarity) {
 		else
 			skillsHTML.push('<div class="col-xs-12 col-md-12"><h4>No unit with matching skill and rarity found.</h4></div>');
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
-	skillsHTML.push('<div class="col-xs-12 col-md-12"><h4>Show units of other rarity</h4> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="5" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">5 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="6" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">6 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="7" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">7 <i class="fa fa-star"></i></a>'+'</div>');
+	skillsHTML.push('<div class="col-xs-12 col-md-12"><h4>Show units of other rarity</h4> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="5" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">5 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="6" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">6 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="7" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">7 <i class="fa fa-star"></i></a>'+'</div><hr>');
 	$("#rBody").html(skillsHTML.join(" "));
 	$("#recommendModal").modal('show');
 }
