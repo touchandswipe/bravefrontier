@@ -242,14 +242,21 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         url: jsonURL,
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
-    		rawParseObj=[]; /*reset*/
-    		console.log("starting build");
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguidejapandate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
-    		console.log("success all complete")
+    		var reqfilesize=request.getResponseHeader('Content-Length');
+    		console.log(request.getResponseHeader('Content-Length') + ' bytes');
+    		if (reqfilesize==0) {
+    				alert("Source data is corrupted. Please try sync when data is fixed in a few hours by Deathmax.");
+    				$("#progressModal").modal("hide");
+    		} else {
+	    		rawParseObj=[]; /*reset*/
+	    		console.log("starting build");
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguidejapandate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+	    		console.log("success all complete")
+    		}
  	}
     });
 })
