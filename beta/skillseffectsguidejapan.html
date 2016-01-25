@@ -257,7 +257,15 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		console.log("success all complete")
     		}
- 	}
+ 	},
+	error: function(jqXHR, textStatus, errorThrown) {
+	                console.log('jqXHR:');
+	                console.log(jqXHR);
+	                console.log('textStatus:');
+	                console.log(textStatus);
+	                console.log('errorThrown:');
+	                console.log(errorThrown);
+	}
     });
 })
 
