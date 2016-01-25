@@ -47,7 +47,7 @@ if (window.location.hash == '#_=_') {
 <h6><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
 <!-- Buttons row -->
-<div class="row" style="margin-bottom:5px;" id="btnMenu" data-spy="affix" data-offset-top="100">
+<div class="row" id="btnMenu" data-spy="affix" data-offset-top="100">
 	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 	<!-- Leader Skills button -->
 	<div class="btn-group btn-group-xs">
@@ -221,20 +221,20 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommonbeta.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommon.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
-imgPrePath="//v2.cdn.android.brave.a-lim.jp/";
+imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
 
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     /*close alert if open*/
-    $('#alertModal').modal("hide");
+    $('#alertmodal').modal("hide");
     /*Init loader*/
     $('#progressModal').modal({
     	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
+    	backdrop:"static",
+    	show:true
     })
     $.ajax({
         dataType: "json",
