@@ -242,29 +242,16 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         url: jsonURL,
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
-    		var reqfilesize=request.getResponseHeader('Content-Length');
-    		console.log(request.getResponseHeader('Content-Length') + ' bytes');
-    		if (reqfilesize==0) {
-    				alert("Source data is corrupted. Please try sync when data is fixed in a few hours by Deathmax.");
-    				$("#progressModal").modal("hide");
-    		} else {
-	    		rawParseObj=[]; /*reset*/
-	    		console.log("starting build");
-	    		buildDB(data);
-	    		/*Save in local storage*/
-			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguidejapandate",lastModified);
-	    		$('#lastModDate').text("Server data - "+lastModified);
-	    		console.log("success all complete")
-    		}
+    		rawParseObj=[]; /*reset*/
+    		buildDB(data);
+    		/*Save in local storage*/
+		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+		localStorage.setItem("skillsguidejapandate",lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
  	},
 	error: function(jqXHR, textStatus, errorThrown) {
-	                console.log('jqXHR:');
-	                console.log(jqXHR);
-	                console.log('textStatus:');
-	                console.log(textStatus);
-	                console.log('errorThrown:');
-	                console.log(errorThrown);
+		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+		$('#progressModal').modal("hide");
 	}
     });
 })
@@ -301,7 +288,11 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 			localStorage.setItem("skillsguidejapandate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
-	 	}
+	 	},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+			$('#progressModal').modal("hide");
+		}
 	    })
     }
 })
