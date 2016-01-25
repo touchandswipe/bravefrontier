@@ -79,7 +79,7 @@ sphereList=[
 	{name:"Vestige Omega",nick:"vestigeomega",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]},
-	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]},
+	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]}
 ];
 extraList=[
 	{name:"No Extra Skill Bonus",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
