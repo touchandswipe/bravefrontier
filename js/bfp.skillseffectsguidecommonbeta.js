@@ -172,13 +172,18 @@ function searchIdRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIdFilter: sVal };
-    	history.pushState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FIdstate", "?unitid="+encodeURIComponent(sVal) );
     }
 	/*Google analytics*/
 	ga('send', 'pageview', {
   		'page': '/vurl/skillsguide_Search_ID',
   		'title': 'Brave Frontier PROs - Skills Guide Search ID'
 	});
+}
+
+/*Escape regex string*/
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
 /*Search by Unit Name*/
@@ -193,7 +198,6 @@ function searchNameRun() {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i].name.toLowerCase().search(sVal)!=-1)
 	        outputObj.push(rawParseObj[i]);
-	    }
 	}
 	/*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
@@ -207,7 +211,7 @@ function searchNameRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+	history.replaceState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -243,6 +247,14 @@ if (typeof mappedNames !== 'undefined') {
             statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd bg-info"><b>Type</b></div>';
             statsSTR+='<div class="col-xs-2 col-sm-2 bd bg-info"><b>HP</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>ATK</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>DEF</b></div><div class="col-xs-2 col-sm-2 bd bg-info"><b>REC</b></div><div class="col-xs-2 col-sm-2 bd"></div>';
             statsSTR+='</div>';
+            if (valObj.imp) {
+	            statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>Max Pimp!</b></div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max hp"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max atk"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max def"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bi">'+valObj.imp["max rec"]+'</div>';
+	            statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
+            }
             $.each(valObj.stats, function(stKey,stVal) {
             	statsSTR+='<div class="row equal"><div class="col-xs-2 col-sm-2 bd"><b>'+stKey+'</b></div>';
             	/*HP*/
@@ -613,6 +625,7 @@ if (typeof mappedNames !== 'undefined') {
 	});
     
     $("#unitCount").html(countVar);
+    rarityRun(1); /*default run to fill space*/
     $('#progressModal').modal('hide');
     
     /*check for card param*/
