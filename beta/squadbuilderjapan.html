@@ -49,7 +49,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid" id="bfp_mast"></div>
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
-<h2>Squad Builder R5 - <span class="text-danger">日本 (Japan)</span></h2>
+<h2>Squad Builder R6 - <span class="text-danger">日本 (Japan)</span></h2>
 <h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
 <div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
 	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
@@ -456,7 +456,11 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 		localStorage.setItem("skillsguidejapandate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
     		refreshALL();
- 	}
+ 	},
+	error: function(jqXHR, textStatus, errorThrown) {
+		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+		$('#progressModal').modal("hide");
+	}
     });
 })
 
@@ -493,7 +497,11 @@ $('#progressModal').modal({
 			localStorage.setItem("skillsguidejapandate",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
 	    		buildDB(data);
-	 	}
+	 	},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+			$('#progressModal').modal("hide");
+		}
 	    })
     }
     /*generate skills buttons*/
