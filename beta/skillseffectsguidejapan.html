@@ -243,11 +243,13 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObj=[]; /*reset*/
+    		console.log("starting build");
     		buildDB(data);
     		/*Save in local storage*/
 		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
 		localStorage.setItem("skillsguidejapandate",lastModified);
     		$('#lastModDate').text("Server data - "+lastModified);
+    		console.log("success all complete")
  	}
     });
 })
