@@ -1958,7 +1958,7 @@ $(document).on("click", '.lsBtns', function(e){
 /*show other rarity reck*/
 $(document).on("click", '.showMoreRec', function(e){
 	e.preventDefault();
-	recommendSkills($(this).attr("data-desc"),$(this).attr("data-scope").split(),+$(this).attr("data-info"));
+	recommendSkills($(this).attr("data-desc"),$(this).attr("data-scope").split(","),+$(this).attr("data-info"));
 })
 
 /*Recommend on Modal*/
