@@ -204,7 +204,7 @@ bbMap=[
 	{id:15,desc:"Null Ails", impact:"resist status ails turns", turns:"resist status ails turns", hideprefix:true},
 	{id:16,desc:"Null Stats Debuff", impact:"stat down immunity buff turns", turns:"stat down immunity buff turns", hideprefix:true},
 	{id:17,desc:"HitCount+/Hit", impact:"hit increase/hit", turns:"hit increase buff turns (50)"},
-	{id:170,desc:"Fixed DMG", impact:"fixed damage", hideprefix:true},
+	{id:170,desc:"Fixed DMG", impact:"fixed damage"},
 	{id:18,desc:"% Ignore DEF", impact:"defense% ignore", turns:"defense% ignore turns (39)"},
 	{id:19,desc:"% BB ATK%+", impact:"bb atk% buff", turns:"buff turns (72)"},
 	{id:20,desc:"% BB ATK%+/Turn", impact:"bb atk% inc per use", criteria:["bb atk% max number of inc"]},
