@@ -141,6 +141,7 @@ if (window.location.hash == '#_=_') {
   			<li><a href="#" class="craftableOnly">Non-Raid</a></li>
   		</ul>
 </div>
+<button type="button" id="glOnly" class="btn btn-sm btn-danger">GL Only</button>
 <button type="button" id="jpOnly" class="btn btn-sm btn-danger">JP Only</button>
 </div></div>
 
@@ -361,6 +362,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
     	var globalexist=false;
+    	var japanexist=false;
     	/*fill dropdown for sphere type*/
     	if (valObj['sphere type text']&&sphereTypeArray.indexOf(valObj['sphere type text'])==-1) {
             	sphereTypeArray.push(valObj['sphere type text']);
@@ -370,14 +372,23 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
-	if (server=='JP' && dataGL[unitKey]) {
-		nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
-		globalexist=true;
+	if (server=='JP') {
+		japanexist=true;
+		if (dataGL[unitKey]) {
+			nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
+			globalexist=true;
+		} else {
+			nameSTR+=valObj.name;
+		}
 	}
-	else
+	/*For GL Only Btn*/
+	if (server=='GL') {
 		nameSTR+=valObj.name;
-	if (server=='GL')
 		globalexist=true;
+		if (dataJP[unitKey]) {
+			japanexist=true;
+		}
+	}
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Recipes button for English named items only*/
         //if (dataGL[unitKey])
@@ -485,7 +496,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"craftable":craftable,"craftRaid":valObj.raid});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"japan":japanexist,"craftable":craftable,"craftRaid":valObj.raid});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -623,7 +634,7 @@ function sphereRun(select) {
 	});
 }
 
-/*JO Only spheres*/
+/*JP Only spheres*/
 function jpOnlyRun() {
     var outputObj=[];
 	var outputHTML=[];
@@ -650,6 +661,36 @@ function jpOnlyRun() {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_JPOnlyFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified JP Only Filter'
+	});
+}
+
+/*GL Only spheres*/
+function glOnlyRun() {
+    var outputObj=[];
+	var outputHTML=[];
+	for (i=0;i<rawParseObj.length;i++) {
+	    if ( !rawParseObj[i]['japan'] )
+	        outputObj.push(rawParseObj[i]);
+	}
+	
+/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.type > b.type)
+            return -1;
+        if (a.type < b.type)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_GLOnlyFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified GL Only Filter'
 	});
 }
 
@@ -851,6 +892,12 @@ $(document).on("click", '.skillEffect', function(e){
 $(document).on("click", '#jpOnly', function(e){
     e.preventDefault();
     jpOnlyRun();
+})
+
+/*GL Release only*/
+$(document).on("click", '#glOnly', function(e){
+    e.preventDefault();
+    glOnlyRun();
 })
 
 /*Craftable only*/
