@@ -377,15 +377,17 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 		if (dataGL[unitKey]) {
 			nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
 			globalexist=true;
-		} else
+		} else {
 			nameSTR+=valObj.name;
+		}
 	}
 	/*For GL Only Btn*/
 	if (server=='GL') {
 		nameSTR+=valObj.name;
 		globalexist=true;
-		if (dataJP[unitKey])
+		if (dataJP[unitKey]) {
 			japanexist=true;
+		}
 	}
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Recipes button for English named items only*/
@@ -687,7 +689,7 @@ function glOnlyRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by rarity. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*Google analytics*/
 	ga('send', 'pageview', {
-  		'page': '/vurl/itemsguideU_JPOnlyFilter',
+  		'page': '/vurl/itemsguideU_GLOnlyFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified GL Only Filter'
 	});
 }
