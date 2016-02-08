@@ -220,7 +220,7 @@ if (window.location.hash == '#_=_') {
 <div id="bfp_foot"></div>
 
 <!-- Modal for Progress-->
-<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -236,7 +236,7 @@ if (window.location.hash == '#_=_') {
 </div>
 
 <!-- Alert Modal -->
-<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog">
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
@@ -296,7 +296,6 @@ function resetLocalData(serverStr, corrupted) {
 		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
 	localStorage.removeItem(serverStr);
 	localStorage.removeItem(serverStr+"date");
-	//history.pushState(null, null, location.pathname);
 	location.replace(location.href);
 }
 
@@ -322,7 +321,6 @@ $(document).on("click", '#syncNewBtn', function(e){
 	localStorage.removeItem('itemsguidejapan');
 	localStorage.removeItem('itemsguideglobaldate');
 	localStorage.removeItem('itemsguidejapandate');
-	//history.pushState(null, null, location.pathname);
 	location.replace(location.href);
 })
 
@@ -394,8 +392,16 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	            	if (i!=0)
 	            		effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
 			$.each(valObj.effect[i], function(lsKey,lsVal) {
-		                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey+"</span></div>";
-		                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+		                if (lsVal !== null && typeof lsVal === 'object') {
+		                	$.each(lsVal, function(lowKey,lowVal) {
+		                		effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lowKey+"</span></div>";
+		                		effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
+		                	})
+		                }
+		                else {
+			                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey+"</span></div>";
+			                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
+		                }
 			})
 	            }
             } else {
@@ -403,8 +409,16 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 			if (lsKey=="effect") {
 				for (i in valObj.effect.effect) {
 					$.each(valObj.effect.effect[i], function(lsKey2,lsVal2) {
-						effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey2+"</span></div>";
-						effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal2+'</div></div>';
+				                if (lsVal2 !== null && typeof lsVal2 === 'object') {
+				                	$.each(lsVal2, function(lowKey,lowVal) {
+				                		effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lowKey+"</span></div>";
+				                		effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lowVal+'</div></div>';
+				                	})
+				                }
+				                else {
+					                effectSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi"><span class="iEffect">'+lsKey2+"</span></div>";
+					                effectSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal2+'</div></div>';
+				                }
 					})
 					effectSTR+='<div class="row equal"><div class="col-xs-12 col-md-12 bi"></div></div>';
 				}
@@ -494,6 +508,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
     for (i in sphereTypeArray) {
         $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img style="margin-right:5px;" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[i]+'.png"/>'+sphereTypeArray[i]+'</a></li>');
     }
+    sphereRun("Atk Boosting"); /*default load*/
     $('#progressModal').modal('hide');
     
     /*check for card param*/
@@ -619,9 +634,9 @@ function jpOnlyRun() {
 	
 /*Sort array*/
     outputObj=outputObj.sort(function(a,b) {
-        if (a.type < b.type)
-            return -1;
         if (a.type > b.type)
+            return -1;
+        if (a.type < b.type)
             return 1;
         return 0;
     });
@@ -736,7 +751,7 @@ function searchNameRun() {
 	$(rawTable).html('<h4 class="text-primary"><button type="button" class="btn btn-success btn-xs" id="viewRecipe"><i class="fa fa-search"></i> Recipes using \"<b>'+sVal+'</b>\" ingredient</button> <i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share. No results may mean item is not available on server yet.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateNameFilter: sVal };
-    	history.pushState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FNamestate", "?query="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
@@ -776,7 +791,7 @@ function searchIngredientRun() {
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' recipes(s) using '+sVal+' found. <small><kbd>Copy</kbd> browser URL to share.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
 	var state = { stateIngredientFilter: sVal };
-    	history.pushState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
+    	history.replaceState(state, "FIngredientstate", "?ingredient="+encodeURIComponent(sVal) );
     }
     	/*Google analytics*/
 	ga('send', 'pageview', {
