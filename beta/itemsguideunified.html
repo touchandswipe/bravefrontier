@@ -372,18 +372,21 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         if (valObj['sphere type'])
         	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
-	if (server=='JP' && dataGL[unitKey]) {
-		nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
-		globalexist=true;
-	} else {
-		nameSTR+=valObj.name;
+	if (server=='JP') {
 		japanexist=true;
+		if (dataGL[unitKey]) {
+			nameSTR+=valObj.name+' ('+dataGL[unitKey]["name"]+')';
+			globalexist=true;
+		} else
+			nameSTR+=valObj.name;
 	}
 	/*For GL Only Btn*/
-	if (server=='GL' && dataJP[unitKey])
-		japanexist=true;
-	else if (server=='GL')
+	if (server=='GL') {
+		nameSTR+=valObj.name;
 		globalexist=true;
+		if (dataJP[unitKey])
+			japanexist=true;
+	}
         nameSTR+='</b><span class="hidden-xs hidden-sm"> - '+valObj.desc+'</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*Recipes button for English named items only*/
         //if (dataGL[unitKey])
