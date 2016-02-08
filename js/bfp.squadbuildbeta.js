@@ -80,7 +80,7 @@ sphereList=[
 	{name:"Tridon\'s Trident",nick:"tridont",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Vestige Alpha",nick:"vestigealp",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Vorpal Chainblades",nick:"vorpalchain",stats:[0,0.5,0,0,0,0.5,0,0,0]},
-	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]}
+	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]},
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]},
 	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]}
