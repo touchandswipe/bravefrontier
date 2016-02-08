@@ -12,6 +12,7 @@ sphereList=[
 	{name:"Axe of Hadaron",nick:"axehadaron",stats:[0,0.2,0.2,0,0,0,0.3,0,2.8]},
 	{name:"Amanohabaken",nick:"amanohabaken",stats:[0,0,0,0,0,0,0,0,0.75]},
 	{name:"Amenonuhoko",nick:"amenonuhoko",stats:[0,0,0,0,1,0,0,0,1.5]},
+	{name:"Auspicious Lion Charm",nick:"lioncharm",stats:[0.15,0.2,0.15,0.15,0,0.2,0,0,0]},
 	{name:"Batootha",nick:"batootha",stats:[0,0.3,0.3,0,0,0.5,0,0,0]},
 	{name:"Blades of Ultor",nick:"bladeultor",stats:[0,0.3,0.3,0,1,0,0,0,0]},
 	{name:"Blighted Seal",nick:"blightseal",stats:[0,1,-0.2,-0.2,1.5,0,0,0,0]},
@@ -24,6 +25,7 @@ sphereList=[
 	{name:"Dragon Eye",nick:"dragoneye",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Drevas",nick:"drevas",stats:[0.3,0,0.3,0,0,0,0,0,0]},
 	{name:"Duel Fragment",nick:"duelfrag",stats:[0.3,0.3,0,0,0,0,0,0,0]},
+	{name:"Eremorn\'s Aegis",nick:"eremornaegis",stats:[0.3,0,0.3,0,0,0,0,0,0]},
 	{name:"Fallacy Orb",nick:"fallacy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
 	{name:"Flag Flower",nick:"flagflow",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Flesh Armor",nick:"flesharmor",stats:[0.1,0,0.1,0,0,0,0,0,0]},
@@ -34,6 +36,7 @@ sphereList=[
 	{name:"Geldnite Axe",nick:"geldnite",stats:[0,0,0,0,0.5,0,0,0,0]},
 	{name:"Glacies Staff",nick:"glaciess",stats:[0.2,0.2,0.2,0.2,0,0,0,1,0]},
 	{name:"Godly Flower",nick:"godflower",stats:[0,0,0.75,0.75,0,0.5,0,0,0.75]},
+	{name:"Golden Lion Regalia",nick:"lionregalia",stats:[0.3,0.4,0.3,0.3,0,0.4,0,0,0]},
 	{name:"Golem Core",nick:"golemcore",stats:[0,0.3,0.3,0,0,0,0,1.5,0]},
 	{name:"Guardian Shard",nick:"guardshard",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"Guardian Sliver",nick:"guardsliver",stats:[0.3,0,0.3,0,0,0,0,0,0]},
@@ -76,7 +79,8 @@ sphereList=[
 	{name:"Steeple Rose",nick:"steeple",stats:[0,0,0,0,0,0.5,0,0,0]},
 	{name:"Tridon\'s Trident",nick:"tridont",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Vestige Alpha",nick:"vestigealp",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
-	{name:"Vestige Omega",nick:"vestigeomega",stats:[0.35,0.35,0.35,0.35,0,0,0,0,0]},
+	{name:"Vorpal Chainblades",nick:"vorpalchain",stats:[0,0.5,0,0,0,0.5,0,0,0]},
+	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]}
 	{name:"Vulcan Axe",nick:"vulcanaxe",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"War Demon Blade",nick:"wardemon",stats:[0,0,0,0,0,0.5,0.5,0,1]},
 	{name:"White Armor",nick:"whitearmor",stats:[0,0.3,0.3,0,0,0,0,0,0]}
