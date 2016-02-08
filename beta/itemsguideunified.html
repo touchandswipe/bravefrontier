@@ -986,7 +986,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	dataTemp=LZString.decompressFromUTF16(localStorage.itemsguideglobal);
 	if (isValidJSON(dataTemp)) {
 		dataGL=JSON.parse(dataTemp);
-		buildDB(dataGL,'GL');
 		$('#lastModDateGL').text("GLOBAL (local cache) - "+localStorage.itemsguideglobaldate);
 		/*checks for global server update*/ 
 		checkUpdate(jsonGL,localStorage.itemsguideglobaldate);
@@ -998,15 +997,16 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	dataTemp=LZString.decompressFromUTF16(localStorage.itemsguidejapan);
 	if (isValidJSON(dataTemp)) {
 		dataJP=JSON.parse(dataTemp);
-		buildDB(dataJP,'JP');
 		$('#lastModDateJP').text("JAPAN (local cache) - "+localStorage.itemsguideglobaldate);
 		/*checks for japan server update*/ 
 		checkUpdate(jsonJP,localStorage.itemsguidejapandate);
 	} else
 		resetLocalData("itemsguidejapan",true)
     };
-    /*only when there's no data*/
-    if (!localStorage.itemsguideglobal && !localStorage.itemsguidejapan) {
+    if (localStorage.itemsguideglobal && localStorage.itemsguidejapan) {
+	    buildDB(dataGL,'GL');
+	    buildDB(dataJP,'JP');
+    } else {
 	    /*Init loader*/
 	    $('#loadStatusText').html('<b>Loading Global and JP data for the first time.</b>');
 	    $('#progressModal').modal({
