@@ -556,8 +556,6 @@ function openCard(whatunit) {
 		  ovHTML+='No further evo / No known materials';
 	      }
 	      ovHTML+='</td></tr><tr><td class="btn-default">';
-	      if (ovJapan.toLowerCase()!='false')
-		ovHTML+='<kbd>JP stats</kbd>';
 	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
 	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
@@ -583,7 +581,7 @@ function openCard(whatunit) {
 	      +'<td class="recMod">'+ovrecbreaker+'</td>'
 	      +'<td>&nbsp;</td></tr>'
 	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
 		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
 		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
@@ -593,7 +591,7 @@ function openCard(whatunit) {
 	      	+'<td class="recMod">'+ovrecguardian+'</td>';
 	      }
 	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
-	      if (ovJapan.toLowerCase()!='false') {
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
 		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
 		      +'<td class="atkMod">'+ovatkoracle+'</td>'
 		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
@@ -741,10 +739,16 @@ $(document).on("click", '#searchBtn', function(e){
 	searchNameRun($('#searchBox').val())
 })
 
+/*execute typeahead on selection*/
+$('#searchBox').on('typeahead:select', function(ev, suggestion) {
+	searchNameRun($(this).val())
+})
+
 /*Binds Enter KEY to BOX*/
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
-     searchNameRun($('#searchBox').val())
+     searchNameRun($('#searchBox').val());
+     $('#searchBox').typeahead("close")
   }
 })
 
@@ -879,7 +883,7 @@ $(window).load(function() {
 <div id="bfp_foot"></div>
 
 <!-- Video Modal-->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myvideoModal" aria-hidden="true">
+<div class="modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myvideoModal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
@@ -895,7 +899,7 @@ $(window).load(function() {
 </div>
 
 <!-- Modal for Progress-->
-<div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -910,7 +914,7 @@ $(window).load(function() {
 </div>
 
 <!-- Modal for Card-->
-<div class="modal fade" id="cardModal" tabindex="-1" role="dialog">
+<div class="modal" id="cardModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -939,7 +943,7 @@ $(window).load(function() {
 </div> <!-- End Card Modal -->
 
 <!-- Alert Modal -->
-<div class="modal fade" id="alertmodal" tabindex="-1" role="dialog" aria-labelledby="alertmodal" aria-hidden="true">
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog" aria-labelledby="alertmodal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Seria SCREAMS!</h3></div>
@@ -949,6 +953,7 @@ $(window).load(function() {
     </div>
   </div>
 </div>
+<script id="cid0020000115892179904" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 500px;height: 500px;">{"handle":"summonerscentral","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":500,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
