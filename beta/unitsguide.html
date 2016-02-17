@@ -1539,7 +1539,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    		var evoSplit=cData[i]['evo'].split();
 	    		var tmpArr={};
 	    		for (x in evoSplit)
-	    			var tmpArr["evo "+(x+1)]=evoSplit[x];
+	    			tmpArr["evo "+ +(x+1)]=evoSplit[x];
 	    		gEvoUnits.push(tmpArr);
 	    	} else {
 	    		gEvoUnits.push({"evo 1":"None"});
