@@ -1041,11 +1041,7 @@ function initialize(fusionData) {
 	    for (var i=0; i < deserialdata.length; i++)  {
 		if (deserialdata[i]["series"] == ovseries) {
 		    evotrail.push({
-			'evo1':deserialdata[i]["evo 1"],
-			'evo2':deserialdata[i]["evo 2"],
-			'evo3':deserialdata[i]["evo 3"],
-			'evo4':deserialdata[i]["evo 4"],
-			'evo5':deserialdata[i]["evo 5"],
+			'evo':deserialdata[i]["evo"],
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
@@ -1539,7 +1535,15 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    })
 	    /*carry over to global var*/
 	    for (i=0;i<cData.length;i++) {
-		gEvoUnits.push( {"evo 1":cData[i]['evo 1'],"evo 2":cData[i]['evo 2'],"evo 3":cData[i]['evo 3'],"evo 4":cData[i]['evo 4'],"evo 5":cData[i]['evo 5'] } );
+	    	if (cData[i]['evo']!="") {
+	    		var evoSplit=cData[i]['evo'].split();
+	    		var tmpArr={};
+	    		for (x in evoSplit)
+	    			var tmpArr["evo "+(x+1)]=evoSplit[x];
+	    		gEvoUnits.push(tmpArr);
+	    	} else {
+	    		gEvoUnits.push({"evo 1":"None"});
+	    	}
 	    }
 	    /*Prepare HTML*/
 	    var evoCHTML="";
