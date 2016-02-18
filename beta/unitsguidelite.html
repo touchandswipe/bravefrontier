@@ -256,7 +256,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo 1','Evo 2','Evo 3','Evo 4','Evo 5','Element','SystemID','BFPRO Notes','Japan Release','Global Release' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,'Evo','Element','SystemID','BFPRO Notes','Japan Release','Global Release' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
@@ -350,12 +350,7 @@ function openCard(whatunit) {
 	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
 	      var ovGlobal = ovdata2[0]["global release"];
 	      var ovJapan = ovdata2[0]["japan release"];
-	      var ovevo = [];
-	      // Query Evo
-	      for(var i=0; i < 5; i++) {
-		    /*find match*/
-		    ovevo.push( ovdata2[0]['evo '+(i+1)] );
-	      }
+	      var ovevo = ovdata2[0]["evo"];
 	      var ovevozel = ovdata2[0]["evo zel"];
 	      var ovmaxlvl = ovdata2[0]["max lvl"];
 	      var ovacquire = ovdata2[0]["acquire"];
@@ -438,11 +433,7 @@ function openCard(whatunit) {
 	    for (var i=0; i < deserialdata.length; i++)  {
 		if (deserialdata[i]["series"] == ovseries) {
 		    evotrail.push({
-			'evo1':deserialdata[i]["evo 1"],
-			'evo2':deserialdata[i]["evo 2"],
-			'evo3':deserialdata[i]["evo 3"],
-			'evo4':deserialdata[i]["evo 4"],
-			'evo5':deserialdata[i]["evo 5"],
+			'evo':deserialdata[i]["evo"],
 			'rarity':deserialdata[i]["rarity"],
 			'name':deserialdata[i]["name"],
 			'id':deserialdata[i]["id"],
@@ -536,22 +527,24 @@ function openCard(whatunit) {
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
-	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
+	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo']=="") ) {
 		ovHTML+='No prior evo / No known materials';
 	      } else {
-		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
-		for(var i=0; i < 5; i++) {
-		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
-			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span><br>';
+		var tEvo=evotrail[evoUnitIdx-1]['evo'].split(",");
+		for (i in tEvo) {
+		      if (tEvo[i]!='None') {
+			ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
 		 }
 	      }
 	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
-	      if (ovevo[0] != 'None') {
-		  for(var i=0; i < 5; i++) {
-		      if (ovevo[i] != 'None') {
-			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
+	      if (ovevo != "") {
+	      	ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i><br>';
+	      	var tEvo=ovevo.split(",");
+		  for (i in tEvo) {
+		      if (tEvo[i] != 'None') {
+			    ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
 		  }
-		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
 		  ovHTML+='No further evo / No known materials';
 	      }
