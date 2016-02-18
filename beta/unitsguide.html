@@ -743,6 +743,7 @@ function initialize(fusionData) {
 		    var evoString='<div style="white-space:nowrap;">';
 		    console.log(evoVal);
 		    if (evoVal!="") {
+		    	var tSplit=evoVal.split(",");
 		    	for (x in tSplit)
 		    		evoString+='<img src="'+getEvoIMG(tSplit[x])+'" width="35"/> ';
 		    }
@@ -953,12 +954,7 @@ function initialize(fusionData) {
 	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
 	      var ovGlobal = ovdata2[0]["global release"];
 	      var ovJapan = ovdata2[0]["japan release"];
-	      var ovevo = [];
-	      // Query Evo
-	      for(var i=0; i < 5; i++) {
-		    /*find match*/
-		    ovevo.push( ovdata2[0]['evo '+(i+1)] );
-	      }
+	      var ovevo = ovdata2[0]["evo"];
 	      var ovevozel = ovdata2[0]["evo zel"];
 	      var ovmaxlvl = ovdata2[0]["max lvl"];
 	      var ovacquire = ovdata2[0]["acquire"];
@@ -1139,20 +1135,22 @@ function initialize(fusionData) {
 	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
 	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
 	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
-	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo1']=='None') ) {
+	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo']=="") ) {
 		ovHTML+='No prior evo / No known materials';
 	      } else {
 		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span> ';
-		for(var i=0; i < 5; i++) {
-		      if (evotrail[evoUnitIdx-1]['evo'+(i+1)]!='None') {
-			ovHTML+='<img src="'+getEvoIMG(evotrail[evoUnitIdx-1]['evo'+(i+1)])+'" width="24" title="'+evotrail[evoUnitIdx-1]['evo'+(i+1)]+'"/> '; }
+		var tEvo=evotrail[evoUnitIdx-1]['evo'].split(",");
+		for (i in tEvo) {
+		      if (tEvo[i]!='None') {
+			ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
 		 }
 	      }
 	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
-	      if (ovevo[0] != 'None') {
-		  for(var i=0; i < 5; i++) {
-		      if (ovevo[i] != 'None') {
-			    ovHTML+='<img src="'+getEvoIMG(ovevo[i])+'" width="24" title="'+ovevo[i]+'"/> '; }
+	      if (ovevo != "") {
+	      	var tEvo=ovevo.split(",");
+		  for (i in tEvo) {
+		      if (tEvo[i] != 'None') {
+			    ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
 		  }
 		  ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i>';
 	      } else {
@@ -1536,7 +1534,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    /*carry over to global var*/
 	    for (i=0;i<cData.length;i++) {
 	    	if (cData[i]['evo']!="") {
-	    		var evoSplit=cData[i]['evo'].split();
+	    		var evoSplit=cData[i]['evo'].split(",");
 	    		var tmpArr={};
 	    		for (x in evoSplit)
 	    			tmpArr["evo "+ +(x+1)]=evoSplit[x];
