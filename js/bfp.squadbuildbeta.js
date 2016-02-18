@@ -87,7 +87,8 @@ sphereList=[
 ];
 extraList=[
 	{name:"No Extra Skill Bonus",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
-	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]}
+	{name:"20%",nick:"twenty",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
+	{name:"30%",nick:"thirty",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]}
 ];
 /*Stats Calc Var*/
 unitBonus={A:[0,0,0,0,0,0,0,0,0],B:[0,0,0,0,0,0,0,0,0],C:[0,0,0,0,0,0,0,0,0],D:[0,0,0,0,0,0,0,0,0],E:[0,0,0,0,0,0,0,0,0],F:[0,0,0,0,0,0,0,0,0]};
