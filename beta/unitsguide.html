@@ -239,7 +239,7 @@ function initialize(fusionData) {
   } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,14,15,16,17,22,23,24,25,26,27]; var pLength=50; }
   
 	/*Check for latest ver of Data with UBB*/
-	if (fusionData.columns.indexOf("BB ATK%")==-1 || fusionData.columns.indexOf("IconREF")==-1) {
+	if (fusionData.columns.indexOf("BB ATK%")==-1 || fusionData.columns.indexOf("IconREF")==-1 || fusionData.columns.indexOf("Evo")==-1) {
 		/*LocalStorage Delete and Refresh*/
 		alert("Data structure has been changed or upgraded. Click OK to upgrade.");
 		localStorage.removeItem("unitsguideadvance");
