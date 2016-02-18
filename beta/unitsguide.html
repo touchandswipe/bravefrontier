@@ -741,8 +741,8 @@ function initialize(fusionData) {
 		"orderable": false,
 		"render": function(evoVal, type, cRow, full) {
 		    var evoString='<div style="white-space:nowrap;">';
+		    console.log(evoVal);
 		    if (evoVal!="") {
-		    	var tSplit=evoVal.split();
 		    	for (x in tSplit)
 		    		evoString+='<img src="'+getEvoIMG(tSplit[x])+'" width="35"/> ';
 		    }
