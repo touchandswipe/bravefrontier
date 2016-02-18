@@ -256,7 +256,7 @@ function convertJSON( serialObj ) {
 
 /*Initialise datapull from Google Tables*/
 function initializeDB() {
-  var query = "SELECT ID,Name,Series,Rarity,'Evo','Element','SystemID','BFPRO Notes','Japan Release','Global Release' FROM " + gTable + " ORDER BY 'ID' ASC";
+  var query = "SELECT ID,Name,Series,Rarity,Evo,Element,SystemID,'BFPRO Notes','Japan Release','Global Release' FROM " + gTable + " ORDER BY 'ID' ASC";
   var encodedQuery = encodeURIComponent(query);
   /*Construct the URL*/
   var url = [gURL];
