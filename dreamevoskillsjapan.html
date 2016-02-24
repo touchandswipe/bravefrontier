@@ -58,9 +58,10 @@ function buildDB(jsonData, unitid) {
 						$.each(jsonData[unitid]["skills"][x].skill.effects[y], function(sKey, sObj) {
 							outputHTML+='<tr><td colspan="2">'+sKey+'</td></tr>';
 							$.each(sObj, function(sKey2, sObj2) {
-								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect")
+								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect") {
 									outputHTML+='<tr><td>'+sKey2+'</td><td>'+sObj2+'</td></tr>';
-								else if (sKey2=="triggered effect") {
+								} else if (sKey2=="triggered effect") {
+									console.log("triggered effect found");
 									for (z in sObj2) {
 										$.each(sObj[z], function(tKey, tObj) {
 											outputHTML+='<tr><td>'+tKey+'</td><td>'+tObj+'</td></tr>';
