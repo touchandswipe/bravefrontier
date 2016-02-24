@@ -40,7 +40,7 @@ if (window.location.hash == '#_=_') {
 <div class="container-fluid text-center">
     <h3>Dream Evo Customisation</h3>
     <!--Containing Div-->
-    <div class="container-fluid" id="rawMod">
+    <div class="container-fluid text-center" id="rawMod">
           <h3>Loading ...</h3>
     </div>
 </div> <!-- /container -->
@@ -60,8 +60,38 @@ function urlParam(name){
     }
 }
 
-function buildDB(jsonData) {
-
+function buildDB(jsonData, unitid) {
+	if (jsonData.hasOwnProperty(unitid)) {
+		$.each(jsonData[unitid]["category"], function(catKey, catObj) {
+			outputHTML+="<h2>Skills Category: "+catObj.name+"</h2>";
+			outputHTML+="<table class="table table-condensed table-bordered small">";
+			for (x in jsonData[skills]) {
+				if (jsonData[skills][x]==catKey) {
+					for (y in jsonData[skills][x].skill.effects) {
+						$.each(jsonData[skills][x].skill.effects[y], function(sKey, sObj) {
+							outputHTML+='<tr><td colspan="2">'+sKey+'</td></tr>';
+							$.each(sObj, function(sKey2, sObj2) {
+								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect")
+									outputHTML+='<tr><td>'+sKey2+'</td><td>'+sObj2+'</td></tr>';
+								else if (sKey2=="triggered effect") {
+									for (z in sObj2) {
+										$.each(sObj[z], function(tKey, tObj) {
+											outputHTML+='<tr><td>'+tKey+'</td><td>'+tObj+'</td></tr>';
+										})
+									}
+								}
+							})
+						})
+						outputHTML+='<tr><td colspan="2">Separator</td></tr>';
+					}
+				}
+			}
+			outputHTML+="</table>";
+		})
+		
+	} else {
+		outputHTML("Unit NOT FOUND in data.")
+	}
 }
 
 $(document).ready( function(e) {
@@ -72,7 +102,7 @@ $(document).ready( function(e) {
 	        contentType: "text/plain; charset=UTF-8",
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
-  	    		     buildDB(data);
+  	    		     buildDB(data, unitRQ);
 	 	      },
       		error: function(jqXHR, textStatus, errorThrown) {
       			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
