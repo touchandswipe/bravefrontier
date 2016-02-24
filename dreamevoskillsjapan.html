@@ -51,7 +51,7 @@ function buildDB(jsonData, unitid) {
 			outputHTML+='<h2>Skills Category: '+catObj.name+'</h2>';
 			outputHTML+='<table class="table table-condensed table-bordered small">';
 			for (x in jsonData[unitid]["skills"]) {
-				if (jsonData[unitid]["skills"][x].category==catKey) {
+				if (jsonData[unitid]["skills"][x]["category"]==catKey) {
 					for (y in jsonData[unitid]["skills"][x].skill.effects) {
 						$.each(jsonData[unitid]["skills"][x].skill.effects[y], function(sKey, sObj) {
 							outputHTML+='<tr><td colspan="2">'+sKey+'</td></tr>';
