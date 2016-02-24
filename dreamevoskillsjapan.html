@@ -63,8 +63,9 @@ function urlParam(name){
 function buildDB(jsonData, unitid) {
 	if (jsonData.hasOwnProperty(unitid)) {
 		$.each(jsonData[unitid]["category"], function(catKey, catObj) {
-			outputHTML+="<h2>Skills Category: "+catObj.name+"</h2>";
-			outputHTML+="<table class="table table-condensed table-bordered small">";
+			outputHTML+='<img src="'+imgPrePath+"/unit/img/unit_ills_thum_"+unitid+'.png" width="80" height="80">';
+			outputHTML+='<h2>Skills Category: '+catObj.name+'</h2>';
+			outputHTML+='<table class="table table-condensed table-bordered small">';
 			for (x in jsonData[skills]) {
 				if (jsonData[skills][x]==catKey) {
 					for (y in jsonData[skills][x].skill.effects) {
