@@ -59,11 +59,10 @@ function buildDB(jsonData, unitid) {
 			for (var x in jsonData[unitid]["skills"]) {
 				if (jsonData[unitid]["skills"][x]["category"]==catKey) {
 					outputHTML+='<table class="table table-condensed table-bordered small">';
-					outputHTML+='<h4><b>'+jsonData[unitid]["skills"][x].skill.name+' [SP Cost:'+jsonData[unitid]["skills"][x].skill.bp+']</b></h4>';
+					outputHTML+='<h5 class="text-danger"><b>'+jsonData[unitid]["skills"][x].skill.name+' [SP Cost:'+jsonData[unitid]["skills"][x].skill.bp+']</b></h5>';
 					for (var y in jsonData[unitid]["skills"][x].skill.effects) {
 						$.each(jsonData[unitid]["skills"][x].skill.effects[y], function(sKey, sObj) {
 							outputHTML+='<tr><th colspan="2" class="effType">Effects Type: '+sKey+'</th></tr>';
-							outputHTML+='<tr><th width="50%">Effects</th><th width="50%">Value</th></tr>';
 							$.each(sObj, function(sKey2, sObj2) {
 								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect") {
 									outputHTML+='<tr><td><b>'+sKey2+'</b></td><td>'+sObj2+'</td></tr>';
