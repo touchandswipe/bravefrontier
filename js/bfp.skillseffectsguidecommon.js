@@ -242,7 +242,7 @@ if (typeof mappedNames !== 'undefined') {
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+unitName+' '+valObj.rarity+'<i class="fa fa-star"></i><span class="hidden-sm hidden-xs"> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
         /*dreamevo skills*/
         if (valObj.rarity==8)
-        	nameSTR+='<button class="btn btn-xs btn-primary dreamevo" data-link="dreamevoskillsjapan?id='+valObj.id+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button>';
+        	nameSTR+='<button class="btn btn-danger dreamevo" data-link="dreamevoskillsjapan?id='+valObj.id+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button>';
         nameSTR+='<div class="row"><div class="col-xs-12 col-sm-12"><img src="'+imgPrePath+'unit/img/unit_ills_full_'+valObj.id+'.png" width="450"></div></div>';
 	/*Stats Bits*/
         if (valObj.stats) {
