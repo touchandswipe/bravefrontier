@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan RxA  - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Unit Skills and Effects Guide Japan RxA - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+<!-- Main Body Space-->
+<div class="container-fluid text-center">
+    <h3>Dream Evo Customisation</h3>
+    <!--Containing Div-->
+    <div class="container-fluid" id="rawMod">
+          <h3>Loading ...</h3>
+    </div>
+</div> <!-- /container -->
+<script type="text/javascript">
+jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/feskills.json";
+imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
+outputHTML="";
+
+/*JQ Param handling*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return decodeURIComponent(results[1]) || '';
+    }
+}
+
+function buildDB(jsonData) {
+
+}
+
+$(document).ready( function(e) {
+      var unitRQ=urlParam("id");
+      if (unitRQ!="") {
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: jsonURL,
+	        success: function(data, textStatus, request){
+  	    		     buildDB(data);
+	 	      },
+      		error: function(jqXHR, textStatus, errorThrown) {
+      			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+      		}
+	    })
+	    } else {
+	      outputHTML="No ID specified";
+	    }
+	    $("#rawID").html(outputHTML);
+})
+</script>
+</body>
+</html>
