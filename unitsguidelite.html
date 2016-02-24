@@ -16,6 +16,7 @@
     <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    #dreamcontent {width:100%;height:100%;border:0;}
     .evolutionary {vertical-align:bottom;}
     .evoDisp {line-height:140px;}
     #disqus_thread {
@@ -514,6 +515,10 @@ function openCard(whatunit) {
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
+		/*Dream evo button*/
+		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button> ';
+		}
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
@@ -737,6 +742,13 @@ $('#searchBox').on('typeahead:select', function(ev, suggestion) {
 	searchNameRun($(this).val())
 })
 
+/*dreamevo btn*/
+$(document).on("click", "#dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$("#dreamevo").attr("data-link"));
+	$("#dreammodal").modal("show");
+})
+
 /*Binds Enter KEY to BOX*/
 $( "#searchBox" ).keypress( function( event ) {
   if ( event.which == 13 ) {
@@ -934,6 +946,20 @@ $(window).load(function() {
     </div>
   </div>
 </div> <!-- End Card Modal -->
+
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="height:90%">
+    <div class="modal-content" style="height:100%">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Dream EVO Skills</h3></div>
+      <div class="modal-body" style="height:100%">
+      	<div class="row" style="height:90%">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Alert Modal -->
 <div class="modal" id="alertmodal" tabindex="-1" role="dialog" aria-labelledby="alertmodal" aria-hidden="true">
