@@ -52,7 +52,9 @@ function buildDB(jsonData, unitid) {
 			outputHTML+='<table class="table table-condensed table-bordered small">';
 			for (x in jsonData[unitid]["skills"]) {
 				if (jsonData[unitid]["skills"][x]["category"]==catKey) {
+					console.log("category match");
 					for (y in jsonData[unitid]["skills"][x].skill.effects) {
+						console.log("processing effects");
 						$.each(jsonData[unitid]["skills"][x].skill.effects[y], function(sKey, sObj) {
 							outputHTML+='<tr><td colspan="2">'+sKey+'</td></tr>';
 							$.each(sObj, function(sKey2, sObj2) {
