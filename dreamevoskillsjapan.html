@@ -88,6 +88,7 @@ $(document).ready( function(e) {
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
   	    		     buildDB(data, unitRQ);
+  	    		     $("#rawID").html(outputHTML);
 	 	      },
       		error: function(jqXHR, textStatus, errorThrown) {
       			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
@@ -95,8 +96,8 @@ $(document).ready( function(e) {
 	    })
 	    } else {
 	      outputHTML="No ID specified";
+	      $("#rawID").html(outputHTML);
 	    }
-	    $("#rawID").html(outputHTML);
 })
 </script>
 </body>
