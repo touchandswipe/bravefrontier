@@ -1121,6 +1121,10 @@ function initialize(fusionData) {
 	      /*Raw data integration buttons*/
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
+		/*dream evo button*/
+		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button> ';
+		}
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
@@ -1967,7 +1971,12 @@ $(document).on("click", ".compareUnit", function(e) {
 	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
 	}
     })
-    
+/*dreamevo btn*/
+$(document).on("click", "#dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$("#dreamevo").attr("data-link"));
+	$("#dreammodal").modal("show");
+})
 /*fav Icon Link to OpenCard*/
 $(document).on("click", ".favIconLink", function(e) {
 	openCard($(this).attr("data-value"),"unitid");
@@ -2414,8 +2423,8 @@ $(document).on("click", "#execFilter", function(e){
 		bfPROsTable.column( 53 ).search("TRUE");
 		    break;
 		case "Global":
-		bfPROsTable.column( 57 ).search("");
-		bfPROsTable.column( 56 ).search("TRUE");
+		bfPROsTable.column( 53 ).search("");
+		bfPROsTable.column( 52 ).search("TRUE");
 		    break;
 	}
 	/*Draw after all filters are made*/
@@ -3433,6 +3442,20 @@ $(window).load(function() {
 	<button type="button" class="btn btn-primary" id="execFilter">
 	  <i class="fa fa-filter"></i> Filter
 	</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+      	<div class="row">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
+	</div>
       </div>
     </div>
   </div>
