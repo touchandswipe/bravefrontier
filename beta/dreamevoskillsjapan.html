@@ -92,7 +92,8 @@ $(document).ready( function(e) {
       if (unitRQ!="") {
 	    $.ajax({
 	        dataType: "json",
-	        contentType: "text/plain; charset=UTF-8",
+	        contentType: "text/plain",
+	        crossDomain: true,
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
   	    		     buildDB(data, unitRQ);
