@@ -68,7 +68,7 @@ function buildDB(jsonData, unitid) {
 								} else if (sKey2=="triggered effect") {
 									for (var i in sObj2) {
 										$.each(sObj2[i], function(tKey, tObj) {
-											if (sKey2!="passive id" && sKey2!="proc id")
+											if (tKey!="passive id" && tKey!="proc id")
 												outputHTML+='<tr><td><b>'+tKey+'</b></td><td>'+tObj+'</td></tr>';
 										})
 									}
