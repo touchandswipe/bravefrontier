@@ -40,6 +40,7 @@ sphereList=[
 	{name:"Golem Core",nick:"golemcore",stats:[0,0.3,0.3,0,0,0,0,1.5,0]},
 	{name:"Guardian Shard",nick:"guardshard",stats:[0.3,0.3,0,0,0,0,0,0,0.5]},
 	{name:"Guardian Sliver",nick:"guardsliver",stats:[0.3,0,0.3,0,0,0,0,0,0]},
+	{name:"Guiding Light",nick:"guidelight",stats:[0.3,0,0.3,0,0,0,0,0,0]},
 	{name:"Harp of Aurelia",nick:"harpaurelia",stats:[0,0,0,0,0,0,0,0,0]},
 	{name:"Heavenly Bud",nick:"heavenbud",stats:[0,0,0,0,0,1,0,0,0]},
 	{name:"Heresy Orb",nick:"heresy",stats:[0.15,0.15,0.15,0.15,0,0,0,0,0]},
