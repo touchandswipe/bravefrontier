@@ -791,10 +791,16 @@ $.getJSON( serverSelect, function( unit ) {
         /*Passive Skill,	Passive Condition,	BB Type,	SBB Type,	UBB Type spacings*/
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
-        /*Cost and max lvl spacing*/
+        /*Cost and max lvl*/
         if (valObj.cost) {
-              exportSTR+='<td>'+valObj.cost+'</td><td></td>'
-          } else exportSTR+='<td></td><td></td>';
+              exportSTR+='<td>'+valObj.cost+'</td>'
+          } else exportSTR+='<td></td>';
+          
+        /*max lvl*/
+        var lvlmapping=[0,10,12,40,60,80,100,120,150];
+        if (valObj.rarity) {
+              exportSTR+='<td>'+lvlmapping[ +valObj.rarity ]+'</td>'
+          } else exportSTR+='<td></td>';
           
         /*normal hits*/
         if (valObj.hits)
@@ -906,7 +912,7 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
         /*evo spacings*/
-        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        exportSTR+='<td></td>';
         
         /*stats*/
         exportSTR+='<td></td>';
