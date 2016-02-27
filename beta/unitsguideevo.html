@@ -2033,16 +2033,14 @@ $(document).on("click", ".compareUnit", function(e) {
 	if ( $(this).children('div').hasClass("btn-success") ) {
 	    if ( compareSelect.length < compareMax ) { // Max units
 		compareSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-success");
-		$(this).children('div').addClass("btn-danger");
+		$(this).children('div').toggleClass("btn-success btn-danger");
 		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-users"></i>');
 	    } else {
 		bfpAlert("Max units selected",'You can only select maximum of '+compareMax+' units to compare / calculate evolution materials and for squad sprite simulation.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	    }
 	} else {
 	    compareSelect.splice(compareSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-danger");
-	    $(this).children('div').addClass("btn-success");
+	    $(this).children('div').toggleClass("btn-danger btn-success");
 	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
 	}
 })
@@ -2079,17 +2077,13 @@ $(document).on("click", ".addFav", function(e) {
 	if ( $(this).children('div').hasClass("btn-default") ) {
 	    /*when not added*/
 		favSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-default");
-		$(this).children('div').addClass("btn-warning");
-		$(this).children('div').children('i').removeClass("text-muted");
-		$(this).children('div').children('i').addClass("text-fav");
+		$(this).children('div').toggleClass("btn-default btn-warning");
+		$(this).children('div').children('i').toggleClass("text-muted text-fav");
 	} else {
 	    /*when added*/
 	    favSelect.splice(favSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+	    $(this).children('div').toggleClass("btn-warning btn-default");
+		$(this).children('div').children('i').toggleClass("text-fav text-muted");
 	}
 	/*Save in local storage*/
 	localStorage.setItem("favourites",favSelect);
@@ -2224,10 +2218,8 @@ $(document).on("click", "#deleteFav", function(e){
 		.draw();
 	    $(document).find('.addFav').each( function() {
 		if ( $(this).children('div').hasClass("btn-warning") ) {
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+		    $(this).children('div').toggleClass("btn-warning btn-default");
+		    $(this).children('div').children('i').toggleClass("text-fav text-muted");
 		}
 	    })
 	/*reset favVariable*/
