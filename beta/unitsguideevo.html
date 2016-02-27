@@ -2489,7 +2489,6 @@ $(document).on("click", "#execFilter", function(e){
 	regexArr=[];
 	$('.filGender:checked').each( function(){
 		regexArr.push($(this).val());
-		console.log(regexArr);
 	})
 	if (regexArr.length!=0) {
 		regexStr="^"+regexArr.join("\|");
@@ -3164,13 +3163,13 @@ $(window).load(function() {
 			<h5><b>Gender</b></h5>
 			<div class="btn-group btn-group-sm" data-toggle="buttons">
 			  <label class="btn btn-default">
-			    <input type="checkbox" name="filGender" value="Female"><i class="text-danger fa fa-venus"></i>
+			    <input type="checkbox" class="filGender" value="Female"><i class="text-danger fa fa-venus"></i>
 			  </label>
 			  <label class="btn btn-default">
-			    <input type="checkbox" name="filGender" value="Male"><i class="text-primary fa fa-mars"></i>
+			    <input type="checkbox" class="filGender" value="Male"><i class="text-primary fa fa-mars"></i>
 			  </label>
 			  <label class="btn btn-default">
-			    <input type="checkbox" name="filGender" value="Genderless"><i class="text-default fa fa-genderless"></i>
+			    <input type="checkbox" class="filGender" value="Genderless"><i class="text-default fa fa-genderless"></i>
 			  </label>
 			</div>
 		</div>
