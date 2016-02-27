@@ -1,0 +1,3486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier Units Guide - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <title>Brave Frontier - Units Guide by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" hrref="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.2/css/dataTables.colVis.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+    #dreamcontent {width:100%;height:100%;border:0;}
+    .listIcon {width:40px;height:40px;}
+    .evolutionary {vertical-align:bottom;}
+    .evoDisp {line-height:140px;}
+    table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting:after {
+	opacity:0.2;
+	font-size:14px;
+	right:2px;
+	top:2px;
+    }
+    table.dataTable td {font-size:9pt;}
+    #artwork {padding-bottom:70px;}
+    .altArt {
+	top:10px;
+	position: absolute;
+	padding:5px 0px;
+    }
+    .loreBox {
+	bottom: 5px;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	position: absolute;
+	background: rgba(230,230,255,0.8);
+	padding: 8px 15px;
+	border: 1px solid #DDDDDD;
+	border-radius: 10px;
+    }
+    .hashbox {
+	border: 1px solid #CCCCCC;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0px 4px;
+	font-weight: bold;
+	margin-left: 5px;
+	font-size: 8pt;
+	color: #999999;
+    }
+    .bbtxt {color:#0099FF;}
+    .sbbtxt {color:#FFAA00;}
+    .ubbtxt {color:#DD0000;}
+    .affix { position:fixed;left:0px;top:40px;width:100%;z-index:50;background:rgba(200, 50, 150, 0.80);padding:30px 10px 0px 10px;margin:0;box-shadow: 0 4px 4px -2px #888888;; }
+    .affix-top { position:static; }
+    .evoShdw {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+    }
+    .evoCurrent {
+	-webkit-filter: drop-shadow(0px 0px 5px #AA00AA);
+	filter: drop-shadow(0px 0px 5px #AA00AA);
+    }
+    .evoUnit { display:inline-block;position:relative;margin-bottom:3px; }
+    .evoCaret { display:inline-block;position:relative;width:30px;text-align:center;vertical-align:middle; }
+    .vidContain {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px; height: 0; overflow: hidden;
+    }
+    .vidContain iframe,
+    .vidContain object,
+    .vidContain embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    }
+    .rShow {
+    	position:relative;
+    	white-space:nowrap;
+    	top:-12px;
+    	left:10px;
+    }
+    .rEvo {
+	position: absolute;
+	white-space: nowrap;
+	top: 25px;
+	left: 8px;
+    }
+    .va {vertical-align:middle;}
+    .text-fav {color:#FFFFFF;}
+    .kdb-r {
+    background:#FFCC00;
+    color:#000000;
+    padding:0 3px 0 3px;
+    }
+    .kdb-d {
+    background:#CC0000;
+    color:#FFFFFF;
+    font-size:10px;
+    padding:2px 3px 2px 3px;
+    }
+    .release {
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    border-radius: 3px;
+    padding:3px 5px;
+    vertical-align: middle;
+    }
+    .purple {background:#FFDB4D;}
+    .sp2 {margin:2px;}
+    .clear {clear:both;}
+    .flipHori {
+	-moz-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	transform: scaleX(-1);
+	-ms-filter: fliph; /*IE*/
+	filter: fliph; /*IE*/
+    }
+    table.dataTable thead > tr > th {
+	padding-left: 7px;
+	padding-right: 15px;
+    }
+    </style>
+<!-- START JSON Code-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js'></script>
+<script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.2/js/dataTables.colVis.min.js'></script>
+<script type='text/javascript' src='//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon5.js"></script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+}
+var gEvoUnits = []; /*global variable to selected units evoMats*/
+var ownSquad = ['','','','','',''];
+var oppSquad = ['','','','','',''];
+var bfServer={"gl":"http://2.cdn.bravefrontier.gumi.sg/content/","jp":"http://cdn.ios.brave.a-lim.jp/","kr":"http://d1dwwuvait5r4t.cloudfront.net/bf/v1.3.0/","eu":"http://static.bravefrontier.gumi-europe.net/content/"};
+var bfPrefix={"art":"unit/img/unit_ills_full_","icon":"unit/img/unit_ills_thum_"};
+var favUnitObj=[];
+/*Get Boss Data*/
+function bossDataLoad() {
+	var query = "SELECT * FROM " + '1CNQc8zBKPB2fnnLTWO4PXj3wiGAcahkFRVuyLgFB'
+		    + " ORDER BY 'name' ASC";
+	var encodedQuery = encodeURIComponent(query);
+	
+	/*Construct URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+	/*Send the JSONP request*/
+	$.ajax({
+	  url: url.join(''),
+	  dataType: 'jsonp',
+	  success: function (data) {
+	      bossList = sconvertJSON(data);
+	    }
+    })
+}
+/*Reset Squad*/
+function clearSquad() {
+    for (var i=0;i<6;i++) {
+	/*reset images src*/
+	$('#squadUnit'+(i+1)).attr('src','');
+	$('#squadOpp'+(i+1)).attr('src','');
+	/*reset sharing arrays*/
+    }
+    $('#bossIMG').children('img').attr('src','');
+}
+/*Convert Google JSON REST*/
+function convertJSON( serialObj ) {
+    var s = serialObj || {};
+    if( !s.columns && !s.rows )
+    {
+	console.error("convertJSON() >>  was not passed a serialized obj");
+	return [];
+    }
+    /*Create returned object*/
+    var obj = [];
+    /*Loops through serialObj and matches the columns*/
+    for(var i=0; i < s.rows.length; i++)
+    {
+	var temp = {};
+	for(var j=0; j < s.columns.length; j++)
+	{ /*replace space with - and lowercase for all*/
+	    if (isNaN(s.rows[i][j])) {
+		/*check for blanks in hits and fill fields and lord*/
+		if ((s.columns[j].toLowerCase().search("hits") != -1)||(s.columns[j].toLowerCase().search("DC") != -1)||(s.columns[j].toLowerCase().search("fill") != -1)||(s.columns[j].toLowerCase().search("lord") != -1)) {
+		    temp[s.columns[j].toLowerCase()] = 0;
+		/*Call Unit Card*/
+		} else if (s.columns[j].toLowerCase().search("name") != -1) {
+		    temp[s.columns[j].toLowerCase()] = '<a href="#" class="unitName notranslate">'+s.rows[i][j]+'</a>';
+		//} else if (s.rows[i][j].substr(0,4) == "http") {
+		//    temp[s.columns[j].toLowerCase()] = '<img src="'+s.rows[i][j]+'" width="40" />';
+		} else { /*general string*/
+		    temp[s.columns[j].toLowerCase()] = s.rows[i][j];
+		}
+	    }
+	     /*is blank*/
+	    else if (s.rows[i][j] == "") {
+		    temp[s.columns[j].toLowerCase()] = "None";
+	    } else { /*else number*/
+		temp[s.columns[j].toLowerCase()] = parseFloat(s.rows[i][j]);
+		}
+	}
+	/*save the new row with column names*/
+	obj.push(temp);
+    }
+    /*Return the objects*/
+    return obj;
+}
+/*Initialise datapull from Google Tables*/
+function initialize(fusionData) {
+  /*Xtra Columns to hide by resolution*/
+  if ( $( document ).width() >= 1800 ) {
+    var xtraDefCol=[]; var pLength=100;
+  } else if ( ( $( document ).width() < 1800 ) && ( $( document ).width() >= 1100 ) ) { var xtraDefCol=[3,6,7,8,17,22,23,24,25,26,27]; var pLength=50; 
+  } else if ( ( $( document ).width() < 1100 ) && ( $( document ).width() >= 800 ) ) { var xtraDefCol=[3,6,7,8,11,12,16,17,22,23,24,25,26,27]; var pLength=50;
+  } else if ( ( $( document ).width() < 800 ) && ( $( document ).width() >= 500 ) ) { var xtraDefCol=[3,6,7,8,9,10,11,12,14,15,16,17,22,23,24,25,26,27]; var pLength=50;
+  } else { var xtraDefCol=[2,3,5,6,7,8,9,10,11,12,14,15,16,17,22,23,24,25,26,27]; var pLength=50; }
+  
+	/*Check for latest ver of Data with UBB*/
+	if (fusionData.columns.indexOf("BB ATK%")==-1 || fusionData.columns.indexOf("IconREF")==-1 || fusionData.columns.indexOf("Evo")==-1) {
+		/*LocalStorage Delete and Refresh*/
+		alert("Data structure has been changed or upgraded. Click OK to upgrade.");
+		localStorage.removeItem("unitsguideadvance");
+		localStorage.removeItem("unitsguideadvanceCount");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	} else {
+	deserialdata = convertJSON(fusionData);
+	bfPROsTable=$('#mytable').dataTable({
+		"data":fusionData.rows,
+		"columns": [
+		{ "data": fusionData.columns.indexOf("ID") },
+		{ "data": fusionData.columns.indexOf("IconREF") },
+		{ "data": fusionData.columns.indexOf("Name") },
+		{ "data": fusionData.columns.indexOf("Series") },
+		{ "data": fusionData.columns.indexOf("Batch") },
+		{ "data": fusionData.columns.indexOf("Rarity") },
+		{ "data": fusionData.columns.indexOf("Element") },
+		{ "data": fusionData.columns.indexOf("Cost") },
+	    { "data": fusionData.columns.indexOf("Gender") },
+	    { "data": fusionData.columns.indexOf("Leader Skill") },
+	    { "data": fusionData.columns.indexOf("BB Skill") },
+	    { "data": fusionData.columns.indexOf("SBB Skill") },
+	    { "data": fusionData.columns.indexOf("UBB Skill") },
+	    { "data": fusionData.columns.indexOf("Passive Skill") },
+	    { "data": fusionData.columns.indexOf("Hits") },
+	    { "data": fusionData.columns.indexOf("BB Hits") },
+	    { "data": fusionData.columns.indexOf("SBB Hits") },
+	    { "data": fusionData.columns.indexOf("UBB Hits") },
+	    { "data": fusionData.columns.indexOf("Normal DC") },
+	    { "data": fusionData.columns.indexOf("BB DC") },
+	    { "data": fusionData.columns.indexOf("SBB DC") },
+	    { "data": fusionData.columns.indexOf("UBB DC") },
+	    { "data": fusionData.columns.indexOf("BB Fill") },
+	    { "data": fusionData.columns.indexOf("SBB Fill") },
+	    { "data": fusionData.columns.indexOf("UBB Fill") },
+	    { "data": fusionData.columns.indexOf("BB ATK%") },
+	    { "data": fusionData.columns.indexOf("SBB ATK%") },
+	    { "data": fusionData.columns.indexOf("UBB ATK%") },
+	    { "data": fusionData.columns.indexOf("Weighted Stats (Lord)") },
+	    { "data": fusionData.columns.indexOf("Weighted Pimped Stats (Lord)") },
+	    { "data": fusionData.columns.indexOf("HP Lord") },
+	    { "data": fusionData.columns.indexOf("ATK Lord") },
+	    { "data": fusionData.columns.indexOf("DEF Lord") },
+	    { "data": fusionData.columns.indexOf("REC Lord") },
+	    { "data": fusionData.columns.indexOf("HP Anima") },
+	    { "data": fusionData.columns.indexOf("ATK Anima") },
+	    { "data": fusionData.columns.indexOf("DEF Anima") },
+	    { "data": fusionData.columns.indexOf("REC Anima") },
+	    { "data": fusionData.columns.indexOf("HP Breaker") },
+	    { "data": fusionData.columns.indexOf("ATK Breaker") },
+	    { "data": fusionData.columns.indexOf("DEF Breaker") },
+	    { "data": fusionData.columns.indexOf("REC Breaker") },
+	    { "data": fusionData.columns.indexOf("HP Guardian") },
+	    { "data": fusionData.columns.indexOf("ATK Guardian") },
+	    { "data": fusionData.columns.indexOf("DEF Guardian") },
+	    { "data": fusionData.columns.indexOf("REC Guardian") },
+	    { "data": fusionData.columns.indexOf("HP Oracle") },
+	    { "data": fusionData.columns.indexOf("ATK Oracle") },
+	    { "data": fusionData.columns.indexOf("DEF Oracle") },
+	    { "data": fusionData.columns.indexOf("REC Oracle") },
+	    { "data": fusionData.columns.indexOf("BFPRO Notes") },
+	    { "data": fusionData.columns.indexOf("Evo") },
+	    { "data": fusionData.columns.indexOf("Global Release") },
+	    { "data": fusionData.columns.indexOf("Japan Release") },
+	    { "data": fusionData.columns.indexOf("Video") },
+	    { "data": fusionData.columns.indexOf("Acquire") },
+	    { "data": fusionData.columns.indexOf("Alt ART") }
+		  ],
+		  "order": [[ 0, "asc" ]],
+		  "dom": '<"container-fluid searchAffix"<"row"<"col-md-11 col-xs-7 col-sm-9"<"#cSearchBox"f>><"col-md-1 col-xs-5 col-sm-3"C>>><"small pull-right"p>rt<"small pull-left"i><"small"p>',
+		  "colVis": {   buttonText: "Show / Hide Columns",
+		  		overlayFade: 0,
+				restore: "Restore Default",
+				exclude: [ 'all' ],
+				groups: [
+			    {   title: "More Unit Info",
+				columns: [ 2,3,6,7,8 ] },
+				{   title: "Unit Batch",
+				columns: [ 4 ] },
+			    {   title: "Leader / BB Skills",
+				columns: [ 9,10 ] },
+			    {   title: "SBB / UBB Skills",
+				columns: [ 11,12 ] },
+			    {   title: "Extra Skill",
+				columns: [ 13 ] },
+			    {   title: "All Hits",
+				columns: [ 14,15,16,17 ] },
+			    {   title: "All DropChecks",
+				columns: [ 18,19,20,21 ] },
+			    {   title: "All BC Fills",
+				columns: [ 22,23,24 ] },
+			    {   title: "All BB ATK%",
+				columns: [ 25,26,27 ] },
+			    {   title: "Evo Materials",
+				columns: [ 51 ] },
+			    {   title: "Wt Pimped Stats",
+				columns: [ 29 ] },
+			    {   title: "(L)ord Stats",
+				columns: [ 30,31,32,33 ] },
+			    {   title: "(A)nima Stats",
+				columns: [ 34,35,36,37 ] },
+			    {   title: "(B)reaker Stats",
+				columns: [ 38,39,40,41 ] },
+			    {   title: "(G)uardian Stats",
+				columns: [ 42,43,44,45 ] },
+			    {   title: "(O)racle Stats",
+				columns: [ 46,47,48,49 ]
+			    }]
+		  },
+		  "autoWidth": false,
+		  "deferRender": true,
+		  "search": { "search": urlParam('query') },
+		  "drawCallback": function( settings ) {
+			$('.statsInfo').tooltip(); },
+		  "initComplete": function( settings, json ) {
+		    var DTapi = this.api();
+		    /*Custom Header Search for batch*/
+		    $("#mytable thead th").each( function () {
+			if ($.text([this])=='Batch') {
+			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" class="batchlink"><b>ALL BATCHES</b></a></li></ul></div>')
+				.appendTo( $(this).empty() );
+			
+			    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
+				select.children('ul').append( '<li><a href="#" class="batchlink">'+d+'</a></li>' )
+			    });
+			}   
+		    });
+			/*Unbind Search*/
+			$('.dataTables_filter input').off();
+			/*custom replace search field*/
+			$('.dataTables_filter').html('<div class="input-group input-group-sm pull-left" style="width:95%;"><span class="input-group-addon" style="width:15px;"><i class="fa fa-search"></i></span><input type="search" class="form-control" style="margin-left:0;" placeholder="e.g. Name, Series, ID. ENTER to update browser URL."></div>');
+			$('.searchAffix').affix({
+			  offset: { top: 180 }
+			});
+			/*Show Table upon DRAW and remove progress bar*/
+			$('#mytable').show();
+			bossDataLoad();
+			/*hide loader*/
+			$('#progressModal').modal('hide');
+			/*check for Batch Parameter*/
+			var batchParam=urlParam('batch');
+			if (batchParam != "") {
+			    DTapi
+				.columns( 4 )
+				.search( batchParam );
+			    DTapi
+				.column( 3 )
+				.order( 'asc' )
+				.draw();
+			e.preventDefault();
+			window.scrollTo(0,0);
+			}
+			/*Open Favs via URL*/
+			var favParam=urlParam('favUnits');
+			if (favParam != "") {
+			    	sharedFavSelect=favParam.split(',');
+				openFav(sharedFavSelect,"Shared units by other players",true);
+			}
+		  },
+		  "pageLength": pLength,
+		  "language": {
+		      "search": "",
+		      "infoFiltered": " - filtered from _MAX_ Total Units",
+		      "zeroRecords": "No units found matching criteria.",
+		      "info": "_START_ to _END_ / _TOTAL_ Units Found" },
+		  /*Parsing Fields via Datatables*/
+		  "columnDefs":[
+		{ "width": "200", "targets": [ 2,9,10,11,12 ] },
+		{ "visible": false, "targets": [ 13,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56].concat(xtraDefCol) },
+		{ "searchable": false, "targets": [ 1,7,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,54,55,57 ] },
+		{ "orderData": [ 7, 0 ], "targets": [ 7 ] },
+		{ "orderData": [ 6, 0 ], "targets": [ 6 ] },
+		{ "orderData": [ 5, 0 ], "targets": [ 5 ] },
+		{ "orderData": [ 4, 0 ], "targets": [ 4 ] },
+		/*using data instead of render to set DATA for cache */
+		{ "targets": [ 1 ],"orderable": false, "width":"40",
+		"render": function (imgID, type, cRow, full )  {
+			var cServer="";
+			if (cRow[fusionData.columns.indexOf("Japan Release")]!="FALSE")
+				cServer=bfServer.jp;
+			else if (cRow[fusionData.columns.indexOf("Global Release")]!="FALSE")
+				cServer=bfServer.gl;
+			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("europe")!=-1)
+				cServer=bfServer.eu;
+			else if (cRow[fusionData.columns.indexOf("BFPRO Notes")].search("korea")!=-1)
+				cServer=bfServer.kr;
+			return '<a href="#" class="favIconLink" data-value="'+imgID+'">'+'<img src="'+cServer+bfPrefix.icon+cRow[fusionData.columns.indexOf("SystemID")]+'.png" class="listIcon" alt="'+cRow[fusionData.columns.indexOf("Name")]+'"/></a>';
+		    }
+		},
+		/*Rarity*/
+		{ "targets":[ 5 ], "width":"20",
+		"render": function(rarity, type, row, full) {
+		    if (type ==='display') {
+			return rarity+' <i class="fa fa-star"></i>';
+		    } else {
+			return rarity;
+		    }
+		}
+		},
+		/*Stats*/
+		{ "targets":[ 7,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+			if (isNaN(nanCol)) {
+			    return "-";
+			} else { return nanCol; }
+		    }
+		},
+		/*Gender*/
+		{ "targets":[ 8 ],
+		"type": "string","width":"10",
+		"render": function(cGender, type, row, full) {
+			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+		}
+		},
+		/*skills*/
+		{ "targets":[ 9,10,11,12,13 ],
+		"type": "string","width":"10",
+		"render": function(cString, type, row, full) {
+			if (cString==""||cString==null)
+				return "None";
+			else
+				return cString;
+		}
+		},
+		{ "targets":[ 14 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo" data-toggle="tooltip" title="Normal Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo" data-toggle="tooltip" title="Normal Hits">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 15 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Hits">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 16 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Hits">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 17 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Hits">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Hits">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 18 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div>'+'-'+'</div>';
+			} else { return '<div>'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 19 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="bbtxt">'+'-'+'</div>';
+			} else { return '<div class="bbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 20 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="sbbtxt">'+'-'+'</div>';
+			} else { return '<div class="sbbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 21 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="ubbtxt">'+'-'+'</div>';
+			} else { return '<div class="ubbtxt">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 22 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB Fill">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 23 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB Fill">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 24 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Fill">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB Fill">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 25 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo bbtxt" data-toggle="tooltip" title="BB ATK%">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 26 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo sbbtxt" data-toggle="tooltip" title="SBB ATK%">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		{ "targets":[ 27 ],
+		"type": "num",
+		/*NaN check*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			if ((isNaN(nanCol)) || (nanCol==0)) {
+			    return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB ATK%">'+'-'+'</div>';
+			} else { return '<div class="statsInfo ubbtxt" data-toggle="tooltip" title="UBB ATK%">'+nanCol+'</div>'; }
+		    } else if (type === 'sort') {
+			if (isNaN(nanCol)) {
+			    return 0;
+			} else { return nanCol; }
+		    }
+		}
+		},
+		/*set as num type for sort*/
+		{ "targets":[ 0 ], "type": "num", "width": "20"
+		},
+		/*Wt Stats*/
+		{ "targets":[ 28 ],
+		"type": "num",
+		"width": "50",
+		/*NaN check n rounding*/
+		"render": function(nanCol, type, row, full) {
+		    if (type ==='display') {
+			    if (isNaN(nanCol)) {
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Stats (Lord)">'+Math.round(nanCol)+'</div>'; }
+		    } else if (type === 'sort') {
+			    if (isNaN(nanCol)) {
+				return "-";
+			    } else { return Math.round(nanCol); }
+			}
+		    }
+		},
+		/*Wt Pimped Stats*/
+		{ "targets":[ 29 ],
+		"type": "num",
+		"width": "50",
+		/*NaN check n rounding*/
+		"render": function(nanCol2, type, row, full) {
+		    if (type ==='display') {
+			    if (isNaN(nanCol2)) {
+				return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+'-'+'</div>';
+			    } else { return '<div class="statsInfo" data-toggle="tooltip" title="Weighted Pimped Stats (Lord)">'+Math.round(nanCol2)+'</div>'; }
+		    } else if (type === 'sort') {
+			    if (isNaN(nanCol2)) {
+				return "-";
+			    } else { return Math.round(nanCol2); }
+		    	}
+		    }
+		},
+		/*Name + Video*/
+		{ "targets":[ 2 ],
+		"type": "string",
+		"render": function(name, type, cRow, full) {
+			    if (type === 'display') {
+				    retString = '<a href="#" class="unitName notranslate" data-value="'+cRow[fusionData.columns.indexOf("ID")]+'">'+name+'</a>';
+				    if ( ( cRow[fusionData.columns.indexOf("Video")] != '' ) ){ retString += ' <a href="#" src="'+cRow[fusionData.columns.indexOf("Video")]+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>' }
+				    return retString;
+			    } else return name;
+		    }
+		},
+		/*Global Japan Release*/
+		{ "targets": [52,53],
+		"orderable": false,
+		"render": function(relVal, type, cRow, full) {
+	    if (relVal=="" || relVal=="TRUE") {
+			return "TRUE"; 
+	    } else {
+		return "FALSE";
+	    }
+		}
+		},
+		/*Aggregated Evolution Materials*/
+		{ "targets": [51],
+		"orderable": false,
+		"render": function(evoVal, type, cRow, full) {
+		    var evoString='<div style="white-space:nowrap;">';
+		    if (evoVal!="") {
+		    	var tSplit=evoVal.split(",");
+		    	for (x in tSplit)
+		    		evoString+='<img src="'+getEvoIMG(tSplit[x])+'" width="35"/> ';
+		    }
+		    else
+		    	evoString+='<img src="'+getEvoIMG("None")+'" width="35"/> ';
+		    evoString+='</div>';
+		    return evoString; }
+		},
+		/*Compare Column*/
+		{ "targets": [57],
+		"orderable": false,
+		"render": function(cBtn, type, cRow, full) {
+		    var rtnString='<div style="white-space:nowrap;"><a href="#" value="'+cRow[fusionData.columns.indexOf("Name")]+'" class="compareUnit"><div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div></a> ';
+		    if (favSelect.length!=0) {
+			if (favSelect.indexOf(cRow[0].toString())!=-1)
+				rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-warning btn-sm"><i class="fa fa-star text-fav"></i></div></a>';
+			else
+		    		rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></a>';
+		    } else
+			rtnString+='<a href="#" value="'+cRow[0]+'" class="addFav" title="Add/Remove Favourite"><div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div></a>';
+		rtnString+='</div>';
+		return rtnString;
+		}
+		},
+		/*Series*/
+		{ "targets":[ 3 ],
+		"render": function(seriesname, type, row, full) {
+		    return '<a href="#" class="serieslink">'+seriesname+'</a>';}
+		},
+		/*Batch*/
+		{ "targets":[ 4 ],
+		"orderable":false,
+		"render": function(batchname, type, row, full) {
+		    return '<a href="#" class="batchlink">'+batchname+'</a>';}
+		}]
+	}) /*End Datatables Init*/
+	/*Custom filter for ID Range*/
+	$.fn.dataTable.ext.search.push (
+	    function( settings, data, dataIndex ) {
+		var selectedUnitVal = parseInt($('#selectunithide').val());
+		var selectedId = data[0] || 0; /*Use data UnitID*/
+		if ( ( selectedUnitVal == 0 ) || (( selectedId >= selectedUnitVal-99 ) && (selectedId <= selectedUnitVal )) )   
+		    { return true; }
+		return false;
+	})
+	
+	/*Custom filter for Fav*/
+	$.fn.dataTable.ext.search.push (
+	    function( settings, data, dataIndex ) {
+		var selectedId = data[0] || 0; /*Use data UnitID*/
+		if (showOnlyFavs) {
+		    for (i=0;i<favSelect.length;i++) {
+			if (selectedId == favSelect[i]) {
+			    return true;
+			}
+		    }
+		    if (i==favSelect.length) {
+			return false;
+		    }
+		} else {
+		    return true;
+		}
+	})
+	} /*End checking for right 7* dataset*/
+}/*End init fn*/
+/*Fav Modal Units Draw function*/
+    function favDraw(drawObj) {
+	var favHTML="";
+	/*Push HTML via OBJ of favourites*/
+	for (var i=0;i<drawObj.length;i++) {
+	    favHTML+='<div class="col-xs-1 col-sm-1 col-md-1"><a href="#" class="favIconLink" data-value="'+drawObj[i]["id"]+'"><img src="'+bfServer[drawObj[i]["server"]]+bfPrefix.icon+drawObj[i]["systemid"]+'.png" width="40"/></a><div class="rShow"><kbd class="kdb-r"><b>'+drawObj[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+	}
+	$('#favIconDisplay').html(favHTML);
+    }
+/*Open Fav Modal function*/
+    function openFav(unitIdArray,titleText,importUnits) {
+	var favSortHTML="";
+	var unitObj=[];
+	/*no unit in fav*/
+	if (unitIdArray.length==0) {
+	    bfpAlert("No favourites selected",'Add favourite using <div class="btn btn-default btn-sm"><i class="fa fa-star text-muted"></i></div> next to each unit. Favourites are saved in local storage and will reload automatically every visit. If you clear your browser cache, it will be lost.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
+	    } else {
+	   /*show fav card */
+	$('#favTitle').html(titleText);
+	$('#favModal').modal("show");
+	
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/favouritiesfeature',
+  		'title': 'Brave Frontier PROs Favourite Feature'
+	});
+	
+	for (var i=0;i < deserialdata.length;i++) {
+	    for (var j=0;j < unitIdArray.length;j++) {
+		if (deserialdata[i]['id']==unitIdArray[j]) {
+			var ovServer="";
+			if (deserialdata[i]['japan release'].toLowerCase()!='false')
+				ovServer="jp";
+			else if (deserialdata[i]['global release'].toLowerCase()!='false')
+				ovServer="gl";
+			else if (deserialdata[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer="eu";
+			else if (deserialdata[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer="kr";
+			else
+				ovServer="jp";
+		    unitObj.push({
+				'id':deserialdata[i]["id"],
+				'rarity':deserialdata[i]["rarity"],
+				'element':deserialdata[i]["element"],
+				'name':deserialdata[i]["name"],
+				'systemid':deserialdata[i]["systemid"],
+				'server':ovServer
+		    });
+		    break;
+		}
+	    }
+	}
+	/*Sort buttons*/
+	favSortHTML+='<div class="col-xs-12 col-sm-12 col-md-12">'
+	if (importUnits) {
+	    favSortHTML+='<button type="button" class="btn btn-danger" id="importUnitsBtn" style="margin-right:5px;"><i class="fa fa-cloud-download"></i> Import</button>';
+	}
+	favSortHTML+='<button type="button" class="btn btn-default sortFav" value="id" style="margin-right:5px;">Sort by ID</button>';
+	favSortHTML+='<button type="button" class="btn btn-default sortFav" value="rarity" style="margin-right:5px;">Sort by Rarity</button>';
+	favSortHTML+='<button type="button" class="btn btn-default sortFav" value="element">Sort by Element</button></div>';
+	$('#favSortDisplay').html(favSortHTML);
+	/*Draw Units and assign to global variable for sort features*/
+	favUnitObj=unitObj;
+	favDraw(unitObj);
+	/*Generate Share URL*/
+	$('#favLinkDisplay').html('<div class="col-xs-12 col-sm-12 col-md-12"><h5><i class="fa fa-share-alt"></i> <b>Sharing / Import URL:</b> <span id="favShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>');
+	setTimeout(gooShorten(location.protocol + '//' + location.host + location.pathname + "?favUnits=" + encodeURIComponent(unitIdArray.join()), $('#favShareURL') ),5000);
+	} /*End Else when fav unit exists*/
+    }
+    
+/*Query unit and openCard*/
+      function openCard(whatunit,reqType) {
+	/*Loader*/
+	$('#unitCardHome').html('<h4><i class="fa fa-cog fa-spin"></i> Summoning unit '+whatunit+' ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	/*Choose Main Card n Show Card Modal*/
+	$('#cardModal').modal('show');
+	$('.nav-tabs a[href="#unitCardHome"]').tab('show');
+	/*Resets Prev Stats*/
+	prevStatsMod=[0,0,0,0,0];
+	
+	/*Req by Name*/
+	if (typeof reqType === 'undefined') {
+		/*update state*/
+		var state = { stateUnit: whatunit };
+		history.pushState(state, "test state", "?unit="+encodeURIComponent(whatunit) );
+		/*Google analytics*/
+		var compileURL=location.host + location.pathname + "?unit=" + encodeURIComponent(whatunit);
+		/*Fix Apostrophe*/
+		var whatunit = whatunit.replace("'","\\'");
+		var qunitname = "'" + whatunit + "'";
+		/*Query*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
+		var encodedQuery2 = encodeURIComponent(query2);
+	} else {
+		/*update state*/
+		var state = { stateUnit: whatunit };
+		history.pushState(state, "test state", "?unitid="+encodeURIComponent(whatunit) );
+		/*Google analytics*/
+		var compileURL=location.host + location.pathname + "?unitid=" + encodeURIComponent(whatunit);
+		/*Request by ID*/
+		var query2 = "SELECT * FROM " + gTable + " WHERE 'ID' = " + whatunit;
+		var encodedQuery2 = encodeURIComponent(query2);
+	}
+	/*analytics*/
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': 'Brave Frontier PROs Unit Card - ' + whatunit
+	});
+	/*Construct URL*/
+	var url2 = [gURL];
+	url2.push('?sql=' + encodedQuery2);
+	url2.push('&key=' + gKey);
+	url2.push('&callback=?');
+	/*Send the JSONP request*/
+	$.ajax({
+	  url: url2.join(''),
+	  dataType: 'jsonp',
+	  success: function (data2) {
+	    /*alert(JSON.stringify(data2));*/
+	    ovdata2 = sconvertJSON(data2);
+	      var ovid = ovdata2[0]["id"];
+	      var ovname = ovdata2[0]["name"];
+	      /* strInputString = strInputString.replace(/'/g, "\\'"); */
+	      var ovseries = ovdata2[0]["series"];
+	      var ovicon = ovdata2[0]["iconref"];
+	      var ovelement = ovdata2[0]["element"];
+	      var ovcost = ovdata2[0]["cost"];
+	      var ovhits = ovdata2[0]["hits"];
+	      var ovbbhits = ovdata2[0]["bb hits"];
+	      var ovsbbhits = ovdata2[0]["sbb hits"];
+	      var ovubbhits = ovdata2[0]["ubb hits"];
+	      var ovbbfill = ovdata2[0]["bb fill"];
+	      var ovsbbfill = ovdata2[0]["sbb fill"];
+	      var ovubbfill = ovdata2[0]["ubb fill"];
+	      var ovbbtype = ovdata2[0]["bb type"];
+	      var ovsbbtype = ovdata2[0]["sbb type"];
+	      var ovubbtype = ovdata2[0]["ubb type"];
+	      var ovleaderskill = ovdata2[0]["leader skill"];
+	      var ovbbskill = ovdata2[0]["bb skill"];
+	      var ovsbbskill = ovdata2[0]["sbb skill"];
+	      var ovubbskill = ovdata2[0]["ubb skill"];
+	      var ovbfpronotes = ovdata2[0]["bfpro notes"];
+	      var ovGlobal = ovdata2[0]["global release"];
+	      var ovJapan = ovdata2[0]["japan release"];
+	      var ovevo = ovdata2[0]["evo"];
+	      var ovevozel = ovdata2[0]["evo zel"];
+	      var ovmaxlvl = ovdata2[0]["max lvl"];
+	      var ovacquire = ovdata2[0]["acquire"];
+	      var ovrarity = ovdata2[0]["rarity"];
+	      var ovweightedlord = Math.round(ovdata2[0]["weighted stats (lord)"]);
+	      var ovhplord = ovdata2[0]["hp lord"];
+	      var ovatklord = ovdata2[0]["atk lord"];
+	      var ovdeflord = ovdata2[0]["def lord"];
+	      var ovreclord = ovdata2[0]["rec lord"];
+	      var ovhpanima = ovdata2[0]["hp anima"];
+	      var ovatkanima = ovdata2[0]["atk anima"];
+	      var ovdefanima = ovdata2[0]["def anima"];
+	      var ovrecanima = ovdata2[0]["rec anima"];
+	      var ovhpbreaker = ovdata2[0]["hp breaker"];
+	      var ovatkbreaker = ovdata2[0]["atk breaker"];
+	      var ovdefbreaker = ovdata2[0]["def breaker"];
+	      var ovrecbreaker = ovdata2[0]["rec breaker"];
+	      var ovhpguardian = ovdata2[0]["hp guardian"];
+	      var ovatkguardian = ovdata2[0]["atk guardian"];
+	      var ovdefguardian = ovdata2[0]["def guardian"];
+	      var ovrecguardian = ovdata2[0]["rec guardian"];
+	      var ovhporacle = ovdata2[0]["hp oracle"];
+	      var ovatkoracle = ovdata2[0]["atk oracle"];
+	      var ovdeforacle = ovdata2[0]["def oracle"];
+	      var ovrecoracle = ovdata2[0]["rec oracle"];
+	      var ovhprange = (ovdata2[0]["hp range"]=="-") ? 0 : ovdata2[0]["hp range"];
+	      var ovstatsrange = (ovdata2[0]["stats range"]=="-") ? 0 : ovdata2[0]["stats range"];
+	      var ovvideo = ovdata2[0]["video"];
+	      var ovgender = ovdata2[0]["gender"];
+	      var ovtypepref = ovdata2[0]["type pref"];
+	      var ovshareURL='<span id="cardShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span>';
+	      /*Type preference string generation*/
+	      var ovtypeprefHTML="";
+	      if (ovtypepref.length!=0) {
+		  for (var i=0; i<ovtypepref.length;i++) {
+		      switch (ovtypepref.charAt(i).toUpperCase()) {
+		    case "L":
+			ovtypeprefHTML+="Lord";
+			break;
+		    case "A":
+			ovtypeprefHTML+="Anima";
+			break;
+		    case "B":
+			ovtypeprefHTML+="Breaker";
+			break;
+		    case "G":
+			ovtypeprefHTML+="Guardian";
+			break;
+		    case "O":
+			ovtypeprefHTML+="Oracle";
+			break;
+		}
+		if (i!=4) {
+		    ovtypeprefHTML+=' &nbsp;<i class="fa fa-angle-right text-muted"></i> &nbsp;';
+		}
+		  }
+	      }
+	      /*ServerIMGREF*/
+		if (ovJapan.toLowerCase()!='false')
+			ovServer=bfServer.jp;
+		else if (ovGlobal.toLowerCase()!='false')
+			ovServer=bfServer.gl;
+		else if (ovbfpronotes.search("#europe")!=-1)
+			ovServer=bfServer.eu;
+		else if (ovbfpronotes.search("#korea")!=-1)
+			ovServer=bfServer.kr;
+		else
+			ovServer=bfServer.jp;
+	      /*Sprite check*/
+	      var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+ovid+".gif";
+	      $('#unitSpriteShow').attr('src',ovsprite);
+	      $('#unitSpriteShow').error(function() {
+	      		$(this).unbind();
+	    		$(this).attr("src","https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite"+ovid+".gif");
+		})
+	    /*NaN Check*/
+	    if (isNaN(ovweightedlord)) { ovweightedlord = "-" }
+	    /*Evo trail variable*/
+	    var evotrail=[];
+	    for (var i=0; i < deserialdata.length; i++)  {
+		if (deserialdata[i]["series"] == ovseries) {
+		    evotrail.push({
+			'evo':deserialdata[i]["evo"],
+			'rarity':deserialdata[i]["rarity"],
+			'name':deserialdata[i]["name"],
+			'id':deserialdata[i]["id"],
+			'systemid':deserialdata[i]["systemid"]
+			})
+		}
+	    }
+	    /*Object Array Sort*/
+	    evotrail=evotrail.sort(function(a,b) {
+		    return a.rarity-b.rarity;
+	    })
+	    /*Assembling HTML*/
+	    var evotrailHTML='';
+	    var evoUnitIdx=0;
+	    for(var i=0; i < evotrail.length; i++) {
+		if ($(evotrail[i]['name']).text()==ovname) {
+		    evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+ovServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoCurrent" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		    evoUnitIdx=i;
+		} else
+			evotrailHTML+='<div class="evoUnit"><a href="#" class="favIconLink" data-value="'+evotrail[i].id+'"><img src="'+ovServer+bfPrefix.icon+evotrail[i]["systemid"]+'.png" class="evoShdw" width="35"/></a><div class="rEvo"><kbd class="kdb-r"><b>'+evotrail[i]['rarity']+'</b><i class="fa fa-star small"></i></kbd></div></div>';
+		/*insert caret for all but last*/
+		if (i < evotrail.length-1) {
+		    evotrailHTML+='<div class="evoCaret"><i class="fa fa-lg fa-arrow-right text-muted"></i></div>';
+		}
+	    }
+	    /*Card HTML output*/
+	      var ovHTML = 
+	      '<table class="table table-bordered table-condensed small" style="border-top:0px;"><tr><td style="text-align:center;vertical-align:middle;border:0px;"><img src="'+ovServer+bfPrefix.icon+ovdata2[0].systemid+'.png" width="60"/></td>'
+	      +'<td colspan="5" style="border:0px;"><h4><kbd>'+ovid+'</kbd>';
+	      if (ovgender == 'Male') { ovHTML+=' <i class="fa fa-male text-primary"></i> '; }
+	      else if (ovgender == 'Female') { ovHTML+=' <i class="fa fa-female text-danger"></i> '; }
+	      else if (ovgender == 'Genderless') { ovHTML+=' <i class="fa fa-android text-success"></i> '; }
+	      else { ovHTML+='<span class="fa-stack"><i class="fa fa-android fa-stack-1x text-muted fa-fw"></i><i class="fa fa-question fa-stack-1x fa-inverse fa-fw"></i></span>'; }
+	      ovHTML+='<b>'+ovname+'</b><br/><small><b>'+ovrarity+'</b><i class="fa fa-star"></i> &middot; <b>Cost:</b> '+ovcost+' &middot; <b>Max lv:</b> '+ovmaxlvl;
+		/*Release status*/
+		if (ovGlobal.toLowerCase()!='false')
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">GL</b></div>';
+		else
+			ovHTML+=' &middot; <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">GL</b></div>';
+		if (ovJapan.toLowerCase()!='false')
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">日本</b></div>';
+		else
+			ovHTML+=' <div class="release"><i class="fa fa-times text-danger"></i> <b class="text-danger">日本</b></div>';
+		if (ovbfpronotes.search("#europe")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">EU</b></div>';
+		if (ovbfpronotes.search("#korea")!=-1)
+			ovHTML+=' <div class="release"><i class="fa fa-check text-success"></i> <b class="text-success">한국</b></div>';
+		/*fav button*/
+		if (favSelect.length!=0)
+			if (favSelect.indexOf(ovid.toString())!=-1)
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-warning btn-xs"><i class="fa fa-star text-fav"></i></div></a>';
+			else
+				ovHTML+='<a href="#" value="'+ovid+'" class="addFav" style="margin:0 4px;" title="Add/Remove Favourites"><div class="btn btn-default btn-xs"><i class="fa fa-star text-muted"></i></div></a>';
+		/*video*/
+		if ( ovvideo != "" )
+			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
+	      ovHTML+='</small></h4></td></tr>';
+	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b></td><td colspan="5">';
+	      ovHTML+='<span style="display:inline-block;"><b>'+ovbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['bb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+	      if (ovdata2[0]['bb atk%'] != "-")
+		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
+	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
+	      if (ovsbbskill != "") {
+		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['sbb atk%'] != "-")
+		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
+		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
+	      }
+	      if (ovubbskill != "") {
+		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    if (ovdata2[0]['ubb atk%'] != "-")
+		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
+		    ovHTML+=ovubbskill+' <span class="hashbox">'+ovubbtype+'</span></td></tr>';
+		    /*passive skill*/
+		    ovHTML+='<tr><td class="active ubbtxt"><b>Extra</b><b class="hidden-xs"> skill</b></td><td colspan="5">';
+		    ovHTML+='<span class="ubbtxt"><b>Condition: </b>'+ovdata2[0]['passive condition']+'</span><br/><b>Effect: </b>'+ovdata2[0]['passive skill']+'</td></tr>';
+	      }
+	      /*Raw data integration buttons*/
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
+			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
+		/*Dream evo button*/
+		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button> ';
+		}
+	     	if (ovGlobal.toLowerCase()!="false")
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
+	     	if (ovJapan.toLowerCase()!="false")	
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidejapan?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> 日本</a>';
+	     	if (ovbfpronotes.search("#europe")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideeurope?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Europe</a>';
+		if (ovbfpronotes.search("#korea")!=-1)
+	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguidekorea?unitid='+encodeURIComponent(Math.floor(ovid).toString())+'" target="rawskills"><i class="fa fa-external-link"></i> 한국</a>';
+		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
+			ovHTML+=' <span class="text-danger" style="display:inline-block"><i class="fa fa-warning"></i> Server specific stats / effects.</span></td></tr>';
+	ovHTML+='<tr><td colspan="6" class="btn-default" style="text-align:center;padding:2px;"><strong>Evolution</strong></td></tr>'
+	+'<tr><td colspan="6" class="text-center">'+evotrailHTML+'</td></tr>';
+	ovHTML+='<tr><td colspan="3" style="vertical-align:middle;">';
+	      if ( (evoUnitIdx==0) || (evotrail[evoUnitIdx-1]['evo']=="") ) {
+		ovHTML+='No prior evo / No known materials';
+	      } else {
+		ovHTML+='<i class="fa fa-level-up fa-lg"></i><span class="hidden-xs"> Evolve from</span><br>';
+		var tEvo=evotrail[evoUnitIdx-1]['evo'].split(",");
+		for (i in tEvo) {
+		      if (tEvo[i]!='None') {
+			ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
+		 }
+	      }
+	ovHTML+='</td><td class="text-right" colspan="3" style="vertical-align:middle;">';
+	      if (ovevo != "") {
+	      	ovHTML+='<span class="hidden-xs">Evolve to</span> <i class="fa fa-level-up fa-lg"></i><br>';
+	      	var tEvo=ovevo.split(",");
+		  for (i in tEvo) {
+		      if (tEvo[i] != 'None') {
+			    ovHTML+='<img src="'+getEvoIMG(tEvo[i])+'" width="24" title="'+tEvo[i]+'"/> '; }
+		  }
+	      } else {
+		  ovHTML+='No further evo / No known materials';
+	      }
+	      ovHTML+='</td></tr><tr><td class="btn-default">';
+	      ovHTML+='</td><td class="btn-default" width="17%"><strong>HP</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>ATK</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>DEF</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>REC</strong></td>'
+	      +'<td class="btn-default" width="17%"><strong>Wt Stats</strong></td></tr>'
+	      +'<tr><td class="active"><strong>Lord';
+	      if (ovbfpronotes.indexOf('#lordonly')>-1) { ovHTML+=' only' };
+	      ovHTML+='</strong></td><td class="hpMod">'+ovhplord+'</td>'
+	      +'<td class="atkMod">'+ovatklord+'</td>'
+	      +'<td class="defMod">'+ovdeflord+'</td>'
+	      +'<td class="recMod">'+ovreclord+'</td>'
+	      +'<td>'+ovweightedlord+'</td></tr>';
+	      /*Omit display for lord type only units*/
+	      if (ovbfpronotes.indexOf('#lordonly')==-1) {
+	      ovHTML+='<tr><td class="active"><strong>Anima</strong></td><td class="bg-success"><span class="hpMod">'+ovhpanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovhprange+'</small></td>'
+	      +'<td class="atkMod">'+ovatkanima+'</td>'
+	      +'<td class="defMod">'+ovdefanima+'</td>'
+	      +'<td class="bg-warning"><span class="recMod">'+ovrecanima+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td>&nbsp;</td></tr>'
+	      +'<tr><td class="active"><strong>Breaker</strong></td><td class="hpMod">'+ovhpbreaker+'</td>'
+	      +'<td class="bg-success"><span class="atkMod">'+ovatkbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="bg-warning"><span class="defMod">'+ovdefbreaker+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      +'<td class="recMod">'+ovrecbreaker+'</td>'
+	      +'<td>&nbsp;</td></tr>'
+	      +'<tr><td class="active"><strong>Guardian</strong></td><td class="hpMod">'+ovhpguardian+'</td>';
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
+	      	ovHTML+='<td class="atkMod">'+ovatkguardian+'</td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-warning"><span class="recMod">'+ovrecguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+	      	ovHTML+='<td class="bg-warning"><span class="atkMod">'+ovatkguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		+'<td class="bg-success"><span class="defMod">'+ovdefguardian+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+	      	+'<td class="recMod">'+ovrecguardian+'</td>';
+	      }
+	      ovHTML+='<td>&nbsp;</td></tr><tr><td class="active"><strong>Oracle</strong></td>';
+	      if (ovJapan.toLowerCase()!='false'||ovGlobal.toLowerCase()!='false') {
+		      ovHTML+='<td class="hpMod">'+ovhporacle+'</td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="bg-warning"><span class="defMod">'+ovdeforacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      } else {
+		      ovHTML+='<td class="bg-warning"><span class="hpMod">'+ovhporacle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>'
+		      +'<td class="atkMod">'+ovatkoracle+'</td>'
+		      +'<td class="defMod">'+ovdeforacle+'</td>'
+		      +'<td class="bg-success"><span class="recMod">'+ovrecoracle+'</span><small class="hidden-xs text-muted"> &#177; '+ovstatsrange+'</small></td>';
+	      }
+      	      ovHTML+='<td>&nbsp;</td></tr>';
+	      } /*End NOT LordOnly*/
+	      /*IMP MAX Addition*/
+	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-") {
+	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
+	      }
+	/*BossMarv PRO Tips!*/
+	if ((ovtypepref!="") && (ovtypepref.length==5)) {
+	    ovHTML+='<tr><td colspan="6"><i class="fa fa-graduation-cap"></i> <b>Type pref: &nbsp;</b> '+ovtypeprefHTML+'</td></tr>';
+	}
+	
+	ovHTML+='<tr data-toggle="collapse" data-target=".modRows"><td colspan="6" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>'	      
+	+'<tr class="modRows collapse out"><td class="active"><b>Leader skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="lsHP" class="form-control lskill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Ally skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="asHP" class="form-control askill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Extra skill</b></td><td colspan="5">'
+	+'<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr class="modRows collapse out"><td class="active"><b>Spheres</b></td><td colspan="5">'
+	+'<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
+	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
+	+'</div></td></tr>'
+	
+	+'<tr><td class="active"><strong>Acquire</strong></td><td colspan="5">'+ovacquire+'</td></tr>'
+	+'<tr><td colspan="6" style="height:50px;"><i class="fa fa-quote-left"></i><strong> Notes: </strong>';
+	if (ovbfpronotes!='') {
+	    ovHTML+=ovbfpronotes;
+	} else {
+	    ovHTML+='<i>None at the moment.<i>'
+	}
+	ovHTML+='</td></tr></table>'
+	    $('#unitCardHome').html(ovHTML);
+	    /*Unit Art and Lore*/
+	    var artLoreHTML='<img src="'+ovServer+bfPrefix.art+ovdata2[0].systemid+'.png" class="img-responsive center-block" id="artwork"/>';
+	    if (ovdata2[0]['alt art']=="TRUE")
+	    	artLoreHTML+='<div class="altArt"><button class="btn btn-warning" type="button" id="altArtBtn" data-value="'+ovServer+bfPrefix.art+ovdata2[0].systemid+'_2.png"><i class="fa fa-retweet"></i> Alternate Art</div>';
+	    if (ovdata2[0]['unit lore'] != "")
+	    	artLoreHTML+='<div class="loreBox"><h4><img src="'+ovServer+bfPrefix.icon+ovdata2[0].systemid+'.png" class="evoCurrent" width="35" height="35"/> <b><span class="hidden-xs">Something about </span>'+ovname+'</b><button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#loreTxt"><i class="fa fa-compress"></i></button></h4><div id="loreTxt" class="collapse">'+ovdata2[0]['unit lore']+'</div></div>';
+	    $('#unitimageacc').html(artLoreHTML);
+	    /*Evolutionary Generation*/
+	    var evoTabHTML='<div class="col-xs-12 col-sm-12 col-md-12">';
+	    /*Assault Spite*/
+	    evoTabHTML+='<div id="evolutionaryATKHTML" class="text-center col-xs-12 col-sm-12 col-md-12"><img id="evolutionaryATK" src="https://googledrive.com/host/0BxYb7Ec8f3JwOU5rcjRIeUEzVmM/sprite'+ovid+'.gif"/><h6><b>Attacking sprite</b></h6></div>';
+	    for (i=0; i<evotrail.length;i++) {
+		evoTabHTML+='<div class="col-xs-6 col-sm-6 col-md-4 text-center">';
+		evoTabHTML+='<div class="evoDisp"><img class="evolutionary" src="https://googledrive.com/host/0BxYb7Ec8f3JwS2sxVUQxQkxab0k/sprite'+evotrail[i].id+'.gif"/></div>';
+		evoTabHTML+='<div class="text-center"><h6 style="line-height:15px;"><a href="#" class="unitName" data-value="'+evotrail[i].id+'">'+evotrail[i]['name'].replace(/(<([^>]+)>)/ig,"")+'</a></h6><h6><kbd>Unit '+evotrail[i].id+'</kbd>&nbsp;'+evotrail[i]['rarity']+'<i class="fa fa-star-o"></i></h6></div></div>'
+	    }
+	    $('#evoTab').html(evoTabHTML+'</div>');
+	    /*Remove assault sprite on error*/
+	    $("#evolutionaryATK").error(function() {
+	    		$(this).unbind();
+	    		$("#evolutionaryATKHTML").remove();
+  		})
+	    /*loads non-matte on error*/
+	    $(".evolutionary").error(function() {
+	    		$(this).unbind();
+	    		tFile=$(this).attr("src").replace(/^.*[\\\/]/, '');
+	    		$(this).attr("src","https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/"+tFile);
+  		})
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#cardShareURL')), 5000);
+	  }
+	})
+} /*End openCard fn*/
+/*Compare function*/
+    function openCompare(units, tabSwitch) {
+    	tabSwitch = tabSwitch || "#unitCompareHome";
+    	/*Resets Prev Stats*/
+	prevStatsMod=[0,0,0,0,0];
+	var qunitname = "";
+	
+	/*Loader*/
+	$('#compareTable').html('<tr><td><h4><i class="fa fa-cog fa-spin"></i> Summoning units to compare ... please wait</h4><div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div></td></tr>');
+    	$('#compareModal').modal("show");
+    	
+	/*Google analytics*/
+	var compileURL=location.host + location.pathname + "?compare=" + encodeURIComponent(units.join());
+	ga('send', 'pageview', {
+  		'page': compileURL,
+  		'title': "Brave Frontier PROs Compare "+units
+	});
+	
+	for (i in units) {
+	    qunitname += "'"+units[i].replace("'","\\'")+"'";
+	    if ( i != units.length-1 ) { 
+		qunitname += ",";
+	    }
+	}
+	/*Grab matching ROW*/
+	var query = "SELECT * FROM " + gTable + 
+	    " WHERE 'Name' IN " + "("+qunitname+")";
+	var encodedQuery = encodeURIComponent(query);
+	
+	/*Construct URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+	/*Send the JSONP request*/
+	$.ajax({
+	  url: url.join(''),
+	  dataType: 'jsonp',
+	  success: function (data) {
+	      cData = sconvertJSON(data);
+	      tWidth = Math.round((1/(units.length+1))*100)+1;
+	      cHTML = '<tbody><tr><td>&nbsp;</td>';
+	      
+	      /*Construct comparison*/
+	      for (i in units) {
+		      /*ServerIMGREF*/
+			if (cData[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (cData[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (cData[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (cData[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+			/*build IMG*/
+			cHTML+='<td width="'+tWidth+'%"><img src="'+ovServer+bfPrefix.icon+cData[i]['systemid']+'.png" width="60" /></td>' 
+	      }
+		cHTML+='</tr>';
+		cHTML+='<tr><td class="purple" colspan="'+(units.length+1)+'"><i class="fa fa-share-alt"></i> <b>Sharing URL:</b> <span id="compShareURL" class="text-danger"><i class="fa fa-spinner fa-spin"></i> Generating sharing link</span></td></tr>';
+		cHTML+='<tr><td class="btn-default"><b>Unit</b></td>';
+	      for (i in units) {
+		  if (cData[i]['gender'] == 'Male') {var ovgender = ' <i class="fa fa-male text-primary"></i> '}
+		  else if (cData[i]['gender'] == 'Female') {var ovgender = ' <i class="fa fa-female text-danger"></i> '}
+		  else if (cData[i]['gender'] == 'Genderless') {var ovgender = ' <i class="fa fa-android text-success"></i> '}
+		  else {var ovgender = ' <i class="fa fa-question text-muted"></i> '}
+		  cHTML+='<td><kbd>'+cData[i]['id']+'</kbd>'+ovgender+cData[i]['name']+'</td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><i class="fa fa-star"></i><b> / Cost</b></td>';
+	      for (i in units) {
+		  cHTML+='<td>'+cData[i]['rarity']+'<i class="fa fa-star"></i> / '+cData[i]['cost']+'</td>' }
+	      /*Compare skills*/
+	      cHTML+='</tr><tr data-toggle="collapse" data-target=".compSkillsRows"><td class="text-center btn-info" colspan="'+(units.length+1)+'"><i class="fa fa-caret-down"></i> Compare skills <i class="fa fa-caret-down"></i></td></tr>';
+	      cHTML+='<tr class="compSkillsRows collapse"><td class="btn-default"><b>Leader</b></td>';
+	      for (i in units) {
+		  cHTML+='<td>'+cData[i]['leader skill']+'</td>' }
+	      cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>BB</b></td>';
+	      for (i in units) {
+		  cHTML+='<td>'+cData[i]['bb skill']+'</td>' }
+		/*sbb*/
+	      for (i in units)
+	      	if (cData[i]['sbb skill']=="")
+	      		var sbbCompare=false;
+	      	else
+	      		var sbbCompare=true;
+	      if (sbbCompare) {
+	      	cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>SBB</b></td>';
+	      	for (i in units)
+		  cHTML+='<td>'+cData[i]['sbb skill']+'</td>';
+	      }
+	      /*ubb*/
+	      for (i in units)
+	      	if (cData[i]['ubb skill']=="")
+	      		var ubbCompare=false;
+	      	else
+	      		var ubbCompare=true;
+	      if (ubbCompare) {
+	      	cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>UBB</b></td>';
+	      	for (i in units)
+		  cHTML+='<td>'+cData[i]['ubb skill']+'</td>';
+		cHTML+='</tr><tr class="compSkillsRows collapse"><td class="btn-default"><b>ES</b></td>';
+	      	for (i in units)
+		      	if (cData[i]['passive skill']!="")
+			  cHTML+='<td><b>Condition:</b> '+cData[i]['passive condition']+'. <b>Effects:</b> '+cData[i]['passive skill']+'</td>';
+			else
+			  cHTML+='<td></td>'
+	      }
+	      cHTML+='</tr><tr><td class="btn-default"><b>Hits (N/BB/SBB/UBB)</b></td>';
+	      for (i in units) {
+		  cHTML+='<td>'+cData[i]['hits']+' / '+cData[i]['bb hits']+' / '+cData[i]['sbb hits']+' / '+cData[i]['ubb hits']+'</td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><b>Fill (BB/SBB/UBB)</b></td>';
+	      for (i in units) {
+		  cHTML+='<td>'+cData[i]['bb fill']+' / '+cData[i]['sbb fill']+' / '+cData[i]['ubb fill']+'</td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" title="Weighted Stats based on Lord type. 1/3 HP, 100% HP ATK DEF, 75% REC"><i class="fa fa-info-circle"></i> <b>Wt stats</b></div></td>';
+	      for (i in units) {
+		  if ( isNaN(cData[i]['weighted stats (lord)']) ) {
+		      cData[i]['weighted stats (lord)']='-';
+		  } else { cData[i]['weighted stats (lord)']=Math.round(cData[i]['weighted stats (lord)']); }
+		  cHTML+='<td>'+cData[i]['weighted stats (lord)']+'</td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Oracle) to (Lord) to High (Anima) HP"><i class="fa fa-info-circle"></i> <b>HP range</b></div></td>';
+	      for (i in units) {
+		  cHTML+='<td><span class="hpMod text-danger">'+cData[i]['hp oracle']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-info">'+cData[i]['hp lord']+'</span> <i class="fa fa-caret-right"></i> <span class="hpMod text-success">'+cData[i]['hp anima']+'</span></td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Guardian) to (Lord) to High (Breaker) ATK"><i class="fa fa-info-circle"></i> <b>ATK range</b></div></td>';
+	      for (i in units) {
+		  cHTML+='<td><span class="atkMod text-danger">'+cData[i]['atk guardian']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-info">'+cData[i]['atk lord']+'</span> <i class="fa fa-caret-right"></i> <span class="atkMod text-success">'+cData[i]['atk breaker']+'</span></td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Breaker) to (Lord) to High (Guardian) DEF"><i class="fa fa-info-circle"></i> <b>DEF range</b></div></td>';
+	      for (i in units) {
+		  cHTML+='<td><span class="defMod text-danger">'+cData[i]['def breaker']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-info">'+cData[i]['def lord']+'</span> <i class="fa fa-caret-right"></i> <span class="defMod text-success">'+cData[i]['def guardian']+'</span></td>' }
+	      cHTML+='</tr><tr><td class="btn-default"><div class="statsInfo" data-toggle="tooltip" data-trigger="click hover" title="Low (Anima) to (Lord) to High (Oracle) REC"><i class="fa fa-info-circle"></i> <b>REC range</b></div></td>';
+	      for (i in units) {
+		  cHTML+='<td><span class="recMod text-danger">'+cData[i]['rec anima']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-info">'+cData[i]['rec lord']+'</span> <i class="fa fa-caret-right"></i> <span class="recMod text-success">'+cData[i]['rec oracle']+'</span></td>' }
+/*Modifications*/
+cHTML+='</tr><tr data-toggle="collapse" data-target=".compRows"><td colspan="'+(units.length+1)+'" class="btn-info" style="text-align:center;"><i class="fa fa-caret-down"></i> Apply leader / ally skills and spheres <i class="fa fa-caret-down"></i></td></tr>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Leader skill</b></td>';
+cHTML+='<td colspan="'+units.length+'">';
+cHTML+='<div class="form-inline"><select id="lsHP" class="form-control lskill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control lskill input-sm sp2" id="lsREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>';
+	
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Ally skill</b></td>';
+cHTML+='<td colspan="'+units.length+'">';
+cHTML+='<div class="form-inline"><select id="asHP" class="form-control askill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control askill input-sm sp2" id="asREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Extra skill</b></td>';
+cHTML+='<td colspan="'+units.length+'">';
+cHTML+='<div class="form-inline"><select id="7sHP" class="form-control 7skill input-sm sp2"><option value="0">HP</option>'+hpModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sATK"><option value="0">ATK</option>'+atkModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sDEF"><option value="0">DEF</option>'+defModHTML+'</select>'
+	+'<select class="form-control 7skill input-sm sp2" id="7sREC"><option value="0">REC</option>'+recModHTML+'</select>'
+	+'</div></td></tr>';
+cHTML+='<tr class="compRows collapse out"><td class="btn-default"><b>Spheres</b></td>';
+cHTML+='<td colspan="'+units.length+'">';
+cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="sphereA"><option value="0,0,0,0">Sphere A - None</option>'+sphereHTML+'</select>'
+	+'<select class="form-control input-sm sp2" id="sphereB"><option value="0,0,0,0">Sphere B - None</option>'+sphereHTML+'</select>'
+	+'</div></td></tr>';
+	      cHTML+='</tbody>';
+	      $('#compareTable').html(cHTML);
+	      /*Sprite check Own*/
+	      $('#squadChange').html(''); /*Clear Buttons*/
+	      for (i in units) {
+		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
+		  $('#squadChange').append('<button type="button" class="btn btn-default btn-sm squadALL" style="margin:3px;" value="'+i+'">'+cData[i]['name']+'</button>');
+		  var squadEle="#squadUnit"+(parseInt(i)+1);
+		  ownSquad[i]=ovsprite;
+		  $(squadEle.toString()).attr('src',ovsprite);
+		  $(squadEle).error( function() {
+		  	$(this).unbind();
+			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		    })
+	      }
+	      /*Sprite check OPPONENTS*/
+	      for (i in units) {
+		  var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+cData[i]['id']+".gif";
+		  var squadOppEle='#squadOpp'+(parseInt(i)+1);
+		  oppSquad[i]=ovsprite;
+		  $(squadOppEle).attr('src',ovsprite);
+		  $(squadOppEle).error( function() {
+		  	$(this).unbind();
+		      $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		    })
+	      }
+	    /*Populates Custom Select Fields - custom is a row */
+	    var customFieldHTML='';
+	    for (var i=0; i < 6; i++) {
+		customFieldHTML+='<div class="col-xs-6 col-sm-6 col-md-6"><select id="cFSelect'+i+'" class="form-control input-sm cFSquad" style="margin-bottom:2px;">';
+		customFieldHTML+='<option value="None">None</option>';
+		for (var j=0; j < cData.length; j++) {
+		    customFieldHTML+='<option value="'+j+'" ';
+		    if (i == j) {
+			customFieldHTML+='selected="selected"';
+		    }
+		    customFieldHTML+='>'+cData[j].name+'</option>';
+		}
+		customFieldHTML+='</select></div>';
+	    }
+	    $('#customSquad').html(customFieldHTML);
+	    /*Populates Boss data when only 1 option*/
+	    if ($('#bossSelect option').size() == 1) {
+		    for (var i=0; i < bossList.length; i++) {
+			$("#bossSelect").append( $("<option></option>")
+				.text(bossList[i].name)
+				.val(bossList[i].shortname)
+			);
+		    }
+	    }
+	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),5000);
+	    $('.nav-tabs a[href="'+tabSwitch+'"]').tab('show')
+	  }
+	})
+} /*End openCompare*/
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
+	</div>
+	
+	<!-- Collapse Nav-->
+	<div class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav hidden-xs hidden-sm">
+	    <li class="dropdown">
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-globe"></i></a>
+		<ul class="dropdown-menu">
+		    <li><a href="fusionxpcalculator.html"><i class="fa fa-calculator"></i> Fusion XP Calculator</a></li>
+		    <li><a href="summonerxp.html"><i class="fa fa-database"></i> Summoner LV/XP</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/chatroomunified"><i class="fa fa-comments-o"></i> Chat</a></li>
+		    <li class="divider"></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/allposts">All blog posts</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/mostwanted">Most wanted features</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/youtubechannel">YouTube channel</a></li>
+		    <li class="divider"></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/publishedqa">Published Q&amp;A</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/ask">Ask a question</a></li>
+		</ul>
+		</li>
+	  </ul>
+	  
+	 <ul class="nav navbar-nav hidden-xs hidden-sm">
+	    <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-question-circle"></i></a>
+		<ul class="dropdown-menu">
+		    <li><a href="http://bravefrontierpros.tumblr.com/dbfeedback" class="bg-default"><i class="fa fa-bullhorn"></i> Report bug / Suggest idea</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/post/96261699894/donation" class="bg-default"><i class="fa fa-coffee"></i> Buy me a coffee!</a></li>
+		    <li class="divider"></li>
+		    <li class="dropdown-header">Usage tips</li>
+		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="Show / Hide Columns" data-content="Information is categorised for ease of access. The default view is optimised at best for all screensizes. Use on Show / Hide Columns to trigger sets of data as needed.">Show / Hide Columns</a></li>
+		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="Find a unit quickly" data-content="Search for unit name or part of name. Search for Unit ID if you know. Numerical searches only searches ID.">Find a unit quickly</a></li>
+		    <li class="list-style"><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover" data-title="Advanced sort" data-content="Hold down shift+click on additional columns for multi-level sorting.">Advanced sort</a></li>
+		    <li class="list-style"><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="Advanced sort" data-content="Share unit cards and comparison tables easily by copying URL or use the direct link provided in the cards.">Sharing unit &amp; cards</a></li>
+		    <li class="list-style"><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="Advanced sort" data-content="+Add up to 4 units max and click Compare button at the top to compare selected units..">Compare units</a></li>
+		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover" data-title="Reset &amp; Clear" data-content="Clear will erase all queries / filters / compare selections and searches. For anything that Clear does not fix, Reset will fully reload the database.">Reset &amp; Clear</a></li>
+		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="What is Wt Stats?" data-content="EXPERIMENTATION - Wt Stats is the abbreviation for Weighted Stats, a calculated stat-point based on Lord-type HP, ATK, DEF and REC of the unit. Formula is HP/3 + ATK + DEF + 75% REC.">What is Wt Stats?</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#" class="bg-default bfQn" data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover click" data-title="About this database" data-content="This database-interface is developed by Brave Frontier PROs using various free solutions and built upon bootstrap v3. It pulls data from the OPEN community database established by Sam GreenPuck and the volunteer Database moderators. Data is publicly accessible by anyone or any application via Google API. This database-interface is a model example of it."><i class="fa fa-info-circle"></i> About this database</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/techbits"><i class="fa fa-wrench"></i> Tech bits</a></li>
+		    <li><a href="http://bravefrontierpros.tumblr.com/gamedata">Access OPEN data</a></li>
+		</ul>
+		</li>
+	  </ul>
+	  
+<!-- RIGHT NAV -->
+	  <button id="refreshBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Clear filters" style="margin-right:5px;"><i class="fa fa-lg fa-refresh fa-spin"></i></button>
+	  <button id="resetBtn" type="button" class="btn nav-tt navbar-right btn-success navbar-btn" data-toggle="tooltip" title="Sync latest data" style="margin-right:5px;"><i class="fa fa-cloud-download fa-lg"></i> Sync</button>
+    <!--Favourite button group-->
+    <div class="btn-group navbar-right navbar-btn" id="favBtnGroup" style="margin-right:5px;">
+	<button type="button" id="showFavBtn" data-toggle="tooltip" title="Show favourites" class="btn btn-info">Show <i class="fa fa-star"></i></button>
+	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+	<span class="caret"></span>
+	<span class="sr-only">Toggle Dropdown</span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+	    <li><a href="#" id="filterFav"><i class="fa fa-filter text-success"></i> Filter ALL <i class="fa fa-star-o"></i></a></li>
+	    <li class="divider"></li>
+	    <li><a href="#" id="deleteFav"><i class="fa fa-ban text-danger"></i> Delete ALL <i class="fa fa-star-o"></i></a></li>
+	</ul>
+    </div>
+    
+    <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i> Compare</button>
+    <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i> Summon</button>
+    <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i> Filter</button>
+   
+   <form class="navbar-form navbar-right" role="search" style="padding:0 20px 0 5px;">
+	  <div class="form-group">
+		<select id="unitsPerPage" class="form-control">
+		    <option value="50" selected="selected">50 / pg</option>
+		    <option value="100">100 / pg</option>
+		    <option value="200">200 / pg</option>
+		    <option value="300">300 / pg</option>
+		</select>
+	  </div>
+    </form>
+    
+    </div><!--/.nav-collapse -->
+</div>
+</div>
+
+<!-- Mainbody -->
+<div class="container-fluid">
+<div style="height:60px;"></div>
+<div class="text-center" style="margin-bottom:5px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<div id="google-ads-1"></div>
+<script type="text/javascript"> 
+    /* Calculate the width of available ad space */
+    ad = document.getElementById('google-ads-1');
+ 
+    if (ad.getBoundingClientRect().width) {
+	adWidth = ad.getBoundingClientRect().width; // for modern browsers 
+    } else {
+	adWidth = ad.offsetWidth; // for old IE 
+    }
+ 
+    /* Replace ca-pub-XXX with your AdSense Publisher ID */ 
+    google_ad_client = "ca-pub-2145833818900192";
+ 
+    /* Replace 1234567890 with the AdSense Ad Slot ID */ 
+    google_ad_slot = "1402210464";
+  
+    /* Do not change anything after this line */
+    if ( adWidth >= 728 )
+      google_ad_size = ["728", "90"];  /* Leaderboard 728x90 */
+    else if ( adWidth >= 468 )
+      google_ad_size = ["468", "60"];  /* Banner (468 x 60) */
+    else if ( adWidth >= 336 )
+      google_ad_size = ["336", "280"]; /* Large Rectangle (336 x 280) */
+    else if ( adWidth >= 300 )
+      google_ad_size = ["300", "250"]; /* Medium Rectangle (300 x 250) */
+    else if ( adWidth >= 250 )
+      google_ad_size = ["250", "250"]; /* Square (250 x 250) */
+    else if ( adWidth >= 200 )
+      google_ad_size = ["200", "200"]; /* Small Square (200 x 200) */
+    else if ( adWidth >= 180 )
+      google_ad_size = ["180", "150"]; /* Small Rectangle (180 x 150) */
+    else
+      google_ad_size = ["125", "125"]; /* Button (125 x 125) */
+ 
+    document.write (
+     '<ins class="adsbygoogle" style="display:inline-block;width:' 
+      + google_ad_size[0] + 'px;height:' 
+      + google_ad_size[1] + 'px" data-ad-client="' 
+      + google_ad_client + '" data-ad-slot="' 
+      + google_ad_slot + '"></ins>'
+    );
+  
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<!--mainbody / Search box Custom-->
+<table id="mytable" class="table-bordered table-responsive table-hover table-striped table-condensed" style="display:none;clear:both;width:100%;">
+	  <thead>
+	    <tr>
+		<th>ID</th>
+		<th>Icon</th>
+		<th>Name</th>
+		<th>Series</th>
+		<th>Batch</th>
+		<th><i class="fa fa-star"></i></th>
+		<th>Element</th>
+		<th>Cost</th>
+		<th>Sex</th>
+		<th style="white-space:nowrap;">Leader Skill</th>
+		<th style="white-space:nowrap;">BB Skill</th>
+		<th style="white-space:nowrap;">SBB Skill</th>
+		<th style="white-space:nowrap;">UBB Skill</th>
+		<th style="white-space:nowrap;">Extra Skill</th>
+		<th>Hits</th>
+		<th class="bbtxt">BB Hits</th>
+		<th class="sbbtxt">SBB Hits</th>
+		<th class="ubbtxt">UBB Hits</th>
+		<th>Normal DC</th>
+		<th class="bbtxt">BB DC</th>
+		<th class="sbbtxt">SBB DC</th>
+		<th class="ubbtxt">UBB DC</th>
+		<th class="bbtxt">BB Fill</th>
+		<th class="sbbtxt">SBB Fill</th>
+		<th class="ubbtxt">UBB Fill</th>
+		<th class="bbtxt">BB ATK%</th>
+		<th class="sbbtxt">SBB ATK%</th>
+		<th class="ubbtxt">UBB ATK%</th>
+		<th>Wt Stats</th>
+		<th>Wt Pimped</th>
+		<th>HP (L)</th>
+		<th>ATK (L)</th>
+		<th>DEF (L)</th>
+		<th>Rec (L)</th>
+		<th>HP (A)</th>
+		<th>ATK (A)</th>
+		<th>DEF (A)</th>
+		<th>Rec (A)</th>
+		<th>HP (B)</th>
+		<th>ATK (B)</th>
+		<th>DEF (B)</th>
+		<th>Rec (B)</th>
+		<th>HP (G)</th>
+		<th>ATK (G)</th>
+		<th>DEF (G)</th>
+		<th>Rec (G)</th>
+		<th>HP (O)</th>
+		<th>ATK (O)</th>
+		<th>DEF (O)</th>
+		<th>Rec (O)</th>
+		<th>Hash Notes</th>
+		<th>Evo</th>
+		<th>Global</th>
+		<th>Japan</th>
+		<th>Video</th>
+		<th>Evolution</th>
+		<th>Alt ART</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
+	    </tr>
+	  </thead>
+	  <tfoot>
+	    <tr>
+		<th>ID</th>
+		<th>Icon</th>
+		<th>Name</th>
+		<th>Series</th>
+		<th>Batch</th>
+		<th><i class="fa fa-star"></i></th>
+		<th>Element</th>
+		<th>Cost</th>
+		<th>Sex</th>
+		<th style="white-space:nowrap;">Leader Skill</th>
+		<th style="white-space:nowrap;">BB Skill</th>
+		<th style="white-space:nowrap;">SBB Skill</th>
+		<th style="white-space:nowrap;">UBB Skill</th>
+		<th style="white-space:nowrap;">Extra Skill</th>
+		<th>Hits</th>
+		<th class="bbtxt">BB Hits</th>
+		<th class="sbbtxt">SBB Hits</th>
+		<th class="ubbtxt">UBB Hits</th>
+		<th>Normal DC</th>
+		<th class="bbtxt">BB DC</th>
+		<th class="sbbtxt">SBB DC</th>
+		<th class="ubbtxt">UBB DC</th>
+		<th class="bbtxt">BB Fill</th>
+		<th class="sbbtxt">SBB Fill</th>
+		<th class="ubbtxt">UBB Fill</th>
+		<th class="bbtxt">BB ATK%</th>
+		<th class="sbbtxt">SBB ATK%</th>
+		<th class="ubbtxt">UBB ATK%</th>
+		<th>Wt Stats</th>
+		<th>Wt Pimped</th>
+		<th>HP (L)</th>
+		<th>ATK (L)</th>
+		<th>DEF (L)</th>
+		<th>Rec (L)</th>
+		<th>HP (A)</th>
+		<th>ATK (A)</th>
+		<th>DEF (A)</th>
+		<th>Rec (A)</th>
+		<th>HP (B)</th>
+		<th>ATK (B)</th>
+		<th>DEF (B)</th>
+		<th>Rec (B)</th>
+		<th>HP (G)</th>
+		<th>ATK (G)</th>
+		<th>DEF (G)</th>
+		<th>Rec (G)</th>
+		<th>HP (O)</th>
+		<th>ATK (O)</th>
+		<th>DEF (O)</th>
+		<th>Rec (O)</th>
+		<th>Hash Notes</th>
+		<th>Evo</th>
+		<th>Global</th>
+		<th>Japan</th>
+		<th>Video</th>
+		<th>Evolution</th>
+		<th>Alt ART</th>
+		<th style="white-space:nowrap;background:#E6CCFF;">Features</th>
+	    </tr>
+	  </tfoot>
+</table>
+
+<!-- ACTIVATION SCRIPTS -->
+<script type="text/javascript">
+$(document).ready( function(e) {
+    /*Favourite localStorage Retreival and storage*/
+    if (localStorage.favourites) {
+	window.favSelect=localStorage.favourites.split(',');
+    } else {
+	window.favSelect=[];
+    };
+    /*Shared Fav Units Holding Var for Import*/
+    window.sharedFavSelect=[];
+    /*Fav custom filter*/
+    window.showOnlyFavs=false;
+    
+    /*LocalStorage Retreival and storage*/
+    if (localStorage.unitsguideadvance) {
+    	/*Quick query to check for new entries*/
+    	var localUnitsCount=(!localStorage.unitsguideadvanceCount) ? 0 : parseInt(localStorage.unitsguideadvanceCount);
+    	var query = "SELECT 'Global Release','Japan Release' FROM " + gTable;
+  	var encodedQuery = encodeURIComponent(query);
+  	/*Construct the URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+	/*Send the JSONP request*/
+	$.ajax({
+		url: url.join(''),
+		dataType: 'jsonp',
+		success: function (quickData) {
+			/*Total JP Global Release Count*/
+			var serverUnitsCount=0;
+			for (i in quickData.rows) {
+				if (quickData.rows[i][0]=="" || quickData.rows[i][0]=="TRUE")
+					serverUnitsCount++;
+				if (quickData.rows[i][1]=="" || quickData.rows[i][1]=="TRUE")
+					serverUnitsCount++;
+			}
+			/*Prompt to Sync*/
+			if (serverUnitsCount > localUnitsCount)
+				bfpAlert("New Units / Release update Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" id="syncCancel">Cancel</button></div>');
+			else {
+				guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
+				if (isValidJSON(guideData))
+					initialize(JSON.parse(guideData));
+				else {
+					/*LocalStorage Delete and Refresh*/
+					alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+					localStorage.removeItem("unitsguideadvance");
+					localStorage.removeItem("unitsguideadvanceCount");
+					history.pushState(null, null, location.pathname);
+					location.reload(true);
+					}
+				}
+	  		}
+	});
+    } else {
+	/*Init loader if no localstorage*/
+	$('#progressModal').modal({
+		keyboard:false,
+		backdrop:'static',
+		toggle:true
+	})
+    
+    	/*Query Fusion Tables 1st Time*/
+    	var query = "SELECT * FROM " +
+  	gTable + " ORDER BY 'ID' ASC";
+  	var encodedQuery = encodeURIComponent(query);
+  	/*Construct the URL*/
+	var url = [gURL];
+	url.push('?sql=' + encodedQuery);
+	url.push('&key=' + gKey);
+	url.push('&callback=?');
+	/*Send the JSONP request*/
+	$.ajax({
+		url: url.join(''),
+		dataType: 'jsonp',
+		success: function (fusionData) {
+			/*Total JP Global Release Count*/
+			var serverUnitsCount=0;
+			var gl_idx=fusionData.columns.indexOf("Global Release");
+			var jp_idx=fusionData.columns.indexOf("Japan Release");
+			for (i in fusionData.rows) {
+				if (fusionData.rows[i][gl_idx]=="" || fusionData.rows[i][gl_idx]=="TRUE")
+					serverUnitsCount++;
+				if (fusionData.rows[i][jp_idx]=="" || fusionData.rows[i][jp_idx]=="TRUE")
+					serverUnitsCount++;
+			}
+			/*Save in local storage*/
+			localStorage.setItem("unitsguideadvance",LZString.compressToUTF16(JSON.stringify(fusionData)));
+			localStorage.setItem("unitsguideadvanceCount",serverUnitsCount);
+			initialize(fusionData);
+	  	}
+	})
+} /*End Else*/
+/*BootStrap Stuff*/
+$('.bfQn').popover();
+$('.nav-tt').tooltip({placement:'bottom'});
+$('#showFavBtn').tooltip({container:'body',placement:'bottom'});
+$('body').tooltip({selector: '[class="statsInfo"]'});
+/*VideoModal*/
+$(document).on("click", ".videoBtn", function(e){
+    e.preventDefault();
+    var vLink=$(this).attr('src');
+    $('.modal').each( function() {
+	    $(this).modal('hide');
+    })
+    $('#vidEmbed').attr( 'src', vLink );
+    $('#videoModal').modal('show');
+})
+/*Alt Art*/
+$(document).on("click","#altArtBtn", function() {
+	var oldRef=$('#artwork').attr("src");
+	$('#artwork').attr("src",$('#altArtBtn').attr("data-value"));
+	$('#altArtBtn').attr("data-value",oldRef);
+})
+/*VideoModal Close Remove Video*/
+$('#videoModal').on('hide.bs.modal', function (e) {
+    $('#vidEmbed').attr( 'src', '' );
+})
+/*compareModal Close Clear Squads and splice evounits variables*/
+$('#compareModal').on('hidden.bs.modal', function (e) {
+    clearSquad();
+    gEvoUnits.splice(0,gEvoUnits.length);
+})
+/*Reset Pimp button onclose*/
+$('#cardModal').on('hidden.bs.modal', function (e) {
+    $("#pimpBtn").val("false");
+})
+/*RESET*/
+$('#resetBtn').click( function(e) {
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/syncUnitGuideAdvance',
+  		'title': 'Brave Frontier PROs Unit Guide Advance Sync'
+	});
+    	/*LocalStorage Delete and Refresh*/
+	localStorage.removeItem("unitsguideadvance");
+	localStorage.removeItem("unitsguideadvanceCount");
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+})
+/*Compare*/
+window.compareSelect=[];
+window.compareSelectURL="";
+$(document).on("click", ".compareUnit", function(e) {
+	var compareMax=100;
+	e.preventDefault();
+	if ( $(this).children('div').hasClass("btn-success") ) {
+	    if ( compareSelect.length < compareMax ) { // Max units
+		compareSelect.push($(this).attr("value"));
+		$(this).children('div').removeClass("btn-success");
+		$(this).children('div').addClass("btn-danger");
+		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-users"></i>');
+	    } else {
+		bfpAlert("Max units selected",'You can only select maximum of '+compareMax+' units to compare / calculate evolution materials and for squad sprite simulation.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
+	    }
+	} else {
+	    compareSelect.splice(compareSelect.indexOf($(this).attr("value")),1);
+	    $(this).children('div').removeClass("btn-danger");
+	    $(this).children('div').addClass("btn-success");
+	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
+	}
+})
+/*Compare button*/
+    $(document).on("click", "#compareBtn, #evoBtn", function(e) {
+	e.preventDefault();
+	if ( compareSelect.length < 2 ) {
+	    bfpAlert('Too few units','You need to select at least 2 units to compare / calculate evolution materials and squad sprite simulation. Use  <div class="btn btn-success btn-sm"><i class="fa fa-plus"></i> <i class="fa fa-users"></i></div> to add units.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
+	} else {
+	    compareSelectURL=compareSelect.join();
+	    if ($(this).attr("id")=="evoBtn")
+	    	tabSwitch="#evoCalc"
+	    else
+	    	tabSwitch="#unitCompareHome"
+	    openCompare(compareSelect,tabSwitch); //AJAX+Modal
+	    var compstate = { stateCompare: compareSelectURL };
+	    history.pushState(compstate, "compare state", "?compare="+encodeURIComponent(compareSelectURL) );
+	}
+    })
+/*dreamevo btn*/
+$(document).on("click", "#dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$("#dreamevo").attr("data-link"));
+	$("#dreammodal").modal("show");
+})
+/*fav Icon Link to OpenCard*/
+$(document).on("click", ".favIconLink", function(e) {
+	openCard($(this).attr("data-value"),"unitid");
+	e.preventDefault();
+})
+/*Add Favourites*/
+$(document).on("click", ".addFav", function(e) {
+	e.preventDefault();
+	if ( $(this).children('div').hasClass("btn-default") ) {
+	    /*when not added*/
+		favSelect.push($(this).attr("value"));
+		$(this).children('div').removeClass("btn-default");
+		$(this).children('div').addClass("btn-warning");
+		$(this).children('div').children('i').removeClass("text-muted");
+		$(this).children('div').children('i').addClass("text-fav");
+	} else {
+	    /*when added*/
+	    favSelect.splice(favSelect.indexOf($(this).attr("value")),1);
+	    $(this).children('div').removeClass("btn-warning");
+	    $(this).children('div').addClass("btn-default");
+		$(this).children('div').children('i').removeClass("text-fav");
+		$(this).children('div').children('i').addClass("text-muted");
+	}
+	/*Save in local storage*/
+	localStorage.setItem("favourites",favSelect);
+})
+/*Fav button*/
+    $(document).on("click", "#showFavBtn", function(e) {
+	    e.preventDefault();
+	    openFav(favSelect,"My favourite units",false); //AJAX+Modal
+    })
+    
+/*Fav SORT*/
+    $(document).on("click", ".sortFav", function(e) {
+	    e.preventDefault();
+	    var sortBy=$(this).attr("value");
+	    /*Sort using global obj variable*/
+	    switch (sortBy) {
+		case "id":
+		favUnitObj=favUnitObj.sort(function(a,b) {
+			    return a.id-b.id;
+		});
+		break;
+		case "rarity":
+		favUnitObj=favUnitObj.sort(function(a,b) {
+			    return b.rarity-a.rarity;
+		});
+		break;
+		case "element":
+		favUnitObj=favUnitObj.sort(function(a,b) {
+		    if ( a.element < b.element )
+			return -1;
+		    if ( a.element > b.element )
+			return 1;
+		    return 0;
+		});
+		break;
+	}
+	/*Draw using Global Obj*/
+	favDraw(favUnitObj);
+    })
+    
+/*Import Favourites Prompt*/
+$(document).on("click", "#importUnitsBtn", function(e){    
+    bfpAlert("Import confirmation",'Importing this shared list will TOTALLY replace your current favourites on your system / browser. Please confirm if you wish to proceed.<div class="text-right"><button type="button" class="btn btn-danger" id="importUnitsBtnGO">Import</button> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>');
+})
+/*Import Favourites*/
+$(document).on("click", "#importUnitsBtnGO", function(e){
+	$('#favModal').modal('hide');
+	$('#alertmodal').modal('hide');
+	/*Replace favSelect global var with shared data*/
+	favSelect=sharedFavSelect;
+	/*Import new data to local storage*/
+	    localStorage.setItem("favourites",favSelect);
+	/*loader
+	    var bfPROsTable = $('#mytable').DataTable();
+	/*Simply Redraw
+	    bfPROsTable.draw();*/
+	setTimeout( function() {
+	    bfpAlert("Import completion",'Import is now completed. Reload to see changes. <div class="text-right"><button type="button" class="btn btn-success" id="reloadBtn">Reload</button></div>');
+	    window.scrollTo(0,0);
+	    },500);
+})
+/*FAV Import Reload*/
+$(document).on('click', '#reloadBtn', function(e) {
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/importFavDoneUnitGuideAdvance',
+  		'title': 'Brave Frontier PROs Unit Guide Advance Import Done'
+	});
+	history.pushState(null, null, location.pathname);
+	location.reload(true);
+})
+/*New units detect*/
+$(document).on("click", "#syncDetectBtn", function(e){    
+    bfpAlert("New Units Detected",'New units available for sync. You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i>Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button></div>');
+})
+/*New units sync*/
+$(document).on("click", "#syncNewBtn", function(e){    
+	/*Force sync*/
+	localStorage.removeItem("unitsguideadvance");
+	localStorage.removeItem("unitsguideadvanceCount");
+	location.replace(location.href);
+})
+/*Cancel sync*/
+$(document).on("click", "#syncCancel", function(e){    
+	guideData=LZString.decompressFromUTF16(localStorage.unitsguideadvance);
+	if (isValidJSON(guideData)) {
+		$('#alertmodal').modal('hide');
+		initialize(JSON.parse(guideData));
+	} else {
+		/*LocalStorage Delete and Refresh*/
+		alert("Corrupted data detected or Data structure has changed. Proceed to Fix.");
+		localStorage.removeItem("unitsguideadvance");
+		localStorage.removeItem("unitsguideadvanceCount");
+		history.pushState(null, null, location.pathname);
+		location.reload(true);
+	}
+})
+/*Filter Favourites*/
+$(document).on("click", "#filterFav", function(e){
+	    var bfPROsTable = $('#mytable').DataTable();
+	    e.preventDefault();
+	    if (!showOnlyFavs) {
+	    showOnlyFavs=true;
+	    bfPROsTable.page.len( 100 ).draw();
+	    window.scrollTo(0,0);
+	    $("#filterFav").html('<i class="fa fa-filter text-success"></i> <b>UN</b>-Filter ALL <i class="fa fa-star-o"></i>');
+	    } else {
+		showOnlyFavs=false;
+	    bfPROsTable.page.len( 100 ).draw();
+	    window.scrollTo(0,0);
+	    $("#filterFav").html('<i class="fa fa-filter text-success"></i> Filter ALL <i class="fa fa-star-o"></i>');
+	    }
+})
+/*Delete ALL Favourites*/
+$(document).on("click", "#deleteFav", function(e){
+	e.preventDefault();
+	/*loader*/
+	    bfpAlert("Delete ALL favourites",'Deleting all favourites from local storage.<div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	    var bfPROsTable = $('#mytable').DataTable();
+	    /*reset ID range select*/
+	    $('#selectunithide').val(0);
+	    /*unfilter favs*/
+	    showOnlyFavs=false;
+	    /*reset searches sorts queries*/
+	    bfPROsTable
+		.search( '' )
+		.columns().search( '' );
+	    bfPROsTable.page.len(-1);
+	    bfPROsTable
+		.column( 0 )
+		.order( 'asc' )
+		.draw();
+	    $(document).find('.addFav').each( function() {
+		if ( $(this).children('div').hasClass("btn-warning") ) {
+	    $(this).children('div').removeClass("btn-warning");
+	    $(this).children('div').addClass("btn-default");
+		$(this).children('div').children('i').removeClass("text-fav");
+		$(this).children('div').children('i').addClass("text-muted");
+		}
+	    })
+	/*reset favVariable*/
+		favSelect=[];
+		/*reset localstorage*/
+		localStorage.setItem("favourites",favSelect);
+	/*reset page length*/
+	    bfPROsTable.page.len(100).draw();
+	    setTimeout( function() {
+	    $('#alertmodal').modal('hide');
+	    window.scrollTo(0,0);
+	    },2000);
+})
+/*Series Query*/
+    $(document).on("click", ".serieslink", function(e) {
+	var bfPROsTable = $('#mytable').DataTable();
+	e.preventDefault();
+	    bfPROsTable
+		.columns( 3 )
+		.search( $(this).text() );
+	    bfPROsTable
+		.column( 0 )
+		.order( 'asc' )
+		.draw();
+	window.scrollTo(0,0);
+    })
+/*Batch Query*/
+ $(document).on("click", ".batchlink", function(e) {
+	var bfPROsTable = $('#mytable').DataTable();
+    	var state = { stateBatch: $(this).text() };
+    	history.pushState(state, "batch state", "?batch="+encodeURIComponent($(this).text()) );
+	e.preventDefault();
+	    /*clear search query field*/
+	    bfPROsTable
+	    .search('');
+	    /*search only batch column*/
+	    if ($(this).text() != "ALL BATCHES") {
+	    	bfPROsTable
+		.columns( 4 )
+		.search( $(this).text()?'^'+$(this).text()+'$':$(this).text(), true, false);
+	    } else {
+	    	bfPROsTable
+		.columns( 4 )
+		.search('',false,true);
+	    }
+	/*sort and consolidated draw*/
+	    bfPROsTable
+		.column( 3 )
+		.order( 'asc' )
+		.draw();
+	window.scrollTo(0,0);
+    })
+/*CustomSelect PageLength*/
+    $(document).on("change", "#unitsPerPage", function(e){
+	    var bfPROsTable = $('#mytable').DataTable();
+	    bfPROsTable.page.len( $(this).val() ).draw()
+	})
+/*Page change scroll to top*/
+$('#mytable').on( 'page.dt', function (e) {
+    window.scrollTo(0,0);
+})
+/*Rare Summon*/
+$(document).on("click", "#rareSummon", function(e){
+    var typeArr=['Lord','Anima','Breaker','Guardian','Oracle'];
+    var rareReRoll=false;
+    var rateUP=1; /*0 for elemental rates up*/
+    var rateUPElement="Water";
+    e.preventDefault();
+	var linkVal=Math.floor((Math.random() * deserialdata.length));
+	while (deserialdata[linkVal]['acquire'].indexOf('Rare') == -1) {
+	    rateUP=0;
+	linkVal=Math.floor((Math.random() * deserialdata.length));
+	/*Lower Mega Rare Rate*/
+	if (!rareReRoll) {
+	    if (deserialdata[linkVal]['rarity']==5) {
+		linkVal=Math.floor((Math.random() * deserialdata.length));
+		rareReRoll=true;
+	    }
+	}
+	/*Elemental rate UP*/
+	while (rateUP < 1) {
+	    if ((deserialdata[linkVal]['acquire'].indexOf('Rare') != -1) &&(deserialdata[linkVal]['element'] != rateUPElement)) {
+		linkVal=Math.floor((Math.random() * deserialdata.length));
+	    }
+	    rateUP+=1;
+	}
+	}
+	var randType=Math.floor((Math.random()*5));
+    /*Blank out first - may replace with animation*/
+    $("#summonIMG").attr('src',"");
+	/*Summoned Unit Image*/
+	$("#summonedUnit").attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZRmc0aVZ2VS1VRFE/unit"+deserialdata[linkVal]['id']+".png");
+	/*Summon Unit Text / Type etc*/
+	var typeHTML='<h4 style="color:white;"><kbd>'+deserialdata[linkVal]['id']+'</kbd> '+deserialdata[linkVal]['name']+' '+deserialdata[linkVal]['rarity']+'<i class="fa fa-star"></i></h4><h5 style="color:#CCCCCC">'+typeArr[randType]+'</h5>';
+	$("#summonedUnitText").html(typeHTML);
+    /*SummonCircle Activate*/
+    $("#summonIMG").attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/summon-circle.gif");
+})
+/*Sprite BG*/
+    $(document).on("click", ".thumbnail", function(e){
+	e.preventDefault();
+	$('#bgSpriteShow').attr('src',$(this).children('img').attr('src'));
+    })
+/*Squad Change Button*/
+$(document).on("click", ".squadALL", function(e){
+    var linkVal=$(this).val();
+    for (var i=0;i<6;i++) {
+	$('#squadUnit'+(i+1)).attr('src',ownSquad[linkVal]);
+	$('#squadUnit'+(i+1)).error( function() {
+		$(this).unbind();
+		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+	})
+    }
+})
+/*Squad Customise by Select*/
+$(document).on("change", ".cFSquad", function(e){
+    var deltaField=parseInt( $(this).attr('id').slice(-1) );
+    if ( $(this).val() != 'None' ) {
+	var deltaField=parseInt( $(this).attr('id').slice(-1) );
+	$('#squadUnit'+(deltaField+1)).attr('src',ownSquad[$(this).val()]);
+	$('#squadUnit'+(deltaField+1)).error( function() {
+		$(this).unbind();
+		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+	})
+    } else {
+	$('#squadUnit'+(deltaField+1)).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+    }
+})
+/*Squad Random*/
+$(document).on("click", "#randomOwn,#randomOpp", function(e){
+    /*Randomise code for opp / own units*/
+    if ( $(this).attr('id') == 'randomOwn' ) {
+	var randomEle = '#squadUnit'
+    } else { 
+	var randomEle = '#squadOpp';
+	/*Clears boss*/
+	$('#bossIMG').children('img').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif');
+    }
+    for (var i=0;i<6;i++) {
+	var linkVal=Math.floor((Math.random() * deserialdata.length));
+	var ovsprite = "https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/sprite"+deserialdata[linkVal]['id']+".gif";
+	$(randomEle+(i+1)).attr('src',ovsprite);
+	$(randomEle+(i+1)).error( function() {
+		$(this).unbind();
+		$(this).attr('src',ownSquad[Math.floor((Math.random() * ownSquad.length))]);
+	})
+    }
+})
+/*Squad Random*/
+$(document).on("change", "#bossSelect", function(e){
+    var noIMG='https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif';
+    if ( $(this).val() != 'None' ) {
+	for (var i=0;i<6;i++) {
+	    $('#squadOpp'+(i+1)).attr('src',noIMG);
+	    $('#squadOwn'+(i+1)).attr('src',noIMG);
+	}
+	for (var i=0; i<bossList.length; i++) {
+	    if (bossList[i].shortname === $(this).val() ) {
+		$('#bossIMG').children('img').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZQk1JcFBvT2xEMUk/spriteboss_'+bossList[i].shortname+'.gif');
+		$('#bossIMG').css('left',bossList[i].xpos+'px');
+		$('#bossIMG').css('top',bossList[i].ypos+'px');
+		/*check for flipping*/
+		if ( ( bossList[i].flip === 'yes' ) && (!$('#bossIMG').children('img').hasClass('flipHori')) ) {
+		    $('#bossIMG').children('img').addClass('flipHori')
+		} else if ( ( bossList[i].flip === 'no' ) && ($('#bossIMG').children('img').hasClass('flipHori')) ) {
+		    $('#bossIMG').children('img').removeClass('flipHori')
+		}
+		break;
+	    }
+	}
+    } else {
+	$('#bossIMG').children('img').attr('src',noIMG);
+    }
+})
+/*RS Simulator*/
+$(document).on("click", "#rareSummonBtn", function(e){
+	    e.preventDefault();
+	    $('#summonModal').modal('show');
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/raresummonfeature',
+  		'title': 'Brave Frontier PROs Rare Summon Feature'
+	});
+})
+/*Filter Button*/
+$(document).on("click", "#filterBtn", function(e){
+	    e.preventDefault();
+	    $('#filterModal').modal('show');
+	    	/*Google analytics*/
+		ga('send', 'pageview', {
+  			'page': '/vurl/filterfeature',
+  			'title': 'Brave Frontier PROs Filter Feature'
+		});
+})
+/*Sel ALL / None*/
+$(document).on("click", ".selEleFilter, .selRareFilter", function(e){
+	var selAction=$(this).text();
+	if ($(this).hasClass('selEleFilter'))
+		var changeClass=".filElement";
+	else
+		var changeClass=".filRarity";
+	$(changeClass).each( function(){
+		if (selAction=="ALL") {
+			$(this).prop('checked',true);
+			if (!$(this).parent().hasClass("active"))
+				$(this).parent().addClass("active")
+		} else {
+			$(this).prop('checked',false);
+			if ($(this).parent().hasClass("active"))
+				$(this).parent().removeClass("active")
+		}
+	})
+})
+/*Execute Filter*/
+$(document).on("click", "#execFilter", function(e){
+	    e.preventDefault();
+	    var bfPROsTable = $('#mytable').DataTable();
+	/*Unit Skills filter*/
+	regexArr=[];
+	var skillsScope=[];
+	var skillColumns=[9,10,11,12,13];
+	$('.filSkillsScope:checked').each( function(){
+		skillsScope.push(parseInt($(this).val()))
+	});
+	$('.filSkills:checked').each( function(){
+		if ($(this).val().charAt(0) != "!")
+			regexArr.push(escapeRegExp($(this).val()))
+		else
+			regexArr.push($(this).val().slice(1))
+	})
+	if ($('input:checkbox[name="filSkillsAny"]').prop('checked'))
+		var skillsAny=true;
+	else
+		var skillsAny=false;
+	if (regexArr.length!=0) {
+		bfPROsTable.columns(skillColumns).search( '' ); /*reset b4 search*/
+		regexStr="^.*"+regexArr.join("\|^.*");
+		if (skillsAny)
+			bfPROsTable.search( regexStr,true,false );
+		else if (skillsScope.length!=0)
+			bfPROsTable.columns(skillsScope).search( regexStr,true,false );
+		else
+			bfPROsTable.columns(skillColumns).search( '' );
+	} else {
+	    bfPROsTable.columns(skillColumns).search( '' );
+	}
+	/*Filter by element multi-value via REGEX*/
+	regexArr=[];
+	$('.filElement:checked').each( function(){
+		regexArr.push($(this).val())
+	})
+	if (regexArr.length!=0) {
+		regexStr="^"+regexArr.join("\|");
+		bfPROsTable.column( 6 ).search( regexStr,true,false );
+	} else {
+	    bfPROsTable.column( 6 ).search( '' );
+	}
+	/*Filter by rarity multi-value via REGEX*/
+	regexArr=[];
+	$('.filRarity:checked').each( function(){
+		regexArr.push($(this).val())
+	})
+	if (regexArr.length!=0) {
+		regexStr="^"+regexArr.join("$\|")+"$";
+		bfPROsTable.column( 5 ).search( regexStr,true,false );
+	} else {
+	    bfPROsTable.column( 5 ).search( '' );
+	}
+	/*Filter for alt-art units*/
+	if ($('input:checkbox[name="filAltArt"]').prop('checked'))
+		bfPROsTable.column( 56 ).search( "TRUE" );
+	else
+	    bfPROsTable.column( 56 ).search( '' );
+	/*Unit ID Range filter*/
+	$("#selectunithide").val($('input:radio[name="filUnitId"]:checked').val());
+	/*Server filter*/
+	switch ($('input:radio[name="filServer"]:checked').val()) {
+		case "All":
+		bfPROsTable.column( 53 ).search("");
+		bfPROsTable.column( 52 ).search("");
+		    break;
+		case "Japan":
+		bfPROsTable.column( 52 ).search("");
+		bfPROsTable.column( 53 ).search("TRUE");
+		    break;
+		case "Global":
+		bfPROsTable.column( 53 ).search("");
+		bfPROsTable.column( 52 ).search("TRUE");
+		    break;
+	}
+	/*Draw after all filters are made*/
+	    bfPROsTable.column( 0 ).order( 'desc' ).draw();
+	    $('#filterModal').modal('hide');
+	    window.scrollTo(0,0);
+})
+/*Bind REFRESH*/
+    $(document).on("click", "#refreshBtn", function(e){
+	    e.preventDefault();
+		/*Google analytics*/
+		ga('send', 'pageview', {
+	  		'page': '/vurl/refresh',
+	  		'title': 'Brave Frontier PROs Refresh'
+		});
+	    /*loader*/
+	    bfpAlert("Refresh",'Clearing all selections ... please wait<div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>');
+	    var bfPROsTable = $('#mytable').DataTable();
+	    /*reset ID range select*/
+	    $('#selectunithide').val(0);
+	    /*unfilter favs*/
+	    showOnlyFavs=false;
+	    /*reset searches sorts queries*/
+	    bfPROsTable
+		.search( '' );
+		bfPROsTable
+		.columns().search( '' );
+	    //bfPROsTable.page.len(-1);
+	    bfPROsTable
+		.column( 0 )
+		.order( 'asc' )
+		.draw();
+	    /*reset compare add/remove button*/
+	    $(document).find('.compareUnit').each( function() {
+		if ( $(this).children('div').hasClass("btn-danger") ) {
+		    $(this).children('div').removeClass("btn-danger");
+		    $(this).children('div').addClass("btn-success");
+		    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
+		}
+	    })
+	    /*reset compare array*/
+	    compareSelect=[];
+	    /*reset page length*/
+	    bfPROsTable.page.len($('#unitsPerPage').val()).draw();
+	    /*reset pushstate*/
+	    history.pushState(null, null, location.pathname);
+	    /*change search field*/
+	    $('.dataTables_filter input').val('');
+	    setTimeout( function() {
+		    $('#alertmodal').modal('hide');
+		    window.scrollTo(0,0);
+	    },500);
+	})
+/*Binding Hashtags*/
+    $(document).on("click", ".hashSelect", function(e){
+	    var bfPROsTable = $('#mytable').DataTable();
+	    e.preventDefault();
+	    bfPROsTable
+		.column( 38 )
+		.search( $(this).attr("value") );
+	    bfPROsTable
+		.column( 0 )
+		.order( 'desc' )
+		.draw();
+	    window.scrollTo(0,0);
+	})
+/*Binding TOP by Element*/
+    $(document).on("click", ".topUnits", function(e){
+	    var bfPROsTable = $('#mytable').DataTable();
+	    e.preventDefault();
+	    bfPROsTable
+		.column( 6 )
+		.search( $(this).attr("value") );
+	    bfPROsTable
+		.column( 17 )
+		.order( 'desc' )
+		.draw();
+	    window.scrollTo(0,0);
+	})
+/*Binding unitcard*/
+    $(document).on("click", ".unitName", function(e){
+	    openCard($(this).attr("data-value"),"unitid");
+	    e.preventDefault();
+	})
+/*Swip gestures on UnitCard
+   $("#cardModal").swiperight(function() {
+       var unitText=$("#previousUnit").children('a').text();
+	if (unitText!="") {
+	    openCard(unitText);
+	}
+    });
+   $("#cardModal").swipeleft(function() {  
+       var unitText=$("#nextUnit").children('a').text();
+	if (unitText!="") {
+	    openCard(unitText);
+	}
+    }); */
+	
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  }
+})();
+/*Update URL based on search filters*/
+    $(document).on("keyup", '.dataTables_filter input', function(e){
+	delay(function(){
+	var bfPROsTable = $('#mytable').DataTable();
+	var sField='.dataTables_filter input';
+	bfPROsTable.search( $(sField).val() ).draw();
+	window.scrollTo(0,0);
+	/*Enter Key only*/
+	if (e.which == 13) {
+	    var state = { stateFilter: $(sField).val() };
+	    history.pushState(state, "Fstate", "?query="+encodeURIComponent($(sField).val()) );
+	}
+	}, 450 );
+    })
+    
+/*POP state*/
+    $(window).on('popstate', function(e) {
+	var state = e.originalEvent.state;
+	/*card state*/
+	if (state.stateUnit) {
+	    $('#compareModal').modal('hide');
+	    if (isNaN(state.stateUnit))
+	    	openCard( state.stateUnit )
+	    else
+	    	openCard( state.stateUnit,"ID")
+	}
+	/*comp state*/
+	if (state.stateCompare) {
+	    var tempArray = ( state.stateCompare ).split(',');
+	    $('#cardModal').modal('hide');
+	    openCompare(tempArray);
+	}
+	/*Search query state*/
+	if (state.stateFilter) {
+	    var bfPROsTable = $('#mytable').DataTable();
+	    bfPROsTable.search( state.stateFilter ).draw();
+	}
+	/*Batch State*/
+	if (state.stateBatch) {
+	    var bfPROsTable = $('#mytable').DataTable();
+	    e.preventDefault();
+	    bfPROsTable
+	    .search('');
+	    bfPROsTable
+		.columns( 4 )
+		.search( state.stateBatch );
+	    bfPROsTable
+		.column( 3 )
+		.order( 'asc' )
+		.draw();
+	    window.scrollTo(0,0);
+	}
+    })
+    
+    /*Effect*/
+    $(document).on("change", ".effects", function(){
+	if ( $('input[name=effectsRadio]:checked').val() != 'none' ) {
+	    $('#bgSpriteEffect').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/'+$('input[name=effectsRadio]:checked').val()+'.gif');
+	    $("#bgSpriteEffectDiv").css('top', $('input[name=effectsRadio]:checked').attr('y-pos')+'px');
+	    $('#bgSpriteEffect').show();
+	} else {
+	    $('#bgSpriteEffect').attr('src','');
+	    $('#bgSpriteEffect').hide();
+	}
+    })
+    
+    /*Modification fields*/
+    $(document).on("change", "#sphereA,#sphereB,.askill,.lskill,.7skill", function(){
+	totalStatsMod();
+    })
+    /*PimpMod*/
+    $(document).on("click", "#pimpBtn", function(){
+	var cToAdd=($(this).hasClass("btn-success")) ? "btn-danger" : "btn-success";
+	var cToRem=(cToAdd=="btn-danger") ? "btn-success" : "btn-danger";
+	var vToCng=($(this).val()=="true") ? "false" : "true";
+	var tToCng=($(this).text()=="Pimp it!") ? "UNPimp it!" : "Pimp it!";
+	$(this).removeClass(cToRem);
+	$(this).addClass(cToAdd);
+	$(this).text(tToCng);
+	$(this).val(vToCng);
+	totalStatsMod();
+    })
+    
+    /*Evo Mats Change Unit Quantity*/
+    $(document).on("change", ".evoMatSelect", function() {
+	var evoMat=[];
+	var evoIdx=-1;
+	      for (var i=0; i < gEvoUnits.length; i++) {
+		for (var j=1; j<6; j++) {
+		    /*grab value+units selected*/
+		    var evoCheck=gEvoUnits[i]["evo "+j];
+		    var evoCheckCount=parseInt($('#sEvoUnit'+i).val());
+		    if ((evoCheck!="") && (evoCheck!="None")) {
+			if (evoMat.length === 0) {
+			    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
+			} else {
+				    /*New Evo mat to add*/
+				    for (k=0; k < evoMat.length; k++) {
+					if (evoMat[k].mat==evoCheck) {
+					    evoIdx=k;
+					    break;
+					} else { 
+					    evoIdx=-1
+					}
+				    }
+				    if (evoIdx === -1) {
+					    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
+				    } else {
+					/*add to existing*/
+					    evoMat[evoIdx].count+=evoCheckCount;
+				    }
+			    }
+		    } /*End blank or none check*/
+		}
+	      }
+	    evoMat=evoMat.sort(function(a,b) {
+		    if (a.mat < b.mat) return -1;
+	    if (a.mat > b.mat) return 1;
+	    return 0;
+	    })
+	    /*dynamically change values*/
+	    var evoCHTML='';
+	    for (i=0;i<evoMat.length;i++) {
+		if (evoMat[i].count !==0) {
+			evoCHTML+='<div class="col-xs-1 col-md-1">';
+			evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" width="35"/>';
+			evoCHTML+='<h4><b>x</b>'+evoMat[i].count+'</h4>';
+			evoCHTML+='</div>';
+		}
+	    }
+	    if ( evoCHTML == '' ) {
+		evoCHTML+='<h4>No Materials Needed.</h4>';
+	    }
+	    $('#totalEvoMats').html(evoCHTML);
+    })
+});
+$(window).load(function() {
+	/*check for card param for UnitID*/
+	var idParam=urlParam('unitid');
+	if (idParam != "")
+	    openCard(idParam,"unitid");
+	/*check for card param*/
+	var cardParam=urlParam('unit');
+	if (cardParam != "") {
+	    openCard(cardParam);
+	    /*needed as show is not included in function*/
+	    $('#cardModal').modal('show');
+	}
+	/*check for compare param*/
+	var compareParam=urlParam('compare');
+	if (compareParam != "") {
+	    var tempArray = compareParam.split(',');
+	    openCompare(tempArray);
+	}
+});
+</script>
+
+<!-- Google Responsive Ad -->
+<div class="text-center clear" style="width:100%;margin:1px auto;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="text-center clear" style="width:100%;margin:1px auto;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!-- disqus discussion -->
+<div class="row"><div class="col-xs-12">
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+	var disqus_shortname = 'bravefrontierpros';
+	var disqus_url = 'http://bravefrontierpros.tumblr.com/unitsdatabase';
+	(function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div></div>
+</div> <!-- /container -->
+
+<!-- Summon Modal-->
+<div class="modal" id="summonModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#000000;">
+      <div class="modal-body">
+<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+<!--summon code here-->
+<div class="container-fluid" style="height:540px;">
+    <!--door art animation and circle-->
+    <img style="position:absolute;top:0px;left:50px;" src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/summon-door.jpg" id="summonIMG" width="500"/>
+    <!--summoned unit centering in middle of 500px div-->
+    <div class="text-center" style="position:absolute;top:125px;left:50px;width:500px;">
+	<img class="center-block" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif" id="summonedUnit" height="275"/>
+    </div>
+    <!--Top Layer to register click-->
+    <div style="position:absolute;top:0px;left:50px;border:0;">
+	<a href="#" id="rareSummon"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif" width="500"/></a>
+    </div>
+	<!--summoned unit text-->
+    <div class="text-center" style="position:absolute;top:500px;left:50px;width:500px;" id="summonedUnitText"></div>    
+</div>
+<div class="container">
+    <h6 class="small">Animated images by <a href="//felixfelice.imgur.com/" target="_blank">FelixFelice</a></h6>
+</div>
+<!--summon code end-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Video Modal-->
+<div class="modal" id="videoModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+<div class="vidContain">
+<iframe id="vidEmbed" src=""></iframe>
+</div>
+<div class="pull-right small">Courtesy of <a href="https://www.youtube.com/user/Ushitarius" target="_blank">Ushi Gaming Channel</a></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Favourites -->
+<div class="modal" id="favModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	<h4 class="modal-title" id="favTitle"></h4>
+    </div>
+      <div class="modal-body">
+	    <div class="container-fluid">
+	    <!-- For Buttons -->
+		<div class="row">
+		    <div class="col-xs-11 col-sm-11 col-md-11" style="margin-bottom:10px;">
+			<div class="row" id="favSortDisplay"></div>
+		    </div>
+		</div>
+	<!-- For units -->
+		<div class="row">
+		    <div class="col-xs-11 col-sm-11 col-md-11">
+			<div class="row" id="favIconDisplay"></div>
+		    </div>
+		</div>
+	<!-- For SharingURL -->
+		<div class="row">
+		    <div class="col-xs-11 col-sm-11 col-md-11">
+			<div class="row" id="favLinkDisplay"></div>
+		    </div>
+		</div>
+	    </div> <!-- End Container -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Progress-->
+<div class="modal" id="progressModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Summoning units</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	    <h4 class="text-default">Try the <a href="unitsguidelite">LITE guide</a>, for mobile or if this fails.</h4>
+	    <h5>(Note: Images will load progressively.)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Compare Modal -->
+<div class="modal" id="compareModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal" aria-hidden="true"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+
+<!-- Google link text across all tab panes -->
+<div class="text-center">
+    <!-- BFPROsLinkUnits DB Overlay -->
+    <ins class="adsbygoogle"
+	 style="display:inline-block;width:468px;height:15px"
+	 data-ad-client="ca-pub-2145833818900192"
+	 data-ad-slot="7885767265"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#unitCompareHome" role="tab" data-toggle="tab"><kbd><i class="fa fa-users"></i></kbd> Compare Units</a></li>
+      <li><a href="#squadPlay" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Squad Play</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" style="overflow:auto;" id="unitCompareHome">
+	<table id="compareTable" class="table table-striped table-bordered table-responsive table-condensed small"></table>
+  </div>
+  <div class="tab-pane fade" id="squadPlay">
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-6" style="margin:auto;margin-top:15px;padding:0;height:400px;">
+	    <div style="position:absolute;overflow:hidden;">
+		<img id="bgSquad" src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg" width="400"/>
+	    <!--Own units RIGHT*-->
+		<div style="position:absolute;left:170px;top:110px;"><img id="squadUnit1" src=""/></div>
+		<div style="position:absolute;left:250px;top:120px;"><img id="squadUnit2" src=""/></div>
+		<div style="position:absolute;left:205px;top:180px;"><img id="squadUnit3" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:280px;top:180px;"><img id="squadUnit4" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:185px;top:250px;"><img id="squadUnit5" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:270px;top:240px;"><img id="squadUnit6" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+	    <!--Opp units LEFT-->
+		<div style="position:absolute;left:85px;top:110px;"><img id="squadOpp1" class="flipHori" src=""/></div>
+		<div style="position:absolute;left:05px;top:120px;"><img id="squadOpp2" class="flipHori" src=""/></div>
+		<div style="position:absolute;left:50px;top:180px;"><img id="squadOpp3" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:-25px;top:180px;"><img id="squadOpp4" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:70px;top:250px;"><img id="squadOpp5" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:-15px;top:240px;"><img id="squadOpp6" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		
+		<!--Boss Blank-->
+		<div id="bossIMG" style="position:absolute;left:0px;top:0px;"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		
+	    </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5" style="margin-top:15px;">
+    <h4>Custom OWN Squad</h4>
+    <div id="customSquad"></div>
+    <div class="clear"></div>
+	<h4>Change ALL Units in OWN Squad to:</h4>
+	<div id="squadChange"></div>
+	<h4>Squad randomiser:</h4>
+	<div class="btn-group">
+	  <button type="button" id="randomOpp" class="btn btn-sm btn-danger">Opponent Squad</button>
+	  <button type="button" id="randomOwn" class="btn btn-sm btn-info">Own Squad</button>
+	</div>
+	<h4>Fight a BOSS!</h4>
+	<div class="col-xs-8 col-sm-8 col-md-12" style="margin-bottom:15px;">
+	<select id="bossSelect" class="form-control input-sm"><option selected="selected">None</option></select>
+	</div>
+    </div>
+    </div><!--EndROW-->
+    
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6">
+	<small style="margin-top:15px;">Animated Sprites - Courtesy of <a href="https://felixfelice.imgur.com/" target="_blank">FelixFelice &amp; Team</a></small>
+    </div>
+</div>
+
+    </div><!--End Container-->
+  </div>
+</div> <!--End Tab Content-->
+	
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Card-->
+<div class="modal" id="cardModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<button type="button" class="close" style="position:absolute;z-index:99;top:-18px;right:-18px;" data-dismiss="modal"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-times fa-inverse fa-stack-1x"></i></span></button>
+
+    <!-- BFPROsLinkUnits DB Overlay -->
+    <ins class="adsbygoogle"
+	 style="display:inline-block;width:468px;height:15px"
+	 data-ad-client="ca-pub-2145833818900192"
+	 data-ad-slot="7885767265"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+	
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	      <li class="active"><a href="#unitCardHome" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Unit Card</strong></a></li>
+	      <li><a href="#unitCardArt" role="tab" data-toggle="tab"><i class="fa fa-photo"></i> Lore / Art</a></li>
+	      <li><a href="#evolutionary" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Evolutionary</a></li>
+	      <li class="hidden-xs"><a href="#unitCardSprite" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Sprite Play</a></li>
+	</ul>
+<!-- Tab panes -->
+    <div class="tab-content">
+	<div class="tab-pane fade in active" id="unitCardHome"></div>
+    <div class="tab-pane fade" id="unitCardArt">
+    	<div class="row"><div class="col-xs-12 col-md-12">
+		<div id="unitimageacc" style="position:inherit;"></div>
+	</div></div>
+    </div>
+<!--Evolutionary-->
+  <div class="tab-pane fade" id="evolutionary">
+    <div id="evoTab" class="row"></div>
+  </div>
+
+  <div class="tab-pane fade" id="unitCardSprite">
+<div class="container-fluid">
+<!--Main display width 350 resize-->
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" style="margin:auto;margin-top:15px;padding:0;height:365px;">
+	    <div style="position:absolute;"><img id="bgSpriteShow" src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg" width="350"/></div>
+	    <div id="bgSpriteEffectDiv" style="position:absolute;"><img style="display:none;" id="bgSpriteEffect" src="" width="350"/></div>
+	    <div style="position:absolute;left:110px;top:140px;"><img id="unitSpriteShow" src=""/></div>
+    </div>
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <h4>Pick an Effect</h4>
+	<div class="radio-inline">
+	    <label class="label label-info"><input class="effects" value="snow" y-pos="0" type="radio" name="effectsRadio"> <i class="fa fa-asterisk"></i></label>
+	</div>
+	<div class="radio-inline">
+	    <label class="label label-info"><input class="effects" value="pixelclouds" y-pos="20" type="radio" name="effectsRadio"> <i class="fa fa-cloud"></i></label>
+	</div>
+	<div class="radio-inline">
+	    <label class="label label-warning"><input class="effects" value="lightning" y-pos="60" type="radio" name="effectsRadio"> <i class="fa fa-flash"></i></label>
+	</div>
+	<div class="radio-inline">
+	    <label class="label label-danger"><input class="effects" value="fire" y-pos="80" type="radio" name="effectsRadio"> <i class="fa fa-fire"></i></label>
+	</div>
+	<div class="radio-inline">
+	    <label class="label label-primary"><input class="effects" value="water" y-pos="55" type="radio" name="effectsRadio"> <i class="fa fa-tint"></i></label>
+	</div>
+	<div class="radio-inline">
+	    <label class="label label-default"><input class="effects" value="none" y-pos="0" type="radio" name="effectsRadio" checked> None</label>
+	</div>
+
+    <h4 style="margin-top:25px;">Pick a Background</h4>
+    <!--Thumbnail for selection-->
+    <div class="row">
+	  <div class="col-xs-3 col-sm-3">
+	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_summoncircle1.jpg" class="img-circle" alt="summon circle"/></a>
+	  </div>
+	  <div class="col-xs-3 col-sm-3">
+	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_trialcircle.jpg" class="img-circle" alt="trial circle"/></a>
+	  </div>
+	  <div class="col-xs-3 col-sm-3">
+	    <a href="#" class="thumbnail"><img src="https://googledrive.com/host/0B4hJr8BXxvFZWmxjWm8zZjVVNVE/bg_arena.jpg" class="img-circle" alt="arena"/></a>
+	  </div>
+    </div><!--End Nested Row-->
+</div>
+</div><!--End ROw-->
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+	<small>Animated Sprites - Courtesy of <a href="https://felixfelice.imgur.com/" target="_blank">FelixFelice &amp; Team</a></small>
+    </div>
+</div>
+
+</div><!--End Container-->
+</div><!--EndSpritePane-->
+</div><!--End Tab Content-->
+
+      </div>
+    </div>
+  </div>
+</div> <!-- End Card Modal -->
+
+<!-- Filter Modal-->
+<div class="modal" id="filterModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">
+	  <span aria-hidden="true">&times;</span>
+	  <span class="sr-only">Close</span>
+	</button>
+	<h4 class="modal-title">Advanced Filters</h4>
+      </div>
+      
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>by Server</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default active">
+		    <input type="radio" name="filServer" value="All" checked><b>All</b>
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Global">Global
+		  </label>
+		  
+		  <label class="btn btn-default">
+		    <input type="radio" name="filServer" value="Japan">Japan
+		  </label>
+		</div>
+		</div>
+      		<div class="col-xs-12 col-sm-6 col-md-6">
+		<h5><b>Alternate ART</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+		  </label>
+		</div>
+		</div>
+	</div><!--EndRow-->
+	
+	<h5><b>by Unit ID Range</b></h5>
+	
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
+	  
+	  <label class="btn btn-default active">
+	    <input type="radio" name="filUnitId" value="0" checked><b>All Units</b>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="100">1-100 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="200">101-200 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="300">201-300 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="400">301-400 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="500">401-500 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="600">501-600 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="700">601-700 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="800">701-800 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="radio" name="filUnitId" value="900">801-900 
+	  </label>
+	  
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="1000">901-1000 
+	  </label>
+	  
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1100">1001-1100</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1200">1101-1200</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1300">1201-1300</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1400">1301-1400</label>
+	  <label class="btn btn-default btn-sm"><input type="radio" name="filUnitId" value="1500">1401-1500</label>
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="7100">7000-7100 
+	  </label>
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="8100">8000-8100 
+	  </label>
+	  
+	  <label class="btn btn-default btn-sm">
+	    <input type="radio" name="filUnitId" value="8200">8100-8200
+	  </label>
+	</div>
+	
+	<input type="hidden" id="selectunithide" value="0"/>
+	
+	<h5><b>by Elements</b></h5>
+	
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-primary selEleFilter">ALL</button>
+	  <button type="button" class="btn btn-info selEleFilter">None</button>
+	</div>
+	
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Fire">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/fireminiicon.png"/>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Water">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/waterminiicon.png"/>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Earth">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/Earthminiicon.png"/>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Thunder">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/thunderminiicon.png"/>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Light">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/lightminiicon.png"/>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filElement" value="Dark">
+	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/darkminiicon.png"/>
+	  </label>
+
+	</div>
+	
+	<h5><b>by Rarity</b></h5>
+	
+	<div class="btn-group btn-group-sm">
+	  <button type="button" class="btn btn-primary selRareFilter">ALL</button>
+	  <button type="button" class="btn btn-info selRareFilter">None</button>
+	</div>
+	
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="1">1<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="2">2<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="3">3<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="4">4<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="5">5<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="6">6<i class="fa fa-star"></i>
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="7">7<i class="fa fa-star"></i>
+	  </label>
+	</div>
+	
+	<h5><b>by Skill Effects</b> / Scope: 
+	<div class="btn-group btn-group-sm" data-toggle="buttons">
+	  <label class="btn btn-default active">
+	    <input type="checkbox" name="filSkillsAny" checked value="TRUE"><b>Any Skill</b>
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="9">LS
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="10">BB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="11">SBB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="12">UBB
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkillsScope" value="13">ES
+	  </label>
+	</div>
+	</h5>
+	<div class="btn-group btn-group-xs" data-toggle="buttons">
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
+	  </label>
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="(TGT)">Single TGT
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="CRIT+">CRIT Rate 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="CRIT DMG+">CRIT DMG 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="Spark DMG+">Spark DMG 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="SPARKcrit">SPARKcrit
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="DMG+ to Ailed">DMG+ to Ailed
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="!Enemy receives [0-9]*\% Spark DMG\+">Spark DMG Debuff 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="Element Weakness DMG+">Weak Elements DMG 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="Ignore DEF">Ignore DEF 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="DMG Each Turn">DMG Each Turn
+	  </label>
+	  
+	  <label class="btn btn-success">
+	    <input type="checkbox" class="filSkills" value="ATK+">Buff ATK 
+	  </label>
+	  
+	  <label class="btn btn-success">
+	    <input type="checkbox" class="filSkills" value="DEF+">Buff DEF 
+	  </label>
+	  
+	  <label class="btn btn-success">
+	    <input type="checkbox" class="filSkills" value="REC+">Buff REC 
+	  </label>
+	  
+	  <label class="btn btn-success">
+	    <input type="checkbox" class="filSkills" value="BB ATK%+">Buff BB DMG
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BC+">BC+ 
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BC Fill+">BC Fill+ 
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BC Fill ">BC Fill
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BB Cost">Reduce BB Cost 
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BB Gauge Used">Reduce BB Gauge Used
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="100% BB Fill">100% BB Fill
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BC Fill when ATKed">BC Fill when ATKed
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="BC Fill on Spark">BC Fill on Spark
+	  </label>
+	  
+	  <label class="btn btn-info">
+	    <input type="checkbox" class="filSkills" value="Spark BC+">Spark BC+
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="HC+">HC+ 
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="HC Fill">HC Fill+ 
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Heal">Heal
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Gradual Heal">Gradual Heal
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Chance Drain">Drain HP
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="!Chance Heal .* DMG">Heal when ATKed
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Heal on Spark">Heal on Spark
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Angel Idol">Angel Idol
+	  </label>
+	  
+	  <label class="btn btn-danger">
+	    <input type="checkbox" class="filSkills" value="Revive Dead">Revive Dead
+	  </label>
+	  
+	  <label class="btn btn-warning">
+	    <input type="checkbox" class="filSkills" value="Item+">Item+ 
+	  </label>
+	  
+	  <label class="btn btn-warning">
+	    <input type="checkbox" class="filSkills" value="Karma+">Karma+ 
+	  </label>
+	  
+	  <label class="btn btn-warning">
+	    <input type="checkbox" class="filSkills" value="Zel+">Zel+ 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Add ">Add Element / Ails
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Reduce DMG">Reduce DMG 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Cure Ails">Cure Ails 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Null Ails">Null Ails 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Nulls Elemental Weakness">Null Elemental Weakness 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Nulls STATS Debuff">Nulls STATS Debuff
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Para">Paralysis 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Weak">Weakness 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Injury">Injury 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Curse">Curse 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Sick">Sickness 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Poison">Poison 
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="!Inflict .* on ATKed">Counter-Ails
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="Convert">Convert Stats
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="% Chance -">Reduce Enemy ATK/DEF
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="HitCount +">HitCount+
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="HP Barrier">HP Barrier
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="OverDrive Fill+">OverDrive Fill Rate+
+	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filSkills" value="!OverDrive Fill[^+]{1,1}*">OverDrive Fill
+	  </label>
+	</div>
+	<h6><small class="text-danger">*Note* &quot;Any Skill&quot; selection takes precedence.</small></h6>
+	<div class="clear row"></div>
+      </div>
+      
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	<button type="button" class="btn btn-primary" id="execFilter">
+	  <i class="fa fa-filter"></i> Filter
+	</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="height:90%">
+    <div class="modal-content" style="height:100%">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Dream EVO Skills</h3></div>
+      <div class="modal-body" style="height:100%">
+      	<div class="row" style="height:90%">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alert Modal -->
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="cid0020000115892179904" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 500px;height: 500px;">{"handle":"summonerscentral","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":500,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
+</body>
+</html>
