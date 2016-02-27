@@ -1935,6 +1935,13 @@ $(document).on("click", '.unitBox', function(e){
 	$('#searchModal').modal('show')
 })
 
+/*dreamevo btn*/
+$(document).on("click", ".dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$(".dreamevo").attr("data-link"));
+	$("#dreammodal").modal("show");
+})
+
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
