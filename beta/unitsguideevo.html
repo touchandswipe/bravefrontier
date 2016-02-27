@@ -14,6 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .evoMatShow{width:35px;height:35px;margin-right:5px;}
     #dreamcontent {width:100%;height:100%;border:0;}
     .listIcon {width:40px;height:40px;}
     .evolutionary {vertical-align:bottom;}
@@ -1508,26 +1509,27 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	      	if (cData[i].evo!="") {
 	      		var evoSplit=cData[i]["evo"].split(",");
 			for (var j in evoSplit) {
-			    // var evoCheck=cData[i]["evo"];
-				if (evoMat.length === 0) {
-				    evoMat.push( {"mat":evoSplit[j],"count":1} );
-				} else {
-					    /*New Evo mat to add*/
-					    for (var k in evoMat) {
-						if (evoMat[k].mat==evoSplit[j]) {
-						    evoIdx=k;
-						    break;
-						} else { 
-						    evoIdx=-1
-						}
-					    }
-					    if (evoIdx === -1) {
-						evoMat.push( {"mat":evoSplit[j],"count":1} );
-					    } else {
-					    /*add to existing*/
-						evoMat[evoIdx].count+=1;
-					    }
-				    }
+				if (evoSplit[j].toLowerCase()!="none") {
+					if (evoMat.length === 0) {
+					    evoMat.push( {"mat":evoSplit[j],"count":1} );
+					} else {
+						    /*New Evo mat to add*/
+						    for (var k in evoMat) {
+							if (evoMat[k].mat==evoSplit[j]) {
+							    evoIdx=k;
+							    break;
+							} else { 
+							    evoIdx=-1
+							}
+						    }
+						    if (evoIdx === -1) {
+							evoMat.push( {"mat":evoSplit[j],"count":1} );
+						    } else {
+						    /*add to existing*/
+							evoMat[evoIdx].count+=1;
+						    }
+					}
+				}
 			}
 	      	}
 	    }
@@ -1544,16 +1546,27 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    var evoCHTML="";
 	    evoCHTML+='<div class="col-md-12"><h4><i class="fa fa-thumb-tack"></i> Units Evolution Summary</h4>';
 	    evoCHTML+='<table id="compareTable" class="table table-hover table-striped table-bordered table-responsive table-condensed small"><thead><tr><th>Unit</th><th>Qty</th><th colspan="5">Evolution materials</th></tr></thead>';
-	    for (var i in cData){	    
+	    for (var i in cData) {
 		    evoCHTML+='<tr>';
-		    evoCHTML+='<td><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon'+cData[i]['iconref']+'.png" width="40"/> <i class="fa fa-chevron-right text-muted"></i></td>';
+		    /*ServerIMGREF*/
+			if (cData[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (cData[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (cData[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (cData[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+		    evoCHTML+='<td><img src="'+ovServer+bfPrefix.icon+cData[i]['systemid']+'.png" class="evoMatShow" title="'+cData[i].name'"/> <i class="fa fa-chevron-right text-muted"></i></td>';
 		    /*Check for blank and none*/
 		    if (cData[i]['evo']!="") {
 		    	var evoSplit=cData[i]["evo"].split(",");
 			evoCHTML+='<td style="vertical-align:middle;"><div><select id="sEvoUnit'+i+'" class="form-control input-sm evoMatSelect">'+'><option value="0">0</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td>';
 			evoCHTML+='<td style="vertical-align:middle;">';
 			for (var j in evoSplit)
-			    evoCHTML+='<img src="'+getEvoIMG(evoSplit[j])+'" width="35"/>';
+			    evoCHTML+='<img src="'+getEvoIMG(evoSplit[j])+'" class="evoMatShow"/>';
 			evoCHTML+='</td>';
 		    } else {
 			 evoCHTML+='<td colspan="2"> No further evolution available OR Materials unknown at the moment.</td>';
@@ -2691,45 +2704,44 @@ var delay = (function(){
     $(document).on("change", ".evoMatSelect", function() {
 	var evoMat=[];
 	var evoIdx=-1;
-	      for (var i=0; i < gEvoUnits.length; i++) {
-		for (var j=1; j<6; j++) {
-		    /*grab value+units selected*/
-		    var evoCheck=gEvoUnits[i]["evo "+j];
-		    var evoCheckCount=parseInt($('#sEvoUnit'+i).val());
-		    if ((evoCheck!="") && (evoCheck!="None")) {
-			if (evoMat.length === 0) {
-			    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
-			} else {
-				    /*New Evo mat to add*/
-				    for (k=0; k < evoMat.length; k++) {
-					if (evoMat[k].mat==evoCheck) {
-					    evoIdx=k;
-					    break;
-					} else { 
-					    evoIdx=-1
+	      for (var i in gEvoUnits) {
+	      	if (gEvoUnits[i].evo!="") {
+	      		var evoSplit=gEvoUnits[i]["evo"].split(",");
+	      		var evoCheckCount=parseInt($('#sEvoUnit'+i).val());
+			for (var j in evoSplit) {
+				if (evoSplit[j].toLowerCase()!="none") {
+					if (evoMat.length === 0) {
+					    evoMat.push( {"mat":evoSplit[j],"count":evoCheckCount } );
+					} else {
+					    /*New Evo mat to add*/
+					    for (k in evoMat) {
+						if (evoMat[k].mat==evoSplit[j]) {
+						    evoIdx=k;
+						    break;
+						} else { 
+						    evoIdx=-1
+						}
+					    }
+					    if (evoIdx === -1)
+						    evoMat.push( {"mat":evoSplit[j],"count":evoCheckCount } );
+					    else
+						    evoMat[evoIdx].count+=evoCheckCount;
 					}
-				    }
-				    if (evoIdx === -1) {
-					    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
-				    } else {
-					/*add to existing*/
-					    evoMat[evoIdx].count+=evoCheckCount;
-				    }
-			    }
-		    } /*End blank or none check*/
+				} /*End blank or none check*/
+			}
 		}
 	      }
 	    evoMat=evoMat.sort(function(a,b) {
 		    if (a.mat < b.mat) return -1;
-	    if (a.mat > b.mat) return 1;
-	    return 0;
+		    if (a.mat > b.mat) return 1;
+		    return 0;
 	    })
 	    /*dynamically change values*/
 	    var evoCHTML='';
 	    for (i=0;i<evoMat.length;i++) {
 		if (evoMat[i].count !==0) {
 			evoCHTML+='<div class="col-xs-1 col-md-1">';
-			evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" width="35"/>';
+			evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" class="evoMatShow"/>';
 			evoCHTML+='<h4><b>x</b>'+evoMat[i].count+'</h4>';
 			evoCHTML+='</div>';
 		}
