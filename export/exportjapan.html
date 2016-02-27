@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="Brave Frontier - Extract / Export Only - A community effort by Brave Frontier PROs" />
     <meta name="author" content="Sam GreenPuck" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">hp
     <title>Brave Frontier - Extract / Export Only - by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/hpcss/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -549,9 +549,11 @@ $.getJSON( serverSelect, function( unit ) {
                     if (skillSeek=="hpBasedBBatk") {
                       $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
                         if (effectKey=="bb added atk% based on hp") {
-                          groupSTR+=valObj.element + " " + valObj[bbArray[ibb]].levels[9]["effects"][j]["target area"];
-                          groupSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"][9]+"%-";
-                          groupSTR+= (+valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"][9] +  +valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% based on hp"])+"% ";
+                          var unitElement=valObj.element;
+                          unitElement=unitElement.charAt(0).toUpperCase().concat(unitElement.slice(1));
+                          groupSTR+=unitElement + " " + valObj[bbArray[ibb]].levels[9]["effects"][j]["target area"]+" ";
+                          groupSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"]+"%-";
+                          groupSTR+= (+valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"] +  +valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% based on hp"])+"% ";
                           groupSTR+="BB ATK% Based on HP ";
                           if (valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% proportional to hp"]=="remaining")
                             groupSTR+="LEFT";
