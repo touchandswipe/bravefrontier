@@ -7,11 +7,11 @@
     <meta name="author" content="Sam GreenPuck" />
     <title>Brave Frontier - Units Guide by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" hrref="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.2/css/dataTables.colVis.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
     .evoMatShow{width:35px;height:35px;margin-right:5px;}
@@ -132,10 +132,10 @@
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type='text/javascript' src='https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js'></script>
+<script type='text/javascript' src='https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.2/js/dataTables.colVis.min.js'></script>
-<script type='text/javascript' src='//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js'></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon5.js"></script>
 <script type="text/javascript">
@@ -456,7 +456,11 @@ function initialize(fusionData) {
 		{ "targets":[ 8 ],
 		"type": "string","width":"10",
 		"render": function(cGender, type, row, full) {
-			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			if (type ==='display') {
+				if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			} else {
+				return cGender;
+			}
 		}
 		},
 		/*skills*/
@@ -2029,16 +2033,14 @@ $(document).on("click", ".compareUnit", function(e) {
 	if ( $(this).children('div').hasClass("btn-success") ) {
 	    if ( compareSelect.length < compareMax ) { // Max units
 		compareSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-success");
-		$(this).children('div').addClass("btn-danger");
+		$(this).children('div').toggleClass("btn-success btn-danger");
 		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-users"></i>');
 	    } else {
 		bfpAlert("Max units selected",'You can only select maximum of '+compareMax+' units to compare / calculate evolution materials and for squad sprite simulation.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	    }
 	} else {
 	    compareSelect.splice(compareSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-danger");
-	    $(this).children('div').addClass("btn-success");
+	    $(this).children('div').toggleClass("btn-danger btn-success");
 	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
 	}
 })
@@ -2075,17 +2077,13 @@ $(document).on("click", ".addFav", function(e) {
 	if ( $(this).children('div').hasClass("btn-default") ) {
 	    /*when not added*/
 		favSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-default");
-		$(this).children('div').addClass("btn-warning");
-		$(this).children('div').children('i').removeClass("text-muted");
-		$(this).children('div').children('i').addClass("text-fav");
+		$(this).children('div').toggleClass("btn-default btn-warning");
+		$(this).children('div').children('i').toggleClass("text-muted text-fav");
 	} else {
 	    /*when added*/
 	    favSelect.splice(favSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+	    $(this).children('div').toggleClass("btn-warning btn-default");
+		$(this).children('div').children('i').toggleClass("text-fav text-muted");
 	}
 	/*Save in local storage*/
 	localStorage.setItem("favourites",favSelect);
@@ -2220,10 +2218,8 @@ $(document).on("click", "#deleteFav", function(e){
 		.draw();
 	    $(document).find('.addFav').each( function() {
 		if ( $(this).children('div').hasClass("btn-warning") ) {
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+		    $(this).children('div').toggleClass("btn-warning btn-default");
+		    $(this).children('div').children('i').toggleClass("text-fav text-muted");
 		}
 	    })
 	/*reset favVariable*/
@@ -2480,6 +2476,17 @@ $(document).on("click", "#execFilter", function(e){
 		bfPROsTable.column( 6 ).search( regexStr,true,false );
 	} else {
 	    bfPROsTable.column( 6 ).search( '' );
+	}
+	/*Filter by gender multi-value via REGEX*/
+	regexArr=[];
+	$('.filGender:checked').each( function(){
+		regexArr.push($(this).val());
+	})
+	if (regexArr.length!=0) {
+		regexStr="^"+regexArr.join("\|");
+		bfPROsTable.column( 8 ).search( regexStr,true,false );
+	} else {
+	    bfPROsTable.column( 8 ).search( '' );
 	}
 	/*Filter by rarity multi-value via REGEX*/
 	regexArr=[];
@@ -3120,7 +3127,7 @@ $(window).load(function() {
       
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-xs-12 col-sm-6 col-md-6">
+      		<div class="col-xs-12 col-sm-4 col-md-4">
 		<h5><b>by Server</b></h5>
 		<div class="btn-group btn-group-sm" data-toggle="buttons">
 		  <label class="btn btn-default active">
@@ -3136,13 +3143,27 @@ $(window).load(function() {
 		  </label>
 		</div>
 		</div>
-      		<div class="col-xs-12 col-sm-6 col-md-6">
-		<h5><b>Alternate ART</b></h5>
-		<div class="btn-group btn-group-sm" data-toggle="buttons">
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
-		  </label>
+      		<div class="col-xs-12 col-sm-4 col-md-4">
+			<h5><b>Alternate ART</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+			  </label>
+			</div>
 		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4">
+			<h5><b>Gender</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Female"><i class="text-danger fa fa-venus"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Male"><i class="text-primary fa fa-mars"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Genderless"><i class="text-default fa fa-genderless"></i>
+			  </label>
+			</div>
 		</div>
 	</div><!--EndRow-->
 	
