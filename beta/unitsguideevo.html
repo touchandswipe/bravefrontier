@@ -2488,7 +2488,8 @@ $(document).on("click", "#execFilter", function(e){
 	/*Filter by gender multi-value via REGEX*/
 	regexArr=[];
 	$('.filGender:checked').each( function(){
-		regexArr.push($(this).val())
+		regexArr.push($(this).val());
+		console.log(regexArr);
 	})
 	if (regexArr.length!=0) {
 		regexStr="^"+regexArr.join("\|");
