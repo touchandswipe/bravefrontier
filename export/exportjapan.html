@@ -536,7 +536,7 @@ $.getJSON( serverSelect, function( unit ) {
           exportSTR+="<td>";
           if (valObj[bbArray[ibb]])
             if (valObj[bbArray[ibb]].levels[9]["effects"]) {
-              for (i=0;i<skillParseObj.length;i++) {
+              for (i in skillParseObj) {
                 var skillSeek=skillParseObj[i]["skillid"];
                 /*looking each effect array*/
                 for (j in valObj[bbArray[ibb]].levels[9]["effects"]) {
@@ -750,25 +750,18 @@ $.getJSON( serverSelect, function( unit ) {
                               switch (exportValue) {
                                 case "aoe":
                                   exportValue="(AOE)";
-                                  break;
                                 case "single":
                                   exportValue="(TGT)";
-                                  break;
                                 case "party":
                                   exportValue="(ALL)";
-                                  break;
                                 case "self":
                                   exportValue="(SELF)";
-                                  break;
                                 case "recovery":
                                   exportValue="REC";
-                                  break;
                                 case "defense":
                                   exportValue="DEF";
-                                  break;
                                 case "hp":
                                   exportValue="HP";
-                                  break;
                               }
                               exportSTR+=exportValue;
                           }
