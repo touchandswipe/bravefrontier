@@ -732,7 +732,7 @@ $.getJSON( serverSelect, function( unit ) {
                           var specialValue=valObj[specialKey];
                           specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
                           /*Extra BB Elements*/
-                          if (skillSeek="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"]) {
+                          if (skillSeek=="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"]) {
                             specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"];
                             specialValue=specialValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                           }
