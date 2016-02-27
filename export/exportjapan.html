@@ -551,7 +551,11 @@ $.getJSON( serverSelect, function( unit ) {
                         if (effectKey=="bb added atk% based on hp") {
                           var unitElement=valObj.element;
                           unitElement=unitElement.charAt(0).toUpperCase().concat(unitElement.slice(1));
-                          groupSTR+=unitElement + " " + valObj[bbArray[ibb]].levels[9]["effects"][j]["target area"]+" ";
+                          groupSTR+=unitElement;
+                          if (valObj[bbArray[ibb]].levels[9]["effects"][j]["target area"]=="aoe")
+                            groupSTR+=" (AOE) "
+                          else
+                            groupSTR+=" (TGT) ";
                           groupSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"]+"%-";
                           groupSTR+= (+valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"] +  +valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% based on hp"])+"% ";
                           groupSTR+="BB ATK% Based on HP ";
