@@ -456,7 +456,11 @@ function initialize(fusionData) {
 		{ "targets":[ 8 ],
 		"type": "string","width":"10",
 		"render": function(cGender, type, row, full) {
-			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			if (type ==='display') {
+				if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			} else {
+				return cGender;
+			}
 		}
 		},
 		/*skills*/
@@ -3148,25 +3152,26 @@ $(window).load(function() {
 		</div>
 		</div>
       		<div class="col-xs-12 col-sm-4 col-md-4">
-		<h5><b>Alternate ART</b></h5>
-		<div class="btn-group btn-group-sm" data-toggle="buttons">
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
-		  </label>
+			<h5><b>Alternate ART</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+			  </label>
+			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-md-4">
-		<h5><b>Gender</b></h5>
-		<div class="btn-group btn-group-sm" data-toggle="buttons">
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filGender" value="female"><i class="text-danger fa fa-venus"></i>
-		  </label>
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filGender" value="male"><i class="text-primary fa fa-mars"></i>
-		  </label>
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filGender" value="genderless"><i class="text-default fa fa-genderless"></i>
-		  </label>
-		</div>
+			<h5><b>Gender</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filGender" value="Female"><i class="text-danger fa fa-venus"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filGender" value="Male"><i class="text-primary fa fa-mars"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filGender" value="Genderless"><i class="text-default fa fa-genderless"></i>
+			  </label>
+			</div>
 		</div>
 	</div><!--EndRow-->
 	
