@@ -2481,6 +2481,17 @@ $(document).on("click", "#execFilter", function(e){
 	} else {
 	    bfPROsTable.column( 6 ).search( '' );
 	}
+	/*Filter by gender multi-value via REGEX*/
+	regexArr=[];
+	$('.filGender:checked').each( function(){
+		regexArr.push($(this).val())
+	})
+	if (regexArr.length!=0) {
+		regexStr="^"+regexArr.join("\|");
+		bfPROsTable.column( 8 ).search( regexStr,true,false );
+	} else {
+	    bfPROsTable.column( 8 ).search( '' );
+	}
 	/*Filter by rarity multi-value via REGEX*/
 	regexArr=[];
 	$('.filRarity:checked').each( function(){
@@ -3120,7 +3131,7 @@ $(window).load(function() {
       
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-xs-12 col-sm-6 col-md-6">
+      		<div class="col-xs-12 col-sm-4 col-md-4">
 		<h5><b>by Server</b></h5>
 		<div class="btn-group btn-group-sm" data-toggle="buttons">
 		  <label class="btn btn-default active">
@@ -3136,11 +3147,24 @@ $(window).load(function() {
 		  </label>
 		</div>
 		</div>
-      		<div class="col-xs-12 col-sm-6 col-md-6">
+      		<div class="col-xs-12 col-sm-4 col-md-4">
 		<h5><b>Alternate ART</b></h5>
 		<div class="btn-group btn-group-sm" data-toggle="buttons">
 		  <label class="btn btn-default">
 		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+		  </label>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4">
+		<h5><b>Gender</b></h5>
+		<div class="btn-group btn-group-sm" data-toggle="buttons">
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filGender" value="female"><i class="text-danger fa fa-venus"></i>
+		  </label>
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filGender" value="male"><i class="text-primary fa fa-mars"></i>
+		  </label>
+		  <label class="btn btn-default">
+		    <input type="checkbox" name="filGender" value="genderless"><i class="text-default fa fa-genderless"></i>
 		  </label>
 		</div>
 		</div>
