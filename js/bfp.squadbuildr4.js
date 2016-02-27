@@ -542,7 +542,7 @@ function recommendSkills(skillDesc,skillType,chgRarity) {
 		else
 			skillsHTML.push('<div class="col-xs-12 col-md-12"><h4 class="text-danger"><i class="fa fa-frown-o"></i> Units went AWOL! Try other rarities.</h4></div>');
 	$("#rTitle").html('<span class="text-danger">'+skillDesc+'</span> in <span class="text-danger">'+skillType.join(', ').toUpperCase()+'</span>');
-	skillsHTML.push('<div class="col-xs-12 col-md-12"><hr><h4>Show units of other rarity</h4> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="5" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">5 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="6" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">6 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="7" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">7 <i class="fa fa-star"></i></a>'+'<hr></div>');
+	skillsHTML.push('<div class="col-xs-12 col-md-12"><hr><h4>Show units of other rarity</h4> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="5" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">5 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="6" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">6 <i class="fa fa-star"></i></a> <a href="#" role="button" class="btn btn-info showMoreRec" data-info="7" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">7 <i class="fa fa-star"></i></a>  <a href="#" role="button" class="btn btn-info showMoreRec" data-info="8" data-desc="'+skillDesc+'" data-scope="'+skillType.join(',')+'">8 <i class="fa fa-star"></i></a>'+'<hr></div>');
 	$("#rBody").html(skillsHTML.join(" "));
 	$("#recommendModal").modal('show');
 }
@@ -1436,7 +1436,10 @@ function loadUnitSummary(arrayID) {
 	var skillPrefix='<table class="table table-condensed table-bordered small"><thead><th>Effects</th><th>Value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
-	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
+	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4>';
+	if (rawParseObj[arrayID].rarity==8)
+		unitHTML+='<button class="btn btn-sm btn-danger dreamevo" data-link="dreamevoskillsjapan?id='+rawParseObj[arrayID].uid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button>';
+	unitHTML+='<hr>';
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
@@ -1935,6 +1938,13 @@ $(document).on("click", '.unitBox', function(e){
 	$('#searchModal').modal('show')
 })
 
+/*dreamevo btn*/
+$(document).on("click", ".dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$(".dreamevo").attr("data-link"));
+	$("#dreammodal").modal("show");
+})
+
 /*BB Btn Click*/
 $(document).on("click", '.bbBtns', function(e){
 	e.preventDefault();
@@ -2087,6 +2097,7 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.lshits=valObj.hits;
         unitObj.lsdc=valObj["max bc generated"];
         unitObj.element=valObj.element;
+        unitObj.uid=valObj.id;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
         if (valObj["leader skill"])
