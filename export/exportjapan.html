@@ -190,7 +190,7 @@ $.getJSON( serverSelect, function( unit ) {
     /*parsing definiton for BB*/
     var skillParseObj=[
         {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
-        {"skillid":"bb atk% inc per use", "skillref":["bb atk% inc per use", "!% BB ATK+ on Consecutive SBB (Max ", "bb atk% max number of inc", "!x / SELF)"]},
+        {"skillid":"bb atk% inc per use", "skillref":["?element", "! ","target area","! ","bb atk% inc per use", "!% BB ATK+ on Consecutive SBB (Max ", "bb atk% max number of inc", "!x / SELF)"]},
         {"skillid":"random attack", "skillref":["!Random Hits"]},
         {"skillid":"hp drain% high", "skillref":["!Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP (SELF)"]},
         /*{"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
