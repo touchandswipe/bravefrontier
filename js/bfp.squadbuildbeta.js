@@ -53,6 +53,8 @@ sphereList=[
 	{name:"Ishrion",nick:"ishrion",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Lafdranya",nick:"lafdranya",stats:[0,0,0.5,0,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
+	{name:"Leomurg",nick:"leomurg",stats:[0.3,0,0.3,0,0,0,0,0,0]},
+	{name:"Lexida",nick:"lexida",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Luna Laguliz",nick:"lunalaguliz",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
@@ -1436,7 +1438,10 @@ function loadUnitSummary(arrayID) {
 	var skillPrefix='<table class="table table-condensed table-bordered small"><thead><th>Effects</th><th>Value</th></thead>';
 	var skillScope={"ls":"Leader Skill", "bb":"BB Skill", "sbb":"SBB Skill", "ubb":"UBB Skill", "es":"Extra Skill"};
 	unitHTML+='<img src="'+rawParseObj[arrayID].img+'" width="80">';
-	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4><hr>';
+	unitHTML+='<h4><b>'+rawParseObj[arrayID].name+'</b></h4>';
+	if (rawParseObj[arrayID].rarity==8)
+		unitHTML+='<button class="btn btn-sm btn-danger dreamevo" data-link="dreamevoskillsjapan?id='+rawParseObj[arrayID].uid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button>';
+	unitHTML+='<hr>';
 	/*scan*/
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
@@ -2094,6 +2099,7 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.lshits=valObj.hits;
         unitObj.lsdc=valObj["max bc generated"];
         unitObj.element=valObj.element;
+        unitObj.uid=valObj.id;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
         if (valObj["leader skill"])
