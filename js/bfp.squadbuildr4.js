@@ -53,6 +53,8 @@ sphereList=[
 	{name:"Ishrion",nick:"ishrion",stats:[0.3,0.3,0,0,0,0,0,0,0]},
 	{name:"Lafdranya",nick:"lafdranya",stats:[0,0,0.5,0,0,0,0,0,0]},
 	{name:"Legwand",nick:"leg",stats:[0.25,0.25,0.25,0.25,0,0,0,0,0]},
+	{name:"Leomurg",nick:"leomurg",stats:[0.3,0,0.3,0,0,0,0,0,0]},
+	{name:"Lexida",nick:"lexida",stats:[0.3,0,0,0.3,0,0,0,0,0]},
 	{name:"Luna Laguliz",nick:"lunalaguliz",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Malice Jewel",nick:"malice",stats:[0.3,0.3,0.3,0.3,0,0,0,0,0]},
 	{name:"Medulla Gem",nick:"medulla",stats:[0.2,0.2,0.2,0.2,0,0,0,0,0]},
