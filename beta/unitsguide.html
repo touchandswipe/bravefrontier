@@ -7,13 +7,14 @@
     <meta name="author" content="Sam GreenPuck" />
     <title>Brave Frontier - Units Guide by Brave Frontier PROs</title>
     <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" hrref="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.2/css/dataTables.colVis.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+    .evoMatShow{width:35px;height:35px;margin-right:5px;}
     #dreamcontent {width:100%;height:100%;border:0;}
     .listIcon {width:40px;height:40px;}
     .evolutionary {vertical-align:bottom;}
@@ -131,10 +132,10 @@
 <!-- START JSON Code-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <!--<script src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/jquery.mobile.custom.min.js"></script>-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type='text/javascript' src='https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js'></script>
+<script type='text/javascript' src='https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js'></script>
 <script type='text/javascript' src='//cdn.datatables.net/colvis/1.1.2/js/dataTables.colVis.min.js'></script>
-<script type='text/javascript' src='//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js'></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.unitguidecommon5.js"></script>
 <script type="text/javascript">
@@ -455,7 +456,11 @@ function initialize(fusionData) {
 		{ "targets":[ 8 ],
 		"type": "string","width":"10",
 		"render": function(cGender, type, row, full) {
-			if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			if (type ==='display') {
+				if (cGender=='Male') { return '<i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Female') { return '<i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Genderless') { return '<i class="fa fa-lg fa-android text-success"></i>'; } else if (cGender=='Paired(FF)') { return '<i class="fa fa-lg fa-female text-danger"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else if (cGender=='Paired(MM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-male text-primary"></i>'; } else if (cGender=='Paired(FM)') { return '<i class="fa fa-lg fa-male text-primary"></i><i class="fa fa-lg fa-female text-danger"></i>'; } else { return '<span class="fa-stack"><i class="fa fa-android fa-stack-2x text-muted"></i><i class="fa fa-question fa-stack-1x fa-inverse"></i></span>'; }
+			} else {
+				return cGender;
+			}
 		}
 		},
 		/*skills*/
@@ -1501,6 +1506,90 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 			);
 		    }
 	    }
+	    /*Evo Calculator Code*/
+	      var evoMat=[];
+	      var evoIdx=-1;
+	      for (var i in cData) {
+	      	if (cData[i].evo!="") {
+	      		var evoSplit=cData[i]["evo"].split(",");
+			for (var j in evoSplit) {
+				if (evoSplit[j].toLowerCase()!="none") {
+					if (evoMat.length === 0) {
+					    evoMat.push( {"mat":evoSplit[j],"count":1} );
+					} else {
+						    /*New Evo mat to add*/
+						    for (var k in evoMat) {
+							if (evoMat[k].mat==evoSplit[j]) {
+							    evoIdx=k;
+							    break;
+							} else { 
+							    evoIdx=-1
+							}
+						    }
+						    if (evoIdx === -1) {
+							evoMat.push( {"mat":evoSplit[j],"count":1} );
+						    } else {
+						    /*add to existing*/
+							evoMat[evoIdx].count+=1;
+						    }
+					}
+				}
+			}
+	      	}
+	    }
+	    /*sort*/
+	    evoMat=evoMat.sort(function(a,b) {
+		    if (a.mat < b.mat) return -1;
+	    if (a.mat > b.mat) return 1;
+	    return 0;
+	    })
+	    /*carry over to global var*/
+	    for (var i in cData)
+		gEvoUnits.push( {evo:cData[i]['evo']} );
+	    /*Prepare HTML*/
+	    var evoCHTML="";
+	    evoCHTML+='<div class="col-md-12"><h4><i class="fa fa-thumb-tack"></i> Units Evolution Summary</h4>';
+	    evoCHTML+='<table id="compareTable" class="table table-hover table-striped table-bordered table-responsive table-condensed small"><thead><tr><th>Unit</th><th>Qty</th><th colspan="5">Evolution materials</th></tr></thead>';
+	    for (var i in cData) {
+		    evoCHTML+='<tr>';
+		    /*ServerIMGREF*/
+			if (cData[i]['japan release'].toLowerCase()!='false')
+				ovServer=bfServer.jp;
+			else if (cData[i]['global release'].toLowerCase()!='false')
+				ovServer=bfServer.gl;
+			else if (cData[i]['bfpro notes'].search("#europe")!=-1)
+				ovServer=bfServer.eu;
+			else if (cData[i]['bfpro notes'].search("#korea")!=-1)
+				ovServer=bfServer.kr;
+			else
+				ovServer=bfServer.jp;
+		    evoCHTML+='<td><img src="'+ovServer+bfPrefix.icon+cData[i]['systemid']+'.png" class="evoMatShow" title="'+cData[i].name+'"/> <i class="fa fa-chevron-right text-muted"></i></td>';
+		    /*Check for blank and none*/
+		    if (cData[i]['evo']!="") {
+		    	var evoSplit=cData[i]["evo"].split(",");
+			evoCHTML+='<td style="vertical-align:middle;"><div><select id="sEvoUnit'+i+'" class="form-control input-sm evoMatSelect">'+'><option value="0">0</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></td>';
+			evoCHTML+='<td style="vertical-align:middle;">';
+			for (var j in evoSplit)
+			    evoCHTML+='<img src="'+getEvoIMG(evoSplit[j])+'" class="evoMatShow"/>';
+			evoCHTML+='</td>';
+		    } else {
+			 evoCHTML+='<td colspan="2"> No further evolution available OR Materials unknown at the moment.</td>';
+		    }
+		    evoCHTML+='</tr>';
+	    }
+	    evoCHTML+='</table></div>';
+	    /*Total sorted list of materials needed*/
+	    evoCHTML+='<div class="col-xs-12 col-md-12"><h4><i class="fa fa-thumb-tack"></i> Total Evolution Materials Needed</h4></div>';
+	    evoCHTML+='<div id="totalEvoMats">';
+	    for (var i in evoMat) {
+		evoCHTML+='<div class="col-xs-1 col-md-1">';
+		evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" width="35"/>';
+		evoCHTML+='<h4><b>x</b>'+evoMat[i].count+'</h4>';
+		evoCHTML+='</div>';
+	    }
+	    evoCHTML+='</div>';
+	    $('#evoCalcContent').html(evoCHTML);
+	    /*End Evo*/
 	    setTimeout(gooShorten(location.protocol + '//' + compileURL, $('#compShareURL')),5000);
 	    $('.nav-tabs a[href="'+tabSwitch+'"]').tab('show')
 	  }
@@ -1595,6 +1684,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
     </div>
     
     <button id="compareBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Squad Compare &amp; features" style="margin-right:5px;"><i class="fa fa-users"></i> Compare</button>
+    <button id="evoBtn" type="button" class="btn navbar-right btn-primary navbar-btn nav-tt" data-toggle="tooltip" title="Evolution Materials for selected Units" style="margin-right:5px;"><i class="fa fa-users"></i> Evo</button>
     <button class="btn navbar-right nav-tt btn-warning navbar-btn" data-toggle="tooltip" title="Rare Summon Simulator" id="rareSummonBtn" style="margin-right:5px;"><i class="fa fa-rocket"></i> Summon</button>
     <button class="btn navbar-right nav-tt btn-default navbar-btn" data-toggle="tooltip" title="Advanced Filters" id="filterBtn" style="margin-right:5px;"><i class="fa fa-filter fa-lg"></i> Filter</button>
    
@@ -1943,16 +2033,14 @@ $(document).on("click", ".compareUnit", function(e) {
 	if ( $(this).children('div').hasClass("btn-success") ) {
 	    if ( compareSelect.length < compareMax ) { // Max units
 		compareSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-success");
-		$(this).children('div').addClass("btn-danger");
+		$(this).children('div').toggleClass("btn-success btn-danger");
 		$(this).children('div').html('<i class="fa fa-minus"></i> <i class="fa fa-users"></i>');
 	    } else {
 		bfpAlert("Max units selected",'You can only select maximum of '+compareMax+' units to compare / calculate evolution materials and for squad sprite simulation.<div class="text-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>')
 	    }
 	} else {
 	    compareSelect.splice(compareSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-danger");
-	    $(this).children('div').addClass("btn-success");
+	    $(this).children('div').toggleClass("btn-danger btn-success");
 	    $(this).children('div').html('<i class="fa fa-plus"></i> <i class="fa fa-users"></i>');
 	}
 })
@@ -1989,17 +2077,13 @@ $(document).on("click", ".addFav", function(e) {
 	if ( $(this).children('div').hasClass("btn-default") ) {
 	    /*when not added*/
 		favSelect.push($(this).attr("value"));
-		$(this).children('div').removeClass("btn-default");
-		$(this).children('div').addClass("btn-warning");
-		$(this).children('div').children('i').removeClass("text-muted");
-		$(this).children('div').children('i').addClass("text-fav");
+		$(this).children('div').toggleClass("btn-default btn-warning");
+		$(this).children('div').children('i').toggleClass("text-muted text-fav");
 	} else {
 	    /*when added*/
 	    favSelect.splice(favSelect.indexOf($(this).attr("value")),1);
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+	    $(this).children('div').toggleClass("btn-warning btn-default");
+		$(this).children('div').children('i').toggleClass("text-fav text-muted");
 	}
 	/*Save in local storage*/
 	localStorage.setItem("favourites",favSelect);
@@ -2134,10 +2218,8 @@ $(document).on("click", "#deleteFav", function(e){
 		.draw();
 	    $(document).find('.addFav').each( function() {
 		if ( $(this).children('div').hasClass("btn-warning") ) {
-	    $(this).children('div').removeClass("btn-warning");
-	    $(this).children('div').addClass("btn-default");
-		$(this).children('div').children('i').removeClass("text-fav");
-		$(this).children('div').children('i').addClass("text-muted");
+		    $(this).children('div').toggleClass("btn-warning btn-default");
+		    $(this).children('div').children('i').toggleClass("text-fav text-muted");
 		}
 	    })
 	/*reset favVariable*/
@@ -2395,6 +2477,17 @@ $(document).on("click", "#execFilter", function(e){
 	} else {
 	    bfPROsTable.column( 6 ).search( '' );
 	}
+	/*Filter by gender multi-value via REGEX*/
+	regexArr=[];
+	$('.filGender:checked').each( function(){
+		regexArr.push($(this).val());
+	})
+	if (regexArr.length!=0) {
+		regexStr="^"+regexArr.join("\|");
+		bfPROsTable.column( 8 ).search( regexStr,true,false );
+	} else {
+	    bfPROsTable.column( 8 ).search( '' );
+	}
 	/*Filter by rarity multi-value via REGEX*/
 	regexArr=[];
 	$('.filRarity:checked').each( function(){
@@ -2618,45 +2711,44 @@ var delay = (function(){
     $(document).on("change", ".evoMatSelect", function() {
 	var evoMat=[];
 	var evoIdx=-1;
-	      for (var i=0; i < gEvoUnits.length; i++) {
-		for (var j=1; j<6; j++) {
-		    /*grab value+units selected*/
-		    var evoCheck=gEvoUnits[i]["evo "+j];
-		    var evoCheckCount=parseInt($('#sEvoUnit'+i).val());
-		    if ((evoCheck!="") && (evoCheck!="None")) {
-			if (evoMat.length === 0) {
-			    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
-			} else {
-				    /*New Evo mat to add*/
-				    for (k=0; k < evoMat.length; k++) {
-					if (evoMat[k].mat==evoCheck) {
-					    evoIdx=k;
-					    break;
-					} else { 
-					    evoIdx=-1
+	      for (var i in gEvoUnits) {
+	      	if (gEvoUnits[i].evo!="") {
+	      		var evoSplit=gEvoUnits[i]["evo"].split(",");
+	      		var evoCheckCount=parseInt($('#sEvoUnit'+i).val());
+			for (var j in evoSplit) {
+				if (evoSplit[j].toLowerCase()!="none") {
+					if (evoMat.length === 0) {
+					    evoMat.push( {"mat":evoSplit[j],"count":evoCheckCount } );
+					} else {
+					    /*New Evo mat to add*/
+					    for (k in evoMat) {
+						if (evoMat[k].mat==evoSplit[j]) {
+						    evoIdx=k;
+						    break;
+						} else { 
+						    evoIdx=-1
+						}
+					    }
+					    if (evoIdx === -1)
+						    evoMat.push( {"mat":evoSplit[j],"count":evoCheckCount } );
+					    else
+						    evoMat[evoIdx].count+=evoCheckCount;
 					}
-				    }
-				    if (evoIdx === -1) {
-					    evoMat.push( {"mat":evoCheck,"count":evoCheckCount } );
-				    } else {
-					/*add to existing*/
-					    evoMat[evoIdx].count+=evoCheckCount;
-				    }
-			    }
-		    } /*End blank or none check*/
+				} /*End blank or none check*/
+			}
 		}
 	      }
 	    evoMat=evoMat.sort(function(a,b) {
 		    if (a.mat < b.mat) return -1;
-	    if (a.mat > b.mat) return 1;
-	    return 0;
+		    if (a.mat > b.mat) return 1;
+		    return 0;
 	    })
 	    /*dynamically change values*/
 	    var evoCHTML='';
 	    for (i=0;i<evoMat.length;i++) {
 		if (evoMat[i].count !==0) {
 			evoCHTML+='<div class="col-xs-1 col-md-1">';
-			evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" width="35"/>';
+			evoCHTML+='<img src="'+getEvoIMG(evoMat[i].mat)+'" class="evoMatShow"/>';
 			evoCHTML+='<h4><b>x</b>'+evoMat[i].count+'</h4>';
 			evoCHTML+='</div>';
 		}
@@ -2850,6 +2942,7 @@ $(window).load(function() {
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
       <li class="active"><a href="#unitCompareHome" role="tab" data-toggle="tab"><kbd><i class="fa fa-users"></i></kbd> Compare Units</a></li>
+      <li><a href="#evoCalc" role="tab" data-toggle="tab"><i class="fa fa-calculator"></i> Evo Calculator</a></li>
       <li><a href="#squadPlay" role="tab" data-toggle="tab"><i class="fa fa-rocket"></i> Squad Play</a></li>
 </ul>
 
@@ -2857,6 +2950,11 @@ $(window).load(function() {
 <div class="tab-content">
   <div class="tab-pane fade in active" style="overflow:auto;" id="unitCompareHome">
 	<table id="compareTable" class="table table-striped table-bordered table-responsive table-condensed small"></table>
+  </div>
+  <div class="tab-pane fade" id="evoCalc">
+ 	<div class="container-fluid">
+ 	    <div id="evoCalcContent" class="row" style="margin-top:15px;"></div>
+ 	</div>
   </div>
   <div class="tab-pane fade" id="squadPlay">
     <div class="container-fluid">
@@ -3029,7 +3127,7 @@ $(window).load(function() {
       
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-xs-12 col-sm-6 col-md-6">
+      		<div class="col-xs-12 col-sm-4 col-md-4">
 		<h5><b>by Server</b></h5>
 		<div class="btn-group btn-group-sm" data-toggle="buttons">
 		  <label class="btn btn-default active">
@@ -3045,13 +3143,27 @@ $(window).load(function() {
 		  </label>
 		</div>
 		</div>
-      		<div class="col-xs-12 col-sm-6 col-md-6">
-		<h5><b>Alternate ART</b></h5>
-		<div class="btn-group btn-group-sm" data-toggle="buttons">
-		  <label class="btn btn-default">
-		    <input type="checkbox" name="filAltArt" value="TRUE">Yes
-		  </label>
+      		<div class="col-xs-12 col-sm-4 col-md-4">
+			<h5><b>Alternate ART</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" name="filAltArt" value="TRUE">Yes
+			  </label>
+			</div>
 		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4">
+			<h5><b>Gender</b></h5>
+			<div class="btn-group btn-group-sm" data-toggle="buttons">
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Female"><i class="text-danger fa fa-venus"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Male"><i class="text-primary fa fa-mars"></i>
+			  </label>
+			  <label class="btn btn-default">
+			    <input type="checkbox" class="filGender" value="Genderless"><i class="text-default fa fa-genderless"></i>
+			  </label>
+			</div>
 		</div>
 	</div><!--EndRow-->
 	
@@ -3198,6 +3310,10 @@ $(window).load(function() {
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filRarity" value="7">7<i class="fa fa-star"></i>
 	  </label>
+	  
+	  <label class="btn btn-default">
+	    <input type="checkbox" class="filRarity" value="8">8<i class="fa fa-star"></i>
+	  </label>
 	</div>
 	
 	<h5><b>by Skill Effects</b> / Scope: 
@@ -3223,6 +3339,18 @@ $(window).load(function() {
 	</div>
 	</h5>
 	<div class="btn-group btn-group-xs" data-toggle="buttons">
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="![0-9]*\% HP">HP Buff
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="![0-9]*\% ATK">ATK Buff
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="![0-9]*\% DEF">DEF Buff
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="![0-9]*\% REC">REC Buff
+	  </label>
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filSkills" value="(AOE)">Area Effect
 	  </label>
@@ -3240,6 +3368,14 @@ $(window).load(function() {
 	  
 	  <label class="btn btn-primary">
 	    <input type="checkbox" class="filSkills" value="Spark DMG+">Spark DMG 
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="SPARKcrit">SPARKcrit
+	  </label>
+	  
+	  <label class="btn btn-primary">
+	    <input type="checkbox" class="filSkills" value="DMG+ to Ailed">DMG+ to Ailed
 	  </label>
 	  
 	  <label class="btn btn-primary">
