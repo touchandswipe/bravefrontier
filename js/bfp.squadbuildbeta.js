@@ -2120,8 +2120,11 @@ if (typeof mappedNames !== 'undefined') {
 		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
 		        	if (valObj["bb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
-		        			if (unitObj.bbdmg==0)
+						if (unitObj.bbdmg==0) {
     							unitObj.bbdmg=(valObj.bb.levels[9].effects[k]['bb atk%']) ? valObj.bb.levels[9].effects[k]['bb atk%'] : 0 ;
+    							unitObj.bbdmg=(valObj.bb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.bb.levels[9].effects[k]['bb base atk%'] + +valObj.bb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.bbdmg;
+    							unitObj.bbdmg=(valObj.bb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.bb.levels[9].effects[k]['bb base atk%'] + +(+valObj.bb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.bb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.bbdmg;
+		        			}
     						if (unitObj.bbflat==0)
     							unitObj.bbflat=(valObj.bb.levels[9].effects[k]['bb flat atk']) ? valObj.bb.levels[9].effects[k]['bb flat atk'] : 0;
 		        		}
