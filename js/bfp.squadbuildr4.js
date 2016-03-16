@@ -2170,19 +2170,19 @@ if (typeof mappedNames !== 'undefined') {
 		else
 			unitObj.ubbhits=0;
         	if (valObj["ubb"]["levels"]) {
-	        	if (valObj["ubb"]["levels"][9])
-	        		unitObj.ubb=valObj["ubb"]["levels"][9];
+	        	if (valObj["ubb"]["levels"][0])
+	        		unitObj.ubb=valObj["ubb"]["levels"][0];
 		        	if (valObj["ubb"]["levels"][9]["effects"]) {
-		        		unitObj.ubbcost=valObj["ubb"]["levels"][9]["bc cost"];
+		        		unitObj.ubbcost=valObj["ubb"]["levels"][0]["bc cost"];
 		        		unitObj.ubbdc=valObj["ubb"]["max bc generated"];
-		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
+		        		for (var k in valObj["ubb"]["levels"][0]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +(+valObj.ubb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.ubb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb atk%']) ? valObj.ubb.levels[0].effects[k]['bb atk%'] : 0 ;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb added atk% based on hp']) ? +valObj.ubb.levels[0].effects[k]['bb base atk%'] + +valObj.ubb.levels[0].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb atk% inc per use']) ? +valObj.ubb.levels[0].effects[k]['bb base atk%'] + +(+valObj.ubb.levels[0].effects[k]['bb atk% inc per use'] * +valObj.ubb.levels[0].effects[k]['bb atk% max number of inc']) : unitObj.ubbdmg;
 		        			}
     						if (unitObj.ubbflat==0)
-    							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
+    							unitObj.ubbflat=(valObj.ubb.levels[0].effects[k]['bb flat atk']) ? valObj.ubb.levels[0].effects[k]['bb flat atk'] : 0;
 		        		}
 		        	}
         	}
