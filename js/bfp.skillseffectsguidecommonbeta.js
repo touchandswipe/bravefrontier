@@ -296,7 +296,7 @@ if (typeof mappedNames !== 'undefined') {
         /*Normal DMG % Distribution*/
         if (valObj["damage frames"]) {
             dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
-            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["hits"]+' hits distributed as '+valObj["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["damage frames"]["hits"]+' hits distributed as '+valObj["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
             dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj["damage frames"]["frame times"].join(' ')+'</div></div>';
             /*Max BC Generated*/
             if (valObj["max bc generated"]) {
@@ -341,7 +341,7 @@ if (typeof mappedNames !== 'undefined') {
         /*Checks BB*/
         if (valObj["bb"]) {
             bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
-            if (valObj["bb"]["damage frames"]["hit dmg% distribution"]) {
+            if (valObj["bb"]["damage frames"]) {
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["hits"]+' hits distributed as '+valObj['bb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['bb']["damage frames"]["frame times"].join(' ')+'</div></div>';
             }
