@@ -478,7 +478,7 @@ if (typeof mappedNames !== 'undefined') {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
             }
             /*UBB Heading*/
-            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div><div class="bd col-xs-10 col-md-10 bg-info">Effects</div>';
+            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div><div class="bd col-xs-10 col-md-10 bg-info">Effects</div></div>';
             if (valObj.ubb.levels) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
@@ -495,14 +495,12 @@ if (typeof mappedNames !== 'undefined') {
 		                			if (ubbVal2.constructor === Object) {
 		                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
 			                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
-			                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal3+'</div>';
-									ubbSTR+="</div>";
+			                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal3+'</div></div>';
 		                				})
 		                			}
 		                			else {
 		                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+'</span></div>';
-		                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal2+'</div>'
-		                    				ubbSTR+="</div>";
+		                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal2+'</div></div>';
 		                			}
 	                			}
                 			}
