@@ -342,8 +342,12 @@ if (typeof mappedNames !== 'undefined') {
         if (valObj["bb"]) {
             bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
             if (valObj["bb"]["damage frames"]) {
-                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["hits"]+' hits distributed as '+valObj['bb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
-                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['bb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            	for (var h in valObj["bb"]["damage frames"]) {
+            		if (valObj["bb"]["damage frames"][h]["proc id"]==1) {
+		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["damage frames"][h]["hits"]+' hits distributed as '+valObj['bb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['bb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            		}
+            	}
             }
             if (valObj["bb"]["max bc generated"]) {
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["bb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / BB hit:</b>&nbsp;'+(parseInt(valObj["bb"]["max bc generated"])/parseInt(valObj.bb.hits))+'</div></div>';
@@ -409,9 +413,13 @@ if (typeof mappedNames !== 'undefined') {
         /*Checks SBB*/
         if (valObj["sbb"]) {
             sbbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>SBB Skill: </b>['+valObj["sbb"]["name"]+'] '+valObj["sbb"]["desc"]+'</h5></div></div>';
-            if (valObj["sbb"]["damage frames"]["hit dmg% distribution"]) {
-                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['sbb']["hits"]+' hits distributed as '+valObj['sbb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
-                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['sbb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            if (valObj["sbb"]["damage frames"]) {
+		for (var h in valObj["sbb"]["damage frames"]) {
+            		if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
+		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["sbb"]["damage frames"][h]["hits"]+' hits distributed as '+valObj['sbb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['sbb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            		}
+            	}
             }
             if (valObj["sbb"]["max bc generated"]) {
                 sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["sbb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / SBB hit:</b>&nbsp;'+(parseInt(valObj["sbb"]["max bc generated"])/parseInt(valObj.sbb.hits))+'</div></div>';
@@ -475,9 +483,13 @@ if (typeof mappedNames !== 'undefined') {
 	/*Checks UBB*/
         if (valObj["ubb"]) {
             ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
-            if (valObj["ubb"]["damage frames"]["hit dmg% distribution"]) {
-                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['ubb']["hits"]+' hits distributed as '+valObj['ubb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
-                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['ubb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            if (valObj["ubb"]["damage frames"]) {
+		for (var h in valObj["ubb"]["damage frames"]) {
+            		if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
+		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["damage frames"][h]["hits"]+' hits distributed as '+valObj['ubb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['ubb']["damage frames"]["frame times"].join(' ')+'</div></div>';
+            		}
+            	}
             }
             if (valObj["ubb"]["max bc generated"]) {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
