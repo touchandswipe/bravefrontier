@@ -2096,7 +2096,7 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
-        unitObj.lshits=valObj.hits;
+        unitObj.lshits=valObj["damage frames"]["hits"];
         unitObj.lsdc=valObj["max bc generated"];
         unitObj.element=valObj.element;
         unitObj.uid=valObj.id;
