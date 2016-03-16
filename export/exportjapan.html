@@ -840,17 +840,24 @@ $.getJSON( serverSelect, function( unit ) {
           } else exportSTR+='<td></td>';
           
         /*normal hits*/
-        if (valObj["damage frames"])
+        if (valObj["damage frames"]) {
           exportSTR+='<td>'+valObj["damage frames"]["hits"]+'</td>'
-        else exportSTR+='<td></td>';
+          var normalhits=valObj["damage frames"]["hits"];
+        }
+        else {
+          exportSTR+='<td></td>';
+          var normalhits=0;
+        }
         
         /*bb hits*/  
         if (valObj["bb"]["damage frames"]) {
           for (var h in valObj["bb"]["damage frames"]) {
             if (valObj["bb"]["damage frames"][h]["proc id"]==1) {
               exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
+              var bbhits=valObj["bb"]["damage frames"][h]["hits"];
               break;
-            }
+            } else
+              var bbhits=0;
           }
         } else
         exportSTR+='<td></td>';
@@ -861,8 +868,10 @@ $.getJSON( serverSelect, function( unit ) {
             for (var h in valObj["sbb"]["damage frames"]) {
               if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
                 exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
+                var sbbhits=valObj["sbb"]["damage frames"][h]["hits"];
                 break;
-              }
+              } else
+                var sbbhits=0;
             }
           } else
           exportSTR+='<td></td>';
@@ -875,8 +884,10 @@ $.getJSON( serverSelect, function( unit ) {
             for (var h in valObj["ubb"]["damage frames"]) {
               if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
                 exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
+                var ubbhits=valObj["ubb"]["damage frames"][h]["hits"];
                 break;
-              }
+              } else
+                var ubbhits=0;
             }
           } else
           exportSTR+='<td></td>';
@@ -912,14 +923,14 @@ $.getJSON( serverSelect, function( unit ) {
             
         /*Normal DC*/
         if (valObj["drop check count"])
-          exportSTR+='<td>'+valObj["drop check count"]+'</td>'
+          exportSTR+='<td>'+ (+valObj["drop check count"] * +normalhits) +'</td>'
         else
           exportSTR+='<td></td>';
           
         /*BB DC*/  
         if (valObj.bb)
           if (valObj["bb"]["drop check count"])
-            exportSTR+='<td>'+valObj["bb"]["drop check count"]+'</td>'
+            exportSTR+='<td>'+ (+valObj["bb"]["drop check count"] * +bbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -928,7 +939,7 @@ $.getJSON( serverSelect, function( unit ) {
         /*SBB DC*/  
         if (valObj.sbb)
           if (valObj["sbb"]["drop check count"])
-            exportSTR+='<td>'+valObj["sbb"]["drop check count"]+'</td>'
+            exportSTR+='<td>'+ (+valObj["sbb"]["drop check count"] * +sbbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -937,7 +948,7 @@ $.getJSON( serverSelect, function( unit ) {
         /*UBB DC*/  
         if (valObj.ubb)
           if (valObj["ubb"]["drop check count"])
-            exportSTR+='<td>'+valObj["ubb"]["drop check count"]+'</td>'
+            exportSTR+='<td>'+ (+valObj["ubb"]["drop check count"] * +ubbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
