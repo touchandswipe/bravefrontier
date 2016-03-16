@@ -478,22 +478,12 @@ if (typeof mappedNames !== 'undefined') {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
             }
             /*UBB Heading*/
-            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div>';
-            for (i=0;i<10;i++) {
-                    ubbSTR+='<div class="bd col-xs-1 col-md-1 bg-info">Lv '+(i+1)+'</div>';
-                }
-            ubbSTR+="</div>";
+            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div><div class="bd col-xs-10 col-md-10 bg-info">Effects</div>';
             if (valObj.ubb.levels) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey+'</span></div>';
-                    if (String(valObj.ubb.levels[0][ubbKey])==String(valObj.ubb.levels[9][ubbKey]))
-                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.ubb.levels[9][ubbKey]+'</div>';
-                    else
-	                    for (i=0;i<10;i++) {
-				ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
-	                    }
-                    ubbSTR+="</div>";
+                    ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+ubbVal+'</div></div>';
                 } else if (ubbKey=="effects") {
                 	var effCount=0;
                 	for (j in valObj.ubb.levels[0].effects) {
@@ -505,23 +495,13 @@ if (typeof mappedNames !== 'undefined') {
 		                			if (ubbVal2.constructor === Object) {
 		                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
 			                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
-			                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2][ubbKey3])==String(valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]))
-			                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]+'</div>';
-			                				else
-										for (k=0;k<10;k++) {
-							                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2][ubbKey3]+'</div>'
-										}
+			                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal3+'</div>';
 									ubbSTR+="</div>";
 		                				})
 		                			}
 		                			else {
 		                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+'</span></div>';
-		                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2])==String(valObj.ubb.levels[9].effects[j][ubbKey2]))
-		                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2]+'</div>'
-		                				else
-									for (k=0;k<10;k++) {
-						                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2]+'</div>'
-									}
+		                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal2+'</div>'
 		                    				ubbSTR+="</div>";
 		                			}
 	                			}
