@@ -534,32 +534,36 @@ $.getJSON( serverSelect, function( unit ) {
           /*Parsing all BB Skills*/
           for (ibb in bbArray) {
           var bbSkillFound=0;
+          if (bbArray[ibb]!="ubb")
+              var bbLvl=9;
+          else
+              var bbLvl=0;
           exportSTR+="<td>";
           if (valObj[bbArray[ibb]])
-            if (valObj[bbArray[ibb]].levels[9]["effects"]) {
+            if (valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
               for (i in skillParseObj) {
                 var skillSeek=skillParseObj[i]["skillid"];
                 /*looking each effect array*/
-                for (j in valObj[bbArray[ibb]].levels[9]["effects"]) {
+                for (j in valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
 
                     /*Check custom buff*/
                     if (skillSeek=="hpBasedBBatk") {
-                      $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                      $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                         if (effectKey=="bb added atk% based on hp") {
                           var unitElement=valObj.element;
                           unitElement=unitElement.charAt(0).toUpperCase().concat(unitElement.slice(1));
                           groupSTR+=unitElement;
-                          if (valObj[bbArray[ibb]].levels[9]["effects"][j]["target area"]=="aoe")
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"]=="aoe")
                             groupSTR+=" (AOE) "
                           else
                             groupSTR+=" (TGT) ";
-                          groupSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"]+"%-";
-                          groupSTR+= (+valObj[bbArray[ibb]].levels[9]["effects"][j]["bb base atk%"] +  +valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% based on hp"])+"% ";
+                          groupSTR+=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb base atk%"]+"%-";
+                          groupSTR+= (+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb base atk%"] +  +valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb added atk% based on hp"])+"% ";
                           groupSTR+="BB ATK% Based on HP ";
-                          if (valObj[bbArray[ibb]].levels[9]["effects"][j]["bb added atk% proportional to hp"]=="remaining")
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb added atk% proportional to hp"]=="remaining")
                             groupSTR+="LEFT";
                           else
                             groupSTR+="LOST";
@@ -567,7 +571,7 @@ $.getJSON( serverSelect, function( unit ) {
                         }
                       })
                       for (ix in statsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -579,7 +583,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group buff*/
                     if (skillSeek=="stats buff") {
                       for (ix in statsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -591,7 +595,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check SELF collective group buff*/
                     else if (skillSeek=="selfstatsbuff") {
                       for (ix in selfstatsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==selfstatsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+selfstatsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -603,7 +607,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group debuff*/
                     else if (skillSeek=="debuff skills") {
                       for (ix in debuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==debuffArray[ix]["skillid"]) {
                               effectFound=true;
                               /*separator for multiple buffs*/
@@ -611,9 +615,9 @@ $.getJSON( serverSelect, function( unit ) {
                                 groupSTR+=skillConnect;
                               groupSTR+=effectVal['proc chance%']+'% Chance ';
                               if (effectVal['atk% buff (2)'])
-                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]['buff turns']+'Turns';
                               if (effectVal['def% buff (4)'])
-                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]['buff turns']+'Turns';
                             }
                           })
                       }
@@ -622,7 +626,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check BB Self buff*/
                     else if (skillSeek=="bbSelfBuff") {
                       for (ix in bbSelfBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbSelfBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbSelfBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -634,7 +638,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Gradual heal*/
                     else if (skillSeek=="gradualhealbuff") {
                       for (ix in gradualhealbuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==gradualhealbuffArray[ix]["skillid"]) {
                               groupSTR+=gradualhealbuffArray[ix]["suffix"];
                               if (effectVal==99999)
@@ -648,7 +652,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group crystals buff*/
                     else if (skillSeek=="crystals buff") {
                       for (ix in bbCrystalsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbCrystalsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -660,7 +664,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails rate*/
                     else if (skillSeek=="ails") {
                       for (ix in ailsArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsArray[ix]["suffix"];
                               effectFound=true;
@@ -672,7 +676,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective counter ails buff*/
                     else if (skillSeek=="counter ails") {
                       for (ix in counterailsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==counterailsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+counterailsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -684,7 +688,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails buff*/
                     else if (skillSeek=="ails buff") {
                       for (ix in ailsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -697,7 +701,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb element weakness") {
                       var elementCount=0;
                       for (ix in bbWeakElementArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbWeakElementArray[ix]["skillid"]) {
                                 if (elementCount>0)
                                   groupSTR+=",";
@@ -720,7 +724,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb elemental reduction") {
                       var elementCount=0;
                       for (ix in bbElementalReductionArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey.search(bbElementalReductionArray[ix]["skillid"])!=-1) {
                                 if (elementCount>0)
                                   groupSTR+=",";
@@ -742,7 +746,7 @@ $.getJSON( serverSelect, function( unit ) {
                     
                     else
                   /*looping non grouping buff*/
-                  $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                  $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                     if (effectKey==skillSeek) {
                       effectFound=true;
                     }
@@ -763,8 +767,8 @@ $.getJSON( serverSelect, function( unit ) {
                           var specialValue=valObj[specialKey];
                           specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
                           /*Extra BB Elements*/
-                          if (skillSeek=="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"]) {
-                            specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"];
+                          if (skillSeek=="bb atk%" && valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb elements"]) {
+                            specialValue=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb elements"];
                             specialValue=specialValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                           }
                           exportSTR+=specialValue;
@@ -774,8 +778,8 @@ $.getJSON( serverSelect, function( unit ) {
                         } else {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
-                          if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]) {
-                              var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName]) {
+                              var exportValue=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName];
                               if (callObjName=="elements added" || callObjName=="element buffed")
                                 exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                               /*value replacement and formatting*/
@@ -804,8 +808,8 @@ $.getJSON( serverSelect, function( unit ) {
                               }
                               exportSTR+=exportValue;
                           }
-                          else if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]==0)
-                            exportSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                          else if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName]==0)
+                            exportSTR+=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName];
                           else
                             exportSTR+='<span style="color:#FF0000;">Unknown</span>';
                         }
@@ -814,7 +818,7 @@ $.getJSON( serverSelect, function( unit ) {
                 }
               }
             /*check for missing skill effects*/
-            if (bbSkillFound < valObj[bbArray[ibb]].levels[9]["effects"].length)
+            if (bbSkillFound < valObj[bbArray[ibb]].levels[bbLvl]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
             exportSTR+="</td>";
           } /*End of Effects Loop*/
@@ -835,36 +839,42 @@ $.getJSON( serverSelect, function( unit ) {
           } else exportSTR+='<td></td>';
           
         /*normal hits*/
-        if (valObj.hits)
-          exportSTR+='<td>'+valObj.hits+'</td>'
+        if (valObj["damage frames"])
+          exportSTR+='<td>'+valObj["damage frames"]["hits"]+'</td>'
         else exportSTR+='<td></td>';
         
         /*bb hits*/  
-        if (valObj.bb)
-          if (valObj.bb.hits)
-            exportSTR+='<td>'+valObj.bb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else
-          exportSTR+='<td></td>';
+        if (valObj["bb"]["damage frames"]) {
+          for (var h in valObj["bb"]["damage frames"]) {
+            if (valObj["bb"]["damage frames"][h]["proc id"]==1) {
+              exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
+              break;
+            }
+          }
+        } else
+        exportSTR+='<td></td>';
           
         /*sbb hits*/
-        if (valObj.sbb)
-          if (valObj.sbb.hits)
-            exportSTR+='<td>'+valObj.sbb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else
-          exportSTR+='<td></td>';
+        if (valObj["sbb"]["damage frames"]) {
+          for (var h in valObj["sbb"]["damage frames"]) {
+            if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
+              exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
+              break;
+            }
+          }
+        } else
+        exportSTR+='<td></td>';
           
         /*ubb hits*/
-        if (valObj.ubb)
-          if (valObj.ubb.hits)
-            exportSTR+='<td>'+valObj.ubb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else 
-          exportSTR+='<td></td>';
+        if (valObj["ubb"]["damage frames"]) {
+          for (var h in valObj["ubb"]["damage frames"]) {
+            if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
+              exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
+              break;
+            }
+          }
+        } else
+        exportSTR+='<td></td>';
               
         /*bb fill*/
         if (valObj.bb)
@@ -886,8 +896,8 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*ubb fill*/    
         if (valObj.ubb)
-          if (valObj.ubb.levels[9]["bc cost"])
-            exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
+          if (valObj.ubb.levels[0]["bc cost"])
+            exportSTR+='<td>'+valObj.ubb.levels[0]["bc cost"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -1033,8 +1043,8 @@ $.getJSON( serverSelect, function( unit ) {
         /*ubb atk%*/
         ubbFound=false;
         if (valObj.ubb) {
-            for (i in valObj.ubb.levels[9].effects) {
-              $.each(valObj.ubb.levels[9].effects[i], function(ubbKey,ubbVal) {
+            for (i in valObj.ubb.levels[0].effects) {
+              $.each(valObj.ubb.levels[0].effects[i], function(ubbKey,ubbVal) {
                   if (ubbKey=="bb atk%" && !ubbFound) {
                     exportSTR+='<td>'+ubbVal+'</td>';
                     ubbFound=true;
