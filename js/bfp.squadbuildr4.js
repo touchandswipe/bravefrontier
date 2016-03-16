@@ -2110,7 +2110,7 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
 		if (valObj["bb"]["hits"])
-			unitObj.bbhits=valObj.bb.hits;
+			unitObj.bbhits=valObj.bb["damage frames"][0].hits;
 		else
 			unitObj.bbhits=0;
 		if (valObj["bb"]["levels"]) {
@@ -2139,7 +2139,7 @@ if (typeof mappedNames !== 'undefined') {
 	if (valObj["sbb"]) {
 		if (valObj["sbb"]["levels"]) {
 			if (valObj["sbb"]["hits"])
-				unitObj.sbbhits=valObj.sbb.hits;
+				unitObj.sbbhits=valObj.sbb["damage frames"][0].hits;
 			else
 				unitObj.sbbhits=0;
 			if (valObj["sbb"]["levels"][9]) {
@@ -2166,7 +2166,7 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
         	if (valObj["ubb"]["hits"])
-			unitObj.ubbhits=valObj.ubb.hits;
+			unitObj.ubbhits=valObj.ubb["damage frames"][0].hits;
 		else
 			unitObj.ubbhits=0;
         	if (valObj["ubb"]["levels"]) {
