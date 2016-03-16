@@ -292,6 +292,7 @@ if (typeof mappedNames !== 'undefined') {
             	statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
             })
         } else statsSTR='';
+        var dmgSTR="";
         /*Normal DMG % Distribution*/
         if (valObj["hit dmg% distribution"]) {
             dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
