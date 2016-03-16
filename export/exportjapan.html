@@ -911,15 +911,15 @@ $.getJSON( serverSelect, function( unit ) {
           exportSTR+='<td></td>';
             
         /*Normal DC*/
-        if (valObj["max bc generated"])
-          exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
+        if (valObj["drop check count"])
+          exportSTR+='<td>'+valObj["drop check count"]+'</td>'
         else
           exportSTR+='<td></td>';
           
         /*BB DC*/  
         if (valObj.bb)
-          if (valObj["bb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
+          if (valObj["bb"]["drop check count"])
+            exportSTR+='<td>'+valObj["bb"]["drop check count"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -927,8 +927,8 @@ $.getJSON( serverSelect, function( unit ) {
   
         /*SBB DC*/  
         if (valObj.sbb)
-          if (valObj["sbb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
+          if (valObj["sbb"]["drop check count"])
+            exportSTR+='<td>'+valObj["sbb"]["drop check count"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -936,8 +936,8 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*UBB DC*/  
         if (valObj.ubb)
-          if (valObj["ubb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
+          if (valObj["ubb"]["drop check count"])
+            exportSTR+='<td>'+valObj["ubb"]["drop check count"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
