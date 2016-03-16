@@ -300,7 +300,7 @@ if (typeof mappedNames !== 'undefined') {
             dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj["damage frames"]["frame times"].join(' ')+'</div></div>';
             /*Max BC Generated*/
             if (valObj["drop check count"]) {
-                dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["drop check count"]+'</div></div>';
+                dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+ (+valObj["drop check count"] * +valObj["damage frames"]["hits"]) + '</div></div>';
             }
             if (valObj["lord damage range"]) {
                 dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Lord Damage Range:</b>&nbsp;'+valObj["lord damage range"]+'</div></div>';
@@ -346,11 +346,11 @@ if (typeof mappedNames !== 'undefined') {
             		if (valObj["bb"]["damage frames"][h]["proc id"]==1) {
 		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj['bb']["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['bb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['bb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
+				if (valObj["bb"]["drop check count"]) {
+                			bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+ (+valObj["bb"]["drop check count"] * +valObj['bb']["damage frames"][h]["hits"]) +'</div></div>';
+            			}
             		}
             	}
-            }
-            if (valObj["bb"]["drop check count"]) {
-                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["bb"]["drop check count"]+'</div></div>';
             }
             /*BB Heading*/
             bbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd bg-info">Tech Bits</div>';
@@ -418,11 +418,11 @@ if (typeof mappedNames !== 'undefined') {
             		if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
 		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["sbb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['sbb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['sbb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
+		                if (valObj["sbb"]["drop check count"]) {
+                			sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+ (+valObj["sbb"]["drop check count"] * +valObj['sbb']["damage frames"][h]["hits"]) +'</div></div>';
+            			}
             		}
             	}
-            }
-            if (valObj["sbb"]["drop check count"]) {
-                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["sbb"]["drop check count"]+'</div></div>';
             }
             /*SBB Heading*/
             sbbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div>';
@@ -488,11 +488,11 @@ if (typeof mappedNames !== 'undefined') {
             		if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
 		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["ubb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['ubb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['ubb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
+				if (valObj["ubb"]["drop check count"]) {
+                			ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+ (+valObj["ubb"]["drop check count"] * +valObj['ubb']["damage frames"][h]["hits"]) +'</div></div>';
+            			}			                
             		}
             	}
-            }
-            if (valObj["ubb"]["drop check count"]) {
-                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["drop check count"]+'</div></div>';
             }
             /*UBB Heading*/
             ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div><div class="bd col-xs-10 col-md-10 bg-info">Effects</div></div>';
