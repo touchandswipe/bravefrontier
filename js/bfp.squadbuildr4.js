@@ -2097,7 +2097,7 @@ if (typeof mappedNames !== 'undefined') {
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
         unitObj.lshits=valObj["damage frames"]["hits"];
-        unitObj.lsdc=valObj["drop check count"];
+        unitObj.lsdc= +valObj["drop check count"] * +valObj["damage frames"]["hits"];
         unitObj.element=valObj.element;
         unitObj.uid=valObj.id;
         unitObj.id=valObj.guide_id;
@@ -2117,7 +2117,7 @@ if (typeof mappedNames !== 'undefined') {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
-		        	unitObj.bbdc=valObj["bb"]["drop check count"];
+		        	unitObj.bbdc= +valObj["bb"]["drop check count"] * +unitObj.bbhits;
 		        	if (valObj["bb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
 						if (unitObj.bbdmg==0) {
@@ -2145,7 +2145,7 @@ if (typeof mappedNames !== 'undefined') {
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
-		        	unitObj.sbbdc=valObj["sbb"]["drop check count"];
+		        	unitObj.sbbdc= +valObj["sbb"]["drop check count"] * +unitObj.sbbhits;
 		        	if (valObj["sbb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
 		        			if (unitObj.sbbdmg==0) {
@@ -2174,7 +2174,7 @@ if (typeof mappedNames !== 'undefined') {
 	        		unitObj.ubb=valObj["ubb"]["levels"][0];
 		        	if (valObj["ubb"]["levels"][0]["effects"]) {
 		        		unitObj.ubbcost=valObj["ubb"]["levels"][0]["bc cost"];
-		        		unitObj.ubbdc=valObj["ubb"]["drop check count"];
+		        		unitObj.ubbdc= +valObj["ubb"]["drop check count"] * +unitObj.ubbhits;
 		        		for (var k in valObj["ubb"]["levels"][0]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
     							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb atk%']) ? valObj.ubb.levels[0].effects[k]['bb atk%'] : 0 ;
