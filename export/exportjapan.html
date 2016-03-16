@@ -131,6 +131,7 @@ $(document).on("click",".serverBtn", function(e) {
 })
 $(document).on("click","#exportBtn", function(e) {
 $.getJSON( serverSelect, function( unit ) {
+    var procID=[1,47,64];
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     /*parsing definition for LS*/
@@ -852,7 +853,7 @@ $.getJSON( serverSelect, function( unit ) {
         /*bb hits*/  
         if (valObj["bb"]["damage frames"]) {
           for (var h in valObj["bb"]["damage frames"]) {
-            if (valObj["bb"]["damage frames"][h]["proc id"]==1 || valObj["bb"]["damage frames"][h]["proc id"]==47) {
+            if (procID.indexOf( +valObj["bb"]["damage frames"][h]["proc id"] )!=-1) {
               exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
               var bbhits=valObj["bb"]["damage frames"][h]["hits"];
               break;
@@ -866,7 +867,7 @@ $.getJSON( serverSelect, function( unit ) {
         if (valObj["sbb"]) {
           if (valObj["sbb"]["damage frames"]) {
             for (var h in valObj["sbb"]["damage frames"]) {
-              if (valObj["sbb"]["damage frames"][h]["proc id"]==1 || valObj["sbb"]["damage frames"][h]["proc id"]==47) {
+              if (procID.indexOf( +valObj["sbb"]["damage frames"][h]["proc id"] )!=-1) {
                 exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
                 var sbbhits=valObj["sbb"]["damage frames"][h]["hits"];
                 break;
@@ -882,7 +883,7 @@ $.getJSON( serverSelect, function( unit ) {
         if (valObj["ubb"]) {
           if (valObj["ubb"]["damage frames"]) {
             for (var h in valObj["ubb"]["damage frames"]) {
-              if (valObj["ubb"]["damage frames"][h]["proc id"]==1 || valObj["ubb"]["damage frames"][h]["proc id"]==47) {
+              if (procID.indexOf( +valObj["ubb"]["damage frames"][h]["proc id"] )!=-1) {
                 exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
                 var ubbhits=valObj["ubb"]["damage frames"][h]["hits"];
                 break;
