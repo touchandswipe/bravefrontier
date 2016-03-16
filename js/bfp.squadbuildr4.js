@@ -2110,7 +2110,7 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.bbdmg=0;
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
-		if (procID.indexOf(valObj["bb"]["damage frames"][0]["proc id"])!=-1)
+		if (procID.indexOf( +valObj["bb"]["damage frames"][0]["proc id"] )!=-1)
 			unitObj.bbhits=valObj["bb"]["damage frames"][0]["hits"];
 		else
 			unitObj.bbhits=0;
@@ -2139,7 +2139,7 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
 		if (valObj["sbb"]["levels"]) {
-			if (procID.indexOf(valObj["sbb"]["damage frames"][0]["proc id"])!=-1)
+			if (procID.indexOf( +valObj["sbb"]["damage frames"][0]["proc id"] )!=-1)
 				unitObj.sbbhits=valObj["sbb"]["damage frames"][0]["hits"];
 			else
 				unitObj.sbbhits=0;
@@ -2166,7 +2166,7 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.ubbdmg=0;
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
-        	if (procID.indexOf(valObj["ubb"]["damage frames"][0]["proc id"])!=-1)
+        	if (procID.indexOf( +valObj["ubb"]["damage frames"][0]["proc id"] )!=-1)
 			unitObj.ubbhits=valObj["ubb"]["damage frames"][0]["hits"];
 		else
 			unitObj.ubbhits=0;
