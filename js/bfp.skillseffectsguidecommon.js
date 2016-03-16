@@ -343,7 +343,7 @@ if (typeof mappedNames !== 'undefined') {
             bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
             if (valObj["bb"]["damage frames"]) {
             	for (var h in valObj["bb"]["damage frames"]) {
-            		if (procID.indexOf(valObj["bb"]["damage frames"][h]["proc id"])!=-1) {
+            		if (procID.indexOf( +valObj["bb"]["damage frames"][h]["proc id"] )!=-1) {
 		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj['bb']["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['bb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['bb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
 				if (valObj["bb"]["drop check count"]) {
@@ -415,7 +415,7 @@ if (typeof mappedNames !== 'undefined') {
             sbbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>SBB Skill: </b>['+valObj["sbb"]["name"]+'] '+valObj["sbb"]["desc"]+'</h5></div></div>';
             if (valObj["sbb"]["damage frames"]) {
 		for (var h in valObj["sbb"]["damage frames"]) {
-            		if (procID.indexOf(valObj["sbb"]["damage frames"][h]["proc id"])!=-1) {
+            		if (procID.indexOf( +valObj["sbb"]["damage frames"][h]["proc id"] )!=-1) {
 		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["sbb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['sbb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['sbb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
 		                if (valObj["sbb"]["drop check count"]) {
@@ -485,7 +485,7 @@ if (typeof mappedNames !== 'undefined') {
             ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
             if (valObj["ubb"]["damage frames"]) {
 		for (var h in valObj["ubb"]["damage frames"]) {
-            		if (procID.indexOf(valObj["ubb"]["damage frames"][h]["proc id"])!=-1) {
+            		if (procID.indexOf( +valObj["ubb"]["damage frames"][h]["proc id"] )!=-1) {
 		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["ubb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['ubb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['ubb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
 				if (valObj["ubb"]["drop check count"]) {
