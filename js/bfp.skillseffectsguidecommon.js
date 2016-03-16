@@ -296,7 +296,7 @@ if (typeof mappedNames !== 'undefined') {
         /*Normal DMG % Distribution*/
         if (valObj["damage frames"]) {
             dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
-            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["damage frames"]["hits"]+' hits distributed as</b> '+valObj["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["damage frames"]["hits"]+' hits distributed as</b>&nbsp;'+valObj["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
             dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj["damage frames"]["frame times"].join(' ')+'</div></div>';
             /*Max BC Generated*/
             if (valObj["max bc generated"]) {
@@ -344,7 +344,7 @@ if (typeof mappedNames !== 'undefined') {
             if (valObj["bb"]["damage frames"]) {
             	for (var h in valObj["bb"]["damage frames"]) {
             		if (valObj["bb"]["damage frames"][h]["proc id"]==1) {
-		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj['bb']["damage frames"][h]["hits"]+' hits distributed as</b> '+valObj['bb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj['bb']["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['bb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['bb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
             		}
             	}
@@ -416,7 +416,7 @@ if (typeof mappedNames !== 'undefined') {
             if (valObj["sbb"]["damage frames"]) {
 		for (var h in valObj["sbb"]["damage frames"]) {
             		if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
-		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["sbb"]["damage frames"][h]["hits"]+' hits distributed as</b> '+valObj['sbb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["sbb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['sbb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['sbb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
             		}
             	}
@@ -486,7 +486,7 @@ if (typeof mappedNames !== 'undefined') {
             if (valObj["ubb"]["damage frames"]) {
 		for (var h in valObj["ubb"]["damage frames"]) {
             		if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
-		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["ubb"]["damage frames"][h]["hits"]+' hits distributed as</b> '+valObj['ubb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
+		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>'+valObj["ubb"]["damage frames"][h]["hits"]+' hits distributed as</b>&nbsp;'+valObj['ubb']["damage frames"][h]["hit dmg% distribution"].join('% ')+'%</div></div>';
 		                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Hits animation timing (1/60 Sec) : </b>'+valObj['ubb']["damage frames"][h]["frame times"].join(' ')+'</div></div>';
             		}
             	}
