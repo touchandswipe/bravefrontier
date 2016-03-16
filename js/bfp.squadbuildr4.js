@@ -2172,7 +2172,7 @@ if (typeof mappedNames !== 'undefined') {
         	if (valObj["ubb"]["levels"]) {
 	        	if (valObj["ubb"]["levels"][0])
 	        		unitObj.ubb=valObj["ubb"]["levels"][0];
-		        	if (valObj["ubb"]["levels"][9]["effects"]) {
+		        	if (valObj["ubb"]["levels"][0]["effects"]) {
 		        		unitObj.ubbcost=valObj["ubb"]["levels"][0]["bc cost"];
 		        		unitObj.ubbdc=valObj["ubb"]["max bc generated"];
 		        		for (var k in valObj["ubb"]["levels"][0]["effects"]) {
