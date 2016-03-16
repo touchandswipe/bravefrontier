@@ -240,6 +240,9 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	var unitName=valObj.name;
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgPrePath+'unit/img/unit_ills_thum_'+valObj.id+'.png" width="40" height="40"/> <kbd>'+valObj.guide_id+'</kbd> '+unitName+' '+valObj.rarity+'<i class="fa fa-star"></i><span class="hidden-sm hidden-xs"> ['+valObj["element"].toUpperCase()+' Ref ID: '+valObj.id+']</span></a></h4></div><div id="unit'+collapseID+'" class="panel-collapse collapse"><div class="panel-body"><div class="container-fluid">';
+        /*dreamevo skills*/
+        if (valObj.rarity==8)
+        	nameSTR+='<button class="btn btn-danger dreamevo" data-link="dreamevoskillsjapan?id='+valObj.id+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button>';
         nameSTR+='<div class="row"><div class="col-xs-12 col-sm-12"><img src="'+imgPrePath+'unit/img/unit_ills_full_'+valObj.id+'.png" width="450"></div></div>';
 	/*Stats Bits*/
         if (valObj.stats) {
@@ -289,10 +292,12 @@ if (typeof mappedNames !== 'undefined') {
             	statsSTR+='<div class="col-xs-2 col-sm-2 bd"></div></div>';
             })
         } else statsSTR='';
+        var dmgSTR="";
         /*Normal DMG % Distribution*/
-        if (valObj["hit dmg% distribution"]) {
+        if (valObj["damage frames"]) {
             dmgSTR='<div class="row equal"><div class="col-xs-12 col-sm-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>Normal Hits</b></h5></div></div>';
-            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["hits"]+' hits distributed as '+valObj["hit dmg% distribution"].join('% ')+'%</div></div>';
+            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["hits"]+' hits distributed as '+valObj["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj["damage frames"]["frame times"].join(' ')+'</div></div>';
             /*Max BC Generated*/
             if (valObj["max bc generated"]) {
                 dmgSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / Normal hit:</b>&nbsp;'+(parseInt(valObj["max bc generated"])/parseInt(valObj.hits))+'</div></div>';
@@ -336,8 +341,9 @@ if (typeof mappedNames !== 'undefined') {
         /*Checks BB*/
         if (valObj["bb"]) {
             bbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>BB Skill: </b>['+valObj["bb"]["name"]+'] '+valObj["bb"]["desc"]+'</h5></div></div>';
-            if (valObj["bb"]["hit dmg% distribution"]) {
-                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["hits"]+' hits distributed as '+valObj['bb']["hit dmg% distribution"].join('% ')+'%</div></div>';
+            if (valObj["bb"]["damage frames"]["hit dmg% distribution"]) {
+                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['bb']["hits"]+' hits distributed as '+valObj['bb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+                bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['bb']["damage frames"]["frame times"].join(' ')+'</div></div>';
             }
             if (valObj["bb"]["max bc generated"]) {
                 bbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["bb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / BB hit:</b>&nbsp;'+(parseInt(valObj["bb"]["max bc generated"])/parseInt(valObj.bb.hits))+'</div></div>';
@@ -403,8 +409,9 @@ if (typeof mappedNames !== 'undefined') {
         /*Checks SBB*/
         if (valObj["sbb"]) {
             sbbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>SBB Skill: </b>['+valObj["sbb"]["name"]+'] '+valObj["sbb"]["desc"]+'</h5></div></div>';
-            if (valObj["sbb"]["hit dmg% distribution"]) {
-                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["sbb"]["hits"]+' hits distributed as '+valObj["sbb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            if (valObj["sbb"]["damage frames"]["hit dmg% distribution"]) {
+                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['sbb']["hits"]+' hits distributed as '+valObj['sbb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+                sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['sbb']["damage frames"]["frame times"].join(' ')+'</div></div>';
             }
             if (valObj["sbb"]["max bc generated"]) {
                 sbbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["sbb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / SBB hit:</b>&nbsp;'+(parseInt(valObj["sbb"]["max bc generated"])/parseInt(valObj.sbb.hits))+'</div></div>';
@@ -468,29 +475,20 @@ if (typeof mappedNames !== 'undefined') {
 	/*Checks UBB*/
         if (valObj["ubb"]) {
             ubbSTR='<div class="row equal"><div class="col-xs-12 col-md-12 bg-primary"><h5><i class="fa fa-level-up fa-rotate-90"></i> <b>UBB Skill: </b>['+valObj["ubb"]["name"]+'] '+valObj["ubb"]["desc"]+'</h5></div></div>';
-            if (valObj["ubb"]["hit dmg% distribution"]) {
-                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj["ubb"]["hits"]+' hits distributed as '+valObj["ubb"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+            if (valObj["ubb"]["damage frames"]["hit dmg% distribution"]) {
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">'+valObj['ubb']["hits"]+' hits distributed as '+valObj['ubb']["damage frames"]["hit dmg% distribution"].join('% ')+'%</div></div>';
+                ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi">Hits animation timing (1/60 Sec) '+valObj['ubb']["damage frames"]["frame times"].join(' ')+'</div></div>';
             }
             if (valObj["ubb"]["max bc generated"]) {
                 ubbSTR+='<div class="row equal"><div class="col-xs-12 col-sm-12 bi"><b>Max BC generated:</b>&nbsp;'+valObj["ubb"]["max bc generated"]+'&nbsp;|&nbsp;<b>Max BC / UBB hit:</b>&nbsp;'+(parseInt(valObj["ubb"]["max bc generated"])/parseInt(valObj.ubb.hits))+'</div></div>';
             }
             /*UBB Heading*/
-            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div>';
-            for (i=0;i<10;i++) {
-                    ubbSTR+='<div class="bd col-xs-1 col-md-1 bg-info">Lv '+(i+1)+'</div>';
-                }
-            ubbSTR+="</div>";
+            ubbSTR+='<div class="row equal"><div class="bd col-xs-2 col-md-2 bg-info">Tech Bits</div><div class="bd col-xs-10 col-md-10 bg-info">Effects</div></div>';
             if (valObj.ubb.levels) {
             $.each(valObj.ubb.levels[0], function(ubbKey,ubbVal) {
                 if (ubbKey!="effects") {
                     ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey+'</span></div>';
-                    if (String(valObj.ubb.levels[0][ubbKey])==String(valObj.ubb.levels[9][ubbKey]))
-                    	ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+valObj.ubb.levels[9][ubbKey]+'</div>';
-                    else
-	                    for (i=0;i<10;i++) {
-				ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[i][ubbKey]+'</div>'
-	                    }
-                    ubbSTR+="</div>";
+                    ubbSTR+='<div class="col-xs-10 col-md-10 bi" style="justify-content:center;">'+ubbVal+'</div></div>';
                 } else if (ubbKey=="effects") {
                 	var effCount=0;
                 	for (j in valObj.ubb.levels[0].effects) {
@@ -502,24 +500,12 @@ if (typeof mappedNames !== 'undefined') {
 		                			if (ubbVal2.constructor === Object) {
 		                				$.each(valObj.ubb.levels[0].effects[j][ubbKey2], function(ubbKey3,ubbVal3) {
 			                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+' ('+ubbKey3+')</span></div>';
-			                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2][ubbKey3])==String(valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]))
-			                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2][ubbKey3]+'</div>';
-			                				else
-										for (k=0;k<10;k++) {
-							                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2][ubbKey3]+'</div>'
-										}
-									ubbSTR+="</div>";
+			                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal3+'</div></div>';
 		                				})
 		                			}
 		                			else {
 		                				ubbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ubb">'+ubbKey2+'</span></div>';
-		                				if (String(valObj.ubb.levels[0].effects[j][ubbKey2])==String(valObj.ubb.levels[9].effects[j][ubbKey2]))
-		                					ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.ubb.levels[9].effects[j][ubbKey2]+'</div>'
-		                				else
-									for (k=0;k<10;k++) {
-						                        	ubbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.ubb.levels[k].effects[j][ubbKey2]+'</div>'
-									}
-		                    				ubbSTR+="</div>";
+		                				ubbSTR+='<div class="col-xs-10 col-md-10 bi">'+ubbVal2+'</div></div>';
 		                			}
 	                			}
                 			}
@@ -653,6 +639,13 @@ $('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
 $('#searchNameBox').on('typeahead:select', function(ev, suggestion) {
 	searchNameRun()
 });
+
+/*dreamevo btn*/
+$(document).on("click", ".dreamevo", function(e) {
+	e.preventDefault();
+	$("#dreamcontent").attr("src",$(this).attr("data-link"));
+	$("#dreammodal").modal("show");
+})
 
 /*check valid json*/
 function isValidJSON(str) {
