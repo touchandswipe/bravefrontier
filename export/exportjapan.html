@@ -855,24 +855,30 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td>';
           
         /*sbb hits*/
-        if (valObj["sbb"]["damage frames"]) {
-          for (var h in valObj["sbb"]["damage frames"]) {
-            if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
-              exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
-              break;
+        if (valObj["sbb"]) {
+          if (valObj["sbb"]["damage frames"]) {
+            for (var h in valObj["sbb"]["damage frames"]) {
+              if (valObj["sbb"]["damage frames"][h]["proc id"]==1) {
+                exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
+                break;
+              }
             }
-          }
+          } else
+          exportSTR+='<td></td>';
         } else
         exportSTR+='<td></td>';
           
         /*ubb hits*/
-        if (valObj["ubb"]["damage frames"]) {
-          for (var h in valObj["ubb"]["damage frames"]) {
-            if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
-              exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
-              break;
+        if (valObj["ubb"]) {
+          if (valObj["ubb"]["damage frames"]) {
+            for (var h in valObj["ubb"]["damage frames"]) {
+              if (valObj["ubb"]["damage frames"][h]["proc id"]==1) {
+                exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
+                break;
+              }
             }
-          }
+          } else
+          exportSTR+='<td></td>';
         } else
         exportSTR+='<td></td>';
               
