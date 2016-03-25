@@ -860,6 +860,9 @@ $.getJSON( serverSelect, function( unit ) {
             } else
               var bbhits=0;
           }
+          if (bbhits=0) {
+            exportSTR+='<td></td>';
+          }
         } else
         exportSTR+='<td></td>';
           
@@ -873,6 +876,9 @@ $.getJSON( serverSelect, function( unit ) {
                 break;
               } else
                 var sbbhits=0;
+            }
+            if (sbbhits=0) {
+              exportSTR+='<td></td>';
             }
           } else
           exportSTR+='<td></td>';
@@ -889,6 +895,9 @@ $.getJSON( serverSelect, function( unit ) {
                 break;
               } else
                 var ubbhits=0;
+            }
+            if (ubbhits=0) {
+              exportSTR+='<td></td>';
             }
           } else
           exportSTR+='<td></td>';
