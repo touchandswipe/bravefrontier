@@ -1447,6 +1447,7 @@ function loadUnitSummary(arrayID) {
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			unitHTML+='<h6 class="text-info">'+rawParseObj[arrayID][shortSkill+"Desc"]+'</h6>';
 			unitHTML+='<h6>';
 			if (rawParseObj[arrayID][shortSkill+'hits'])
 				unitHTML+='<b>Hits:</b> '+rawParseObj[arrayID][shortSkill+'hits']+" ";
@@ -2103,13 +2104,16 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.uid=valObj.id;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
-        if (valObj["leader skill"])
+        if (valObj["leader skill"]) {
         	unitObj.ls=valObj["leader skill"];
+        	unitObj.lsDesc=valObj["leader skill"]["desc"];
+        }
         else
         	unitObj.ls="none";
 	unitObj.bbdmg=0;
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
+		unitObj.bbDesc=valObj["bb"]["desc"];
 		if (procID.indexOf( +valObj["bb"]["damage frames"][0]["proc id"] )!=-1)
 			unitObj.bbhits=valObj["bb"]["damage frames"][0]["hits"];
 		else
@@ -2138,6 +2142,7 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.sbbdmg=0;
 	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
+		unitObj.sbbDesc=valObj["sbb"]["desc"];
 		if (valObj["sbb"]["levels"]) {
 			if (procID.indexOf( +valObj["sbb"]["damage frames"][0]["proc id"] )!=-1)
 				unitObj.sbbhits=valObj["sbb"]["damage frames"][0]["hits"];
@@ -2166,6 +2171,7 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.ubbdmg=0;
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
+        	unitObj.ubbDesc=valObj["ubb"]["desc"];
         	if (procID.indexOf( +valObj["ubb"]["damage frames"][0]["proc id"] )!=-1)
 			unitObj.ubbhits=valObj["ubb"]["damage frames"][0]["hits"];
 		else
@@ -2190,8 +2196,10 @@ if (typeof mappedNames !== 'undefined') {
 	}
         else
         	unitObj.ubb="none";
-        if (valObj["extra skill"])
+        if (valObj["extra skill"]) {
         	unitObj.es=valObj["extra skill"];
+        	unitObj.esDesc=valObj["extra skill"]["desc"];
+        }
         else
         	unitObj.es="none";
         /*stats - lordonly*/
