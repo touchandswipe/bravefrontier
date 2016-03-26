@@ -1447,7 +1447,7 @@ function loadUnitSummary(arrayID) {
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
-			unitHTML+='<h6 class="text-info">'+rawParseObj[arrayID][shortSkill+"Desc"]+'</h6>';
+			unitHTML+='<h6 class="text-info" style="padding:0 20px;">'+rawParseObj[arrayID][shortSkill+"Desc"]+'</h6>';
 			unitHTML+='<h6>';
 			if (rawParseObj[arrayID][shortSkill+'hits'])
 				unitHTML+='<b>Hits:</b> '+rawParseObj[arrayID][shortSkill+'hits']+" ";
