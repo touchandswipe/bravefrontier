@@ -1004,8 +1004,8 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
         /*evo spacings*/
-        var evoID=String(unitKey);
-        console.log(evoID);
+        var evoID=unitKey;
+        console.log(evoID+" "+evoData[evoID]);
         if (evoData.hasOwnProperty(evoID)) {
           var evoList=[];
           for (var y in evoData[evoID].mats)
