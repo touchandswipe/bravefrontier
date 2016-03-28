@@ -149,7 +149,7 @@ $.getJSON( serverSelect, function( unit ) {
     var evoData={};
     $.getJSON( evoSelect, function( data ) {
       evoData=data;
-      console.log(JSON.stringify(evoData));
+      //console.log(JSON.stringify(evoData));
     });
     var procID=[1,29,47,64];
     /*Process for Each Unit*/
@@ -1005,7 +1005,8 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*evo spacings*/
         var evoID=String(unitKey);
-        if (evoData[evoID]) {
+        console.log(evoID);
+        if (evoData.hasOwnProperty(evoID)) {
           var evoList=[];
           for (var y in evoData[evoID].mats)
             evoList.push(evoData[evoID].mats[y].name);
