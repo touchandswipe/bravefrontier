@@ -132,6 +132,8 @@ var evoJSON={"gl":"//touchandswipe.github.io/bravefrontier_data/evo_list.json",
 "eu":"//touchandswipe.github.io/bravefrontier_data/eu/evo_list.json",
 "kr":"//touchandswipe.github.io/bravefrontier_data/kr/evo_list.json",
 };
+//Grab evo data
+var evoData={};
 $(document).on("click",".serverBtn", function(e) {
   serverSelect=$(this).val();
   if ($(this).val().search("/jp/")!=-1)
@@ -145,8 +147,6 @@ $(document).on("click",".serverBtn", function(e) {
 })
 $(document).on("click","#exportBtn", function(e) {
 $.getJSON( serverSelect, function( unit ) {
-    //Grab evo data
-    var evoData={};
     $.getJSON( evoSelect, function( data ) {
       evoData=data;
       //console.log(JSON.stringify(evoData));
