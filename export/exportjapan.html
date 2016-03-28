@@ -146,11 +146,12 @@ $(document).on("click",".serverBtn", function(e) {
     evoSelect=evoJSON.gl;
 })
 $(document).on("click","#exportBtn", function(e) {
-$.getJSON( serverSelect, function( unit ) {
-    $.getJSON( evoSelect, function( data ) {
+$.getJSON( evoSelect, function( data ) {
       evoData=data;
       //console.log(JSON.stringify(evoData));
-    });
+}).always( function() {
+  
+$.getJSON( serverSelect, function( unit ) {
     var procID=[1,29,47,64];
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
@@ -1130,6 +1131,7 @@ $.getJSON( serverSelect, function( unit ) {
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
+})
 })
 })
 </script>
