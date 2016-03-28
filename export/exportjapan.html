@@ -593,14 +593,6 @@ $.getJSON( serverSelect, function( unit ) {
                           effectFound=true;
                         }
                       })
-                      for (ix in statsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
-                            if (effectKey==statsBuffArray[ix]["skillid"]) {
-                              groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
-                              effectFound=true;
-                            }
-                          })
-                      }
                     } /*End Grouping check*/
                     
                     /*Check collective group buff*/
