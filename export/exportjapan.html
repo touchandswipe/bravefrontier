@@ -126,11 +126,30 @@ To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 
 <script type="text/javascript">
 var serverSelect="//touchandswipe.github.io/bravefrontier_data/info.json";
+var evoSelect="//touchandswipe.github.io/bravefrontier_data/evo_list.json";
+var evoJSON={"gl":"//touchandswipe.github.io/bravefrontier_data/evo_list.json",
+"jp":"//touchandswipe.github.io/bravefrontier_data/jp/evo_list.json",
+"eu":"//touchandswipe.github.io/bravefrontier_data/eu/evo_list.json",
+"kr":"//touchandswipe.github.io/bravefrontier_data/kr/evo_list.json",
+};
 $(document).on("click",".serverBtn", function(e) {
   serverSelect=$(this).val();
+  if ($(this).val().search("/jp/")!=-1)
+    evoSelect=evoJSON.jp;
+  else if ($(this).val().search("/eu/")!=-1)
+    evoSelect=evoJSON.eu;
+  else if ($(this).val().search("/kr/")!=-1)
+    evoSelect=evoJSON.kr;
+  else
+    evoSelect=evoJSON.gl;
 })
 $(document).on("click","#exportBtn", function(e) {
 $.getJSON( serverSelect, function( unit ) {
+    //Grab evo data
+    var evoData={};
+    $.getJSON( evoSelect, function( data ) {
+      evoData=data;
+    });
     var procID=[1,29,47,64];
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
@@ -984,7 +1003,13 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
         /*evo spacings*/
-        exportSTR+='<td></td>';
+        if (evoData[unitKey]) {
+          var evoList=[];
+          for (var y in evoData[unitKey].mats)
+            evoList.push(evoData[unitKey].mats[y].name);
+          exportSTR+='<td>'+evoList.join(",")+'</td>';
+        } else
+          exportSTR+='<td></td>';
         
         /*stats*/
         exportSTR+='<td></td>';
