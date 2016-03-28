@@ -150,10 +150,12 @@ $.getJSON( serverSelect, function( unit ) {
           else
             exportSTR='<tr><td>'+valObj.id+'</td>';
             
-          if (valObj.mats)
+          if (valObj.mats) {
+            var matsArray=[];
             for (i in valObj.mats)
-              exportSTR+='<td>'+valObj.mats[i]['name']+'</td>'
-          else
+              matsArray.push(mats[i].name);
+            exportSTR+="<td>"+matsArray.join(",")+"</td>";
+          } else
             exportSTR+='<td></td>'
   
           $("#rawTable").append(exportSTR+'<tr>');
