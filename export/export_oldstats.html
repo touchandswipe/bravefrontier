@@ -117,10 +117,7 @@
 From <input type="text" id="rangeFrom" class="form-control" placeholder="Range From">
 To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 <button type="button" id="exportBtn" class="btn btn-default">Export</button>
-<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/jp/info.json" class="btn btn-danger">JP</button>
-<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/info.json" class="btn btn-success">GL</button>
 <button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/eu/info.json" class="btn btn-success">EU</button>
-<button type="button" class="serverBtn" value="//touchandswipe.github.io/bravefrontier_data/kr/info.json" class="btn btn-success">KR</button>
 <!--TABLE-->
 <table id="rawTable" width="100%" class="small table-bordered table-condensed table-hover table-responsive"></table>
 
@@ -1112,7 +1109,7 @@ $.getJSON( serverSelect, function( unit ) {
           
         /*spacing for video, iconREF ID*/
         if (serverSelect.search('/eu/')!=-1)
-          exportSTR+='<td></td><td>'+valObj.guide_id+'.1</td>';
+          exportSTR+='<td></td><td>'+valObj.guide_id+'</td>';
         else if (serverSelect.search('/kr/')!=-1)
           exportSTR+='<td></td><td>'+valObj.guide_id+'.2</td>';
         else
