@@ -861,18 +861,21 @@ $.getJSON( serverSelect, function( unit ) {
         }
         
         /*bb hits*/  
-        if (valObj["bb"]["damage frames"]) {
-          for (var h in valObj["bb"]["damage frames"]) {
-            if (procID.indexOf( +valObj["bb"]["damage frames"][h]["proc id"] )!=-1) {
-              exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
-              var bbhits=valObj["bb"]["damage frames"][h]["hits"];
-              break;
-            } else
-              var bbhits=0;
-          }
-          if (bbhits==0) {
-            exportSTR+='<td></td>';
-          }
+        if (valObj["bb"]) {
+          if (valObj["bb"]["damage frames"]) {
+            for (var h in valObj["bb"]["damage frames"]) {
+              if (procID.indexOf( +valObj["bb"]["damage frames"][h]["proc id"] )!=-1) {
+                exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
+                var bbhits=valObj["bb"]["damage frames"][h]["hits"];
+                break;
+              } else
+                var bbhits=0;
+            }
+            if (bbhits==0) {
+              exportSTR+='<td></td>';
+            }
+          } else
+          exportSTR+='<td></td>';
         } else
         exportSTR+='<td></td>';
           
@@ -894,7 +897,6 @@ $.getJSON( serverSelect, function( unit ) {
           exportSTR+='<td></td>';
         } else
         exportSTR+='<td></td>';
-        console.log("sbb hits "+sbbhits);
           
         /*ubb hits*/
         if (valObj["ubb"]) {
@@ -914,7 +916,6 @@ $.getJSON( serverSelect, function( unit ) {
           exportSTR+='<td></td>';
         } else
         exportSTR+='<td></td>';
-        console.log("ubb hits "+ubbhits);
               
         /*bb fill*/
         if (valObj.bb)
