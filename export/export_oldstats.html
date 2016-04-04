@@ -126,11 +126,33 @@ To <input type="text" id="rangeTo" class="form-control" placeholder="Range To">
 
 <script type="text/javascript">
 var serverSelect="//touchandswipe.github.io/bravefrontier_data/info.json";
+var evoSelect="//touchandswipe.github.io/bravefrontier_data/evo_list.json";
+var evoJSON={"gl":"//touchandswipe.github.io/bravefrontier_data/evo_list.json",
+"jp":"//touchandswipe.github.io/bravefrontier_data/jp/evo_list.json",
+"eu":"//touchandswipe.github.io/bravefrontier_data/eu/evo_list.json",
+"kr":"//touchandswipe.github.io/bravefrontier_data/kr/evo_list.json",
+};
+//Grab evo data
+var evoData={};
 $(document).on("click",".serverBtn", function(e) {
   serverSelect=$(this).val();
+  if ($(this).val().search("/jp/")!=-1)
+    evoSelect=evoJSON.jp;
+  else if ($(this).val().search("/eu/")!=-1)
+    evoSelect=evoJSON.eu;
+  else if ($(this).val().search("/kr/")!=-1)
+    evoSelect=evoJSON.kr;
+  else
+    evoSelect=evoJSON.gl;
 })
 $(document).on("click","#exportBtn", function(e) {
+$.getJSON( evoSelect, function( data ) {
+      evoData=data;
+      //console.log(JSON.stringify(evoData));
+}).always( function() {
+  
 $.getJSON( serverSelect, function( unit ) {
+    var procID=[1,29,47,64];
     /*Process for Each Unit*/
     var rangeID=[parseInt($("#rangeFrom").val()), parseInt($("#rangeTo").val())];
     /*parsing definition for LS*/
@@ -156,7 +178,9 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"hc drop% for spark", "skillref":["hc drop% for spark", "!% Spark HC+"]},
         {"skillid":"karma drop% for spark", "skillref":["karma drop% for spark", "!% Spark Karma+"]},
         {"skillid":"zel drop% for spark", "skillref":["zel drop% for spark", "!% Spark Zel+"]},
+        {"skillid":"xp gained increase%", "skillref":["xp gained increase%", "!% EXP+"]},
         {"skillid":"bc fill on spark%", "skillref":["bc fill on spark%", "!% Chance ", "bc fill on spark low", "!-", "bc fill on spark high", "!BC Fill on Spark"]},
+        {"skillid":"heal on spark%", "skillref":["heal on spark%", "!% Chance ", "!Heal on Spark"]},
         {"skillid":"bc fill on crit%", "skillref":["bc fill on crit min", "!-", "bc fill on crit max", "!BC Fill on CRIT"]},
         {"skillid":"bc fill on enemy defeat%", "skillref":["bc fill on enemy defeat%", "!% Chance ", "bc fill on enemy defeat low", "!-", "bc fill on enemy defeat high", "!BC Fill on Enemy Kill"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked%", "!% Chance ", "bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed"]},
@@ -166,15 +190,19 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"turn heal high", "skillref":["!Heal Each Turn"]},
         {"skillid":"defense% ignore", "skillref":["!Ignore DEF ", "target type", "! ","defense% ignore turns (39)", "!Turns"]},
         {"skillid":"damage% for spark", "skillref":["damage% for spark", "!% Spark DMG+"]},
+        {"skillid":"spark debuff%", "skillref":["spark debuff chance%", "!% Chance Enemy receives ", "spark debuff%","!% Spark DMG+ ","spark debuff turns","!Turns"]},
         {"skillid":"crit multiplier%", "skillref":["crit multiplier%", "!% CRIT DMG+"]},
         {"skillid":"bb atk% buff", "skillref":["bb atk% buff", "!% BB ATK%+"]},
+        {"skillid":"atk% buff when enemy has ailment", "skillref":["atk% buff when enemy has ailment", "!% DMG+ to Ailed Enemy"]},
         {"skillid":"hit increase/hit", "skillref":["!Normal HitCount +", "hit increase/hit", "!00% (", "extra hits dmg%", "!% DMG)"]},
         {"skillid":"atk% extra buff based on hp", "skillref":["atk% base buff", "!-", "atk% extra buff based on hp", "!% ATK+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"def% extra buff based on hp", "skillref":["def% base buff", "!-", "def% extra buff based on hp", "!% DEF+ Based on HP ", "buff proportional to hp"]},
         {"skillid":"dmg% reflect chance%", "skillref":["dmg% reflect chance%", "!% Chance Reflect ", "dmg% reflect low", "!-", "dmg% reflect high", "!% DMG"]},
-        {"skillid":"crit chance base resist%", "skillref":["!Nulls CRIT"]},
-        {"skillid":"strong base element damage resist%", "skillref":["!Nulls Elemental Weakness"]},
+        {"skillid":"crit chance base resist%", "skillref":["!Null CRIT"]},
+        {"skillid":"od fill rate%", "skillref":["od fill rate%", "!% OverDrive Fill+"]},
+        {"skillid":"strong base element damage resist%", "skillref":["!Null Elemental Weakness"]},
         {"skillid":"element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ","@"]},
+        {"skillid":"angel idol recover chance% low", "skillref":["angel idol recover chance% low", "!% Chance Angel Idol ", "angel idol recover counts", "!x"]},
         {"skillid":"crystals buff", "skillref":["@"]},
         {"skillid":"stats buff", "skillref":["@"]},
         {"skillid":"xturns buff", "skillref":["@", "first x turns", "!Turns"]},
@@ -185,7 +213,8 @@ $.getJSON( serverSelect, function( unit ) {
     /*parsing definiton for BB*/
     var skillParseObj=[
         {"skillid":"bb atk%", "skillref":["?element", "! ","target area"]},
-        {"skillid":"bb atk% inc per use", "skillref":["bb atk% inc per use", "!% BB ATK+ on Consecutive SBB (Max ", "bb atk% max number of inc", "!x / SELF)"]},
+        {"skillid":"bb atk% inc per use", "skillref":["?element", "! ","target area","! ","bb atk% inc per use", "!% BB ATK+ on Consecutive SBB (Max ", "bb atk% max number of inc", "!x / SELF)"]},
+        {"skillid":"hpBasedBBatk", "skillref":["@"]},
         {"skillid":"random attack", "skillref":["!Random Hits"]},
         {"skillid":"hp drain% high", "skillref":["!Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP (SELF)"]},
         /*{"skillid":"bb bc%", "skillref":["bb bc%", "!% BC+ (SELF)"]},
@@ -196,15 +225,18 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"dmg% reduction", "skillref":["!Reduce DMG (", "dmg% reduction", "!%) ", "dmg% reduction turns (36)", "!Turns"]},
         {"skillid":"bb bc fill%", "skillref":["bb bc fill%", "!% BB Fill ", "target type"]},
         {"skillid":"bb bc fill", "skillref":["bb bc fill", "!BC Fill ", "target type"]},
-        {"skillid":"increase od gauge%", "skillref":["increase od gauge%", "!% OverDrive Gauge Fill"]},
+        {"skillid":"increase od gauge%", "skillref":["increase od gauge%", "!% OverDrive Fill"]},
+        {"skillid":"od fill rate% buff", "skillref":["od fill rate% buff", "!% OverDrive Fill+ ", "od fill rate buff turns (132)", "!Turns"]},
         {"skillid":"bb gauge fill rate% buff", "skillref":["bb gauge fill rate% buff", "!% BC Fill+ ", "target type", "! ", "buff turns (77)", "!Turns"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
         {"skillid":"bc fill on spark%", "skillref":["bc fill on spark%", "!% Chance ", "bc fill on spark low", "!-", "bc fill on spark high", "!BC Fill on Spark ", "target type", "! ", "bc fill on spark buff turns (111)", "!Turns"]},
         {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
         {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
+        {"skillid":"hp recover from dmg chance", "skillref":["hp recover from dmg chance", "!% Chance Heal ", "hp recover from dmg% low", "!-", "hp recover from dmg% high", "!% DMG when ATKed ", "target type", "! ","hp recover from dmg buff turns (133)", "!Turns"]},
         {"skillid":"ailments cured", "skillref":["!Cure Ails"]},
         {"skillid":"remove all status ailments", "skillref":["!Cure Ails"]},
         {"skillid":"resist status ails turns", "skillref":["!Null Ails ", "resist status ails turns", "!Turns"]},
+        {"skillid":"stat down immunity buff turns", "skillref":["!Null STATS Debuff ", "stat down immunity buff turns", "!Turns"]},
         {"skillid":"elements added", "skillref":["!Add ", "elements added", "! to ATK ", "target type", "! ", "elements added turns", "!Turns"]},
         {"skillid":"atk% buff (13)", "skillref":["atk% buff (13)", "!% ATK+ to ", "element buffed", "! ", "buff turns","!Turns"]},
         {"skillid":"atk% buff when enemy has ailment", "skillref":["atk% buff when enemy has ailment", "!% DMG+ to Ailed Enemy ", "target type", "! ", "atk% buff turns (110)","!Turns"]},
@@ -214,30 +246,35 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"crit multiplier%", "skillref":["crit multiplier%", "!% CRIT DMG+ ", "! ", "target type", "! ", "buff turns (84)","!Turns"]},
         {"skillid":"max hp% increase", "skillref":["max hp% increase", "!% Max HP+ till Death/Battle End"]},
         {"skillid":"spark dmg% buff (40)", "skillref":["spark dmg% buff (40)", "!% Spark DMG+ ", "target type", "! ", "buff turns","!Turns"]},
+        {"skillid":"spark dmg inc chance%", "skillref":["spark dmg inc chance%", "!% Chance SPARKcrit (", "spark dmg inc% buff", "!% DMG+) ", "target type", "! ", "spark dmg inc buff turns (131)","!Turns"]},
         {"skillid":"spark dmg received apply%", "skillref":["spark dmg received apply%", "!% Chance Enemy receives ", "spark dmg% received", "!% Spark DMG+ ", "spark dmg received debuff turns (94)", "!Turns"]},
         {"skillid":"inflict atk% debuff (2)", "skillref":["!Add ","inflict atk% debuff chance% (74)", "!% Chance ", "inflict atk% debuff (2)", "!% Enemy ATK to ATK ", "target type", "! ", "buff turns","!Turns"]},
         {"skillid":"hit increase/hit", "skillref":["!Normal HitCount +", "hit increase/hit", "!00% (", "extra hits dmg%", "!% DMG) ", "target type", "! ", "hit increase buff turns (50)", "!Turns"]},
         {"skillid":"taunt turns (10000)", "skillref":["!Taunt (", "def% buff", "!% DEF+) ", "target type", "! ", "taunt turns (10000)", "!Turns"]},
         {"skillid":"shield turns (10002)", "skillref":["!Shield (", "shield element", "!, ", "shield hp", "!HP ", "shield def", "!DEF) ", "target type", "! ", "shield turns (10002)", "!Turns"]},
-        {"skillid":"elemental barrier hp", "skillref":["!10k HP Barrier (", "elemental barrier element", "!)"]},
+        {"skillid":"elemental barrier hp", "skillref":["elemental barrier hp", "!HP Barrier (", "elemental barrier element", "!)"]},
         {"skillid":"stealth turns (10001)", "skillref":["!Stealth (", "atk% buff", "!% ATK+ ", "crit% buff", "!% CRIT+) ", "target type", "! ", "stealth turns (10001)", "!Turns"]},
         {"skillid":"stats buff", "skillref":["@", "target type", "! ", "buff turns", "!Turns"]},
+        {"skillid":"selfstatsbuff", "skillref":["@", "target type", "! ", "self stat buff turns", "!Turns"]},
         {"skillid":"dot atk%", "skillref":["dot atk%", "!% DMG Each Turn ", "dot turns (71)", "!Turns"]},
         {"skillid":"angel idol buff turns (91)", "skillref":["angel idol recover chance%", "!% Chance Angel Idol ", "angel idol recover hp%", "!% HP ", "target type", "! ", "angel idol buff turns (91)", "!Turns"]},
+        {"skillid":"revive unit chance%", "skillref":["revive unit chance%", "!% Chance Revive Dead Ally ", "revive unit hp%", "!% HP ", "target type"]},
         {"skillid":"bb atk% buff", "skillref":["bb atk% buff", "!% BB ATK%+ ", "target type", "! ", "buff turns (72)", "!Turns"]},
         {"skillid":"crystals buff", "skillref":["@", "target type", "! ", "drop rate buff turns", "!Turns"]},
         {"skillid":"atk% buff (46)", "skillref":["!Convert ", "atk% buff (46)", "!% ","converted attribute", "! to ATK ", "target type", "! ", "% converted turns", "!Turns"]},
         {"skillid":"def% buff (47)", "skillref":["!Convert ", "def% buff (47)", "!% ","converted attribute", "! to DEF ", "target type", "! ", "% converted turns", "!Turns"]},
+        {"skillid":"rec% buff (48)", "skillref":["!Convert ", "rec% buff (48)", "!% ","converted attribute", "! to REC ", "target type", "! ", "% converted turns", "!Turns"]},
         {"skillid":"debuff skills", "skillref":["@"]},
         {"skillid":"ails", "skillref":["@"]},
         {"skillid":"counter ails", "skillref":["!Inflict ", "@", "! on ATKed ", "target type", "! ","counter inflict ailment turns", "!Turns"]},
         {"skillid":"bb element weakness", "skillref":["elemental weakness multiplier%", "!% Element Weakness DMG+ ", "@", "! ", "target type", "! ", "elemental weakness buff turns", "!Turns"]},
         {"skillid":"gradualhealbuff", "skillref":["@", "! ", "target type", "! ", "gradual heal turns (8)", "!Turns"]},
         {"skillid":"ails buff", "skillref":["!Add ", "@", "!to ATK ", "target type", "! ","buff turns", "!Turns"]},
-        {"skillid":"bb elemental reduction", "skillref":["!Reduce DMG (", "dmg% mitigation for elemental attacks", "!%) from ", "@", "! Enemy"]}
+        {"skillid":"bb elemental reduction", "skillref":["!Reduce DMG (", "dmg% mitigation for elemental attacks", "!%) from ", "@", "! Enemy", "dmg% mitigation for elemental attacks buff turns", "!Turns"]}
       ];
     var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
     var statsBuffArray=[{"skillid":"atk% buff (1)", "suffix":"% ATK+ "}, {"skillid":"def% buff (3)", "suffix":"% DEF+ "}, {"skillid":"rec% buff (5)", "suffix":"% REC+ "}];
+    var selfstatsBuffArray=[{"skillid":"self atk% buff", "suffix":"% ATK+ "}, {"skillid":"self def% buff", "suffix":"% DEF+ "}, {"skillid":"self rec% buff", "suffix":"% REC+ "}];
     var bbCrystalsBuffArray=[{"skillid":"bc drop rate% buff (10)", "suffix":"% BC+ "}, {"skillid":"hc drop rate% buff (9)", "suffix":"% HC+ "}, {"skillid":"item drop rate% buff (11)", "suffix":"% Item+ "}, {"skillid":"karma drop rate% buff", "suffix":"% Karma+ "}];
     var bbSelfBuffArray=[{"skillid":"bb bc%", "suffix":"% BC+ "}, {"skillid":"bb hc%", "suffix":"% HC+ "}];
     var gradualhealbuffArray=[{"skillid":"gradual heal high", "suffix":"Gradual Heal "}];
@@ -520,23 +557,62 @@ $.getJSON( serverSelect, function( unit ) {
           /*Parsing all BB Skills*/
           for (ibb in bbArray) {
           var bbSkillFound=0;
+          if (bbArray[ibb]!="ubb")
+              var bbLvl=9;
+          else
+              var bbLvl=0;
           exportSTR+="<td>";
           if (valObj[bbArray[ibb]])
-            if (valObj[bbArray[ibb]].levels[9]["effects"]) {
-              for (i=0;i<skillParseObj.length;i++) {
+            if (valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
+              for (i in skillParseObj) {
                 var skillSeek=skillParseObj[i]["skillid"];
                 /*looking each effect array*/
-                for (j in valObj[bbArray[ibb]].levels[9]["effects"]) {
+                for (j in valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
+
+                    /*Check custom buff*/
+                    if (skillSeek=="hpBasedBBatk") {
+                      $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
+                        if (effectKey=="bb added atk% based on hp") {
+                          var unitElement=valObj.element;
+                          unitElement=unitElement.charAt(0).toUpperCase().concat(unitElement.slice(1));
+                          groupSTR+=unitElement;
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"]=="aoe")
+                            groupSTR+=" (AOE) "
+                          else
+                            groupSTR+=" (TGT) ";
+                          groupSTR+=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb base atk%"]+"%-";
+                          groupSTR+= (+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb base atk%"] +  +valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb added atk% based on hp"])+"% ";
+                          groupSTR+="BB ATK% Based on HP ";
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb added atk% proportional to hp"]=="remaining")
+                            groupSTR+="LEFT";
+                          else
+                            groupSTR+="LOST";
+                          effectFound=true;
+                        }
+                      })
+                    } /*End Grouping check*/
                     
                     /*Check collective group buff*/
                     if (skillSeek=="stats buff") {
                       for (ix in statsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==statsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+statsBuffArray[ix]["suffix"];
+                              effectFound=true;
+                            }
+                          })
+                      }
+                    } /*End Grouping check*/
+                    
+                    /*Check SELF collective group buff*/
+                    else if (skillSeek=="selfstatsbuff") {
+                      for (ix in selfstatsBuffArray) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
+                            if (effectKey==selfstatsBuffArray[ix]["skillid"]) {
+                              groupSTR+=effectVal+selfstatsBuffArray[ix]["suffix"];
                               effectFound=true;
                             }
                           })
@@ -546,7 +622,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group debuff*/
                     else if (skillSeek=="debuff skills") {
                       for (ix in debuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==debuffArray[ix]["skillid"]) {
                               effectFound=true;
                               /*separator for multiple buffs*/
@@ -554,9 +630,9 @@ $.getJSON( serverSelect, function( unit ) {
                                 groupSTR+=skillConnect;
                               groupSTR+=effectVal['proc chance%']+'% Chance ';
                               if (effectVal['atk% buff (2)'])
-                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                                groupSTR+=effectVal['atk% buff (2)']+'% Enemy ATK '+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]['buff turns']+'Turns';
                               if (effectVal['def% buff (4)'])
-                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[9]["effects"][j]['buff turns']+'Turns';
+                                groupSTR+=effectVal['def% buff (4)']+'% Enemy DEF '+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]['buff turns']+'Turns';
                             }
                           })
                       }
@@ -565,7 +641,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check BB Self buff*/
                     else if (skillSeek=="bbSelfBuff") {
                       for (ix in bbSelfBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbSelfBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbSelfBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -577,7 +653,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Gradual heal*/
                     else if (skillSeek=="gradualhealbuff") {
                       for (ix in gradualhealbuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==gradualhealbuffArray[ix]["skillid"]) {
                               groupSTR+=gradualhealbuffArray[ix]["suffix"];
                               if (effectVal==99999)
@@ -591,7 +667,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective group crystals buff*/
                     else if (skillSeek=="crystals buff") {
                       for (ix in bbCrystalsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbCrystalsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+bbCrystalsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -603,7 +679,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails rate*/
                     else if (skillSeek=="ails") {
                       for (ix in ailsArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsArray[ix]["suffix"];
                               effectFound=true;
@@ -615,7 +691,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective counter ails buff*/
                     else if (skillSeek=="counter ails") {
                       for (ix in counterailsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==counterailsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+counterailsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -627,7 +703,7 @@ $.getJSON( serverSelect, function( unit ) {
                     /*Check collective ails buff*/
                     else if (skillSeek=="ails buff") {
                       for (ix in ailsBuffArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==ailsBuffArray[ix]["skillid"]) {
                               groupSTR+=effectVal+ailsBuffArray[ix]["suffix"];
                               effectFound=true;
@@ -640,7 +716,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb element weakness") {
                       var elementCount=0;
                       for (ix in bbWeakElementArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey==bbWeakElementArray[ix]["skillid"]) {
                                 if (elementCount>0)
                                   groupSTR+=",";
@@ -663,7 +739,7 @@ $.getJSON( serverSelect, function( unit ) {
                     else if (skillSeek=="bb elemental reduction") {
                       var elementCount=0;
                       for (ix in bbElementalReductionArray) {
-                          $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                          $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                             if (effectKey.search(bbElementalReductionArray[ix]["skillid"])!=-1) {
                                 if (elementCount>0)
                                   groupSTR+=",";
@@ -685,7 +761,7 @@ $.getJSON( serverSelect, function( unit ) {
                     
                     else
                   /*looping non grouping buff*/
-                  $.each( valObj[bbArray[ibb]].levels[9]["effects"][j], function( effectKey, effectVal ) {
+                  $.each( valObj[bbArray[ibb]].levels[bbLvl]["effects"][j], function( effectKey, effectVal ) {
                     if (effectKey==skillSeek) {
                       effectFound=true;
                     }
@@ -706,8 +782,8 @@ $.getJSON( serverSelect, function( unit ) {
                           var specialValue=valObj[specialKey];
                           specialValue=specialValue.charAt(0).toUpperCase().concat(specialValue.slice(1));
                           /*Extra BB Elements*/
-                          if (skillSeek="bb atk%" && valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"]) {
-                            specialValue=valObj[bbArray[ibb]].levels[9]["effects"][j]["bb elements"];
+                          if (skillSeek=="bb atk%" && valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb elements"]) {
+                            specialValue=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["bb elements"];
                             specialValue=specialValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                           }
                           exportSTR+=specialValue;
@@ -717,8 +793,8 @@ $.getJSON( serverSelect, function( unit ) {
                         } else {
                           /*handling identified obj value*/
                           var callObjName=skillParseObj[i]["skillref"][k];
-                          if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]) {
-                              var exportValue=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                          if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName]) {
+                              var exportValue=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName];
                               if (callObjName=="elements added" || callObjName=="element buffed")
                                 exportValue=exportValue.toString().replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
                               /*value replacement and formatting*/
@@ -747,8 +823,8 @@ $.getJSON( serverSelect, function( unit ) {
                               }
                               exportSTR+=exportValue;
                           }
-                          else if (valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName]==0)
-                            exportSTR+=valObj[bbArray[ibb]].levels[9]["effects"][j][callObjName];
+                          else if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName]==0)
+                            exportSTR+=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j][callObjName];
                           else
                             exportSTR+='<span style="color:#FF0000;">Unknown</span>';
                         }
@@ -757,7 +833,7 @@ $.getJSON( serverSelect, function( unit ) {
                 }
               }
             /*check for missing skill effects*/
-            if (bbSkillFound < valObj[bbArray[ibb]].levels[9]["effects"].length)
+            if (bbSkillFound < valObj[bbArray[ibb]].levels[bbLvl]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
             exportSTR+="</td>";
           } /*End of Effects Loop*/
@@ -766,42 +842,82 @@ $.getJSON( serverSelect, function( unit ) {
         /*Passive Skill,	Passive Condition,	BB Type,	SBB Type,	UBB Type spacings*/
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
-        /*Cost and max lvl spacing*/
+        /*Cost and max lvl*/
         if (valObj.cost) {
-              exportSTR+='<td>'+valObj.cost+'</td><td></td>'
-          } else exportSTR+='<td></td><td></td>';
+              exportSTR+='<td>'+valObj.cost+'</td>'
+          } else exportSTR+='<td></td>';
+          
+        /*max lvl*/
+        var lvlmapping=[0,10,12,40,60,80,100,120,150];
+        if (valObj.rarity) {
+              exportSTR+='<td>'+lvlmapping[ +valObj.rarity ]+'</td>'
+          } else exportSTR+='<td></td>';
           
         /*normal hits*/
-        if (valObj.hits)
-          exportSTR+='<td>'+valObj.hits+'</td>'
-        else exportSTR+='<td></td>';
+        if (valObj["damage frames"]) {
+          exportSTR+='<td>'+valObj["damage frames"]["hits"]+'</td>'
+          var normalhits=valObj["damage frames"]["hits"];
+        }
+        else {
+          exportSTR+='<td></td>';
+          var normalhits=0;
+        }
         
         /*bb hits*/  
-        if (valObj.bb)
-          if (valObj.bb.hits)
-            exportSTR+='<td>'+valObj.bb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else
-          exportSTR+='<td></td>';
+        if (valObj["bb"]["damage frames"]) {
+          for (var h in valObj["bb"]["damage frames"]) {
+            if (procID.indexOf( +valObj["bb"]["damage frames"][h]["proc id"] )!=-1) {
+              exportSTR+='<td>'+valObj["bb"]["damage frames"][h]["hits"]+'</td>';
+              var bbhits=valObj["bb"]["damage frames"][h]["hits"];
+              break;
+            } else
+              var bbhits=0;
+          }
+          if (bbhits==0) {
+            exportSTR+='<td></td>';
+          }
+        } else
+        exportSTR+='<td></td>';
           
         /*sbb hits*/
-        if (valObj.sbb)
-          if (valObj.sbb.hits)
-            exportSTR+='<td>'+valObj.sbb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else
+        if (valObj["sbb"]) {
+          if (valObj["sbb"]["damage frames"]) {
+            for (var h in valObj["sbb"]["damage frames"]) {
+              if (procID.indexOf( +valObj["sbb"]["damage frames"][h]["proc id"] )!=-1) {
+                exportSTR+='<td>'+valObj["sbb"]["damage frames"][h]["hits"]+'</td>';
+                var sbbhits=valObj["sbb"]["damage frames"][h]["hits"];
+                break;
+              } else
+                var sbbhits=0;
+            }
+            if (sbbhits==0) {
+              exportSTR+='<td></td>';
+            }
+          } else
           exportSTR+='<td></td>';
+        } else
+        exportSTR+='<td></td>';
+        console.log("sbb hits "+sbbhits);
           
         /*ubb hits*/
-        if (valObj.ubb)
-          if (valObj.ubb.hits)
-            exportSTR+='<td>'+valObj.ubb.hits+'</td>'
-          else
-            exportSTR+='<td></td>'
-        else 
+        if (valObj["ubb"]) {
+          if (valObj["ubb"]["damage frames"]) {
+            for (var h in valObj["ubb"]["damage frames"]) {
+              if (procID.indexOf( +valObj["ubb"]["damage frames"][h]["proc id"] )!=-1) {
+                exportSTR+='<td>'+valObj["ubb"]["damage frames"][h]["hits"]+'</td>';
+                var ubbhits=valObj["ubb"]["damage frames"][h]["hits"];
+                break;
+              } else
+                var ubbhits=0;
+            }
+            if (ubbhits==0) {
+              exportSTR+='<td></td>';
+            }
+          } else
           exportSTR+='<td></td>';
+        } else
+        exportSTR+='<td></td>';
+        console.log("ubb hits "+ubbhits);
               
         /*bb fill*/
         if (valObj.bb)
@@ -823,23 +939,23 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*ubb fill*/    
         if (valObj.ubb)
-          if (valObj.ubb.levels[9]["bc cost"])
-            exportSTR+='<td>'+valObj.ubb.levels[9]["bc cost"]+'</td>'
+          if (valObj.ubb.levels[0]["bc cost"])
+            exportSTR+='<td>'+valObj.ubb.levels[0]["bc cost"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
           exportSTR+='<td></td>';
             
         /*Normal DC*/
-        if (valObj["max bc generated"])
-          exportSTR+='<td>'+valObj["max bc generated"]+'</td>'
+        if (valObj["drop check count"])
+          exportSTR+='<td>'+ (+valObj["drop check count"] * +normalhits) +'</td>'
         else
           exportSTR+='<td></td>';
           
         /*BB DC*/  
         if (valObj.bb)
-          if (valObj["bb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["bb"]["max bc generated"]+'</td>'
+          if (valObj["bb"]["drop check count"])
+            exportSTR+='<td>'+ (+valObj["bb"]["drop check count"] * +bbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -847,8 +963,8 @@ $.getJSON( serverSelect, function( unit ) {
   
         /*SBB DC*/  
         if (valObj.sbb)
-          if (valObj["sbb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["sbb"]["max bc generated"]+'</td>'
+          if (valObj["sbb"]["drop check count"])
+            exportSTR+='<td>'+ (+valObj["sbb"]["drop check count"] * +sbbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -856,8 +972,8 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*UBB DC*/  
         if (valObj.ubb)
-          if (valObj["ubb"]["max bc generated"])
-            exportSTR+='<td>'+valObj["ubb"]["max bc generated"]+'</td>'
+          if (valObj["ubb"]["drop check count"])
+            exportSTR+='<td>'+ (+valObj["ubb"]["drop check count"] * +ubbhits) +'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -881,9 +997,17 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
         
         /*evo spacings*/
-        exportSTR+='<td></td><td></td><td></td><td></td><td></td>';
+        var evoID= +unitKey;
+        console.log(evoID+" "+evoData[evoID]);
+        if (evoData.hasOwnProperty(evoID)) {
+          var evoList=[];
+          for (var y in evoData[evoID].mats)
+            evoList.push(evoData[evoID].mats[y].name);
+          exportSTR+='<td>'+evoList.join(",")+'</td>';
+        } else
+          exportSTR+='<td></td>';
         
-       /*stats*/
+        /*stats*/
         exportSTR+='<td></td>';
         //exportSTR+='<td>'+valObj.stats._base.hp+'</td>';
         //exportSTR+='<td>'+valObj.stats._base.atk+'</td>';
@@ -914,6 +1038,7 @@ $.getJSON( serverSelect, function( unit ) {
         exportSTR+='<td>'+valObj.stats.guardian.rec+'</td>';
         //exportSTR+='<td>'+(valObj.stats.guardian["atk max"]-(valObj.stats.guardian["atk max"]+valObj.stats.guardian["atk min"])/2)+'</td>';
         //exportSTR+='<td>'+(valObj.stats.guardian["def max"]-(valObj.stats.guardian["def max"]+valObj.stats.guardian["def min"])/2)+'</td>';
+        
         exportSTR+='<td>'+((valObj.stats.oracle["hp max"]+valObj.stats.oracle["hp min"])/2)+'</td>';
         exportSTR+='<td>'+valObj.stats.oracle.atk+'</td>';
         exportSTR+='<td>'+valObj.stats.oracle.def+'</td>';
@@ -970,8 +1095,8 @@ $.getJSON( serverSelect, function( unit ) {
         /*ubb atk%*/
         ubbFound=false;
         if (valObj.ubb) {
-            for (i in valObj.ubb.levels[9].effects) {
-              $.each(valObj.ubb.levels[9].effects[i], function(ubbKey,ubbVal) {
+            for (i in valObj.ubb.levels[0].effects) {
+              $.each(valObj.ubb.levels[0].effects[i], function(ubbKey,ubbVal) {
                   if (ubbKey=="bb atk%" && !ubbFound) {
                     exportSTR+='<td>'+ubbVal+'</td>';
                     ubbFound=true;
@@ -999,6 +1124,7 @@ $.getJSON( serverSelect, function( unit ) {
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
+})
 })
 })
 </script>
