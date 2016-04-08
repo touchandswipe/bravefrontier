@@ -1,7 +1,7 @@
 countVar=0;
 collapseID=1;
 rawParseObj=[];
-procID=[1,64,47];
+procID=[1,13,29,47,49,64];
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
     $.ajax({
