@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Dream Evo Skills and Costs  - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Dream Evo Skills and Costs - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+	th {text-align:center;background:#DDF; !important;}
+	td {text-align:center;width:50%; !important;}
+	.effHead{padding:0 !important;height:2px;background:#CCF;}
+	.effType{text-transform:uppercase;}
+</style>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+<!-- Main Body Space-->
+<div class="container-fluid text-center">
+    <h3>Dream Evo Customisation</h3>
+    <!--Containing Div-->
+    <div class="container-fluid text-center" id="rawMod">
+          <h3>Loading</h3>
+          <i class="fa fa-cog fa-spin fa-4x"></i>
+    </div>
+</div> <!-- /container -->
+<script type="text/javascript">
+jsonURL="//touchandswipe.github.io/bravefrontier_data/feskills.json";
+imgPrePath="http://2.cdn.bravefrontier.gumi.sg/content/";
+outputHTML="";
+
+/*JQ Param handling*/
+function urlParam(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return '';
+    }
+    else{
+       return decodeURIComponent(results[1]) || '';
+    }
+}
+
+function buildDB(jsonData, unitid) {
+	if (jsonData.hasOwnProperty(unitid)) {
+		outputHTML+='<img src="'+imgPrePath+"/unit/img/unit_ills_thum_"+unitid+'.png" width="80" height="80">';
+		$.each(jsonData[unitid]["category"], function(catKey, catObj) {
+			outputHTML+='<h3>Skills Category: '+catObj.name+'</h3>';
+			for (var x in jsonData[unitid]["skills"]) {
+				if (jsonData[unitid]["skills"][x]["category"]==catKey) {
+					outputHTML+='<table class="table table-condensed table-bordered small">';
+					outputHTML+='<h5 class="text-danger"><b>'+jsonData[unitid]["skills"][x].skill.name+' [SP Cost:'+jsonData[unitid]["skills"][x].skill.bp+']</b></h5>';
+					for (var y in jsonData[unitid]["skills"][x].skill.effects) {
+						$.each(jsonData[unitid]["skills"][x].skill.effects[y], function(sKey, sObj) {
+							outputHTML+='<tr><th colspan="2" class="effType">Effects Type: '+sKey+'</th></tr>';
+							$.each(sObj, function(sKey2, sObj2) {
+								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect") {
+									outputHTML+='<tr><td><b>'+sKey2+'</b></td><td>'+sObj2+'</td></tr>';
+								} else if (sKey2=="triggered effect") {
+									for (var i in sObj2) {
+										$.each(sObj2[i], function(tKey, tObj) {
+											if (tKey!="passive id" && tKey!="proc id")
+												outputHTML+='<tr><td><b>'+tKey+'</b></td><td>'+tObj+'</td></tr>';
+										})
+									}
+								}
+							})
+						})
+						outputHTML+='<tr><td colspan="2" class="effHead"></td></tr>';
+					}
+					outputHTML+="</table>";
+				}
+			}
+		})
+		
+	} else
+		outputHTML("Unit NOT FOUND in data.")
+	$("#rawMod").html(outputHTML);
+}
+
+$(document).ready( function(e) {
+      var unitRQ=urlParam("id");
+      if (unitRQ!="") {
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain",
+	        crossDomain: true,
+	        url: jsonURL,
+	        success: function(data, textStatus, request){
+  	    		     buildDB(data, unitRQ);
+	 	      },
+      		error: function(jqXHR, textStatus, errorThrown) {
+      			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+      		}
+	    })
+	    } else {
+	      outputHTML="No ID specified";
+	      $("#rawMod").html(outputHTML);
+	    }
+})
+</script>
+</body>
+</html>
