@@ -50,7 +50,7 @@ if (window.location.hash == '#_=_') {
 <!-- Main Body Space-->
 <div class="text-center container-fluid">
 <h2>Squad Builder R6 - <span class="text-danger">Global</span></h2>
-<h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h5>
+<h5><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Syncing data</kbd></h5>
 <div class="row" id="sbMenu" data-spy="affix" data-offset-top="100">
 	<a href="#" role="button" class="btn btn-success btn-sm" id="refreshData"><i class="fa fa-cloud-download"></i> Sync data</a>
 	<a href="#" role="button" id="moveInactive" class="btn btn-primary btn-sm"><i class="fa fa-filter"></i> Active Skills Only</a>
@@ -220,7 +220,7 @@ if (window.location.hash == '#_=_') {
 	<div class="text-center">
 	    <h3 class="text-primary"><b>Syncing data</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
-	    <h4 class="text-primary"><p>This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future.</p><p>Thank you for your patience.</p></h4>
+	    <h4 class="text-primary" id="msg_status"><p>This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future.</p><p>Thank you for your patience.</p></h4>
 	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
 	</div>
       </div>
@@ -449,7 +449,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     $("#alertmodal").modal("hide");
     $('#progressModal').modal({
     	keyboard:false,
-    	backdrop:'static',
+    	//backdrop:'static',
     	toggle:true
     })
     $.ajax({
@@ -457,6 +457,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         contentType: "text/plain; charset=UTF-8",
         url: jsonURL,
         success: function(data, textStatus, request){
+        	$("#msg_status").text("Data downloaded. Processing / compressing data now.");
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
@@ -491,7 +492,7 @@ $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",con
 	    /*Init loader*/
 	    $('#progressModal').modal({
 	    	keyboard:false,
-	    	backdrop:'static',
+	    	//backdrop:'static',
 	    	toggle:true
 	    })
 	    $.ajax({
@@ -500,6 +501,7 @@ $('.unitBox').popover({trigger:"hover",title:"Did you know?",placement:"top",con
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
 	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		$("#msg_status").text("Data downloaded. Processing / compressing data now.");
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
 			localStorage.setItem("skillsguideglobaldate",lastModified);
