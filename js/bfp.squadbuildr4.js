@@ -300,7 +300,11 @@ function checkUpdate(fileURL,localDate) {
     		lastModified = request.getResponseHeader("Last-Modified");
     		if (Date.parse(lastModified) > Date.parse(localDate))
     			$("#alertmodal").modal("show")
- 	}
+ 	},
+ 	error: function(jqXHR, textStatus, errorThrown) {
+			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+			$('#progressModal').modal("hide");
+	}
     })
 }
 
