@@ -220,7 +220,7 @@ if (window.location.hash == '#_=_') {
 	<div class="text-center">
 	    <h3 class="text-primary"><b>Syncing data</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
-	    <h4 class="text-primary"><p>This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future.</p><p>Thank you for your patience.</p></h4>
+	    <h4 class="text-primary" id="msg_status"><p>This one-off sync can take a while depending on your connection and devices. You will be prompted for data-updates in future.</p><p>Thank you for your patience.</p></h4>
 	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
 	</div>
       </div>
@@ -462,6 +462,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         contentType: "text/plain; charset=UTF-8",
         url: jsonURL,
         success: function(data, textStatus, request){
+        	$("#msg_status").text("Data downloaded. Processing / compressing data now.");
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
@@ -505,6 +506,7 @@ $('#progressModal').modal({
 	        contentType: "text/plain; charset=UTF-8",
 	        url: jsonURL,
 	        success: function(data, textStatus, request){
+	        	$("#msg_status").text("Data downloaded. Processing / compressing data now.");
 	    		lastModified = request.getResponseHeader("Last-Modified");
 	    		/*Save in local storage*/
 			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
