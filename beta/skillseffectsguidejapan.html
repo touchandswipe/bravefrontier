@@ -252,7 +252,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     })
     $.ajax({
         dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
+        contentType: "application/json",
         url: jsonURL,
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
@@ -268,7 +268,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		var headers = request.getAllResponseHeaders();
-                alert(headers);
+                console.log(headers);
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
