@@ -267,6 +267,8 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 	},
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
+    		var headers = request.getAllResponseHeaders();
+                alert(headers);
     		rawParseObj=[]; /*reset*/
     		buildDB(data);
     		/*Save in local storage*/
