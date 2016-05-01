@@ -206,6 +206,20 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="height:90%">
+    <div class="modal-content" style="height:100%">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Dream EVO Skills</h3></div>
+      <div class="modal-body" style="height:100%">
+      	<div class="row" style="height:90%">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Alert Modal -->
 <div class="modal" id="alertmodal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -221,7 +235,7 @@ if (window.location.hash == '#_=_') {
   </div>
 </div>
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
-<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommonbeta.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommon.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
@@ -240,6 +254,16 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         dataType: "json",
         contentType: "text/plain; charset=UTF-8",
         url: jsonURL,
+        xhr: function() {
+        	var xhr = new window.XMLHttpRequest();
+		xhr.addEventListener("progress", function(evt) {
+	           if (evt.lengthComputable) {
+	               var percentComplete = (evt.loaded / evt.total) * 100;
+	                console.log("Progress "+percentComplete+"%");
+	           }
+		}, false);
+	       return xhr;
+	},
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
     		rawParseObj=[]; /*reset*/
@@ -308,6 +332,5 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
-<script id="cid0020000112449143277" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
