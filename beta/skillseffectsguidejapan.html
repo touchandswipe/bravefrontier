@@ -254,16 +254,14 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         dataType: "json",
         contentType: "application/json",
         url: jsonURL,
-        xhr: function() {
-        	var xhr = new window.XMLHttpRequest();
-		xhr.addEventListener("progress", function(evt) {
+        beforeSend: function(XHR) {
+		XHR.addEventListener("progress", function(evt) {
 	           if (evt.lengthComputable) {
 	           	var percentComplete = (evt.loaded / evt.total) * 100;
 			console.log("Progress "+percentComplete+"%");
 	           } else
 	           	console.log("No length."+evt.total)
 		}, false);
-	       return xhr;
 	},
         success: function(data, textStatus, request){
     		lastModified = request.getResponseHeader("Last-Modified");
