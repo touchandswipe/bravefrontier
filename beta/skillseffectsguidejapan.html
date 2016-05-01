@@ -256,6 +256,9 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
 		xhr.addEventListener("progress", function(evt) {
+    		var clength1 = evt.target.getResponseHeader('x-decompressed-content-length');
+    		var clength2 = evt.target.getResponseHeader('content-length');
+    		console.log(clength1 + " " +clength2);
 	           if (evt.lengthComputable) {
 	           	var percentComplete = (evt.loaded / evt.total) * 100;
 			console.log("Progress "+percentComplete+"%");
