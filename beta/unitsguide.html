@@ -1914,6 +1914,7 @@ $(document).ready( function(e) {
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
+		dataType: 'jsonp',
 		xhr: function() {
 	        	var xhr = new window.XMLHttpRequest();
 			xhr.addEventListener("progress", function(evt) {
@@ -1977,6 +1978,7 @@ $(document).ready( function(e) {
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
+		dataType: 'jsonp',
 		xhr: function() {
 	        	var xhr = new window.XMLHttpRequest();
 			xhr.addEventListener("progress", function(evt) {
