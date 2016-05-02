@@ -1128,9 +1128,13 @@ function initialize(fusionData) {
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 		/*Dream evo button*/
-		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
-			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> DreamEvo Skills</button> ';
+		if (ovrarity==8 && ovGlobal.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsglobal?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> SP Options Global</button> ';
 		}
+		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> SP Options 日本</button> ';
+		}
+		/*effects guide btns*/
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?query='+encodeURIComponent(ovname)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
 	     	if (ovJapan.toLowerCase()!="false")	
@@ -1910,7 +1914,22 @@ $(document).ready( function(e) {
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
-		dataType: 'jsonp',
+		xhr: function() {
+	        	var xhr = new window.XMLHttpRequest();
+			xhr.addEventListener("progress", function(evt) {
+		    		if (evt.lengthComputable)
+		    			var cLength=evt.total;
+		    		else
+		    			var cLength= +evt.target.getResponseHeader('content-length')*15; //estimated uncompressed. load returns uncompressed downloaded.
+		           	var percentComplete = (evt.loaded / cLength) * 100;
+		           	$("#loaderP").width(percentComplete+"%");
+				console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+				if (evt.loaded >= cLength) {
+					$("#loaderP").width("100%");
+				}
+			}, false);
+		       return xhr;
+		},
 		success: function (quickData) {
 			/*Total JP Global Release Count*/
 			var serverUnitsCount=0;
@@ -1958,7 +1977,22 @@ $(document).ready( function(e) {
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
-		dataType: 'jsonp',
+		xhr: function() {
+	        	var xhr = new window.XMLHttpRequest();
+			xhr.addEventListener("progress", function(evt) {
+		    		if (evt.lengthComputable)
+		    			var cLength=evt.total;
+		    		else
+		    			var cLength= +evt.target.getResponseHeader('content-length')*15; //estimated uncompressed. load returns uncompressed downloaded.
+		           	var percentComplete = (evt.loaded / cLength) * 100;
+		           	$("#loaderP").width(percentComplete+"%");
+				console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+				if (evt.loaded >= cLength) {
+					$("#loaderP").width("100%");
+				}
+			}, false);
+		       return xhr;
+		},
 		success: function (fusionData) {
 			/*Total JP Global Release Count*/
 			var serverUnitsCount=0;
@@ -2911,7 +2945,8 @@ $(window).load(function() {
 	<div class="text-center">
 	    <h3 class="text-primary"><b>Summoning units</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
-	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5 id="loadStatus">Downloading</h5>
+	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
 	    <h4 class="text-default">Try the <a href="unitsguidelite">LITE guide</a>, for mobile or if this fails.</h4>
 	    <h5>(Note: Images will load progressively.)</h5>
 	</div>
@@ -3555,7 +3590,7 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="HitCount +">HitCount+
+	    <input type="checkbox" class="filSkills" value="HitCount+">HitCount+
 	  </label>
 	  
 	  <label class="btn btn-default">
@@ -3563,11 +3598,7 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="OverDrive Fill+">OverDrive Fill Rate+
-	  </label>
-	  
-	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="!OverDrive Fill[^+]{1,1}*">OverDrive Fill
+	    <input type="checkbox" class="filSkills" value="OverDrive Fill">OverDrive Fill Related
 	  </label>
 	</div>
 	<h6><small class="text-danger">*Note* &quot;Any Skill&quot; selection takes precedence.</small></h6>
@@ -3588,7 +3619,7 @@ $(window).load(function() {
 <div class="modal" id="dreammodal" tabindex="-1" role="dialog">
   <div class="modal-dialog" style="height:90%">
     <div class="modal-content" style="height:100%">
-    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Dream EVO Skills</h3></div>
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Omni Evo Skills</h3></div>
       <div class="modal-body" style="height:100%">
       	<div class="row" style="height:90%">
 		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
@@ -3609,6 +3640,5 @@ $(window).load(function() {
     </div>
   </div>
 </div>
-<script id="cid0020000115892179904" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 500px;height: 500px;">{"handle":"summonerscentral","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"bl","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":500,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
