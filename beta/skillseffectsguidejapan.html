@@ -252,6 +252,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     $.ajax({
         dataType: "json",
         contentType: "application/json",
+        headers: { 'Accept-Encoding' : 'deflate' },
         url: jsonURL,
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
