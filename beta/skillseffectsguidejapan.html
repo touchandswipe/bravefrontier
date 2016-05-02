@@ -252,7 +252,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     $.ajax({
 	contentType: "application/json",
         url: jsonURL,
-        crossDomain:true;
+        crossDomain:true,
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
 		xhr.addEventListener("progress", function(evt) {
