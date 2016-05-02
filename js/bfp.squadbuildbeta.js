@@ -1,3 +1,4 @@
+procID=[1,47,64]; /*proc id for hits on new data structure*/
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
 	{name:"No Sphere",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
@@ -299,7 +300,11 @@ function checkUpdate(fileURL,localDate) {
     		lastModified = request.getResponseHeader("Last-Modified");
     		if (Date.parse(lastModified) > Date.parse(localDate))
     			$("#alertmodal").modal("show")
- 	}
+ 	},
+ 	error: function(jqXHR, textStatus, errorThrown) {
+			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+			$('#progressModal').modal("hide");
+	}
     })
 }
 
@@ -1446,6 +1451,7 @@ function loadUnitSummary(arrayID) {
 	$.each(skillScope, function(shortSkill,longSkill) {
 		if (rawParseObj[arrayID][shortSkill]!="none") {
 			unitHTML+='<h4 class="text-primary">'+longSkill+'</h4>';
+			unitHTML+='<h6 class="text-info" style="padding:0 20px;">'+rawParseObj[arrayID][shortSkill+"Desc"]+'</h6>';
 			unitHTML+='<h6>';
 			if (rawParseObj[arrayID][shortSkill+'hits'])
 				unitHTML+='<b>Hits:</b> '+rawParseObj[arrayID][shortSkill+'hits']+" ";
@@ -2096,28 +2102,31 @@ if (typeof mappedNames !== 'undefined') {
         } else
         	unitObj.name=valObj.name;
         unitObj.cost=valObj.cost;
-        unitObj.lshits=valObj.hits;
-        unitObj.lsdc=valObj["max bc generated"];
+        unitObj.lshits=valObj["damage frames"]["hits"];
+        unitObj.lsdc= +valObj["drop check count"] * +valObj["damage frames"]["hits"];
         unitObj.element=valObj.element;
         unitObj.uid=valObj.id;
         unitObj.id=valObj.guide_id;
         unitObj.rarity=valObj.rarity;
-        if (valObj["leader skill"])
+        if (valObj["leader skill"]) {
         	unitObj.ls=valObj["leader skill"];
+        	unitObj.lsDesc=valObj["leader skill"]["desc"];
+        }
         else
         	unitObj.ls="none";
 	unitObj.bbdmg=0;
 	unitObj.bbflat=0;
 	if (valObj["bb"]) {
-		if (valObj["bb"]["hits"])
-			unitObj.bbhits=valObj.bb.hits;
+		unitObj.bbDesc=valObj["bb"]["desc"];
+		if (procID.indexOf( +valObj["bb"]["damage frames"][0]["proc id"] )!=-1)
+			unitObj.bbhits=valObj["bb"]["damage frames"][0]["hits"];
 		else
 			unitObj.bbhits=0;
 		if (valObj["bb"]["levels"]) {
 			if (valObj["bb"]["levels"][9]) {
 		        	unitObj.bb=valObj["bb"]["levels"][9];
 		        	unitObj.bbcost=valObj["bb"]["levels"][9]["bc cost"];
-		        	unitObj.bbdc=valObj["bb"]["max bc generated"];
+		        	unitObj.bbdc= +valObj["bb"]["drop check count"] * +unitObj.bbhits;
 		        	if (valObj["bb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["bb"]["levels"][9]["effects"]) {
 						if (unitObj.bbdmg==0) {
@@ -2137,15 +2146,16 @@ if (typeof mappedNames !== 'undefined') {
 	unitObj.sbbdmg=0;
 	unitObj.sbbflat=0;
 	if (valObj["sbb"]) {
+		unitObj.sbbDesc=valObj["sbb"]["desc"];
 		if (valObj["sbb"]["levels"]) {
-			if (valObj["sbb"]["hits"])
-				unitObj.sbbhits=valObj.sbb.hits;
+			if (procID.indexOf( +valObj["sbb"]["damage frames"][0]["proc id"] )!=-1)
+				unitObj.sbbhits=valObj["sbb"]["damage frames"][0]["hits"];
 			else
 				unitObj.sbbhits=0;
 			if (valObj["sbb"]["levels"][9]) {
 		        	unitObj.sbb=valObj["sbb"]["levels"][9];
 		        	unitObj.sbbcost=valObj["sbb"]["levels"][9]["bc cost"];
-		        	unitObj.sbbdc=valObj["sbb"]["max bc generated"];
+		        	unitObj.sbbdc= +valObj["sbb"]["drop check count"] * +unitObj.sbbhits;
 		        	if (valObj["sbb"]["levels"][9]["effects"]) {
 		        		for (var k in valObj["sbb"]["levels"][9]["effects"]) {
 		        			if (unitObj.sbbdmg==0) {
@@ -2165,32 +2175,35 @@ if (typeof mappedNames !== 'undefined') {
         unitObj.ubbdmg=0;
 	unitObj.ubbflat=0;
         if (valObj["ubb"]) {
-        	if (valObj["ubb"]["hits"])
-			unitObj.ubbhits=valObj.ubb.hits;
+        	unitObj.ubbDesc=valObj["ubb"]["desc"];
+        	if (procID.indexOf( +valObj["ubb"]["damage frames"][0]["proc id"] )!=-1)
+			unitObj.ubbhits=valObj["ubb"]["damage frames"][0]["hits"];
 		else
 			unitObj.ubbhits=0;
         	if (valObj["ubb"]["levels"]) {
-	        	if (valObj["ubb"]["levels"][9])
-	        		unitObj.ubb=valObj["ubb"]["levels"][9];
-		        	if (valObj["ubb"]["levels"][9]["effects"]) {
-		        		unitObj.ubbcost=valObj["ubb"]["levels"][9]["bc cost"];
-		        		unitObj.ubbdc=valObj["ubb"]["max bc generated"];
-		        		for (var k in valObj["ubb"]["levels"][9]["effects"]) {
+	        	if (valObj["ubb"]["levels"][0])
+	        		unitObj.ubb=valObj["ubb"]["levels"][0];
+		        	if (valObj["ubb"]["levels"][0]["effects"]) {
+		        		unitObj.ubbcost=valObj["ubb"]["levels"][0]["bc cost"];
+		        		unitObj.ubbdc= +valObj["ubb"]["drop check count"] * +unitObj.ubbhits;
+		        		for (var k in valObj["ubb"]["levels"][0]["effects"]) {
 		        			if (unitObj.ubbdmg==0) {
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk%']) ? valObj.ubb.levels[9].effects[k]['bb atk%'] : 0 ;
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb added atk% based on hp']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +valObj.ubb.levels[9].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
-    							unitObj.ubbdmg=(valObj.ubb.levels[9].effects[k]['bb atk% inc per use']) ? +valObj.ubb.levels[9].effects[k]['bb base atk%'] + +(+valObj.ubb.levels[9].effects[k]['bb atk% inc per use'] * +valObj.ubb.levels[9].effects[k]['bb atk% max number of inc']) : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb atk%']) ? valObj.ubb.levels[0].effects[k]['bb atk%'] : 0 ;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb added atk% based on hp']) ? +valObj.ubb.levels[0].effects[k]['bb base atk%'] + +valObj.ubb.levels[0].effects[k]['bb added atk% based on hp'] : unitObj.ubbdmg;
+    							unitObj.ubbdmg=(valObj.ubb.levels[0].effects[k]['bb atk% inc per use']) ? +valObj.ubb.levels[0].effects[k]['bb base atk%'] + +(+valObj.ubb.levels[0].effects[k]['bb atk% inc per use'] * +valObj.ubb.levels[0].effects[k]['bb atk% max number of inc']) : unitObj.ubbdmg;
 		        			}
     						if (unitObj.ubbflat==0)
-    							unitObj.ubbflat=(valObj.ubb.levels[9].effects[k]['bb flat atk']) ? valObj.ubb.levels[9].effects[k]['bb flat atk'] : 0;
+    							unitObj.ubbflat=(valObj.ubb.levels[0].effects[k]['bb flat atk']) ? valObj.ubb.levels[0].effects[k]['bb flat atk'] : 0;
 		        		}
 		        	}
         	}
 	}
         else
         	unitObj.ubb="none";
-        if (valObj["extra skill"])
+        if (valObj["extra skill"]) {
         	unitObj.es=valObj["extra skill"];
+        	unitObj.esDesc=valObj["extra skill"]["desc"];
+        }
         else
         	unitObj.es="none";
         /*stats - lordonly*/
