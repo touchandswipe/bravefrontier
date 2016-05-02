@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Brave Frontier - Unit Skills and Effects Guide Japan RxA  - A community effort by Brave Frontier PROs" />
+    <meta name="author" content="Sam GreenPuck" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brave Frontier - Unit Skills and Effects Guide Japan RxA - by Brave Frontier PROs</title>
+    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//touchandswipe.github.io/bravefrontier/css/typeaheadjs.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand|Raleway:600,400' rel='stylesheet' type='text/css'>
+    <link href="//touchandswipe.github.io/bravefrontier/css/sitecommon.css" rel="stylesheet">
+    <link href="//touchandswipe.github.io/bravefrontier/css/skillsguide.css" rel="stylesheet">
+<!-- START JSON Code-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/lz-string-1.3.3-min.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript">
+if (navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i))
+	document.write('<meta name="viewport" content="width=500, user-scalable=yes" />');
+/*resolve hash prob with code*/
+if (window.location.hash == '#_=_') {
+    window.location.hash = '';
+    history.pushState('', document.title, window.location.pathname);
+    e.preventDefault();
+}
+</script>
+</head>
+
+<!-- MAIN BODY CONTENT -->
+<body>
+<div class="container-fluid" id="bfp_mast"></div>
+<!-- Main Body Space-->
+<div class="container-fluid text-center">
+<h2>Skills & Effects Guide - <span class="text-danger">日本 (Japan)</span> Server</h2>
+<h6><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
+
+<!-- Buttons row -->
+<div class="row" id="btnMenu" data-spy="affix" data-offset-top="100">
+	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
+	<!-- Leader Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Leader Skill <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="lsEffect">bb gauge fill rate%</a></li>
+	    <li><a href="#" class="lsEffect">bc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">bc fill per turn</a></li>
+	    <li><a href="#" class="lsEffect">hc drop% for spark</a></li>
+	    <li><a href="#" class="lsEffect">hc production%</a></li>
+	    <li><a href="#" class="lsEffect">hc effectiveness%</a></li>
+	    <li><a href="#" class="lsEffect">damage% for spark</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for crits</a></li>
+	    <li><a href="#" class="lsEffect">dmg% for elemental weakness</a></li>
+	    <li><a href="#" class="lsEffect">turn heal</a></li>
+	  </ul>
+	</div>
+	<!-- BB Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By BB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect">def% buff</a></li>
+	    <li><a href="#" class="skillEffect">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect">heal</a></li>
+	    <li><a href="#" class="skillEffect">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- SBB Skills button -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By SBB <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="skillEffect2">atk% buff</a></li>
+	    <li><a href="#" class="skillEffect2">def% buff</a></li>
+	    <li><a href="#" class="skillEffect2">rec% buff</a></li>
+	    <li><a href="#" class="skillEffect2">crit% buff</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
+	    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
+	    <li><a href="#" class="skillEffect2">bb bc%</a></li>
+	    <li><a href="#" class="skillEffect2">spark dmg% buff</a></li>
+	    <li><a href="#" class="skillEffect2">heal</a></li>
+	    <li><a href="#" class="skillEffect2">gradual heal</a></li>
+	  </ul>
+	</div>
+	<!-- Rarity Filter -->
+	<div class="btn-group btn-group-xs">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">By Rarity <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="#" class="raritySelect">1<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">2<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">3<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">4<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">5<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">6<i class="fa fa-star-o"></i></a></li>
+	    <li><a href="#" class="raritySelect">7<i class="fa fa-star-o"></i></a></li>
+	  </ul>
+	</div>
+</div> <!-- End button row -->
+
+<div class="text-center" style="margin:10px 0;">
+<!-- NEWResponsiveBlog -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!--Search-->
+<div class="input-group" style="margin-bottom:10px;">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="searchIdBtn">Enter UNIT ID</button></span>
+        <input type="search" placeholder="e.g. 100 or 500" class="form-control" id="searchIdBox">
+</div>
+<div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" id="searchNameBtn">Search Unit Name</button></span>
+        <input type="search" placeholder="e.g. elza or ラムナ" class="form-control" id="searchNameBox">
+</div>
+
+<!--Containing Div-->
+<div class="container-fluid" id="rawMod">
+    <div class="panel-group" id="rawTable"><h3 class="text-success"><i class="fa fa-question-circle fa-lg"></i> HELP: See nothing? Search for the unit name you wish to view.</h3></div>
+</div>
+
+<h5><i class="fa fa-heart-o fa-lg"></i> This is a presented view based on data-mined by <a href="http://www.reddit.com/user/Deathmax" target="_blank">DeathMax</a>.</h5>
+<div class="text-center" style="margin:10px 0;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="text-center" style="margin:10px 0;">
+<!-- NEWResponsiveBlog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2145833818900192"
+     data-ad-slot="1729026867"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!-- disqus discussion -->
+<div id="disqus_thread" style="width:100%;margin:0 auto;">
+    <script type="text/javascript">
+        var disqus_shortname = 'bravefrontierpros';
+        var disqus_url = location.protocol + '//' + location.host + location.pathname;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div> <!-- /container -->
+<div id="bfp_foot"></div>
+<!-- Modal for Progress-->
+<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myprogressModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+	<div class="text-center">
+	    <h3 class="text-primary"><b>Finding Koalas</b></h3>
+	    <i class="fa fa-spinner fa-spin fa-5x"></i>
+	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="height:90%">
+    <div class="modal-content" style="height:100%">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Dream EVO Skills</h3></div>
+      <div class="modal-body" style="height:100%">
+      	<div class="row" style="height:90%">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alert Modal -->
+<div class="modal" id="alertmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Lugina Grumbles Grumbles</h3></div>
+      <div class="modal-body">
+	<div id="alertSpace" class="alert">
+	<i class="fa fa-fire-extinguisher"></i> <strong>New data available for sync</strong>
+	You can sync now or later at any time. Do you wish to sync now? <div class="text-right"><button type="button" class="btn btn-success" id="syncNewBtn"><i class="fa fa-cloud-download"></i> Sync Now</button> <button type="button" class="btn btn-default" data-dismiss="modal" id="syncCancel">Cancel</button></div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.squadjpmapping.js"></script>
+<script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommon.js"></script>
+<script type="text/javascript">
+jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
+imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
+/*Refresh data*/
+$(document).on("click", '#refreshData, #syncNewBtn', function(e){
+    /*close alert if open*/
+    $('#alertmodal').modal("hide");
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:"static",
+    	show:true
+    })
+    $.ajax({
+	contentType: "application/json",
+        url: jsonURL,
+        crossDomain:true,
+        xhr: function() {
+        	var xhr = new window.XMLHttpRequest();
+		xhr.addEventListener("progress", function(evt) {
+    		if (evt.lengthComputable)
+    			var cLength=evt.total;
+    		else
+    			var cLength=evt.target.getResponseHeader('content-length');
+           	var percentComplete = (evt.loaded / cLength) * 100;
+		console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+		}, false);
+	       return xhr;
+	},
+        success: function(data, textStatus, request){
+    		lastModified = request.getResponseHeader("Last-Modified");
+    		var headers = request.getAllResponseHeaders();
+                console.log(headers);
+    		rawParseObj=[]; /*reset*/
+    		buildDB(data);
+    		/*Save in local storage*/
+		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+		localStorage.setItem("skillsguidejapandate",lastModified);
+    		$('#lastModDate').text("Server data - "+lastModified);
+ 	},
+	error: function(jqXHR, textStatus, errorThrown) {
+		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+		$('#progressModal').modal("hide");
+	}
+    });
+})
+$(document).ready( function(e) {
+/*load masthead shared*/
+$('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
+$('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html');
+/*LocalStorage Retreival and storage*/
+    if (localStorage.skillsguidejapan) {
+	guideData=LZString.decompressFromUTF16(localStorage.skillsguidejapan);
+	if (isValidJSON(guideData)) {
+		buildDB(JSON.parse(guideData));
+		$('#lastModDate').text("Using local cache - "+localStorage.skillsguidejapandate);
+		/*checks for update on server*/
+		checkUpdate(jsonURL,localStorage.skillsguidejapandate);
+	} else
+		resetLocalData("skillsguidejapan",true)
+    } else {
+	    /*Init loader*/
+	    $('#progressModal').modal({
+	    	keyboard:false,
+	    	backdrop:'static',
+	    	toggle:true
+	    })
+	    $.ajax({
+	        dataType: "json",
+	        contentType: "text/plain; charset=UTF-8",
+	        url: jsonURL,
+	        success: function(data, textStatus, request){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguidejapandate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+	    		buildDB(data);
+	 	},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+			$('#progressModal').modal("hide");
+		}
+	    })
+    }
+})
+</script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48617906-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
