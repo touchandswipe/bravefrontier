@@ -1910,7 +1910,6 @@ $(document).ready( function(e) {
 	var url = [gURL];
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
-	url.push('&callback=?');
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
@@ -1957,7 +1956,6 @@ $(document).ready( function(e) {
 	var url = [gURL];
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
-	url.push('&callback=?');
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
