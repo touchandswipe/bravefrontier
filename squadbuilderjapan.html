@@ -467,14 +467,16 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 	}
     }).done(function(data, textStatus, request){
         	$("#msg_status").text("Data downloaded. Processing / compressing data now.");
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		rawParseObj=[]; /*reset*/
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguidejapandate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
-    		refreshALL();
+    		setTimeout( function(){
+	        	lastModified = request.getResponseHeader("Last-Modified");
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguidejapandate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+	    		refreshALL();	
+        	},500);
     });
 })
 
