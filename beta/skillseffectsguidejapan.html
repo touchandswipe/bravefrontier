@@ -200,6 +200,8 @@ if (window.location.hash == '#_=_') {
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
 	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+	</div>
 	</div>
       </div>
     </div>
@@ -262,8 +264,10 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     			var cLength=28000000; //estimated uncompressed. load returns uncompressed downloaded.
     			//var cLength=evt.target.getResponseHeader('content-length');
            	var percentComplete = (evt.loaded / cLength) * 100;
+           	$("#loaderP").width(percentComplete+"%");
 		console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
 		if (evt.loaded >= cLength) {
+			$("#loaderP").width("100%");
 			console.log("Fully downloaded.")
 		}
 		}, false);
