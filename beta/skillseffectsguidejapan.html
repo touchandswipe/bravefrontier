@@ -262,8 +262,7 @@ $("#loaderP").width("0%");
 	    		if (evt.lengthComputable)
 	    			var cLength=evt.total;
 	    		else
-	    			var cLength=28000000; //estimated uncompressed. load returns uncompressed downloaded.
-	    			//var cLength=evt.target.getResponseHeader('content-length');
+	    			var cLength= +evt.target.getResponseHeader('content-length')*15; //estimated uncompressed. load returns uncompressed downloaded.
 	           	var percentComplete = (evt.loaded / cLength) * 100;
 	           	$("#loaderP").width(percentComplete+"%");
 			console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
