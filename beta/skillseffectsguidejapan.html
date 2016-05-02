@@ -242,7 +242,7 @@ if (window.location.hash == '#_=_') {
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
 
-function reSyncData() {
+function reSyncData(dataString) {
 $("#loaderP").width("0%");
 /*close alert if open*/
     $('#alertmodal').modal("hide");
@@ -259,18 +259,17 @@ $("#loaderP").width("0%");
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
 		xhr.addEventListener("progress", function(evt) {
-    		if (evt.lengthComputable)
-    			var cLength=evt.total;
-    		else
-    			var cLength=28000000; //estimated uncompressed. load returns uncompressed downloaded.
-    			//var cLength=evt.target.getResponseHeader('content-length');
-           	var percentComplete = (evt.loaded / cLength) * 100;
-           	$("#loaderP").width(percentComplete+"%");
-		console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
-		if (evt.loaded >= cLength) {
-			$("#loaderP").width("100%");
-			console.log("Fully downloaded.")
-		}
+	    		if (evt.lengthComputable)
+	    			var cLength=evt.total;
+	    		else
+	    			var cLength=28000000; //estimated uncompressed. load returns uncompressed downloaded.
+	    			//var cLength=evt.target.getResponseHeader('content-length');
+	           	var percentComplete = (evt.loaded / cLength) * 100;
+	           	$("#loaderP").width(percentComplete+"%");
+			console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+			if (evt.loaded >= cLength) {
+				$("#loaderP").width("100%");
+			}
 		}, false);
 	       return xhr;
 	},
@@ -283,8 +282,8 @@ $("#loaderP").width("0%");
 	    		rawParseObj=[]; /*reset*/
 	    		buildDB(data);
 	    		/*Save in local storage*/
-			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguidejapandate",lastModified);
+			localStorage.setItem(dataString,LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem(dataString+"date",lastModified);
 	    		$('#lastModDate').text("Server data - "+lastModified);
         	},1000);
  	},
@@ -297,7 +296,7 @@ $("#loaderP").width("0%");
 
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
-    reSyncData()
+    reSyncData("skillsguidejapan")
 })
 $(document).ready( function(e) {
 /*load masthead shared*/
@@ -314,7 +313,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	} else
 		resetLocalData("skillsguidejapan",true)
     } else {
-	    reSyncData()
+	    reSyncData("skillsguidejapan")
     }
 })
 </script>
