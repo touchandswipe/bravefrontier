@@ -2,6 +2,58 @@ countVar=0;
 collapseID=1;
 rawParseObj=[];
 procID=[1,13,29,47,49,64];
+/*Progress and re-sync*/
+function reSyncData(dataString) {
+$("#loaderP").width("0%");
+/*close alert if open*/
+    $('#alertmodal').modal("hide");
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:"static",
+    	show:true
+    })
+    $.ajax({
+	contentType: "application/json",
+        url: jsonURL,
+        crossDomain:true,
+        xhr: function() {
+        	var xhr = new window.XMLHttpRequest();
+		xhr.addEventListener("progress", function(evt) {
+	    		if (evt.lengthComputable)
+	    			var cLength=evt.total;
+	    		else
+	    			var cLength= +evt.target.getResponseHeader('content-length')*15; //estimated uncompressed. load returns uncompressed downloaded.
+	           	var percentComplete = (evt.loaded / cLength) * 100;
+	           	$("#loaderP").width(percentComplete+"%");
+			console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+			if (evt.loaded >= cLength) {
+				$("#loaderP").width("100%");
+			}
+		}, false);
+	       return xhr;
+	},
+        success: function(data, textStatus, request){
+        	$("#loadStatus").text("Compressing, processing for search...");
+        	setTimeout(function(){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		//var headers = request.getAllResponseHeaders();
+	                //console.log(headers);
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem(dataString,LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem(dataString+"date",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+        	},1000);
+ 	},
+	error: function(jqXHR, textStatus, errorThrown) {
+		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+		$('#progressModal').modal("hide");
+	}
+    });
+}
+
 /*Check filedate*/
 function checkUpdate(fileURL,localDate) {
     $.ajax({
