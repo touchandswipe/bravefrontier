@@ -199,7 +199,7 @@ if (window.location.hash == '#_=_') {
 	    <h3 class="text-primary"><b>Finding Koalas</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
-	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	    <h5 id="loadStatus">Downloading</h5>
 	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
 	</div>
 	</div>
@@ -241,9 +241,9 @@ if (window.location.hash == '#_=_') {
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/jp/info.json";
 imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
-/*Refresh data*/
-$(document).on("click", '#refreshData, #syncNewBtn', function(e){
-    /*close alert if open*/
+
+function reSyncData() {
+/*close alert if open*/
     $('#alertmodal').modal("hide");
     /*Init loader*/
     $('#progressModal').modal({
@@ -274,10 +274,11 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 	       return xhr;
 	},
         success: function(data, textStatus, request){
+        	$("#loadStatus").text("Compressing, processing for search...");
         	setTimeout(function(){
 	    		lastModified = request.getResponseHeader("Last-Modified");
-	    		var headers = request.getAllResponseHeaders();
-	                console.log(headers);
+	    		//var headers = request.getAllResponseHeaders();
+	                //console.log(headers);
 	    		rawParseObj=[]; /*reset*/
 	    		buildDB(data);
 	    		/*Save in local storage*/
@@ -291,6 +292,11 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 		$('#progressModal').modal("hide");
 	}
     });
+}
+
+/*Refresh data*/
+$(document).on("click", '#refreshData, #syncNewBtn', function(e){
+    reSyncData()
 })
 $(document).ready( function(e) {
 /*load masthead shared*/
@@ -307,29 +313,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	} else
 		resetLocalData("skillsguidejapan",true)
     } else {
-	    /*Init loader*/
-	    $('#progressModal').modal({
-	    	keyboard:false,
-	    	backdrop:'static',
-	    	toggle:true
-	    })
-	    $.ajax({
-	        dataType: "json",
-	        contentType: "text/plain; charset=UTF-8",
-	        url: jsonURL,
-	        success: function(data, textStatus, request){
-	    		lastModified = request.getResponseHeader("Last-Modified");
-	    		/*Save in local storage*/
-			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguidejapandate",lastModified);
-	    		$('#lastModDate').text("Server data - "+lastModified);
-	    		buildDB(data);
-	 	},
-		error: function(jqXHR, textStatus, errorThrown) {
-			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
-			$('#progressModal').modal("hide");
-		}
-	    })
+	    reSyncData()
     }
 })
 </script>
