@@ -1978,7 +1978,7 @@ $(document).ready( function(e) {
 			}, false);
 		       return xhr;
 		},
-		success: function (fusionData) {
+		success: function (fusionData, textStatus, request) {
 			var headers = request.getAllResponseHeaders();
 	                console.log(headers);
 			setTimeout(function(){
