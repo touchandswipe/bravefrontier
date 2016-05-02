@@ -274,15 +274,17 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
 	       return xhr;
 	},
         success: function(data, textStatus, request){
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		var headers = request.getAllResponseHeaders();
-                console.log(headers);
-    		rawParseObj=[]; /*reset*/
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguidejapandate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
+        	setTimeout(function(){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		var headers = request.getAllResponseHeaders();
+	                console.log(headers);
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguidejapandate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+        	},1000);
  	},
 	error: function(jqXHR, textStatus, errorThrown) {
 		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
