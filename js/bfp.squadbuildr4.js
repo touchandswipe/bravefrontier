@@ -1,4 +1,4 @@
-procID=[1,47,64]; /*proc id for hits on new data structure*/
+procID=[1,13,29,47,49,64]; /*proc id for hits on new data structure*/
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
 	{name:"No Sphere",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
