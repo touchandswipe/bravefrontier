@@ -458,13 +458,15 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
         url: jsonURL,
         success: function(data, textStatus, request){
         	$("#msg_status").text("Data downloaded. Processing / compressing data now.");
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		rawParseObj=[]; /*reset*/
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguideglobaldate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
+        	setTimeout(function(){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem("skillsguideglobaldate",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+        	},500);
  	},
 	error: function(jqXHR, textStatus, errorThrown) {
 		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
