@@ -250,7 +250,6 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     	show:true
     })
     $.ajax({
-        dataType: "json",
         contentType: false,
         url: jsonURL,
         xhr: function() {
