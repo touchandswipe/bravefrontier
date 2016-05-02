@@ -259,9 +259,13 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     		if (evt.lengthComputable)
     			var cLength=evt.total;
     		else
-    			var cLength=evt.target.getResponseHeader('content-length');
+    			var cLength=28000000; //estimated uncompressed. load returns uncompressed downloaded.
+    			//var cLength=evt.target.getResponseHeader('content-length');
            	var percentComplete = (evt.loaded / cLength) * 100;
 		console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+		if (evt.loaded >= cLength) {
+			console.log("Fully downloaded.")
+		}
 		}, false);
 	       return xhr;
 	},
