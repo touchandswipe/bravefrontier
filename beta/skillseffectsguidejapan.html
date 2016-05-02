@@ -251,8 +251,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     })
     $.ajax({
         dataType: "json",
-        contentType: "application/json",
-        headers: { 'Accept-Encoding' : 'deflate' },
+        contentType: false,
         url: jsonURL,
         xhr: function() {
         	var xhr = new window.XMLHttpRequest();
@@ -261,6 +260,7 @@ $(document).on("click", '#refreshData, #syncNewBtn', function(e){
     			var cLength=evt.lengthComputable;
     		else
     			var cLength=evt.target.getResponseHeader('content-length');
+    		console.log("full length: "+cLength);
            	var percentComplete = (evt.loaded / cLength) * 100;
 		console.log("Progress "+percentComplete+"%");
 		}, false);
