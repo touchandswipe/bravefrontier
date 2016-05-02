@@ -199,7 +199,9 @@ if (window.location.hash == '#_=_') {
 	    <h3 class="text-primary"><b>Finding Koalas</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
-	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	    <h5 id="loadStatus">Downloading</h5>
+	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+	</div>
 	</div>
       </div>
     </div>
@@ -242,34 +244,8 @@ imgPrePath="http://v2.cdn.android.brave.a-lim.jp/";
 
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
-    /*close alert if open*/
-    $('#alertmodal').modal("hide");
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:"static",
-    	show:true
-    })
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: jsonURL,
-        success: function(data, textStatus, request){
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		rawParseObj=[]; /*reset*/
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguidejapandate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
- 	},
-	error: function(jqXHR, textStatus, errorThrown) {
-		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
-		$('#progressModal').modal("hide");
-	}
-    });
+    reSyncData("skillsguidejapan")
 })
-
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
@@ -285,29 +261,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	} else
 		resetLocalData("skillsguidejapan",true)
     } else {
-	    /*Init loader*/
-	    $('#progressModal').modal({
-	    	keyboard:false,
-	    	backdrop:'static',
-	    	toggle:true
-	    })
-	    $.ajax({
-	        dataType: "json",
-	        contentType: "text/plain; charset=UTF-8",
-	        url: jsonURL,
-	        success: function(data, textStatus, request){
-	    		lastModified = request.getResponseHeader("Last-Modified");
-	    		/*Save in local storage*/
-			localStorage.setItem("skillsguidejapan",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguidejapandate",lastModified);
-	    		$('#lastModDate').text("Server data - "+lastModified);
-	    		buildDB(data);
-	 	},
-		error: function(jqXHR, textStatus, errorThrown) {
-			alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
-			$('#progressModal').modal("hide");
-		}
-	    })
+	    reSyncData("skillsguidejapan")
     }
 })
 </script>
@@ -318,7 +272,6 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
