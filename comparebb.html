@@ -259,10 +259,10 @@ function buildTable(unit) {
 	    	var pattern = new RegExp("^" + fKeys[i]);
 	            if (valObj.ubb) {
 	                ubbFound=false;
-	                for (j in valObj.ubb.levels[9].effects) {
-				$.each(valObj.ubb.levels[9].effects[j], function(ubbKey,ubbVal) {
+	                for (j in valObj.ubb.effects) {
+				$.each(valObj.ubb.effects[j], function(ubbKey,ubbVal) {
 		                    	if (ubbKey.toLowerCase().match(pattern) && !ubbFound) {
-			                        tArray3.push({"value":ubbVal,"target":valObj.ubb.levels[9].effects[j]['target type']});
+			                        tArray3.push({"value":ubbVal,"target":valObj.ubb.effects[j]['target type']});
 			                        ubbFound=true;
 					}
 		                })
