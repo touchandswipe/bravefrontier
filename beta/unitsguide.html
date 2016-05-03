@@ -1977,8 +1977,7 @@ $(document).ready( function(e) {
 		       return xhr;
 		},
 		success: function (fusionData, textStatus, request) {
-			var headers = request.getAllResponseHeaders();
-	                console.log(headers);
+			$("#loadStatus").text("Generating tables ...");
 			setTimeout(function(){
 				/*Total JP Global Release Count*/
 				var serverUnitsCount=0;
