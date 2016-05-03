@@ -1910,11 +1910,10 @@ $(document).ready( function(e) {
 	var url = [gURL];
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
-	url.push('&callback=?');
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
-		dataType: 'jsonp',
+		dataType: 'json',
 		success: function (quickData) {
 			/*Total JP Global Release Count*/
 			var serverUnitsCount=0;
@@ -1949,7 +1948,6 @@ $(document).ready( function(e) {
 		backdrop:'static',
 		toggle:true
 	})
-    
     	/*Query Fusion Tables 1st Time*/
     	var query = "SELECT * FROM " +
   	gTable + " ORDER BY 'ID' ASC";
@@ -1958,26 +1956,44 @@ $(document).ready( function(e) {
 	var url = [gURL];
 	url.push('?sql=' + encodedQuery);
 	url.push('&key=' + gKey);
-	url.push('&callback=?');
 	/*Send the JSONP request*/
 	$.ajax({
 		url: url.join(''),
-		dataType: 'jsonp',
-		success: function (fusionData) {
-			/*Total JP Global Release Count*/
-			var serverUnitsCount=0;
-			var gl_idx=fusionData.columns.indexOf("Global Release");
-			var jp_idx=fusionData.columns.indexOf("Japan Release");
-			for (i in fusionData.rows) {
-				if (fusionData.rows[i][gl_idx]=="" || fusionData.rows[i][gl_idx]=="TRUE")
-					serverUnitsCount++;
-				if (fusionData.rows[i][jp_idx]=="" || fusionData.rows[i][jp_idx]=="TRUE")
-					serverUnitsCount++;
-			}
-			/*Save in local storage*/
-			localStorage.setItem("unitsguideadvance",LZString.compressToUTF16(JSON.stringify(fusionData)));
-			localStorage.setItem("unitsguideadvanceCount",serverUnitsCount);
-			initialize(fusionData);
+		dataType: 'json',
+		xhr: function() {
+	        	var xhr = new window.XMLHttpRequest();
+			xhr.addEventListener("progress", function(evt) {
+		    		if (evt.lengthComputable)
+		    			var cLength=evt.total;
+		    		else
+		    			var cLength= 2200000; //estimated uncompressed. load returns uncompressed downloaded.
+		           	var percentComplete = (evt.loaded / cLength) * 100;
+		           	$("#loaderP").width(percentComplete+"%");
+				console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+				if (evt.loaded >= cLength) {
+					$("#loaderP").width("100%");
+				}
+			}, false);
+		       return xhr;
+		},
+		success: function (fusionData, textStatus, request) {
+			$("#loadStatus").text("Generating tables ...");
+			setTimeout(function(){
+				/*Total JP Global Release Count*/
+				var serverUnitsCount=0;
+				var gl_idx=fusionData.columns.indexOf("Global Release");
+				var jp_idx=fusionData.columns.indexOf("Japan Release");
+				for (i in fusionData.rows) {
+					if (fusionData.rows[i][gl_idx]=="" || fusionData.rows[i][gl_idx]=="TRUE")
+						serverUnitsCount++;
+					if (fusionData.rows[i][jp_idx]=="" || fusionData.rows[i][jp_idx]=="TRUE")
+						serverUnitsCount++;
+				}
+				/*Save in local storage*/
+				localStorage.setItem("unitsguideadvance",LZString.compressToUTF16(JSON.stringify(fusionData)));
+				localStorage.setItem("unitsguideadvanceCount",serverUnitsCount);
+				initialize(fusionData);
+			},1000);
 	  	}
 	})
 } /*End Else*/
@@ -2914,8 +2930,8 @@ $(window).load(function() {
       <div class="modal-body">
 	<div class="text-center">
 	    <h3 class="text-primary"><b>Summoning units</b></h3>
-	    <i class="fa fa-spinner fa-spin fa-5x"></i>
-	    <h4 class="text-primary">A moment please ...</h4>
+	    <h5 id="loadStatus">Downloading</h5>
+	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
 	    <h4 class="text-default">Try the <a href="unitsguidelite">LITE guide</a>, for mobile or if this fails.</h4>
 	    <h5>(Note: Images will load progressively.)</h5>
 	</div>
