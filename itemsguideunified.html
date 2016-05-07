@@ -96,15 +96,29 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
   </ul>
 </div>
+<!-- sphere rarity button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere rarity <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereRarity">
+  	<li><a href="#" class="sRarity">1</a></li>
+  	<li><a href="#" class="sRarity">2</a></li>
+  	<li><a href="#" class="sRarity">3</a></li>
+  	<li><a href="#" class="sRarity">4</a></li>
+  	<li><a href="#" class="sRarity">5</a></li>
+  	<li><a href="#" class="sRarity">6</a></li>
+  	<li><a href="#" class="sRarity">7</a></li>
+  </ul>
+</div>
 <!-- sphere type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres type <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
 <div class="btn-group">
-  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres effects <span class="caret"></span></button>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere effects <span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -483,7 +497,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         $.each(valObj, function(lsKey,lsVal) {
             if (lsKey=="sphere type text")
             	itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+'</div><div class="col-xs-8 col-md-8 bi"><span class="sphTypeTxt">'+lsVal+'</span></div></div>';
-            else if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
+            else if (lsKey!="effect"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -496,7 +510,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"japan":japanexist,"craftable":craftable,"craftRaid":valObj.raid});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"japan":japanexist,"craftable":craftable,"craftRaid":valObj.raid,"rarity":valObj.rarity});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -599,6 +613,38 @@ function matsRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_MatsTypeFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified Mats Type Filter'
+	});
+}
+
+/*sphere rarity Filter Search*/
+function rarityRun(select) {
+    var sVal=select;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for sphere type*/
+	    if ( rawParseObj[i]['rarity'] == sVal ) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_SphereRarityFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Sphere Rarity Filter'
 	});
 }
 
@@ -878,6 +924,13 @@ $(document).on("click", '.matsType', function(e){
 $(document).on("click", '.sphereType', function(e){
     e.preventDefault();
     sphereRun($(this).text());
+    window.scrollTo(0,0);
+})
+
+/*sphere rarity*/
+$(document).on("click", '.sRarity', function(e){
+    e.preventDefault();
+    rarityRun($(this).text());
     window.scrollTo(0,0);
 })
 
