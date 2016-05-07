@@ -96,15 +96,29 @@ if (window.location.hash == '#_=_') {
   	<li><a href="#" class="matsType" data-value="item_thum_110\d\.png">Stone</a></li>
   </ul>
 </div>
+<!-- sphere rarity button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" id="sphereRarity">
+  	<li><a href="#" class="sRarity">1</a></li>
+  	<li><a href="#" class="sRarity">2</a></li>
+  	<li><a href="#" class="sRarity">3</a></li>
+  	<li><a href="#" class="sRarity">4</a></li>
+  	<li><a href="#" class="sRarity">5</a></li>
+  	<li><a href="#" class="sRarity">6</a></li>
+  	<li><a href="#" class="sRarity">7</a></li>
+  </ul>
+</div>
 <!-- sphere type button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres type <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere type <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereTypeList"></ul>
 </div>
 <!-- Item Effects -->
 <div class="btn-group">
-  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Spheres effects <span class="caret"></span></button>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere effects <span class="caret"></span></button>
   <ul class="dropdown-menu" role="menu">
   <li><a href="#" class="skillEffect">strong base element damage resist%</a></li>
   <li><a href="#" class="skillEffect">hp% buff</a></li>
@@ -483,7 +497,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         $.each(valObj, function(lsKey,lsVal) {
             if (lsKey=="sphere type text")
             	itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+'</div><div class="col-xs-8 col-md-8 bi"><span class="sphTypeTxt">'+lsVal+'</span></div></div>';
-            else if (lsKey!="effect"&&lsKey!="rarity"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
+            else if (lsKey!="effect"&&lsKey!="recipe"&&lsKey!="id"&&lsKey!="thumbnail"&&lsKey!="sphere type") {
                 itemSTR+='<div class="row equal"><div class="col-xs-4 col-md-4 bi">'+lsKey+"</div>";
                 itemSTR+='<div class="col-xs-8 col-md-8 bi">'+lsVal+'</div></div>';
             }
@@ -496,7 +510,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
 	else
 		OBJSearchName=valObj.name;
         /*Parse into MEMORY DB*/
-        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"japan":japanexist,"craftable":craftable,"craftRaid":valObj.raid});
+        rawParseObj.push({"name":OBJSearchName, "collapseCode":appendSTR,"type":valObj.type,"thumb":valObj.thumbnail,"global":globalexist,"japan":japanexist,"craftable":craftable,"craftRaid":valObj.raid,"rarity":valObj.rarity});
         countVar+=1;
         collapseID+=1;
     }); /*Each record*/
@@ -599,6 +613,38 @@ function matsRun(select) {
 	ga('send', 'pageview', {
   		'page': '/vurl/itemsguideU_MatsTypeFilter',
   		'title': 'Brave Frontier PROs - Items Guide Unified Mats Type Filter'
+	});
+}
+
+/*sphere rarity Filter Search*/
+function rarityRun(select) {
+    var sVal=select;
+    var outputObj=[];
+	var outputHTML=[];
+	for (i in rawParseObj) {
+	    /*searches for sphere type*/
+	    if ( rawParseObj[i]['rarity'] == sVal ) {
+	        outputObj.push(rawParseObj[i]);
+	    }
+	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
+	/*Joins array and replace HTML*/
+	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found / sorted by name. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
+	/*Google analytics*/
+	ga('send', 'pageview', {
+  		'page': '/vurl/itemsguideU_SphereRarityFilter',
+  		'title': 'Brave Frontier PROs - Items Guide Unified Sphere Rarity Filter'
 	});
 }
 
@@ -881,6 +927,13 @@ $(document).on("click", '.sphereType', function(e){
     window.scrollTo(0,0);
 })
 
+/*sphere rarity*/
+$(document).on("click", '.skillEffect', function(e){
+    e.preventDefault();
+    rarityRun($(this).text());
+    window.scrollTo(0,0);
+})
+
 /*sphereEffect*/
 $(document).on("click", '.skillEffect', function(e){
     e.preventDefault();
@@ -1077,7 +1130,5 @@ $(window).on('popstate', function(ev) {
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
-<!--Chatroom-->
-<script id="sid0020000073204931169">(function() {function async_load(){s.id="cid0020000073204931169";s.src=(window.location.href.indexOf('file:///') > -1 ? 'http:' : '') + '//st.chatango.com/js/gz/emb.js';s.style.cssText="width:450px;height:550px;";s.async=true;s.text='{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"\'Helvetica Neue\', Helvetica, Arial, sans-serif, sans-serif","cvbg":"cc66cc","cvbga":84,"cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1}}';var ss = document.getElementsByTagName('script');for (var i=0, l=ss.length; i < l; i++){if (ss[i].id=='sid0020000073204931169'){ss[i].id +='_';ss[i].parentNode.insertBefore(s, ss[i]);break;}}}var s=document.createElement('script');if (s.async==undefined){if (window.addEventListener) {addEventListener('load',async_load,false);}else if (window.attachEvent) {attachEvent('onload',async_load);}}else {async_load();}})();</script>
 </body>
 </html>
