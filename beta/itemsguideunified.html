@@ -98,7 +98,7 @@ if (window.location.hash == '#_=_') {
 </div>
 <!-- sphere rarity button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere type <span class="caret"></span>
+  <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">Sphere rarity <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="sphereRarity">
   	<li><a href="#" class="sRarity">1</a></li>
@@ -928,7 +928,7 @@ $(document).on("click", '.sphereType', function(e){
 })
 
 /*sphere rarity*/
-$(document).on("click", '.skillEffect', function(e){
+$(document).on("click", '.sRarity', function(e){
     e.preventDefault();
     rarityRun($(this).text());
     window.scrollTo(0,0);
