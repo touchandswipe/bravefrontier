@@ -75,8 +75,15 @@ function buildDB(jsonData, unitid) {
 								} else if (sKey2=="triggered effect") {
 									for (var i in sObj2) {
 										$.each(sObj2[i], function(tKey, tObj) {
-											if (tKey!="passive id" && tKey!="proc id")
-												outputHTML+='<tr><td><b>'+tKey+'</b></td><td>'+tObj+'</td></tr>';
+											if (tKey!="passive id" && tKey!="proc id") {
+												if (tObj.constructor === Object) {
+							            					$.each(tObj, function(lowKey,lowVal) {
+							            						outputHTML+='<tr><td><b>'+lowKey+'</b></td><td>'+lowVal+'</td></tr>';
+							            					})
+												} else {
+													outputHTML+='<tr><td><b>'+tKey+'</b></td><td>'+tObj+'</td></tr>';
+												}
+											}
 										})
 									}
 								}
