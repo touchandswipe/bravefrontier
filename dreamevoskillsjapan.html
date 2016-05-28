@@ -65,7 +65,13 @@ function buildDB(jsonData, unitid) {
 							outputHTML+='<tr><th colspan="2" class="effType">Effects Type: '+sKey+'</th></tr>';
 							$.each(sObj, function(sKey2, sObj2) {
 								if (sKey2!="passive id" && sKey2!="proc id" && sKey2!="triggered effect") {
-									outputHTML+='<tr><td><b>'+sKey2+'</b></td><td>'+sObj2+'</td></tr>';
+									if (sObj2.constructor === Object) {
+				            					$.each(sObj2, function(lowKey,lowVal) {
+				            						outputHTML+='<tr><td><b>'+lowKey+'</b></td><td>'+lowVal+'</td></tr>';
+				            					})
+									} else {
+										outputHTML+='<tr><td><b>'+sKey2+'</b></td><td>'+sObj2+'</td></tr>';
+									}
 								} else if (sKey2=="triggered effect") {
 									for (var i in sObj2) {
 										$.each(sObj2[i], function(tKey, tObj) {
