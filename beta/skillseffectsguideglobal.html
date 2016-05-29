@@ -47,7 +47,7 @@ if (window.location.hash == '#_=_') {
 <h6><span class="hidden-xs hidden-sm"><b>Last updated: </b><span class="text-danger" id="lastModDate">TBD</span></span> <b>Total units:</b> <kbd id="unitCount">Pulling data ...</kbd></h6>
 
 <!-- Buttons row -->
-<div class="row" style="margin-bottom:5px;" id="btnMenu" data-spy="affix" data-offset-top="100">
+<div class="row" id="btnMenu" data-spy="affix" data-offset-top="100">
 	<button type="button" class="btn btn-success btn-xs" id="refreshData"><i class="fa fa-cloud-download"></i> Sync latest data</button>
 	<!-- Leader Skills button -->
 	<div class="btn-group btn-group-xs">
@@ -77,6 +77,7 @@ if (window.location.hash == '#_=_') {
 	    <li><a href="#" class="skillEffect">crit% buff</a></li>
 	    <li><a href="#" class="skillEffect">increase bb gauge</a></li>
 	    <li><a href="#" class="skillEffect">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect2">bc fill when attacked%</a></li>
 	    <li><a href="#" class="skillEffect">bc drop rate% buff</a></li>
 	    <li><a href="#" class="skillEffect">hc drop rate% buff</a></li>
 	    <li><a href="#" class="skillEffect">bb bc%</a></li>
@@ -96,6 +97,7 @@ if (window.location.hash == '#_=_') {
 	    <li><a href="#" class="skillEffect2">crit% buff</a></li>
 	    <li><a href="#" class="skillEffect2">increase bb gauge</a></li>
 	    <li><a href="#" class="skillEffect2">increase bb gauge gradual</a></li>
+	    <li><a href="#" class="skillEffect2">bc fill when attacked%</a></li>
 	    <li><a href="#" class="skillEffect2">bc drop rate% buff</a></li>
 	    <li><a href="#" class="skillEffect2">hc drop rate% buff</a></li>
 	    <li><a href="#" class="skillEffect2">bb bc%</a></li>
@@ -199,7 +201,23 @@ if (window.location.hash == '#_=_') {
 	    <h3 class="text-primary"><b>Finding Koalas</b></h3>
 	    <i class="fa fa-spinner fa-spin fa-5x"></i>
 	    <h4 class="text-primary">A moment please ...</h4>
-	    <h5>(Note: Downloading, Compressing and Parsing data ...)</h5>
+	    <h5 id="loadStatus">Downloading</h5>
+	    <div class="progress"><div id="loaderP" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+	</div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dream modal -->
+<div class="modal" id="dreammodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="height:90%">
+    <div class="modal-content" style="height:100%">
+    <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3 class="modal-title text-danger"><i class="fa fa-fire"></i> Omni EVO Skills</h3></div>
+      <div class="modal-body" style="height:100%">
+      	<div class="row" style="height:90%">
+		<iframe id="dreamcontent" src="" sandbox="allow-scripts"></iframe>
 	</div>
       </div>
     </div>
@@ -224,34 +242,12 @@ if (window.location.hash == '#_=_') {
 <script src="//touchandswipe.github.io/bravefrontier/js/bfp.skillseffectsguidecommonbeta.js"></script>
 <script type="text/javascript">
 jsonURL="//touchandswipe.github.io/bravefrontier_data/info.json";
-imgPrePath="//2.cdn.bravefrontier.gumi.sg/content/";
+imgPrePath="http://2.cdn.bravefrontier.gumi.sg/content/";
 
 /*Refresh data*/
 $(document).on("click", '#refreshData, #syncNewBtn', function(e){
-    /*close alert if open*/
-    $('#alertModal').modal("hide");
-    /*Init loader*/
-    $('#progressModal').modal({
-    	keyboard:false,
-    	backdrop:'static',
-    	toggle:true
-    })
-    $.ajax({
-        dataType: "json",
-        contentType: "text/plain; charset=UTF-8",
-        url: jsonURL,
-        success: function(data, textStatus, request){
-    		lastModified = request.getResponseHeader("Last-Modified");
-    		rawParseObj=[]; /*reset*/
-    		buildDB(data);
-    		/*Save in local storage*/
-		localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
-		localStorage.setItem("skillsguideglobaldate",lastModified);
-    		$('#lastModDate').text("Server data - "+lastModified);
- 	}
-    });
+    reSyncData("skillsguideglobal")
 })
-
 $(document).ready( function(e) {
 /*load masthead shared*/
 $('#bfp_mast').load('//touchandswipe.github.io/bravefrontier/common/header.html');
@@ -267,25 +263,7 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 	} else
 		resetLocalData("skillsguideglobal",true)
     } else {
-	    /*Init loader*/
-	    $('#progressModal').modal({
-	    	keyboard:false,
-	    	backdrop:'static',
-	    	toggle:true
-	    })
-	    $.ajax({
-	        dataType: "json",
-	        contentType: "text/plain; charset=UTF-8",
-	        url: jsonURL,
-	        success: function(data, textStatus, request){
-	    		lastModified = request.getResponseHeader("Last-Modified");
-	    		/*Save in local storage*/
-			localStorage.setItem("skillsguideglobal",LZString.compressToUTF16(JSON.stringify(data)));
-			localStorage.setItem("skillsguideglobaldate",lastModified);
-	    		$('#lastModDate').text("Server data - "+lastModified);
-	    		buildDB(data);
-	 	}
-	    })
+	    reSyncData("skillsguideglobal")
     }
 })
 </script>
@@ -300,6 +278,5 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
   ga('create', 'UA-48617906-1', 'auto');
   ga('send', 'pageview');
 </script>
-<script id="cid0020000112449143277" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 450px;height: 550px;">{"handle":"bravefrontierpros","arch":"js","styles":{"a":"cc66cc","b":84,"c":"ffffff","d":"ffffff","e":"ffffff","f":93,"h":"ffffff","k":"cc66cc","l":"cc66cc","m":"cc66cc","o":84,"q":"cc66cc","r":84,"t":0,"pos":"br","cv":1,"cvfnt":"27Helvetica20Neue27, sans-serif","cvbg":"cc66cc","cvbga":84,"cvfg":"ffffff","cvw":300,"cvh":50,"sbc":"33ff33","surl":0,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
