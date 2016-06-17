@@ -1949,8 +1949,9 @@ $(document).ready( function(e) {
 		toggle:true
 	})
     	/*Query Fusion Tables 1st Time*/
-    	var query = "SELECT * FROM " +
-  	gTable + " ORDER BY 'ID' ASC";
+    	//var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
+    	var query = "SELECT *, MAXIMUM 'Rarity' FROM " +
+  	gTable + " GROUP BY 'Series'";
   	var encodedQuery = encodeURIComponent(query);
   	/*Construct the URL*/
 	var url = [gURL];
@@ -3575,7 +3576,7 @@ $(window).load(function() {
 	  </label>
 	  
 	  <label class="btn btn-default">
-	    <input type="checkbox" class="filSkills" value="HitCount+">HitCount+
+	    <input type="checkbox" class="filSkills" value="HitCount">HitCount+
 	  </label>
 	  
 	  <label class="btn btn-default">
