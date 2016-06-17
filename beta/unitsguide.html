@@ -1951,7 +1951,7 @@ $(document).ready( function(e) {
     	/*Query Fusion Tables 1st Time*/
     	//var query2 = "SELECT * FROM " + gTable + " WHERE 'Name' = " + qunitname;
     	var query = "SELECT *, MAXIMUM 'Rarity' FROM " +
-  	gTable + " GROUP BY 'Series'";
+  	gTable;
   	var encodedQuery = encodeURIComponent(query);
   	/*Construct the URL*/
 	var url = [gURL];
