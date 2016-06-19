@@ -242,7 +242,7 @@ lsMap=[
 	{id:73,desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{id:74,desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{id:75,desc:"% EXP+", impact:"xp gained increase%"},
-	{id:76,desc:"AOE on Normal ATK", impact:"chance to aoe",impact2:"aoe atk inc%",chance:"chance to aoe",hideprefix:true}
+	{id:76,desc:"AOE on Normal ATK", impact:"chance to aoe",chance:"chance to aoe",hideprefix:true}
 ];
 bbMap=[
 	{id:1,desc:"% HP+", impact:"max hp% increase"},
