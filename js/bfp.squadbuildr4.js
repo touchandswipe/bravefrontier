@@ -191,6 +191,7 @@ lsMap=[
 	{id:220,desc:"Null SPARKs", impact:"base spark dmg% resist",hideprefix:true},
 	{id:23,desc:"Null Ails", impact:"poison resist%",hideprefix:true},
 	{id:24,desc:"Null Element Weakness", impact:"strong base element damage resist%",hideprefix:true},
+	{id:24.1,desc:"Null Ignore DEF", impact:"ignore def resist chance%",hideprefix:true},
 	{id:25,desc:"% BC+",impact:"bc drop rate% buff"},
 	{id:26,desc:"% BC+ on Spark",impact:"bc drop% for spark"},
 	{id:27,desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
