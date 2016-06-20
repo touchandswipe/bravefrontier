@@ -1,4 +1,55 @@
 procID=[1,13,29,47,49,64]; /*proc id for hits on new data structure*/
+/*Progress and re-sync*/
+function reSyncData(dataString) {
+$("#loaderP").width("0%");
+/*close alert if open*/
+    $('#alertmodal').modal("hide");
+    /*Init loader*/
+    $('#progressModal').modal({
+    	keyboard:false,
+    	backdrop:"static",
+    	show:true
+    })
+    $.ajax({
+	contentType: "application/json",
+        url: jsonURL,
+        crossDomain:true,
+        xhr: function() {
+        	var xhr = new window.XMLHttpRequest();
+		xhr.addEventListener("progress", function(evt) {
+	    		if (evt.lengthComputable)
+	    			var cLength=evt.total;
+	    		else
+	    			var cLength= +evt.target.getResponseHeader('content-length')*15; //estimated uncompressed. load returns uncompressed downloaded.
+	           	var percentComplete = (evt.loaded / cLength) * 100;
+	           	$("#loaderP").width(percentComplete+"%");
+			console.log("Loaded "+evt.loaded+" / Total "+cLength+" / "+percentComplete+"%");
+			if (evt.loaded >= cLength) {
+				$("#loaderP").width("100%");
+			}
+		}, false);
+	       return xhr;
+	},
+        success: function(data, textStatus, request){
+        	$("#loadStatus").text("Compressing, processing for search...");
+        	setTimeout(function(){
+	    		lastModified = request.getResponseHeader("Last-Modified");
+	    		//var headers = request.getAllResponseHeaders();
+	                //console.log(headers);
+	    		rawParseObj=[]; /*reset*/
+	    		buildDB(data);
+	    		/*Save in local storage*/
+			localStorage.setItem(dataString,LZString.compressToUTF16(JSON.stringify(data)));
+			localStorage.setItem(dataString+"date",lastModified);
+	    		$('#lastModDate').text("Server data - "+lastModified);
+        	},1000);
+ 	},
+	error: function(jqXHR, textStatus, errorThrown) {
+		alert("Latest data-mine from Deathmax could be corrupted. It is usually rectified in a few hours. Please try to sync again later. In the meantime, if you have older but valid data in your browser, that will be used. Error details: "+textStatus+" / "+errorThrown);
+		$('#progressModal').modal("hide");
+	}
+    });
+}
 /*hp,atk,def,rec,crit,spark,elemental,bbmod,ATKBuff*/
 sphereList=[
 	{name:"No Sphere",nick:"none",stats:[0,0,0,0,0,0,0,0,0]},
@@ -140,6 +191,7 @@ lsMap=[
 	{id:220,desc:"Null SPARKs", impact:"base spark dmg% resist",hideprefix:true},
 	{id:23,desc:"Null Ails", impact:"poison resist%",hideprefix:true},
 	{id:24,desc:"Null Element Weakness", impact:"strong base element damage resist%",hideprefix:true},
+	{id:24.1,desc:"Null Ignore DEF", impact:"ignore def resist chance%",hideprefix:true},
 	{id:25,desc:"% BC+",impact:"bc drop rate% buff"},
 	{id:26,desc:"% BC+ on Spark",impact:"bc drop% for spark"},
 	{id:27,desc:"BC Fill on ATKed", impact:"bc fill when attacked low", impact2:"bc fill when attacked high", chance:"bc fill when attacked%"},
@@ -170,7 +222,7 @@ lsMap=[
 	{id:52,desc:"% Reduce DMG Assured", impact:"dmg% mitigation"},
 	{id:53,desc:"% Reduce DMG by Chance", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{id:54,desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
-	{id:55,desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
+	{id:55,desc:"% Reduce DMG Buff", impact:"buff.dmg reduction% buff", criteria:["damage threshold buff activation"]},
 	{id:56,desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
 	{id:57,desc:"% Fire Resist", impact:"fire resist%"},
 	{id:58,desc:"% Water Resist", impact:"water resist%"},
@@ -191,6 +243,7 @@ lsMap=[
 	{id:73,desc:"% Light Weakness DMG+", impact:"!light units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{id:74,desc:"% Dark Weakness DMG+", impact:"!dark units do extra elemental weakness dmg||elemental weakness multiplier%", impact2:"elemental weakness multiplier%", hideprefix:true},
 	{id:75,desc:"% EXP+", impact:"xp gained increase%"},
+	{id:76,desc:"AOE on Normal ATK", impact:"chance to aoe",chance:"chance to aoe",hideprefix:true}
 ];
 bbMap=[
 	{id:1,desc:"% HP+", impact:"max hp% increase"},
