@@ -222,7 +222,7 @@ lsMap=[
 	{id:52,desc:"% Reduce DMG Assured", impact:"dmg% mitigation"},
 	{id:53,desc:"% Reduce DMG by Chance", impact:"dmg reduction%", chance:"dmg reduction chance%"},
 	{id:54,desc:"Reduce DMG to 1", impact:"take 1 dmg%", chance:"take 1 dmg%",hideprefix:true},
-	{id:55,desc:"% Reduce DMG Buff", impact:"dmg reduction% buff", criteria:["damage threshold buff activation"]},
+	{id:55,desc:"% Reduce DMG Buff", impact:"!damage threshold buff activation||buff.dmg reduction% buff", impact2:"!buff.dmg reduction% buff", criteria:["damage threshold buff activation"],hideprefix:true},
 	{id:56,desc:"% Reduce DMG on Guard", impact:"guard increase mitigation%"},
 	{id:57,desc:"% Fire Resist", impact:"fire resist%"},
 	{id:58,desc:"% Water Resist", impact:"water resist%"},
