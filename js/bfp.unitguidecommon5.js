@@ -225,6 +225,7 @@ var evoQuery = [
 ['Dark Hero Gem','iconitem110150.png'],
 ['Miracle Sphere','iconitem111000.png'],
 ['Legend Stone','iconitem111000.png'],
+['Omni Gem','itemicon110080.png'],
 ['Turbo Cyclaw','icon8106.png'],
 ['Turbo Hydraloid','icon8118.png'],
 ['Turbo Netherhound','icon8133.png'],
