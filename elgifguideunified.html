@@ -366,14 +366,6 @@ var effectsList=[];
     }*/
     
     $('#progressModal').modal('hide');
-    
-    /*check for card param*/
-    var searchParam=urlParam('query');
-    if (searchParam != "") {
-        /*sets searchbox value then execute*/
-        $('#searchNameBox').val(searchParam);
-        searchNameRun($('#searchNameBox').val());
-    }
 }
 
 /*star rating Filter*/
@@ -541,6 +533,13 @@ $('#bfp_foot').load('//touchandswipe.github.io/bravefrontier/common/footer.html'
 				      	buildDB(data_GL,"GL");
 				      	buildDB(data_JP,"JP");
 				      	starRun(7);
+					    /*check for card param*/
+					    var searchParam=urlParam('query');
+					    if (searchParam != "") {
+						/*sets searchbox value then execute*/
+						$('#searchNameBox').val(searchParam);
+						searchNameRun($('#searchNameBox').val());
+					    }
 				       }
 			});
  	      }
