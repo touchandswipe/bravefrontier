@@ -372,7 +372,7 @@ var effectsList=[];
     if (searchParam != "") {
         /*sets searchbox value then execute*/
         $('#searchNameBox').val(searchParam);
-        searchNameRun(searchParam);
+        searchNameRun($('#searchNameBox').val());
     }
 }
 
