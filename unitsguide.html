@@ -7,7 +7,7 @@
     <meta name="author" content="Sam GreenPuck" />
     <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>Brave Frontier - Units Guide by Brave Frontier PROs</title>
-    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="shortcut icon" href="http://bravefrontier.summonerscentral.com/img/iconavatar128.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/colvis/1.1.2/css/dataTables.colVis.css">
@@ -1094,22 +1094,22 @@ function initialize(fusionData) {
 			ovHTML+=' &middot; <a href="#" src="'+ovvideo+'" class="videoBtn"><i class="fa fa-video-camera"></i></a>';
 	      ovHTML+='</small></h4></td></tr>';
 	      ovHTML+='<tr><td colspan="6" class="purple"><i class="fa fa-share-alt"></i> <b>Sharing URL: </b>'+ovshareURL+'</td></tr>';
-	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
+	      ovHTML+='<tr><td class="active"><b class="visible-xs-block">Hits/LS</b><b class="hidden-xs">Hits / Leader</b></td><td colspan="5"><span style="display:inline-block;"><b>'+ovhits+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_hits.png"/> <b>'+ovdata2[0]['normal dc']+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_dc.png"/> '+ovleaderskill+'</span></td></tr>';
 	      ovHTML+='<tr><td class="active bbtxt"><b>BB</b></td><td colspan="5">';
-	      ovHTML+='<span style="display:inline-block;"><b>'+ovbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['bb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+	      ovHTML+='<span style="display:inline-block;"><b>'+ovbbhits+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_hits.png"/> <b>'+ovdata2[0]['bb dc']+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_dc.png"/> <b>'+ovbbfill+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_bc.png"/></span> ';
 	      if (ovdata2[0]['bb atk%'] != "-")
 		    ovHTML+='<span class="bbtxt"><b>'+ovdata2[0]['bb atk%']+"%</b></span> ";
 	      ovHTML+=ovbbskill+' <span class="hashbox">'+ovbbtype+'</span></td></tr>';
 	      if (ovsbbskill != "") {
 		    ovHTML+='<tr><td class="active sbbtxt"><b>S<span class="hidden-xs">uper </span>BB</b></td><td colspan="5">';
-		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovsbbhits+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_hits.png"/> <b>'+ovdata2[0]['sbb dc']+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_dc.png"/> <b>'+ovsbbfill+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['sbb atk%'] != "-")
 		    	ovHTML+='<span class="sbbtxt"><b>'+ovdata2[0]['sbb atk%']+"%</b></span> ";
 		    ovHTML+=ovsbbskill+' <span class="hashbox">'+ovsbbtype+'</span></td></tr>';
 	      }
 	      if (ovubbskill != "") {
 		    ovHTML+='<tr><td class="active ubbtxt"><b>U<span class="hidden-xs">ltimate </span>BB</b></td><td colspan="5">';
-		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon_bc.png"/></span> ';
+		    ovHTML+='<span style="display:inline-block;"><b>'+ovubbhits+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_hits.png"/> <b>'+ovdata2[0]['ubb dc']+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_dc.png"/> <b>'+ovubbfill+'</b><img style="height:15px;vertical-align:top" src="http://bravefrontier.summonerscentral.com/img/icon_bc.png"/></span> ';
 		    if (ovdata2[0]['ubb atk%'] != "-")
 		    	ovHTML+='<span class="ubbtxt"><b>'+ovdata2[0]['ubb atk%']+'%</b></span> ';
 		    ovHTML+=ovubbskill+' <span class="hashbox">'+ovubbtype+'</span></td></tr>';
@@ -1214,10 +1214,10 @@ function initialize(fusionData) {
 	      /*IMP MAX Addition*/
 	      if (ovdata2[0]["hp pimp"]!="" && ovdata2[0]["hp pimp"]!="-") {
 	      ovHTML+='<tr><td class="active va"><b>Max PIMP</b></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
-	      +'<td class="btn-default va"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="http://bravefrontier.summonerscentral.com/img/icon554.png" width="22" height="22"> <span id="pimpHP">'+ovdata2[0]["hp pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["hp pimp"]/50)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="http://bravefrontier.summonerscentral.com/img/icon551.png" width="22" height="22"> <span id="pimpATK">'+ovdata2[0]["atk pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["atk pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="http://bravefrontier.summonerscentral.com/img/icon552.png" width="22" height="22"> <span id="pimpDEF">'+ovdata2[0]["def pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["def pimp"]/20)+'x)</small></td>'
+	      +'<td class="btn-default va"><img src="http://bravefrontier.summonerscentral.com/img/icon553.png" width="22" height="22"> <span id="pimpREC">'+ovdata2[0]["rec pimp"]+'</span><small class="hidden-xs"> ('+(ovdata2[0]["rec pimp"]/20)+'x)</small></td>'
 	      +'<td class="btn-default"><button type="button" class="btn btn-success btn-xs" id="pimpBtn" value="false">Pimp it!</button></td></tr>';
 	      }
 	/*BossMarv PRO Tips!*/
@@ -1465,7 +1465,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  $(squadEle.toString()).attr('src',ovsprite);
 		  $(squadEle).error( function() {
 		  	$(this).unbind();
-			$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+			$(this).attr('src',"http://bravefrontier.summonerscentral.com/img/iconblank.gif");
 		    })
 	      }
 	      /*Sprite check OPPONENTS*/
@@ -1476,7 +1476,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 		  $(squadOppEle).attr('src',ovsprite);
 		  $(squadOppEle).error( function() {
 		  	$(this).unbind();
-		      $(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		      $(this).attr('src',"http://bravefrontier.summonerscentral.com/img/iconblank.gif");
 		    })
 	      }
 	    /*Populates Custom Select Fields - custom is a row */
@@ -1617,7 +1617,7 @@ cHTML+='<div class="form-inline"><select class="form-control input-sm sp2" id="s
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
+	  <a class="navbar-brand" href="http://bravefrontierpros.tumblr.com"><img src="http://bravefrontier.summonerscentral.com/img/iconavatar64.png" class="img-circle" style="margin-top:-8px;margin-left:-4px;box-shadow:2px 2px 1px;" width="64" alt="Brave Frontier PROs"/></a>
 	</div>
 	
 	<!-- Collapse Nav-->
@@ -2343,7 +2343,7 @@ $(document).on("click", ".squadALL", function(e){
 	$('#squadUnit'+(i+1)).attr('src',ownSquad[linkVal]);
 	$('#squadUnit'+(i+1)).error( function() {
 		$(this).unbind();
-		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		$(this).attr('src',"http://bravefrontier.summonerscentral.com/img/iconblank.gif");
 	})
     }
 })
@@ -2355,10 +2355,10 @@ $(document).on("change", ".cFSquad", function(e){
 	$('#squadUnit'+(deltaField+1)).attr('src',ownSquad[$(this).val()]);
 	$('#squadUnit'+(deltaField+1)).error( function() {
 		$(this).unbind();
-		$(this).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+		$(this).attr('src',"http://bravefrontier.summonerscentral.com/img/iconblank.gif");
 	})
     } else {
-	$('#squadUnit'+(deltaField+1)).attr('src',"https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif");
+	$('#squadUnit'+(deltaField+1)).attr('src',"http://bravefrontier.summonerscentral.com/img/iconblank.gif");
     }
 })
 /*Squad Random*/
@@ -2369,7 +2369,7 @@ $(document).on("click", "#randomOwn,#randomOpp", function(e){
     } else { 
 	var randomEle = '#squadOpp';
 	/*Clears boss*/
-	$('#bossIMG').children('img').attr('src','https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif');
+	$('#bossIMG').children('img').attr('src','http://bravefrontier.summonerscentral.com/img/iconblank.gif');
     }
     for (var i=0;i<6;i++) {
 	var linkVal=Math.floor((Math.random() * deserialdata.length));
@@ -2383,7 +2383,7 @@ $(document).on("click", "#randomOwn,#randomOpp", function(e){
 })
 /*Squad Random*/
 $(document).on("change", "#bossSelect", function(e){
-    var noIMG='https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif';
+    var noIMG='http://bravefrontier.summonerscentral.com/img/iconblank.gif';
     if ( $(this).val() != 'None' ) {
 	for (var i=0;i<6;i++) {
 	    $('#squadOpp'+(i+1)).attr('src',noIMG);
@@ -2846,11 +2846,11 @@ $(window).load(function() {
     <img style="position:absolute;top:0px;left:50px;" src="https://googledrive.com/host/0B4hJr8BXxvFZS3pvbjNIbDJ2bzA/summon-door.jpg" id="summonIMG" width="500"/>
     <!--summoned unit centering in middle of 500px div-->
     <div class="text-center" style="position:absolute;top:125px;left:50px;width:500px;">
-	<img class="center-block" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif" id="summonedUnit" height="275"/>
+	<img class="center-block" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif" id="summonedUnit" height="275"/>
     </div>
     <!--Top Layer to register click-->
     <div style="position:absolute;top:0px;left:50px;border:0;">
-	<a href="#" id="rareSummon"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif" width="500"/></a>
+	<a href="#" id="rareSummon"><img src="http://bravefrontier.summonerscentral.com/img/iconblank.gif" width="500"/></a>
     </div>
 	<!--summoned unit text-->
     <div class="text-center" style="position:absolute;top:500px;left:50px;width:500px;" id="summonedUnitText"></div>    
@@ -2978,20 +2978,20 @@ $(window).load(function() {
 	    <!--Own units RIGHT*-->
 		<div style="position:absolute;left:170px;top:110px;"><img id="squadUnit1" src=""/></div>
 		<div style="position:absolute;left:250px;top:120px;"><img id="squadUnit2" src=""/></div>
-		<div style="position:absolute;left:205px;top:180px;"><img id="squadUnit3" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:280px;top:180px;"><img id="squadUnit4" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:185px;top:250px;"><img id="squadUnit5" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:270px;top:240px;"><img id="squadUnit6" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:205px;top:180px;"><img id="squadUnit3" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:280px;top:180px;"><img id="squadUnit4" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:185px;top:250px;"><img id="squadUnit5" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:270px;top:240px;"><img id="squadUnit6" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
 	    <!--Opp units LEFT-->
 		<div style="position:absolute;left:85px;top:110px;"><img id="squadOpp1" class="flipHori" src=""/></div>
 		<div style="position:absolute;left:05px;top:120px;"><img id="squadOpp2" class="flipHori" src=""/></div>
-		<div style="position:absolute;left:50px;top:180px;"><img id="squadOpp3" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:-25px;top:180px;"><img id="squadOpp4" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:70px;top:250px;"><img id="squadOpp5" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
-		<div style="position:absolute;left:-15px;top:240px;"><img id="squadOpp6" class="flipHori" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div style="position:absolute;left:50px;top:180px;"><img id="squadOpp3" class="flipHori" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:-25px;top:180px;"><img id="squadOpp4" class="flipHori" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:70px;top:250px;"><img id="squadOpp5" class="flipHori" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
+		<div style="position:absolute;left:-15px;top:240px;"><img id="squadOpp6" class="flipHori" src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
 		
 		<!--Boss Blank-->
-		<div id="bossIMG" style="position:absolute;left:0px;top:0px;"><img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif"/></div>
+		<div id="bossIMG" style="position:absolute;left:0px;top:0px;"><img src="http://bravefrontier.summonerscentral.com/img/iconblank.gif"/></div>
 		
 	    </div>
     </div>
@@ -3258,32 +3258,32 @@ $(window).load(function() {
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Fire">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/fireminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/fireminiicon.png"/>
 	  </label>
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Water">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/waterminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/waterminiicon.png"/>
 	  </label>
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Earth">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/Earthminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/Earthminiicon.png"/>
 	  </label>
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Thunder">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/thunderminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/thunderminiicon.png"/>
 	  </label>
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Light">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/lightminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/lightminiicon.png"/>
 	  </label>
 	  
 	  <label class="btn btn-default">
 	    <input type="checkbox" class="filElement" value="Dark">
-	    <img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/darkminiicon.png"/>
+	    <img src="http://bravefrontier.summonerscentral.com/img/darkminiicon.png"/>
 	  </label>
 
 	</div>

@@ -251,8 +251,8 @@ var evoQuery = [
 	/*find match*/
 	for(var i=0; i < evoQuery.length; i++) {
 	    if ( evoQuery[i][0] == evoMat ) {
-		return "https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/"+evoQuery[i][1];
+		return "http://bravefrontier.summonerscentral.com/img/"+evoQuery[i][1];
 	    }
 	}
-	return "https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconblank.gif";
+	return "http://bravefrontier.summonerscentral.com/img/iconblank.gif";
 } /*End getEvoIMG*/

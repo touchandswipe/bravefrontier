@@ -6,7 +6,7 @@
     <meta name="description" content="Brave Frontier - Items Guide and Recipes (Global and Japan) - A community effort by Brave Frontier PROs" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brave Frontier - Items Guide and Recipes (Global and Japan) - by Brave Frontier PROs</title>
-    <link rel="shortcut icon" href="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconavatar128.png" />
+    <link rel="shortcut icon" href="http://bravefrontier.summonerscentral.com/img/iconavatar128.png" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -383,7 +383,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         }
         nameSTR='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#unit'+collapseID+'"><img src="'+imgprefix+valObj.thumbnail+'" width="40" height="40" title="('+valObj.thumbnail+')"/> ';
         if (valObj['sphere type'])
-        	nameSTR+='<img src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
+        	nameSTR+='<img src="http://bravefrontier.summonerscentral.com/img/iconspheretype'+sphereArray[sphereArray.indexOf(valObj['sphere type'])]+'.png"/> <b>';
 	/*Grab English name if available*/
 	if (server=='JP') {
 		japanexist=true;
@@ -530,7 +530,7 @@ var imgprefix=(server=='JP')? imgprefixJP:imgprefixGL;
         $("#itemTypeList").append('<li><a href="#" class="itemType">'+itemTypeArray[i]+'</a></li>');
     }
     for (i in sphereTypeArray) {
-        $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img style="margin-right:5px;" src="https://googledrive.com/host/0B4hJr8BXxvFZZVVOZWswdnlnYTg/iconspheretype'+sphereArray[i]+'.png"/>'+sphereTypeArray[i]+'</a></li>');
+        $("#sphereTypeList").append('<li><a href="#" class="sphereType"><img style="margin-right:5px;" src="http://bravefrontier.summonerscentral.com/img/iconspheretype'+sphereArray[i]+'.png"/>'+sphereTypeArray[i]+'</a></li>');
     }
     sphereRun("Atk Boosting"); /*default load*/
     $('#progressModal').modal('hide');
