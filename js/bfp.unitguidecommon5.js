@@ -246,6 +246,8 @@ var evoQuery = [
 ['Verdant Relic','iconitem880013.png'],
 ['Northmen Idol','icon726.1.png'],
 ['Wonder Mirror Idol','icon726.1.png'],
+['Memory Spinel','memoryspinel.png'],
+['Memory Fragment','memoryfragment.png'],
 ['None','iconblank.gif']];
 
 	/*find match*/
