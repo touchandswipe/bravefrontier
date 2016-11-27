@@ -15,6 +15,11 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style type="text/css">
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
     .evoMatShow{width:35px;height:35px;margin-right:5px;}
     #dreamcontent {width:100%;height:100%;border:0;}
     .listIcon {width:40px;height:40px;}
@@ -355,7 +360,7 @@ function initialize(fusionData) {
 		    /*Custom Header Search for batch*/
 		    $("#mytable thead th").each( function () {
 			if ($.text([this])=='Batch') {
-			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" class="batchlink"><b>ALL BATCHES</b></a></li></ul></div>')
+			    var select = $('<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button><ul class="dropdown-menu scrollable-menu"><li><a href="#" class="batchlink"><b>ALL BATCHES</b></a></li></ul></div>')
 				.appendTo( $(this).empty() );
 			
 			    DTapi.column( 4 ).data().unique().sort().each( function ( d, j ) {
