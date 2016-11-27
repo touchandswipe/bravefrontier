@@ -515,8 +515,11 @@ function openCard(whatunit) {
 		if ( (ovGlobal.toLowerCase()!="false") || (ovJapan.toLowerCase()!="false") || (ovbfpronotes.search("#europe")!=-1) || (ovbfpronotes.search("#korea")!=-1))
 			ovHTML+='<tr><td colspan="6" style="vertical-align:middle;">';
 		/*Dream evo button*/
+		if (ovrarity==8 && ovGlobal.toLowerCase()!="false") {
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsglobal?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> SP Options Global</button> ';
+		}
 		if (ovrarity==8 && ovJapan.toLowerCase()!="false") {
-			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> Omni Evo Skills</button> ';
+			ovHTML+='<button class="btn btn-xs btn-primary" id="dreamevo" data-link="dreamevoskillsjapan?id='+ovdata2[0].systemid+'"><i class="fa fa-external-link"></i> SP Options 日本</button> ';
 		}
 	     	if (ovGlobal.toLowerCase()!="false")
 	     		ovHTML+='<a class="btn btn-xs btn-info" href="skillseffectsguideglobal?unitid='+encodeURIComponent(ovid)+'" target="rawskills"><i class="fa fa-external-link"></i> Global</a> ';
