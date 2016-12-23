@@ -208,18 +208,26 @@ function skillRun(selectSkill) {
 
 /*Search by Unit ID*/
 function searchIdRun() {
-    var sVal=$('#searchIdBox').val();
+	var sVal=$('#searchIdBox').val();
     if (sVal.length <1) {
         $(rawTable).html('<h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Minimum 1 character required. Please try again.</h3>')
     } else {
-	var outputHTML=[];
+	    var outputHTML=[];
+	    var outputObj=[];
 	for (i=0;i<rawParseObj.length;i++) {
 	    /*compares lowercase string*/
 	    if ( rawParseObj[i]['id']==sVal) {
-	        outputHTML.push(rawParseObj[i]['collapseCode']);
-	        break;
+		    outputObj.push(rawParseObj[i]);
 	    }
 	}
+	/*Sort array*/
+    outputObj=outputObj.sort(function(a,b) {
+        return parseInt(b.rarity)-parseInt(a.rarity);
+    });
+    /*Build HTML Array*/
+    for (i=0;i<outputObj.length;i++) {
+        outputHTML.push(outputObj[i].collapseCode)
+    }
 	/*Joins array and replace HTML*/
 	$(rawTable).html('<h4 class="text-primary"><i class="fa fa-smile-o"></i> '+outputHTML.length+' result(s) found. <small><kbd>Copy</kbd> browser URL to share results wherever.</small></h4>'+outputHTML.join(' '));
 	/*pushstate update*/
