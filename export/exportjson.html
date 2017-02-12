@@ -564,6 +564,7 @@ $.getJSON( serverSelect, function( unit ) {
           /*Parsing all BB Skills*/
           for (ibb in bbArray) {
           var bbSkillFound=0;
+					/*ubb has no multilevels data*/
           if (bbArray[ibb]!="ubb")
               var bbLvl=9;
           else
@@ -836,7 +837,18 @@ $.getJSON( serverSelect, function( unit ) {
                             exportSTR+='<span style="color:#FF0000;">Unknown</span>';
                         }
                       }
-                  } /*End Output String Build*/
+                  }
+                  /*End Output String Build - check for non-defined skills*/
+                  else {
+                    if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]) {
+											//proc ID 88
+											if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="88") {
+												var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc pram"].split(",");
+												exportSTR+=" / "+undefArray[7]+" Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+												bbSkillFound+=1;
+											}
+										}
+                  } /*End non-defined skills custom*/
                 }
               }
             /*check for missing skill effects*/
