@@ -1012,7 +1012,9 @@ $.getJSON( serverSelect, function( unit ) {
         if (evoData.hasOwnProperty(evoID)) {
           var evoList=[];
           for (var y in evoData[evoID].mats) {
-            var eID=evoData[evoID].mats[y].id;
+            var eID=evoData[evoID].mats[y].id.toString();
+            console.log(eID);
+            console.log(gl_names[eID].name);
             evoList.push(gl_names[eID].name);
           }
           exportSTR+='<td>'+evoList.join(",")+'</td>';
