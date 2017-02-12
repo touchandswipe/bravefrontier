@@ -133,6 +133,7 @@ var evoJSON={"gl":"//touchandswipe.github.io/bravefrontier_data/evo_list.json",
 "kr":"//touchandswipe.github.io/bravefrontier_data/kr/evo_list.json",
 };
 //Grab evo data
+var gl_names={};
 var evoData={};
 $(document).on("click",".serverBtn", function(e) {
   serverSelect=$(this).val();
@@ -150,7 +151,11 @@ $.getJSON( evoSelect, function( data ) {
       evoData=data;
       //console.log(JSON.stringify(evoData));
 }).always( function() {
-  
+//get english
+$.geJSON ( "//touchandswipe.github.io/bravefrontier_data/info.json", function(data) {
+  gl_names=data;
+}
+          
 $.getJSON( serverSelect, function( unit ) {
     var procID=[1,13,29,47,49,64];
     /*Process for Each Unit*/
@@ -1007,7 +1012,8 @@ $.getJSON( serverSelect, function( unit ) {
         if (evoData.hasOwnProperty(evoID)) {
           var evoList=[];
           for (var y in evoData[evoID].mats) {
-            evoList.push(evoData[evoID].mats[y].name);
+            var eID=evoData[evoID].mats[y].id;
+            evoList.push(gl_names[eID].name);
           }
           exportSTR+='<td>'+evoList.join(",")+'</td>';
         } else
