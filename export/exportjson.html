@@ -149,12 +149,12 @@ $(document).on("click",".serverBtn", function(e) {
 $(document).on("click","#exportBtn", function(e) {
 $.getJSON( evoSelect, function( data ) {
       evoData=data;
-      //console.log(JSON.stringify(evoData));
 }).always( function() {
+  
 //get english
-$.geJSON ( "//touchandswipe.github.io/bravefrontier_data/info.json", function(data) {
-  gl_names=data;
-})
+$.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function(data) {
+    gl_names=data;
+});
           
 $.getJSON( serverSelect, function( unit ) {
     var procID=[1,13,29,47,49,64];
