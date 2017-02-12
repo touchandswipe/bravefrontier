@@ -837,7 +837,7 @@ $.getJSON( serverSelect, function( unit ) {
                         }     
                       } //end for loop
                   } /*End Output String Build - effectfound check*/
-			else {
+                }			else {
 				/*process undefined proc ids*/
 				if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]) {
 					//proc ID 88
@@ -848,8 +848,8 @@ $.getJSON( serverSelect, function( unit ) {
 					}
 				}
 			}
-                }
               }
+
             /*check for missing skill effects*/
             if (bbSkillFound < valObj[bbArray[ibb]].levels[bbLvl]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
