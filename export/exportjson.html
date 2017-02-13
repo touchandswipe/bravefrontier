@@ -565,10 +565,16 @@ $.getJSON( serverSelect, function( unit ) {
 	/*process undefined proc ids*/
 	for (var j in valObj["leader skill"]["effects"]) {
 		if (valObj["leader skill"]["effects"][j]["unknown passive id"]) {
-			//proc ID 88
+			//proc ID 100
 			if (valObj["leader skill"]["effects"][j]["unknown passive id"]=="100") {
 				var undefArray=valObj["leader skill"]["effects"][j]["unknown passive params"].split(",");
 				exportSTR+=" / "+undefArray[0]+"% Chance SPARKcrit ("+undefArray[1]+"% DMG+) (ALL)";
+				lsSkillFound+=1;
+			}
+			//proc ID 78
+			if (valObj["leader skill"]["effects"][j]["passive id"]=="78") {
+				var undefObj=valObj["leader skill"]["effects"][j]["buff"];
+				exportSTR+=" / Reduce DMG ("+undefObj["dmg reduction% buff"]+")"+undefObj["buff turns (36)"]+"Turn on > " + +valObj["leader skill"]["effects"][j]["damage threshold buff activation"]/1000+"K DMG Received (ALL)";
 				lsSkillFound+=1;
 			}
 		}
