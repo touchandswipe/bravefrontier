@@ -1045,14 +1045,14 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*evo spacings*/
         var evoID= +unitKey;
-          console.log(evoID+" "+evoData[evoID]);
         if (evoData.hasOwnProperty(evoID)) {
           var evoList=[];
           for (var y in evoData[evoID].mats) {
             var eID=evoData[evoID].mats[y].id.toString();
-            console.log(eID);
-            console.log(gl_names[eID].name);
-            evoList.push(gl_names[eID].name);
+		if (evoSelect.search("/jp")!=-1)
+            		evoList.push(gl_names[eID].name);
+		else
+			evoList.push(evoData[evoID].mats[y].name);
           }
           exportSTR+='<td>'+evoList.join(",")+'</td>';
         } else
