@@ -154,7 +154,7 @@ $.getJSON( evoSelect, function( data ) {
 //get english
 $.getJSON( "//touchandswipe.github.io/bravefrontier_data/info.json", function(data) {
     gl_names=data;
-});
+}).always( function() {
           
 $.getJSON( serverSelect, function( unit ) {
     var procID=[1,13,29,47,49,64];
@@ -178,6 +178,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"dmg reduction chance%", "skillref":["dmg reduction chance%", "!% Chance Reduce DMG (", "dmg reduction%", "!%)"]},
         {"skillid":"take 1 dmg%", "skillref":["take 1 dmg%", "!% Chance Reduce DMG to 1"]},
         {"skillid":"dmg% mitigation", "skillref":["!Reduce DMG (", "dmg% mitigation","!%)"]},
+	{"skillid":"dmg reduction% buff", "skillref":["!Reduce DMG (", "dmg reduction% buff", "!%) on > ", "damage threshold buff activation", "! DMG Received"]},
         {"skillid":"bb gauge fill rate%", "skillref":["bb gauge fill rate%", "!% BC Fill+"]},
         {"skillid":"hc effectiveness%", "skillref":["hc effectiveness%", "!% HC Fill+"]},
         {"skillid":"bc drop% for spark", "skillref":["bc drop% for spark", "!% Spark BC+"]},
@@ -1167,6 +1168,7 @@ $.getJSON( serverSelect, function( unit ) {
           $("#rawTable").append(exportSTR+'<tr>');
         } /*End range check*/
     })
+})
 })
 })
 })
