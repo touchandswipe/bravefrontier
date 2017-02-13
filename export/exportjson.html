@@ -576,7 +576,7 @@ $.getJSON( serverSelect, function( unit ) {
 		//proc ID 89
 		if (valObj["leader skill"]["effects"][j]["passive id"]=="89") {
 			var undefObj=valObj["leader skill"]["effects"][j]["buff"];
-			exportSTR+=" / "+undefObj["on crit activation chance%"]+"% Chance "+undefObj["increase bb gauge gradual buff"]+"BC Fill "+undefObj["buff turns (37)"]+"Turns on CRIT (ALL)";
+			exportSTR+=" / "+valObj["leader skill"]["effects"][j]["on crit activation chance%"]+"% Chance "+undefObj["increase bb gauge gradual buff"]+"BC Fill "+undefObj["buff turns (37)"]+"Turns on CRIT (ALL)";
 			lsSkillFound+=1;
 		}
 		//proc ID 78
