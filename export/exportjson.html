@@ -168,6 +168,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"thunder resist%", "skillref":["thunder resist%", "!% Thunder Resist"]},
         {"skillid":"light resist%", "skillref":["light resist%", "!% Light Resist"]},
         {"skillid":"dark resist%", "skillref":["dark resist%", "!% Dark Resist"]},
+	{"skillid":"base spark dmg% resist", "skillref":["base spark dmg% resist", "!% Spark DMG Resist"]},
         {"skillid":"hp drain chance%", "skillref":["hp drain chance%", "!% Chance Drain ", "hp drain% low", "!-", "hp drain% high", "!% HP"]},
         {"skillid":"bc fill per turn", "skillref":["bc fill per turn","!BC Fill Each Turn"]},
         {"skillid":"bc fill when attacking%", "skillref":["bc fill when attacking%","!% Chance ", "bc fill when attacking low", "!-", "bc fill when attacking low", "!BC Fill on ATK"]},
@@ -237,6 +238,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"bb gauge fill rate% buff", "skillref":["bb gauge fill rate% buff", "!% BC Fill+ ", "target type", "! ", "buff turns (77)", "!Turns"]},
         {"skillid":"bc fill when attacked%", "skillref":["bc fill when attacked low", "!-", "bc fill when attacked high", "!BC Fill when ATKed (", "bc fill when attacked%", "!%) ", "target type", "! ", "bc fill when attacked turns (38)", "!Turns"]},
         {"skillid":"bc fill on spark%", "skillref":["bc fill on spark%", "!% Chance ", "bc fill on spark low", "!-", "bc fill on spark high", "!BC Fill on Spark ", "target type", "! ", "bc fill on spark buff turns (111)", "!Turns"]},
+	{"skillid":"spark recover hp chance%", "skillref":["spark recover hp chance%", "!% Chance ", "!Heal on Spark ", "spark recover hp buff turns (135)","!Turns"]},
         {"skillid":"heal high", "skillref":["!Heal ", "target type"]},
         {"skillid":"angel idol effect this turn (12)", "skillref":["!Angel Idol ", "target type", "! 1Turn"]},
         {"skillid":"hp recover from dmg chance", "skillref":["hp recover from dmg chance", "!% Chance Heal ", "hp recover from dmg% low", "!-", "hp recover from dmg% high", "!% DMG when ATKed ", "target type", "! ","hp recover from dmg buff turns (133)", "!Turns"]},
@@ -555,6 +557,17 @@ $.getJSON( serverSelect, function( unit ) {
                   } /*End Output String Build*/
                 }
               }
+	/*process undefined proc ids*/
+	for (var j in valObj["leader skill"]["effects"]) {
+		if (valObj["leader skill"]["effects"]["unknown proc id"]) {
+			//proc ID 88
+			if (valObj["leader skill"]["effects"]["unknown proc id"]=="100") {
+				var undefArray=valObj["leader skill"]["effects"]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[0]+"% Chance SPARKcrit ("+undefArray[1]+"% DMG+) (ALL)";
+				lsSkillFound+=1;
+			}
+		}
+	}
             /*check for missing skill effects*/
             if (lsSkillFound < valObj["leader skill"]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
@@ -845,7 +858,13 @@ $.getJSON( serverSelect, function( unit ) {
 			//proc ID 88
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="88") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
-				exportSTR+=" / "+undefArray[7]+" Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+				exportSTR+=" / "+undefArray[7]+"% Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+				bbSkillFound+=1;
+			}
+			//proc ID 97
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="97") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[7]+"% Spark DMG+ (SELF) "+undefArray[6]+"Turns";
 				bbSkillFound+=1;
 			}
 		}
