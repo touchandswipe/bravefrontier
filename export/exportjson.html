@@ -561,8 +561,8 @@ $.getJSON( serverSelect, function( unit ) {
 	for (var j in valObj["leader skill"]["effects"]) {
 		if (valObj["leader skill"]["effects"]["unknown proc id"]) {
 			//proc ID 88
-			if (valObj["leader skill"]["effects"]["unknown proc id"]=="100") {
-				var undefArray=valObj["leader skill"]["effects"]["unknown proc param"].split(",");
+			if (valObj["leader skill"]["effects"]["unknown passive id"]=="100") {
+				var undefArray=valObj["leader skill"]["effects"]["unknown passive param"].split(",");
 				exportSTR+=" / "+undefArray[0]+"% Chance SPARKcrit ("+undefArray[1]+"% DMG+) (ALL)";
 				lsSkillFound+=1;
 			}
