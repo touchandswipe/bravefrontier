@@ -872,6 +872,18 @@ $.getJSON( serverSelect, function( unit ) {
 				exportSTR+=" / "+undefArray[7]+"% Spark DMG+ (SELF) "+undefArray[6]+"Turns";
 				bbSkillFound+=1;
 			}
+			//proc ID 10007
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="10007") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[3]+"% Evade ATKs ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[1]+"Turns";
+				bbSkillFound+=1;
+			}
+			//proc ID 94
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="94") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[1]+"% Chance AOE on Normal ATK ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[2]+"Turns";
+				bbSkillFound+=1;
+			}
 			//proc ID 97
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="97") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
