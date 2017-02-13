@@ -559,10 +559,10 @@ $.getJSON( serverSelect, function( unit ) {
               }
 	/*process undefined proc ids*/
 	for (var j in valObj["leader skill"]["effects"]) {
-		if (valObj["leader skill"]["effects"]["unknown proc id"]) {
+		if (valObj["leader skill"]["effects"][j]["unknown passive id"]) {
 			//proc ID 88
-			if (valObj["leader skill"]["effects"]["unknown passive id"]=="100") {
-				var undefArray=valObj["leader skill"]["effects"]["unknown passive param"].split(",");
+			if (valObj["leader skill"]["effects"][j]["unknown passive id"]=="100") {
+				var undefArray=valObj["leader skill"]["effects"][j]["unknown passive params"].split(",");
 				exportSTR+=" / "+undefArray[0]+"% Chance SPARKcrit ("+undefArray[1]+"% DMG+) (ALL)";
 				lsSkillFound+=1;
 			}
