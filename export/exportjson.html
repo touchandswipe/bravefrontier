@@ -837,19 +837,19 @@ $.getJSON( serverSelect, function( unit ) {
                         }     
                       } //end for loop
                   } /*End Output String Build - effectfound check*/
-                }			else {
-				/*process undefined proc ids*/
-				if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]) {
-					//proc ID 88
-					if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="88") {
-						var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
-						exportSTR+=" / "+undefArray[7]+" Spark DMG+ (SELF) "+undefArray[6]+"Turns";
-						bbSkillFound+=1;
-					}
-				}
-			}
+                }
               }
-
+	/*process undefined proc ids*/
+	for (var j in valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
+		if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]) {
+			//proc ID 88
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="88") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[7]+" Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+				bbSkillFound+=1;
+			}
+		}
+	}
             /*check for missing skill effects*/
             if (bbSkillFound < valObj[bbArray[ibb]].levels[bbLvl]["effects"].length)
               exportSTR+=' <span style="color:#FF0000;">Undefined effect(s)</span>';
