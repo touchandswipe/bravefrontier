@@ -867,7 +867,11 @@ $.getJSON( serverSelect, function( unit ) {
 			//proc ID 97
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="97") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
-				exportSTR+=" / "+undefArray[7]+"% Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+				for (var lm in valObj[bbArray[ibb]]["damage frames"]) {
+					if (valObj[bbArray[ibb]]["damage frames"][lm]["proc id"]=="97")
+						var dmgHits=valObj[bbArray[ibb]]["damage frames"][lm]["hits"];
+				}
+				exportSTR+=" / "+undefArray[1]+"% Fire ("+dmgHits+" Hits/"+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+"/ATK +"+undefArray[2]+") on Earth Enemies";
 				bbSkillFound+=1;
 			}
 		}
