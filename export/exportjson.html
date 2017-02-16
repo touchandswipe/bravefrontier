@@ -573,6 +573,23 @@ $.getJSON( serverSelect, function( unit ) {
 				lsSkillFound+=1;
 			}
 		}
+		//proc ID 53
+		if (valObj["leader skill"]["effects"][j]["passive id"]=="53") {
+			exportSTR+=" / Null Elemental Weakness DMG BUFFED (ALL)";
+			lsSkillFound+=1;
+		}
+		//proc ID 80
+		if (valObj["leader skill"]["effects"][j]["passive id"]=="80") {
+			var undefObj=valObj["leader skill"]["effects"][j]["buff"];
+			exportSTR+=" / "+undefObj["def% buff (3)"]+"% DEF+ "+undefObj["buff turns (3)"]+"Turns on > " + +valObj["leader skill"]["effects"][j]["damage dealt threshold buff activation"]/1000 + "K DMG Dealt (ALL)";
+			lsSkillFound+=1;
+		}
+		//proc ID 86
+		if (valObj["leader skill"]["effects"][j]["passive id"]=="86") {
+			var undefObj=valObj["leader skill"]["effects"][j]["buff"];
+			exportSTR+=" / "+undefObj["spark dmg% buff"]+"% Spark DMG+ "+undefObj["buff turns (40)"]+"Turns on > " + valObj["leader skill"]["effects"][j]["spark count buff activation"] + "Sparks (ALL)";
+			lsSkillFound+=1;
+		}
 		//proc ID 89
 		if (valObj["leader skill"]["effects"][j]["passive id"]=="89") {
 			var undefObj=valObj["leader skill"]["effects"][j]["buff"];
@@ -877,6 +894,18 @@ $.getJSON( serverSelect, function( unit ) {
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="88") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
 				exportSTR+=" / "+undefArray[7]+"% Spark DMG+ (SELF) "+undefArray[6]+"Turns";
+				bbSkillFound+=1;
+			}
+			//proc ID 70001
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="70001") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / Convert "+undefArray[0]+"% REC to Shield ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+")";
+				bbSkillFound+=1;
+			}
+			//proc ID 63
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="63") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / Remove Enemy Buffs ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+")";
 				bbSkillFound+=1;
 			}
 			//proc ID 76
