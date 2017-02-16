@@ -618,20 +618,20 @@ if (typeof mappedNames !== 'undefined') {
 									exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+lowKey+"</span></div>";
 									exSTR+='<div class="col-xs-10 col-md-10 bi">'+lowVal+'</div></div>';
 								})
+							} else if (exKey2=="conditions") {
+								exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd bg-danger"><span class="ex">'+exKey2+"</span></div>";
+								exSTR+='<div class="col-xs-10 col-md-10 bi bg-danger">';
+								for (var x in exVal2) {
+									$.each(exVal2[x], function(lowKey,lowVal) {
+										exSTR+='<b>'+lowKey+":</b> "+lowVal;
+									})
+								}
+								exSTR+='</div></div>';
+							} else {
+								exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+exKey2+"</span></div>";
+								exSTR+='<div class="col-xs-10 col-md-10 bi">'+exVal2+'</div></div>';
 							}
-	            				} else if (exKey2=="conditions") {
-	                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd bg-danger"><span class="ex">'+exKey2+"</span></div>";
-	                				exSTR+='<div class="col-xs-10 col-md-10 bi bg-danger">';
-	                				for (var x in exVal2) {
-	                					$.each(exVal2[x], function(lowKey,lowVal) {
-		                					exSTR+='<b>'+lowKey+":</b> "+lowVal;
-		            					})
-	                				}
-	                				exSTR+='</div></div>';
-	                			} else {
-	                				exSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="ex">'+exKey2+"</span></div>";
-	                				exSTR+='<div class="col-xs-10 col-md-10 bi">'+exVal2+'</div></div>';
-	                			}
+						}
             				}
             			})
             		}
