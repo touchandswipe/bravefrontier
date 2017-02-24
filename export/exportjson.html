@@ -572,6 +572,18 @@ $.getJSON( serverSelect, function( unit ) {
 				exportSTR+=" / "+undefArray[0]+"% Chance SPARKcrit ("+undefArray[1]+"% DMG+) (ALL)";
 				lsSkillFound+=1;
 			}
+			//proc ID 100
+			if (valObj["leader skill"]["effects"][j]["unknown passive id"]=="111") {
+				var undefArray=valObj["leader skill"]["effects"][j]["unknown passive params"].split(",");
+				exportSTR+=" / "+undefArray[0]+"% BB SBB Activation+ (Arena/ALL)";
+				lsSkillFound+=1;
+			}
+			//proc ID 100
+			if (valObj["leader skill"]["effects"][j]["unknown passive id"]=="112") {
+				var undefArray=valObj["leader skill"]["effects"][j]["unknown passive params"].split(",");
+				exportSTR+=" / "+undefArray[1]+"% Chance "+undefArray[0]+"% ABP+ CBP+ (ALL)";
+				lsSkillFound+=1;
+			}
 		}
 		//proc ID 53
 		if (valObj["leader skill"]["effects"][j]["passive id"]=="53") {
