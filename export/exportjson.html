@@ -944,6 +944,12 @@ $.getJSON( serverSelect, function( unit ) {
 				exportSTR+=" / "+undefArray[1]+"% Chance AOE on Normal ATK ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[2]+"Turns";
 				bbSkillFound+=1;
 			}
+			//proc ID 132
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="132") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / "+undefArray[0]+"% Chance "+undefArray[2]+"% CRIT DMG Debuff ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[4]+"Turns"+" / "+undefArray[1]+"% Chance "+undefArray[3]+"% Element Weakness DMG Debuff ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[4]+"Turns";
+				bbSkillFound+=1;
+			}
 			//proc ID 97
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="97") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
