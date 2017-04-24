@@ -249,6 +249,7 @@ $.getJSON( serverSelect, function( unit ) {
         {"skillid":"ailments cured", "skillref":["!Cure Ails"]},
         {"skillid":"remove all status ailments", "skillref":["!Cure Ails"]},
         {"skillid":"resist status ails turns", "skillref":["!Null Ails ", "resist status ails turns", "!Turns"]},
+	{"skillid":"crit dmg base damage resist% (143)", "skillref":["!Null CRIT ", "target type","dmg resist turns", "!Turns"]},
         {"skillid":"stat down immunity buff turns", "skillref":["!Null STATS Debuff ", "stat down immunity buff turns", "!Turns"]},
         {"skillid":"elements added", "skillref":["!Add ", "elements added", "! to ATK ", "target type", "! ", "elements added turns", "!Turns"]},
         {"skillid":"atk% buff (13)", "skillref":["atk% buff (13)", "!% ATK+ to ", "element buffed", "! ", "buff turns","!Turns"]},
@@ -948,6 +949,12 @@ $.getJSON( serverSelect, function( unit ) {
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="132") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
 				exportSTR+=" / "+undefArray[0]+"% Chance "+undefArray[2]+"% CRIT DMG Debuff ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[4]+"Turns"+" / "+undefArray[1]+"% Chance "+undefArray[3]+"% Element Weakness DMG Debuff ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[4]+"Turns";
+				bbSkillFound+=1;
+			}
+			//proc ID 126
+			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="126") {
+				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
+				exportSTR+=" / Reduce Chain DMG ("+undefArray[0]+"%) ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[1]+"Turns";
 				bbSkillFound+=1;
 			}
 			//proc ID 97
