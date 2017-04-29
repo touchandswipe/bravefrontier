@@ -957,7 +957,7 @@ $.getJSON( serverSelect, function( unit ) {
 			//proc ID 126
 			if (valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc id"]=="126") {
 				var undefArray=valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["unknown proc param"].split(",");
-				exportSTR+=" / Reduce Chain DMG ("+undefArray[0]+"%) ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target area"].toUpperCase()+") "+undefArray[1]+"Turns";
+				exportSTR+=" / Reduce Chain DMG ("+undefArray[0]+"%) ("+valObj[bbArray[ibb]].levels[bbLvl]["effects"][j]["target type"].toUpperCase()+") "+undefArray[1]+"Turns";
 				bbSkillFound+=1;
 			}
 			//proc ID 97
