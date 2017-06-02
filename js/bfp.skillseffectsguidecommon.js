@@ -499,8 +499,8 @@ if (typeof mappedNames !== 'undefined') {
             $.each(valObj.sbb.levels[0], function(sbbKey,sbbVal) {
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey+'</span></div>';
-			    if (String(valObj.sbb.levels[0][sbbKey])==String(valObj.sbb.levels[valObj.sbb.levels.length][sbbKey]))
-				sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length][sbbKey]+'</div>';
+			    if (String(valObj.sbb.levels[0][sbbKey])==String(valObj.sbb.levels[valObj.sbb.levels.length-1][sbbKey]))
+				sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length-1][sbbKey]+'</div>';
 			    else
 				    for (i=0;i<valObj.sbb.levels.length;i++) {
 					sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[i][sbbKey]+'</div>'
@@ -517,8 +517,8 @@ if (typeof mappedNames !== 'undefined') {
 		                			if (sbbVal2.constructor === Object) {
 		                				$.each(valObj.sbb.levels[0].effects[j][sbbKey2], function(sbbKey3,sbbVal3) {
 			                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey2+' ('+sbbKey3+')</span></div>';
-			                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3])==String(valObj.sbb.levels[valObj.sbb.levels.length].effects[j][sbbKey2][sbbKey3]))
-			                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length].effects[j][sbbKey2][sbbKey3]+'</div>';
+			                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2][sbbKey3])==String(valObj.sbb.levels[valObj.sbb.levels.length-1].effects[j][sbbKey2][sbbKey3]))
+			                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length-1].effects[j][sbbKey2][sbbKey3]+'</div>';
 			                				else
 										for (k=0;k<valObj.sbb.levels.length;k++) {
 							                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2][sbbKey3]+'</div>'
@@ -528,8 +528,8 @@ if (typeof mappedNames !== 'undefined') {
 		                			}
 		                			else {
 		                				sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey2+'</span></div>';
-		                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2])==String(valObj.sbb.levels[valObj.sbb.levels.length].effects[j][sbbKey2]))
-		                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length].effects[j][sbbKey2]+'</div>';
+		                				if (String(valObj.sbb.levels[0].effects[j][sbbKey2])==String(valObj.sbb.levels[valObj.sbb.levels.length-1].effects[j][sbbKey2]))
+		                					sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[valObj.sbb.levels.length-1].effects[j][sbbKey2]+'</div>';
 		                				else
 									for (k=0;k<valObj.sbb.levels.length;k++) {
 						                        	sbbSTR+='<div class="col-xs-1 col-md-1 bi">'+valObj.sbb.levels[k].effects[j][sbbKey2]+'</div>'
