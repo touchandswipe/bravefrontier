@@ -290,6 +290,7 @@ if (typeof mappedNames !== 'undefined') {
 }
     /*Process for Each Unit*/
     $.each( unit, function( unitKey, valObj ) {
+	console.log("processing "+valObj.name);
     	/*process for JP only*/
         if (mapJPnames) {
         	var strName=String(unitKey);
