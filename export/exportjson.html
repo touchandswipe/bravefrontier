@@ -629,11 +629,8 @@ $.getJSON( serverSelect, function( unit ) {
           /*Parsing all BB Skills*/
           for (ibb in bbArray) {
           var bbSkillFound=0;
-					/*ubb has no multilevels data*/
-          if (bbArray[ibb]!="ubb")
-              var bbLvl=9;
-          else
-              var bbLvl=0;
+	  /*ubb has no multilevels data*/
+	  var bbLvl=valObj[bbArray[ibb]].levels.length-1;
           exportSTR+="<td>";
           if (valObj[bbArray[ibb]])
             if (valObj[bbArray[ibb]].levels[bbLvl]["effects"]) {
