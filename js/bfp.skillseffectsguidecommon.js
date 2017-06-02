@@ -499,7 +499,7 @@ if (typeof mappedNames !== 'undefined') {
             $.each(valObj.sbb.levels[0], function(sbbKey,sbbVal) {
                 if (sbbKey!="effects") {
                     sbbSTR+='<div class="row equal"><div class="col-xs-2 col-md-2 bd"><span class="sbb">'+sbbKey+'</span></div>';
-			if (typeof valObj.sbb.levels[9][sbbKey] != "undefined") {
+			if (valObj.sbb.levels[9]) {
 			    if (String(valObj.sbb.levels[0][sbbKey])==String(valObj.sbb.levels[9][sbbKey]))
 				sbbSTR+='<div class="col-xs-10 col-md-10 bi">'+valObj.sbb.levels[9][sbbKey]+'</div>';
 			    else
