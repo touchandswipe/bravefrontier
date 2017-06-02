@@ -1065,8 +1065,8 @@ $.getJSON( serverSelect, function( unit ) {
               
         /*bb fill*/
         if (valObj.bb)
-          if (valObj.bb.levels[9]["bc cost"])
-            exportSTR+='<td>'+valObj.bb.levels[9]["bc cost"]+'</td>'
+          if (valObj.bb.levels[valObj.bb.levels.length-1]["bc cost"])
+            exportSTR+='<td>'+valObj.bb.levels[valObj.bb.levels.length-1]["bc cost"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -1074,8 +1074,8 @@ $.getJSON( serverSelect, function( unit ) {
         
         /*sbb fill*/
         if (valObj.sbb)
-          if (valObj.sbb.levels[9]["bc cost"])
-            exportSTR+='<td>'+valObj.sbb.levels[9]["bc cost"]+'</td>'
+          if (valObj.sbb.levels[valObj.sbb.levels.length-1]["bc cost"])
+            exportSTR+='<td>'+valObj.sbb.levels[valObj.sbb.levels.length-1]["bc cost"]+'</td>'
           else
             exportSTR+='<td></td>'
         else
@@ -1212,8 +1212,8 @@ $.getJSON( serverSelect, function( unit ) {
         /*bb atk%*/
         bbFound=false;
         if (valObj.bb) {
-            for (i in valObj.bb.levels[9].effects) {
-              $.each(valObj.bb.levels[9].effects[i], function(bbKey,bbVal) {
+            for (i in valObj.bb.levels[valObj.bb.levels.length-1].effects) {
+              $.each(valObj.bb.levels[valObj.bb.levels.length-1].effects[i], function(bbKey,bbVal) {
                   if (bbKey=="bb atk%" && !bbFound) {
                     exportSTR+='<td>'+bbVal+'</td>';
                     bbFound=true;
@@ -1227,8 +1227,8 @@ $.getJSON( serverSelect, function( unit ) {
         /*sbb atk%*/
         sbbFound=false;
         if (valObj.sbb) {
-            for (i in valObj.sbb.levels[9].effects) {
-              $.each(valObj.sbb.levels[9].effects[i], function(sbbKey,sbbVal) {
+            for (i in valObj.sbb.levels[valObj.sbb.levels.length-1].effects) {
+              $.each(valObj.sbb.levels[valObj.sbb.levels.length-1].effects[i], function(sbbKey,sbbVal) {
                   if (sbbKey=="bb atk%" && !sbbFound) {
                     exportSTR+='<td>'+sbbVal+'</td>';
                     sbbFound=true;
