@@ -1,3 +1,4 @@
+//Shared code
 countVar=0;
 collapseID=1;
 rawParseObj=[];
