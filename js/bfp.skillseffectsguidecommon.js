@@ -1,6 +1,7 @@
 countVar=0;
 collapseID=1;
 rawParseObj=[];
+
 procID=[1,13,29,47,49,64];
 /*Progress and re-sync*/
 function reSyncData(dataString) {
